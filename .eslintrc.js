@@ -86,6 +86,10 @@ module.exports = {
         ],
         '@typescript-eslint/no-unused-vars': 1,
         '@typescript-eslint/no-explicit-any': 0,
+        '@typescript-eslint/no-misused-promises': [
+          'error',
+          { checksVoidReturn: false },
+        ],
         '@typescript-eslint/no-var-requires': 0,
         '@typescript-eslint/restrict-template-expressions': 0,
         '@typescript-eslint/no-unsafe-assignment': 0,
