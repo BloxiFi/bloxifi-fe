@@ -1,7 +1,7 @@
 {
   "name": "bloxifi",
   "version": "1.0.0",
-  "main": "index.js",
+  "license": "BSD-3-Clause",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -14,8 +14,8 @@
     "serve": "lerna run serve --parallel",
     "test": "jest",
     "typecheck": "lerna run typecheck --parallel",
-    "lint": "eslint --ext .ts,.tsx --cache --color apps/ packages/ && stylelint --cache \"packages/**/*.tsx\" \"apps/**/*.tsx\"",
-    "format": "prettier --write \"packages/**/*.tsx\" \"packages/**/*.ts\" \"apps/**/*.tsx\" \"apps/**/*.ts\"",
+    "lint": "eslint --ext .ts,.tsx --cache --color --fix --max-warnings 10 apps/ packages/ && stylelint --color --cache \"{packages,apps}/**/*.tsx\"",
+    "format": "prettier -w \"{packages,apps}/**/*.{js,tsx,ts}\"",
     "storybook": "start-storybook -p 6006 -s ./apps/web/src/public,./packages/ui/src/fonts",
     "build-storybook": "build-storybook --quiet -s ./apps/web/src/public,./packages/ui/src/fonts"
   },
