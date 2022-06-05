@@ -80,6 +80,10 @@ module.exports = {
 
       rules: {
         '@typescript-eslint/camelcase': 0,
+        '@typescript-eslint/no-misused-promises': [
+          'error',
+          { checksVoidReturn: false },
+        ],
         '@typescript-eslint/no-unused-vars': 1,
         '@typescript-eslint/no-explicit-any': 0,
         '@typescript-eslint/no-misused-promises': [

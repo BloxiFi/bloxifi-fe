@@ -1,13 +1,18 @@
-import { useEffect, useReducer } from 'react'
-import { createContainer } from 'unstated-next'
 import { setApiKeyHeader } from '@bloxifi/core'
 import { Action } from '@bloxifi/types'
+import detectEthereumProvider from '@metamask/detect-provider'
+import { useEffect, useReducer } from 'react'
+import { createContainer } from 'unstated-next'
+
+const isMetamaskInstalled = async () =>
+  await detectEthereumProvider({ mustBeMetaMask: true })
 
 const defaultState = {
   userData: null,
+  isMetamaskInstalled: false,
 }
 
-type ActionType = 'setUserData' | 'updateUserData'
+type ActionType = 'setUserData' | 'updateUserData' | 'isMetamaskInstalled'
 
 const reducer = (state, action: Action<ActionType>) => {
   switch (action.type) {
@@ -16,6 +21,9 @@ const reducer = (state, action: Action<ActionType>) => {
     }
     case 'updateUserData': {
       return { ...state, userData: { ...state.userData, ...action.value } }
+    }
+    case 'isMetamaskInstalled': {
+      return { ...state, isMetamaskInstalled: action.value }
     }
     default:
       return defaultState
@@ -27,13 +35,23 @@ function useContainer(initialState) {
     ...defaultState,
     ...initialState,
   })
-  const isAuthenticated = !!state.userData
+  const isAuthenticated = !!state.setUserData
 
   useEffect(() => {
     if (isAuthenticated) {
       const token = localStorage.getItem('token')
       setApiKeyHeader(token)
     }
+    isMetamaskInstalled()
+      .then(res =>
+        dispatch({
+          type: 'isMetamaskInstalled',
+          value: !!res,
+        }),
+      )
+      .catch(e => {
+        throw new Error(e)
+      })
   }, [isAuthenticated])
 
   function authenticate(data) {
