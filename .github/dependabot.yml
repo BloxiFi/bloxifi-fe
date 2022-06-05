@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: 'weekly'
     open-pull-requests-limit: 30
-    target-branch: develop_dependabot
+    target-branch: develop
     versioning-strategy: increase-if-necessary
     ignore:
       - dependency-name: '@bloxifi/ui'
@@ -18,7 +18,7 @@ updates:
       interval: 'weekly'
     open-pull-requests-limit: 30
     versioning-strategy: increase-if-necessary
-    target-branch: develop_dependabot
+    target-branch: develop
 
   - package-ecosystem: 'npm'
     directory: 'packages/build'
@@ -26,7 +26,7 @@ updates:
       interval: 'weekly'
     open-pull-requests-limit: 30
     versioning-strategy: increase-if-necessary
-    target-branch: develop_dependabot
+    target-branch: develop
 
   - package-ecosystem: 'npm'
     directory: 'packages/types'
@@ -34,7 +34,7 @@ updates:
       interval: 'weekly'
     open-pull-requests-limit: 30
     versioning-strategy: increase-if-necessary
-    target-branch: develop_dependabot
+    target-branch: develop
 
   - package-ecosystem: 'npm'
     directory: 'packages/core'
@@ -42,7 +42,7 @@ updates:
       interval: 'weekly'
     open-pull-requests-limit: 30
     versioning-strategy: increase-if-necessary
-    target-branch: develop_dependabot
+    target-branch: develop
 
   - package-ecosystem: 'npm'
     directory: '/'
@@ -50,7 +50,7 @@ updates:
       interval: 'weekly'
     open-pull-requests-limit: 30
     versioning-strategy: increase-if-necessary
-    target-branch: develop_dependabot
+    target-branch: develop
     ignore:
       - dependency-name: 'react'
       - dependency-name: 'react-dom'
