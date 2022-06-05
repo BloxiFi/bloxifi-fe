@@ -108,7 +108,7 @@
     "ramda": "^0.28.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-is": "^16.13.1",
+    "react-is": "^18.1.0",
     "regenerator-runtime": "^0.13.9",
     "sass": "^1.51.0",
     "sass-loader": "^13.0.0",
