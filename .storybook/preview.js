@@ -1,6 +1,5 @@
 import { DocsPage, DocsContainer } from '@storybook/addon-docs'
 import { initTranslations } from '@bloxifi/core'
-import React from 'react'
 initTranslations()
 
 export const decorators = [

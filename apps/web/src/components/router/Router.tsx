@@ -1,3 +1,5 @@
+import { PageContainer } from '@/containers/PageContainer'
+import { PageLayout } from '@bloxifi/ui'
 import React, { FC, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -10,6 +12,7 @@ export const Router: FC = ({ children }) => {
   const {
     state: { isAuthenticated },
   } = UserContainer.useContainer()
+  const { pageLayout } = PageContainer.useContainer()
 
   function renderRoute({ path, filename }) {
     const routeProps = {
@@ -22,11 +25,13 @@ export const Router: FC = ({ children }) => {
   }
 
   return (
-    <BrowserRouter>
-      {children}
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>{routes.map(route => renderRoute(route))}</Routes>
-      </Suspense>
-    </BrowserRouter>
+    <PageLayout {...pageLayout}>
+      <BrowserRouter>
+        {children}
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>{routes.map(route => renderRoute(route))}</Routes>
+        </Suspense>
+      </BrowserRouter>
+    </PageLayout>
   )
 }
