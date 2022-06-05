@@ -1,9 +1,5 @@
 module.exports = {
   stories: ['../packages/**/*.stories.@(js|ts|tsx|mdx)'],
-  reactOptions: {
-    fastRefresh: true,
-    strictMode: true,
-  },
   addons: [
     {
       name: '@storybook/addon-docs',
@@ -19,16 +15,8 @@ module.exports = {
     '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-measure',
-    'storybook-addon-outline',
     '@storybook/addon-viewport',
   ],
-  core: {
-    builder: 'webpack4',
-  },
-  features: {
-    postcss: false,
-    modernInlineRender: true,
-  },
 
   webpackFinal: async config => {
     config.module.rules.push({
