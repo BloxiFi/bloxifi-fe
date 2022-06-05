@@ -3,7 +3,7 @@
 #
 # Web app is built and deployed to AWS S3 Bucket.
 #
-name: deploy-dev
+name: Development
 
 on:
   push:
