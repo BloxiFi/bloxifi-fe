@@ -1,10 +1,10 @@
-import { PageContainer } from '@/containers/PageContainer'
 import { PageLayout } from '@bloxifi/ui'
 import React, { FC, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { PublicRoute } from './PublicRoute'
 
+import { PageContainer } from '@/containers/PageContainer'
 import routes from '@/routes.json'
 import { UserContainer } from '@/containers/UserContainer'
 
