@@ -9,8 +9,9 @@ import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
 import { NotificationManager } from '@/components/notification/NotificationManager'
-import { Router } from '@/components/router/Router'
 import { ExternalProvider } from '@ethersproject/providers'
+
+import { Router } from '@/components/router/Router'
 
 export const App = () => {
   const style = StyleContainer.useContainer()

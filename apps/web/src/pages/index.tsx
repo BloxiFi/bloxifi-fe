@@ -6,6 +6,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
 import { ConnectWalletButton } from '@/components/WalletConnection/ConnectWalletButton'
+import { Stake } from '@/components/Stake/Stake'
 
 const HomePage = () => {
   const { t } = useTranslation()
@@ -22,6 +23,7 @@ const HomePage = () => {
           </Text>
         </BoxLayout>
         <ConnectWalletButton />
+        <Stake />
         <button onClick={() => changeTheme('dark')}>Dark theme</button>
         <button onClick={() => changeTheme('light')}>Light theme</button>
         <button onClick={() => setLanguage('en')}>Change to Eng</button>
