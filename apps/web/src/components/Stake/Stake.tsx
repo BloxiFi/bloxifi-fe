@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
+import { ethers } from 'ethers'
 
 import { contracts } from '../../utils/contracts'
-import { ethers } from 'ethers'
 
 export const Stake = () => {
   const web3Context = useWeb3React()
-  const [signer, setSigner] = useState<any>()
-  const [approved, setApproved] = useState<any>()
+  const [signer, setSigner] = useState()
+  const [approved, setApproved] = useState()
   const [stakeCompleted, setStakeCompleted] = useState()
   const [loading, setLoading] = useState(false)
 
