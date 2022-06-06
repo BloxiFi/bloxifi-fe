@@ -9,11 +9,10 @@
     "test": "jest"
   },
   "devDependencies": {
-    "babel-loader": "^8.2.2",
     "circular-dependency-plugin": "^5.2.0",
     "clean-webpack-plugin": "^4.0.0",
     "compression-webpack-plugin": "^9.0.0",
-    "copy-webpack-plugin": "^10.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "cssnano": "^5.0.2",
     "dotenv-webpack": "^7.0.1",
     "fork-ts-checker-webpack-plugin": "^7",

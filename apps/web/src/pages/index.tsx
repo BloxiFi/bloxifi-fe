@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { ThemeContext } from 'styled-components'
 
+import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
 import { ConnectWalletButton } from '@/components/WalletConnection/ConnectWalletButton'
@@ -12,6 +13,7 @@ const HomePage = () => {
   const { t } = useTranslation()
   const { setLanguage } = LocaleContainer.useContainer()
   const { changeTheme } = StyleContainer.useContainer()
+  const { pageLayout } = PageContainer.useContainer()
   const themeContext = useContext(ThemeContext)
 
   return (
@@ -25,6 +27,13 @@ const HomePage = () => {
         <ConnectWalletButton />
         <Stake />
         <button onClick={() => changeTheme('dark')}>Dark theme</button>
+        <button
+          onClick={() =>
+            pageLayout.setHeader(!pageLayout.header ? <div>HEADER</div> : null)
+          }
+        >
+          {!pageLayout.header ? 'Add' : 'Remove'} header
+        </button>
         <button onClick={() => changeTheme('light')}>Light theme</button>
         <button onClick={() => setLanguage('en')}>Change to Eng</button>
         <button onClick={() => setLanguage('sr')}>Change to Serbian</button>

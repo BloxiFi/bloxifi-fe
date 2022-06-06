@@ -1,6 +1,5 @@
 import '@bloxifi/ui/src/fonts/fonts.less'
 import 'normalize.css'
-import './polyfills/color.js'
 import './sw'
 
 import React from 'react'
@@ -17,8 +16,8 @@ declare global {
   }
 }
 
-async function init() {
-  await initTranslations()
+function init() {
+  void initTranslations()
 
   ReactDOM.render(
     <StyleContainer.Provider>
@@ -29,7 +28,3 @@ async function init() {
 }
 
 init()
-  .then(r => r)
-  .catch(e => {
-    throw new Error(e)
-  })

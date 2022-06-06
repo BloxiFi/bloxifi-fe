@@ -1,0 +1,56 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: 'apps/web/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    target-branch: develop
+    versioning-strategy: increase-if-necessary
+    ignore:
+      - dependency-name: '@bloxifi/ui'
+      - dependency-name: '@bloxifi/core'
+      - dependency-name: '@bloxifi/build'
+
+  - package-ecosystem: 'npm'
+    directory: 'packages/ui'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: develop
+
+  - package-ecosystem: 'npm'
+    directory: 'packages/build'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: develop
+
+  - package-ecosystem: 'npm'
+    directory: 'packages/types'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: develop
+
+  - package-ecosystem: 'npm'
+    directory: 'packages/core'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: develop
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: develop
+    ignore:
+      - dependency-name: 'react'
+      - dependency-name: 'react-dom'
