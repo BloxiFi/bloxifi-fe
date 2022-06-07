@@ -954,7 +954,7 @@ export const contracts = {
     ],
   },
   mockToken: {
-    address: '0xBE4cd2264D2126D12FAF86A443709cd973Dbe92B',
+    address: '0x8478f753B33142780Ff8e9115833cEfDCDadBCa4',
     abi: [
       {
         inputs: [],
