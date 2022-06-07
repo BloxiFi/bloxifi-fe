@@ -1,42 +1,30 @@
+import { Staking } from '@bloxifi/core'
 import React, { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
 
-import { contracts } from '../../utils/contracts'
-
 export const StakeModalContent = () => {
-  const web3Context = useWeb3React()
+  const web3Context = useWeb3React<Web3Provider>()
   const signer = web3Context.library.getSigner()
 
-  const [shouldApproveContract, setShouldApproveContract] =
-    useState<boolean>(false)
-  const [approved, setApproved] = useState<boolean>(false)
-  const [stakeCompleted, setStakeCompleted] = useState<boolean>(false)
-  const [loading, setLoading] = useState<boolean>(false)
-  const [hasError, setHasError] = useState<boolean>()
+  const [shouldApproveContract, setShouldApproveContract] = useState(false)
+  const [approved, setApproved] = useState(false)
+  const [stakeCompleted, setStakeCompleted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [hasError, setHasError] = useState()
 
   const mintTokenValue = '5'
   const stakeTokenValue = '1'
-  const approveTokenValue =
-    '115792089237316195423570985008687907853269984665640564039457584007913129639935'
-
-  const stakeContract = new ethers.Contract(
-    contracts.stakedAave.address,
-    contracts.stakedAave.abi,
-    signer,
-  )
-  const mockTokenContract = new ethers.Contract(
-    contracts.mockToken.address,
-    contracts.mockToken.abi,
-    signer,
-  )
+  const stakeContract = Staking.stakedAave.getStakeContract(signer)
+  const mockTokenContract = Staking.mockedToken.getMockTokenContract(signer)
 
   const checkAllowance = async () =>
-    await mockTokenContract.allowance(
+    await Staking.mockedToken.getAllowance(
+      mockTokenContract,
       web3Context.account,
-      contracts.stakedAave.address,
     )
 
   useEffect(() => {
@@ -92,10 +80,7 @@ export const StakeModalContent = () => {
   const approve = async () => {
     setLoading(true)
     try {
-      const response = await mockTokenContract.approve(
-        contracts.stakedAave.address,
-        approveTokenValue,
-      )
+      const response = await Staking.mockedToken.approve(mockTokenContract)
       const isApproved = await response.wait()
       setApproved(!!isApproved)
       setHasError(null)
