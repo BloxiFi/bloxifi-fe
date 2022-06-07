@@ -1,6 +1,8 @@
 import { PageLayout } from '@bloxifi/ui'
-import React, { FC, lazy, Suspense } from 'react'
+import React, { FC, lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import { Header } from '../Header/Header'
 
 import { PublicRoute } from './PublicRoute'
 
@@ -23,15 +25,18 @@ export const Router: FC = ({ children }) => {
 
     return <Route path={path} element={<PublicRoute {...routeProps} />} />
   }
+  useEffect(() => {
+    pageLayout.setHeader(<Header />)
+  }, [])
 
   return (
-    <PageLayout {...pageLayout}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <PageLayout {...pageLayout}>
         {children}
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>{routes.map(route => renderRoute(route))}</Routes>
         </Suspense>
-      </BrowserRouter>
-    </PageLayout>
+      </PageLayout>
+    </BrowserRouter>
   )
 }
