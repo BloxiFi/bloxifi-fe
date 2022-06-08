@@ -94,13 +94,11 @@ function useContainer(initialState: Web3Data) {
           !networkError &&
           localStorage.getItem('connected')
         ) {
-          activateNetwork(injectedConnector, undefined, true).catch(error =>
-            setNetworkError(error),
-          )
+          connectWallet().catch(error => setNetworkError(error))
         }
       })
       .catch(error => setNetworkError(error))
-  }, [activateNetwork, networkActive, networkError])
+  }, [networkActive])
 
   return {
     state: {

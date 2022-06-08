@@ -2,11 +2,14 @@ import { Text, CoverLayout, BoxLayout } from '@bloxifi/ui'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { ThemeContext } from 'styled-components'
+import { useContainer } from 'unstated-next'
 
 import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
 import { ConnectWalletButton } from '@/components/WalletConnection/ConnectWalletButton'
+import { Web3Container } from '@/containers/Web3Container'
+import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
 
 const HomePage = () => {
   const { t } = useTranslation()
@@ -14,6 +17,9 @@ const HomePage = () => {
   const { changeTheme } = StyleContainer.useContainer()
   const { pageLayout } = PageContainer.useContainer()
   const themeContext = useContext(ThemeContext)
+  const {
+    state: { connected, loading },
+  } = useContainer(Web3Container)
 
   return (
     <Wrapper>
@@ -23,7 +29,7 @@ const HomePage = () => {
             {t('global.button')}
           </Text>
         </BoxLayout>
-        <ConnectWalletButton />
+        {!connected && <ConnectWalletPaper loading={loading} />}
         <button onClick={() => changeTheme('dark')}>Dark theme</button>
         <button
           onClick={() =>

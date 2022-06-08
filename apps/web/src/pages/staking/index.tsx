@@ -1,28 +1,32 @@
-import { CoverLayout, BoxLayout } from '@bloxifi/ui'
+import { CoverLayout, BoxLayout, Text } from '@bloxifi/ui'
 import React from 'react'
-import styled from 'styled-components'
-import { useWeb3React } from '@web3-react/core'
+import { useContainer } from 'unstated-next'
 
 import { StakeModalContent } from '@/components/Staking/StakeModalContent'
+import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
+import { Web3Container } from '@/containers/Web3Container'
 
 const StakingPage = () => {
-  const web3Context = useWeb3React()
-
+  const {
+    state: { connected, loading },
+  } = useContainer(Web3Container)
   return (
-    <Wrapper>
+    <BoxLayout>
+      <Text type="heading 2" semiBold>
+        Staking page
+      </Text>
+
       <CoverLayout>
-        <h1> Staking page</h1>
-        <BoxLayout>
-          {web3Context.active ? <StakeModalContent /> : 'Please connect wallet'}
-        </BoxLayout>
+        {connected ? (
+          <StakeModalContent />
+        ) : (
+          <ConnectWalletPaper
+            loading={loading}
+            description="We couldn’t detect a wallet. Connect a wallet to stake."
+          />
+        )}
       </CoverLayout>
-    </Wrapper>
+    </BoxLayout>
   )
 }
 export default StakingPage
-
-const Wrapper = styled.body`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-`
