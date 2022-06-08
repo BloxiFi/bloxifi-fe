@@ -1,7 +1,8 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { InjectedConnector } from '@web3-react/injected-connector'
-import { BoxLayout, Text, StackLayout } from '@bloxifi/ui'
+import { Text } from '@bloxifi/ui'
+import styled from 'styled-components'
 
 import { UserContainer } from '@/containers/UserContainer'
 
@@ -11,6 +12,7 @@ const supportedChains = {
   4: 'rinkeby',
   42: 'kovan',
   1284: 'moonbeam',
+  1287: 'moonbase alpha',
 }
 
 export const supportedChainIds = Object.keys(supportedChains).map(key =>
@@ -61,25 +63,15 @@ export const ConnectWalletButton = () => {
     )
   }
 
-  return (
-    <BoxLayout>
-      <StackLayout>
-        {web3Context.active ? (
-          <>
-            <Text type="text xl" color="green" semiBold align="center">
-              {`Connected to ${supportedChains[web3Context.chainId]} !`}
-            </Text>
-            <Text type="text xl" color="textGray" semiBold align="center">
-              {web3Context.account}
-            </Text>
-            <button onClick={disconnect}>Disconnect</button>
-          </>
-        ) : (
-          <Text type="text xl" color="textGray" semiBold align="center">
-            <button onClick={connect}>Connect wallet</button>
-          </Text>
-        )}
-      </StackLayout>
-    </BoxLayout>
+  return web3Context.active ? (
+    <div>
+      <Address>{`${web3Context.account.slice(0, 8)}...`}</Address>
+      <button onClick={disconnect}> Disconnect</button>
+    </div>
+  ) : (
+    <button onClick={connect}>Connect wallet</button>
   )
 }
+const Address = styled.span`
+  margin: 0 20px;
+`
