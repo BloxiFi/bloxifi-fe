@@ -1,15 +1,17 @@
 import { Staking } from '@bloxifi/core'
 import React, { useEffect, useState } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { Web3Provider } from '@ethersproject/providers'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
+import { useContainer } from 'unstated-next'
+
+import { Web3Container } from '@/containers/Web3Container'
 
 export const StakeModalContent = () => {
-  const web3Context = useWeb3React<Web3Provider>()
-  const signer = web3Context.library.getSigner()
-
+  const {
+    state: { currentAccount, connected, provider },
+  } = useContainer(Web3Container)
+  const signer = provider.getSigner()
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
   const [approved, setApproved] = useState(false)
   const [stakeCompleted, setStakeCompleted] = useState(false)
@@ -22,10 +24,7 @@ export const StakeModalContent = () => {
   const mockTokenContract = Staking.mockedToken.getMockTokenContract(signer)
 
   const checkAllowance = async () =>
-    await Staking.mockedToken.getAllowance(
-      mockTokenContract,
-      web3Context.account,
-    )
+    await Staking.mockedToken.getAllowance(mockTokenContract, currentAccount)
 
   useEffect(() => {
     checkAllowance()
@@ -62,7 +61,7 @@ export const StakeModalContent = () => {
     setLoading(true)
     try {
       const response = await stakeContract.stake(
-        web3Context.account,
+        currentAccount,
         ethers.utils.parseEther(stakeTokenValue),
       )
 
@@ -93,7 +92,7 @@ export const StakeModalContent = () => {
 
   return (
     <BoxLayout>
-      {web3Context.active && (
+      {connected && (
         <StackLayout
           gap={0.5}
           style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
