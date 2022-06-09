@@ -9,7 +9,7 @@ import { Web3Container } from '@/containers/Web3Container'
 
 export const StakeModalContent = () => {
   const {
-    state: { currentAccount, connected, provider },
+    state: { currentAccount, connected, provider, isSupportedNetwork },
   } = useContainer(Web3Container)
   const signer = provider.getSigner()
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
@@ -27,13 +27,14 @@ export const StakeModalContent = () => {
     await Staking.mockedToken.getAllowance(mockTokenContract, currentAccount)
 
   useEffect(() => {
-    checkAllowance()
-      .then(approvedTokens => {
-        setShouldApproveContract(approvedTokens.toString() === '0')
-        setHasError(null)
-      })
-      .catch(error => setHasError(error))
-  }, [])
+    isSupportedNetwork &&
+      checkAllowance()
+        .then(approvedTokens => {
+          setShouldApproveContract(approvedTokens.toString() === '0')
+          setHasError(null)
+        })
+        .catch(error => setHasError(error))
+  }, [isSupportedNetwork, currentAccount])
 
   const resetState = () => {
     setApproved(false)
@@ -100,7 +101,9 @@ export const StakeModalContent = () => {
           <h3>Stake Blox</h3>
           <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span>Amount: {stakeTokenValue} Blox</span>{' '}
-            <button onClick={mint}>Get {mintTokenValue} Blox</button>{' '}
+            <button disabled={!isSupportedNetwork} onClick={mint}>
+              Get {mintTokenValue} Blox
+            </button>{' '}
           </Grid>
 
           <p style={{ color: 'orange' }}>{loading && 'Please wait...'}</p>
@@ -109,13 +112,20 @@ export const StakeModalContent = () => {
           </p>
           <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
           {shouldApproveContract && (
-            <button disabled={loading || approved} onClick={approve}>
+            <button
+              disabled={!isSupportedNetwork || loading || approved}
+              onClick={approve}
+            >
               Approve to continue
             </button>
           )}
 
           <button
-            disabled={loading || (shouldApproveContract && !approved)}
+            disabled={
+              !isSupportedNetwork ||
+              loading ||
+              (shouldApproveContract && !approved)
+            }
             onClick={stake}
           >
             Stake
