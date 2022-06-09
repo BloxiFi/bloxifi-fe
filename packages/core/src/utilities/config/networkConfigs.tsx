@@ -2,7 +2,6 @@ type NetworkConfigType = { [x: number]: { name: string; isTestnet: boolean } }
 
 const ChainIds = {
   moonbaseAlpha: 1287,
-  moonbeam: 1284,
 }
 
 export const supportedChainIds: number[] = Object.values(ChainIds).map(value =>
@@ -13,10 +12,6 @@ export const netowrkConfig: NetworkConfigType = {
   [ChainIds.moonbaseAlpha]: {
     name: 'Moonbase',
     isTestnet: true,
-  },
-  [ChainIds.moonbeam]: {
-    name: 'Moonbeam',
-    isTestnet: false,
   },
 }
 

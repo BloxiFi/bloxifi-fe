@@ -1,3 +1,4 @@
+import { supportedChainIds } from '@bloxifi/core'
 import { Action } from '@bloxifi/types'
 import { JsonRpcProvider } from '@ethersproject/providers'
 import { useWeb3React } from '@web3-react/core'
@@ -5,20 +6,7 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 import { useEffect, useReducer, useState } from 'react'
 import { createContainer } from 'unstated-next'
 
-const supportedNetworks = {
-  1: 'mainnet',
-  3: 'ropsten',
-  4: 'rinkeby',
-  42: 'kovan',
-  1284: 'moonbeam',
-  1287: 'moonbase alpha',
-}
-
-const supportedChainIds = Object.keys(supportedNetworks).map(key => Number(key))
-
-const injectedConnector = new InjectedConnector({
-  supportedChainIds,
-})
+const injectedConnector = new InjectedConnector({})
 export type Web3Data = {
   currentAccount: string
   connected: boolean
@@ -26,6 +14,7 @@ export type Web3Data = {
   provider: JsonRpcProvider | undefined
   chainId: number
   error: Error | undefined
+  isSupportedNetwork: boolean
 }
 
 const defaultState: Web3Data = {
@@ -35,11 +24,14 @@ const defaultState: Web3Data = {
   provider: undefined,
   chainId: undefined,
   error: undefined,
+  isSupportedNetwork: false,
 }
-type ActionType = ''
+type ActionType = 'setIsSupportedNetwork'
 
 const reducer = (state: Web3Data, action: Action<ActionType>) => {
   switch (action.type) {
+    case 'setIsSupportedNetwork':
+      return { ...state, isSupportedNetwork: action.value }
     default:
       return defaultState
   }
@@ -85,6 +77,11 @@ function useContainer(initialState: Web3Data) {
   }
 
   useEffect(() => {
+    dispatch({
+      type: 'setIsSupportedNetwork',
+      value: supportedChainIds.includes(chainId),
+    })
+
     injectedConnector
       .isAuthorized()
       .then(isAuthorized => {
@@ -98,7 +95,7 @@ function useContainer(initialState: Web3Data) {
         }
       })
       .catch(error => setNetworkError(error))
-  }, [networkActive])
+  }, [networkActive, chainId])
 
   return {
     state: {

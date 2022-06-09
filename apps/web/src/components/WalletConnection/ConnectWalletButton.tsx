@@ -5,19 +5,7 @@ import { useContainer } from 'unstated-next'
 
 import { UserContainer } from '@/containers/UserContainer'
 import { Web3Container } from '@/containers/Web3Container'
-
-const supportedChains = {
-  1: 'mainnet',
-  3: 'ropsten',
-  4: 'rinkeby',
-  42: 'kovan',
-  1284: 'moonbeam',
-  1287: 'moonbase alpha',
-}
-
-export const supportedChainIds = Object.keys(supportedChains).map(key =>
-  Number(key),
-)
+import { getNetworkName } from '@bloxifi/core'
 
 export const ConnectWalletButton = () => {
   const {
@@ -26,7 +14,7 @@ export const ConnectWalletButton = () => {
   const {
     connectWallet,
     disconnectWallet,
-    state: { connected, currentAccount, error },
+    state: { connected, currentAccount, error, isSupportedNetwork, chainId },
   } = useContainer(Web3Container)
 
   if (!isMetamaskInstalled) {
@@ -40,21 +28,34 @@ export const ConnectWalletButton = () => {
   if (error) {
     return (
       <Text type="text xl" color="red" semiBold align="center">
-        {error.name === 'UnsupportedChainIdError'
-          ? ' Wrong network connection!'
-          : 'Connection failed!'}
+        Connection failed!
       </Text>
     )
   }
   return connected ? (
     <div>
-      <Address>{`${currentAccount.slice(0, 8)}...`}</Address>
+      <StyledText type="text xl" semiBold>
+        Account:
+      </StyledText>
+      <StyledText
+        type="text xl"
+        color={isSupportedNetwork ? 'textGray' : 'red'}
+      >{`${currentAccount.slice(0, 8)}...`}</StyledText>
+      <StyledText type="text xl" semiBold>
+        Network:
+      </StyledText>
+      <StyledText
+        type="text xl"
+        color={isSupportedNetwork ? 'textGray' : 'red'}
+      >
+        {getNetworkName(chainId)}
+      </StyledText>
       <button onClick={disconnectWallet}> Disconnect</button>
     </div>
   ) : (
     <button onClick={connectWallet}>Connect wallet</button>
   )
 }
-const Address = styled.span`
-  margin: 0 20px;
+const StyledText = styled(Text)`
+  margin: 0 10px;
 `
