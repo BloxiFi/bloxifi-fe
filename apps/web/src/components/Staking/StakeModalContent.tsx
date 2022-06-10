@@ -8,7 +8,7 @@ import { Web3Container } from '@/containers/Web3Container'
 
 export const StakeModalContent = () => {
   const {
-    state: { currentAccount, isConnected, provider, isSupportedNetwork },
+    state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
   const [shouldApproveContract, setShouldApproveContract] = useState(false)

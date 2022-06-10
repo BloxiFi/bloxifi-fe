@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
+
 import { Web3Container } from '@/containers/Web3Container'
 
 export const UnstakeModalContent = () => {
