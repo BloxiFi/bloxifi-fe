@@ -8,7 +8,7 @@ export const supportedChainIds: number[] = Object.values(ChainIds).map(value =>
   Number(value),
 )
 
-export const netowrkConfig: NetworkConfigType = {
+export const networkConfig: NetworkConfigType = {
   [ChainIds.moonbaseAlpha]: {
     name: 'Moonbase',
     isTestnet: true,
@@ -16,8 +16,8 @@ export const netowrkConfig: NetworkConfigType = {
 }
 
 export const getNetworkName = (chainId: number): string => {
-  if (netowrkConfig[chainId]) {
-    return netowrkConfig[chainId].name
+  if (networkConfig[chainId]) {
+    return networkConfig[chainId].name
   }
   return 'Unknown'
 }

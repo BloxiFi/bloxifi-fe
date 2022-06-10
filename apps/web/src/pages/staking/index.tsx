@@ -1,6 +1,6 @@
 import { CoverLayout, BoxLayout, Text } from '@bloxifi/ui'
 import React from 'react'
-import { useContainer } from 'unstated-next'
+import { useTranslation } from 'react-i18next'
 
 import { StakeModalContent } from '@/components/Staking/StakeModalContent'
 import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
@@ -8,8 +8,10 @@ import { Web3Container } from '@/containers/Web3Container'
 
 const StakingPage = () => {
   const {
-    state: { connected, loading },
-  } = useContainer(Web3Container)
+    state: { isConnected, loading },
+  } = Web3Container.useContainer()
+  const { t } = useTranslation()
+
   return (
     <BoxLayout>
       <Text type="heading 2" semiBold>
@@ -17,13 +19,12 @@ const StakingPage = () => {
       </Text>
 
       <CoverLayout>
-        {connected ? (
+        {isConnected ? (
           <StakeModalContent />
         ) : (
-          <ConnectWalletPaper
-            loading={loading}
-            description="We couldn’t detect a wallet. Connect a wallet to stake."
-          />
+          <ConnectWalletPaper loading={loading}>
+            {t('staking.notConnectedMessage')}
+          </ConnectWalletPaper>
         )}
       </CoverLayout>
     </BoxLayout>

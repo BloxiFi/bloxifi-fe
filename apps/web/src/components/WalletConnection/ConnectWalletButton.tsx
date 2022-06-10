@@ -1,11 +1,10 @@
 import React from 'react'
 import { Text } from '@bloxifi/ui'
 import styled from 'styled-components'
-import { useContainer } from 'unstated-next'
+import { getNetworkName } from '@bloxifi/core'
 
 import { UserContainer } from '@/containers/UserContainer'
 import { Web3Container } from '@/containers/Web3Container'
-import { getNetworkName } from '@bloxifi/core'
 
 export const ConnectWalletButton = () => {
   const {
@@ -14,8 +13,8 @@ export const ConnectWalletButton = () => {
   const {
     connectWallet,
     disconnectWallet,
-    state: { connected, currentAccount, error, isSupportedNetwork, chainId },
-  } = useContainer(Web3Container)
+    state: { isConnected, currentAccount, error, isSupportedNetwork, chainId },
+  } = Web3Container.useContainer()
 
   if (!isMetamaskInstalled) {
     return (
@@ -32,7 +31,7 @@ export const ConnectWalletButton = () => {
       </Text>
     )
   }
-  return connected ? (
+  return isConnected ? (
     <div>
       <StyledText type="text xl" semiBold>
         Account:

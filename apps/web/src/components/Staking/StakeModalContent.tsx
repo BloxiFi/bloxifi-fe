@@ -3,14 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
-import { useContainer } from 'unstated-next'
 
 import { Web3Container } from '@/containers/Web3Container'
 
 export const StakeModalContent = () => {
   const {
-    state: { currentAccount, connected, provider, isSupportedNetwork },
-  } = useContainer(Web3Container)
+    state: { currentAccount, isConnected, provider, isSupportedNetwork },
+  } = Web3Container.useContainer()
   const signer = provider.getSigner()
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
   const [approved, setApproved] = useState(false)
@@ -22,6 +21,10 @@ export const StakeModalContent = () => {
   const stakeTokenValue = '1'
   const stakeContract = Staking.stakedAave.getStakeContract(signer)
   const mockTokenContract = Staking.mockedToken.getMockTokenContract(signer)
+
+  const canApprove = isSupportedNetwork && !loading && !approved
+  const canStake =
+    !isSupportedNetwork || loading || (shouldApproveContract && !approved)
 
   const checkAllowance = async () =>
     await Staking.mockedToken.getAllowance(mockTokenContract, currentAccount)
@@ -93,7 +96,7 @@ export const StakeModalContent = () => {
 
   return (
     <BoxLayout>
-      {connected && (
+      {isConnected && (
         <StackLayout
           gap={0.5}
           style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
@@ -112,22 +115,12 @@ export const StakeModalContent = () => {
           </p>
           <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
           {shouldApproveContract && (
-            <button
-              disabled={!isSupportedNetwork || loading || approved}
-              onClick={approve}
-            >
+            <button disabled={canApprove} onClick={approve}>
               Approve to continue
             </button>
           )}
 
-          <button
-            disabled={
-              !isSupportedNetwork ||
-              loading ||
-              (shouldApproveContract && !approved)
-            }
-            onClick={stake}
-          >
+          <button disabled={canStake} onClick={stake}>
             Stake
           </button>
         </StackLayout>

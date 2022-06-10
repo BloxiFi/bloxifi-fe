@@ -1,5 +1,14 @@
 {
   "global": {
     "button": "Dugme"
+  },
+  "walletConnection": {
+    "notConnectedTitle": "Molimo povežite svoj novčanik"
+  },
+  "dashboard": {
+    "notConnectedMessage": "Molimo povežite svoj novčanik."
+  },
+  "staking": {
+    "notConnectedMessage": "Molimo povežite svoj novčanik."
   }
 }

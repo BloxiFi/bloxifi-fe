@@ -1,4 +1,4 @@
-export * from './config/networkConfigs'
+export * from './config'
 export * from './mappers'
 export * from './media'
 export * from './ui'
