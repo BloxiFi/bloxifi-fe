@@ -5,7 +5,8 @@ import { Web3ReactProvider } from '@web3-react/core'
 import { providers } from 'ethers'
 import { ExternalProvider } from '@ethersproject/providers'
 
-import { UserContainer } from '@/containers/UserContainer'
+import { Web3Container } from './containers/Web3Container'
+
 import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
@@ -25,14 +26,14 @@ export const App = () => {
     <AppWrapper>
       <ThemeProvider theme={Colors[style.state.theme]}>
         <Web3ReactProvider getLibrary={getWeb3Library}>
-          <NotificationManager />
-          <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
-            <UserContainer.Provider>
+          <Web3Container.Provider>
+            <NotificationManager />
+            <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
               <LocaleContainer.Provider>
                 <Router />
               </LocaleContainer.Provider>
-            </UserContainer.Provider>
-          </PageContainer.Provider>
+            </PageContainer.Provider>
+          </Web3Container.Provider>
         </Web3ReactProvider>
       </ThemeProvider>
     </AppWrapper>

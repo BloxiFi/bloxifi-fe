@@ -1,5 +1,14 @@
 {
   "global": {
     "button": "Button"
+  },
+  "walletConnection": {
+    "notConnectedTitle": "Please, connect your wallet"
+  },
+  "dashboard": {
+    "notConnectedMessage": "Please, connect your wallet to see your supplies, borrowings, and open positions."
+  },
+  "staking": {
+    "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."
   }
 }

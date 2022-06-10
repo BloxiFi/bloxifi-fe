@@ -8,19 +8,19 @@ import { PublicRoute } from './PublicRoute'
 
 import { PageContainer } from '@/containers/PageContainer'
 import routes from '@/routes.json'
-import { UserContainer } from '@/containers/UserContainer'
+import { Web3Container } from '@/containers/Web3Container'
 
 export const Router: FC = ({ children }) => {
   const {
-    state: { isAuthenticated },
-  } = UserContainer.useContainer()
+    state: { isConnected },
+  } = Web3Container.useContainer()
   const { pageLayout } = PageContainer.useContainer()
 
   function renderRoute({ path, filename }) {
     const routeProps = {
       key: path,
       component: lazy(() => import(`@/pages/${filename}`)),
-      isAuthenticated,
+      isConnected,
     }
 
     return <Route path={path} element={<PublicRoute {...routeProps} />} />

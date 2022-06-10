@@ -1,15 +1,16 @@
 import { Staking } from '@bloxifi/core'
 import React, { useEffect, useState } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { Web3Provider } from '@ethersproject/providers'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
 
-export const StakeModalContent = () => {
-  const web3Context = useWeb3React<Web3Provider>()
-  const signer = web3Context.library.getSigner()
+import { Web3Container } from '@/containers/Web3Container'
 
+export const StakeModalContent = () => {
+  const {
+    state: { currentAccount, isConnected, provider, isSupportedNetwork },
+  } = Web3Container.useContainer()
+  const signer = provider.getSigner()
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
   const [approved, setApproved] = useState(false)
   const [stakeCompleted, setStakeCompleted] = useState(false)
@@ -21,20 +22,22 @@ export const StakeModalContent = () => {
   const stakeContract = Staking.stakedAave.getStakeContract(signer)
   const mockTokenContract = Staking.mockedToken.getMockTokenContract(signer)
 
+  const isApproveDisabled = !isSupportedNetwork || loading || approved
+  const isStakeDisabled =
+    !isSupportedNetwork || loading || (shouldApproveContract && !approved)
+
   const checkAllowance = async () =>
-    await Staking.mockedToken.getAllowance(
-      mockTokenContract,
-      web3Context.account,
-    )
+    await Staking.mockedToken.getAllowance(mockTokenContract, currentAccount)
 
   useEffect(() => {
-    checkAllowance()
-      .then(approvedTokens => {
-        setShouldApproveContract(approvedTokens.toString() === '0')
-        setHasError(null)
-      })
-      .catch(error => setHasError(error))
-  }, [])
+    isSupportedNetwork &&
+      checkAllowance()
+        .then(approvedTokens => {
+          setShouldApproveContract(approvedTokens.toString() === '0')
+          setHasError(null)
+        })
+        .catch(error => setHasError(error))
+  }, [isSupportedNetwork, currentAccount])
 
   const resetState = () => {
     setApproved(false)
@@ -62,7 +65,7 @@ export const StakeModalContent = () => {
     setLoading(true)
     try {
       const response = await stakeContract.stake(
-        web3Context.account,
+        currentAccount,
         ethers.utils.parseEther(stakeTokenValue),
       )
 
@@ -93,7 +96,7 @@ export const StakeModalContent = () => {
 
   return (
     <BoxLayout>
-      {web3Context.active && (
+      {isConnected && (
         <StackLayout
           gap={0.5}
           style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
@@ -101,7 +104,9 @@ export const StakeModalContent = () => {
           <h3>Stake Blox</h3>
           <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span>Amount: {stakeTokenValue} Blox</span>{' '}
-            <button onClick={mint}>Get {mintTokenValue} Blox</button>{' '}
+            <button disabled={!isSupportedNetwork} onClick={mint}>
+              Get {mintTokenValue} Blox
+            </button>{' '}
           </Grid>
 
           <p style={{ color: 'orange' }}>{loading && 'Please wait...'}</p>
@@ -110,15 +115,12 @@ export const StakeModalContent = () => {
           </p>
           <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
           {shouldApproveContract && (
-            <button disabled={loading || approved} onClick={approve}>
+            <button disabled={isApproveDisabled} onClick={approve}>
               Approve to continue
             </button>
           )}
 
-          <button
-            disabled={loading || (shouldApproveContract && !approved)}
-            onClick={stake}
-          >
+          <button disabled={isStakeDisabled} onClick={stake}>
             Stake
           </button>
         </StackLayout>
