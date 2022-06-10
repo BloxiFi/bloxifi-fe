@@ -28,15 +28,10 @@ const defaultState: Web3Data = {
   isSupportedNetwork: false,
   isMetamaskInstalled: false,
 }
-type ActionType = 'setIsSupportedNetwork' | 'isMetamaskInstalled'
-
-const isMetamaskInstalled = async () =>
-  await detectEthereumProvider({ mustBeMetaMask: true })
+type ActionType = 'isMetamaskInstalled'
 
 const reducer = (state: Web3Data, action: Action<ActionType>) => {
   switch (action.type) {
-    case 'setIsSupportedNetwork':
-      return { ...state, isSupportedNetwork: action.value }
     case 'isMetamaskInstalled': {
       return { ...state, isMetamaskInstalled: action.value }
     }
@@ -62,6 +57,7 @@ function useContainer(initialState: Web3Data) {
     chainId,
   } = useWeb3React()
   const [loading, setLoading] = useState(false)
+  const isSupportedNetwork = supportedChainIds.includes(chainId)
 
   const connectWallet = async (): Promise<void> => {
     setLoading(true)
@@ -84,29 +80,31 @@ function useContainer(initialState: Web3Data) {
     }
   }
 
-  useEffect(() => {
-    dispatch({
-      type: 'setIsSupportedNetwork',
-      value: supportedChainIds.includes(chainId),
-    })
-    isMetamaskInstalled()
-      .then(res =>
-        dispatch({
-          type: 'isMetamaskInstalled',
-          value: !!res,
-        }),
-      )
-      .catch(e => {
-        throw new Error(e)
+  async function checkForMetamask(): Promise<void> {
+    try {
+      const provider = await detectEthereumProvider({
+        mustBeMetaMask: true,
       })
-    if (!networkActive && localStorage.getItem('isConnected')) {
-      connectWallet().catch(error => setNetworkError(error))
+      dispatch({ type: 'isMetamaskInstalled', value: !!provider })
+    } catch (error) {
+      setNetworkError(error)
     }
-  }, [networkActive, chainId])
+  }
+
+  useEffect(() => {
+    void checkForMetamask()
+  }, [networkActive])
+
+  useEffect(() => {
+    if (localStorage.getItem('isConnected')) {
+      void connectWallet()
+    }
+  }, [])
 
   return {
     state: {
       ...state,
+      isSupportedNetwork,
       isConnected: networkActive,
       currentAccount: account,
       error: networkError,
