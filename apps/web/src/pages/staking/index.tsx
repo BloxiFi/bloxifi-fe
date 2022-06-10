@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next'
 
 import { StakeModalContent } from '@/components/Staking/StakeModalContent'
 import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
+import { UnstakeModalContent } from '@/components/Staking/UnstakeModalContent'
 import { Web3Container } from '@/containers/Web3Container'
+import { GridLayout } from '@bloxifi/ui/src/Layouts/GridLayout'
 
 const StakingPage = () => {
   const {
@@ -20,7 +22,14 @@ const StakingPage = () => {
 
       <CoverLayout>
         {isConnected ? (
-          <StakeModalContent />
+          <GridLayout>
+            <GridLayout.Column span={6}>
+              <StakeModalContent />
+            </GridLayout.Column>
+            <GridLayout.Column span={6}>
+              <UnstakeModalContent />
+            </GridLayout.Column>
+          </GridLayout>
         ) : (
           <ConnectWalletPaper loading={loading}>
             {t('staking.notConnectedMessage')}

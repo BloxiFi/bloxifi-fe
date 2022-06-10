@@ -96,35 +96,33 @@ export const StakeModalContent = () => {
 
   return (
     <BoxLayout>
-      {isConnected && (
-        <StackLayout
-          gap={0.5}
-          style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
-        >
-          <h3>Stake Blox</h3>
-          <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>Amount: {stakeTokenValue} Blox</span>{' '}
-            <button disabled={!isSupportedNetwork} onClick={mint}>
-              Get {mintTokenValue} Blox
-            </button>{' '}
-          </Grid>
+      <StackLayout
+        gap={0.5}
+        style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
+      >
+        <h3>Stake Blox</h3>
+        <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>Amount: {stakeTokenValue} Blox</span>{' '}
+          <button disabled={!isSupportedNetwork} onClick={mint}>
+            Get {mintTokenValue} Blox
+          </button>{' '}
+        </Grid>
 
-          <p style={{ color: 'orange' }}>{loading && 'Please wait...'}</p>
-          <p style={{ color: 'green' }}>
-            {stakeCompleted && 'Successfully completed!'}
-          </p>
-          <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
-          {shouldApproveContract && (
-            <button disabled={isApproveDisabled} onClick={approve}>
-              Approve to continue
-            </button>
-          )}
-
-          <button disabled={isStakeDisabled} onClick={stake}>
-            Stake
+        <p style={{ color: 'orange' }}>{loading && 'Please wait...'}</p>
+        <p style={{ color: 'green' }}>
+          {stakeCompleted && 'Successfully completed!'}
+        </p>
+        <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
+        {shouldApproveContract && (
+          <button disabled={isApproveDisabled} onClick={approve}>
+            Approve to continue
           </button>
-        </StackLayout>
-      )}
+        )}
+
+        <button disabled={isStakeDisabled} onClick={stake}>
+          Stake
+        </button>
+      </StackLayout>
     </BoxLayout>
   )
 }
