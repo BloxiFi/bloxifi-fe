@@ -22,8 +22,8 @@ export const StakeModalContent = () => {
   const stakeContract = Staking.stakedAave.getStakeContract(signer)
   const mockTokenContract = Staking.mockedToken.getMockTokenContract(signer)
 
-  const canApprove = isSupportedNetwork && !loading && !approved
-  const canStake =
+  const isApproveDisabled = !isSupportedNetwork || loading || approved
+  const isStakeDisabled =
     !isSupportedNetwork || loading || (shouldApproveContract && !approved)
 
   const checkAllowance = async () =>
@@ -115,12 +115,12 @@ export const StakeModalContent = () => {
           </p>
           <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
           {shouldApproveContract && (
-            <button disabled={canApprove} onClick={approve}>
+            <button disabled={isApproveDisabled} onClick={approve}>
               Approve to continue
             </button>
           )}
 
-          <button disabled={canStake} onClick={stake}>
+          <button disabled={isStakeDisabled} onClick={stake}>
             Stake
           </button>
         </StackLayout>
