@@ -16,6 +16,7 @@ export const StakeModalContent = () => {
   const [stakeCompleted, setStakeCompleted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [hasError, setHasError] = useState()
+  const [balance, setBalance] = useState<number | undefined>()
 
   const mintTokenValue = '5'
   const stakeTokenValue = '1'
@@ -25,6 +26,9 @@ export const StakeModalContent = () => {
   const isApproveDisabled = !isSupportedNetwork || loading || approved
   const isStakeDisabled =
     !isSupportedNetwork || loading || (shouldApproveContract && !approved)
+
+  const getTokenBalance = async () =>
+    await mockTokenContract.balanceOf(currentAccount)
 
   const checkAllowance = async () =>
     await Staking.mockedToken.getAllowance(mockTokenContract, currentAccount)
@@ -37,7 +41,11 @@ export const StakeModalContent = () => {
           setHasError(null)
         })
         .catch(error => setHasError(error))
-  }, [isSupportedNetwork, currentAccount])
+
+    getTokenBalance()
+      .then(res => setBalance(Number(ethers.utils.formatUnits(res))))
+      .catch(error => setHasError(error))
+  }, [isSupportedNetwork, currentAccount, balance])
 
   const resetState = () => {
     setApproved(false)
@@ -100,9 +108,13 @@ export const StakeModalContent = () => {
         gap={0.5}
         style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
       >
-        <h3>Stake Blox</h3>
+        <h3>Stake Blox </h3>
         <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span>Amount: {stakeTokenValue} Blox</span>{' '}
+          <span>Balance:</span>
+          <span>{balance} Blox</span>
+        </Grid>
+        <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>Amount to stake: {stakeTokenValue} Blox</span>
           <button disabled={!isSupportedNetwork} onClick={mint}>
             Get {mintTokenValue} Blox
           </button>{' '}

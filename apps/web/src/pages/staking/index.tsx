@@ -7,6 +7,7 @@ import { StakeModalContent } from '@/components/Staking/StakeModalContent'
 import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
 import { UnstakeModalContent } from '@/components/Staking/UnstakeModalContent'
 import { Web3Container } from '@/containers/Web3Container'
+import { ClaimRewards } from '@/components/Staking/ClaimRewards'
 
 const StakingPage = () => {
   const {
@@ -23,11 +24,14 @@ const StakingPage = () => {
       <CoverLayout>
         {isConnected ? (
           <GridLayout>
-            <GridLayout.Column span={6}>
+            <GridLayout.Column span={4}>
               <StakeModalContent />
             </GridLayout.Column>
-            <GridLayout.Column span={6}>
+            <GridLayout.Column span={4}>
               <UnstakeModalContent />
+            </GridLayout.Column>
+            <GridLayout.Column span={4}>
+              <ClaimRewards />
             </GridLayout.Column>
           </GridLayout>
         ) : (

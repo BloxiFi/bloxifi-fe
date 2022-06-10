@@ -94,10 +94,13 @@ export const UnstakeModalContent = () => {
         gap={0.5}
         style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
       >
-        <h3>Unstake Blox ({stakedBalance} stkBlox)</h3>
-
+        <h3>Unstake Blox</h3>
         <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span>Amount: {unstakeTokenValue} Blox</span>
+          <span>Balance:</span>
+          <span>{stakedBalance} stkBlox</span>
+        </Grid>
+        <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>Amount: {unstakeTokenValue} stkBlox</span>
         </Grid>
         <p style={{ color: 'orange' }}>{loading && 'Please wait...'}</p>
 
