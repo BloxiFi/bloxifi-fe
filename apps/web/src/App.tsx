@@ -7,7 +7,6 @@ import { ExternalProvider } from '@ethersproject/providers'
 
 import { Web3Container } from './containers/Web3Container'
 
-import { UserContainer } from '@/containers/UserContainer'
 import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
@@ -30,11 +29,9 @@ export const App = () => {
           <Web3Container.Provider>
             <NotificationManager />
             <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
-              <UserContainer.Provider>
-                <LocaleContainer.Provider>
-                  <Router />
-                </LocaleContainer.Provider>
-              </UserContainer.Provider>
+              <LocaleContainer.Provider>
+                <Router />
+              </LocaleContainer.Provider>
             </PageContainer.Provider>
           </Web3Container.Provider>
         </Web3ReactProvider>

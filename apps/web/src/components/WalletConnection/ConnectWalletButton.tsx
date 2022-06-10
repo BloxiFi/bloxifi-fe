@@ -3,17 +3,20 @@ import { Text } from '@bloxifi/ui'
 import styled from 'styled-components'
 import { getNetworkName } from '@bloxifi/core'
 
-import { UserContainer } from '@/containers/UserContainer'
 import { Web3Container } from '@/containers/Web3Container'
 
 export const ConnectWalletButton = () => {
   const {
-    state: { isMetamaskInstalled },
-  } = UserContainer.useContainer()
-  const {
     connectWallet,
     disconnectWallet,
-    state: { isConnected, currentAccount, error, isSupportedNetwork, chainId },
+    state: {
+      isConnected,
+      currentAccount,
+      error,
+      isSupportedNetwork,
+      chainId,
+      isMetamaskInstalled,
+    },
   } = Web3Container.useContainer()
 
   if (!isMetamaskInstalled) {
