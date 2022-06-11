@@ -13,6 +13,9 @@ jobs:
   deploy:
     name: Build & deploy
     runs-on: ubuntu-latest
+    environment:
+      name: storybook
+      url: http://bloxifi-storybook.s3-website.eu-central-1.amazonaws.com/
     steps:
       #
       # Checkout the project

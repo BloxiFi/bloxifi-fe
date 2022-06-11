@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    environment: 
+      name: development
+      url: http://bloxifi-fe-dev.s3-website.eu-central-1.amazonaws.com/
     steps:
       #
       # Checkout the repository.
