@@ -30,7 +30,7 @@ export default {
   },
 }
 
-export const overview = args => {
+export const Overview = args => {
   const nav = usePageLayout()
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export const overview = args => {
     } else {
       nav.setHeader(null)
     }
-  }, [args.header])
+  }, [args.header, nav])
 
   return (
     <PageLayout style={{ backgroundColor: '#f9f9fe' }} {...nav}>
@@ -56,6 +56,6 @@ export const overview = args => {
     </PageLayout>
   )
 }
-overview.story = {
+Overview.story = {
   name: 'Overview',
 }

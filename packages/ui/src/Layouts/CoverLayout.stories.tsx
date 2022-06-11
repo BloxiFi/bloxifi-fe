@@ -21,7 +21,7 @@ function Placeholder({ color }: { color: string }) {
   )
 }
 
-export const overview = () => (
+export const Overview = () => (
   <PageLayout {...usePageLayout()}>
     <CoverLayout style={{ background: '#f9d56e' }}>
       <Placeholder color="#e8505b" />
@@ -29,6 +29,6 @@ export const overview = () => (
   </PageLayout>
 )
 
-overview.story = {
+Overview.story = {
   name: 'Overview',
 }
