@@ -14,7 +14,7 @@ const StakingPage = () => {
     state: { isConnected, loading },
   } = Web3Container.useContainer()
   const { t } = useTranslation()
-  console.log('daada', isConnected)
+
   return (
     <BoxLayout>
       <Text type="heading 2" semiBold>

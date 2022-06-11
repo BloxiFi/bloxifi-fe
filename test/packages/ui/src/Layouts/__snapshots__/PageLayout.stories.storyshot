@@ -13,7 +13,19 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   >
     <div
       className="sc-papXJ sc-kDDrLX bKKCMG bcXPRM"
-    />
+      gap={4}
+    >
+      <section
+        className="c-page-layout__section"
+      >
+        <div
+          center={true}
+          className="sc-papXJ iRMgLw"
+        >
+          Some Content
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 `;

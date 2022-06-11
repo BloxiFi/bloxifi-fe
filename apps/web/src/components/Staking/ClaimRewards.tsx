@@ -1,5 +1,6 @@
 import { Staking } from '@bloxifi/core'
-import React, { useEffect, useState } from 'react'
+import { FetchRewardBalance } from '@bloxifi/types'
+import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
@@ -21,18 +22,23 @@ export const ClaimRewards = () => {
   const isClaimDisabled =
     !isSupportedNetwork || loading || Number(tokenRewards) === 0
 
-  const getTotalRewardsBalance = async () =>
-    await stakeContract.getTotalRewardsBalance(currentAccount)
+  const getTotalRewardsBalance: FetchRewardBalance = useCallback(async () => {
+    try {
+      const balanceEth = await stakeContract.getTotalRewardsBalance(
+        currentAccount,
+      )
+      setTokenRewards(ethers.utils.formatUnits(balanceEth))
+      setHasError(null)
+    } catch (error) {
+      setHasError(error)
+    }
+  }, [currentAccount, stakeContract])
 
   useEffect(() => {
-    isSupportedNetwork &&
-      getTotalRewardsBalance()
-        .then(response => {
-          setTokenRewards(ethers.utils.formatUnits(response))
-          setHasError(null)
-        })
-        .catch(error => setHasError(error))
-  }, [isSupportedNetwork, currentAccount, claimCompleted])
+    if (isSupportedNetwork) {
+      void getTotalRewardsBalance()
+    }
+  }, [isSupportedNetwork, claimCompleted, getTotalRewardsBalance])
 
   const resetState = () => {
     setClaimCompleted(false)

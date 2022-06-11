@@ -6,42 +6,57 @@ import { getContract } from '../../utilities'
 
 import FEEDER_DATA from './staking.json'
 
-type StakingContract = typeof FEEDER_DATA
+type StakingABI = typeof FEEDER_DATA
 
 function getStakedContractInfo(
-  contractName: keyof StakingContract,
-  type: keyof StakingContract[keyof StakingContract],
+  contractName: keyof StakingABI,
+  type: keyof StakingABI[keyof StakingABI],
 ) {
-  return getContract<StakingContract>(FEEDER_DATA, contractName, type)
+  return getContract<StakingABI>(FEEDER_DATA, contractName, type)
 }
 
 export const approvedStakingToken =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935' as const
+
+interface StakingContract extends ethers.Contract {
+  balanceOf: (
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<BigNumber>
+
+  COOLDOWN_SECONDS: () => Promise<BigNumber>
+
+  getTotalRewardsBalance: (
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<BigNumber>
+}
 
 interface MockTokenContract extends ethers.Contract {
   allowance: (
     account: Web3ReactContextInterface['account'],
     abi: any,
   ) => Promise<ethers.ContractTransaction>
+
   approve: (
     abi: any,
     approvedToken: typeof approvedStakingToken,
   ) => Promise<ethers.ContractTransaction>
+
   balanceOf: (
     account: Web3ReactContextInterface['account'],
   ) => Promise<BigNumber>
+
   mint: (amount: BigNumber) => Promise<ethers.ContractTransaction>
 }
 
 export const Staking = {
   stakedAave: {
     //COMMENT
-    getStakeContract(signer: JsonRpcSigner) {
+    getStakeContract(signer: JsonRpcSigner): StakingContract {
       return new ethers.Contract(
         getStakedContractInfo('stakedAave', 'address'),
         getStakedContractInfo('stakedAave', 'abi'),
         signer,
-      )
+      ) as StakingContract
     },
   },
   mockedToken: {

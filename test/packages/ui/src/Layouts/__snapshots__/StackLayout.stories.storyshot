@@ -9,8 +9,58 @@ exports[`Storyshots Layout/StackLayout Details 1`] = `
   }
 >
   <div
+    center={false}
     className="sc-papXJ WMwmn"
-  />
+    gap={1}
+  >
+    <div
+      style={
+        Object {
+          "background": "#e8505b",
+          "minHeight": 50,
+          "width": 300,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "background": "#f2aaaa",
+          "minHeight": 50,
+          "width": 300,
+        }
+      }
+    />
+    <div>
+      <div
+        style={
+          Object {
+            "background": "#f9d56e",
+            "minHeight": 50,
+            "width": 300,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "background": "#f69e7b",
+            "minHeight": 50,
+            "width": 300,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "background": "#14b1ab",
+          "minHeight": 50,
+          "width": 300,
+        }
+      }
+    />
+  </div>
 </div>
 `;
 
@@ -23,7 +73,46 @@ exports[`Storyshots Layout/StackLayout Overview 1`] = `
   }
 >
   <div
+    center={false}
     className="sc-papXJ WMwmn"
-  />
+    gap={1}
+  >
+    <div
+      style={
+        Object {
+          "background": "#e8505b",
+          "minHeight": 50,
+          "width": 300,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "background": "#f2aaaa",
+          "minHeight": 50,
+          "width": 300,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "background": "#f9d56e",
+          "minHeight": 50,
+          "width": 300,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "background": "#14b1ab",
+          "minHeight": 50,
+          "width": 300,
+        }
+      }
+    />
+  </div>
 </div>
 `;

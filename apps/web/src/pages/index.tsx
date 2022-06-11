@@ -18,7 +18,7 @@ const HomePage = () => {
   const {
     state: { isConnected, loading },
   } = Web3Container.useContainer()
-  console.log('hehehe')
+
   return (
     <Wrapper>
       <CoverLayout>

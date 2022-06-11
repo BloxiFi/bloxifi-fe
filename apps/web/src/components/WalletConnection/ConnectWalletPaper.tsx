@@ -14,7 +14,7 @@ export const ConnectWalletPaper = ({
   children,
 }: ConnectWalletPaperProps) => {
   const { t } = useTranslation()
-  console.log('dadadacas')
+
   return (
     <BoxLayout>
       {loading ? (

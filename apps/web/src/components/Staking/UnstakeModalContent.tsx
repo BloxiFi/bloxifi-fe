@@ -1,5 +1,6 @@
 import { Staking } from '@bloxifi/core'
-import React, { useEffect, useState } from 'react'
+import { FetchCooldownPeriod, FetchStakedBalance } from '@bloxifi/types'
+import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
@@ -16,30 +17,44 @@ export const UnstakeModalContent = () => {
   const [cooldownLoading, setCooldownLoading] = useState(false)
   const [loading, setLoading] = useState(false)
   const [hasError, setHasError] = useState()
-  const [stakedBalance, setStakedBalance] = useState<number | undefined>()
-  const [cooldownPeriod, setCooldownPeriod] = useState<number | undefined>()
+  const [stakedBalance, setStakedBalance] = useState<number>()
+  const [cooldownPeriod, setCooldownPeriod] = useState<number>()
 
   const unstakeTokenValue = '1'
   const stakeContract = Staking.stakedAave.getStakeContract(signer)
   const isUnstakeDisabled =
     !isSupportedNetwork || loading || cooldownLoading || stakedBalance === 0
 
-  const getStakedToken = async () =>
-    await stakeContract.balanceOf(currentAccount)
+  const getStakedBalance: FetchStakedBalance = useCallback(async () => {
+    try {
+      const balanceEth = await stakeContract.balanceOf(currentAccount)
+      setStakedBalance(Number(ethers.utils.formatUnits(balanceEth)))
+    } catch (error) {
+      setHasError(error)
+    }
+  }, [currentAccount, stakeContract])
 
-  const getCooldownPeriod = async () => await stakeContract.COOLDOWN_SECONDS()
+  const getCooldownPeriod: FetchCooldownPeriod = useCallback(async () => {
+    try {
+      const cooldown = await stakeContract.COOLDOWN_SECONDS()
+      setCooldownPeriod(Number(cooldown.toString()))
+    } catch (error) {
+      setHasError(error)
+    }
+  }, [stakeContract])
+
+  useEffect(() => {
+    //we could add all promieses here as Promise.all() and if one breaks reset the data (no need for this now, until we implement entire flow)
+    if (isSupportedNetwork) {
+      void getStakedBalance()
+    }
+  }, [getStakedBalance, isSupportedNetwork])
 
   useEffect(() => {
     if (isSupportedNetwork) {
-      getStakedToken()
-        .then(res => setStakedBalance(Number(ethers.utils.formatUnits(res))))
-        .catch(error => setHasError(error))
-
-      getCooldownPeriod()
-        .then(res => setCooldownPeriod(res.toString()))
-        .catch(error => setHasError(error))
+      void getCooldownPeriod()
     }
-  }, [isSupportedNetwork, currentAccount, unstakeCompleted])
+  }, [getCooldownPeriod, isSupportedNetwork])
 
   const resetState = () => {
     setUnstakeCompleted(false)
