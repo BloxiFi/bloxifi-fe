@@ -153,7 +153,7 @@ export const Page: PageLayout = Object.assign(
     ref: React.Ref<HTMLDivElement>,
   ) {
     return (
-      <div {...props} className={className} ref={ref}>
+      <div className={className} ref={ref}>
         {header != null && header}
         <PageContent gap={4}>{children}</PageContent>
         {footer != null && footer}
