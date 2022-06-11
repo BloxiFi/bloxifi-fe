@@ -29,7 +29,7 @@ export const StakeModalContent = () => {
 
   const getTokenBalance = async () =>
     await mockTokenContract.balanceOf(currentAccount)
-  
+
   const checkAllowance = useCallback(async () => {
     try {
       const approvedTokens = await Staking.mockedToken.getAllowance(
