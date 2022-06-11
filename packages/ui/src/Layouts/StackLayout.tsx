@@ -117,10 +117,10 @@ const defaultElement = 'div'
  */
 export const Stack = React.forwardRef(
   (
-    { as: Component = defaultElement, ...props }: StackLayoutProps,
+    { as: Component = defaultElement, className }: StackLayoutProps,
     ref: React.Ref<Element>,
   ) => {
-    return <Component ref={ref} {...props} />
+    return <Component ref={ref} className={className} />
   },
 ) as <T extends React.ElementType = typeof defaultElement>(
   props: { as?: T } & Omit<ReactProps<T>, 'as'> & StackLayoutProps,

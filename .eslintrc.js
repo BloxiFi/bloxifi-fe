@@ -10,6 +10,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
+    'plugin:react-hooks/recommended',
   ],
   env: {
     es6: true,
@@ -80,16 +81,17 @@ module.exports = {
 
       rules: {
         '@typescript-eslint/camelcase': 0,
+        '@typescript-eslint/unbound-method': 0,
         '@typescript-eslint/no-misused-promises': [
           'error',
           { checksVoidReturn: false },
+        ],
+        '@typescript-eslint/no-floating-promises': [
+          'error',
+          { ignoreVoid: true },
         ],
         '@typescript-eslint/no-unused-vars': 1,
         '@typescript-eslint/no-explicit-any': 0,
-        '@typescript-eslint/no-misused-promises': [
-          'error',
-          { checksVoidReturn: false },
-        ],
         '@typescript-eslint/no-var-requires': 0,
         '@typescript-eslint/restrict-template-expressions': 0,
         '@typescript-eslint/no-unsafe-assignment': 0,

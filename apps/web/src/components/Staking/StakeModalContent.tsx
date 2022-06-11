@@ -1,5 +1,5 @@
 import { Staking } from '@bloxifi/core'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
@@ -29,23 +29,28 @@ export const StakeModalContent = () => {
 
   const getTokenBalance = async () =>
     await mockTokenContract.balanceOf(currentAccount)
-
-  const checkAllowance = async () =>
-    await Staking.mockedToken.getAllowance(mockTokenContract, currentAccount)
+  
+  const checkAllowance = useCallback(async () => {
+    try {
+      const approvedTokens = await Staking.mockedToken.getAllowance(
+        mockTokenContract,
+        currentAccount,
+      )
+      setShouldApproveContract(approvedTokens.toString() === '0')
+      setHasError(null)
+    } catch (error) {
+      setHasError(error)
+    }
+  }, [currentAccount, mockTokenContract])
 
   useEffect(() => {
-    isSupportedNetwork &&
-      checkAllowance()
-        .then(approvedTokens => {
-          setShouldApproveContract(approvedTokens.toString() === '0')
-          setHasError(null)
-        })
-        .catch(error => setHasError(error))
-
+    if (isSupportedNetwork) {
+      void checkAllowance()
+    }
     getTokenBalance()
       .then(res => setBalance(Number(ethers.utils.formatUnits(res))))
       .catch(error => setHasError(error))
-  }, [isSupportedNetwork, currentAccount, balance])
+  }, [checkAllowance, isSupportedNetwork])
 
   const resetState = () => {
     setApproved(false)

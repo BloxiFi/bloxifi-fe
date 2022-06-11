@@ -99,7 +99,6 @@ const TextComponent: FunctionComponent<TextProps> = ({
   as: Component = defaultHTMLElement.get(type) || defaultElement,
   children,
   className,
-  ...props
 }: TextProps) => (
   <Component
     className={classNames(
@@ -107,7 +106,6 @@ const TextComponent: FunctionComponent<TextProps> = ({
       `c-text--${type.split(' ').join('-') || ''}`,
       color && `c-text--color-${color}`,
     )}
-    {...props}
   >
     {children}
   </Component>

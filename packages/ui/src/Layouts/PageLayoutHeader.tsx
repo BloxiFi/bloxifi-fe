@@ -2,8 +2,6 @@
 import { ReactProps } from '@bloxifi/types'
 import classNames from 'classnames'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
 
 import { Text } from '../Text'
 
@@ -49,10 +47,3 @@ export const PageLayoutHeader = React.forwardRef(
 ) as <T extends React.ElementType = typeof defaultElement>(
   props: { as?: T } & Omit<ReactProps<T>, 'as'> & HeaderProps,
 ) => JSX.Element
-
-const NavWrapper = styled(NavLink)`
-  img {
-    vertical-align: bottom;
-    margin-right: 9px;
-  }
-`

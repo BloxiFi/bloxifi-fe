@@ -15,6 +15,7 @@ export const Router: FC = ({ children }) => {
     state: { isConnected },
   } = Web3Container.useContainer()
   const { pageLayout } = PageContainer.useContainer()
+  const { setHeader } = pageLayout
 
   function renderRoute({ path, filename }) {
     const routeProps = {
@@ -23,11 +24,13 @@ export const Router: FC = ({ children }) => {
       isConnected,
     }
 
-    return <Route path={path} element={<PublicRoute {...routeProps} />} />
+    return (
+      <Route path={path} key={path} element={<PublicRoute {...routeProps} />} />
+    )
   }
   useEffect(() => {
-    pageLayout.setHeader(<Header />)
-  }, [])
+    setHeader(<Header />)
+  }, [setHeader])
 
   return (
     <BrowserRouter>

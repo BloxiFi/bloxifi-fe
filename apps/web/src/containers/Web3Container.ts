@@ -1,24 +1,17 @@
 import { supportedChainIds } from '@bloxifi/core'
-import { Action } from '@bloxifi/types'
-import { JsonRpcProvider } from '@ethersproject/providers'
+import {
+  Action,
+  CheckForMetamaskFunction,
+  ConnectWalletFunction,
+  Web3ContainerProps,
+} from '@bloxifi/types'
 import detectEthereumProvider from '@metamask/detect-provider'
 import { useWeb3React } from '@web3-react/core'
 import { InjectedConnector } from '@web3-react/injected-connector'
-import { useEffect, useReducer, useState } from 'react'
+import { useCallback, useEffect, useReducer, useState } from 'react'
 import { createContainer } from 'unstated-next'
 
-export type Web3Data = {
-  currentAccount: string
-  isConnected: boolean
-  loading: boolean
-  provider: JsonRpcProvider | undefined
-  chainId: number
-  error: Error | undefined
-  isSupportedNetwork: boolean
-  isMetamaskInstalled: boolean
-}
-
-const defaultState: Web3Data = {
+const defaultState: Web3ContainerProps = {
   currentAccount: '',
   isConnected: false,
   loading: false,
@@ -28,15 +21,10 @@ const defaultState: Web3Data = {
   isSupportedNetwork: false,
   isMetamaskInstalled: false,
 }
-type ActionType = 'setIsSupportedNetwork' | 'isMetamaskInstalled'
+type ActionType = 'isMetamaskInstalled'
 
-const isMetamaskInstalled = async () =>
-  await detectEthereumProvider({ mustBeMetaMask: true })
-
-const reducer = (state: Web3Data, action: Action<ActionType>) => {
+const reducer = (state: Web3ContainerProps, action: Action<ActionType>) => {
   switch (action.type) {
-    case 'setIsSupportedNetwork':
-      return { ...state, isSupportedNetwork: action.value }
     case 'isMetamaskInstalled': {
       return { ...state, isMetamaskInstalled: action.value }
     }
@@ -45,7 +33,7 @@ const reducer = (state: Web3Data, action: Action<ActionType>) => {
   }
 }
 
-function useContainer(initialState: Web3Data) {
+function useContainer(initialState: Web3ContainerProps) {
   const [state, dispatch] = useReducer(reducer, {
     ...defaultState,
     ...initialState,
@@ -62,8 +50,9 @@ function useContainer(initialState: Web3Data) {
     chainId,
   } = useWeb3React()
   const [loading, setLoading] = useState(false)
+  const isSupportedNetwork = supportedChainIds.includes(chainId)
 
-  const connectWallet = async (): Promise<void> => {
+  const connectWallet: ConnectWalletFunction = useCallback(async () => {
     setLoading(true)
     try {
       await activateNetwork(new InjectedConnector({}), undefined, true)
@@ -73,7 +62,7 @@ function useContainer(initialState: Web3Data) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [activateNetwork, setNetworkError])
 
   const disconnectWallet = (): void => {
     try {
@@ -84,29 +73,31 @@ function useContainer(initialState: Web3Data) {
     }
   }
 
-  useEffect(() => {
-    dispatch({
-      type: 'setIsSupportedNetwork',
-      value: supportedChainIds.includes(chainId),
-    })
-    isMetamaskInstalled()
-      .then(res =>
-        dispatch({
-          type: 'isMetamaskInstalled',
-          value: !!res,
-        }),
-      )
-      .catch(e => {
-        throw new Error(e)
+  const checkForMetamask: CheckForMetamaskFunction = useCallback(async () => {
+    try {
+      const provider = await detectEthereumProvider({
+        mustBeMetaMask: true,
       })
-    if (!networkActive && localStorage.getItem('isConnected')) {
-      connectWallet().catch(error => setNetworkError(error))
+      dispatch({ type: 'isMetamaskInstalled', value: !!provider })
+    } catch (error) {
+      setNetworkError(error)
     }
-  }, [networkActive, chainId])
+  }, [setNetworkError])
+
+  useEffect(() => {
+    void checkForMetamask()
+  }, [checkForMetamask, networkActive])
+
+  useEffect(() => {
+    if (localStorage.getItem('isConnected')) {
+      void connectWallet()
+    }
+  }, [connectWallet])
 
   return {
     state: {
       ...state,
+      isSupportedNetwork,
       isConnected: networkActive,
       currentAccount: account,
       error: networkError,

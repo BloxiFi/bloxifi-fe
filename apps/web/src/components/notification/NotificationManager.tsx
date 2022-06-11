@@ -1,4 +1,9 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import styled from 'styled-components'
 import { EventBus } from '@bloxifi/core'
 
@@ -24,32 +29,46 @@ export interface Notification {
   onTimeout?: () => void
 }
 
+/**
+ * Function for destroying the notification after timeout is passed
+ */
+type QueueDestroyFunction = (
+  props: Pick<Notification, 'timeout' | 'onTimeout' | 'id'>,
+) => void
+
+/**
+ * Function for removing notifications from the state. (used in {@link QueueDestroyFunction})
+ */
+type RemoveNotificationsFunction = (id: string) => void
+
 export const NotificationBus = EventBus<Notification>('Notification')
 
 export const NotificationManager: FunctionComponent = () => {
   const [notifications, setNotifications] = useState<Notification[]>([])
 
-  function removeNotification(id: string) {
-    setNotifications(notifications.filter(n => n.id !== id))
-  }
+  const removeNotification: RemoveNotificationsFunction = useCallback(
+    id => {
+      setNotifications(notifications.filter(n => n.id !== id))
+    },
+    [notifications],
+  )
 
-  function queueNotificationDestroy({
-    id = '',
-    timeout = 5000,
-    onTimeout = null,
-  }) {
-    setTimeout(() => {
-      const el = document.getElementById(`notification-${id}`)
-      if (el) {
-        el.classList.toggle('fade-out')
-      }
-    }, timeout - 300)
+  const queueNotificationDestroy: QueueDestroyFunction = useCallback(
+    ({ id = '', timeout = 5000, onTimeout = null }) => {
+      setTimeout(() => {
+        const el = document.getElementById(`notification-${id}`)
+        if (el) {
+          el.classList.toggle('fade-out')
+        }
+      }, timeout - 300)
 
-    setTimeout(() => {
-      removeNotification(`${id}`)
-      onTimeout && onTimeout()
-    }, timeout)
-  }
+      setTimeout(() => {
+        removeNotification(`${id}`)
+        onTimeout && onTimeout()
+      }, timeout)
+    },
+    [removeNotification],
+  )
 
   useEffect(() => {
     function onNotification(event: CustomEvent) {
@@ -66,7 +85,7 @@ export const NotificationManager: FunctionComponent = () => {
       const lastNotification = notifications[notifications.length - 1]
       queueNotificationDestroy(lastNotification)
     }
-  }, [notifications])
+  }, [notifications, queueNotificationDestroy])
 
   return (
     <Wrapper>
