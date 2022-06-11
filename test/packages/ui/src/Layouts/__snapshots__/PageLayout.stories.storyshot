@@ -9,25 +9,11 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   }
 >
   <div
-    className="sc-kDDrLX gDLAiN"
-    setFooter={[Function]}
-    setHeader={[Function]}
+    className="sc-jqUVSM kiGdji"
   >
     <div
-      className="sc-jqUVSM sc-iqcoie ikCoyn cyurwj"
-      gap={4}
-    >
-      <section
-        className="c-page-layout__section"
-      >
-        <div
-          center={true}
-          className="sc-jqUVSM bExOJt"
-        >
-          Some Content
-        </div>
-      </section>
-    </div>
+      className="sc-papXJ sc-kDDrLX bKKCMG bcXPRM"
+    />
   </div>
 </div>
 `;
