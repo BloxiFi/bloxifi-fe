@@ -19,7 +19,6 @@ Primary technologies include:
 After cloning the repo, run `yarn` inside the repo root.
 The repo is organized into `apps/` and `packages/`. `packages/` contain all re-usable code across the codebase, while `apps/` contain all applications.
 
-We handle environment variables in `.env` files with default values in each `app`'s folder, i.e. `apps/web/env` contains `local.env`, `staging.env` and `production.env` that contain default values for specified environments. If the repo is freshly cloned, you can copy each `app`'s `local.env` file to the `app`'s root folder as `.env` - f.e. `cp apps/web/env/local.env apps/web/.env`
 
 Each app has a `serve` and `build` npm script and by utilising `lerna` we can build all apps in parallel by running `yarn build` in the repository root, or spin up a development server `yarn serve`
 
@@ -27,16 +26,15 @@ Summary
 
 1. Install node.js https://www.webucator.com/how-to/how-install-nodejs-on-mac.cfm or run in Terminal: `brew install node`
 2. run in Terminal command: `npm install --global yarn`
-3. `git clone https://github.com/Bloxico/bloxifi-fe-mono.git`
+3. `git clone git@github.com:BloxiFi/bloxifi-fe.git`
 4. in root folder run command: `yarn && yarn lerna bootstrap`
-5. rename "apps/web/.env.example" - .env.example => .env
 6. run command: `yarn serve` in root folder
 
 #### **NOTE: Required node version to run this project is node 14 or node 16.**
 
 ### Storybook
 
-You can see all storybook components used in project [here](http://fc-storybook.s3-website.eu-central-1.amazonaws.com/)
+You can see all storybook components used in project [here](http://bloxifi-storybook.s3-website.eu-central-1.amazonaws.com/)
 
 ## Code guidelines
 
