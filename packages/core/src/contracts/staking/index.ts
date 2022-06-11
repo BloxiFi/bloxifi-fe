@@ -1,6 +1,6 @@
 import { JsonRpcSigner } from '@ethersproject/providers/src.ts/json-rpc-provider'
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 
 import { getContract } from '../../utilities'
 
@@ -27,12 +27,16 @@ interface MockTokenContract extends ethers.Contract {
     abi: any,
     approvedToken: typeof approvedStakingToken,
   ) => Promise<ethers.ContractTransaction>
+  balanceOf: (
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<BigNumber>
+  mint: (amount: BigNumber) => Promise<ethers.ContractTransaction>
 }
 
 export const Staking = {
   stakedAave: {
     //COMMENT
-    getStakeContract(signer: JsonRpcSigner): ethers.Contract {
+    getStakeContract(signer: JsonRpcSigner) {
       return new ethers.Contract(
         getStakedContractInfo('stakedAave', 'address'),
         getStakedContractInfo('stakedAave', 'abi'),
@@ -47,6 +51,7 @@ export const Staking = {
         getStakedContractInfo('mockToken', 'address'),
         getStakedContractInfo('mockToken', 'abi'),
         signer,
+        //N.B had to assert here because Contract is too generic and we want to add types from our contracts
       ) as MockTokenContract
     },
     //COMMENT
@@ -59,11 +64,27 @@ export const Staking = {
         getStakedContractInfo('stakedAave', 'address'),
       )
     },
-    //TODO maybe different name
+    //COMMENT
     async approve(mockTokenContract: MockTokenContract) {
       return await mockTokenContract.approve(
         getStakedContractInfo('stakedAave', 'address'),
         approvedStakingToken,
+      )
+    },
+    //COMMENT
+    async getTokenBalance(
+      mockTokenContract: MockTokenContract,
+      account: Web3ReactContextInterface['account'],
+    ) {
+      return await mockTokenContract.balanceOf(account)
+    },
+    //COMMENT
+    async mintToken(
+      mockTokenContract: MockTokenContract,
+      amount: number | string,
+    ) {
+      return await mockTokenContract.mint(
+        ethers.utils.parseUnits(String(amount), 18),
       )
     },
   },

@@ -1,4 +1,8 @@
 import { Staking } from '@bloxifi/core'
+import {
+  CheckAllowanceFunction,
+  FetchTokenBalanceFunction,
+} from '@bloxifi/types'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
@@ -27,10 +31,20 @@ export const StakeModalContent = () => {
   const isStakeDisabled =
     !isSupportedNetwork || loading || (shouldApproveContract && !approved)
 
-  const getTokenBalance = async () =>
-    await mockTokenContract.balanceOf(currentAccount)
+  const getTokenBalance: FetchTokenBalanceFunction = useCallback(async () => {
+    try {
+      const balanceEth = await Staking.mockedToken.getTokenBalance(
+        mockTokenContract,
+        currentAccount,
+      )
+      setBalance(Number(ethers.utils.formatUnits(balanceEth)))
+      //probably should setHasError(undefined)
+    } catch (error) {
+      setHasError(error)
+    }
+  }, [currentAccount, mockTokenContract])
 
-  const checkAllowance = useCallback(async () => {
+  const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     try {
       const approvedTokens = await Staking.mockedToken.getAllowance(
         mockTokenContract,
@@ -47,10 +61,11 @@ export const StakeModalContent = () => {
     if (isSupportedNetwork) {
       void checkAllowance()
     }
-    getTokenBalance()
-      .then(res => setBalance(Number(ethers.utils.formatUnits(res))))
-      .catch(error => setHasError(error))
   }, [checkAllowance, isSupportedNetwork])
+
+  useEffect(() => {
+    void getTokenBalance()
+  }, [getTokenBalance])
 
   const resetState = () => {
     setApproved(false)
@@ -62,8 +77,9 @@ export const StakeModalContent = () => {
   const mint = async () => {
     setLoading(true)
     try {
-      const response = await mockTokenContract.mint(
-        ethers.utils.parseUnits(mintTokenValue, 18),
+      const response = await Staking.mockedToken.mintToken(
+        mockTokenContract,
+        mintTokenValue,
       )
       await response.wait()
       setHasError(null)
