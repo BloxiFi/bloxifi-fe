@@ -149,7 +149,7 @@ export interface PageLayout
  */
 export const Page: PageLayout = Object.assign(
   React.forwardRef(function PageLayout(
-    { className, children, header, footer, ...props }: PageLayoutProps,
+    { className, children, header, footer }: PageLayoutProps,
     ref: React.Ref<HTMLDivElement>,
   ) {
     return (
@@ -240,7 +240,7 @@ const PageContent = styled(StackLayout)`
     width: 100%;
     max-width: ${CONTENT_MAX_WIDTH}px;
 
-    &:first-child {
+    &:first-of-type {
       padding-top: 4rem;
     }
   }

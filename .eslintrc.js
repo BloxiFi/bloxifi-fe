@@ -81,6 +81,7 @@ module.exports = {
 
       rules: {
         '@typescript-eslint/camelcase': 0,
+        '@typescript-eslint/unbound-method': 0,
         '@typescript-eslint/no-misused-promises': [
           'error',
           { checksVoidReturn: false },

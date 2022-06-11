@@ -17,14 +17,15 @@ export default {
 
 export const Overview = args => {
   const nav = usePageLayout()
+  const { setHeader } = nav
 
   useEffect(() => {
     if (args.header) {
-      nav.setHeader(<PageLayoutHeader>Header</PageLayoutHeader>)
+      setHeader(<PageLayoutHeader>Header</PageLayoutHeader>)
     } else {
-      nav.setHeader(null)
+      setHeader(null)
     }
-  }, [args.header, nav])
+  }, [args.header, setHeader])
 
   return (
     <PageLayout {...nav}>
