@@ -8,12 +8,8 @@ import { PublicRoute } from './PublicRoute'
 
 import { PageContainer } from '@/containers/PageContainer'
 import routes from '@/routes.json'
-import { Web3Container } from '@/containers/Web3Container'
 
 export const Router: FC = ({ children }) => {
-  const {
-    state: { isConnected },
-  } = Web3Container.useContainer()
   const { pageLayout } = PageContainer.useContainer()
   const { setHeader } = pageLayout
 
@@ -21,13 +17,13 @@ export const Router: FC = ({ children }) => {
     const routeProps = {
       key: path,
       component: lazy(() => import(`@/pages/${filename}`)),
-      isConnected,
     }
 
     return (
       <Route path={path} key={path} element={<PublicRoute {...routeProps} />} />
     )
   }
+
   useEffect(() => {
     setHeader(<Header />)
   }, [setHeader])

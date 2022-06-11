@@ -1,4 +1,8 @@
 import { Staking } from '@bloxifi/core'
+import {
+  CheckAllowanceFunction,
+  FetchTokenBalanceFunction,
+} from '@bloxifi/types'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
@@ -8,7 +12,7 @@ import { Web3Container } from '@/containers/Web3Container'
 
 export const StakeModalContent = () => {
   const {
-    state: { currentAccount, isConnected, provider, isSupportedNetwork },
+    state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
@@ -16,6 +20,7 @@ export const StakeModalContent = () => {
   const [stakeCompleted, setStakeCompleted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [hasError, setHasError] = useState()
+  const [balance, setBalance] = useState<number | undefined>()
 
   const mintTokenValue = '5'
   const stakeTokenValue = '1'
@@ -26,7 +31,20 @@ export const StakeModalContent = () => {
   const isStakeDisabled =
     !isSupportedNetwork || loading || (shouldApproveContract && !approved)
 
-  const checkAllowance = useCallback(async () => {
+  const getTokenBalance: FetchTokenBalanceFunction = useCallback(async () => {
+    try {
+      const balanceEth = await Staking.mockedToken.getTokenBalance(
+        mockTokenContract,
+        currentAccount,
+      )
+      setBalance(Number(ethers.utils.formatUnits(balanceEth)))
+      //probably should setHasError(undefined)
+    } catch (error) {
+      setHasError(error)
+    }
+  }, [currentAccount, mockTokenContract])
+
+  const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     try {
       const approvedTokens = await Staking.mockedToken.getAllowance(
         mockTokenContract,
@@ -45,6 +63,10 @@ export const StakeModalContent = () => {
     }
   }, [checkAllowance, isSupportedNetwork])
 
+  useEffect(() => {
+    void getTokenBalance()
+  }, [getTokenBalance])
+
   const resetState = () => {
     setApproved(false)
     setShouldApproveContract(false)
@@ -55,8 +77,9 @@ export const StakeModalContent = () => {
   const mint = async () => {
     setLoading(true)
     try {
-      const response = await mockTokenContract.mint(
-        ethers.utils.parseUnits(mintTokenValue, 18),
+      const response = await Staking.mockedToken.mintToken(
+        mockTokenContract,
+        mintTokenValue,
       )
       await response.wait()
       setHasError(null)
@@ -102,35 +125,37 @@ export const StakeModalContent = () => {
 
   return (
     <BoxLayout>
-      {isConnected && (
-        <StackLayout
-          gap={0.5}
-          style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
-        >
-          <h3>Stake Blox</h3>
-          <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>Amount: {stakeTokenValue} Blox</span>{' '}
-            <button disabled={!isSupportedNetwork} onClick={mint}>
-              Get {mintTokenValue} Blox
-            </button>{' '}
-          </Grid>
+      <StackLayout
+        gap={0.5}
+        style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
+      >
+        <h3>Stake Blox </h3>
+        <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>Balance:</span>
+          <span>{balance} Blox</span>
+        </Grid>
+        <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>Amount to stake: {stakeTokenValue} Blox</span>
+          <button disabled={!isSupportedNetwork} onClick={mint}>
+            Get {mintTokenValue} Blox
+          </button>{' '}
+        </Grid>
 
-          <p style={{ color: 'orange' }}>{loading && 'Please wait...'}</p>
-          <p style={{ color: 'green' }}>
-            {stakeCompleted && 'Successfully completed!'}
-          </p>
-          <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
-          {shouldApproveContract && (
-            <button disabled={isApproveDisabled} onClick={approve}>
-              Approve to continue
-            </button>
-          )}
-
-          <button disabled={isStakeDisabled} onClick={stake}>
-            Stake
+        <p style={{ color: 'orange' }}>{loading && 'Please wait...'}</p>
+        <p style={{ color: 'green' }}>
+          {stakeCompleted && 'Successfully completed!'}
+        </p>
+        <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
+        {shouldApproveContract && (
+          <button disabled={isApproveDisabled} onClick={approve}>
+            Approve to continue
           </button>
-        </StackLayout>
-      )}
+        )}
+
+        <button disabled={isStakeDisabled} onClick={stake}>
+          Stake
+        </button>
+      </StackLayout>
     </BoxLayout>
   )
 }
