@@ -94,8 +94,6 @@ function useContainer(initialState: Web3ContainerProps) {
     }
   }, [connectWallet])
 
-  console.log('helooo')
-
   return {
     state: {
       ...state,
