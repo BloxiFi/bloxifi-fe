@@ -1,4 +1,16 @@
 {
+  "lendingPool": {
+    "address": "0xAa46AaFD8e85916Abc9B82EF71cD78b0c2bE9306",
+    "abi": [],
+    "lendingPoolAddressesProvider": {
+      "address": "0x884E6c9D44c5DE6d75efD41033695C1851bcb126",
+      "abi": []
+    },
+    "lendingPoolAddressesProviderRegistry": {
+      "address": "0xF006bea15f7973eF85FA03e3e8488815314c1A43",
+      "abi": []
+    }
+  },
   "stakedAave": {
     "address": "0xB2f5F22b048B0F1008fb4453c9D7294040879493",
     "abi": [
