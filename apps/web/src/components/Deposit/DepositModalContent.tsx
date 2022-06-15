@@ -7,10 +7,10 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
+import { useTranslation } from 'react-i18next'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { DepositContainer } from '@/containers/DepositContainer'
-import { useTranslation } from 'react-i18next'
 
 export const DepositModalContent = () => {
   const { t } = useTranslation()

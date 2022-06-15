@@ -1,11 +1,11 @@
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import TOKENS from '@bloxifi/core/src/contracts/tokens/tokens.json'
 
 import { AssetListItem } from './AssetListItem'
 
 import { DepositContainer } from '@/containers/DepositContainer'
-import TOKENS from '@bloxifi/core/src/contracts/tokens/tokens.json'
 
 const AssetList = () => {
   const {

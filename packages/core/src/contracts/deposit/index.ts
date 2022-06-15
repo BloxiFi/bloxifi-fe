@@ -1,7 +1,9 @@
 import { JsonRpcSigner } from '@ethersproject/providers/src.ts/json-rpc-provider'
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { BigNumber, ethers } from 'ethers'
+
 import { getContract } from '../../utilities'
+
 import FEEDER_DATA from './deposit.json'
 
 type DepositABI = typeof FEEDER_DATA
