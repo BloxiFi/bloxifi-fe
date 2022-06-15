@@ -103,7 +103,7 @@ export const Text = styled(TextComponent)<TextProps>`
   ${({ bold, semiBold }) => {
     return `font-weight: ${bold ? 'bold' : semiBold ? 600 : 'normal'};`
   }};
-  ${({ type = 'body-1' }) => {
+  ${({ type = 'body 1' }) => {
     switch (type) {
       case 'heading 1':
         return `

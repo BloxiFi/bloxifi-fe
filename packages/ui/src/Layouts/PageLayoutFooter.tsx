@@ -27,7 +27,7 @@ export const PageLayoutFooter = React.forwardRef(
     return (
       <Component ref={ref} {...props} className={className}>
         <BoxLayout>
-          <Text type="text xs" color="textGray">
+          <Text type="small-text" color="textColorLight">
             &copy; {new Date().getFullYear()} Bloxifi
           </Text>
         </BoxLayout>
