@@ -10,7 +10,7 @@ export const Header = () => {
       <div>
         <HeaderLink to="/">Dashboard</HeaderLink>
         <HeaderLink to="/staking">Staking</HeaderLink>
-        <HeaderLink to="/deposit">Deposit</HeaderLink>
+        <HeaderLink to="/deposit">Deposit &amp; Landing</HeaderLink>
       </div>
 
       <ConnectWalletButton />

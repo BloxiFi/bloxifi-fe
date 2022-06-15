@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { AssetListItem } from './AssetListItem'
 
 import { DepositContainer } from '@/containers/DepositContainer'
+import TOKENS from '@bloxifi/core/src/contracts/tokens/tokens.json'
 
 const AssetList = () => {
   const {
@@ -12,27 +13,23 @@ const AssetList = () => {
     state: { selectedAsset },
   } = DepositContainer.useContainer()
   const { t } = useTranslation()
+  const AVAILABLE_TOKENS = Object.keys(TOKENS)
 
-  const depositAssetsList: string[] = [
-    'WETH',
-    'LINK',
-    'DOT',
-    'WBTC',
-    'DAI',
-    'USDC',
-    'GLMR',
-    'aUSD',
-    'ACA',
-  ]
   return (
     <BoxLayout>
       <h3>{t('deposit.assetsToDeposit')}</h3>
       <StackLayout>
-        {depositAssetsList.map(asset => (
+        {AVAILABLE_TOKENS.map(asset => (
           <AssetListItem
             key={asset}
             isSelected={selectedAsset === asset}
-            onClick={() => dispatch({ type: 'setSelectedAsset', value: asset })}
+            disabled={!TOKENS[asset]}
+            onClick={() =>
+              dispatch({
+                type: 'setSelectedAsset',
+                value: { asset, address: TOKENS[asset] },
+              })
+            }
           >
             {asset}
           </AssetListItem>

@@ -1,12 +1,15 @@
+import { Tokens } from '@bloxifi/core'
+import TOKENS from '@bloxifi/core/src/contracts/tokens/tokens.json'
 import { Action } from '@bloxifi/types'
 import { Reducer } from 'preact/compat'
 import { Dispatch, useReducer } from 'react'
 import { createContainer } from 'unstated-next'
 
+const initailToken = 'DAI'
 interface State {
-  selectedAsset: string
+  selectedAsset: keyof Tokens
+  selectedAddress: string
 }
-
 interface DepositContainerState {
   state: State
   dispatch: Dispatch<Action<ActionType>>
@@ -15,13 +18,18 @@ interface DepositContainerState {
 type ActionType = 'setSelectedAsset'
 
 const defaultState: State = {
-  selectedAsset: 'WETH',
+  selectedAsset: initailToken,
+  selectedAddress: TOKENS[initailToken],
 }
 
 const reducer = (state: State, action: Action<ActionType>) => {
   switch (action.type) {
     case 'setSelectedAsset':
-      return { ...state, selectedAsset: action.value }
+      return {
+        ...state,
+        selectedAsset: action.value.asset,
+        selectedAddress: action.value.address,
+      }
     default:
       return defaultState
   }
