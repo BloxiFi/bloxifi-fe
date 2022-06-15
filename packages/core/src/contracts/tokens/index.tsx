@@ -4,15 +4,24 @@ import { BigNumber, ethers } from 'ethers'
 
 import { getContract } from '../../utilities'
 import DEPOSIT_CONTRACTS from '../deposit/deposit.json'
+import STAKING_CONTRACTS from '../staking/staking.json'
 
 import FEEDER_DATA from './tokens.json'
 import ABI from './abi.json'
 
-export type Tokens = typeof FEEDER_DATA
+export type TokenList = typeof FEEDER_DATA
 
-function getContractAddress(contractName: keyof Tokens) {
-  return FEEDER_DATA[contractName]
+type ApprovalContract = 'deposit'
+
+const getApprovalContract = (approvalContract: ApprovalContract) => {
+  switch (approvalContract) {
+    case 'deposit':
+      return getContract(DEPOSIT_CONTRACTS, 'lendingPool', 'address')
+  }
 }
+
+const getContractAddress = (contractName: keyof TokenList) =>
+  FEEDER_DATA[contractName]
 
 export const approveTokenAmount =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935' as const
@@ -34,9 +43,13 @@ export interface TokenContract extends ethers.Contract {
 
   mint: (amount: BigNumber) => Promise<ethers.ContractTransaction>
 }
+
 export const Tokens = {
   //COMMENT
-  getTokenContract(signer: JsonRpcSigner, token: keyof Tokens): TokenContract {
+  getTokenContract(
+    signer: JsonRpcSigner,
+    token: keyof TokenList,
+  ): TokenContract {
     return new ethers.Contract(
       getContractAddress(token),
       ABI,
@@ -48,16 +61,20 @@ export const Tokens = {
   async getAllowance(
     tokenContract: TokenContract,
     account: Web3ReactContextInterface['account'],
+    approvalContract: ApprovalContract,
   ) {
     return await tokenContract.allowance(
       account,
-      getContract(DEPOSIT_CONTRACTS, 'lendingPool', 'address'),
+      getApprovalContract(approvalContract),
     )
   },
   //COMMENT
-  async approveToken(tokenContract: TokenContract) {
+  async approveToken(
+    tokenContract: TokenContract,
+    approvalContract: ApprovalContract,
+  ) {
     return await tokenContract.approve(
-      getContract(DEPOSIT_CONTRACTS, 'lendingPool', 'address'),
+      getApprovalContract(approvalContract),
       approveTokenAmount,
     )
   },

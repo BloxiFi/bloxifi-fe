@@ -1,4 +1,4 @@
-import { Tokens } from '@bloxifi/core'
+import { TokenList } from '@bloxifi/core'
 import TOKENS from '@bloxifi/core/src/contracts/tokens/tokens.json'
 import { Action } from '@bloxifi/types'
 import { Reducer } from 'preact/compat'
@@ -7,7 +7,7 @@ import { createContainer } from 'unstated-next'
 
 const initailToken = 'DAI'
 interface State {
-  selectedAsset: keyof Tokens
+  selectedAsset: keyof TokenList
   selectedAddress: string
 }
 interface DepositContainerState {

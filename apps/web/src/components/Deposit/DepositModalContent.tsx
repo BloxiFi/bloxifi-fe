@@ -43,8 +43,8 @@ export const DepositModalContent = () => {
 
   const getTokenBalance: FetchTokenBalanceFunction = useCallback(async () => {
     try {
-      const balanceEth = await Tokens.getTokenBalance(Contract, currentAccount)
-      setBalance(Number(ethers.utils.formatUnits(balanceEth)))
+      const balance = await Tokens.getTokenBalance(Contract, currentAccount)
+      setBalance(Number(ethers.utils.formatUnits(balance)))
       setHasError(null)
     } catch (error) {
       setHasError(error)
@@ -53,7 +53,11 @@ export const DepositModalContent = () => {
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     try {
-      const approvedTokens = await Tokens.getAllowance(Contract, currentAccount)
+      const approvedTokens = await Tokens.getAllowance(
+        Contract,
+        currentAccount,
+        'deposit',
+      )
       setShouldApproveContract(approvedTokens.toString() === '0')
       setHasError(null)
     } catch (error) {
@@ -91,7 +95,7 @@ export const DepositModalContent = () => {
   const approve = async () => {
     setLoading(true)
     try {
-      const response = await Contract.approveToken(Contract)
+      const response = await Tokens.approveToken(Contract, 'deposit')
       const isApproved = await response.wait()
 
       setApproved(!!isApproved)
