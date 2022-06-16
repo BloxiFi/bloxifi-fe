@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
-import { Colors } from '@bloxifi/ui'
+import { Colors, GlobalStyle } from '@bloxifi/ui'
 import { Web3ReactProvider } from '@web3-react/core'
 import { providers } from 'ethers'
 import { ExternalProvider } from '@ethersproject/providers'
@@ -24,6 +24,7 @@ export const App = () => {
 
   return (
     <AppWrapper>
+      <GlobalStyle {...style.state} />
       <ThemeProvider theme={Colors[style.state.theme]}>
         <Web3ReactProvider getLibrary={getWeb3Library}>
           <Web3Container.Provider>

@@ -23,7 +23,7 @@ const HomePage = () => {
     <Wrapper>
       <CoverLayout>
         <BoxLayout style={{ background: themeContext.white }}>
-          <Text type="heading 1" semiBold align="center">
+          <Text align="left" type="heading 1" semiBold>
             {t('global.button')}
           </Text>
         </BoxLayout>
