@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/react'
 import React from 'react'
 
-import { StackLayout } from './Layouts'
-import { Text } from './Text'
+import { StackLayout } from '../Layouts'
+import { Text } from '../Text'
 
 export default {
   title: 'Text',

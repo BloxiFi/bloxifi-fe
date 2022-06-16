@@ -98,11 +98,6 @@ const TextComponent: FunctionComponent<TextProps> = ({
 )
 
 export const Text = styled(TextComponent)<TextProps>`
-  ${({ className }) => FullWidth({ className })};
-  ${({ className }) => Hidden({ className })};
-  ${({ bold, semiBold }) => {
-    return `font-weight: ${bold ? 'bold' : semiBold ? 600 : 'normal'};`
-  }};
   ${({ type = 'body 1' }) => {
     switch (type) {
       case 'heading 1':
@@ -110,7 +105,6 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 3.75rem;
         line-height: 4.615rem;
         font-weight:600;
-        color: ${Colors.textColorDark};
         font-family:${Fonts.ClashDisplay};
       `
       case 'heading 2':
@@ -118,7 +112,6 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 1.5rem;
         line-height: 1.845rem;
         font-weight:600;
-        color: ${Colors.textColorDark};
         font-family:${Fonts.ClashDisplay};
       `
       case 'heading 3':
@@ -126,7 +119,6 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 1rem;
         line-height: 1.25rem;
         font-weight:600;
-        color: ${Colors.textColorDark};
         font-family:${Fonts.ClashDisplay};
       `
       case 'body 1':
@@ -134,7 +126,6 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 0.875rem;
         line-height: 1.315rem;
         font-weight:400;
-        color: ${Colors.textColorDark};
         font-family:${Fonts.Inter};
       `
       case 'body 2':
@@ -142,7 +133,6 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 1rem;
         line-height: 1.315rem;
         font-weight:400;
-        color: ${Colors.textColorDark};
         font-family:${Fonts.Inter};
       `
       case 'body 3':
@@ -150,7 +140,6 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 1rem;
         line-height: 1.2rem;
         font-weight:600;
-        color: ${Colors.textColorLight};
         font-family:${Fonts.Inter};
       `
       case 'body 4':
@@ -158,7 +147,6 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 1.5rem;
         line-height: 2.815rem;
         font-weight: 700;
-        color: ${Colors.textColorDark};
         font-family:${Fonts.ClashDisplay};
       `
       case 'body 5':
@@ -166,7 +154,6 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 1.25rem;
         line-height: 1.315rem;
         font-weight:400;
-        color: ${Colors.textColorLight};
         font-family:${Fonts.Inter};
       `
       case 'small-text':
@@ -175,7 +162,6 @@ export const Text = styled(TextComponent)<TextProps>`
         line-height: 1.5rem;
         letter-spacing: -0.01em;
         font-weight:400;
-        color: ${Colors.textColorLight};
         font-family:${Fonts.Inter};
       `
     }
@@ -196,10 +182,25 @@ export const Text = styled(TextComponent)<TextProps>`
         return Colors.textColorDark
     }
   }};
+  ${({ className }) => FullWidth({ className })};
+  ${({ className }) => Hidden({ className })};
+  ${({ bold, semiBold }) => {
+    return `font-weight: ${bold ? 'bold' : semiBold && 600};`
+  }};
   ${({ align }) => {
     return align && `text-align: ${align}`
   }};
   justify-content: ${({ align }) => {
+    switch (align) {
+      case 'left':
+        return 'flex-start'
+      case 'right':
+        return 'flex-end'
+      case 'center':
+        return 'center'
+    }
+  }};
+  ${({ align }) => {
     switch (align) {
       case 'left':
         return 'flex-start'
