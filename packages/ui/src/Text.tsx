@@ -200,15 +200,5 @@ export const Text = styled(TextComponent)<TextProps>`
         return 'center'
     }
   }};
-  ${({ align }) => {
-    switch (align) {
-      case 'left':
-        return 'flex-start'
-      case 'right':
-        return 'flex-end'
-      case 'center':
-        return 'center'
-    }
-  }};
   word-break: break-word;
 `
