@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Text Headings 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-hKMtZM iFqRXC"
+    gap={2}
+  >
+    <h1
+      className="sc-ftvSup daCYKK c-text--heading-1"
+    >
+      Heading 1
+    </h1>
+    <h2
+      className="sc-ftvSup gzJQjB c-text--heading-2"
+    >
+      Heading 2
+    </h2>
+    <h3
+      className="sc-ftvSup ebkJuk c-text--heading-3"
+    >
+      Heading 3
+    </h3>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text Paragraphs 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-hKMtZM iFqRXC"
+    gap={2}
+  >
+    <p
+      className="sc-ftvSup dgOyaM c-text--body-1"
+    >
+      Body 1
+    </p>
+    <p
+      className="sc-ftvSup qIbMR c-text--body-2"
+    >
+      Body 2
+    </p>
+    <p
+      className="sc-ftvSup jzICbG c-text--body-3"
+    >
+      Body 3
+    </p>
+    <p
+      className="sc-ftvSup kyHWlS c-text--body-4"
+    >
+      Body 4
+    </p>
+    <p
+      className="sc-ftvSup knlFZU c-text--body-5"
+    >
+      Body 5
+    </p>
+    <span
+      className="sc-ftvSup bfXbKF c-text--small-text c-text--color-textColorDark"
+    >
+      Small text
+    </span>
+  </div>
+</div>
+`;
