@@ -5,9 +5,7 @@ import ClashDisplayFontSemiBold from './fonts/ClashDisplay/ClashDisplay-SemiBold
 import InterFontSemiBold from './fonts/Inter/Inter-SemiBold.woff'
 import InterFontRegular from './fonts/Inter/Inter-Regular.woff'
 
-export const GlobalStyle = createGlobalStyle<{
-  theme: any
-}>`
+export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "Clash Display";
     font-style: normal;

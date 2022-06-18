@@ -24,8 +24,8 @@ export const App = () => {
 
   return (
     <AppWrapper>
-      <GlobalStyle {...style.state} />
       <ThemeProvider theme={Colors[style.state.theme]}>
+        <GlobalStyle {...style.state} />
         <Web3ReactProvider getLibrary={getWeb3Library}>
           <Web3Container.Provider>
             <NotificationManager />
