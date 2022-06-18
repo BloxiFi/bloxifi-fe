@@ -9,19 +9,19 @@ export const GlobalStyle = createGlobalStyle<{
   theme: any
 }>`
   @font-face {
-    font-family: ClashDisplay;
+    font-family: "Clash Display";
     font-style: normal;
     font-weight: normal;
     font-display: swap;
-    src: local('ClashDisplay'), url(${ClashDisplayFontSemiBold}) format('woff');
+    src: local('Clash Display'), url(${ClashDisplayFontSemiBold}) format('woff');
   }
   
   @font-face {
-    font-family: ClashDisplay;
+    font-family: "Clash Display";
     font-style: normal;
     font-weight: bold;
     font-display: swap;
-    src: local('ClashDisplay'), url(${ClashDisplayFontBold}) format('woff');
+    src: local('Clash Display'), url(${ClashDisplayFontBold}) format('woff');
   }
   
   @font-face {
