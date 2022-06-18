@@ -104,56 +104,56 @@ export const Text = styled(TextComponent)<TextProps>`
         return `
         font-size: 3.75rem;
         line-height: 4.615rem;
-        font-weight:600;
+        font-weight: 600;
         font-family:${Fonts.ClashDisplay};
       `
       case 'heading 2':
         return `
         font-size: 1.5rem;
         line-height: 1.845rem;
-        font-weight:600;
+        font-weight: 600;
         font-family:${Fonts.ClashDisplay};
       `
       case 'heading 3':
         return `
         font-size: 1rem;
         line-height: 1.25rem;
-        font-weight:600;
+        font-weight: 600;
         font-family:${Fonts.ClashDisplay};
       `
       case 'body 1':
         return `
         font-size: 0.875rem;
         line-height: 1.315rem;
-        font-weight:400;
+        font-weight: normal;
         font-family:${Fonts.Inter};
       `
       case 'body 2':
         return `
         font-size: 1rem;
         line-height: 1.315rem;
-        font-weight:400;
+        font-weight: normal;
         font-family:${Fonts.Inter};
       `
       case 'body 3':
         return `
         font-size: 1rem;
         line-height: 1.2rem;
-        font-weight:600;
+        font-weight: 600;
         font-family:${Fonts.Inter};
       `
       case 'body 4':
         return `
         font-size: 1.5rem;
         line-height: 2.815rem;
-        font-weight: 700;
+        font-weight: bold;
         font-family:${Fonts.ClashDisplay};
       `
       case 'body 5':
         return `
         font-size: 1.25rem;
         line-height: 1.315rem;
-        font-weight:400;
+        font-weight: normal;
         font-family:${Fonts.Inter};
       `
       case 'small-text':
@@ -161,7 +161,7 @@ export const Text = styled(TextComponent)<TextProps>`
         font-size: 0.75rem;
         line-height: 1.5rem;
         letter-spacing: -0.01em;
-        font-weight:400;
+        font-weight: normal;
         font-family:${Fonts.Inter};
       `
     }

@@ -11,9 +11,9 @@ export const GlobalStyle = createGlobalStyle<{
   @font-face {
     font-family: "Clash Display";
     font-style: normal;
-    font-weight: normal;
+    font-weight: 600;
     font-display: swap;
-    src: local('Clash Display'), url(${ClashDisplayFontSemiBold}) format('woff');
+    src: local('Clash Display Semi-Bold'), url(${ClashDisplayFontSemiBold}) format('woff');
   }
   
   @font-face {
@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-style: normal;
     font-weight: bold;
     font-display: swap;
-    src: local('Clash Display'), url(${ClashDisplayFontBold}) format('woff');
+    src: local('Clash Display Bold'), url(${ClashDisplayFontBold}) format('woff');
   }
   
   @font-face {
@@ -29,14 +29,14 @@ export const GlobalStyle = createGlobalStyle<{
     font-style: normal;
     font-weight: normal;
     font-display: swap;
-    src: local('Inter'), url(${InterFontRegular}) format('woff');
+    src: local('Inter Regular'), url(${InterFontRegular}) format('woff');
   }
   
   @font-face {
     font-family: Inter;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 600;
     font-display: swap;
-    src: local('Inter Bold'), url(${InterFontSemiBold}) format('woff');
+    src: local('Inter Semi-Bold'), url(${InterFontSemiBold}) format('woff');
   }
 `
