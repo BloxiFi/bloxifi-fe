@@ -21,7 +21,7 @@ export const ConnectWalletButton = () => {
 
   if (!isMetamaskInstalled) {
     return (
-      <Text type="text xl" color="red" semiBold align="center">
+      <Text type="body 1" color="red" semiBold align="center">
         Please install Metamask
       </Text>
     )
@@ -29,26 +29,28 @@ export const ConnectWalletButton = () => {
 
   if (error) {
     return (
-      <Text type="text xl" color="red" semiBold align="center">
+      <Text type="body 1" color="red" semiBold align="center">
         Connection failed!
       </Text>
     )
   }
   return isConnected ? (
     <div>
-      <StyledText type="text xl" semiBold>
+      <StyledText type="body 3" as="span" semiBold>
         Account:
       </StyledText>
       <StyledText
-        type="text xl"
-        color={isSupportedNetwork ? 'textGray' : 'red'}
+        as="span"
+        type="body 3"
+        color={isSupportedNetwork ? 'textColorLight' : 'red'}
       >{`${currentAccount.slice(0, 8)}...`}</StyledText>
-      <StyledText type="text xl" semiBold>
+      <StyledText as="span" type="body 3" semiBold>
         Network:
       </StyledText>
       <StyledText
-        type="text xl"
-        color={isSupportedNetwork ? 'textGray' : 'red'}
+        as="span"
+        type="body 3"
+        color={isSupportedNetwork ? 'textColorLight' : 'red'}
       >
         {getNetworkName(chainId)}
       </StyledText>
