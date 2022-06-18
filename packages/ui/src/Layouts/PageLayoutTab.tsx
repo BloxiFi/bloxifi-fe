@@ -45,7 +45,7 @@ export const PageLayoutTab = styled(Tab)`
   padding: 12px;
   gap: 12px;
   cursor: pointer;
-  color: ${Colors.textGray};
+  color: ${Colors.textColorLight};
   border-bottom: 2px solid transparent;
   ${({ active }) =>
     active &&

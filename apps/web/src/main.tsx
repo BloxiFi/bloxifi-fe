@@ -1,4 +1,3 @@
-import '@bloxifi/ui/src/fonts/fonts.less'
 import 'normalize.css'
 import './sw'
 
