@@ -4,13 +4,8 @@ import React from 'react'
 import { Toggle } from '../Toggle'
 
 export default {
-  title: 'Toggle',
+  title: 'Components/Toggle',
   component: Toggle,
-  parameters: {
-    controls: {
-      exclude: /.*/s,
-    },
-  },
 } as Meta
 
 export const ToggleDefault = () => {

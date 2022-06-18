@@ -5,7 +5,7 @@ import { StackLayout } from '../Layouts'
 import { Text } from '../Text'
 
 export default {
-  title: 'Text',
+  title: 'Components/Text',
   component: Text,
 } as Meta
 
