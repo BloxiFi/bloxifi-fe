@@ -6,7 +6,8 @@ export const Colors = {
 
   shadowLevel1: '0px 2px 4px rgba(20, 20, 43, 0.1)',
 
-  textColor: '#14142B',
+  textColorLight: '#818181',
+  textColorDark: '#212121',
   primary: '#212529',
 
   purple70: '#5B1F7B',
@@ -40,4 +41,9 @@ export const Colors = {
   dark: {
     white: '#000000',
   },
+
+  //Toggle
+  toggleBackground: '#677789',
+  toggleActiveGradient1: '#0072C3',
+  toggleActiveGradient2: '#003A6D',
 }

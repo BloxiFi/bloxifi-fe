@@ -21,10 +21,10 @@ export const ConnectWalletPaper = ({
         'loading...'
       ) : (
         <StackLayout>
-          <Text type="heading 4" semiBold align="center">
+          <Text type="heading 3" semiBold align="center">
             {t('walletConnection.notConnectedTitle')}
           </Text>
-          <Text type="text m" color="textGray" align="center">
+          <Text type="body 1" color="textColorLight" align="center">
             {children || t('dashboard.notConnectedMessage')}
           </Text>
           <ConnectWalletButton />
