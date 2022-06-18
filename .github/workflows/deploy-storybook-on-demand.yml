@@ -78,7 +78,6 @@ jobs:
       #
       - name: Install dependencies
         run: yarn install --frozen-lockfile && yarn build-storybook
-        working-directory: ./frontend
 
       #
       # Upload storybook-static to S3
@@ -116,7 +115,6 @@ jobs:
                   --exclude "*" --include "*.${ext}"             \
                   --recursive
           done
-        working-directory: ./frontend
 
       #
       # Post a comment with result URL
