@@ -41,4 +41,9 @@ export const Colors = {
   dark: {
     white: '#000000',
   },
+
+  //Toggle
+  toggleBackground: '#677789',
+  toggleActiveGradient1: '#0072C3',
+  toggleActiveGradient2: '#003A6D',
 }
