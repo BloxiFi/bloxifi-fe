@@ -1,7 +1,7 @@
+import { getAllAssets } from '@bloxifi/core'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import TOKENS from '@bloxifi/core/src/contracts/tokens/tokens.json'
 
 import { AssetListItem } from './AssetListItem'
 
@@ -13,21 +13,21 @@ const AssetList = () => {
     state: { selectedAsset },
   } = DepositContainer.useContainer()
   const { t } = useTranslation()
-  const AVAILABLE_TOKENS = Object.keys(TOKENS)
+  const allAssets = getAllAssets()
 
   return (
     <BoxLayout>
       <h3>{t('deposit.assetsToDeposit')}</h3>
       <StackLayout>
-        {AVAILABLE_TOKENS.map(asset => (
+        {allAssets.map(([asset, address]) => (
           <AssetListItem
             key={asset}
             isSelected={selectedAsset === asset}
-            disabled={!TOKENS[asset]}
+            disabled={!address}
             onClick={() =>
               dispatch({
                 type: 'setSelectedAsset',
-                value: { asset, address: TOKENS[asset] },
+                value: { asset, address },
               })
             }
           >
