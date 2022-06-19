@@ -8,6 +8,11 @@
   "dashboard": {
     "notConnectedMessage": "Please, connect your wallet to see your supplies, borrowings, and open positions."
   },
+  "deposit": {
+    "pageTitle": "Deposit page",
+    "assetsToDeposit": "Assets to deposit",
+    "depositAsset": "Deposit asset"
+  },
   "staking": {
     "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."
   }

@@ -1,4 +1,4 @@
-import { Staking, Tokens } from '@bloxifi/core'
+import { BorrowAndLending, Tokens } from '@bloxifi/core'
 import {
   CheckAllowanceFunction,
   FetchTokenBalanceFunction,
@@ -7,56 +7,66 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
 import { Grid } from '@bloxifi/ui/src/Layouts/GridLayout'
 import { ethers } from 'ethers'
+import { useTranslation } from 'react-i18next'
 
 import { Web3Container } from '@/containers/Web3Container'
+import { DepositContainer } from '@/containers/DepositContainer'
 
-export const StakeModalContent = () => {
+export const DepositModalContent = () => {
+  const { t } = useTranslation()
+  const {
+    state: { selectedAsset, selectedAddress },
+  } = DepositContainer.useContainer()
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
-  const [shouldApproveContract, setShouldApproveContract] = useState(false)
-  const [approved, setApproved] = useState(false)
-  const [stakeCompleted, setStakeCompleted] = useState(false)
-  const [loading, setLoading] = useState(false)
+
   const [hasError, setHasError] = useState()
+  const [loading, setLoading] = useState(false)
+
+  const [shouldApproveContract, setShouldApproveContract] = useState(false)
+  const [approved, setApproved] = useState<boolean>(false)
+  const [depositCompleted, setDepositCompleted] = useState<boolean>(false)
   const [balance, setBalance] = useState<number | undefined>()
+  const tokenContract = Tokens.getTokenContract(signer, selectedAsset)
+  const lendingPoolContract =
+    BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
   const mintTokenValue = '5'
-  const stakeTokenValue = '1'
-  const stakeContract = Staking.stakedAave.getStakeContract(signer)
-  const mockTokenContract = Tokens.getTokenContract(signer, 'mockToken')
+  const depositTokenValue = '1'
 
-  const isApproveDisabled = !isSupportedNetwork || loading || approved
+  const isApproveDisabled =
+    !isSupportedNetwork || loading || approved || !balance
   const isStakeDisabled =
     !isSupportedNetwork || loading || (shouldApproveContract && !approved)
 
   const getTokenBalance: FetchTokenBalanceFunction = useCallback(async () => {
     try {
-      const balanceEth = await Tokens.getTokenBalance(
-        mockTokenContract,
+      const balance = await Tokens.getTokenBalance(
+        tokenContract,
         currentAccount,
       )
-      setBalance(Number(ethers.utils.formatUnits(balanceEth)))
-      //probably should setHasError(undefined)
+      setBalance(Number(ethers.utils.formatUnits(balance)))
+      setHasError(null)
     } catch (error) {
       setHasError(error)
     }
-  }, [currentAccount, mockTokenContract])
+  }, [currentAccount, tokenContract])
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     try {
       const approvedTokens = await Tokens.getAllowance(
-        mockTokenContract,
+        tokenContract,
         currentAccount,
-        'staking',
+        'deposit',
       )
       setShouldApproveContract(approvedTokens.toString() === '0')
       setHasError(null)
     } catch (error) {
       setHasError(error)
     }
-  }, [currentAccount, mockTokenContract])
+  }, [currentAccount, tokenContract])
 
   useEffect(() => {
     if (isSupportedNetwork) {
@@ -66,39 +76,13 @@ export const StakeModalContent = () => {
 
   useEffect(() => {
     void getTokenBalance()
-  }, [getTokenBalance])
-
-  const resetState = () => {
-    setApproved(false)
-    setShouldApproveContract(false)
-    setStakeCompleted(false)
-    setHasError(null)
-  }
+  }, [getTokenBalance, depositCompleted, approved]) //Why do we need approved as dep here?
 
   const mint = async () => {
     setLoading(true)
     try {
-      const response = await Tokens.mintToken(mockTokenContract, mintTokenValue)
+      const response = await Tokens.mintToken(tokenContract, mintTokenValue)
       await response.wait()
-      setHasError(null)
-    } catch (error) {
-      setHasError(error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const stake = async () => {
-    setLoading(true)
-    try {
-      const response = await stakeContract.stake(
-        currentAccount,
-        ethers.utils.parseEther(stakeTokenValue),
-      )
-
-      const isStaked = await response.wait()
-      setStakeCompleted(!!isStaked)
-      setTimeout(() => resetState(), 3000)
       setHasError(null)
     } catch (error) {
       setHasError(error)
@@ -110,10 +94,34 @@ export const StakeModalContent = () => {
   const approve = async () => {
     setLoading(true)
     try {
-      const response = await Tokens.approveToken(mockTokenContract, 'staking')
+      const response = await Tokens.approveToken(tokenContract, 'deposit')
       const isApproved = await response.wait()
+
       setApproved(!!isApproved)
-      setHasError(null)
+    } catch (error) {
+      setHasError(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const resetState = () => {
+    setDepositCompleted(false)
+    setHasError(null)
+  }
+
+  const deposit = async () => {
+    setLoading(true)
+    try {
+      const response = await BorrowAndLending.lendingPool.deposit(
+        lendingPoolContract,
+        selectedAddress,
+        depositTokenValue,
+        currentAccount,
+      )
+      const isDeposited = await response.wait()
+      setDepositCompleted(!!isDeposited)
+      setTimeout(() => resetState(), 3000)
     } catch (error) {
       setHasError(error)
     } finally {
@@ -127,31 +135,36 @@ export const StakeModalContent = () => {
         gap={0.5}
         style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
       >
-        <h3>Stake Blox </h3>
+        <h3>
+          {t('deposit.depositAsset')} {selectedAsset}
+        </h3>
         <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span>Balance:</span>
-          <span>{balance} Blox</span>
-        </Grid>
-        <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span>Amount to stake: {stakeTokenValue} Blox</span>
+          <span>
+            Amount to deposit: {depositTokenValue} {selectedAsset}
+          </span>
           <button disabled={!isSupportedNetwork} onClick={mint}>
-            Get {mintTokenValue} Blox
+            Get {mintTokenValue} {selectedAsset}
           </button>{' '}
         </Grid>
-
+        <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>Balance:</span>
+          <span>
+            {balance} {selectedAsset}
+          </span>
+        </Grid>
         <p style={{ color: 'orange' }}>{loading && 'Please wait...'}</p>
         <p style={{ color: 'green' }}>
-          {stakeCompleted && 'Successfully completed!'}
+          {depositCompleted && 'Successfully completed!'}
         </p>
+
         <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
         {shouldApproveContract && (
           <button disabled={isApproveDisabled} onClick={approve}>
             Approve to continue
           </button>
         )}
-
-        <button disabled={isStakeDisabled} onClick={stake}>
-          Stake
+        <button disabled={isStakeDisabled} onClick={deposit}>
+          Deposit
         </button>
       </StackLayout>
     </BoxLayout>
