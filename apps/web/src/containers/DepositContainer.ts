@@ -1,15 +1,15 @@
-import { TokenList } from '@bloxifi/core'
-import TOKENS from '@bloxifi/core/src/contracts/tokens/tokens.json'
+import { getContractAddress, TokenList } from '@bloxifi/core'
 import { Action } from '@bloxifi/types'
-import { Reducer } from 'preact/compat'
-import { Dispatch, useReducer } from 'react'
+import { Dispatch, Reducer, useReducer } from 'react'
 import { createContainer } from 'unstated-next'
 
-const initailToken = 'DAI'
+const initialToken = 'DAI'
+
 interface State {
-  selectedAsset: keyof TokenList
+  selectedAsset: TokenList
   selectedAddress: string
 }
+
 interface DepositContainerState {
   state: State
   dispatch: Dispatch<Action<ActionType>>
@@ -18,8 +18,8 @@ interface DepositContainerState {
 type ActionType = 'setSelectedAsset'
 
 const defaultState: State = {
-  selectedAsset: initailToken,
-  selectedAddress: TOKENS[initailToken],
+  selectedAsset: initialToken,
+  selectedAddress: getContractAddress(initialToken),
 }
 
 const reducer = (state: State, action: Action<ActionType>) => {

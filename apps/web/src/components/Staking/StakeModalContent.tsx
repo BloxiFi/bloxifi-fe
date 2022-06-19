@@ -1,4 +1,4 @@
-import { Staking } from '@bloxifi/core'
+import { Staking, Tokens } from '@bloxifi/core'
 import {
   CheckAllowanceFunction,
   FetchTokenBalanceFunction,
@@ -25,7 +25,7 @@ export const StakeModalContent = () => {
   const mintTokenValue = '5'
   const stakeTokenValue = '1'
   const stakeContract = Staking.stakedAave.getStakeContract(signer)
-  const mockTokenContract = Staking.mockedToken.getMockTokenContract(signer)
+  const mockTokenContract = Tokens.getTokenContract(signer, 'mockToken')
 
   const isApproveDisabled = !isSupportedNetwork || loading || approved
   const isStakeDisabled =
@@ -33,7 +33,7 @@ export const StakeModalContent = () => {
 
   const getTokenBalance: FetchTokenBalanceFunction = useCallback(async () => {
     try {
-      const balanceEth = await Staking.mockedToken.getTokenBalance(
+      const balanceEth = await Tokens.getTokenBalance(
         mockTokenContract,
         currentAccount,
       )
@@ -46,9 +46,10 @@ export const StakeModalContent = () => {
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     try {
-      const approvedTokens = await Staking.mockedToken.getAllowance(
+      const approvedTokens = await Tokens.getAllowance(
         mockTokenContract,
         currentAccount,
+        'staking',
       )
       setShouldApproveContract(approvedTokens.toString() === '0')
       setHasError(null)
@@ -77,10 +78,7 @@ export const StakeModalContent = () => {
   const mint = async () => {
     setLoading(true)
     try {
-      const response = await Staking.mockedToken.mintToken(
-        mockTokenContract,
-        mintTokenValue,
-      )
+      const response = await Tokens.mintToken(mockTokenContract, mintTokenValue)
       await response.wait()
       setHasError(null)
     } catch (error) {
@@ -112,7 +110,7 @@ export const StakeModalContent = () => {
   const approve = async () => {
     setLoading(true)
     try {
-      const response = await Staking.mockedToken.approve(mockTokenContract)
+      const response = await Tokens.approveToken(mockTokenContract, 'staking')
       const isApproved = await response.wait()
       setApproved(!!isApproved)
       setHasError(null)

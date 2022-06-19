@@ -8,49 +8,43 @@ import FEEDER_DATA from './staking.json'
 
 type StakingABI = typeof FEEDER_DATA
 
-function getStakedContractInfo(
+export function getStakedContractInfo(
   contractName: keyof StakingABI,
   type: keyof StakingABI[keyof StakingABI],
 ) {
   return getContract<StakingABI>(FEEDER_DATA, contractName, type)
 }
 
-export const approvedStakingToken =
-  '115792089237316195423570985008687907853269984665640564039457584007913129639935' as const
-
 interface StakingContract extends ethers.Contract {
+  //COMMENT
   balanceOf: (
     account: Web3ReactContextInterface['account'],
   ) => Promise<BigNumber>
-
+  //COMMENT
   COOLDOWN_SECONDS: () => Promise<BigNumber>
 
-  getTotalRewardsBalance: (
-    account: Web3ReactContextInterface['account'],
-  ) => Promise<BigNumber>
-}
+  getTotalRewardsBalance: /**
+   * @dev Return the total rewards pending to claim by an staker
+   * @param account The staker address
+   * @return The rewards
+   */ (account: Web3ReactContextInterface['account']) => Promise<BigNumber>
 
-interface MockTokenContract extends ethers.Contract {
-  allowance: (
+  claimRewards: /**
+   * @dev Claims an `amount` of `REWARD_TOKEN` to the address `to`
+   * @param account Address to stake for
+   * @param amount Amount to stake
+   **/ (
     account: Web3ReactContextInterface['account'],
-    abi: any,
+    amount: BigNumber,
   ) => Promise<ethers.ContractTransaction>
-
-  approve: (
-    abi: any,
-    approvedToken: typeof approvedStakingToken,
-  ) => Promise<ethers.ContractTransaction>
-
-  balanceOf: (
-    account: Web3ReactContextInterface['account'],
-  ) => Promise<BigNumber>
-
-  mint: (amount: BigNumber) => Promise<ethers.ContractTransaction>
 }
 
 export const Staking = {
   stakedAave: {
-    //COMMENT
+    /**
+     * Function to instantiate staking contract
+     * @returns {@link StakingContract}
+     **/
     getStakeContract(signer: JsonRpcSigner): StakingContract {
       return new ethers.Contract(
         getStakedContractInfo('stakedAave', 'address'),
@@ -58,48 +52,17 @@ export const Staking = {
         signer,
       ) as StakingContract
     },
-  },
-  mockedToken: {
-    //COMMENT
-    getMockTokenContract(signer: JsonRpcSigner): MockTokenContract {
-      return new ethers.Contract(
-        getStakedContractInfo('mockToken', 'address'),
-        getStakedContractInfo('mockToken', 'abi'),
-        signer,
-        //N.B had to assert here because Contract is too generic and we want to add types from our contracts
-      ) as MockTokenContract
-    },
-    //COMMENT
-    async getAllowance(
-      mockTokenContract: MockTokenContract,
+    /**
+     * Extends {@link StakingContract.claimRewards}
+     **/
+    async claimRewards(
+      stakingContract: StakingContract,
       account: Web3ReactContextInterface['account'],
-    ) {
-      return await mockTokenContract.allowance(
-        account,
-        getStakedContractInfo('stakedAave', 'address'),
-      )
-    },
-    //COMMENT
-    async approve(mockTokenContract: MockTokenContract) {
-      return await mockTokenContract.approve(
-        getStakedContractInfo('stakedAave', 'address'),
-        approvedStakingToken,
-      )
-    },
-    //COMMENT
-    async getTokenBalance(
-      mockTokenContract: MockTokenContract,
-      account: Web3ReactContextInterface['account'],
-    ) {
-      return await mockTokenContract.balanceOf(account)
-    },
-    //COMMENT
-    async mintToken(
-      mockTokenContract: MockTokenContract,
       amount: number | string,
     ) {
-      return await mockTokenContract.mint(
-        ethers.utils.parseUnits(String(amount), 18),
+      return await stakingContract.claimRewards(
+        account,
+        ethers.utils.parseEther(String(amount)),
       )
     },
   },

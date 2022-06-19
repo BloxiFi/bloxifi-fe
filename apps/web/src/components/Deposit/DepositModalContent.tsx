@@ -1,4 +1,4 @@
-import { Deposit, Tokens, TokenContract } from '@bloxifi/core'
+import { BorrowAndLending, Tokens } from '@bloxifi/core'
 import {
   CheckAllowanceFunction,
   FetchTokenBalanceFunction,
@@ -29,9 +29,9 @@ export const DepositModalContent = () => {
   const [approved, setApproved] = useState<boolean>(false)
   const [depositCompleted, setDepositCompleted] = useState<boolean>(false)
   const [balance, setBalance] = useState<number | undefined>()
-  const [Contract, setContract] = useState<TokenContract>()
-
-  const lendingPoolContract = Deposit.lendingPool.getLendingPoolContract(signer)
+  const tokenContract = Tokens.getTokenContract(signer, selectedAsset)
+  const lendingPoolContract =
+    BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
   const mintTokenValue = '5'
   const depositTokenValue = '1'
@@ -43,18 +43,21 @@ export const DepositModalContent = () => {
 
   const getTokenBalance: FetchTokenBalanceFunction = useCallback(async () => {
     try {
-      const balance = await Tokens.getTokenBalance(Contract, currentAccount)
+      const balance = await Tokens.getTokenBalance(
+        tokenContract,
+        currentAccount,
+      )
       setBalance(Number(ethers.utils.formatUnits(balance)))
       setHasError(null)
     } catch (error) {
       setHasError(error)
     }
-  }, [currentAccount, Contract])
+  }, [currentAccount, tokenContract])
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     try {
       const approvedTokens = await Tokens.getAllowance(
-        Contract,
+        tokenContract,
         currentAccount,
         'deposit',
       )
@@ -63,11 +66,7 @@ export const DepositModalContent = () => {
     } catch (error) {
       setHasError(error)
     }
-  }, [currentAccount, Contract])
-
-  useEffect(() => {
-    setContract(Tokens.getTokenContract(signer, selectedAsset))
-  }, [selectedAsset])
+  }, [currentAccount, tokenContract])
 
   useEffect(() => {
     if (isSupportedNetwork) {
@@ -77,12 +76,12 @@ export const DepositModalContent = () => {
 
   useEffect(() => {
     void getTokenBalance()
-  }, [getTokenBalance, depositCompleted, approved])
+  }, [getTokenBalance, depositCompleted, approved]) //Why do we need approved as dep here?
 
   const mint = async () => {
     setLoading(true)
     try {
-      const response = await Contract.mintToken(Contract, mintTokenValue)
+      const response = await Tokens.mintToken(tokenContract, mintTokenValue)
       await response.wait()
       setHasError(null)
     } catch (error) {
@@ -95,7 +94,7 @@ export const DepositModalContent = () => {
   const approve = async () => {
     setLoading(true)
     try {
-      const response = await Tokens.approveToken(Contract, 'deposit')
+      const response = await Tokens.approveToken(tokenContract, 'deposit')
       const isApproved = await response.wait()
 
       setApproved(!!isApproved)
@@ -114,11 +113,11 @@ export const DepositModalContent = () => {
   const deposit = async () => {
     setLoading(true)
     try {
-      const response = await lendingPoolContract.deposit(
+      const response = await BorrowAndLending.lendingPool.deposit(
+        lendingPoolContract,
         selectedAddress,
-        ethers.utils.parseEther(depositTokenValue),
+        depositTokenValue,
         currentAccount,
-        0,
       )
       const isDeposited = await response.wait()
       setDepositCompleted(!!isDeposited)
