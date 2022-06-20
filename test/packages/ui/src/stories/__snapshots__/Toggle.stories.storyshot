@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-crXcEl hWmCDU rts-toggle__container undefined"
+    data-element="toggle"
+    height={12.5}
+    width={25}
+  >
+    <input
+      className="sc-breuTD kBKLDt rts-toggle__toggle"
+      data-element="toggle-input"
+      type="checkbox"
+    />
+    <span
+      className="sc-evZas wwZfG rts-toggle__background"
+      data-element="toggle-background"
+      height={12.5}
+    />
+  </div>
+  <div
+    className="sc-crXcEl bFoteB rts-toggle__container undefined"
+    data-element="toggle"
+    height={25}
+    width={50}
+  >
+    <input
+      className="sc-breuTD fguVYc rts-toggle__toggle"
+      data-element="toggle-input"
+      type="checkbox"
+    />
+    <span
+      className="sc-evZas gQyyQZ rts-toggle__background"
+      data-element="toggle-background"
+      height={25}
+    />
+  </div>
+  <div
+    className="sc-crXcEl chbwyb rts-toggle__container undefined"
+    data-element="toggle"
+    height={37.5}
+    width={75}
+  >
+    <input
+      className="sc-breuTD iaATIQ rts-toggle__toggle"
+      data-element="toggle-input"
+      type="checkbox"
+    />
+    <span
+      className="sc-evZas eQvJmy rts-toggle__background"
+      data-element="toggle-background"
+      height={37.5}
+    />
+  </div>
+  <div
+    className="sc-crXcEl dfqwLQ rts-toggle__container undefined"
+    data-element="toggle"
+    height={50}
+    width={100}
+  >
+    <input
+      className="sc-breuTD bcrKhf rts-toggle__toggle"
+      data-element="toggle-input"
+      type="checkbox"
+    />
+    <span
+      className="sc-evZas kOHShU rts-toggle__background"
+      data-element="toggle-background"
+      height={50}
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Toggle Toggle checked 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-crXcEl bFoteB rts-toggle__container undefined"
+    data-element="toggle"
+    height={25}
+    width={50}
+  >
+    <input
+      checked={true}
+      className="sc-breuTD fguVYc rts-toggle__toggle"
+      data-element="toggle-input"
+      type="checkbox"
+    />
+    <span
+      className="sc-evZas gQyyQZ rts-toggle__background"
+      data-element="toggle-background"
+      height={25}
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Toggle Toggle unchecked 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-crXcEl bFoteB rts-toggle__container undefined"
+    data-element="toggle"
+    height={25}
+    width={50}
+  >
+    <input
+      className="sc-breuTD fguVYc rts-toggle__toggle"
+      data-element="toggle-input"
+      type="checkbox"
+    />
+    <span
+      className="sc-evZas gQyyQZ rts-toggle__background"
+      data-element="toggle-background"
+      height={25}
+    />
+  </div>
+</div>
+`;

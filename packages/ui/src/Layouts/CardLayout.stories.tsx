@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+
 import { Colors } from '../styles/colors'
 
 import { Card, CardLayout } from './CardLayout'
