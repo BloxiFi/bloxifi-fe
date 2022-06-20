@@ -8,8 +8,6 @@ export const Colors = {
   borderLight: 'rgba(0,0,0,0.2)',
   borderDark: 'rgb(0,0,0)',
 
-  shadowLevel1: '0px 2px 4px rgba(20, 20, 43, 0.1)',
-
   textColorLight: '#818181',
   textColorDark: '#212121',
   primary: '#212529',
@@ -22,8 +20,6 @@ export const Colors = {
   gray80: '#6E7191',
   gray90: '#4E4B66',
 
-  grayLightBorder: '#D9DBE9',
-
   green80: '#098469',
 
   red60: '#E64073',
@@ -35,15 +31,37 @@ export const Colors = {
 
   warningNotification: '#ffb058',
 
-  textGray: '#57606A',
   tabHover: '#218BFF',
-  blueLink: '#218BFF',
 
   light: {
     white: '#FFFFFF',
+    //Text
+    textColorLight: '#818181',
+    textColorDark: '#212121',
+    primary: '#212529',
+    //Borders
+    borderColor: '#D0D7DE',
+    borderLight: 'rgba(0,0,0,0.2)',
+    borderDark: 'rgb(0,0,0)',
+    //Toggle
+    toggleBackground: '#677789',
+    toggleActiveGradient1: '#0072C3',
+    toggleActiveGradient2: '#003A6D',
   },
   dark: {
     white: '#000000',
+    //Text
+    textColorLight: '#818181',
+    textColorDark: '#212121',
+    primary: '#212529',
+    //Borders
+    borderColor: '#D0D7DE',
+    borderLight: 'rgba(0,0,0,0.2)',
+    borderDark: 'rgb(0,0,0)',
+    //Toggle
+    toggleBackground: '#677789',
+    toggleActiveGradient1: '#0072C3',
+    toggleActiveGradient2: '#003A6D',
   },
 
   //Toggle
