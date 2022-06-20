@@ -75,7 +75,7 @@ export const ButtonBase = styled(ButtonComponent)`
 
   &[disabled] {
     pointer-events: none;
-    border: 0;
+    opacity: 0.5;
   }
 `
 const ButtonPrimary = styled(ButtonBase)`
@@ -85,10 +85,6 @@ const ButtonPrimary = styled(ButtonBase)`
   &:hover {
     background-color: ${Colors.buttonPrimaryHover};
   }
-
-  &:disabled {
-    background-color: ${Colors.buttonLight};
-  }
 `
 const ButtonSecondary = styled(ButtonBase)`
   color: ${Colors.buttonDark};
@@ -97,12 +93,6 @@ const ButtonSecondary = styled(ButtonBase)`
 
   &:hover {
     background: ${Colors.buttonLight};
-  }
-
-  &:disabled {
-    color: ${Colors.buttonLight};
-    background-color: ${Colors.white};
-    border: 1px solid ${Colors.buttonLight};
   }
 `
 const ButtonDark = styled(ButtonBase)`
@@ -115,11 +105,6 @@ const ButtonDark = styled(ButtonBase)`
       ${Colors.buttonGradient1} -0.16%,
       ${Colors.buttonGradient2} 100%
     );
-  }
-
-  &:disabled {
-    color: ${Colors.white};
-    background-color: ${Colors.buttonLight};
   }
 `
 const ButtonPrimaryGhost = styled(ButtonBase)`
@@ -134,11 +119,6 @@ const ButtonPrimaryGhost = styled(ButtonBase)`
       ${Colors.buttonGradient2} 100%
     );
     border: 1px solid ${Colors.white};
-  }
-
-  &:disabled {
-    color: ${Colors.buttonLight};
-    border: 1px solid ${Colors.buttonLight};
   }
 `
 

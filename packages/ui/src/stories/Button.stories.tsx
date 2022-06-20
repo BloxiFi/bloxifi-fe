@@ -48,7 +48,7 @@ export const Appearance: ComponentStory<typeof Button> = () => (
     </GridLayout.Column>
     <GridLayout.Column span={3}>
       <StackLayout gap={1}>
-        <Text type="heading 3">Primary Ghost</Text>
+        <Text type="heading 3">Primary Ghost (Transparent)</Text>
 
         <Button appereance="primary-ghost" variant="medium" size="medium">
           Button
