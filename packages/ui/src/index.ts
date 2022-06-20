@@ -1,3 +1,4 @@
+export * from './Button'
 export * from './GlobalStyle'
 export * from './Layouts'
 export * from './styles/colors'
