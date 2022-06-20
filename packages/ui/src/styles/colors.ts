@@ -2,7 +2,11 @@ export const Colors = {
   headerBackground: '#F6F8FA',
   logoBackground: '#57606A',
   background: '#FFFFFF',
+
+  //Borders
   borderColor: '#D0D7DE',
+  borderLight: 'rgba(0,0,0,0.2)',
+  borderDark: 'rgb(0,0,0)',
 
   shadowLevel1: '0px 2px 4px rgba(20, 20, 43, 0.1)',
 

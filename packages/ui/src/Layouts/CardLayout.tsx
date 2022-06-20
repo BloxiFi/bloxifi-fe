@@ -14,13 +14,13 @@ export interface CardLayoutProps {
    */
   readonly as?: React.ElementType
   /**
-   * Box shadow
-   */
-  readonly shadow?: boolean
-  /**
    * Border
    */
   readonly border?: boolean
+  /**
+   * Border color
+   */
+  readonly borderColor?: string
   /**
    * Background color
    */
@@ -36,8 +36,8 @@ export const CardLayout = React.forwardRef(
   (
     {
       as: Component = defaultElement,
-      shadow = true,
       border = true,
+      borderColor = Colors.borderLight,
       background = Colors.white,
       ...props
     }: CardLayoutProps,
@@ -45,7 +45,6 @@ export const CardLayout = React.forwardRef(
   ) => {
     const className = classNames(
       'c-card-layout',
-      'c-card-layout--shadow' && shadow,
       'c-card-layout--border' && border,
       (props as { className: string }).className,
     )
@@ -54,10 +53,10 @@ export const CardLayout = React.forwardRef(
       <Card
         as={Component}
         ref={ref}
-        shadow={shadow}
         className={className}
         background={background}
         border={border}
+        borderColor={borderColor}
         {...props}
       />
     )
@@ -68,9 +67,8 @@ export const CardLayout = React.forwardRef(
 
 export const Card = styled(defaultElement)<CardLayoutProps>`
   display: block;
-  border-radius: 0.75rem;
+  border-radius: 0.315rem;
   width: 100%;
   background-color: ${props => props.background};
-  ${props => props.shadow && `box-shadow: ${Colors.shadowLevel1};`}
-  ${props => props.border && ` border: 1px solid ${Colors.grayLightBorder};`}
+  ${({ border, borderColor }) => border && `border: 1px solid ${borderColor};`}
 `
