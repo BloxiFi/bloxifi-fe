@@ -9,7 +9,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
   }
 >
   <div
-    className="sc-iqcoie hhqgmu"
+    className="sc-crXcEl jtKPLl"
     style={
       Object {
         "background": "#EFF0F6",
@@ -18,15 +18,15 @@ exports[`Storyshots Components/Button Appearance 1`] = `
     }
   >
     <section
-      className="sc-kDDrLX jjPxxU"
+      className="sc-iqcoie fxfDqV"
       span={3}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Primary Button
         </h3>
@@ -52,15 +52,15 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jjPxxU"
+      className="sc-iqcoie fxfDqV"
       span={3}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Primary Ghost (Transparent)
         </h3>
@@ -86,15 +86,15 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jjPxxU"
+      className="sc-iqcoie fxfDqV"
       span={3}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Secondary Button
         </h3>
@@ -120,15 +120,15 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jjPxxU"
+      className="sc-iqcoie fxfDqV"
       span={3}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Dark Button
         </h3>
@@ -166,18 +166,18 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
   }
 >
   <div
-    className="sc-iqcoie hhqgmu"
+    className="sc-crXcEl jtKPLl"
   >
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Small
         </h3>
@@ -193,15 +193,15 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Medium
         </h3>
@@ -217,15 +217,15 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Large
         </h3>
@@ -241,15 +241,15 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Full width
         </h3>
@@ -265,15 +265,15 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Fit content
         </h3>
@@ -301,18 +301,18 @@ exports[`Storyshots Components/Button Details 1`] = `
   }
 >
   <div
-    className="sc-iqcoie hhqgmu"
+    className="sc-crXcEl jtKPLl"
   >
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Button
         </h3>
@@ -341,18 +341,18 @@ exports[`Storyshots Components/Button Variants 1`] = `
   }
 >
   <div
-    className="sc-iqcoie hhqgmu"
+    className="sc-crXcEl jtKPLl"
   >
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Thin
         </h3>
@@ -368,15 +368,15 @@ exports[`Storyshots Components/Button Variants 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Medium
         </h3>
@@ -392,15 +392,15 @@ exports[`Storyshots Components/Button Variants 1`] = `
       </div>
     </section>
     <section
-      className="sc-kDDrLX jaSUhb"
+      className="sc-iqcoie djiPne"
       span={4}
     >
       <div
-        className="sc-ftvSup ekIkOC"
+        className="sc-papXJ WMwmn"
         gap={1}
       >
         <h3
-          className="sc-crXcEl bsCPrx c-text--heading-3"
+          className="sc-evZas fFHcl c-text--heading-3"
         >
           Large
         </h3>

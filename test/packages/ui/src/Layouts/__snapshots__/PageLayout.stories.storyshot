@@ -9,10 +9,10 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   }
 >
   <div
-    className="sc-ksZaOG hHVFkV"
+    className="sc-hAZoDl jQdvMB"
   >
     <div
-      className="sc-ftvSup sc-hAZoDl hJwBqP eVonzC"
+      className="sc-papXJ sc-fnykZs bKKCMG gMGkLO"
       gap={4}
     >
       <section
@@ -20,7 +20,7 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
       >
         <div
           center={true}
-          className="sc-ftvSup CFeJF"
+          className="sc-papXJ iRMgLw"
         >
           Some Content
         </div>

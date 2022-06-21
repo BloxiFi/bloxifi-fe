@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Icon All icons 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-dIouRR CyzRD"
+  >
+    <div>
+      <div>
+        close
+      </div>
+    </div>
+    <div>
+      <div>
+        arrow-down
+      </div>
+    </div>
+    <div>
+      <div>
+        arrow-up
+      </div>
+    </div>
+    <div>
+      <div>
+        arrow-right
+      </div>
+    </div>
+    <div>
+      <div>
+        settings
+      </div>
+    </div>
+    <div>
+      <div>
+        total-borrowed
+      </div>
+    </div>
+    <div>
+      <div>
+        total-deposited
+      </div>
+    </div>
+    <div>
+      <div>
+        union
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Icon Details 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+/>
+`;

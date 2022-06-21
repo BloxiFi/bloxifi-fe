@@ -1,7 +1,8 @@
 import { Meta, Story } from '@storybook/react'
 import React from 'react'
-import { Icon, IconNames, IconProps } from '../Icon'
 import styled from 'styled-components'
+
+import { Icon, IconNames, IconProps } from '../Icon'
 import { Colors } from '../styles/colors'
 
 export default {
