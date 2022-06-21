@@ -9,21 +9,21 @@ exports[`Storyshots Components/Text Headings 1`] = `
   }
 >
   <div
-    className="sc-hKMtZM iFqRXC"
+    className="sc-ftvSup escsoN"
     gap={2}
   >
     <h1
-      className="sc-ftvSup eSbIja c-text--heading-1"
+      className="sc-crXcEl xDEUn c-text--heading-1"
     >
       Heading 1
     </h1>
     <h2
-      className="sc-ftvSup IHZdJ c-text--heading-2"
+      className="sc-crXcEl kSjVao c-text--heading-2"
     >
       Heading 2
     </h2>
     <h3
-      className="sc-ftvSup bnTcws c-text--heading-3"
+      className="sc-crXcEl bsCPrx c-text--heading-3"
     >
       Heading 3
     </h3>
@@ -40,36 +40,36 @@ exports[`Storyshots Components/Text Paragraphs 1`] = `
   }
 >
   <div
-    className="sc-hKMtZM iFqRXC"
+    className="sc-ftvSup escsoN"
     gap={2}
   >
     <p
-      className="sc-ftvSup jktQMP c-text--body-1"
+      className="sc-crXcEl grISiq c-text--body-1"
     >
       Body 1
     </p>
     <p
-      className="sc-ftvSup kaxxDa c-text--body-2"
+      className="sc-crXcEl XIIwn c-text--body-2"
     >
       Body 2
     </p>
     <p
-      className="sc-ftvSup cEKmxO c-text--body-3"
+      className="sc-crXcEl iBwYBP c-text--body-3"
     >
       Body 3
     </p>
     <p
-      className="sc-ftvSup coqzjw c-text--body-4"
+      className="sc-crXcEl jfiHEJ c-text--body-4"
     >
       Body 4
     </p>
     <p
-      className="sc-ftvSup hMTCEL c-text--body-5"
+      className="sc-crXcEl fHUUHy c-text--body-5"
     >
       Body 5
     </p>
     <span
-      className="sc-ftvSup fvtPAa c-text--small-text c-text--color-textColorDark"
+      className="sc-crXcEl kwntNn c-text--small-text c-text--color-textColorDark"
     >
       Small text
     </span>

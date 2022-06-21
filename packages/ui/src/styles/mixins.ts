@@ -8,6 +8,13 @@ type ClassNameProp = { className: string }
 export const FullWidth = ({ className = '' }: ClassNameProp) => css`
   ${className.split(' ').includes('u-full-width') && 'width: 100%'}
 `
+/**
+ * Check if an element contains className 'u-fit-content-width' and set its width to content width
+ */
+export const FitContentWidth = ({ className = '' }: ClassNameProp) => css`
+  ${className.split(' ').includes('u-fit-content-width') &&
+  'width: fit-content'}
+`
 
 /**
  * Set column referse for flex element
