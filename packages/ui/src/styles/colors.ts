@@ -55,4 +55,8 @@ export const Colors = {
   buttonLight: '#DAE3ED',
   buttonGradient1: '#003A6D',
   buttonGradient2: '#0072C3',
+
+  //Modal
+  modalBackgroud: 'rgba(0,0,0,0.6)',
+  modalShadow: '0px 2px 1px rgba(1, 39, 73, 0.05)',
 }
