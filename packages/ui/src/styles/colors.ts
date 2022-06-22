@@ -20,16 +20,9 @@ export const Colors = {
   gray80: '#6E7191',
   gray90: '#4E4B66',
 
-  green80: '#098469',
-
-  red60: '#E64073',
-  red80: '#CF295C',
-
   white: '#fff',
 
   chartTitleBackground: '#F7F9FC',
-
-  warningNotification: '#ffb058',
 
   light: {
     headerBackground: '#F6F8FA',
@@ -42,9 +35,13 @@ export const Colors = {
     textColorLight: '#818181',
     textColorDark: '#212121',
     primary: '#212529',
+
     red60: '#E64073',
+    red80: '#CF295C',
     green80: '#098469',
 
+    //Notifications
+    warningNotification: '#ffb058',
     //Borders
     borderColor: '#D0D7DE',
     borderLight: 'rgba(0,0,0,0.2)',
@@ -73,6 +70,13 @@ export const Colors = {
     textColorLight: '#818181',
     textColorDark: '#212121',
     primary: '#212529',
+
+    red60: '#E64073',
+    red80: '#CF295C',
+    green80: '#098469',
+
+    //Notifications
+    warningNotification: '#ffb058',
     //Borders
     borderColor: '#D0D7DE',
     borderLight: 'rgba(0,0,0,0.2)',
