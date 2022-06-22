@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 
-import { ButtonAppereance, ButtonProps, ButtonVariant } from './Button'
+import { ButtonAppearance, ButtonProps, ButtonVariant } from './Button'
 import { Fonts } from './styles/fonts'
 import { FitContentWidth, FullWidth } from './styles/mixins'
 
@@ -121,8 +121,8 @@ const ButtonPrimaryGhost = styled(ButtonBase)`
   }
 `
 
-export const getActiveComponent = (appereance: ButtonAppereance) => {
-  switch (appereance) {
+export const getActiveComponent = (appearance: ButtonAppearance) => {
+  switch (appearance) {
     case 'primary':
       return ButtonPrimary
     case 'primary-ghost':
