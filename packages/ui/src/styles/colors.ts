@@ -79,9 +79,4 @@ export const Colors = {
     buttonGradient1: '#003A6D',
     buttonGradient2: '#0072C3',
   },
-
-  //Toggle
-  toggleBackground: '#677789',
-  toggleActiveGradient1: '#0072C3',
-  toggleActiveGradient2: '#003A6D',
 }
