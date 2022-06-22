@@ -42,6 +42,9 @@ export const Colors = {
     textColorLight: '#818181',
     textColorDark: '#212121',
     primary: '#212529',
+    red60: '#E64073',
+    green80: '#098469',
+
     //Borders
     borderColor: '#D0D7DE',
     borderLight: 'rgba(0,0,0,0.2)',
