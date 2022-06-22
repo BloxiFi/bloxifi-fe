@@ -20,7 +20,7 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
       type="checkbox"
     />
     <span
-      className="sc-fEOsli cQUXJj rts-toggle__background"
+      className="sc-fEOsli bgoLYN rts-toggle__background"
       data-element="toggle-background"
       height={12.5}
     />
@@ -37,7 +37,7 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
       type="checkbox"
     />
     <span
-      className="sc-fEOsli gXAtwY rts-toggle__background"
+      className="sc-fEOsli dXfekO rts-toggle__background"
       data-element="toggle-background"
       height={25}
     />
@@ -54,7 +54,7 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
       type="checkbox"
     />
     <span
-      className="sc-fEOsli bSXRGP rts-toggle__background"
+      className="sc-fEOsli bYgTSZ rts-toggle__background"
       data-element="toggle-background"
       height={37.5}
     />
@@ -71,7 +71,7 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
       type="checkbox"
     />
     <span
-      className="sc-fEOsli ZOzFF rts-toggle__background"
+      className="sc-fEOsli gzcRwP rts-toggle__background"
       data-element="toggle-background"
       height={50}
     />
@@ -100,7 +100,7 @@ exports[`Storyshots Components/Toggle Toggle checked 1`] = `
       type="checkbox"
     />
     <span
-      className="sc-fEOsli gXAtwY rts-toggle__background"
+      className="sc-fEOsli dXfekO rts-toggle__background"
       data-element="toggle-background"
       height={25}
     />
@@ -128,7 +128,7 @@ exports[`Storyshots Components/Toggle Toggle unchecked 1`] = `
       type="checkbox"
     />
     <span
-      className="sc-fEOsli gXAtwY rts-toggle__background"
+      className="sc-fEOsli dXfekO rts-toggle__background"
       data-element="toggle-background"
       height={25}
     />
