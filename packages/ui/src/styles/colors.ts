@@ -31,10 +31,13 @@ export const Colors = {
 
   warningNotification: '#ffb058',
 
-  tabHover: '#218BFF',
-
   light: {
+    headerBackground: '#F6F8FA',
+    logoBackground: '#57606A',
+    background: '#FFFFFF',
+    tabHover: '#218BFF',
     white: '#FFFFFF',
+
     //Text
     textColorLight: '#818181',
     textColorDark: '#212121',
@@ -57,7 +60,12 @@ export const Colors = {
     buttonGradient2: '#0072C3',
   },
   dark: {
+    headerBackground: '#F6F8FA',
+    logoBackground: '#57606A',
+    background: '#FFFFFF',
+    tabHover: '#218BFF',
     white: '#000000',
+
     //Text
     textColorLight: '#818181',
     textColorDark: '#212121',
