@@ -1,9 +1,7 @@
 import { ReactProps } from '@bloxifi/types'
 import classNames from 'classnames'
-import React from 'react'
-import styled from 'styled-components'
-
-import { Colors } from '../styles/colors'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 
 /**
  * The CardLayout props.
@@ -37,8 +35,8 @@ export const CardLayout = React.forwardRef(
     {
       as: Component = defaultElement,
       border = true,
-      borderColor = Colors.borderLight,
-      background = Colors.white,
+      borderColor,
+      background,
       ...props
     }: CardLayoutProps,
     ref: React.Ref<Element>,
@@ -48,15 +46,16 @@ export const CardLayout = React.forwardRef(
       'c-card-layout--border' && border,
       (props as { className: string }).className,
     )
+    const themeContext = useContext(ThemeContext)
 
     return (
       <Card
         as={Component}
         ref={ref}
         className={className}
-        background={background}
+        background={background || themeContext.white}
         border={border}
-        borderColor={borderColor}
+        borderColor={borderColor || themeContext.borderLight}
         {...props}
       />
     )
