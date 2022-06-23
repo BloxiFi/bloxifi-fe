@@ -22,7 +22,7 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
           className="o-center-layout sc-ftvSup dkErPa"
         >
           <div
-            className="sc-iBkjds gxzWvn c-card-layout"
+            className="sc-gKXOVf kriTSQ c-card-layout"
             style={
               Object {
                 "height": 300,

@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 
-import { ButtonAppereance, ButtonProps, ButtonVariant } from './Button'
-import { Colors } from './styles/colors'
+import { ButtonAppearance, ButtonProps, ButtonVariant } from './Button'
 import { Fonts } from './styles/fonts'
 import { FitContentWidth, FullWidth } from './styles/mixins'
 
@@ -79,51 +78,51 @@ export const ButtonBase = styled(ButtonComponent)`
   }
 `
 const ButtonPrimary = styled(ButtonBase)`
-  color: ${Colors.white};
-  background-color: ${Colors.buttonPrimary};
+  color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.buttonPrimary};
 
   &:hover {
-    background-color: ${Colors.buttonPrimaryHover};
+    background-color: ${({ theme }) => theme.buttonPrimaryHover};
   }
 `
 const ButtonSecondary = styled(ButtonBase)`
-  color: ${Colors.buttonDark};
-  background-color: ${Colors.white};
-  border: 1px solid ${Colors.buttonDark};
+  color: ${({ theme }) => theme.buttonDark};
+  background-color: ${({ theme }) => theme.white};
+  border: 1px solid ${({ theme }) => theme.buttonDark};
 
   &:hover {
-    background: ${Colors.buttonLight};
+    background: ${({ theme }) => theme.buttonLight};
   }
 `
 const ButtonDark = styled(ButtonBase)`
-  color: ${Colors.white};
-  background-color: ${Colors.buttonDark};
+  color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.buttonDark};
 
   &:hover {
     background: linear-gradient(
       270deg,
-      ${Colors.buttonGradient1} -0.16%,
-      ${Colors.buttonGradient2} 100%
+      ${({ theme }) => theme.buttonGradient1} -0.16%,
+      ${({ theme }) => theme.buttonGradient2} 100%
     );
   }
 `
 const ButtonPrimaryGhost = styled(ButtonBase)`
-  color: ${Colors.white};
-  background-color: ${Colors.buttonPrimaryGhost};
-  border: 1px solid ${Colors.white};
+  color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.buttonPrimaryGhost};
+  border: 1px solid ${({ theme }) => theme.white};
 
   &:hover {
     background: linear-gradient(
       270deg,
-      ${Colors.buttonGradient1} -0.16%,
-      ${Colors.buttonGradient2} 100%
+      ${({ theme }) => theme.buttonGradient1} -0.16%,
+      ${({ theme }) => theme.buttonGradient2} 100%
     );
-    border: 1px solid ${Colors.white};
+    border: 1px solid ${({ theme }) => theme.white};
   }
 `
 
-export const getActiveComponent = (appereance: ButtonAppereance) => {
-  switch (appereance) {
+export const getActiveComponent = (appearance: ButtonAppearance) => {
+  switch (appearance) {
     case 'primary':
       return ButtonPrimary
     case 'primary-ghost':

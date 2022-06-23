@@ -1,16 +1,17 @@
 import { Colors } from '@bloxifi/ui'
 import { create } from '@storybook/theming'
+const base = 'light'
 
 export default create({
-  base: 'light',
+  base,
 
-  colorPrimary: Colors.purple70,
-  colorSecondary: Colors.gray90,
+  colorPrimary: Colors[base].purple70,
+  colorSecondary: Colors[base].gray90,
 
   // UI
-  appBg: Colors.background,
-  appContentBg: Colors.chartTitleBackground,
-  appBorderColor: Colors.borderColor,
+  appBg: Colors[base].background,
+  appContentBg: Colors[base].chartTitleBackground,
+  appBorderColor: Colors[base].borderColor,
   appBorderRadius: 4,
 
   // Typography
@@ -18,20 +19,20 @@ export default create({
   fontCode: 'monospace',
 
   // Text colors
-  textColor: Colors.gray90,
-  textInverseColor: Colors.gray90,
+  textColor: Colors[base].gray90,
+  textInverseColor: Colors[base].gray90,
 
   // Toolbar default and active colors
-  barTextColor: Colors.gray90,
-  barSelectedColor: Colors.gray80,
-  barBg: Colors.gray30,
+  barTextColor: Colors[base].gray90,
+  barSelectedColor: Colors[base].gray80,
+  barBg: Colors[base].gray30,
 
   // Form colors
-  inputBg: Colors.background,
-  inputBorder: Colors.borderColor,
-  inputTextColor: Colors.gray90,
+  inputBg: Colors[base].background,
+  inputBorder: Colors[base].borderColor,
+  inputTextColor: Colors[base].gray90,
   inputBorderRadius: 4,
 
   brandTitle: 'BloxiFi',
-  brandUrl: 'https://bloxico.com'
+  brandUrl: 'https://bloxico.com',
 })

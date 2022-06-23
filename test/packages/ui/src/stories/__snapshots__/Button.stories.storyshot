@@ -31,8 +31,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
           Primary Button
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi cva-DxQ cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi cva-DxQ kiZJsf"
           data-element="button"
           size="medium"
           variant="medium"
@@ -40,8 +40,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
           Button
         </button>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi cva-DxQ cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi cva-DxQ kiZJsf"
           data-element="button"
           disabled={true}
           size="medium"
@@ -65,8 +65,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
           Primary Ghost (Transparent)
         </h3>
         <button
-          appereance="primary-ghost"
-          className="sc-bczRLJ sc-eCYdqJ cva-DxQ itYQhz"
+          appearance="primary-ghost"
+          className="sc-bczRLJ sc-eCYdqJ cva-DxQ gutRx"
           data-element="button"
           size="medium"
           variant="medium"
@@ -74,8 +74,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
           Button
         </button>
         <button
-          appereance="primary-ghost"
-          className="sc-bczRLJ sc-eCYdqJ cva-DxQ itYQhz"
+          appearance="primary-ghost"
+          className="sc-bczRLJ sc-eCYdqJ cva-DxQ gutRx"
           data-element="button"
           disabled={true}
           size="medium"
@@ -99,8 +99,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
           Secondary Button
         </h3>
         <button
-          appereance="secondary"
-          className="sc-bczRLJ sc-dkzDqf cva-DxQ hRTtxC"
+          appearance="secondary"
+          className="sc-bczRLJ sc-dkzDqf cva-DxQ dheSYw"
           data-element="button"
           size="medium"
           variant="medium"
@@ -108,8 +108,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
           Button
         </button>
         <button
-          appereance="secondary"
-          className="sc-bczRLJ sc-dkzDqf cva-DxQ hRTtxC"
+          appearance="secondary"
+          className="sc-bczRLJ sc-dkzDqf cva-DxQ dheSYw"
           data-element="button"
           disabled={true}
           size="medium"
@@ -133,8 +133,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
           Dark Button
         </h3>
         <button
-          appereance="dark"
-          className="sc-bczRLJ sc-hKMtZM cva-DxQ hNoJxd"
+          appearance="dark"
+          className="sc-bczRLJ sc-hKMtZM cva-DxQ gBfvRT"
           data-element="button"
           size="medium"
           variant="medium"
@@ -142,8 +142,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
           Button
         </button>
         <button
-          appereance="dark"
-          className="sc-bczRLJ sc-hKMtZM cva-DxQ hNoJxd"
+          appearance="dark"
+          className="sc-bczRLJ sc-hKMtZM cva-DxQ gBfvRT"
           data-element="button"
           disabled={true}
           size="medium"
@@ -182,8 +182,8 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
           Small
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi gajVgh cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi gajVgh kiZJsf"
           data-element="button"
           size="small"
           variant="medium"
@@ -206,8 +206,8 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
           Medium
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi cva-DxQ cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi cva-DxQ kiZJsf"
           data-element="button"
           size="medium"
           variant="medium"
@@ -230,8 +230,8 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
           Large
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi gyHSMQ cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi gyHSMQ kiZJsf"
           data-element="button"
           size="large"
           variant="medium"
@@ -254,8 +254,8 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
           Full width
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi ldGESf cDQWml u-full-width"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi ldGESf kiZJsf u-full-width"
           data-element="button"
           size="medium"
           variant="large"
@@ -278,8 +278,8 @@ exports[`Storyshots Components/Button Custom sizes 1`] = `
           Fit content
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi jnNDiU cDQWml u-fit-content-width"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi jnNDiU kiZJsf u-fit-content-width"
           data-element="button"
           size="medium"
           variant="large"
@@ -317,8 +317,8 @@ exports[`Storyshots Components/Button Details 1`] = `
           Button
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi cva-DxQ cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi cva-DxQ kiZJsf"
           data-element="button"
           disabled={false}
           size="medium"
@@ -357,8 +357,8 @@ exports[`Storyshots Components/Button Variants 1`] = `
           Thin
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi kIdUvl cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi kIdUvl kiZJsf"
           data-element="button"
           size="medium"
           variant="thin"
@@ -381,8 +381,8 @@ exports[`Storyshots Components/Button Variants 1`] = `
           Medium
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi cva-DxQ cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi cva-DxQ kiZJsf"
           data-element="button"
           size="medium"
           variant="medium"
@@ -405,8 +405,8 @@ exports[`Storyshots Components/Button Variants 1`] = `
           Large
         </h3>
         <button
-          appereance="primary"
-          className="sc-bczRLJ sc-gsnTZi hjztlX cDQWml"
+          appearance="primary"
+          className="sc-bczRLJ sc-gsnTZi hjztlX kiZJsf"
           data-element="button"
           size="medium"
           variant="large"

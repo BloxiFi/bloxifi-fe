@@ -1,4 +1,3 @@
-import { Colors } from '@bloxifi/ui'
 import React, { FunctionComponent } from 'react'
 import styled, { keyframes } from 'styled-components'
 
@@ -77,7 +76,7 @@ const Item = styled.div<{ status: string }>`
   flex-wrap: wrap;
   align-items: center;
   border-radius: 3px;
-  color: ${Colors.white};
+  color: ${({ theme }) => theme.white};
   transition: all 0.3s ease;
   animation: ${fadeIn} 0.3s ease;
   box-shadow: 0 3px 6px #00000029;
@@ -107,28 +106,28 @@ const Item = styled.div<{ status: string }>`
   ${({ status }) =>
     status === 'SUCCESS' &&
     `
-    background: ${Colors.green80};
+    background:${({ theme }) => theme.green80};
   `}
   ${({ status }) =>
     status === 'INFO' &&
     `
-    background: ${Colors.primary};
+    background:${({ theme }) => theme.primary};
   `}
   ${({ status }) =>
     status === 'WARNING' &&
     `
-    background: ${Colors.warningNotification};
+    background:${({ theme }) => theme.warningNotification}; 
   `}
   ${({ status }) =>
     status === 'ERROR' &&
     `
-    background: ${Colors.red80};
+    background:${({ theme }) => theme.red80};
   `}
   
   [data-element="icon"] {
     margin-right: 1rem;
     display: flex;
-    background: ${Colors.white};
+    background: ${({ theme }) => theme.white};
     border-radius: 50%;
     height: 20px;
     width: 20px;
