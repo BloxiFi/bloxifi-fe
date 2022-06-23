@@ -7,6 +7,7 @@ export const ButtonAppearance = [
   'primary-ghost',
   'secondary',
   'dark',
+  'gradient',
 ] as const
 export const ButtonSize = ['small', 'medium', 'large'] as const
 export const ButtonVariant = ['thin', 'medium', 'large'] as const

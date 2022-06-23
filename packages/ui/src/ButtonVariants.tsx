@@ -120,6 +120,18 @@ const ButtonPrimaryGhost = styled(ButtonBase)`
     border: 1px solid ${({ theme }) => theme.white};
   }
 `
+const ButtonGradient = styled(ButtonBase)`
+  color: ${({ theme }) => theme.white};
+  background: linear-gradient(
+    270deg,
+    ${({ theme }) => theme.buttonGradient1} -0.16%,
+    ${({ theme }) => theme.buttonGradient2} 100%
+  );
+
+  &:hover {
+    background: ${({ theme }) => theme.buttonDark};
+  }
+`
 
 export const getActiveComponent = (appearance: ButtonAppearance) => {
   switch (appearance) {
@@ -131,6 +143,8 @@ export const getActiveComponent = (appearance: ButtonAppearance) => {
       return ButtonSecondary
     case 'dark':
       return ButtonDark
+    case 'gradient':
+      return ButtonGradient
     default:
       return ButtonPrimary
   }
