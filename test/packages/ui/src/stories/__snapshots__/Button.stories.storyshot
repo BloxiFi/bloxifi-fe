@@ -18,8 +18,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
     }
   >
     <section
-      className="sc-iqcoie fxfDqV"
-      span={3}
+      className="sc-iqcoie djiPne"
+      span={4}
     >
       <div
         className="sc-papXJ WMwmn"
@@ -52,8 +52,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </div>
     </section>
     <section
-      className="sc-iqcoie fxfDqV"
-      span={3}
+      className="sc-iqcoie djiPne"
+      span={4}
     >
       <div
         className="sc-papXJ WMwmn"
@@ -86,8 +86,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </div>
     </section>
     <section
-      className="sc-iqcoie fxfDqV"
-      span={3}
+      className="sc-iqcoie djiPne"
+      span={4}
     >
       <div
         className="sc-papXJ WMwmn"
@@ -120,8 +120,8 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </div>
     </section>
     <section
-      className="sc-iqcoie fxfDqV"
-      span={3}
+      className="sc-iqcoie djiPne"
+      span={4}
     >
       <div
         className="sc-papXJ WMwmn"
@@ -144,6 +144,40 @@ exports[`Storyshots Components/Button Appearance 1`] = `
         <button
           appearance="dark"
           className="sc-bczRLJ sc-hKMtZM cva-DxQ gBfvRT"
+          data-element="button"
+          disabled={true}
+          size="medium"
+          variant="medium"
+        >
+          Disabled
+        </button>
+      </div>
+    </section>
+    <section
+      className="sc-iqcoie djiPne"
+      span={4}
+    >
+      <div
+        className="sc-papXJ WMwmn"
+        gap={1}
+      >
+        <h3
+          className="sc-evZas fFHcl c-text--heading-3"
+        >
+          Gradient Button
+        </h3>
+        <button
+          appearance="gradient"
+          className="sc-bczRLJ sc-jSMfEi cva-DxQ bOXMKQ"
+          data-element="button"
+          size="medium"
+          variant="medium"
+        >
+          Button
+        </button>
+        <button
+          appearance="gradient"
+          className="sc-bczRLJ sc-jSMfEi cva-DxQ bOXMKQ"
           data-element="button"
           disabled={true}
           size="medium"
