@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 
+import { convertHexToRGBA } from '../../core/src/utilities/ui'
+
 import { ButtonAppearance, ButtonProps, ButtonVariant } from './Button'
 import { Fonts } from './styles/fonts'
 import { FitContentWidth, FullWidth } from './styles/mixins'
@@ -17,6 +19,21 @@ export const Sizing = {
     small: 120,
   },
 }
+
+export const IconSizing = {
+  width: {
+    large: 50,
+    medium: 40,
+    small: 40,
+  },
+  font: {
+    large: 30,
+    medium: 20,
+    small: 20,
+  },
+}
+
+export const getBorderWidth = (icon: boolean) => (icon ? '0.5px' : '1px')
 
 export const getPadding = (variant: ButtonVariant) => {
   switch (variant) {
@@ -42,7 +59,17 @@ export const getFontSize = (variant: ButtonVariant) => {
       return 0.875
   }
 }
-
+//Get button text/icon/border color regarding appearance
+export const getColor = (
+  appearance: ButtonAppearance,
+  theme: any,
+  icon: boolean,
+) => {
+  if (appearance === 'secondary') {
+    return icon ? convertHexToRGBA(theme.buttonDark, 0.5) : theme.buttonDark
+  }
+  return theme.white
+}
 const ButtonComponent = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ ...props }, ref) => {
     return (
@@ -62,6 +89,8 @@ export const ButtonBase = styled(ButtonComponent)`
   ${({ className }) => FitContentWidth({ className })};
   padding: ${({ variant }) => getPadding(variant)};
   font-size: ${({ variant }) => getFontSize(variant)}rem;
+  color: ${({ appearance, theme, icon }) =>
+    getColor(appearance, theme, !!icon)};
   transition: background 0.3s;
   display: inline-flex;
   align-items: center;
@@ -76,9 +105,18 @@ export const ButtonBase = styled(ButtonComponent)`
     pointer-events: none;
     opacity: 0.5;
   }
+
+  ${({ icon, size }) =>
+    !!icon &&
+    `
+  pointer-events: none;
+  width:${IconSizing.width[size]}px;
+  border-radius:0.625rem;
+  padding:0;
+
+  `};
 `
 const ButtonPrimary = styled(ButtonBase)`
-  color: ${({ theme }) => theme.white};
   background-color: ${({ theme }) => theme.buttonPrimary};
 
   &:hover {
@@ -86,16 +124,16 @@ const ButtonPrimary = styled(ButtonBase)`
   }
 `
 const ButtonSecondary = styled(ButtonBase)`
-  color: ${({ theme }) => theme.buttonDark};
   background-color: ${({ theme }) => theme.white};
-  border: 1px solid ${({ theme }) => theme.buttonDark};
+  border: ${({ icon }) => `${getBorderWidth(!!icon)} solid`};
+  border-color: ${({ appearance, theme, icon }) =>
+    getColor(appearance, theme, !!icon)};
 
   &:hover {
     background: ${({ theme }) => theme.buttonLight};
   }
 `
 const ButtonDark = styled(ButtonBase)`
-  color: ${({ theme }) => theme.white};
   background-color: ${({ theme }) => theme.buttonDark};
 
   &:hover {
@@ -107,9 +145,10 @@ const ButtonDark = styled(ButtonBase)`
   }
 `
 const ButtonPrimaryGhost = styled(ButtonBase)`
-  color: ${({ theme }) => theme.white};
   background-color: ${({ theme }) => theme.buttonPrimaryGhost};
-  border: 1px solid ${({ theme }) => theme.white};
+  border: ${({ icon }) => `${getBorderWidth(!!icon)} solid`};
+  border-color: ${({ appearance, theme, icon }) =>
+    getColor(appearance, theme, !!icon)};
 
   &:hover {
     background: linear-gradient(
@@ -117,11 +156,10 @@ const ButtonPrimaryGhost = styled(ButtonBase)`
       ${({ theme }) => theme.buttonGradient1} -0.16%,
       ${({ theme }) => theme.buttonGradient2} 100%
     );
-    border: 1px solid ${({ theme }) => theme.white};
+    border-color: ${({ theme }) => theme.white};
   }
 `
 const ButtonGradient = styled(ButtonBase)`
-  color: ${({ theme }) => theme.white};
   background: linear-gradient(
     270deg,
     ${({ theme }) => theme.buttonGradient1} -0.16%,

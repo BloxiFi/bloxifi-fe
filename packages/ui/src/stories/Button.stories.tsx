@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { styled } from '@storybook/theming'
 import React from 'react'
 
 import { StackLayout, Text } from '..'
@@ -198,6 +199,107 @@ export const CustomSizes: ComponentStory<typeof Button> = () => (
   </GridLayout>
 )
 
+export const IconButton: ComponentStory<typeof Button> = () => (
+  <GridLayout style={{ background: Colors.gray30, padding: 50 }}>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Primary Button</Text>
+        <Wrapper>
+          <Button
+            appearance="primary"
+            variant="large"
+            size="large"
+            icon="settings"
+          />
+
+          <Button
+            appearance="primary"
+            variant="medium"
+            size="medium"
+            icon="settings"
+          />
+        </Wrapper>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Primary Ghost (Transparent)</Text>
+        <Wrapper>
+          <Button
+            appearance="primary-ghost"
+            variant="large"
+            size="large"
+            icon="settings"
+          />
+          <Button
+            appearance="primary-ghost"
+            variant="medium"
+            size="medium"
+            icon="settings"
+          />
+        </Wrapper>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Secondary Button</Text>
+        <Wrapper>
+          <Button
+            appearance="secondary"
+            variant="large"
+            size="large"
+            icon="settings"
+          />
+          <Button
+            appearance="secondary"
+            variant="medium"
+            size="medium"
+            icon="settings"
+          />
+        </Wrapper>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Dark Button</Text>
+        <Wrapper>
+          <Button
+            appearance="dark"
+            variant="large"
+            size="large"
+            icon="settings"
+          />
+          <Button
+            appearance="dark"
+            variant="medium"
+            size="medium"
+            icon="settings"
+          />
+        </Wrapper>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Gradient Button</Text>
+        <Wrapper>
+          <Button
+            appearance="gradient"
+            variant="large"
+            size="large"
+            icon="settings"
+          />
+          <Button
+            appearance="gradient"
+            variant="medium"
+            size="medium"
+            icon="settings"
+          />
+        </Wrapper>
+      </StackLayout>
+    </GridLayout.Column>
+  </GridLayout>
+)
+
 Details.story = {
   name: 'Details',
 }
@@ -213,3 +315,13 @@ Variants.story = {
 CustomSizes.story = {
   name: 'Custom sizes',
 }
+
+IconButton.story = {
+  name: 'Icon',
+}
+
+const Wrapper = styled(GridLayout.Column)`
+  & > * {
+    margin-right: 20px;
+  }
+`

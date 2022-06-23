@@ -8,7 +8,7 @@ import { Colors } from '../styles/colors'
 export default {
   title: 'Components/Icon',
   component: Icon,
-  args: { name: 'arrow-down', size: 36, color: Colors.textGray },
+  args: { name: 'arrow-down', size: 36, color: Colors.gray30 },
 } as Meta<IconProps>
 
 export const AllIcons = () => {

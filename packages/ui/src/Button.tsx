@@ -1,6 +1,12 @@
-import React, { ButtonHTMLAttributes, FunctionComponent } from 'react'
+import React, {
+  ButtonHTMLAttributes,
+  FunctionComponent,
+  useContext,
+} from 'react'
+import { ThemeContext } from 'styled-components'
 
-import { getActiveComponent } from './ButtonVariants'
+import { getActiveComponent, IconSizing, getColor } from './ButtonVariants'
+import { Icon, IconNamesType } from './Icon'
 
 export const ButtonAppearance = [
   'primary',
@@ -32,25 +38,39 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Button disabled
    */
   disabled?: boolean
+  /**
+   * Icon
+   */
+  icon?: IconNamesType
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
   appearance,
   variant,
   size,
+  icon,
   ...props
 }) => {
   const ActiveComponent = getActiveComponent(appearance)
-
+  const themeContext = useContext(ThemeContext)
   return (
     <>
       <ActiveComponent
         variant={variant}
         size={size}
         appearance={appearance}
+        icon={icon}
         {...props}
       >
-        {props.children}
+        {icon ? (
+          <Icon
+            size={IconSizing.font[size]}
+            color={getColor(appearance, themeContext, !!icon)}
+            name={icon}
+          />
+        ) : (
+          props.children
+        )}
       </ActiveComponent>
     </>
   )
