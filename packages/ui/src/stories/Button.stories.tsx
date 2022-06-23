@@ -299,23 +299,11 @@ export const IconButton: ComponentStory<typeof Button> = () => (
     </GridLayout.Column>
   </GridLayout>
 )
-
-Details.story = {
-  name: 'Details',
-}
-
-Appearance.story = {
-  name: 'Appearance',
-}
-
-Variants.story = {
-  name: 'Variants',
-}
-
-CustomSizes.story = {
-  name: 'Custom sizes',
-}
-
+Details.storyName = 'Details'
+Appearance.storyName = 'Appearance'
+Variants.storyName = 'Variants'
+CustomSizes.storyName = 'CustomSizes'
+IconButton.storyName = 'Icon'
 IconButton.story = {
   name: 'Icon',
 }

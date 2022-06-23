@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Icon, IconNames, IconProps } from '../Icon'
+import { ColumnLayout } from '../Layouts'
 import { Colors } from '../styles/colors'
 
 export default {
@@ -13,14 +14,14 @@ export default {
 
 export const AllIcons = () => {
   return (
-    <Wrapper>
+    <ColumnLayout>
       {IconNames.map(iconName => (
         <div key={iconName}>
           <Icon size={36} name={iconName} />
           <div>{iconName}</div>
         </div>
       ))}
-    </Wrapper>
+    </ColumnLayout>
   )
 }
 
@@ -31,14 +32,3 @@ export const Details: Story<IconProps> = args => {
 Details.storyName = 'Details'
 
 AllIcons.storyName = 'All icons'
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  grid-gap: 1rem;
-
-  svg {
-    margin: auto;
-  }
-`

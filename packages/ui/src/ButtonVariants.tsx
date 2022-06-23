@@ -1,8 +1,6 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 
-import { convertHexToRGBA } from '../../core/src/utilities/ui'
-
 import { ButtonAppearance, ButtonProps, ButtonVariant } from './Button'
 import { Fonts } from './styles/fonts'
 import { FitContentWidth, FullWidth } from './styles/mixins'
@@ -66,7 +64,7 @@ export const getColor = (
   icon: boolean,
 ) => {
   if (appearance === 'secondary') {
-    return icon ? convertHexToRGBA(theme.buttonDark, 0.5) : theme.buttonDark
+    return icon ? theme.iconButtonDark : theme.buttonDark
   }
   return theme.white
 }
@@ -103,13 +101,12 @@ export const ButtonBase = styled(ButtonComponent)`
 
   &[disabled] {
     pointer-events: none;
-    opacity: 0.5;
+    opacity: ${({ icon }) => (icon ? 1 : 0.5)};
   }
 
   ${({ icon, size }) =>
     !!icon &&
     `
-  pointer-events: none;
   width:${IconSizing.width[size]}px;
   border-radius:0.625rem;
   padding:0;
