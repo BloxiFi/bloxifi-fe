@@ -33,7 +33,7 @@ export const Details: ComponentStory<typeof Button> = args => (
 
 export const Appearance: ComponentStory<typeof Button> = () => (
   <GridLayout style={{ background: Colors.gray30, padding: 50 }}>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <StackLayout gap={1}>
         <Text type="heading 3">Primary Button</Text>
 
@@ -46,7 +46,7 @@ export const Appearance: ComponentStory<typeof Button> = () => (
         </Button>
       </StackLayout>
     </GridLayout.Column>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <StackLayout gap={1}>
         <Text type="heading 3">Primary Ghost (Transparent)</Text>
 
@@ -64,7 +64,7 @@ export const Appearance: ComponentStory<typeof Button> = () => (
         </Button>
       </StackLayout>
     </GridLayout.Column>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <StackLayout gap={1}>
         <Text type="heading 3">Secondary Button</Text>
 
@@ -77,7 +77,7 @@ export const Appearance: ComponentStory<typeof Button> = () => (
         </Button>
       </StackLayout>
     </GridLayout.Column>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <StackLayout gap={1}>
         <Text type="heading 3">Dark Button</Text>
 
@@ -86,6 +86,19 @@ export const Appearance: ComponentStory<typeof Button> = () => (
         </Button>
 
         <Button appearance="dark" variant="medium" size="medium" disabled>
+          Disabled
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Gradient Button</Text>
+
+        <Button appearance="gradient" variant="medium" size="medium">
+          Button
+        </Button>
+
+        <Button appearance="gradient" variant="medium" size="medium" disabled>
           Disabled
         </Button>
       </StackLayout>
