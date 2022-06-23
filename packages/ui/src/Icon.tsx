@@ -12,7 +12,7 @@ export const IconNames = [
   'total-deposited',
   'union',
 ] as const
-type IconNamesType = typeof IconNames[number]
+export type IconNamesType = typeof IconNames[number]
 
 export interface IconProps extends Omit<Props, 'src'> {
   /**
@@ -37,9 +37,9 @@ export const Icon = styled(
       <InlineSVG
         src={icon}
         //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
-        style={{ width: size, height: size }}
+        style={{ width: size, height: size, fill: color }}
         className={`rts-icon ${className}`}
-        fill={color && color}
+        preProcessor={code => code.replace(/fill=".*?"/g, 'fill="color"')}
         {...props}
       />
     )
