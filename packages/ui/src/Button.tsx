@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes, FunctionComponent } from 'react'
 
 import { getActiveComponent } from './ButtonVariants'
 
-export const ButtonAppereance = [
+export const ButtonAppearance = [
   'primary',
   'primary-ghost',
   'secondary',
@@ -10,7 +10,7 @@ export const ButtonAppereance = [
 ] as const
 export const ButtonSize = ['small', 'medium', 'large'] as const
 export const ButtonVariant = ['thin', 'medium', 'large'] as const
-export type ButtonAppereance = typeof ButtonAppereance[number]
+export type ButtonAppearance = typeof ButtonAppearance[number]
 export type ButtonSize = typeof ButtonSize[number]
 export type ButtonVariant = typeof ButtonVariant[number]
 
@@ -24,9 +24,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   size: ButtonSize
   /**
-   * Button appereance. Affetcs button colors
+   * Button appearance. Affetcs button colors
    */
-  appereance: ButtonAppereance
+  appearance: ButtonAppearance
   /**
    * Button disabled
    */
@@ -34,19 +34,19 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
-  appereance,
+  appearance,
   variant,
   size,
   ...props
 }) => {
-  const ActiveComponent = getActiveComponent(appereance)
+  const ActiveComponent = getActiveComponent(appearance)
 
   return (
     <>
       <ActiveComponent
         variant={variant}
         size={size}
-        appereance={appereance}
+        appearance={appearance}
         {...props}
       >
         {props.children}

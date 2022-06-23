@@ -1,9 +1,7 @@
 import { ReactProps } from '@bloxifi/types'
 import classNames from 'classnames'
-import React from 'react'
-import styled from 'styled-components'
-
-import { Colors } from '../styles/colors'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 
 /**
  * The CardLayout props.
@@ -14,13 +12,13 @@ export interface CardLayoutProps {
    */
   readonly as?: React.ElementType
   /**
-   * Box shadow
-   */
-  readonly shadow?: boolean
-  /**
    * Border
    */
   readonly border?: boolean
+  /**
+   * Border color
+   */
+  readonly borderColor?: string
   /**
    * Background color
    */
@@ -36,28 +34,28 @@ export const CardLayout = React.forwardRef(
   (
     {
       as: Component = defaultElement,
-      shadow = true,
       border = true,
-      background = Colors.white,
+      borderColor,
+      background,
       ...props
     }: CardLayoutProps,
     ref: React.Ref<Element>,
   ) => {
     const className = classNames(
       'c-card-layout',
-      'c-card-layout--shadow' && shadow,
       'c-card-layout--border' && border,
       (props as { className: string }).className,
     )
+    const themeContext = useContext(ThemeContext)
 
     return (
       <Card
         as={Component}
         ref={ref}
-        shadow={shadow}
         className={className}
-        background={background}
+        background={background || themeContext.white}
         border={border}
+        borderColor={borderColor || themeContext.borderLight}
         {...props}
       />
     )
@@ -68,9 +66,8 @@ export const CardLayout = React.forwardRef(
 
 export const Card = styled(defaultElement)<CardLayoutProps>`
   display: block;
-  border-radius: 0.75rem;
+  border-radius: 0.315rem;
   width: 100%;
   background-color: ${props => props.background};
-  ${props => props.shadow && `box-shadow: ${Colors.shadowLevel1};`}
-  ${props => props.border && ` border: 1px solid ${Colors.grayLightBorder};`}
+  ${({ border, borderColor }) => border && `border: 1px solid ${borderColor};`}
 `
