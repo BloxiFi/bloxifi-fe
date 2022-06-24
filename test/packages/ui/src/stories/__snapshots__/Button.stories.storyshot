@@ -191,7 +191,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components/Button Custom sizes 1`] = `
+exports[`Storyshots Components/Button CustomSizes 1`] = `
 <div
   style={
     Object {
@@ -401,7 +401,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-bczRLJ sc-gsnTZi ikSyLA hUuZHN"
+            className="sc-bczRLJ sc-gsnTZi bHkAlA hUuZHN"
             data-element="button"
             icon="settings"
             size="large"
@@ -409,7 +409,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
           />
           <button
             appearance="primary"
-            className="sc-bczRLJ sc-gsnTZi gzGeBe hUuZHN"
+            className="sc-bczRLJ sc-gsnTZi ERNDu hUuZHN"
             data-element="button"
             icon="settings"
             size="medium"
@@ -436,7 +436,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         >
           <button
             appearance="primary-ghost"
-            className="sc-bczRLJ sc-eCYdqJ ikSyLA kswtPl"
+            className="sc-bczRLJ sc-eCYdqJ bHkAlA kswtPl"
             data-element="button"
             icon="settings"
             size="large"
@@ -444,7 +444,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
           />
           <button
             appearance="primary-ghost"
-            className="sc-bczRLJ sc-eCYdqJ gzGeBe kswtPl"
+            className="sc-bczRLJ sc-eCYdqJ ERNDu kswtPl"
             data-element="button"
             icon="settings"
             size="medium"
@@ -471,7 +471,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         >
           <button
             appearance="secondary"
-            className="sc-bczRLJ sc-dkzDqf gvqjbo XLAxE"
+            className="sc-bczRLJ sc-dkzDqf iGSEvw dRktNo"
             data-element="button"
             icon="settings"
             size="large"
@@ -479,7 +479,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
           />
           <button
             appearance="secondary"
-            className="sc-bczRLJ sc-dkzDqf bMrUTi XLAxE"
+            className="sc-bczRLJ sc-dkzDqf hEOrxi dRktNo"
             data-element="button"
             icon="settings"
             size="medium"
@@ -506,7 +506,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         >
           <button
             appearance="dark"
-            className="sc-bczRLJ sc-hKMtZM ikSyLA epibiZ"
+            className="sc-bczRLJ sc-hKMtZM bHkAlA epibiZ"
             data-element="button"
             icon="settings"
             size="large"
@@ -514,7 +514,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
           />
           <button
             appearance="dark"
-            className="sc-bczRLJ sc-hKMtZM gzGeBe epibiZ"
+            className="sc-bczRLJ sc-hKMtZM ERNDu epibiZ"
             data-element="button"
             icon="settings"
             size="medium"
@@ -541,7 +541,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         >
           <button
             appearance="gradient"
-            className="sc-bczRLJ sc-jSMfEi ikSyLA kZGRMy"
+            className="sc-bczRLJ sc-jSMfEi bHkAlA kZGRMy"
             data-element="button"
             icon="settings"
             size="large"
@@ -549,7 +549,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
           />
           <button
             appearance="gradient"
-            className="sc-bczRLJ sc-jSMfEi gzGeBe kZGRMy"
+            className="sc-bczRLJ sc-jSMfEi ERNDu kZGRMy"
             data-element="button"
             icon="settings"
             size="medium"

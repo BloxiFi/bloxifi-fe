@@ -9,47 +9,159 @@ exports[`Storyshots Components/Icon All icons 1`] = `
   }
 >
   <div
-    className="sc-hHLeRK ggcRlc"
+    className="sc-kDDrLX kUlHoK"
   >
-    <div>
-      <div>
-        close
-      </div>
+    <div
+      center={true}
+      className="sc-jqUVSM bExOJt"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          close
+        </tspan>
+      </text>
     </div>
-    <div>
-      <div>
-        arrow-down
-      </div>
+    <div
+      center={true}
+      className="sc-jqUVSM bExOJt"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          arrow-down
+        </tspan>
+      </text>
     </div>
-    <div>
-      <div>
-        arrow-up
-      </div>
+    <div
+      center={true}
+      className="sc-jqUVSM bExOJt"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          arrow-up
+        </tspan>
+      </text>
     </div>
-    <div>
-      <div>
-        arrow-right
-      </div>
+    <div
+      center={true}
+      className="sc-jqUVSM bExOJt"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          arrow-right
+        </tspan>
+      </text>
     </div>
-    <div>
-      <div>
-        settings
-      </div>
+    <div
+      center={true}
+      className="sc-jqUVSM bExOJt"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          settings
+        </tspan>
+      </text>
     </div>
-    <div>
-      <div>
-        total-borrowed
-      </div>
+    <div
+      center={true}
+      className="sc-jqUVSM bExOJt"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          total-borrowed
+        </tspan>
+      </text>
     </div>
-    <div>
-      <div>
-        total-deposited
-      </div>
+    <div
+      center={true}
+      className="sc-jqUVSM bExOJt"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          total-deposited
+        </tspan>
+      </text>
     </div>
-    <div>
-      <div>
-        union
-      </div>
+    <div
+      center={true}
+      className="sc-jqUVSM bExOJt"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          union
+        </tspan>
+      </text>
     </div>
   </div>
 </div>
