@@ -1,9 +1,10 @@
 import { Meta, Story } from '@storybook/react'
 import React from 'react'
+import { Text } from 'recharts'
 import styled from 'styled-components'
 
 import { Icon, IconNames, IconProps } from '../Icon'
-import { ColumnLayout } from '../Layouts'
+import { ColumnLayout, StackLayout } from '../Layouts'
 import { Colors } from '../styles/colors'
 
 export default {
@@ -16,10 +17,10 @@ export const AllIcons = () => {
   return (
     <ColumnLayout>
       {IconNames.map(iconName => (
-        <div key={iconName}>
+        <StackLayout center key={iconName}>
           <Icon size={36} name={iconName} />
-          <div>{iconName}</div>
-        </div>
+          <Text type="body 1">{iconName}</Text>
+        </StackLayout>
       ))}
     </ColumnLayout>
   )

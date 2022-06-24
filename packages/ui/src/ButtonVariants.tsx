@@ -101,7 +101,7 @@ export const ButtonBase = styled(ButtonComponent)`
 
   &[disabled] {
     pointer-events: none;
-    opacity: ${({ icon }) => (icon ? 1 : 0.5)};
+    opacity: 0.5;
   }
 
   ${({ icon, size }) =>
