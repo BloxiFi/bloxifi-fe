@@ -2,8 +2,6 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
 import { CenterLayout } from './Layouts'
-import { Colors } from './styles/colors'
-
 export interface ModalProps {
   /**
    * Boolean value that defines if modal is open or closed
@@ -53,7 +51,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${Colors.modalBackgroud};
+  background: ${({ theme }) => theme.modalBackgroud};
 `
 
 const Content = styled(CenterLayout)`
@@ -64,10 +62,10 @@ const Content = styled(CenterLayout)`
   display: flex;
   flex-direction: column;
   padding: 1.875rem;
-  background: ${Colors.white};
-  box-shadow: ${Colors.modalShadow};
+  background: ${({ theme }) => theme.white};
+  box-shadow: ${({ theme }) => theme.modalShadow};
   border-radius: 0.345rem;
-  color: ${Colors.textColorLight};
+  color: ${({ theme }) => theme.textColorLight};
   z-index: 101;
 
   @media (max-width: 420px) {
