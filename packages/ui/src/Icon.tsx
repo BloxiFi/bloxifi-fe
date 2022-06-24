@@ -27,6 +27,10 @@ export interface IconProps extends Omit<Props, 'src'> {
    * This represents icon color you want to render
    * */
   readonly color?: string
+  /**
+   * Icon disabled
+   * */
+  readonly disabled?: boolean
 }
 
 export const Icon = styled(
@@ -48,4 +52,6 @@ export const Icon = styled(
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: ${({ disabled }) => (disabled ? 'initial' : 'pointer')};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
 `
