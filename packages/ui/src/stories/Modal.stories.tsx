@@ -23,7 +23,7 @@ export const ModalExample = args => {
     <Fragment>
       <Button
         variant="medium"
-        appereance="primary"
+        appearance="primary"
         size="medium"
         onClick={() => {
           handleOpen()
@@ -42,7 +42,7 @@ export const ModalExample = args => {
 
           <Button
             className="u-full-width"
-            appereance="dark"
+            appearance="dark"
             size="medium"
             variant="medium"
           >
@@ -50,7 +50,7 @@ export const ModalExample = args => {
           </Button>
           <Button
             className="u-full-width"
-            appereance="secondary"
+            appearance="secondary"
             disabled
             size="medium"
             variant="medium"
