@@ -2,7 +2,6 @@ import { ReactProps, RefForwardingComponent } from '@bloxifi/types'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 
-import { Colors } from '../styles/colors'
 import { zIndex } from '../styles/constants'
 
 import { CoverLayout } from './CoverLayout'
@@ -178,7 +177,7 @@ export const PageLayout = styled(Page)`
   flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  background: ${Colors.background};
+  background: ${({ theme }) => theme.background};
 
   .c-page-layout__header {
     position: sticky;
@@ -187,8 +186,8 @@ export const PageLayout = styled(Page)`
     width: 100vw;
     height: ${HEADER_HEIGHT}px;
     z-index: ${zIndex.layer200};
-    background: ${Colors.headerBackground};
-    border-bottom: 1px solid ${Colors.borderColor};
+    background: ${({ theme }) => theme.headerBackground};
+    border-bottom: 1px solid ${({ theme }) => theme.borderColor};
     padding: 3.5rem 3.75rem 2rem;
 
     button {
@@ -196,7 +195,7 @@ export const PageLayout = styled(Page)`
     }
 
     &--logo {
-      background: ${Colors.logoBackground};
+      background: ${({ theme }) => theme.logoBackground};
       position: absolute;
       top: 0;
       left: 0;
@@ -211,8 +210,8 @@ export const PageLayout = styled(Page)`
     height: 6.25rem;
     max-width: calc(1203px - 4rem);
     margin: auto auto 0;
-    border-top: 1px solid ${Colors.borderColor};
-    color: ${Colors.logoBackground};
+    border-top: 1px solid ${({ theme }) => theme.borderColor};
+    color: ${({ theme }) => theme.logoBackground};
 
     > div {
       padding-left: 0;

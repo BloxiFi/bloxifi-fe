@@ -1,8 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
-import { Colors } from './styles/colors'
-
 /**
  * Props for styling the toggler
  */
@@ -98,7 +96,8 @@ const ToggleBackground = styled.span<Omit<ToggleStyle, 'width'>>`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: ${Colors.toggleBackground} 0% 0% no-repeat padding-box;
+  background: ${({ theme }) => theme.toggleBackground} 0% 0% no-repeat
+    padding-box;
   border-radius: ${({ height }) => height * 0.4}px;
   transition: 0.2s ease background;
 
@@ -113,7 +112,7 @@ const ToggleBackground = styled.span<Omit<ToggleStyle, 'width'>>`
       `}
     border-radius: 50%;
     transition: 0.5s ease transform, 0.2s ease background;
-    background: ${Colors.background};
+    background: ${({ theme }) => theme.white};
     z-index: 0;
     box-shadow: 0 3px 6px #00000080;
   }
@@ -135,8 +134,8 @@ const ToggleInput = styled.input<{
   :checked + ${ToggleBackground} {
     background-image: linear-gradient(
       to right,
-      ${Colors.toggleActiveGradient1},
-      ${Colors.toggleActiveGradient2}
+      ${({ theme }) => theme.toggleActiveGradient1},
+      ${({ theme }) => theme.toggleActiveGradient2}
     );
 
     &::after {

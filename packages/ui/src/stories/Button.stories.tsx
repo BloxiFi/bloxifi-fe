@@ -10,7 +10,7 @@ export default {
   title: 'Components/Button',
   component: Button,
   args: {
-    appereance: 'primary',
+    appearance: 'primary',
     variant: 'medium',
     size: 'medium',
     disabled: false,
@@ -23,7 +23,7 @@ export const Details: ComponentStory<typeof Button> = args => (
       <StackLayout gap={1}>
         <Text type="heading 3">Button</Text>
 
-        <Button appereance="primary" variant="medium" size="medium" {...args}>
+        <Button appearance="primary" variant="medium" size="medium" {...args}>
           Button
         </Button>
       </StackLayout>
@@ -33,29 +33,29 @@ export const Details: ComponentStory<typeof Button> = args => (
 
 export const Appearance: ComponentStory<typeof Button> = () => (
   <GridLayout style={{ background: Colors.gray30, padding: 50 }}>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <StackLayout gap={1}>
         <Text type="heading 3">Primary Button</Text>
 
-        <Button appereance="primary" variant="medium" size="medium">
+        <Button appearance="primary" variant="medium" size="medium">
           Button
         </Button>
 
-        <Button appereance="primary" variant="medium" size="medium" disabled>
+        <Button appearance="primary" variant="medium" size="medium" disabled>
           Disabled
         </Button>
       </StackLayout>
     </GridLayout.Column>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <StackLayout gap={1}>
         <Text type="heading 3">Primary Ghost (Transparent)</Text>
 
-        <Button appereance="primary-ghost" variant="medium" size="medium">
+        <Button appearance="primary-ghost" variant="medium" size="medium">
           Button
         </Button>
 
         <Button
-          appereance="primary-ghost"
+          appearance="primary-ghost"
           variant="medium"
           size="medium"
           disabled
@@ -64,28 +64,41 @@ export const Appearance: ComponentStory<typeof Button> = () => (
         </Button>
       </StackLayout>
     </GridLayout.Column>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <StackLayout gap={1}>
         <Text type="heading 3">Secondary Button</Text>
 
-        <Button appereance="secondary" variant="medium" size="medium">
+        <Button appearance="secondary" variant="medium" size="medium">
           Button
         </Button>
 
-        <Button appereance="secondary" variant="medium" size="medium" disabled>
+        <Button appearance="secondary" variant="medium" size="medium" disabled>
           Disabled
         </Button>
       </StackLayout>
     </GridLayout.Column>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <StackLayout gap={1}>
         <Text type="heading 3">Dark Button</Text>
 
-        <Button appereance="dark" variant="medium" size="medium">
+        <Button appearance="dark" variant="medium" size="medium">
           Button
         </Button>
 
-        <Button appereance="dark" variant="medium" size="medium" disabled>
+        <Button appearance="dark" variant="medium" size="medium" disabled>
+          Disabled
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Gradient Button</Text>
+
+        <Button appearance="gradient" variant="medium" size="medium">
+          Button
+        </Button>
+
+        <Button appearance="gradient" variant="medium" size="medium" disabled>
           Disabled
         </Button>
       </StackLayout>
@@ -99,7 +112,7 @@ export const Variants: ComponentStory<typeof Button> = () => (
       <StackLayout gap={1}>
         <Text type="heading 3">Thin</Text>
 
-        <Button appereance="primary" variant="thin" size="medium">
+        <Button appearance="primary" variant="thin" size="medium">
           Button
         </Button>
       </StackLayout>
@@ -108,7 +121,7 @@ export const Variants: ComponentStory<typeof Button> = () => (
       <StackLayout gap={1}>
         <Text type="heading 3">Medium</Text>
 
-        <Button appereance="primary" variant="medium" size="medium">
+        <Button appearance="primary" variant="medium" size="medium">
           Button
         </Button>
       </StackLayout>
@@ -117,7 +130,7 @@ export const Variants: ComponentStory<typeof Button> = () => (
       <StackLayout gap={1}>
         <Text type="heading 3">Large</Text>
 
-        <Button appereance="primary" variant="large" size="medium">
+        <Button appearance="primary" variant="large" size="medium">
           Button
         </Button>
       </StackLayout>
@@ -131,7 +144,7 @@ export const CustomSizes: ComponentStory<typeof Button> = () => (
       <StackLayout gap={1}>
         <Text type="heading 3">Small</Text>
 
-        <Button appereance="primary" variant="medium" size="small">
+        <Button appearance="primary" variant="medium" size="small">
           Button
         </Button>
       </StackLayout>
@@ -140,7 +153,7 @@ export const CustomSizes: ComponentStory<typeof Button> = () => (
       <StackLayout gap={1}>
         <Text type="heading 3">Medium</Text>
 
-        <Button appereance="primary" variant="medium" size="medium">
+        <Button appearance="primary" variant="medium" size="medium">
           Button
         </Button>
       </StackLayout>
@@ -149,7 +162,7 @@ export const CustomSizes: ComponentStory<typeof Button> = () => (
       <StackLayout gap={1}>
         <Text type="heading 3">Large</Text>
 
-        <Button appereance="primary" variant="medium" size="large">
+        <Button appearance="primary" variant="medium" size="large">
           Button
         </Button>
       </StackLayout>
@@ -159,7 +172,7 @@ export const CustomSizes: ComponentStory<typeof Button> = () => (
         <Text type="heading 3">Full width</Text>
 
         <Button
-          appereance="primary"
+          appearance="primary"
           variant="large"
           size="medium"
           className="u-full-width"
@@ -173,7 +186,7 @@ export const CustomSizes: ComponentStory<typeof Button> = () => (
         <Text type="heading 3">Fit content</Text>
 
         <Button
-          appereance="primary"
+          appearance="primary"
           variant="large"
           size="medium"
           className="u-fit-content-width"

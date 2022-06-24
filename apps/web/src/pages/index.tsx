@@ -1,7 +1,7 @@
-import { Text, CoverLayout, BoxLayout } from '@bloxifi/ui'
-import React, { useContext } from 'react'
+import { Text, CoverLayout, CardLayout, BoxLayout } from '@bloxifi/ui'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { ThemeContext } from 'styled-components'
+import styled from 'styled-components'
 
 import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
@@ -14,7 +14,6 @@ const HomePage = () => {
   const { setLanguage } = LocaleContainer.useContainer()
   const { changeTheme } = StyleContainer.useContainer()
   const { pageLayout } = PageContainer.useContainer()
-  const themeContext = useContext(ThemeContext)
   const {
     state: { isConnected, loading },
   } = Web3Container.useContainer()
@@ -22,10 +21,12 @@ const HomePage = () => {
   return (
     <Wrapper>
       <CoverLayout>
-        <BoxLayout style={{ background: themeContext.white }}>
-          <Text align="left" type="heading 1" semiBold>
-            {t('global.button')}
-          </Text>
+        <BoxLayout>
+          <CardLayout>
+            <Text align="left" type="heading 1" semiBold>
+              {t('global.button')}
+            </Text>
+          </CardLayout>
         </BoxLayout>
         {!isConnected && <ConnectWalletPaper loading={loading} />}
         <button onClick={() => changeTheme('dark')}>Dark theme</button>

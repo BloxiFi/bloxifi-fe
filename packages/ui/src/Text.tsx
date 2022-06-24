@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
-import { Colors } from './styles/colors'
 import { FullWidth, Hidden } from './styles/mixins'
 import { Fonts } from './styles/fonts'
 
@@ -166,20 +165,20 @@ export const Text = styled(TextComponent)<TextProps>`
       `
     }
   }}
-  color: ${({ color }) => {
+  color: ${({ color, theme }) => {
     switch (color) {
       case 'red':
-        return Colors.red60
+        return theme.red60
       case 'green':
-        return Colors.green80
+        return theme.green80
       case 'white':
-        return Colors.white
+        return theme.white
       case 'textColorLight':
-        return Colors.textColorLight
+        return theme.textColorLight
       case 'textColorDark':
-        return Colors.textColorDark
+        return theme.textColorDark
       default:
-        return Colors.textColorDark
+        return theme.textColorDark
     }
   }};
   ${({ className }) => FullWidth({ className })};

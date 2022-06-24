@@ -23,8 +23,8 @@ export const App = () => {
   }
 
   return (
-    <AppWrapper>
-      <ThemeProvider theme={Colors[style.state.theme]}>
+    <ThemeProvider theme={Colors[style.state.theme]}>
+      <AppWrapper>
         <GlobalStyle {...style.state} />
         <Web3ReactProvider getLibrary={getWeb3Library}>
           <Web3Container.Provider>
@@ -36,12 +36,12 @@ export const App = () => {
             </PageContainer.Provider>
           </Web3Container.Provider>
         </Web3ReactProvider>
-      </ThemeProvider>
-    </AppWrapper>
+      </AppWrapper>
+    </ThemeProvider>
   )
 }
 
 const AppWrapper = styled.div`
   position: relative;
-  background-color: ${Colors.background};
+  background-color: ${({ theme }) => theme.background};
 `

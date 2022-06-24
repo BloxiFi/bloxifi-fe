@@ -2,8 +2,6 @@ import { ReactProps } from '@bloxifi/types'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Colors } from '../styles/colors'
-
 export interface TabProps extends ReactProps<'div'> {
   /**
    * Is tab active
@@ -45,13 +43,15 @@ export const PageLayoutTab = styled(Tab)`
   padding: 12px;
   gap: 12px;
   cursor: pointer;
-  color: ${Colors.textColorLight};
+  color: ${({ theme }) => theme.textColorLight};
   border-bottom: 2px solid transparent;
   ${({ active }) =>
     active &&
-    `border-bottom: 2px solid ${Colors.tabHover}; padding-bottom: 10px;`}
+    `border-bottom: 2px solid ${({ theme }) =>
+      theme.tabHover}; padding-bottom: 10px;`}
   &:hover {
     ${({ active }) =>
-      !active && `border-bottom: 2px solid ${Colors.borderColor};`}
+      !active &&
+      `border-bottom: 2px solid ${({ theme }) => theme.borderColor};`}
   }
 `

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import { Colors } from '../styles/colors'
+
 import { Card, CardLayout } from './CardLayout'
 import { CenterLayout } from './CenterLayout'
 import { PageLayout, usePageLayout } from './PageLayout'
@@ -9,19 +11,13 @@ export default {
   title: 'Layout/CardLayout',
   component: Card,
   argTypes: {
-    shadow: {
-      name: 'shadow',
-      defaultValue: true,
-      control: {
-        type: 'boolean',
-      },
-    },
     border: {
       name: 'border',
       defaultValue: true,
-      control: {
-        type: 'boolean',
-      },
+    },
+    borderColor: {
+      name: 'borderColor',
+      defaultValue: Colors.borderLight,
     },
     background: {
       name: 'background',
@@ -42,7 +38,7 @@ export const Overview = args => {
   }, [args.header, nav])
 
   return (
-    <PageLayout style={{ backgroundColor: '#f9f9fe' }} {...nav}>
+    <PageLayout {...nav}>
       <PageLayout.Section>
         <CenterLayout>
           <CardLayout
@@ -56,6 +52,7 @@ export const Overview = args => {
     </PageLayout>
   )
 }
+
 Overview.story = {
   name: 'Overview',
 }
