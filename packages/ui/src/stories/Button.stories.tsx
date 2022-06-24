@@ -104,6 +104,56 @@ export const Appearance: ComponentStory<typeof Button> = () => (
         </Button>
       </StackLayout>
     </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Text Button default</Text>
+
+        <Button
+          appearance="text"
+          variant="medium"
+          size="medium"
+          className="u-fit-content-width"
+        >
+          Button
+        </Button>
+
+        <Button
+          appearance="text"
+          variant="medium"
+          size="medium"
+          disabled
+          className="u-fit-content-width"
+        >
+          Disabled
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Text Button custom color</Text>
+
+        <Button
+          appearance="text"
+          variant="medium"
+          size="medium"
+          className="u-fit-content-width"
+          color="red"
+        >
+          Button
+        </Button>
+
+        <Button
+          appearance="text"
+          variant="medium"
+          size="medium"
+          disabled
+          className="u-fit-content-width"
+          color="red"
+        >
+          Disabled
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
   </GridLayout>
 )
 
@@ -297,6 +347,46 @@ export const IconButton: ComponentStory<typeof Button> = () => (
         </Wrapper>
       </StackLayout>
     </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Text Button default</Text>
+        <Wrapper>
+          <Button
+            appearance="text"
+            variant="large"
+            size="large"
+            icon="settings"
+          />
+          <Button
+            appearance="text"
+            variant="medium"
+            size="medium"
+            icon="settings"
+          />
+        </Wrapper>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Text Button custom color</Text>
+        <Wrapper>
+          <Button
+            appearance="text"
+            variant="large"
+            size="large"
+            icon="settings"
+            color="red"
+          />
+          <Button
+            appearance="text"
+            variant="medium"
+            size="medium"
+            icon="settings"
+            color="red"
+          />
+        </Wrapper>
+      </StackLayout>
+    </GridLayout.Column>
   </GridLayout>
 )
 Details.storyName = 'Details'
@@ -304,9 +394,6 @@ Appearance.storyName = 'Appearance'
 Variants.storyName = 'Variants'
 CustomSizes.storyName = 'CustomSizes'
 IconButton.storyName = 'Icon'
-IconButton.story = {
-  name: 'Icon',
-}
 
 const Wrapper = styled(GridLayout.Column)`
   & > * {
