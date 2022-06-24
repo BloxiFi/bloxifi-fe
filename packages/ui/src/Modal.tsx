@@ -1,7 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
+import { Icon } from './Icon'
 import { CenterLayout } from './Layouts'
+
 export interface ModalProps {
   /**
    * Boolean value that defines if modal is open or closed
@@ -34,7 +36,9 @@ export const Modal: FunctionComponent<ModalProps> = ({
   return isOpen ? (
     <Container>
       <Content>
-        {showCloseButton && <CloseButton onClick={onClose}>X</CloseButton>}
+        {showCloseButton && (
+          <CloseButton name="close" size={20} onClick={onClose} />
+        )}
         {props.children}
       </Content>
     </Container>
@@ -77,7 +81,8 @@ const Content = styled(CenterLayout)`
     height: auto;
   }
 `
-//TODO-USE ICON COMPONENT HERE WHEN ITS FINISHED
-const CloseButton = styled.span`
-  margin-left: auto;
+const CloseButton = styled(Icon)`
+  position: absolute;
+  right: 2.25rem;
+  top: 2rem;
 `

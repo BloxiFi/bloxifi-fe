@@ -471,7 +471,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         >
           <button
             appearance="secondary"
-            className="sc-bczRLJ sc-dkzDqf iGSEvw dRktNo"
+            className="sc-bczRLJ sc-dkzDqf erHOPH eEOIkD"
             data-element="button"
             icon="settings"
             size="large"
@@ -479,7 +479,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
           />
           <button
             appearance="secondary"
-            className="sc-bczRLJ sc-dkzDqf hEOrxi dRktNo"
+            className="sc-bczRLJ sc-dkzDqf kohxsZ eEOIkD"
             data-element="button"
             icon="settings"
             size="medium"
