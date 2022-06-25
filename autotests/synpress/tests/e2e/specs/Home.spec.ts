@@ -4,22 +4,22 @@ let metamaskWalletAddress
 
 describe('Test Bloxifi', () => {
   before(() => {
-    cy.setupMetamask(
-      'dumb, wreck, cricket, bachelor, amused, monitor, video, caution, easily, unfold, police, enough',
-      {
-        networkName: 'Moonbase Alpha',
-        rpc: 'https://rpc.api.moonbase.moonbeam.network',
-        chainId: 1287,
-        isTestnet: true,
-        symbol: 'DEV',
-        blockExplorer: 'https://moonbase.moonscan.io/',
-      },
-      'Tolja123',
-    )
-    cy.visit('/')
+    cy.clearLocalStorage()
+    cy.clearCookies()
+  })
+  it('Add Moonbase netowork to Metamask', () => {
+    cy.addMetamaskNetwork({
+      networkName: 'Moonbase Alpha',
+      rpcUrl: 'https://rpc.api.moonbase.moonbeam.network',
+      chainId: '1287',
+      symbol: 'DEV',
+      blockExplorer: 'https://moonbase.moonscan.io/',
+      isTestnet: true,
+    })
   })
   context('Connect metamask wallet', () => {
     it('Open Bloxifi', () => {
+      cy.visit('/')
       cy.contains('Connect').click()
       cy.acceptMetamaskAccess(false)
       cy.waitUntil(() => cy.contains('Moonbase').should('exist'))
