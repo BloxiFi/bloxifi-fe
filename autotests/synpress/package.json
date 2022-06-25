@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test:e2e": "synpress open --configFile cypress.json",
-    "test": "SKIP_METAMASK_SETUP=true node -r dotenv/config node_modules/.bin/synpress open"
+    "test": "node -r dotenv/config node_modules/.bin/synpress run -e SKIP_METAMASK_SETUP=true"
   },
   "dependencies": {
     "@synthetixio/synpress": "^1.2.0"
