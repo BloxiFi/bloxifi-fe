@@ -1,14 +1,10 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "strict": true,
     "baseUrl": "../../node_modules",
-    "types": [
-      "cypress",
-      "@types/puppeteer-core",
-      "@synthetixio/synpress/support",
-      "cypress-wait-until",
-      "@testing-library/cypress"
-    ]
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "cypress-metamask-v2/cypress/support", "node"]
   },
-  "include": ["**/*.*"]
+  "include": ["**/*.ts"]
 }
