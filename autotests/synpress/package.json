@@ -9,6 +9,7 @@
     "test": "CYPRESS_REMOTE_DEBUGGING_PORT=9222 node -r dotenv/config node_modules/.bin/cypress open"
   },
   "devDependencies": {
+    "etherscan-api": "^10.1.0",
     "cypress": "^9.7.0",
     "@synthetixio/js": "^2.41.0",
     "@testing-library/cypress": "^8.0.2",

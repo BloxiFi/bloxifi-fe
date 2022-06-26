@@ -259,15 +259,15 @@ module.exports = (on, config) => {
       return waitingPeriod
     },
     getNetwork: () => {
-      const network = helpers.getNetwork()
-      return network
+      return helpers.getNetwork()
     },
     etherscanGetTransactionStatus: async ({ txid }) => {
       const txStatus = await etherscan.getTransactionStatus(txid)
       return txStatus
     },
     etherscanWaitForTxSuccess: async ({ txid }) => {
-      const txSuccess = await etherscan.waitForTxSuccess(txid)
+      const walletAdd = metamask.walletAddress()
+      const txSuccess = await etherscan.waitForTxSuccess(walletAdd)
       return txSuccess
     },
   })
