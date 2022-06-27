@@ -9,11 +9,11 @@ exports[`Storyshots Components/Icon All icons 1`] = `
   }
 >
   <div
-    className="sc-kDDrLX kUlHoK"
+    className="sc-iqcoie ezEPmz"
   >
     <div
       center={true}
-      className="sc-jqUVSM bExOJt"
+      className="sc-kDDrLX Hkthi"
     >
       <text
         className="recharts-text"
@@ -32,7 +32,7 @@ exports[`Storyshots Components/Icon All icons 1`] = `
     </div>
     <div
       center={true}
-      className="sc-jqUVSM bExOJt"
+      className="sc-kDDrLX Hkthi"
     >
       <text
         className="recharts-text"
@@ -51,7 +51,7 @@ exports[`Storyshots Components/Icon All icons 1`] = `
     </div>
     <div
       center={true}
-      className="sc-jqUVSM bExOJt"
+      className="sc-kDDrLX Hkthi"
     >
       <text
         className="recharts-text"
@@ -70,7 +70,7 @@ exports[`Storyshots Components/Icon All icons 1`] = `
     </div>
     <div
       center={true}
-      className="sc-jqUVSM bExOJt"
+      className="sc-kDDrLX Hkthi"
     >
       <text
         className="recharts-text"
@@ -89,7 +89,7 @@ exports[`Storyshots Components/Icon All icons 1`] = `
     </div>
     <div
       center={true}
-      className="sc-jqUVSM bExOJt"
+      className="sc-kDDrLX Hkthi"
     >
       <text
         className="recharts-text"
@@ -108,7 +108,7 @@ exports[`Storyshots Components/Icon All icons 1`] = `
     </div>
     <div
       center={true}
-      className="sc-jqUVSM bExOJt"
+      className="sc-kDDrLX Hkthi"
     >
       <text
         className="recharts-text"
@@ -127,7 +127,7 @@ exports[`Storyshots Components/Icon All icons 1`] = `
     </div>
     <div
       center={true}
-      className="sc-jqUVSM bExOJt"
+      className="sc-kDDrLX Hkthi"
     >
       <text
         className="recharts-text"
@@ -146,7 +146,7 @@ exports[`Storyshots Components/Icon All icons 1`] = `
     </div>
     <div
       center={true}
-      className="sc-jqUVSM bExOJt"
+      className="sc-kDDrLX Hkthi"
     >
       <text
         className="recharts-text"

@@ -14,6 +14,7 @@ export const ButtonAppearance = [
   'secondary',
   'dark',
   'gradient',
+  'text',
 ] as const
 export const ButtonSize = ['small', 'medium', 'large'] as const
 export const ButtonVariant = ['thin', 'medium', 'large'] as const
@@ -42,6 +43,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Icon
    */
   icon?: IconNamesType
+  /**
+   * This represents custom icon/text color related to Text button
+   */
+  color?: string
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
@@ -49,6 +54,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
   variant,
   size,
   icon,
+  color,
   ...props
 }) => {
   const ActiveComponent = getActiveComponent(appearance)
@@ -60,12 +66,13 @@ export const Button: FunctionComponent<ButtonProps> = ({
         size={size}
         appearance={appearance}
         icon={icon}
+        color={color}
         {...props}
       >
         {icon ? (
           <Icon
             size={IconSizing.font[size]}
-            color={getColor(appearance, themeContext, !!icon)}
+            color={color ?? getColor(appearance, themeContext, !!icon)}
             name={icon}
           />
         ) : (

@@ -63,10 +63,14 @@ export const getColor = (
   theme: any,
   icon: boolean,
 ) => {
-  if (appearance === 'secondary') {
-    return icon ? theme.iconButtonDark : theme.buttonDark
+  switch (appearance) {
+    case 'secondary':
+      return icon ? theme.iconButtonDark : theme.buttonDark
+    case 'text':
+      return theme.textColorDark
+    default:
+      return theme.white
   }
-  return theme.white
 }
 const ButtonComponent = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ ...props }, ref) => {
@@ -168,6 +172,15 @@ const ButtonGradient = styled(ButtonBase)`
   }
 `
 
+const ButtonText = styled(ButtonBase)`
+  background-color: transparent;
+  color: ${({ color }) => color && color};
+
+  &:hover {
+    opacity: 0.7;
+  }
+`
+
 export const getActiveComponent = (appearance: ButtonAppearance) => {
   switch (appearance) {
     case 'primary':
@@ -180,6 +193,8 @@ export const getActiveComponent = (appearance: ButtonAppearance) => {
       return ButtonDark
     case 'gradient':
       return ButtonGradient
+    case 'text':
+      return ButtonText
     default:
       return ButtonPrimary
   }
