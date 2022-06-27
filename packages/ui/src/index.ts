@@ -1,5 +1,6 @@
 export * from './Button'
 export * from './GlobalStyle'
+export * from './Icon'
 export * from './Layouts'
 export * from './styles/colors'
 export * from './styles/fonts'

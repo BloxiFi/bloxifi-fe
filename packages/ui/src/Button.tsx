@@ -1,6 +1,12 @@
-import React, { ButtonHTMLAttributes, FunctionComponent } from 'react'
+import React, {
+  ButtonHTMLAttributes,
+  FunctionComponent,
+  useContext,
+} from 'react'
+import { ThemeContext } from 'styled-components'
 
-import { getActiveComponent } from './ButtonVariants'
+import { getActiveComponent, IconSizing, getColor } from './ButtonVariants'
+import { Icon, IconNamesType } from './Icon'
 
 export const ButtonAppearance = [
   'primary',
@@ -8,6 +14,7 @@ export const ButtonAppearance = [
   'secondary',
   'dark',
   'gradient',
+  'text',
 ] as const
 export const ButtonSize = ['small', 'medium', 'large'] as const
 export const ButtonVariant = ['thin', 'medium', 'large'] as const
@@ -32,25 +39,45 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Button disabled
    */
   disabled?: boolean
+  /**
+   * Icon
+   */
+  icon?: IconNamesType
+  /**
+   * This represents custom icon/text color related to Text button
+   */
+  color?: string
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
   appearance,
   variant,
   size,
+  icon,
+  color,
   ...props
 }) => {
   const ActiveComponent = getActiveComponent(appearance)
-
+  const themeContext = useContext(ThemeContext)
   return (
     <>
       <ActiveComponent
         variant={variant}
         size={size}
         appearance={appearance}
+        icon={icon}
+        color={color}
         {...props}
       >
-        {props.children}
+        {icon ? (
+          <Icon
+            size={IconSizing.font[size]}
+            color={color ?? getColor(appearance, themeContext, !!icon)}
+            name={icon}
+          />
+        ) : (
+          props.children
+        )}
       </ActiveComponent>
     </>
   )
