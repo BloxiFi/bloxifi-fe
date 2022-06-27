@@ -2,8 +2,9 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { styled } from '@storybook/theming'
 import React from 'react'
 
-import { StackLayout, Text } from '..'
+import { StackLayout, Text, BoxLayout } from '..'
 import { Button } from '../Button'
+import { Icon } from '../Icon'
 import { GridLayout } from '../Layouts/GridLayout'
 import { Colors } from '../styles/colors'
 
@@ -389,11 +390,184 @@ export const IconButton: ComponentStory<typeof Button> = () => (
     </GridLayout.Column>
   </GridLayout>
 )
+
+export const IconTextButton: ComponentStory<typeof Button> = () => (
+  <GridLayout style={{ background: Colors.gray30, padding: 50 }}>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Primary Button</Text>
+        <Button appearance="primary" variant="medium" size="medium">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+
+        <Button appearance="primary" variant="medium" size="medium" disabled>
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Primary Ghost (Transparent)</Text>
+        <Button appearance="primary-ghost" variant="medium" size="medium">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+
+        <Button
+          appearance="primary-ghost"
+          variant="medium"
+          size="medium"
+          disabled
+        >
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Secondary Button</Text>
+        <Button appearance="secondary" variant="medium" size="medium">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+
+        <Button appearance="secondary" variant="medium" size="medium" disabled>
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Dark Button</Text>
+        <Button appearance="dark" variant="medium" size="medium">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+
+        <Button appearance="dark" variant="medium" size="medium" disabled>
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Gradient Button</Text>
+        <Button appearance="gradient" variant="medium" size="medium">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+
+        <Button appearance="gradient" variant="medium" size="medium" disabled>
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Text Button default</Text>
+        <Button appearance="text" variant="medium" size="medium">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+
+        <Button appearance="text" variant="medium" size="medium" disabled>
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+    <GridLayout.Column span={4}>
+      <StackLayout gap={1}>
+        <Text type="heading 3">Text Button custom color</Text>
+        <Button appearance="text" variant="medium" size="medium" color="red">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="red" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+
+        <Button
+          appearance="text"
+          variant="medium"
+          size="medium"
+          color="red"
+          disabled
+        >
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="red" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+      </StackLayout>
+    </GridLayout.Column>
+  </GridLayout>
+)
+
 Details.storyName = 'Details'
 Appearance.storyName = 'Appearance'
 Variants.storyName = 'Variants'
 CustomSizes.storyName = 'CustomSizes'
 IconButton.storyName = 'Icon'
+IconTextButton.storyName = 'Text with Icon'
 
 const Wrapper = styled(GridLayout.Column)`
   & > * {
