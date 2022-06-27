@@ -72,7 +72,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
         {icon ? (
           <Icon
             size={IconSizing.font[size]}
-            color={color ? color : getColor(appearance, themeContext, !!icon)}
+            color={color ?? getColor(appearance, themeContext, !!icon)}
             name={icon}
           />
         ) : (
