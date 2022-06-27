@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
-import { Icon } from './Icon'
+import { Button } from './Button'
 import { CenterLayout } from './Layouts'
 
 export interface ModalProps {
@@ -37,7 +37,14 @@ export const Modal: FunctionComponent<ModalProps> = ({
     <Container>
       <Content>
         {showCloseButton && (
-          <CloseButton name="close" size={20} onClick={onClose} />
+          <CloseButton
+            icon="close"
+            appearance="text"
+            size="medium"
+            variant="medium"
+            className="u-fit-content-width"
+            onClick={onClose}
+          />
         )}
         {props.children}
       </Content>
@@ -81,7 +88,7 @@ const Content = styled(CenterLayout)`
     height: auto;
   }
 `
-const CloseButton = styled(Icon)`
+const CloseButton = styled(Button)`
   position: absolute;
   right: 2.25rem;
   top: 2rem;

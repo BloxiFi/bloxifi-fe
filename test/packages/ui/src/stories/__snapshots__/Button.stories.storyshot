@@ -202,7 +202,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
         </h3>
         <button
           appearance="text"
-          className="sc-bczRLJ sc-gKXOVf ewkVWu eXICpf u-fit-content-width"
+          className="sc-bczRLJ sc-gKXOVf ewkVWu bBpvEc u-fit-content-width"
           data-element="button"
           size="medium"
           variant="medium"
@@ -211,7 +211,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
         </button>
         <button
           appearance="text"
-          className="sc-bczRLJ sc-gKXOVf ewkVWu eXICpf u-fit-content-width"
+          className="sc-bczRLJ sc-gKXOVf ewkVWu bBpvEc u-fit-content-width"
           data-element="button"
           disabled={true}
           size="medium"
@@ -236,7 +236,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
         </h3>
         <button
           appearance="text"
-          className="sc-bczRLJ sc-gKXOVf ewkVWu kDHiHU u-fit-content-width"
+          className="sc-bczRLJ sc-gKXOVf ewkVWu jOnspT u-fit-content-width"
           color="red"
           data-element="button"
           size="medium"
@@ -246,7 +246,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
         </button>
         <button
           appearance="text"
-          className="sc-bczRLJ sc-gKXOVf ewkVWu kDHiHU u-fit-content-width"
+          className="sc-bczRLJ sc-gKXOVf ewkVWu jOnspT u-fit-content-width"
           color="red"
           data-element="button"
           disabled={true}
@@ -646,7 +646,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         >
           <button
             appearance="text"
-            className="sc-bczRLJ sc-gKXOVf eMXLFz eXICpf"
+            className="sc-bczRLJ sc-gKXOVf eMXLFz bBpvEc"
             data-element="button"
             icon="settings"
             size="large"
@@ -654,7 +654,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
           />
           <button
             appearance="text"
-            className="sc-bczRLJ sc-gKXOVf jLcLgJ eXICpf"
+            className="sc-bczRLJ sc-gKXOVf jLcLgJ bBpvEc"
             data-element="button"
             icon="settings"
             size="medium"
@@ -681,7 +681,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         >
           <button
             appearance="text"
-            className="sc-bczRLJ sc-gKXOVf eMXLFz kDHiHU"
+            className="sc-bczRLJ sc-gKXOVf eMXLFz jOnspT"
             color="red"
             data-element="button"
             icon="settings"
@@ -690,7 +690,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
           />
           <button
             appearance="text"
-            className="sc-bczRLJ sc-gKXOVf jLcLgJ kDHiHU"
+            className="sc-bczRLJ sc-gKXOVf jLcLgJ jOnspT"
             color="red"
             data-element="button"
             icon="settings"
@@ -946,7 +946,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
         </h3>
         <button
           appearance="text"
-          className="sc-bczRLJ sc-gKXOVf hkhycF eXICpf"
+          className="sc-bczRLJ sc-gKXOVf hkhycF bBpvEc"
           data-element="button"
           size="medium"
           variant="medium"
@@ -959,7 +959,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
         </button>
         <button
           appearance="text"
-          className="sc-bczRLJ sc-gKXOVf hkhycF eXICpf"
+          className="sc-bczRLJ sc-gKXOVf hkhycF bBpvEc"
           data-element="button"
           disabled={true}
           size="medium"
@@ -988,7 +988,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
         </h3>
         <button
           appearance="text"
-          className="sc-bczRLJ sc-gKXOVf hkhycF kDHiHU"
+          className="sc-bczRLJ sc-gKXOVf hkhycF jOnspT"
           color="red"
           data-element="button"
           size="medium"
@@ -1002,7 +1002,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
         </button>
         <button
           appearance="text"
-          className="sc-bczRLJ sc-gKXOVf hkhycF kDHiHU"
+          className="sc-bczRLJ sc-gKXOVf hkhycF jOnspT"
           color="red"
           data-element="button"
           disabled={true}
