@@ -9,6 +9,7 @@ import {
   Label,
 } from 'recharts'
 import styled, { ThemeContext } from 'styled-components'
+
 import { Fonts } from './styles/fonts'
 import { Text } from './Text'
 

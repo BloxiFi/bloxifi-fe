@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react'
 import React from 'react'
-import { GridLayout } from '../Layouts/GridLayout'
 
+import { GridLayout } from '../Layouts/GridLayout'
 import { ProgressBar } from '../ProgressBar'
 
 export default {
