@@ -16,10 +16,10 @@ exports[`Storyshots Components/Probress bar Overview 1`] = `
       span={4}
     >
       <div
-        className="sc-idiyUo egqHjt"
+        className="sc-dmRaPn drIoJx"
       >
         <p
-          className="sc-ksZaOG exlvHj c-text--body-2"
+          className="sc-ksZaOG sc-kgflAQ hMDkKx gRmEXT c-text--body-2 c-text--color-oxfordBlue"
         >
           Borrowed
         </p>

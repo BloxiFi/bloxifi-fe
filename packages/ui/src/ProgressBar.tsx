@@ -67,7 +67,11 @@ export const ProgressBar = ({
 
   return (
     <Wrapper>
-      {title && <Text type="body 2">{title}</Text>}
+      {title && (
+        <Title color="oxfordBlue" type="body 2">
+          {title}
+        </Title>
+      )}
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           barCategoryGap={0}
@@ -84,6 +88,7 @@ export const ProgressBar = ({
                 fontFamily={Fonts.Inter}
                 fontSize={12}
                 fill={themeContext.buttonDark}
+                id="bottom-label"
               />
             )}
           </XAxis>
@@ -135,4 +140,12 @@ export const ProgressBar = ({
 const Wrapper = styled.div`
   height: ${containerHeight}px;
   width: 100%;
+
+  #bottom-label {
+    transform: translate(-10px, -10px);
+  }
+`
+
+const Title = styled(Text)`
+  margin-bottom: 0.5rem;
 `
