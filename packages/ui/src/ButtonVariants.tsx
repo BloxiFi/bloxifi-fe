@@ -175,6 +175,7 @@ const ButtonGradient = styled(ButtonBase)`
 const ButtonText = styled(ButtonBase)`
   background-color: transparent;
   color: ${({ color }) => color && color};
+  height: auto;
 
   &:hover {
     opacity: 0.7;
