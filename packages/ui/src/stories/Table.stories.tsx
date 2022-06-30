@@ -2,7 +2,8 @@ import { Meta } from '@storybook/react'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import { CellProps, Table, TableProps } from '../Table'
+import { Button } from '../Button'
+import { CellProps, Table } from '../Table'
 
 export default {
   title: 'Components/Table',
@@ -15,105 +16,109 @@ export default {
 } as Meta
 
 const defaultColumns = {
-  title: {
-    header: 'Title',
-    Cell: ({ data: { title } }: CellProps) => <span>{title}</span>,
+  assets: {
+    header: 'Assets',
+    Cell: ({ data: { assets } }: CellProps) => (
+      <WrappedText>{assets}</WrappedText>
+    ),
+    alignText: 'left',
   },
-  price: {
-    header: 'Price',
-    Cell: ({ data: { price } }: CellProps) => <span>{price}</span>,
+  totalValueDeposited: {
+    header: 'Total value deposited',
+    Cell: ({ data: { totalValueDeposited } }: CellProps) => (
+      <span>{totalValueDeposited}</span>
+    ),
+  },
+  totalBorrowed: {
+    header: 'Total borrowed',
+    Cell: ({ data: { totalBorrowed } }: CellProps) => (
+      <span>{totalBorrowed}</span>
+    ),
+  },
+  depositAPY: {
+    header: 'Deposit APY',
+    Cell: ({ data: { depositAPY } }: CellProps) => <span>{depositAPY}</span>,
+  },
+  borrowAPY: {
+    header: 'Borrow APY',
+    Cell: ({ data: { borrowAPY } }: CellProps) => <span>{borrowAPY}</span>,
+    alignText: 'right',
   },
 }
 
 const defaultData = [
-  { title: 'One', price: 100 },
-  { title: 'Two', price: 200 },
+  {
+    assets: 'ETH',
+    totalValueDeposited: '1.250.000$',
+    totalBorrowed: '1.250.000$',
+    depositAPY: '3.5%',
+    borrowAPY: '7.5%',
+  },
+  {
+    assets: 'DAI',
+    totalValueDeposited: '1.250.000$',
+    totalBorrowed: '1.250.000$',
+    depositAPY: '3.5%',
+    borrowAPY: '7.5%',
+  },
+  {
+    assets: 'POLKA',
+    totalValueDeposited: '1.250.000$',
+    totalBorrowed: '1.250.000$',
+    depositAPY: '3.5%',
+    borrowAPY: '7.5%',
+  },
+  {
+    assets: 'BTC',
+    totalValueDeposited: '1.250.000$',
+    totalBorrowed: '1.250.000$',
+    depositAPY: '3.5%',
+    borrowAPY: '7.5%',
+  },
 ]
 
-export const EmptyTable: React.FC = () => {
-  const columns = {
-    title: {
-      header: 'Title',
-      Cell: ({ data: { title } }: CellProps) => (
-        <WrappedText>{title}</WrappedText>
-      ),
-    },
-    price: {
-      header: 'Price',
-      Cell: ({ data: { price } }: CellProps) => <span>{price}</span>,
-      width: 100,
-    },
-  }
+export const EmptyDataTable: React.FC = () => (
+  <Table
+    noDataMessage="There is no data loaded."
+    columns={defaultColumns}
+    data={[]}
+  />
+)
+
+export const BasicTable = () => (
+  <Table columns={defaultColumns} data={defaultData} />
+)
+
+export const TitleAsPlainText = () => (
+  <Table
+    columns={defaultColumns}
+    data={defaultData}
+    titleComponent="Assets to deposit"
+  />
+)
+
+export const TitleAsComponent = () => {
+  const ComponentTitle = () => <div>Your deposit</div>
 
   return (
     <Table
-      noDataMessage="There is no data loaded."
-      columns={columns}
-      data={[]}
+      columns={defaultColumns}
+      data={defaultData}
+      titleComponent={<ComponentTitle />}
     />
   )
 }
 
-export const LongDataTable = () => {
-  const columns = {
-    title: {
-      header: 'Title',
-      Cell: ({ data: { title } }: CellProps) => (
-        <WrappedText>{title}</WrappedText>
-      ),
-    },
-    price: {
-      header: 'Price',
-      Cell: ({ data: { price } }: CellProps) => <span>{price}</span>,
-      width: 100,
-    },
-  }
-  const data = [
-    { title: 'One long text to be seen on mobile', price: 100 },
-    { title: 'Onealsoverylongtextjustwithoutthespace', price: 200 },
-  ]
+export const WithFooter = () => {
+  const FooterComponent = () => <div>Footer component</div>
 
   return (
-    <MobileWrapper>
-      <Table columns={columns} data={data} />
-    </MobileWrapper>
+    <Table
+      columns={defaultColumns}
+      data={defaultData}
+      footer={<FooterComponent />}
+    />
   )
-}
-
-LongDataTable.storyName = 'Long data example'
-LongDataTable.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-}
-
-export const TruncatedTable = () => {
-  const columns = {
-    title: {
-      header: 'Title',
-      Cell: ({ data: { title } }: CellProps) => (
-        <div>TODO: truncated text {title}</div>
-      ),
-    },
-    price: {
-      header: 'Price',
-      Cell: ({ data: { price } }: CellProps) => <span>{price}</span>,
-      width: 100,
-    },
-  }
-  const data = [
-    { title: 'One long text to be seen on mobile', price: 100 },
-    { title: 'Onealsoverylongtextjustwithoutthespace', price: 200 },
-  ]
-
-  return (
-    <MobileWrapper>
-      <Table columns={columns} data={data} />
-    </MobileWrapper>
-  )
-}
-
-TruncatedTable.storyName = 'Truncated table'
-TruncatedTable.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
 }
 
 export const ExpandableTable = () => {
@@ -129,17 +134,18 @@ export const ExpandableTable = () => {
         }
 
         return (
-          <button onClick={() => onExpand()}>
+          <Button
+            appearance="primary"
+            variant="thin"
+            size="small"
+            onClick={() => onExpand()}
+          >
             {isExpanded ? 'Close' : 'Expand'}
-          </button>
+          </Button>
         )
       },
-      ExpandedCell: ({ data: { title, price } }: CellProps) => {
-        return (
-          <ExpandedRow>
-            Expanded row ({title} {price})
-          </ExpandedRow>
-        )
+      ExpandedCell: () => {
+        return <ExpandedRow>Expanded row</ExpandedRow>
       },
       width: 100,
     },
@@ -149,27 +155,6 @@ export const ExpandableTable = () => {
 }
 
 ExpandableTable.storyName = 'Expandable table'
-
-export const LazyTable = () => {
-  const mockedData = Array(100)
-    .fill(true)
-    .map((_, index) => ({
-      title: `Row ${index + 1}`,
-      price: (Math.random() * 100).toFixed(2),
-    }))
-  const PAGE_LIMIT = 10
-  const [data, setData] = useState(mockedData.slice(0, PAGE_LIMIT))
-  const [isLoading, setIsLoading] = useState(false)
-
-  return <Table columns={defaultColumns} isLoading={isLoading} data={data} />
-}
-
-LazyTable.storyName = 'Lazy table'
-
-const MobileWrapper = styled.div`
-  max-width: 360px;
-  margin: auto;
-`
 
 const WrappedText = styled.div`
   word-break: break-all;

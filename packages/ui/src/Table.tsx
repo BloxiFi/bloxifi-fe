@@ -46,6 +46,10 @@ interface ColumnData {
    * Optional component that will render if {@link CellProps.onRowExpand} is triggered in Cell with some data.
    */
   ExpandedCell?: (props: Omit<CellProps, 'onRowExpand'>) => JSX.Element
+  /**
+   * Optional align prop, used to align the column text
+   */
+  alignText?: string
 }
 
 /**
@@ -68,6 +72,18 @@ export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
    * Optional message when there is no data present
    */
   noDataMessage?: string
+  /**
+   * Optional title that will appear above header columns
+   */
+  titleComponent?: string | React.ReactNode
+  /**
+   * Optional footer that will appear below table body
+   */
+  footer?: React.ReactNode
+  /**
+   * Optional Footer className to override any default styling
+   */
+  footerClassName?: string
 }
 
 /**
@@ -84,9 +100,24 @@ interface RowProps
    * Renders Loader instead of table content.
    */
   rowData: TableData
+  /**
+   * Boolean if table title is present
+   */
+  withTitle?: boolean
+  /**
+   * Boolean if table title is a component or a string
+   */
+  isTitleAString?: boolean
 }
 
-const Row = ({ columns, rowData, rowIndex, ...props }: RowProps) => {
+const Row = ({
+  columns,
+  rowData,
+  rowIndex,
+  withTitle,
+  isTitleAString,
+  ...props
+}: RowProps) => {
   const [isRowExpanded, setIsRowExpanded] = useState(false)
   const [expandedRowData, setExpandedRowData] = useState<TableData>({})
 
@@ -102,16 +133,17 @@ const Row = ({ columns, rowData, rowIndex, ...props }: RowProps) => {
 
   const Row = (
     <tr {...props}>
-      {Object.values(columns).map(({ Cell }, index) => {
+      {Object.values(columns).map(({ Cell, alignText = 'center' }, index) => {
         if (!Cell) {
           return null
         }
 
         return (
           <Column
-            isFirst={index === 0}
-            isLast={--Object.keys(columns).length === index}
             key={index}
+            alignText={alignText}
+            withTitle={withTitle}
+            isTitleAString={isTitleAString}
           >
             <Cell onRowExpand={onRowExpand} data={rowData} index={rowIndex} />
           </Column>
@@ -153,56 +185,79 @@ export const Table = ({
   columns,
   isLoading,
   noDataMessage = '',
+  titleComponent = '',
+  footer,
+  footerClassName = '',
   ...props
 }: TableProps) => {
+  const isTitleAString = typeof titleComponent === 'string'
+  const numberOfColumns = Object.values(columns).length
+
   return (
-    <Wrapper data-element="tableWrapper" className="rts-table__container">
+    <Wrapper data-element="tableWrapper">
       <TableWrapper data-element="table" {...props}>
-        <THead className="rts-table__header">
+        <THead>
+          {titleComponent && isTitleAString && (
+            <tr>
+              <HeaderTitle colSpan={numberOfColumns}>
+                {titleComponent}
+              </HeaderTitle>
+            </tr>
+          )}
+          {titleComponent && !isTitleAString && (
+            <tr>
+              <HeaderTitleComponent colSpan={numberOfColumns}>
+                {titleComponent}
+              </HeaderTitleComponent>
+            </tr>
+          )}
+
           <tr>
             {columns &&
-              Object.values(columns).map(({ header, width }, index) => {
-                if (header && !isLoading) {
-                  return (
-                    <Column
-                      width={width}
-                      isFirst={index === 0}
-                      isLast={Object.keys(columns).length - 1 === index}
-                      key={index}
-                      className="rts-table__column"
-                    >
-                      <TableHeaderText>{header}</TableHeaderText>
-                    </Column>
-                  )
-                }
+              Object.values(columns).map(
+                ({ header, width, alignText = 'center' }, index) => {
+                  if (header && !isLoading) {
+                    return (
+                      <HeaderColumn
+                        width={width}
+                        key={index}
+                        alignText={alignText}
+                        withTitle={!!titleComponent}
+                        isTitleAString={isTitleAString}
+                      >
+                        <TableHeaderText>{header}</TableHeaderText>
+                      </HeaderColumn>
+                    )
+                  }
 
-                if (index === 0 && isLoading) {
-                  return (
-                    <Column
-                      width="100%"
-                      isFirst
-                      isLast
-                      key={index}
-                      className="rts-table__column"
-                    >
-                      <TableHeaderText> </TableHeaderText>
-                    </Column>
-                  )
-                }
+                  if (index === 0 && isLoading) {
+                    return (
+                      <Column
+                        width="100%"
+                        key={index}
+                        withTitle={!!titleComponent}
+                      >
+                        <TableHeaderText>Loading...</TableHeaderText>
+                      </Column>
+                    )
+                  }
 
-                return null
-              })}
+                  return null
+                },
+              )}
           </tr>
         </THead>
         <tbody>
           {isLoading ? (
             <tr>
-              <LoadingColumn className="rts-table__column--loading">
+              <LoadingColumn>
                 <div>TODO - Loader</div>
               </LoadingColumn>
             </tr>
           ) : data.length === 0 ? (
-            <div>{noDataMessage}</div>
+            <tr>
+              <Column colSpan={numberOfColumns}>{noDataMessage}</Column>
+            </tr>
           ) : (
             data.map((rowData, rowIndex) => (
               <Row
@@ -210,11 +265,18 @@ export const Table = ({
                 columns={columns}
                 rowIndex={rowIndex}
                 rowData={rowData}
-                className="rts-table__row"
+                withTitle={!!titleComponent}
+                isTitleAString={isTitleAString}
               />
             ))
           )}
         </tbody>
+
+        {footer && (
+          <Footer className={footerClassName}>
+            <Column colSpan={numberOfColumns}>{footer}</Column>
+          </Footer>
+        )}
       </TableWrapper>
     </Wrapper>
   )
@@ -223,10 +285,11 @@ export const Table = ({
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid ${({ theme }) => theme.borderColor};
+  border: 1px solid ${({ theme }) => theme.tableBorderColor};
   background-color: ${({ theme }) => theme.darkBackground};
-  border-bottom: 0;
   font-family: ${Fonts.ClashDisplay}, serif;
+  border-radius: 10px;
+  overflow: hidden;
 `
 
 const TableWrapper = styled.table`
@@ -243,34 +306,47 @@ export const TruncatedText = styled.div`
 `
 
 const TableHeaderText = styled(TruncatedText)`
-  color: ${({ theme }) => theme.textColorDark};
-  font-weight: normal;
-  text-transform: uppercase;
+  color: ${({ theme }) => theme.tableTextColor};
+  font-weight: 600;
   vertical-align: middle;
+  font-size: 16px;
 `
 
 export const Column = styled.td<{
   width?: number | string
-  isFirst?: boolean
-  isLast?: boolean
+  alignText?: string
+  withTitle?: boolean
+  isTitleAString?: boolean
 }>`
-  ${({ width, isFirst, isLast }) => {
-    return `
-      border-bottom: 1px solid ${({ theme }) => theme.borderColor};
-      padding: 1rem 0;
+  border-top: 1px solid ${({ theme }) => theme.tableBorderColor};
+  background-color: ${({ theme }) => theme.tableCellBackgroundColor};
+  color: ${({ theme }) => theme.tableTextColor};
+  font-family: ${Fonts.Inter}, serif;
+  font-weight: 600;
+  font-size: 16px;
+  ${({ width, alignText, withTitle, isTitleAString }) => `
+      padding: ${!isTitleAString && withTitle ? '15px' : '30px'} 20px;
+      text-align: ${alignText || 'center'};
+
       ${
         typeof width === 'number'
           ? `width: ${width}px;`
           : `width: ${width || ''};`
       }
-      ${isFirst ? 'padding-left: 1.4rem;' : 'padding-left: 0.7rem;'}
-      ${isLast ? 'padding-right: 1.4rem;' : 'padding-right: 0.7rem;'}
-    `
-  }}
+
+    `};
+`
+const HeaderColumn = styled(Column)<{
+  withTitle?: boolean
+}>`
+  ${({ withTitle }) =>
+    `padding: ${withTitle ? '15px 20px 4px 20px;' : '30px 20px;'}`}
 `
 
 const ExpandedColumn = styled.td`
   padding: 0;
+  background-color: ${({ theme }) => theme.tableCellBackgroundColor};
+  color: ${({ theme }) => theme.tableTextColor};
 `
 
 export const LoadingColumn = styled(Column)`
@@ -281,7 +357,28 @@ export const LoadingColumn = styled(Column)`
   margin: auto;
 `
 
-//TODO@all new color put it in variables
 const THead = styled.thead`
-  background-color: ${({ theme }) => theme.white};
+  td {
+    border-top: 0;
+    font-family: ${Fonts.ClashDisplay}, serif;
+  }
+`
+
+const HeaderTitle = styled.td`
+  padding: 30px 20px 19px;
+  font-size: 24px;
+  color: ${({ theme }) => theme.tableTextColor};
+  background-color: ${({ theme }) => theme.tableCellBackgroundColor};
+`
+
+const HeaderTitleComponent = styled.td`
+  padding: 30px 20px 14px;
+  font-size: 24px;
+  color: ${({ theme }) => theme.tableTextColor};
+  background-color: ${({ theme }) => theme.tableCellBackgroundColor};
+`
+
+const Footer = styled.tfoot`
+  padding: 30px 20px;
+  background-color: ${({ theme }) => theme.tableCellBackgroundColor};
 `

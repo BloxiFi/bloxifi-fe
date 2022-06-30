@@ -49,6 +49,10 @@ export const Colors = {
     //Modal
     modalBackgroud: 'rgba(0,0,0,0.6)',
     modalShadow: '0px 2px 1px rgba(1, 39, 73, 0.05)',
+    //Table
+    tableBorderColor: '#DAE3ED',
+    tableTextColor: '#012749',
+    tableCellBackgroundColor: 'white',
   },
   dark: {
     headerBackground: '#F6F8FA',
@@ -97,5 +101,9 @@ export const Colors = {
     //Modal
     modalBackgroud: 'rgba(0,0,0,0.6)',
     modalShadow: '0px 2px 1px rgba(1, 39, 73, 0.05)',
+    //Table
+    tableBorderColor: '#DAE3ED',
+    tableTextColor: '#012749',
+    tableCellBackgroundColor: 'white',
   },
 }
