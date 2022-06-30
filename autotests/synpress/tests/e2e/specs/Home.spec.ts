@@ -1,23 +1,4 @@
-import { Staking } from '../pages/staking-page'
-
-let metamaskWalletAddress
-
 describe('Test Bloxifi', () => {
-  // cy.setupMetamask('', '', Cypress.env('WALLET_PASSWORD'))
-  // cy.resetMetamaskAccount()
-  // cy.getNetwork().then((network: any) => {
-  //   if (network.networkId !== 1287) {
-  //     cy.addMetamaskNetwork({
-  //       networkName: 'moonbase alpha',
-  //       rpcUrl: 'https://rpc.api.moonbase.moonbeam.network',
-  //       chainId: 1287,
-  //       symbol: 'DEV',
-  //       blockExplorer: 'https://moonbase.moonscan.io/',
-  //       isTestnet: true,
-  //     })
-  //   }
-  // })
-
   it('Open Bloxifi', () => {
     cy.changeMetamaskNetwork('moonbase alpha')
     cy.visit('/')
@@ -28,7 +9,7 @@ describe('Test Bloxifi', () => {
 
     cy.get('[data-cy-stake-content="true"]')
       .then($div => {
-        console.log($div)
+        // console.log($div)
         if ($div.find('[data-cy-approve-button="true"]').length) {
           return '[data-cy-approve-button="true"]'
         } else {
@@ -40,6 +21,7 @@ describe('Test Bloxifi', () => {
         if (selector === '[data-cy-approve-button="true"]') {
           cy.confirmMetamaskPermissionToSpend()
         } else {
+          //Do something
         }
       })
   })
