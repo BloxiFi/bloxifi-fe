@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Icon All icons 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-iqcoie ezEPmz"
+  >
+    <div
+      center={true}
+      className="sc-kDDrLX Hkthi"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          close
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-kDDrLX Hkthi"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          arrow-down
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-kDDrLX Hkthi"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          arrow-up
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-kDDrLX Hkthi"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          arrow-right
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-kDDrLX Hkthi"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          settings
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-kDDrLX Hkthi"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          total-borrowed
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-kDDrLX Hkthi"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          total-deposited
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-kDDrLX Hkthi"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          union
+        </tspan>
+      </text>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Icon Details 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+/>
+`;
