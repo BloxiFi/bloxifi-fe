@@ -24,6 +24,7 @@ export const TextColors = [
   'white',
   'textColorLight',
   'textColorDark',
+  'oxfordBlue',
 ] as const
 type TextColors = typeof TextColors[number]
 const defaultElement = 'span'
@@ -177,6 +178,8 @@ export const Text = styled(TextComponent)<TextProps>`
         return theme.textColorLight
       case 'textColorDark':
         return theme.textColorDark
+      case 'oxfordBlue':
+        return theme.buttonDark
       default:
         return theme.textColorDark
     }

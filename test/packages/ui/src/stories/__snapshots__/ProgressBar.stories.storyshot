@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Probress bar Overview 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-breuTD CrUSC"
+  >
+    <section
+      className="sc-evZas dkVKHh"
+      span={4}
+    >
+      <div
+        className="sc-dmRaPn drIoJx"
+      >
+        <p
+          className="sc-ksZaOG sc-kgflAQ hMDkKx gRmEXT c-text--body-2 c-text--color-oxfordBlue"
+        >
+          Borrowed
+        </p>
+        <div
+          className="recharts-responsive-container"
+          style={
+            Object {
+              "height": "100%",
+              "maxHeight": undefined,
+              "minHeight": undefined,
+              "minWidth": undefined,
+              "width": "100%",
+            }
+          }
+        />
+      </div>
+    </section>
+  </div>
+</div>
+`;
