@@ -118,7 +118,7 @@ export const ProgressBar = ({
             dataKey="completed"
             stackId="a"
             fill={themeContext.buttonLight}
-            radius={[4, 0, 0, 4]}
+            radius={[0, 4, 4, 0]}
           >
             {value === 0 && (
               <LabelList
