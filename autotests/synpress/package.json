@@ -5,7 +5,6 @@
   "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
   "license": "MIT",
   "scripts": {
-    "test:e2e": "synpress open --configFile cypress.json",
     "test": "CYPRESS_REMOTE_DEBUGGING_PORT=9222 node -r dotenv/config node_modules/.bin/cypress open"
   },
   "devDependencies": {
