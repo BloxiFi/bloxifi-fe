@@ -126,6 +126,7 @@ export const StakeModalContent = () => {
       <StackLayout
         gap={0.5}
         style={{ border: '1px solid', padding: 20, margin: 20, width: 300 }}
+        data-cy-stake-content="true"
       >
         <h3>Stake Blox </h3>
         <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -134,7 +135,11 @@ export const StakeModalContent = () => {
         </Grid>
         <Grid style={{ display: 'flex', justifyContent: 'space-between' }}>
           <span>Amount to stake: {stakeTokenValue} Blox</span>
-          <button disabled={!isSupportedNetwork} onClick={mint}>
+          <button
+            data-cy-blox-mint="true"
+            disabled={!isSupportedNetwork}
+            onClick={mint}
+          >
             Get {mintTokenValue} Blox
           </button>{' '}
         </Grid>
@@ -145,12 +150,20 @@ export const StakeModalContent = () => {
         </p>
         <p style={{ color: 'red' }}>{hasError && 'Something went wrong'}</p>
         {shouldApproveContract && (
-          <button disabled={isApproveDisabled} onClick={approve}>
+          <button
+            data-cy-approve-button="true"
+            disabled={isApproveDisabled}
+            onClick={approve}
+          >
             Approve to continue
           </button>
         )}
 
-        <button disabled={isStakeDisabled} onClick={stake}>
+        <button
+          data-cy-stake-button="true"
+          disabled={isStakeDisabled}
+          onClick={stake}
+        >
           Stake
         </button>
       </StackLayout>
