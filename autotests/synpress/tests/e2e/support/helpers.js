@@ -1,7 +1,8 @@
-const axios = require('axios')
 const fs = require('fs')
-const zip = require('cross-zip')
 const path = require('path')
+
+const axios = require('axios')
+const zip = require('cross-zip')
 
 let networkName = 'mainnet'
 let networkId = 1

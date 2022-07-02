@@ -19,6 +19,7 @@ module.exports = {
       100,
       'asc',
     )
+    // eslint-disable-next-line no-console
     console.log(txlist)
     // alert(txlist)
     const txStatus = await etherscanApi.transaction.getstatus(txid)
@@ -48,8 +49,7 @@ module.exports = {
       console.log(`Transaction ${txid} is still pending.. waiting..`)
       retries++
       await sleep(5000)
-      const result = await module.exports.waitForTxSuccess(txid)
-      return result
+      return await module.exports.waitForTxSuccess(txid)
     } else {
       retries = 0
       throw new Error(

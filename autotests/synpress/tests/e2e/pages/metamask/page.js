@@ -1,5 +1,5 @@
-const loadingSpinner = '.lds-spinner';
+const loadingSpinner = '.lds-spinner'
 
 module.exports.pageElements = {
   loadingSpinner,
-};
+}

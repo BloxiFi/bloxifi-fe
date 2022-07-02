@@ -11,20 +11,14 @@
   "devDependencies": {
     "etherscan-api": "^10.1.0",
     "cypress": "^9.7.0",
-    "@synthetixio/js": "^2.41.0",
     "@testing-library/cypress": "^8.0.2",
-    "bytes32": "0.0.3",
+    "bytes32": "^0.0.3",
     "cross-zip": "^4.0.0",
     "node-fetch": "^2.6.1",
     "puppeteer-core": "^13.5.2",
-    "semantic-release": "^19.0.2",
-    "standard": "^16.0.3",
-    "start-server-and-test": "^1.12.2",
-    "superstatic": "^7.1.0",
-    "synthetix-js": "^2.66.0",
     "cypress-wait-until": "^1.7.2",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-chai-friendly": "0.7.2",
+    "eslint-plugin-chai-friendly": "^0.7.2",
     "eslint-plugin-ui-testing": "^2.0.1",
     "eslint-plugin-testing-library": "5.2.1"
   }
