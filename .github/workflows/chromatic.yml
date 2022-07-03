@@ -1,0 +1,69 @@
+#
+# This workflow runs on push | pull_request events of the develop branch
+#
+# It will publish storybook to Chromatic and accept all changes.
+#
+
+name: 'Chromatic'
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - packages/**
+  pull_request:
+    types: [opened, synchronize, reopened, converted_to_draft, ready_for_review]
+    branches:
+      - develop
+    paths:
+      - packages/**
+
+jobs:
+  chromatic-deployment:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.draft == false && github.actor != 'dependabot[bot]' }}
+    steps:
+      #
+      # Checkout the repository, with fixed fetch-depth to 100
+      #
+      - name: Checkout project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      #
+      # Cache files in ./frontend
+      #
+      - name: Cache
+        uses: actions/cache@v3
+        id: use-cache
+        with:
+          path: |
+            node_modules/
+            .eslintcache
+            .stylelintcache
+            **/.cache
+            apps/**/node_modules/
+            packages/**/node_modules/
+            ~/.cache/Cypress
+          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            develop-fe-
+
+      #
+      # Install dependencies
+      #
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile && yarn bootstrap
+
+      #
+      # Publish storybook on Chromatic and accept changes.
+      #
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: ${{ github.ref == 'refs/heads/develop' }}
+          exitOnceUploaded: ${{ github.ref != 'refs/heads/develop' }}
