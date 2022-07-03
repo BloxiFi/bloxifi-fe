@@ -80,10 +80,6 @@ export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
    * Optional footer that will appear below table body
    */
   footer?: React.ReactNode
-  /**
-   * Optional Footer className to override any default styling
-   */
-  footerClassName?: string
 }
 
 /**
@@ -187,7 +183,6 @@ export const Table = ({
   noDataMessage = '',
   titleComponent = '',
   footer,
-  footerClassName = '',
   ...props
 }: TableProps) => {
   const isTitleAString = typeof titleComponent === 'string'
@@ -273,7 +268,7 @@ export const Table = ({
         </tbody>
 
         {footer && (
-          <Footer className={footerClassName}>
+          <Footer className="c-table__footer">
             <Column colSpan={numberOfColumns}>{footer}</Column>
           </Footer>
         )}
