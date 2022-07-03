@@ -1,0 +1,1337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Table Basic Table 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-cxabCf aiAbm"
+    data-element="tableWrapper"
+  >
+    <table
+      className="sc-llJcti eJmkvg"
+      data-element="table"
+    >
+      <thead
+        className="sc-jIZahH bhbQxx"
+      >
+        
+        
+        <tr>
+          <td
+            className="sc-ezWOiH sc-bZkfAO ZIeES fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Assets
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total value deposited
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total borrowed
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Deposit APY
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO cQPpOV fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Borrow APY
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              ETH
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              DAI
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              POLKA
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              BTC
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Table Empty Data Table 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-cxabCf aiAbm"
+    data-element="tableWrapper"
+  >
+    <table
+      className="sc-llJcti eJmkvg"
+      data-element="table"
+    >
+      <thead
+        className="sc-jIZahH bhbQxx"
+      >
+        
+        
+        <tr>
+          <td
+            className="sc-ezWOiH sc-bZkfAO ZIeES fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Assets
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total value deposited
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total borrowed
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Deposit APY
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO cQPpOV fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Borrow APY
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="sc-ezWOiH iqrNbW"
+            colSpan={5}
+          >
+            There is no data loaded.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Table Expandable table 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-cxabCf aiAbm"
+    data-element="tableWrapper"
+  >
+    <table
+      className="sc-llJcti eJmkvg"
+      data-element="table"
+    >
+      <thead
+        className="sc-jIZahH bhbQxx"
+      >
+        
+        
+        <tr>
+          <td
+            className="sc-ezWOiH sc-bZkfAO ZIeES fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Assets
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total value deposited
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total borrowed
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Deposit APY
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO cQPpOV fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Borrow APY
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO gDxAOn fHPfGc"
+            width={100}
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Action
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              ETH
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <button
+              appearance="primary"
+              className="sc-bczRLJ sc-gsnTZi iEiyfa hUuZHN"
+              data-element="button"
+              onClick={[Function]}
+              size="small"
+              variant="thin"
+            >
+              Expand
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              DAI
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <button
+              appearance="primary"
+              className="sc-bczRLJ sc-gsnTZi iEiyfa hUuZHN"
+              data-element="button"
+              onClick={[Function]}
+              size="small"
+              variant="thin"
+            >
+              Expand
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              POLKA
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <button
+              appearance="primary"
+              className="sc-bczRLJ sc-gsnTZi iEiyfa hUuZHN"
+              data-element="button"
+              onClick={[Function]}
+              size="small"
+              variant="thin"
+            >
+              Expand
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              BTC
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <button
+              appearance="primary"
+              className="sc-bczRLJ sc-gsnTZi iEiyfa hUuZHN"
+              data-element="button"
+              onClick={[Function]}
+              size="small"
+              variant="thin"
+            >
+              Expand
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Table Title As Component 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-cxabCf aiAbm"
+    data-element="tableWrapper"
+  >
+    <table
+      className="sc-llJcti eJmkvg"
+      data-element="table"
+    >
+      <thead
+        className="sc-jIZahH bhbQxx"
+      >
+        <tr>
+          <td
+            className="sc-gXmSlM fhwcIR"
+            colSpan={5}
+          >
+            <div>
+              Your deposit
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH sc-bZkfAO jchfud cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Assets
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO fdvesl cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total value deposited
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO fdvesl cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total borrowed
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO fdvesl cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Deposit APY
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO hYIQga cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Borrow APY
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="sc-ezWOiH jchfud"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              ETH
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH hYIQga"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH jchfud"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              DAI
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH hYIQga"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH jchfud"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              POLKA
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH hYIQga"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH jchfud"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              BTC
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH fdvesl"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH hYIQga"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Table Title As Plain Text 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-cxabCf aiAbm"
+    data-element="tableWrapper"
+  >
+    <table
+      className="sc-llJcti eJmkvg"
+      data-element="table"
+    >
+      <thead
+        className="sc-jIZahH bhbQxx"
+      >
+        <tr>
+          <td
+            className="sc-himrzO jEHlj"
+            colSpan={5}
+          >
+            Assets to deposit
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH sc-bZkfAO ZIeES cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Assets
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total value deposited
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total borrowed
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Deposit APY
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO cQPpOV cGgHhN"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Borrow APY
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              ETH
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              DAI
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              POLKA
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              BTC
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Table With Footer 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-cxabCf aiAbm"
+    data-element="tableWrapper"
+  >
+    <table
+      className="sc-llJcti eJmkvg"
+      data-element="table"
+    >
+      <thead
+        className="sc-jIZahH bhbQxx"
+      >
+        
+        
+        <tr>
+          <td
+            className="sc-ezWOiH sc-bZkfAO ZIeES fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Assets
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total value deposited
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Total borrowed
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO iqrNbW fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Deposit APY
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH sc-bZkfAO cQPpOV fHPfGc"
+          >
+            <div
+              className="sc-iIPllB sc-gicCDI kCjUgW fJDuCv"
+            >
+              Borrow APY
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              ETH
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              DAI
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              POLKA
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="sc-ezWOiH ZIeES"
+          >
+            <div
+              className="sc-ciZhAO kMrzxN"
+            >
+              BTC
+            </div>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              1.250.000$
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH iqrNbW"
+          >
+            <span>
+              3.5%
+            </span>
+          </td>
+          <td
+            className="sc-ezWOiH cQPpOV"
+          >
+            <span>
+              7.5%
+            </span>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot
+        className="sc-cCsOjp kKUOqD c-table__footer"
+      >
+        <td
+          className="sc-ezWOiH iqrNbW"
+          colSpan={5}
+        >
+          <div>
+            Footer component
+          </div>
+        </td>
+      </tfoot>
+    </table>
+  </div>
+</div>
+`;
