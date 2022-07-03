@@ -1,0 +1,24 @@
+{
+  "name": "@bloxifi/synpress",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "CYPRESS_REMOTE_DEBUGGING_PORT=9222 node -r dotenv/config node_modules/.bin/cypress open"
+  },
+  "devDependencies": {
+    "etherscan-api": "^10.1.0",
+    "cypress": "^9.7.0",
+    "@testing-library/cypress": "^8.0.2",
+    "bytes32": "^0.0.3",
+    "cross-zip": "^4.0.0",
+    "node-fetch": "^2.6.1",
+    "puppeteer-core": "^13.5.2",
+    "cypress-wait-until": "^1.7.2",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-chai-friendly": "^0.7.2",
+    "eslint-plugin-ui-testing": "^2.0.1",
+    "eslint-plugin-testing-library": "5.2.1"
+  }
+}
