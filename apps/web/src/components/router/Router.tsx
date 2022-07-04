@@ -25,11 +25,7 @@ export const Router: FC = ({ children }) => {
   }
 
   useEffect(() => {
-    setHeader(
-      <PageLayout.Header>
-        <Header />
-      </PageLayout.Header>,
-    )
+    setHeader(<Header />)
   }, [setHeader])
 
   return (

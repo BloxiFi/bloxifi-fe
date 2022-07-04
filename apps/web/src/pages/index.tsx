@@ -1,10 +1,4 @@
-import {
-  Text,
-  CoverLayout,
-  CardLayout,
-  BoxLayout,
-  PageLayout,
-} from '@bloxifi/ui'
+import { Text, CoverLayout, CardLayout, BoxLayout } from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -14,6 +8,7 @@ import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
 import { Web3Container } from '@/containers/Web3Container'
 import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
+import { Header } from '@/components/Header/Header'
 
 const HomePage = () => {
   const { t } = useTranslation()
@@ -38,11 +33,7 @@ const HomePage = () => {
         <button onClick={() => changeTheme('dark')}>Dark theme</button>
         <button
           onClick={() =>
-            pageLayout.setHeader(
-              !pageLayout.header ? (
-                <PageLayout.Header>HEADER</PageLayout.Header>
-              ) : null,
-            )
+            pageLayout.setHeader(!pageLayout.header ? <Header /> : null)
           }
         >
           {!pageLayout.header ? 'Add' : 'Remove'} header

@@ -187,10 +187,6 @@ export const PageLayout = styled(Page)`
     height: ${HEADER_HEIGHT}px;
     z-index: ${zIndex.layer200};
     background: ${({ theme }) => theme.headerBackgroundColor};
-
-    button {
-      margin-top: 2.25rem;
-    }
   }
 
   .c-page-layout__footer {
