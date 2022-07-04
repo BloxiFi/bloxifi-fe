@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/BaseInput Details 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-fnykZs jqTsjB"
+  >
+    <section
+      className="sc-hAZoDl lhzMBx"
+      span={3}
+    >
+      <div
+        className="sc-bczRLJ ekBFnZ"
+      >
+        <div
+          className="sc-gsnTZi eXCNjh"
+        >
+          <input
+            disabled={false}
+            type="text"
+          />
+        </div>
+        
+      </div>
+    </section>
+    <section
+      className="sc-hAZoDl lhzMBx"
+      span={3}
+    >
+      <div
+        className="sc-bczRLJ ekBFnZ"
+      >
+        <div
+          className="sc-gsnTZi eXCNjh success"
+        >
+          <input
+            disabled={false}
+            status="success"
+            type="text"
+            value="Success"
+          />
+        </div>
+        <span
+          className="sc-dkzDqf sIBYp"
+        >
+          Success
+        </span>
+      </div>
+    </section>
+    <section
+      className="sc-hAZoDl lhzMBx"
+      span={3}
+    >
+      <div
+        className="sc-bczRLJ ekBFnZ"
+      >
+        <div
+          className="sc-gsnTZi eXCNjh error"
+        >
+          <input
+            disabled={false}
+            status="error"
+            type="text"
+            value="Error"
+          />
+        </div>
+        <span
+          className="sc-dkzDqf kCHank"
+        >
+          Error
+        </span>
+      </div>
+    </section>
+    <section
+      className="sc-hAZoDl lhzMBx"
+      span={3}
+    >
+      <div
+        className="sc-bczRLJ ekBFnZ"
+      >
+        <div
+          className="sc-gsnTZi eXCNjh disabled"
+        >
+          <input
+            disabled={true}
+            type="text"
+            value="Disabled"
+          />
+        </div>
+        
+      </div>
+    </section>
+  </div>
+</div>
+`;

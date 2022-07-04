@@ -10,7 +10,7 @@ exports[`Storyshots Layout/StackLayout Details 1`] = `
 >
   <div
     center={false}
-    className="sc-kDDrLX fSFNxN"
+    className="sc-evZas cMVNHr"
     gap={1}
   >
     <div
@@ -74,7 +74,7 @@ exports[`Storyshots Layout/StackLayout Overview 1`] = `
 >
   <div
     center={false}
-    className="sc-kDDrLX fSFNxN"
+    className="sc-evZas cMVNHr"
     gap={1}
   >
     <div

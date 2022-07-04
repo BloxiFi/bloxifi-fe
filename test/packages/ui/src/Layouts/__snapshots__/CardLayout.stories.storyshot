@@ -9,20 +9,20 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   }
 >
   <div
-    className="sc-fEOsli daVPOo"
+    className="sc-dIouRR cXYesO"
   >
     <div
-      className="sc-kDDrLX sc-bjUoiL djFTLY ccPoRk"
+      className="sc-evZas sc-hHLeRK ldkTlK gWQudn"
       gap={4}
     >
       <section
         className="c-page-layout__section"
       >
         <div
-          className="o-center-layout sc-jqUVSM hIUVle"
+          className="o-center-layout sc-crXcEl TBZtj"
         >
           <div
-            className="sc-papXJ fyoOeI c-card-layout"
+            className="sc-iqcoie kUIlfL c-card-layout"
             style={
               Object {
                 "height": 300,
