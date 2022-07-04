@@ -9,7 +9,7 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
   }
 >
   <div
-    className="sc-dmRaPn itdtiL rts-toggle__container undefined"
+    className="sc-dmRaPn coxogh rts-toggle__container undefined"
     data-element="toggle"
     height={12.5}
     width={25}
@@ -26,7 +26,7 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
     />
   </div>
   <div
-    className="sc-dmRaPn ixsNRW rts-toggle__container undefined"
+    className="sc-dmRaPn fLtmDs rts-toggle__container undefined"
     data-element="toggle"
     height={25}
     width={50}
@@ -43,7 +43,7 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
     />
   </div>
   <div
-    className="sc-dmRaPn hlYdmM rts-toggle__container undefined"
+    className="sc-dmRaPn kmErpq rts-toggle__container undefined"
     data-element="toggle"
     height={37.5}
     width={75}
@@ -60,7 +60,7 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
     />
   </div>
   <div
-    className="sc-dmRaPn fdhrfv rts-toggle__container undefined"
+    className="sc-dmRaPn jUlauZ rts-toggle__container undefined"
     data-element="toggle"
     height={50}
     width={100}
@@ -88,7 +88,7 @@ exports[`Storyshots Components/Toggle Toggle checked 1`] = `
   }
 >
   <div
-    className="sc-dmRaPn ixsNRW rts-toggle__container undefined"
+    className="sc-dmRaPn fLtmDs rts-toggle__container undefined"
     data-element="toggle"
     height={25}
     width={50}
@@ -117,7 +117,7 @@ exports[`Storyshots Components/Toggle Toggle unchecked 1`] = `
   }
 >
   <div
-    className="sc-dmRaPn ixsNRW rts-toggle__container undefined"
+    className="sc-dmRaPn fLtmDs rts-toggle__container undefined"
     data-element="toggle"
     height={25}
     width={50}

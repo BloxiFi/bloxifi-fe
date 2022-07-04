@@ -49,6 +49,8 @@ export const Colors = {
     //Modal
     modalBackgroud: 'rgba(0,0,0,0.6)',
     modalShadow: '0px 2px 1px rgba(1, 39, 73, 0.05)',
+    //Menu
+    menuShadow: '0px 5px 20px rgba(0, 0, 0, 0.05)',
   },
   dark: {
     headerBackground: '#F6F8FA',
@@ -97,5 +99,7 @@ export const Colors = {
     //Modal
     modalBackgroud: 'rgba(0,0,0,0.6)',
     modalShadow: '0px 2px 1px rgba(1, 39, 73, 0.05)',
+    //Menu
+    menuShadow: '0px 5px 20px rgba(0, 0, 0, 0.05)',
   },
 }

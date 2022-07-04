@@ -85,7 +85,6 @@ const Wrapper = styled.div<Pick<ToggleStyle, 'width' | 'height'>>`
   position: relative;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  margin: 0 auto;
   display: inline-flex;
   border-radius: ${({ height }) => height * 0.4}px;
 `
