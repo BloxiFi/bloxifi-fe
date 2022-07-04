@@ -36,6 +36,7 @@ export const relativePosition = (
   rightMenu = false,
   leftMenu = false,
   bottomRightMenu = false,
+  offset = { top: 0, left: 0 },
 ) => {
   if (element) {
     const elementDimensions = element.offsetParent
@@ -100,10 +101,14 @@ export const relativePosition = (
     } else {
       top = targetHeight
       left = target.offsetWidth - elementDimensions.width
+
+      if (leftMenu) {
+        left = 0
+      }
     }
 
-    element.style.top = top + 'px'
-    element.style.left = left + 'px'
+    element.style.top = top + offset.top + 'px'
+    element.style.left = left + offset.left + 'px'
     return top
   }
 }
