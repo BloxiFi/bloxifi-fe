@@ -5,7 +5,7 @@ module.exports = {
       tsconfig: './tsconfig.json',
     },
   },
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./test/setup.ts'],
   collectCoverageFrom: ['**/*.tsx'],
   moduleNameMapper: {

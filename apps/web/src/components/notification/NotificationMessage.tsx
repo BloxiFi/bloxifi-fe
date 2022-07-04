@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 import { Notification, NotificationStatus } from './NotificationManager'
 
@@ -105,24 +105,24 @@ const Item = styled.div<{ status: string }>`
 
   ${({ status }) =>
     status === 'SUCCESS' &&
-    `
-    background:${({ theme }) => theme.green80};
-  `}
+    css`
+      background: ${({ theme }) => theme.green80};
+    `}
   ${({ status }) =>
     status === 'INFO' &&
-    `
-    background:${({ theme }) => theme.primary};
-  `}
+    css`
+      background: ${({ theme }) => theme.primary};
+    `}
   ${({ status }) =>
     status === 'WARNING' &&
-    `
-    background:${({ theme }) => theme.warningNotification}; 
-  `}
+    css`
+      background: ${({ theme }) => theme.warningNotification};
+    `}
   ${({ status }) =>
     status === 'ERROR' &&
-    `
-    background:${({ theme }) => theme.red80};
-  `}
+    css`
+      background: ${({ theme }) => theme.red80};
+    `}
   
   [data-element="icon"] {
     margin-right: 1rem;

@@ -14,8 +14,6 @@
     "prebuild": "yarn generate:routes",
     "generate:routes": "node scripts/routes.js",
     "build": "webpack --config ./config/webpack.prod.js",
-    "test:e2e": "cypress run",
-    "test:e2e:dev": "cypress open",
     "ci:e2e": "start-server-and-test start http://localhost:8080 test:e2e"
   },
   "browserslist": [
@@ -23,14 +21,12 @@
     "not IE 11"
   ],
   "devDependencies": {
-    "@babel/runtime": "^7.18.3",
+    "@babel/runtime": "^7.18.6",
     "@types/react-router-dom": "^5.3.3",
-    "concurrently": "^7.2.1",
-    "cypress": "^10.1.0",
-    "http-server": "^14.0.0",
+    "http-server": "^14.1.1",
     "start-server-and-test": "^1.14.0",
-    "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^4.9.2"
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
     "@bloxifi/build": "^1.0.0",
