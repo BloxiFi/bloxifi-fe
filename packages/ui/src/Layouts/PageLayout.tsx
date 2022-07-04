@@ -168,7 +168,7 @@ export const Page: PageLayout = Object.assign(
   },
 )
 
-const HEADER_HEIGHT = 185
+const HEADER_HEIGHT = 64
 const CONTENT_MAX_WIDTH = 1203
 
 export const PageLayout = styled(Page)`
@@ -183,24 +183,13 @@ export const PageLayout = styled(Page)`
     position: sticky;
     left: 0;
     top: 0;
-    width: 100vw;
+    width: 100%;
     height: ${HEADER_HEIGHT}px;
     z-index: ${zIndex.layer200};
-    background: ${({ theme }) => theme.headerBackground};
-    border-bottom: 1px solid ${({ theme }) => theme.borderColor};
-    padding: 3.5rem 3.75rem 2rem;
+    background: ${({ theme }) => theme.headerBackgroundColor};
 
     button {
       margin-top: 2.25rem;
-    }
-
-    &--logo {
-      background: ${({ theme }) => theme.logoBackground};
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding-left: 2.75rem;
     }
   }
 

@@ -1,4 +1,10 @@
-import { Text, CoverLayout, CardLayout, BoxLayout } from '@bloxifi/ui'
+import {
+  Text,
+  CoverLayout,
+  CardLayout,
+  BoxLayout,
+  PageLayout,
+} from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -32,7 +38,11 @@ const HomePage = () => {
         <button onClick={() => changeTheme('dark')}>Dark theme</button>
         <button
           onClick={() =>
-            pageLayout.setHeader(!pageLayout.header ? <div>HEADER</div> : null)
+            pageLayout.setHeader(
+              !pageLayout.header ? (
+                <PageLayout.Header>HEADER</PageLayout.Header>
+              ) : null,
+            )
           }
         >
           {!pageLayout.header ? 'Add' : 'Remove'} header

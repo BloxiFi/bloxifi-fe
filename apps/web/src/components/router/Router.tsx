@@ -1,6 +1,6 @@
 import { PageLayout } from '@bloxifi/ui'
 import React, { FC, lazy, Suspense, useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Header } from '../Header/Header'
 
@@ -25,7 +25,11 @@ export const Router: FC = ({ children }) => {
   }
 
   useEffect(() => {
-    setHeader(<Header />)
+    setHeader(
+      <PageLayout.Header>
+        <Header />
+      </PageLayout.Header>,
+    )
   }, [setHeader])
 
   return (

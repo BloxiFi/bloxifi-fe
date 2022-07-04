@@ -31,7 +31,7 @@ export const Overview = args => {
 
   useEffect(() => {
     if (args.header) {
-      nav.setHeader(<PageLayoutHeader>Header</PageLayoutHeader>)
+      nav.setHeader(<PageLayout.Header>Header</PageLayout.Header>)
     } else {
       nav.setHeader(null)
     }

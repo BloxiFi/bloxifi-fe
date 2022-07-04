@@ -3,10 +3,6 @@ import { ReactProps } from '@bloxifi/types'
 import classNames from 'classnames'
 import React from 'react'
 
-import { Text } from '../Text'
-
-import { BoxLayout } from './BoxLayout'
-
 export interface HeaderProps {
   /**
    * The element to render the `<Header>` as. Defaults to 'header'.
@@ -32,14 +28,6 @@ export const PageLayoutHeader = React.forwardRef(
 
     return (
       <Component ref={ref} {...props} className={className}>
-        <div className="c-page-layout__header--logo">
-          <BoxLayout>
-            <img width="26" height="26" src="/img/logo.png" />
-            <Text color="white" bold>
-              System Test Matrix
-            </Text>
-          </BoxLayout>
-        </div>
         {children}
       </Component>
     )

@@ -53,6 +53,8 @@ export const Colors = {
     tableBorderColor: '#DAE3ED',
     tableTextColor: '#012749',
     tableCellBackgroundColor: 'white',
+    //Header
+    headerBackgroundColor: '#012749',
   },
   dark: {
     headerBackground: '#F6F8FA',
@@ -105,5 +107,7 @@ export const Colors = {
     tableBorderColor: '#DAE3ED',
     tableTextColor: '#012749',
     tableCellBackgroundColor: 'white',
+    //Header
+    headerBackgroundColor: '#012749',
   },
 }
