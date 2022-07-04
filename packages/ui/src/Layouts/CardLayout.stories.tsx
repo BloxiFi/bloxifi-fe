@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import { Button } from '../Button'
 import { Colors } from '../styles/colors'
 
 import { Card, CardLayout } from './CardLayout'
@@ -30,7 +31,18 @@ export const Overview = args => {
 
   useEffect(() => {
     if (args.header) {
-      nav.setHeader(<PageLayout.Header>Header</PageLayout.Header>)
+      nav.setHeader(
+        <PageLayout.Header
+          navigationItems={[
+            { to: '/', label: 'Home' },
+            { to: '/contact', label: 'Contact' },
+          ]}
+        >
+          <Button variant="medium" appearance="primary" size="medium">
+            Demo button
+          </Button>
+        </PageLayout.Header>,
+      )
     } else {
       nav.setHeader(null)
     }
