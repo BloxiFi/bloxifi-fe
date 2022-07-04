@@ -10111,9 +10111,9 @@ ethers@^5.6.9:
     "@ethersproject/wordlists" "5.6.1"
 
 etherscan-api@^10.1.0:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/etherscan-api/-/etherscan-api-10.1.0.tgz#b3ba6f760e17b651fa21575a72dd985b01e98deb"
-  integrity sha512-nhmhGQIacu7ZQ1s2kRlYy2KBBBcl8iPyy2fxbI4XnvP7gDuGdY8+P7U4aCAahRkJ9cU2ZNEsZ5Z2/P4ev4H7Cw==
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/etherscan-api/-/etherscan-api-10.2.0.tgz#62f53dfadcea4bc3994a0a74ae0211a3a9b8da88"
+  integrity sha512-QCd3Eu/p1fI0lVOj9PrRJp5fi3vbiujZqgMmO4UA277DyKBFUz/1kW9nENDn1T4SnA3zNZjl2wwwDEnuJ3erYQ==
   dependencies:
     axios "0.27.2"
     gh-pages "4.0.0"
