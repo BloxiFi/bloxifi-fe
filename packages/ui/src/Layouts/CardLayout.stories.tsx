@@ -5,7 +5,6 @@ import { Colors } from '../styles/colors'
 import { Card, CardLayout } from './CardLayout'
 import { CenterLayout } from './CenterLayout'
 import { PageLayout, usePageLayout } from './PageLayout'
-import { PageLayoutHeader } from './PageLayoutHeader'
 
 export default {
   title: 'Layout/CardLayout',
