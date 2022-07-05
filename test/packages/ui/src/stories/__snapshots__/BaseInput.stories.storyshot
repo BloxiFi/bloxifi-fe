@@ -19,7 +19,7 @@ exports[`Storyshots Components/BaseInput Details 1`] = `
         className="sc-bczRLJ ekBFnZ"
       >
         <div
-          className="sc-gsnTZi eXCNjh"
+          className="sc-gsnTZi kwKCUj"
         >
           <input
             disabled={false}
@@ -37,11 +37,10 @@ exports[`Storyshots Components/BaseInput Details 1`] = `
         className="sc-bczRLJ ekBFnZ"
       >
         <div
-          className="sc-gsnTZi eXCNjh success"
+          className="sc-gsnTZi bHVtDn"
         >
           <input
             disabled={false}
-            status="success"
             type="text"
             value="Success"
           />
@@ -61,11 +60,10 @@ exports[`Storyshots Components/BaseInput Details 1`] = `
         className="sc-bczRLJ ekBFnZ"
       >
         <div
-          className="sc-gsnTZi eXCNjh error"
+          className="sc-gsnTZi clOkyH"
         >
           <input
             disabled={false}
-            status="error"
             type="text"
             value="Error"
           />
@@ -85,7 +83,7 @@ exports[`Storyshots Components/BaseInput Details 1`] = `
         className="sc-bczRLJ ekBFnZ"
       >
         <div
-          className="sc-gsnTZi eXCNjh disabled"
+          className="sc-gsnTZi kwKCUj"
         >
           <input
             disabled={true}

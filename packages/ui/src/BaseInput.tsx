@@ -1,9 +1,9 @@
-import classNames from 'classnames'
 import React, { forwardRef, FunctionComponent, HTMLProps } from 'react'
 import styled from 'styled-components'
 
 import { Fonts } from './styles/fonts'
 
+type Status = 'error' | 'success' | undefined
 /**
  * BaseInput props.
  */
@@ -11,7 +11,7 @@ export interface Props extends HTMLProps<HTMLInputElement> {
   /**
    * Status error or success will paint input border and info text to red or green respectively
    */
-  status?: 'success' | 'error' | undefined
+  status?: Status
   /**
    * Input info that will appear below the input field
    */
@@ -25,29 +25,18 @@ export const BaseInput: FunctionComponent<Props> = forwardRef(
       className = '',
       disabled = false,
       info = '',
+      status,
       ...props
     }: Props,
     ref,
   ) => {
     return (
       <Wrapper>
-        <InnerWrapper
-          className={classNames(
-            className && className,
-            disabled && 'disabled',
-            props.status && props.status,
-          )}
-        >
-          <input
-            ref={ref}
-            type={type}
-            {...props}
-            disabled={disabled}
-            value={props.value}
-          />
+        <InnerWrapper className={className} status={status}>
+          <input ref={ref} type={type} {...props} disabled={disabled} />
         </InnerWrapper>
 
-        {info && <Info status={props.status}>{info}</Info>}
+        {info && <Info status={status}>{info}</Info>}
       </Wrapper>
     )
   },
@@ -57,16 +46,18 @@ const Wrapper = styled.div`
   width: 100%;
 `
 
-const InnerWrapper = styled.div`
+const InnerWrapper = styled.div<{ status?: Status }>`
   input {
     width: calc(100% - 1.125rem * 2);
     height: 1.875rem;
     background: ${({ theme }) => theme.inputBackground};
-    border: 1px solid ${({ theme }) => theme.inputBorder};
+    border: none;
+    box-shadow: ${({ theme, status }) =>
+      `0 0 0 1px ${theme[status] ?? theme.inputBorder}`};
     border-radius: 5px;
     outline: none;
     font-size: 1rem;
-    line-height: 19.36px;
+    line-height: 19px;
     font-weight: 600;
     padding: 0 1.125rem;
     font-family: ${Fonts.Inter};
@@ -82,32 +73,21 @@ const InnerWrapper = styled.div`
 
     &:active,
     &:focus {
-      border-width: 2px;
+      box-shadow: ${({ theme, status }) =>
+        `0 0 0 2px ${theme[status] ?? theme.inputBorder}`};
     }
 
     &[type='number'] {
       appearance: textfield;
     }
-  }
 
-  &.error {
-    input {
-      border-color: ${({ theme }) => theme.error};
+    &[disabled] {
+      opacity: 0.5;
     }
-  }
-
-  &.success {
-    input {
-      border-color: ${({ theme }) => theme.success};
-    }
-  }
-
-  &.disabled {
-    opacity: 0.5;
   }
 `
 
-const Info = styled.span<{ status?: 'error' | 'success' | undefined }>`
+const Info = styled.span<{ status?: Status }>`
   max-width: 100%;
   padding: 0 1.125rem;
   font-weight: 400;
@@ -115,10 +95,6 @@ const Info = styled.span<{ status?: 'error' | 'success' | undefined }>`
   font-family: ${Fonts.Inter};
   line-height: 15px;
   color: ${({ status, theme }) => {
-    return status
-      ? status === 'error'
-        ? theme.error
-        : theme.success
-      : theme.inputBorder
+    return theme[status] ?? theme.inputBorder
   }};
 `
