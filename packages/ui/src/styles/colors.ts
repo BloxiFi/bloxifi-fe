@@ -5,7 +5,7 @@ export const Colors = {
   light: {
     headerBackground: '#F6F8FA',
     logoBackground: '#57606A',
-    background: '#FFFFFF',
+    background: '#012749',
     tabHover: '#218BFF',
     white: '#FFFFFF',
     chartTitleBackground: '#F7F9FC',
@@ -64,7 +64,7 @@ export const Colors = {
   dark: {
     headerBackground: '#F6F8FA',
     logoBackground: '#57606A',
-    background: '#FFFFFF',
+    background: '#012749',
     tabHover: '#218BFF',
     white: '#000000',
     chartTitleBackground: '#F7F9FC',
