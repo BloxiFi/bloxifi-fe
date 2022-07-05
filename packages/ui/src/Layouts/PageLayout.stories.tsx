@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+
+import { Button } from '../Button'
 
 import { PageLayout, Page, usePageLayout } from './PageLayout'
-import { PageLayoutHeader } from './PageLayoutHeader'
 import { StackLayout } from './StackLayout'
 
 export default {
@@ -21,17 +23,34 @@ export const Overview = args => {
 
   useEffect(() => {
     if (args.header) {
-      setHeader(<PageLayoutHeader>Header</PageLayoutHeader>)
+      setHeader(
+        <PageLayout.Header
+          navigationItems={[
+            { to: '/', label: 'Home' },
+            { to: '/contact', label: 'Contact' },
+          ]}
+        >
+          <Button variant="medium" appearance="primary" size="medium">
+            Demo button
+          </Button>
+        </PageLayout.Header>,
+      )
     } else {
       setHeader(null)
     }
   }, [args.header, setHeader])
 
   return (
-    <PageLayout {...nav}>
-      <PageLayout.Section>
-        <StackLayout center>Some Content</StackLayout>
-      </PageLayout.Section>
-    </PageLayout>
+    <BrowserRouter>
+      <PageLayout {...nav}>
+        <PageLayout.Section>
+          <StackLayout center>Some Content</StackLayout>
+        </PageLayout.Section>
+
+        <PageLayout.Section>
+          <StackLayout center>Some Content</StackLayout>
+        </PageLayout.Section>
+      </PageLayout>
+    </BrowserRouter>
   )
 }

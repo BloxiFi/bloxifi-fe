@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Menu Left menu 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    align="flex-start"
+    className="sc-kDDrLX sc-cOFTSb iFyCNQ brlMGO"
+  >
+    <span
+      className="sc-cTQhss cOCGyF"
+      data-element="menuWrapper"
+    >
+      <button
+        appearance="primary-ghost"
+        className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+        data-element="button"
+        onMouseUp={[Function]}
+        size="medium"
+        variant="medium"
+      >
+        Oxfd...586c
+        <div
+          className="sc-kDDrLX ddEmQZ"
+          gap={0.75}
+        />
+      </button>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Menu Right menu 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    align="flex-end"
+    className="sc-kDDrLX sc-cOFTSb iFyCNQ huuEUV"
+  >
+    <span
+      className="sc-cTQhss cOCGyF"
+      data-element="menuWrapper"
+    >
+      <button
+        appearance="primary-ghost"
+        className="sc-hKMtZM sc-iBkjds jQZGYc izdpQA"
+        data-element="button"
+        icon="settings"
+        onMouseUp={[Function]}
+        size="medium"
+        variant="medium"
+      />
+    </span>
+  </div>
+</div>
+`;

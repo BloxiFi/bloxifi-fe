@@ -37,4 +37,8 @@ export const GlobalStyle = createGlobalStyle`
     font-display: swap;
     src: local('Inter Semi-Bold'), url(${InterFontSemiBold}) format('woff');
   }
+
+  body * {
+    box-sizing: border-box;
+  }
 `
