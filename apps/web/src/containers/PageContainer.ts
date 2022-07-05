@@ -1,3 +1,4 @@
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client'
 import { Action } from '@bloxifi/types'
 import { PageLayoutActions, PageLayoutState, usePageLayout } from '@bloxifi/ui'
 import { Reducer } from 'preact/compat'
@@ -41,6 +42,29 @@ function usePage(initialState: State = defaultState): PageContainerState {
     reducer,
     initialState,
   )
+  const client = new ApolloClient({
+    uri: 'https://api.thegraph.com/subgraphs/name/milos1991/bloxifi-protocol',
+    cache: new InMemoryCache(),
+  })
+  client
+    .query({
+      query: gql`
+        query MyQuery {
+          deposits(orderBy: timestamp, orderDirection: desc) {
+            amount
+            timestamp
+            user {
+              id
+            }
+            pool {
+              lendingPool
+            }
+          }
+        }
+      `,
+    })
+    .then(result => console.log(result))
+    .catch(error => console.log(error))
   const pageLayout = usePageLayout()
 
   function setTitle(title = 'BloxiFi') {

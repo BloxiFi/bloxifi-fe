@@ -1,3 +1,5 @@
+import { useQuery } from '@apollo/client'
+import { GRAPHQLEXAMPLEQUERY } from '@bloxifi/core'
 import { Text, CoverLayout, CardLayout, BoxLayout } from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -17,6 +19,7 @@ const HomePage = () => {
   const {
     state: { isConnected, loading },
   } = Web3Container.useContainer()
+  const { loading: loadingQuery, error, data } = useQuery(GRAPHQLEXAMPLEQUERY)
 
   return (
     <Wrapper>

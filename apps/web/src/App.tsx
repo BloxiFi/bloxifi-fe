@@ -1,3 +1,4 @@
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import { Colors, GlobalStyle } from '@bloxifi/ui'
@@ -10,7 +11,6 @@ import { Web3Container } from './containers/Web3Container'
 import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
-import { NotificationManager } from '@/components/notification/NotificationManager'
 import { Router } from '@/components/router/Router'
 
 export const App = () => {
@@ -22,18 +22,24 @@ export const App = () => {
     return library
   }
 
+  const client = new ApolloClient({
+    uri: 'https://api.thegraph.com/subgraphs/name/milos1991/bloxifi-protocol',
+    cache: new InMemoryCache(),
+  })
+
   return (
     <ThemeProvider theme={Colors[style.state.theme]}>
       <AppWrapper>
         <GlobalStyle {...style.state} />
         <Web3ReactProvider getLibrary={getWeb3Library}>
           <Web3Container.Provider>
-            <NotificationManager />
-            <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
-              <LocaleContainer.Provider>
-                <Router />
-              </LocaleContainer.Provider>
-            </PageContainer.Provider>
+            <ApolloProvider client={client}>
+              <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
+                <LocaleContainer.Provider>
+                  <Router />
+                </LocaleContainer.Provider>
+              </PageContainer.Provider>
+            </ApolloProvider>
           </Web3Container.Provider>
         </Web3ReactProvider>
       </AppWrapper>
