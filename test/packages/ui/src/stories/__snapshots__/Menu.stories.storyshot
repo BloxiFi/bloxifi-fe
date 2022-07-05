@@ -10,10 +10,10 @@ exports[`Storyshots Components/Menu Left menu 1`] = `
 >
   <div
     align="flex-start"
-    className="sc-ftvSup sc-iAvgwm dXLSAb bwcUnG"
+    className="sc-ftvSup sc-jOrMOR dXLSAb kqjqbS"
   >
     <span
-      className="sc-ciZhAO iTkbQp"
+      className="sc-iTONeN iEAGnI"
       data-element="menuWrapper"
     >
       <button
@@ -45,10 +45,10 @@ exports[`Storyshots Components/Menu Right menu 1`] = `
 >
   <div
     align="flex-end"
-    className="sc-ftvSup sc-iAvgwm dXLSAb kNxNkt"
+    className="sc-ftvSup sc-jOrMOR dXLSAb ccxllJ"
   >
     <span
-      className="sc-ciZhAO iTkbQp"
+      className="sc-iTONeN iEAGnI"
       data-element="menuWrapper"
     >
       <button
