@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 import { Fonts } from '../styles/fonts'
 
-type NavItemType = {
+interface NavigationItem {
   to: string
   label: string
   onClick?: () => void
@@ -25,7 +25,7 @@ export interface HeaderProps {
   /**
    * Links provided for navigation
    */
-  navigationItems: NavItemType[]
+  navigationItems: NavigationItem[]
 }
 
 const defaultElement = 'header'
@@ -73,6 +73,7 @@ const HeaderWrapper = styled.div`
   font-family: ${Fonts.ClashDisplay};
   border-bottom: 1px solid ${({ theme }) => theme.headerWrapperBorderColor};
 `
+//TODO@all add animation when border appears
 const HeaderLink = styled(NavLink)`
   margin-right: 32px;
   text-decoration: none;
@@ -84,7 +85,10 @@ const HeaderLink = styled(NavLink)`
   border-bottom: 2px solid transparent;
 
   &.active {
-    border-bottom: 2px solid ${({ theme }) => theme.activeHeaderItemBorderColor};
+    border-bottom: 2px solid;
+    border-image-source: ${({ theme }) =>
+      `linear-gradient(270deg, ${theme.activeHeaderItemBorderColorStart} 0%, ${theme.activeHeaderItemBorderColorEnd} 100%)`};
+    border-image-slice: 1;
   }
 `
 const HeaderLinksWrapper = styled.div`

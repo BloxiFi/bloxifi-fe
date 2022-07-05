@@ -57,7 +57,8 @@ export const Colors = {
     tableCellBackgroundColor: 'white',
     //Header
     headerBackgroundColor: '#012749',
-    activeHeaderItemBorderColor: '#90abc8',
+    activeHeaderItemBorderColorStart: '#90ABC8',
+    activeHeaderItemBorderColorEnd: '#DAE3ED',
     headerWrapperBorderColor: 'rgba(255, 255, 255, 0.3)',
   },
   dark: {
@@ -115,7 +116,8 @@ export const Colors = {
     tableCellBackgroundColor: 'white',
     //Header
     headerBackgroundColor: '#012749',
-    activeHeaderItemBorderColor: '#90abc8',
+    activeHeaderItemBorderColorStart: '#90ABC8',
+    activeHeaderItemBorderColorEnd: '#DAE3ED',
     headerWrapperBorderColor: 'rgba(255, 255, 255, 0.3)',
   },
 }
