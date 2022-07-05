@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Fonts } from './styles/fonts'
 
-type Status = 'error' | 'success' | undefined
+type Status = 'error' | 'success'
 /**
  * BaseInput props.
  */
