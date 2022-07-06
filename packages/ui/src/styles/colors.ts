@@ -9,7 +9,8 @@ export const Colors = {
     tabHover: '#218BFF',
     white: '#FFFFFF',
     chartTitleBackground: '#F7F9FC',
-
+    error: '#CD595A',
+    success: '#13BAA6',
     //Text
     textColorLight: '#818181',
     textColorDark: '#212121',
@@ -55,6 +56,10 @@ export const Colors = {
     tableBorderColor: '#DAE3ED',
     tableTextColor: '#012749',
     tableCellBackgroundColor: 'white',
+    //Input
+    inputBorder: '#677789',
+    inputTextColor: '#012749',
+    inputHoverBackground: '#dae3ed80',
     //Header
     headerBackgroundColor: '#012749',
     activeHeaderItemBorderColorStart: '#90ABC8',
@@ -68,6 +73,8 @@ export const Colors = {
     tabHover: '#218BFF',
     white: '#000000',
     chartTitleBackground: '#F7F9FC',
+    error: '#CD595A',
+    success: '#13BAA6',
 
     //Text
     textColorLight: '#818181',
@@ -114,6 +121,10 @@ export const Colors = {
     tableBorderColor: '#DAE3ED',
     tableTextColor: '#012749',
     tableCellBackgroundColor: 'white',
+    //Input
+    inputBorder: '#677789',
+    inputTextColor: '#012749',
+    inputHoverBackground: '#dae3ed80',
     //Header
     headerBackgroundColor: '#012749',
     activeHeaderItemBorderColorStart: '#90ABC8',

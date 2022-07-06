@@ -10,15 +10,15 @@ exports[`Storyshots Components/Menu Left menu 1`] = `
 >
   <div
     align="flex-start"
-    className="sc-ftvSup sc-jOrMOR dXLSAb kqjqbS"
+    className="sc-kDDrLX sc-cOFTSb iFyCNQ brlMGO"
   >
     <span
-      className="sc-iTONeN iEAGnI"
+      className="sc-cTQhss cOCGyF"
       data-element="menuWrapper"
     >
       <button
         appearance="primary-ghost"
-        className="sc-bczRLJ sc-eCYdqJ eJlJy iokKVj"
+        className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
         data-element="button"
         onMouseUp={[Function]}
         size="medium"
@@ -26,7 +26,7 @@ exports[`Storyshots Components/Menu Left menu 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-ftvSup cwlfiu"
+          className="sc-kDDrLX ddEmQZ"
           gap={0.75}
         />
       </button>
@@ -45,15 +45,15 @@ exports[`Storyshots Components/Menu Right menu 1`] = `
 >
   <div
     align="flex-end"
-    className="sc-ftvSup sc-jOrMOR dXLSAb ccxllJ"
+    className="sc-kDDrLX sc-cOFTSb iFyCNQ huuEUV"
   >
     <span
-      className="sc-iTONeN iEAGnI"
+      className="sc-cTQhss cOCGyF"
       data-element="menuWrapper"
     >
       <button
         appearance="primary-ghost"
-        className="sc-bczRLJ sc-eCYdqJ ERNDu kswtPl"
+        className="sc-hKMtZM sc-iBkjds jQZGYc izdpQA"
         data-element="button"
         icon="settings"
         onMouseUp={[Function]}
