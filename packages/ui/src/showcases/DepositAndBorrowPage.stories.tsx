@@ -34,9 +34,9 @@ export const NotConnected = () => {
               <CardLayout>
                 <BoxLayout gap={2}>
                   <StackLayout gap={2.815}>
-                    <Heading color="oxfordBlue" type="heading 2">
+                    <Text as="span" color="oxfordBlue" type="heading 2">
                       Your deposit
-                    </Heading>
+                    </Text>
                     <Text type="body 5">Nothing deposited yet</Text>
                   </StackLayout>
                 </BoxLayout>
@@ -46,9 +46,9 @@ export const NotConnected = () => {
               <CardLayout>
                 <BoxLayout gap={2}>
                   <StackLayout gap={2.815}>
-                    <Heading color="oxfordBlue" type="heading 2">
+                    <Text as="span" color="oxfordBlue" type="heading 2">
                       Your borrow
-                    </Heading>
+                    </Text>
                     <Text type="body 5">Nothing borrowed yet</Text>
                   </StackLayout>
                 </BoxLayout>
@@ -58,9 +58,9 @@ export const NotConnected = () => {
               <CardLayout>
                 <BoxLayout gap={8}>
                   <CenterLayout>
-                    <Heading color="oxfordBlue" type="heading 2">
+                    <Text as="span" color="oxfordBlue" type="heading 2">
                       Please, connect your wallet
-                    </Heading>
+                    </Text>
                     <Text color="oxfordBlue" type="body 5">
                       Please, connect your wallet to see your deposits and
                       borrowings
@@ -89,9 +89,7 @@ export const Completed = () => {
   const yourDepositColumns = {
     assets: {
       header: 'Assets',
-      Cell: ({ data: { assets } }: CellProps) => (
-        <WrappedText>{assets}</WrappedText>
-      ),
+      Cell: ({ data: { assets } }: CellProps) => <span>{assets}</span>,
       alignText: 'left',
     },
     balance: {
@@ -129,9 +127,7 @@ export const Completed = () => {
   const yourBorrowColumns = {
     assets: {
       header: 'Assets',
-      Cell: ({ data: { assets } }: CellProps) => (
-        <WrappedText>{assets}</WrappedText>
-      ),
+      Cell: ({ data: { assets } }: CellProps) => <span>{assets}</span>,
       alignText: 'left',
     },
     balance: {
@@ -162,9 +158,7 @@ export const Completed = () => {
   const defaultColumns = {
     assets: {
       header: 'Assets',
-      Cell: ({ data: { assets } }: CellProps) => (
-        <WrappedText>{assets}</WrappedText>
-      ),
+      Cell: ({ data: { assets } }: CellProps) => <span>{assets}</span>,
       alignText: 'left',
     },
     walletBalance: {
@@ -241,10 +235,10 @@ export const Completed = () => {
   ]
   const DepositTitleBox = () => (
     <StackLayout gap={2.125}>
-      <Heading color="oxfordBlue" type="heading 2">
+      <Text as="span" color="oxfordBlue" type="heading 2">
         Your deposit
-      </Heading>
-      <DepositColumn center gap={1}>
+      </Text>
+      <ColumnLayout center gap={1}>
         <Text color="oxfordBlue" as="span" type="body 2">
           Balance $
           <Text as="span" color="oxfordBlue" bold>
@@ -258,16 +252,16 @@ export const Completed = () => {
             1.00
           </Text>
         </Text>
-      </DepositColumn>
+      </ColumnLayout>
     </StackLayout>
   )
 
   const BorrowTitleBox = () => (
     <BorrowColumn>
       <StackLayout gap={2.125}>
-        <Heading color="oxfordBlue" type="heading 2">
+        <Text as="span" color="oxfordBlue" type="heading 2">
           Your borrow
-        </Heading>
+        </Text>
 
         <Text color="oxfordBlue" type="body 2" as="span">
           Balance $
@@ -338,14 +332,6 @@ export const Completed = () => {
   )
 }
 
-const Heading = styled(Text)`
-  margin: 0;
-`
-const DepositColumn = styled(ColumnLayout)`
-  & > * {
-    flex-grow: unset;
-  }
-`
 const BorrowColumn = styled(ColumnLayout)`
   position: relative;
 `
@@ -354,9 +340,6 @@ const ProgressBarWrapper = styled.div`
   bottom: -20px;
   right: 0;
   width: 50%;
-`
-const WrappedText = styled.div`
-  word-break: break-all;
 `
 
 NotConnected.storyName = 'Not Connected'

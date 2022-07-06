@@ -112,7 +112,7 @@ const Column = styled(defaultElement)<ColumnLayoutProps>`
   ${props => `${props.recursive ? '*' : '> *'}{
     margin-left: 0;
     margin-right: 0;
-    flex-grow: 1;
+   
   }`}
   ${props => `${props.recursive ? '* + *' : '> * + *'}{
     margin-left: ${props.gap || 1}rem;
