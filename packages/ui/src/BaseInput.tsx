@@ -62,6 +62,7 @@ const InnerWrapper = styled.div<{ status?: Status }>`
     padding: 0 1.125rem;
     font-family: ${Fonts.Inter};
     color: ${({ theme }) => theme.inputTextColor};
+    transition: box-shadow 0.3s;
 
     &:hover {
       background-color: ${({ theme }) => theme.inputHoverBackground};
@@ -82,6 +83,7 @@ const InnerWrapper = styled.div<{ status?: Status }>`
     }
 
     &[disabled] {
+      pointer-events: none;
       opacity: 0.5;
     }
   }
