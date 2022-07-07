@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/react'
 import React, { Fragment, useContext, useState } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 
 import { Button } from '..'
 import { BoxLayout, ColumnLayout, StackLayout } from '../Layouts'
@@ -8,9 +9,7 @@ import { Table, CellProps } from '../Table'
 import { Text } from '../Text'
 import { Toggle } from '../Toggle'
 import { BaseInput } from '../BaseInput'
-import styled from 'styled-components'
 import { Icon } from '../Icon'
-import { ThemeContext } from 'styled-components'
 
 export default {
   title: 'Components/Modal',
