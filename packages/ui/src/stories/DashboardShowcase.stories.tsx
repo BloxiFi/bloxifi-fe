@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { Button } from '../Button'
 import { Icon } from '../Icon'
-import { Page, PageLayout, StackLayout, usePageLayout } from '../Layouts'
+import { Page, PageLayout, usePageLayout } from '../Layouts'
 import { GridLayout } from '../Layouts/GridLayout'
 import { Table } from '../Table'
 import { Text } from '../Text'
