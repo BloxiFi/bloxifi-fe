@@ -72,7 +72,7 @@ const Content = styled(CenterLayout)`
   overflow: auto;
   display: flex;
   flex-direction: column;
-  padding: 1.875rem;
+  padding: 0;
   background: ${({ theme }) => theme.white};
   box-shadow: ${({ theme }) => theme.modalShadow};
   border-radius: 0.345rem;
