@@ -10,7 +10,7 @@ exports[`Storyshots Components/Modal Modal Example 1`] = `
 >
   <button
     appearance="primary"
-    className="sc-bczRLJ sc-gsnTZi eJlJy hUuZHN"
+    className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
     data-element="button"
     onClick={[Function]}
     size="medium"
