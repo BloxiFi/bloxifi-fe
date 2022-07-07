@@ -44,13 +44,6 @@ export const Overview = args => {
           <Button variant="medium" appearance="primary" size="medium">
             Connect Wallet
           </Button>
-
-          <Button
-            appearance="primary"
-            variant="medium"
-            size="medium"
-            icon="settings"
-          />
         </PageLayout.Header>,
       )
     } else {
@@ -92,9 +85,7 @@ export const Overview = args => {
         </PageLayout.Section>
 
         <PageLayout.Section>
-          <StackLayout>
-            <Table columns={defaultColumns} data={defaultData} />
-          </StackLayout>
+          <Table columns={defaultColumns} data={defaultData} />
         </PageLayout.Section>
       </PageLayout>
     </BrowserRouter>

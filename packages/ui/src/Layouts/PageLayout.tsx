@@ -181,8 +181,8 @@ export const PageLayout = styled(Page)`
   background-color: ${({ theme }) => theme.background};
   background-repeat: no-repeat;
   background-image: url(${background});
-  background-position: 0 264px;
-  background-size: contain;
+  background-position: 0 0;
+  background-size: 100% 890px;
 
   .c-page-layout__header {
     position: sticky;
