@@ -24,39 +24,41 @@ export default {
   title: 'showcase/Deposit and Borrow',
 } as Meta
 
+const getHeader = () => (
+  <PageLayout.Header
+    navigationItems={[
+      { to: '/', label: 'Dashboard' },
+      { to: '/', label: 'Deposit&Borrow' },
+      { to: '/', label: 'Stake' },
+      { to: '/', label: 'More Information' },
+    ]}
+  >
+    <Button variant="medium" appearance="primary-ghost" size="medium">
+      Blox Balance
+    </Button>
+    <Button appearance="primary-ghost" variant="medium" size="medium">
+      <>
+        Oxfd...586c
+        <BoxLayout gap={0.75}>
+          <Icon color="white" name="arrow-down" />
+        </BoxLayout>
+      </>
+    </Button>
+    <Button
+      appearance="primary-ghost"
+      variant="medium"
+      size="medium"
+      icon="settings"
+    />
+  </PageLayout.Header>
+)
+
 export const NotConnected = () => {
   const nav = usePageLayout()
   const { setHeader } = nav
 
   useEffect(() => {
-    setHeader(
-      <PageLayout.Header
-        navigationItems={[
-          { to: '/', label: 'Dashboard' },
-          { to: '/', label: 'Deposit&Borrow' },
-          { to: '/', label: 'Stake' },
-          { to: '/', label: 'More Information' },
-        ]}
-      >
-        <Button variant="medium" appearance="primary-ghost" size="medium">
-          Blox Balance
-        </Button>
-        <Button appearance="primary-ghost" variant="medium" size="medium">
-          <>
-            Oxfd...586c
-            <BoxLayout gap={0.75}>
-              <Icon color="white" name="arrow-down" />
-            </BoxLayout>
-          </>
-        </Button>
-        <Button
-          appearance="primary-ghost"
-          variant="medium"
-          size="medium"
-          icon="settings"
-        />
-      </PageLayout.Header>,
-    )
+    setHeader(getHeader())
   }, [])
   return (
     <BrowserRouter>
@@ -123,34 +125,7 @@ export const Completed = () => {
   const { setHeader } = nav
 
   useEffect(() => {
-    setHeader(
-      <PageLayout.Header
-        navigationItems={[
-          { to: '/', label: 'Dashboard' },
-          { to: '/', label: 'Deposit&Borrow' },
-          { to: '/', label: 'Stake' },
-          { to: '/', label: 'More Information' },
-        ]}
-      >
-        <Button variant="medium" appearance="primary-ghost" size="medium">
-          Blox Balance
-        </Button>
-        <Button appearance="primary-ghost" variant="medium" size="medium">
-          <>
-            Oxfd...586c
-            <BoxLayout gap={0.75}>
-              <Icon color="white" name="arrow-down" />
-            </BoxLayout>
-          </>
-        </Button>
-        <Button
-          appearance="primary-ghost"
-          variant="medium"
-          size="medium"
-          icon="settings"
-        />
-      </PageLayout.Header>,
-    )
+    setHeader(getHeader())
   }, [])
 
   const [isModalOpen, setIsModalOpen] = useState<
