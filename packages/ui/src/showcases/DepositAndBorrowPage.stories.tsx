@@ -351,6 +351,7 @@ export const Connected = args => {
                     columns={yourDepositColumns}
                     data={depositData}
                     titleComponent={<DepositTitleBox />}
+                    footer={<BoxLayout gap={1} />}
                   />
                 </CardLayout>
                 <CardLayout>
@@ -369,6 +370,7 @@ export const Connected = args => {
                     columns={yourBorrowColumns}
                     data={borrowData}
                     titleComponent={<BorrowTitleBox />}
+                    footer={<BoxLayout gap={1} />}
                   />
                 </CardLayout>
                 <CardLayout>
