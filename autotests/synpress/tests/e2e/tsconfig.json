@@ -4,7 +4,7 @@
     "baseUrl": "../../node_modules",
     "target": "es5",
     "lib": ["es5", "dom"],
-    "types": ["cypress", "cypress-metamask-v2/cypress/support", "node"]
+    "types": ["cypress", "cypress-metamask-v2/cypress/support", "node", "cypress-wait-until"]
   },
   "include": ["**/*.ts"]
 }
