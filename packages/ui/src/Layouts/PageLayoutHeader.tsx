@@ -55,7 +55,7 @@ export const PageLayoutHeader = React.forwardRef(
               </HeaderLink>
             ))}
           </HeaderLinksWrapper>
-          {children}
+          <ChildrenLinksWrapper>{children}</ChildrenLinksWrapper>
         </HeaderWrapper>
       </Component>
     )
@@ -91,8 +91,19 @@ const HeaderLink = styled(NavLink)`
     border-image-slice: 1;
   }
 `
+
 const HeaderLinksWrapper = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+`
+
+const ChildrenLinksWrapper = styled.div`
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+
+  & > * {
+    margin-left: 13px;
+  }
 `

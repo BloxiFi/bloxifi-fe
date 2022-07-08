@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Button } from '../Button'
@@ -17,6 +18,7 @@ import { ProgressBar } from '../ProgressBar'
 import { Table, CellProps } from '../Table'
 import { Text } from '../Text'
 import { Toggle } from '../Toggle'
+import { Icon } from '../Icon'
 
 export default {
   title: 'showcase/Deposit and Borrow',
@@ -24,63 +26,133 @@ export default {
 
 export const NotConnected = () => {
   const nav = usePageLayout()
+  const { setHeader } = nav
 
+  useEffect(() => {
+    setHeader(
+      <PageLayout.Header
+        navigationItems={[
+          { to: '/', label: 'Dashboard' },
+          { to: '/', label: 'Deposit&Borrow' },
+          { to: '/', label: 'Stake' },
+          { to: '/', label: 'More Information' },
+        ]}
+      >
+        <Button variant="medium" appearance="primary-ghost" size="medium">
+          Blox Balance
+        </Button>
+        <Button appearance="primary-ghost" variant="medium" size="medium">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+        <Button
+          appearance="primary-ghost"
+          variant="medium"
+          size="medium"
+          icon="settings"
+        />
+      </PageLayout.Header>,
+    )
+  }, [])
   return (
-    <PageLayout {...nav}>
-      <PageLayout.Section>
-        <StackLayout center>
-          <GridLayout>
-            <GridLayout.Column span={6}>
-              <CardLayout>
-                <BoxLayout gap={2}>
-                  <StackLayout gap={2.815}>
-                    <Text as="span" color="oxfordBlue" type="heading 2">
-                      Your deposit
-                    </Text>
-                    <Text type="body 5">Nothing deposited yet</Text>
-                  </StackLayout>
-                </BoxLayout>
-              </CardLayout>
-            </GridLayout.Column>
-            <GridLayout.Column span={6}>
-              <CardLayout>
-                <BoxLayout gap={2}>
-                  <StackLayout gap={2.815}>
-                    <Text as="span" color="oxfordBlue" type="heading 2">
-                      Your borrow
-                    </Text>
-                    <Text type="body 5">Nothing borrowed yet</Text>
-                  </StackLayout>
-                </BoxLayout>
-              </CardLayout>
-            </GridLayout.Column>
-            <GridLayout.Column span={12}>
-              <CardLayout>
-                <BoxLayout gap={8}>
-                  <CenterLayout>
-                    <Text as="span" color="oxfordBlue" type="heading 2">
-                      Please, connect your wallet
-                    </Text>
-                    <Text color="oxfordBlue" type="body 5">
-                      Please, connect your wallet to see your deposits and
-                      borrowings
-                    </Text>
-                    <Button appearance="primary" size="medium" variant="medium">
-                      Connect wallet
-                    </Button>
-                  </CenterLayout>
-                </BoxLayout>
-              </CardLayout>
-            </GridLayout.Column>
-          </GridLayout>
-        </StackLayout>
-      </PageLayout.Section>
-    </PageLayout>
+    <BrowserRouter>
+      <PageLayout {...nav}>
+        <PageLayout.Section>
+          <StackLayout center>
+            <GridLayout>
+              <GridLayout.Column span={6}>
+                <CardLayout>
+                  <BoxLayout gap={2}>
+                    <StackLayout gap={2.815}>
+                      <Text as="span" color="oxfordBlue" type="heading 2">
+                        Your deposit
+                      </Text>
+                      <Text type="body 5">Nothing deposited yet</Text>
+                    </StackLayout>
+                  </BoxLayout>
+                </CardLayout>
+              </GridLayout.Column>
+              <GridLayout.Column span={6}>
+                <CardLayout>
+                  <BoxLayout gap={2}>
+                    <StackLayout gap={2.815}>
+                      <Text as="span" color="oxfordBlue" type="heading 2">
+                        Your borrow
+                      </Text>
+                      <Text type="body 5">Nothing borrowed yet</Text>
+                    </StackLayout>
+                  </BoxLayout>
+                </CardLayout>
+              </GridLayout.Column>
+              <GridLayout.Column span={12}>
+                <CardLayout>
+                  <BoxLayout gap={8}>
+                    <CenterLayout>
+                      <Text as="span" color="oxfordBlue" type="heading 2">
+                        Please, connect your wallet
+                      </Text>
+                      <Text color="oxfordBlue" type="body 5">
+                        Please, connect your wallet to see your deposits and
+                        borrowings
+                      </Text>
+                      <Button
+                        appearance="primary"
+                        size="medium"
+                        variant="medium"
+                      >
+                        Connect wallet
+                      </Button>
+                    </CenterLayout>
+                  </BoxLayout>
+                </CardLayout>
+              </GridLayout.Column>
+            </GridLayout>
+          </StackLayout>
+        </PageLayout.Section>
+      </PageLayout>
+    </BrowserRouter>
   )
 }
 
 export const Completed = () => {
   const nav = usePageLayout()
+  const { setHeader } = nav
+
+  useEffect(() => {
+    setHeader(
+      <PageLayout.Header
+        navigationItems={[
+          { to: '/', label: 'Dashboard' },
+          { to: '/', label: 'Deposit&Borrow' },
+          { to: '/', label: 'Stake' },
+          { to: '/', label: 'More Information' },
+        ]}
+      >
+        <Button variant="medium" appearance="primary-ghost" size="medium">
+          Blox Balance
+        </Button>
+        <Button appearance="primary-ghost" variant="medium" size="medium">
+          <>
+            Oxfd...586c
+            <BoxLayout gap={0.75}>
+              <Icon color="white" name="arrow-down" />
+            </BoxLayout>
+          </>
+        </Button>
+        <Button
+          appearance="primary-ghost"
+          variant="medium"
+          size="medium"
+          icon="settings"
+        />
+      </PageLayout.Header>,
+    )
+  }, [])
+
   const [isModalOpen, setIsModalOpen] = useState<
     'borrow' | 'deposit' | 'withdraw' | 'repay' | undefined
   >(undefined)
@@ -277,58 +349,60 @@ export const Completed = () => {
   )
 
   return (
-    <PageLayout {...nav}>
-      <PageLayout.Section>
-        <StackLayout center gap={1}>
-          <ColumnLayout>
-            <CardLayout>
-              <Table
-                columns={yourDepositColumns}
-                data={[
-                  {
-                    assets: 'Asset',
-                    balance: '1.00',
-                    APY: '0.50%',
-                  },
-                ]}
-                titleComponent={<DepositTitleBox />}
-              />
-            </CardLayout>
+    <BrowserRouter>
+      <PageLayout {...nav}>
+        <PageLayout.Section>
+          <StackLayout center gap={1}>
+            <ColumnLayout>
+              <CardLayout>
+                <Table
+                  columns={yourDepositColumns}
+                  data={[
+                    {
+                      assets: 'Asset',
+                      balance: '1.00',
+                      APY: '0.50%',
+                    },
+                  ]}
+                  titleComponent={<DepositTitleBox />}
+                />
+              </CardLayout>
 
-            <CardLayout>
-              <Table
-                columns={yourBorrowColumns}
-                data={[
-                  {
-                    assets: 'Asset',
-                    balance: '1.00',
-                    APY: '0.50%',
-                  },
-                ]}
-                titleComponent={<BorrowTitleBox />}
-              />
-            </CardLayout>
-          </ColumnLayout>
-          <ColumnLayout>
-            <CardLayout>
-              <Table
-                columns={assetsToDepositColumns}
-                data={defaultData}
-                titleComponent="Assets to deposit"
-              />
-            </CardLayout>
+              <CardLayout>
+                <Table
+                  columns={yourBorrowColumns}
+                  data={[
+                    {
+                      assets: 'Asset',
+                      balance: '1.00',
+                      APY: '0.50%',
+                    },
+                  ]}
+                  titleComponent={<BorrowTitleBox />}
+                />
+              </CardLayout>
+            </ColumnLayout>
+            <ColumnLayout>
+              <CardLayout>
+                <Table
+                  columns={assetsToDepositColumns}
+                  data={defaultData}
+                  titleComponent="Assets to deposit"
+                />
+              </CardLayout>
 
-            <CardLayout>
-              <Table
-                columns={assetsToBorrowColumns}
-                data={defaultData}
-                titleComponent="Assets to borrow"
-              />
-            </CardLayout>
-          </ColumnLayout>
-        </StackLayout>
-      </PageLayout.Section>
-    </PageLayout>
+              <CardLayout>
+                <Table
+                  columns={assetsToBorrowColumns}
+                  data={defaultData}
+                  titleComponent="Assets to borrow"
+                />
+              </CardLayout>
+            </ColumnLayout>
+          </StackLayout>
+        </PageLayout.Section>
+      </PageLayout>
+    </BrowserRouter>
   )
 }
 
