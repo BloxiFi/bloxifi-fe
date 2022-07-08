@@ -9,14 +9,14 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
   }
 >
   <div
-    className="sc-bBrHrO kfhXhC"
+    className="sc-ivTmOn fTyfVC"
   >
     <div
-      className="o-center-layout sc-crXcEl sc-ivTmOn TBZtj frqDXP"
+      className="o-center-layout sc-crXcEl sc-cxabCf TBZtj fzDISN"
     >
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-cxabCf kRshnx u-fit-content-width"
+        className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-llJcti cfzvuc u-fit-content-width"
         data-element="button"
         icon="close"
         size="medium"
@@ -30,19 +30,19 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
           className="sc-evZas fQdIpY"
         >
           <div
-            className="sc-gicCDI gacmSU"
+            className="sc-ezWOiH cseTil"
             data-element="tableWrapper"
           >
             <table
-              className="sc-ezWOiH bKPCrK"
+              className="sc-bZkfAO bGwcNz"
               data-element="table"
             >
               <thead
-                className="sc-cCsOjp ffUHXz"
+                className="sc-ciZhAO dpuqFH"
               >
                 <tr>
                   <td
-                    className="sc-jdAMXn kOKHzJ"
+                    className="sc-bZnhIo hGHUkc"
                     colSpan={2}
                   >
                     <h2
@@ -54,10 +54,10 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                 </tr>
                 <tr>
                   <td
-                    className="sc-ikZpkk sc-jIZahH esEZlH iVsiNu"
+                    className="sc-jIZahH sc-himrzO kyTpVH eifDIB"
                   >
                     <div
-                      className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
                     >
                       Amount
                     </div>
@@ -67,7 +67,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
               <tbody>
                 <tr>
                   <td
-                    className="sc-ikZpkk esEZlH"
+                    className="sc-jIZahH kyTpVH"
                   >
                     <div
                       className="sc-breuTD gkAgNQ"
@@ -97,7 +97,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                     </div>
                   </td>
                   <td
-                    className="sc-ikZpkk fUlxrs"
+                    className="sc-jIZahH cAjTxQ"
                   >
                     <span>
                       ETH
@@ -108,24 +108,24 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
             </table>
           </div>
           <div
-            className="sc-gicCDI gacmSU"
+            className="sc-ezWOiH cseTil"
             data-element="tableWrapper"
           >
             <table
-              className="sc-ezWOiH bKPCrK"
+              className="sc-bZkfAO bGwcNz"
               data-element="table"
             >
               <thead
-                className="sc-cCsOjp ffUHXz"
+                className="sc-ciZhAO dpuqFH"
               >
                 
                 
                 <tr>
                   <td
-                    className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
+                    className="sc-jIZahH sc-himrzO lkBcUc dDMa-dg"
                   >
                     <div
-                      className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
                     >
                       Transaction overview
                     </div>
@@ -135,7 +135,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
               <tbody>
                 <tr>
                   <td
-                    className="sc-ikZpkk eBnfKk"
+                    className="sc-jIZahH lkBcUc"
                   >
                     <p
                       className="sc-fEOsli fqiSQU c-text--body-3 c-text--color-oxfordBlue"
@@ -144,13 +144,13 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                     </p>
                   </td>
                   <td
-                    className="sc-ikZpkk TFJjn"
+                    className="sc-jIZahH jrZvoz"
                   >
                     <div
                       className="sc-evZas fQdIpY"
                     >
                       <div
-                        className="sc-breuTD gkAgNQ sc-hTtwUo ejdmSw"
+                        className="sc-breuTD gkAgNQ sc-jOrMOR dAsxpi"
                       >
                         <span
                           className="sc-fEOsli cVcOth"
@@ -208,14 +208,14 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
   }
 >
   <div
-    className="sc-bBrHrO kfhXhC"
+    className="sc-ivTmOn fTyfVC"
   >
     <div
-      className="o-center-layout sc-crXcEl sc-ivTmOn TBZtj frqDXP"
+      className="o-center-layout sc-crXcEl sc-cxabCf TBZtj fzDISN"
     >
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-cxabCf kRshnx u-fit-content-width"
+        className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-llJcti cfzvuc u-fit-content-width"
         data-element="button"
         icon="close"
         size="medium"
@@ -229,19 +229,19 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
           className="sc-evZas fQdIpY"
         >
           <div
-            className="sc-gicCDI gacmSU"
+            className="sc-ezWOiH cseTil"
             data-element="tableWrapper"
           >
             <table
-              className="sc-ezWOiH bKPCrK"
+              className="sc-bZkfAO bGwcNz"
               data-element="table"
             >
               <thead
-                className="sc-cCsOjp ffUHXz"
+                className="sc-ciZhAO dpuqFH"
               >
                 <tr>
                   <td
-                    className="sc-jdAMXn kOKHzJ"
+                    className="sc-bZnhIo hGHUkc"
                     colSpan={2}
                   >
                     <h2
@@ -253,10 +253,10 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                 </tr>
                 <tr>
                   <td
-                    className="sc-ikZpkk sc-jIZahH esEZlH iVsiNu"
+                    className="sc-jIZahH sc-himrzO kyTpVH eifDIB"
                   >
                     <div
-                      className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
                     >
                       Amount
                     </div>
@@ -266,7 +266,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
               <tbody>
                 <tr>
                   <td
-                    className="sc-ikZpkk esEZlH"
+                    className="sc-jIZahH kyTpVH"
                   >
                     <div
                       className="sc-breuTD gkAgNQ"
@@ -296,7 +296,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     </div>
                   </td>
                   <td
-                    className="sc-ikZpkk fUlxrs"
+                    className="sc-jIZahH cAjTxQ"
                   >
                     <span>
                       ETH
@@ -319,18 +319,18 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                 Collaterization
               </p>
               <div
-                className="sc-iTONeN fVhXQT rts-toggle__container undefined"
+                className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
                 data-element="toggle"
                 height={25}
                 width={50}
               >
                 <input
-                  className="sc-efBctP iJKBRO rts-toggle__toggle"
+                  className="sc-cTQhss hPRWpT rts-toggle__toggle"
                   data-element="toggle-input"
                   type="checkbox"
                 />
                 <span
-                  className="sc-iAvgwm ZhnSP rts-toggle__background"
+                  className="sc-efBctP gnXphq rts-toggle__background"
                   data-element="toggle-background"
                   height={25}
                 />
@@ -403,14 +403,14 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
   }
 >
   <div
-    className="sc-bBrHrO kfhXhC"
+    className="sc-ivTmOn fTyfVC"
   >
     <div
-      className="o-center-layout sc-crXcEl sc-ivTmOn TBZtj frqDXP"
+      className="o-center-layout sc-crXcEl sc-cxabCf TBZtj fzDISN"
     >
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-cxabCf kRshnx u-fit-content-width"
+        className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-llJcti cfzvuc u-fit-content-width"
         data-element="button"
         icon="close"
         size="medium"
@@ -424,19 +424,19 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
           className="sc-evZas fQdIpY"
         >
           <div
-            className="sc-gicCDI gacmSU"
+            className="sc-ezWOiH cseTil"
             data-element="tableWrapper"
           >
             <table
-              className="sc-ezWOiH bKPCrK"
+              className="sc-bZkfAO bGwcNz"
               data-element="table"
             >
               <thead
-                className="sc-cCsOjp ffUHXz"
+                className="sc-ciZhAO dpuqFH"
               >
                 <tr>
                   <td
-                    className="sc-jdAMXn kOKHzJ"
+                    className="sc-bZnhIo hGHUkc"
                     colSpan={2}
                   >
                     <h2
@@ -448,10 +448,10 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                 </tr>
                 <tr>
                   <td
-                    className="sc-ikZpkk sc-jIZahH esEZlH iVsiNu"
+                    className="sc-jIZahH sc-himrzO kyTpVH eifDIB"
                   >
                     <div
-                      className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
                     >
                       Amount
                     </div>
@@ -461,7 +461,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
               <tbody>
                 <tr>
                   <td
-                    className="sc-ikZpkk esEZlH"
+                    className="sc-jIZahH kyTpVH"
                   >
                     <div
                       className="sc-breuTD gkAgNQ"
@@ -491,7 +491,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     </div>
                   </td>
                   <td
-                    className="sc-ikZpkk fUlxrs"
+                    className="sc-jIZahH cAjTxQ"
                   >
                     <span>
                       ETH
@@ -502,24 +502,24 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
             </table>
           </div>
           <div
-            className="sc-gicCDI gacmSU"
+            className="sc-ezWOiH cseTil"
             data-element="tableWrapper"
           >
             <table
-              className="sc-ezWOiH bKPCrK"
+              className="sc-bZkfAO bGwcNz"
               data-element="table"
             >
               <thead
-                className="sc-cCsOjp ffUHXz"
+                className="sc-ciZhAO dpuqFH"
               >
                 
                 
                 <tr>
                   <td
-                    className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
+                    className="sc-jIZahH sc-himrzO lkBcUc dDMa-dg"
                   >
                     <div
-                      className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
                     >
                       Transaction overview
                     </div>
@@ -529,7 +529,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
               <tbody>
                 <tr>
                   <td
-                    className="sc-ikZpkk eBnfKk"
+                    className="sc-jIZahH lkBcUc"
                   >
                     <span
                       className="sc-fEOsli fqiSQU"
@@ -540,13 +540,13 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     </span>
                   </td>
                   <td
-                    className="sc-ikZpkk TFJjn"
+                    className="sc-jIZahH jrZvoz"
                   >
                     <div
                       className="sc-evZas fQdIpY"
                     >
                       <div
-                        className="sc-breuTD gkAgNQ sc-hTtwUo ejdmSw"
+                        className="sc-breuTD gkAgNQ sc-jOrMOR dAsxpi"
                       >
                         <span
                           className="sc-fEOsli cVcOth"
@@ -575,7 +575,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                 </tr>
                 <tr>
                   <td
-                    className="sc-ikZpkk eBnfKk"
+                    className="sc-jIZahH lkBcUc"
                   >
                     <span
                       className="sc-fEOsli fqiSQU"
@@ -586,13 +586,253 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     </span>
                   </td>
                   <td
-                    className="sc-ikZpkk TFJjn"
+                    className="sc-jIZahH jrZvoz"
                   >
                     <div
                       className="sc-evZas fQdIpY"
                     >
                       <div
-                        className="sc-breuTD gkAgNQ sc-hTtwUo ejdmSw"
+                        className="sc-breuTD gkAgNQ sc-jOrMOR dAsxpi"
+                      >
+                        <span
+                          className="sc-fEOsli cVcOth"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          1.00
+                        </span>
+                      </div>
+                      <span
+                        className="sc-fEOsli cVcOth"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="sc-kDDrLX bOqWok"
+          gap={1.875}
+        >
+          <div
+            className="sc-evZas cMVNHr"
+            gap={1}
+          >
+            <button
+              appearance="dark"
+              className="sc-hKMtZM sc-gKXOVf iOviQP llhpmf u-full-width"
+              data-element="button"
+              size="large"
+              variant="large"
+            >
+              Repay asset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-ivTmOn fTyfVC"
+  >
+    <div
+      className="o-center-layout sc-crXcEl sc-cxabCf TBZtj fzDISN"
+    >
+      <button
+        appearance="text"
+        className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-llJcti cfzvuc u-fit-content-width"
+        data-element="button"
+        icon="close"
+        size="medium"
+        variant="medium"
+      />
+      <div
+        className="sc-evZas gpoJlf"
+        gap={5}
+      >
+        <div
+          className="sc-evZas fQdIpY"
+        >
+          <div
+            className="sc-ezWOiH cseTil"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO bGwcNz"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                <tr>
+                  <td
+                    className="sc-bZnhIo hGHUkc"
+                    colSpan={2}
+                  >
+                    <h2
+                      className="sc-fEOsli dMYQOn c-text--heading-2 c-text--color-oxfordBlue"
+                    >
+                      Withdraw asset
+                    </h2>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO kyTpVH eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Amount
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    className="sc-jIZahH kyTpVH"
+                  >
+                    <div
+                      className="sc-breuTD gkAgNQ"
+                    >
+                      <div
+                        className="sc-bczRLJ ekBFnZ"
+                      >
+                        <div
+                          className="sc-gsnTZi bhsjPj"
+                        >
+                          <input
+                            disabled={false}
+                            type="text"
+                          />
+                        </div>
+                        
+                      </div>
+                      <button
+                        appearance="secondary"
+                        className="sc-hKMtZM sc-jSMfEi ivRYUu ioWRiD u-fit-content-width"
+                        data-element="button"
+                        size="small"
+                        variant="thin"
+                      >
+                        MAX
+                      </button>
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH cAjTxQ"
+                  >
+                    <span>
+                      ETH
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            className="sc-ezWOiH cseTil"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO bGwcNz"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                
+                
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO lkBcUc dDMa-dg"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Transaction overview
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    className="sc-jIZahH lkBcUc"
+                  >
+                    <span
+                      className="sc-fEOsli fqiSQU"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Remaining supply
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jrZvoz"
+                  >
+                    <div
+                      className="sc-evZas fQdIpY"
+                    >
+                      <div
+                        className="sc-breuTD gkAgNQ sc-jOrMOR dAsxpi"
+                      >
+                        <span
+                          className="sc-fEOsli cVcOth"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          0.000001 Asset
+                        </span>
+                      </div>
+                      <span
+                        className="sc-fEOsli cVcOth"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className="sc-jIZahH lkBcUc"
+                  >
+                    <span
+                      className="sc-fEOsli fqiSQU"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Health factor
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jrZvoz"
+                  >
+                    <div
+                      className="sc-evZas fQdIpY"
+                    >
+                      <div
+                        className="sc-breuTD gkAgNQ sc-jOrMOR dAsxpi"
                       >
                         <span
                           className="sc-fEOsli cVcOth"
