@@ -109,7 +109,7 @@ export const DepositModal = args => {
   )
 
   return (
-    <Modal {...args} isOpen={true}>
+    <Modal isOpen={true} {...args}>
       <StackLayout gap={5}>
         <StackLayout>
           <Table
@@ -201,7 +201,7 @@ export const BorrowModal = args => {
   }
 
   return (
-    <Modal {...args} isOpen={true}>
+    <Modal isOpen={true} {...args}>
       <StackLayout gap={5}>
         <StackLayout>
           <Table
@@ -298,7 +298,96 @@ export const RepayModal = args => {
   }
 
   return (
-    <Modal {...args} isOpen={true}>
+    <Modal isOpen={true} {...args}>
+      <StackLayout gap={5}>
+        <StackLayout>
+          <Table
+            columns={tableColumns}
+            data={tableData}
+            titleComponent={<Title />}
+          />
+          <Table columns={transactionColumns} data={transactionData} />
+        </StackLayout>
+
+        <BoxLayout gap={1.875}>
+          <StackLayout gap={1}>
+            <Button
+              className="u-full-width"
+              appearance="dark"
+              size="large"
+              variant="large"
+            >
+              Repay asset
+            </Button>
+          </StackLayout>
+        </BoxLayout>
+      </StackLayout>
+    </Modal>
+  )
+}
+
+export const WithdrawModal = args => {
+  const themeContext = useContext(ThemeContext)
+  const Title = () => (
+    <Text color="oxfordBlue" type="heading 2">
+      Withdraw asset
+    </Text>
+  )
+
+  const transactionData = [
+    {
+      name: 'Remaining supply',
+      debt: true,
+    },
+    {
+      name: 'Health factor',
+    },
+  ]
+
+  const transactionColumns = {
+    action: {
+      header: 'Transaction overview',
+      Cell: ({ data: { name } }: CellProps) => (
+        <Text type="body 3" color="oxfordBlue" as="span">
+          {name}
+        </Text>
+      ),
+      alignText: 'left',
+    },
+    value: {
+      header: '',
+      Cell: ({ data: { debt } }: CellProps) => (
+        <StackLayout>
+          {debt ? (
+            <Center>
+              <Text as="span" type="body 1" color="oxfordBlue">
+                0.000001 Asset
+              </Text>
+            </Center>
+          ) : (
+            <Center>
+              <Icon name="union" size={16} color={themeContext.buttonDark} />
+              <Icon
+                name="arrow-right"
+                size={15}
+                color={themeContext.buttonDark}
+              />
+              <Text as="span" type="body 1" color="oxfordBlue">
+                1.00
+              </Text>
+            </Center>
+          )}
+          <Text as="span" type="body 1" color="oxfordBlue">
+            {'Liquidation at < 1.00'}
+          </Text>
+        </StackLayout>
+      ),
+      alignText: 'right',
+    },
+  }
+
+  return (
+    <Modal isOpen={true} {...args}>
       <StackLayout gap={5}>
         <StackLayout>
           <Table

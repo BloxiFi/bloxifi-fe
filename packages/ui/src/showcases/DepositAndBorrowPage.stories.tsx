@@ -1,7 +1,6 @@
 import { Meta } from '@storybook/react'
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import styled from 'styled-components'
 
 import { Button } from '../Button'
 import {
@@ -19,6 +18,12 @@ import { Table, CellProps, stylings } from '../Table'
 import { Text } from '../Text'
 import { Toggle } from '../Toggle'
 import { Icon } from '../Icon'
+import {
+  BorrowModal,
+  DepositModal,
+  RepayModal,
+  WithdrawModal,
+} from '../stories/Modal.stories'
 
 export default {
   title: 'showcase/Deposit and Borrow',
@@ -59,7 +64,7 @@ export const NotConnected = () => {
 
   useEffect(() => {
     setHeader(getHeader())
-  }, [])
+  }, [setHeader])
   return (
     <BrowserRouter>
       <PageLayout {...nav}>
@@ -126,7 +131,7 @@ export const Connected = args => {
 
   useEffect(() => {
     setHeader(getHeader())
-  }, [])
+  }, [setHeader])
 
   const [isModalOpen, setIsModalOpen] = useState<
     'borrow' | 'deposit' | 'withdraw' | 'repay' | undefined
@@ -388,6 +393,10 @@ export const Connected = args => {
           </GridLayout>
         </PageLayout.Section>
       </PageLayout>
+      <DepositModal isOpen={isModalOpen === 'deposit'} onClose={closeModal} />
+      <RepayModal isOpen={isModalOpen === 'repay'} onClose={closeModal} />
+      <BorrowModal isOpen={isModalOpen === 'borrow'} onClose={closeModal} />
+      <WithdrawModal isOpen={isModalOpen === 'withdraw'} onClose={closeModal} />
     </BrowserRouter>
   )
 }
