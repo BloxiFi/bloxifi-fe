@@ -106,6 +106,13 @@ interface RowProps
   isTitleAString?: boolean
 }
 
+export const stylings = {
+  // Use this class on titleComponent to target its ProgressBar component
+  tableHeaderWithProgressBar: 'c-table__header--progressbar',
+  //Use this class on ProgressBar inside the titleComponent in order to position ProgressBar to the bottom of the parent
+  tableHeaderProgressBar: 'c-progressbar',
+}
+
 const Row = ({
   columns,
   rowData,
@@ -371,6 +378,17 @@ const HeaderTitleComponent = styled.td`
   font-size: 24px;
   color: ${({ theme }) => theme.tableTextColor};
   background-color: ${({ theme }) => theme.tableCellBackgroundColor};
+
+  .c-table__header--progressbar {
+    position: relative;
+
+    .c-progressbar {
+      position: absolute;
+      bottom: -4px;
+      right: 0;
+      width: 50%;
+    }
+  }
 `
 
 const Footer = styled.tfoot`

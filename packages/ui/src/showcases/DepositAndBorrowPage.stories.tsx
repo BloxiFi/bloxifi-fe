@@ -15,7 +15,7 @@ import {
 } from '../Layouts'
 import { GridLayout } from '../Layouts/GridLayout'
 import { ProgressBar } from '../ProgressBar'
-import { Table, CellProps } from '../Table'
+import { Table, CellProps, stylings } from '../Table'
 import { Text } from '../Text'
 import { Toggle } from '../Toggle'
 import { Icon } from '../Icon'
@@ -304,7 +304,7 @@ export const Connected = args => {
   )
 
   const BorrowTitleBox = () => (
-    <BorrowColumn>
+    <ColumnLayout className={stylings.tableHeaderWithProgressBar}>
       <StackLayout gap={2.125}>
         <Text as="span" color="oxfordBlue" type="heading 2">
           Your borrow
@@ -317,10 +317,13 @@ export const Connected = args => {
           </Text>
         </Text>
       </StackLayout>
-      <ProgressBarWrapper>
-        <ProgressBar title="Borrowed" value={50} showBottomLabel />
-      </ProgressBarWrapper>
-    </BorrowColumn>
+      <ProgressBar
+        className={stylings.tableHeaderProgressBar}
+        title="Borrowed"
+        value={50}
+        showBottomLabel
+      />
+    </ColumnLayout>
   )
   const initialRowData = {
     assets: 'Asset',
@@ -389,18 +392,10 @@ export const Connected = args => {
   )
 }
 
-const BorrowColumn = styled(ColumnLayout)`
-  position: relative;
-`
-const ProgressBarWrapper = styled.div`
-  position: absolute;
-  bottom: -20px;
-  right: 0;
-  width: 50%;
-`
 Connected.args = {
   appendDepositRow: false,
   appendBorrowRow: false,
 }
+
 NotConnected.storyName = 'Not Connected'
 Connected.storyName = 'Connected'
