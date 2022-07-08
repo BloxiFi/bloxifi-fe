@@ -353,52 +353,57 @@ export const Completed = () => {
       <PageLayout {...nav}>
         <PageLayout.Section>
           <StackLayout center gap={1}>
-            <ColumnLayout>
-              <CardLayout>
-                <Table
-                  columns={yourDepositColumns}
-                  data={[
-                    {
-                      assets: 'Asset',
-                      balance: '1.00',
-                      APY: '0.50%',
-                    },
-                  ]}
-                  titleComponent={<DepositTitleBox />}
-                />
-              </CardLayout>
+            <GridLayout>
+              <GridLayout.Column span={6}>
+                <CardLayout>
+                  <Table
+                    columns={yourDepositColumns}
+                    data={[
+                      {
+                        assets: 'Asset',
+                        balance: '1.00',
+                        APY: '0.50%',
+                      },
+                    ]}
+                    titleComponent={<DepositTitleBox />}
+                  />
+                </CardLayout>
+              </GridLayout.Column>
+              <GridLayout.Column span={6}>
+                <CardLayout>
+                  <Table
+                    columns={yourBorrowColumns}
+                    data={[
+                      {
+                        assets: 'Asset',
+                        balance: '1.00',
+                        APY: '0.50%',
+                      },
+                    ]}
+                    titleComponent={<BorrowTitleBox />}
+                  />
+                </CardLayout>
+              </GridLayout.Column>
+              <GridLayout.Column span={6}>
+                <CardLayout>
+                  <Table
+                    columns={assetsToDepositColumns}
+                    data={defaultData}
+                    titleComponent="Assets to deposit"
+                  />
+                </CardLayout>
+              </GridLayout.Column>
 
-              <CardLayout>
-                <Table
-                  columns={yourBorrowColumns}
-                  data={[
-                    {
-                      assets: 'Asset',
-                      balance: '1.00',
-                      APY: '0.50%',
-                    },
-                  ]}
-                  titleComponent={<BorrowTitleBox />}
-                />
-              </CardLayout>
-            </ColumnLayout>
-            <ColumnLayout>
-              <CardLayout>
-                <Table
-                  columns={assetsToDepositColumns}
-                  data={defaultData}
-                  titleComponent="Assets to deposit"
-                />
-              </CardLayout>
-
-              <CardLayout>
-                <Table
-                  columns={assetsToBorrowColumns}
-                  data={defaultData}
-                  titleComponent="Assets to borrow"
-                />
-              </CardLayout>
-            </ColumnLayout>
+              <GridLayout.Column span={6}>
+                <CardLayout>
+                  <Table
+                    columns={assetsToBorrowColumns}
+                    data={defaultData}
+                    titleComponent="Assets to borrow"
+                  />
+                </CardLayout>
+              </GridLayout.Column>
+            </GridLayout>
           </StackLayout>
         </PageLayout.Section>
       </PageLayout>
