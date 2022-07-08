@@ -120,7 +120,7 @@ export const NotConnected = () => {
   )
 }
 
-export const Completed = () => {
+export const Connected = args => {
   const nav = usePageLayout()
   const { setHeader } = nav
 
@@ -322,44 +322,37 @@ export const Completed = () => {
       </ProgressBarWrapper>
     </BorrowColumn>
   )
+  const initialRowData = {
+    assets: 'Asset',
+    balance: '1.00',
+    APY: '0.50%',
+  }
+
+  const depositData = [initialRowData]
+  const borrowData = [initialRowData]
+
+  if (args.appendDepositRow) {
+    depositData.push(initialRowData)
+  }
+
+  if (args.appendBorrowRow) {
+    borrowData.push(initialRowData)
+  }
 
   return (
     <BrowserRouter>
       <PageLayout {...nav}>
         <PageLayout.Section>
-          <StackLayout center gap={1}>
-            <GridLayout>
-              <GridLayout.Column span={6}>
+          <GridLayout>
+            <GridLayout.Column span={6}>
+              <StackLayout gap={1.5}>
                 <CardLayout>
                   <Table
                     columns={yourDepositColumns}
-                    data={[
-                      {
-                        assets: 'Asset',
-                        balance: '1.00',
-                        APY: '0.50%',
-                      },
-                    ]}
+                    data={depositData}
                     titleComponent={<DepositTitleBox />}
                   />
                 </CardLayout>
-              </GridLayout.Column>
-              <GridLayout.Column span={6}>
-                <CardLayout>
-                  <Table
-                    columns={yourBorrowColumns}
-                    data={[
-                      {
-                        assets: 'Asset',
-                        balance: '1.00',
-                        APY: '0.50%',
-                      },
-                    ]}
-                    titleComponent={<BorrowTitleBox />}
-                  />
-                </CardLayout>
-              </GridLayout.Column>
-              <GridLayout.Column span={6}>
                 <CardLayout>
                   <Table
                     columns={assetsToDepositColumns}
@@ -367,9 +360,17 @@ export const Completed = () => {
                     titleComponent="Assets to deposit"
                   />
                 </CardLayout>
-              </GridLayout.Column>
-
-              <GridLayout.Column span={6}>
+              </StackLayout>
+            </GridLayout.Column>
+            <GridLayout.Column span={6}>
+              <StackLayout gap={1.5}>
+                <CardLayout>
+                  <Table
+                    columns={yourBorrowColumns}
+                    data={borrowData}
+                    titleComponent={<BorrowTitleBox />}
+                  />
+                </CardLayout>
                 <CardLayout>
                   <Table
                     columns={assetsToBorrowColumns}
@@ -377,9 +378,9 @@ export const Completed = () => {
                     titleComponent="Assets to borrow"
                   />
                 </CardLayout>
-              </GridLayout.Column>
-            </GridLayout>
-          </StackLayout>
+              </StackLayout>
+            </GridLayout.Column>
+          </GridLayout>
         </PageLayout.Section>
       </PageLayout>
     </BrowserRouter>
@@ -395,6 +396,9 @@ const ProgressBarWrapper = styled.div`
   right: 0;
   width: 50%;
 `
-
+Connected.args = {
+  appendDepositRow: false,
+  appendBorrowRow: false,
+}
 NotConnected.storyName = 'Not Connected'
-Completed.storyName = 'Completed'
+Connected.storyName = 'Connected'
