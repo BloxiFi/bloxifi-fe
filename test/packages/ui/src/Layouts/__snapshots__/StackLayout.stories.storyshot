@@ -2,99 +2,29 @@
 
 exports[`Storyshots Layout/StackLayout Details 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  center={false}
+  className="sc-evZas cMVNHr"
+  gap={1}
 >
   <div
-    center={false}
-    className="sc-evZas cMVNHr"
-    gap={1}
-  >
-    <div
-      style={
-        Object {
-          "background": "#e8505b",
-          "minHeight": 50,
-          "width": 300,
-        }
+    style={
+      Object {
+        "background": "#e8505b",
+        "minHeight": 50,
+        "width": 300,
       }
-    />
-    <div
-      style={
-        Object {
-          "background": "#f2aaaa",
-          "minHeight": 50,
-          "width": 300,
-        }
-      }
-    />
-    <div>
-      <div
-        style={
-          Object {
-            "background": "#f9d56e",
-            "minHeight": 50,
-            "width": 300,
-          }
-        }
-      />
-      <div
-        style={
-          Object {
-            "background": "#f69e7b",
-            "minHeight": 50,
-            "width": 300,
-          }
-        }
-      />
-    </div>
-    <div
-      style={
-        Object {
-          "background": "#14b1ab",
-          "minHeight": 50,
-          "width": 300,
-        }
-      }
-    />
-  </div>
-</div>
-`;
-
-exports[`Storyshots Layout/StackLayout Overview 1`] = `
-<div
-  style={
-    Object {
-      "padding": "2rem",
     }
-  }
->
+  />
   <div
-    center={false}
-    className="sc-evZas cMVNHr"
-    gap={1}
-  >
-    <div
-      style={
-        Object {
-          "background": "#e8505b",
-          "minHeight": 50,
-          "width": 300,
-        }
+    style={
+      Object {
+        "background": "#f2aaaa",
+        "minHeight": 50,
+        "width": 300,
       }
-    />
-    <div
-      style={
-        Object {
-          "background": "#f2aaaa",
-          "minHeight": 50,
-          "width": 300,
-        }
-      }
-    />
+    }
+  />
+  <div>
     <div
       style={
         Object {
@@ -107,12 +37,66 @@ exports[`Storyshots Layout/StackLayout Overview 1`] = `
     <div
       style={
         Object {
-          "background": "#14b1ab",
+          "background": "#f69e7b",
           "minHeight": 50,
           "width": 300,
         }
       }
     />
   </div>
+  <div
+    style={
+      Object {
+        "background": "#14b1ab",
+        "minHeight": 50,
+        "width": 300,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Storyshots Layout/StackLayout Overview 1`] = `
+<div
+  center={false}
+  className="sc-evZas cMVNHr"
+  gap={1}
+>
+  <div
+    style={
+      Object {
+        "background": "#e8505b",
+        "minHeight": 50,
+        "width": 300,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#f2aaaa",
+        "minHeight": 50,
+        "width": 300,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#f9d56e",
+        "minHeight": 50,
+        "width": 300,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#14b1ab",
+        "minHeight": 50,
+        "width": 300,
+      }
+    }
+  />
 </div>
 `;

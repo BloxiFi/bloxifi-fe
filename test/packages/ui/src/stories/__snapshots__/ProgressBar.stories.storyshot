@@ -2,41 +2,33 @@
 
 exports[`Storyshots Components/Probress bar Overview 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-fnykZs fmpsuH"
 >
-  <div
-    className="sc-fnykZs jqTsjB"
+  <section
+    className="sc-hAZoDl iZItRi"
+    span={4}
   >
-    <section
-      className="sc-hAZoDl iZItRi"
-      span={4}
+    <div
+      className="sc-llJcti fapVdx"
     >
-      <div
-        className="sc-llJcti fapVdx"
+      <p
+        className="sc-fEOsli sc-iIPllB lfpOmg jOxqgn c-text--body-2 c-text--color-oxfordBlue"
       >
-        <p
-          className="sc-fEOsli sc-iIPllB lfpOmg jOxqgn c-text--body-2 c-text--color-oxfordBlue"
-        >
-          Borrowed
-        </p>
-        <div
-          className="recharts-responsive-container"
-          style={
-            Object {
-              "height": "100%",
-              "maxHeight": undefined,
-              "minHeight": undefined,
-              "minWidth": undefined,
-              "width": "100%",
-            }
+        Borrowed
+      </p>
+      <div
+        className="recharts-responsive-container"
+        style={
+          Object {
+            "height": "100%",
+            "maxHeight": undefined,
+            "minHeight": undefined,
+            "minWidth": undefined,
+            "width": "100%",
           }
-        />
-      </div>
-    </section>
-  </div>
+        }
+      />
+    </div>
+  </section>
 </div>
 `;

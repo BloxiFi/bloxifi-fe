@@ -2,1336 +2,1288 @@
 
 exports[`Storyshots Components/Table Basic Table 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-gicCDI gacmSU"
+  data-element="tableWrapper"
 >
-  <div
-    className="sc-gicCDI gacmSU"
-    data-element="tableWrapper"
+  <table
+    className="sc-ezWOiH bKPCrK"
+    data-element="table"
   >
-    <table
-      className="sc-ezWOiH bKPCrK"
-      data-element="table"
+    <thead
+      className="sc-cCsOjp ffUHXz"
     >
-      <thead
-        className="sc-cCsOjp ffUHXz"
-      >
-        
-        
-        <tr>
-          <td
-            className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
+      
+      
+      <tr>
+        <td
+          className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Assets
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Assets
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total value deposited
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Total value deposited
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total borrowed
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Total borrowed
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Deposit APY
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH TFJjn hohZkz"
+            Deposit APY
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH TFJjn hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Borrow APY
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
+            Borrow APY
+          </div>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              ETH
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            ETH
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            DAI
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            POLKA
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              DAI
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              POLKA
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              BTC
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            BTC
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
 
 exports[`Storyshots Components/Table Empty Data Table 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-gicCDI gacmSU"
+  data-element="tableWrapper"
 >
-  <div
-    className="sc-gicCDI gacmSU"
-    data-element="tableWrapper"
+  <table
+    className="sc-ezWOiH bKPCrK"
+    data-element="table"
   >
-    <table
-      className="sc-ezWOiH bKPCrK"
-      data-element="table"
+    <thead
+      className="sc-cCsOjp ffUHXz"
     >
-      <thead
-        className="sc-cCsOjp ffUHXz"
-      >
-        
-        
-        <tr>
-          <td
-            className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
+      
+      
+      <tr>
+        <td
+          className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Assets
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Assets
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total value deposited
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Total value deposited
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total borrowed
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Total borrowed
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Deposit APY
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH TFJjn hohZkz"
+            Deposit APY
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH TFJjn hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Borrow APY
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            className="sc-ikZpkk kQEHUs"
-            colSpan={5}
-          >
-            There is no data loaded.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            Borrow APY
+          </div>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="sc-ikZpkk kQEHUs"
+          colSpan={5}
+        >
+          There is no data loaded.
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
 
 exports[`Storyshots Components/Table Expandable table 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-gicCDI gacmSU"
+  data-element="tableWrapper"
 >
-  <div
-    className="sc-gicCDI gacmSU"
-    data-element="tableWrapper"
+  <table
+    className="sc-ezWOiH bKPCrK"
+    data-element="table"
   >
-    <table
-      className="sc-ezWOiH bKPCrK"
-      data-element="table"
+    <thead
+      className="sc-cCsOjp ffUHXz"
     >
-      <thead
-        className="sc-cCsOjp ffUHXz"
-      >
-        
-        
-        <tr>
-          <td
-            className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
+      
+      
+      <tr>
+        <td
+          className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Assets
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Assets
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total value deposited
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Total value deposited
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total borrowed
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+            Total borrowed
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Deposit APY
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH TFJjn hohZkz"
+            Deposit APY
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH TFJjn hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Borrow APY
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH dHxNxh hohZkz"
-            width={100}
+            Borrow APY
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH dHxNxh hohZkz"
+          width={100}
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Action
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
+            Action
+          </div>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              ETH
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            ETH
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <button
+            appearance="primary"
+            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            data-element="button"
+            onClick={[Function]}
+            size="small"
+            variant="thin"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            Expand
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            DAI
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <button
+            appearance="primary"
+            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            data-element="button"
+            onClick={[Function]}
+            size="small"
+            variant="thin"
           >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
+            Expand
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              7.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            POLKA
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <button
+            appearance="primary"
+            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            data-element="button"
+            onClick={[Function]}
+            size="small"
+            variant="thin"
           >
-            <button
-              appearance="primary"
-              className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
-              data-element="button"
-              onClick={[Function]}
-              size="small"
-              variant="thin"
-            >
-              Expand
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
+            Expand
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              DAI
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            BTC
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <button
+            appearance="primary"
+            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            data-element="button"
+            onClick={[Function]}
+            size="small"
+            variant="thin"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <button
-              appearance="primary"
-              className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
-              data-element="button"
-              onClick={[Function]}
-              size="small"
-              variant="thin"
-            >
-              Expand
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              POLKA
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <button
-              appearance="primary"
-              className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
-              data-element="button"
-              onClick={[Function]}
-              size="small"
-              variant="thin"
-            >
-              Expand
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              BTC
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <button
-              appearance="primary"
-              className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
-              data-element="button"
-              onClick={[Function]}
-              size="small"
-              variant="thin"
-            >
-              Expand
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            Expand
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
 
 exports[`Storyshots Components/Table Title As Component 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-gicCDI gacmSU"
+  data-element="tableWrapper"
 >
-  <div
-    className="sc-gicCDI gacmSU"
-    data-element="tableWrapper"
+  <table
+    className="sc-ezWOiH bKPCrK"
+    data-element="table"
   >
-    <table
-      className="sc-ezWOiH bKPCrK"
-      data-element="table"
+    <thead
+      className="sc-cCsOjp ffUHXz"
     >
-      <thead
-        className="sc-cCsOjp ffUHXz"
-      >
-        <tr>
-          <td
-            className="sc-jdAMXn kOKHzJ"
-            colSpan={5}
+      <tr>
+        <td
+          className="sc-jdAMXn kOKHzJ"
+          colSpan={5}
+        >
+          <div>
+            Your deposit
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk sc-jIZahH esEZlH iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div>
-              Your deposit
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk sc-jIZahH esEZlH iVsiNu"
+            Assets
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kHWBvP iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Assets
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kHWBvP iVsiNu"
+            Total value deposited
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kHWBvP iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total value deposited
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kHWBvP iVsiNu"
+            Total borrowed
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kHWBvP iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total borrowed
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kHWBvP iVsiNu"
+            Deposit APY
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH fUlxrs iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Deposit APY
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH fUlxrs iVsiNu"
+            Borrow APY
+          </div>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="sc-ikZpkk esEZlH"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Borrow APY
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            className="sc-ikZpkk esEZlH"
+            ETH
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk fUlxrs"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk esEZlH"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              ETH
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
+            DAI
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk fUlxrs"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk esEZlH"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
+            POLKA
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk fUlxrs"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk esEZlH"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk fUlxrs"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk esEZlH"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              DAI
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk fUlxrs"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk esEZlH"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              POLKA
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk fUlxrs"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk esEZlH"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              BTC
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kHWBvP"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk fUlxrs"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            BTC
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kHWBvP"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk fUlxrs"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
 
 exports[`Storyshots Components/Table Title As Plain Text 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-gicCDI gacmSU"
+  data-element="tableWrapper"
 >
-  <div
-    className="sc-gicCDI gacmSU"
-    data-element="tableWrapper"
+  <table
+    className="sc-ezWOiH bKPCrK"
+    data-element="table"
   >
-    <table
-      className="sc-ezWOiH bKPCrK"
-      data-element="table"
+    <thead
+      className="sc-cCsOjp ffUHXz"
     >
-      <thead
-        className="sc-cCsOjp ffUHXz"
-      >
-        <tr>
-          <td
-            className="sc-ciZhAO jsYIPu"
-            colSpan={5}
+      <tr>
+        <td
+          className="sc-ciZhAO jsYIPu"
+          colSpan={5}
+        >
+          Assets to deposit
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk sc-jIZahH eBnfKk iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            Assets to deposit
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk sc-jIZahH eBnfKk iVsiNu"
+            Assets
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Assets
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs iVsiNu"
+            Total value deposited
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total value deposited
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs iVsiNu"
+            Total borrowed
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total borrowed
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs iVsiNu"
+            Deposit APY
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH TFJjn iVsiNu"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Deposit APY
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH TFJjn iVsiNu"
+            Borrow APY
+          </div>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Borrow APY
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
+            ETH
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              ETH
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            DAI
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
+            POLKA
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
           >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              DAI
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              POLKA
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              BTC
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            BTC
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
 
 exports[`Storyshots Components/Table With Footer 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-gicCDI gacmSU"
+  data-element="tableWrapper"
 >
-  <div
-    className="sc-gicCDI gacmSU"
-    data-element="tableWrapper"
+  <table
+    className="sc-ezWOiH bKPCrK"
+    data-element="table"
   >
-    <table
-      className="sc-ezWOiH bKPCrK"
-      data-element="table"
+    <thead
+      className="sc-cCsOjp ffUHXz"
     >
-      <thead
-        className="sc-cCsOjp ffUHXz"
-      >
-        
-        
-        <tr>
-          <td
-            className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
-          >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Assets
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
-          >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total value deposited
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
-          >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Total borrowed
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
-          >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Deposit APY
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk sc-jIZahH TFJjn hohZkz"
-          >
-            <div
-              className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
-            >
-              Borrow APY
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              ETH
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              DAI
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              POLKA
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="sc-ikZpkk eBnfKk"
-          >
-            <div
-              className="sc-BeQoi ljaznX"
-            >
-              BTC
-            </div>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              1.250.000$
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk kQEHUs"
-          >
-            <span>
-              3.5%
-            </span>
-          </td>
-          <td
-            className="sc-ikZpkk TFJjn"
-          >
-            <span>
-              7.5%
-            </span>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot
-        className="sc-bZnhIo cIKPed c-table__footer"
-      >
+      
+      
+      <tr>
         <td
-          className="sc-ikZpkk kQEHUs"
-          colSpan={5}
+          className="sc-ikZpkk sc-jIZahH eBnfKk hohZkz"
         >
-          <div>
-            Footer component
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+          >
+            Assets
           </div>
         </td>
-      </tfoot>
-    </table>
-  </div>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+          >
+            Total value deposited
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+          >
+            Total borrowed
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH kQEHUs hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+          >
+            Deposit APY
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk sc-jIZahH TFJjn hohZkz"
+        >
+          <div
+            className="sc-bZkfAO sc-kLLXSd ftgqdL bmhxgA"
+          >
+            Borrow APY
+          </div>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
+          >
+            ETH
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
+          >
+            DAI
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
+          >
+            POLKA
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td
+          className="sc-ikZpkk eBnfKk"
+        >
+          <div
+            className="sc-BeQoi ljaznX"
+          >
+            BTC
+          </div>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            1.250.000$
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk kQEHUs"
+        >
+          <span>
+            3.5%
+          </span>
+        </td>
+        <td
+          className="sc-ikZpkk TFJjn"
+        >
+          <span>
+            7.5%
+          </span>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot
+      className="sc-bZnhIo cIKPed c-table__footer"
+    >
+      <td
+        className="sc-ikZpkk kQEHUs"
+        colSpan={5}
+      >
+        <div>
+          Footer component
+        </div>
+      </td>
+    </tfoot>
+  </table>
 </div>
 `;

@@ -1,22 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Components/Modal Modal Example 1`] = `
-<div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+<button
+  appearance="primary"
+  className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+  data-element="button"
+  onClick={[Function]}
+  size="medium"
+  variant="medium"
 >
-  <button
-    appearance="primary"
-    className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
-    data-element="button"
-    onClick={[Function]}
-    size="medium"
-    variant="medium"
-  >
-    Open Modal
-  </button>
-</div>
+  Open Modal
+</button>
 `;
