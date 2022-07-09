@@ -14,8 +14,9 @@
     "build": "lerna run build --parallel",
     "serve": "lerna run serve --parallel",
     "test": "jest",
-    "typecheck": "lerna run typecheck --parallel",
-    "lint": "eslint --ext .ts,.tsx --cache --color --fix --max-warnings 10 apps/ packages/ autotests/ && stylelint --color --cache \"{packages,apps}/**/*.tsx\"",
+    "typecheck": "tsc --noEmit --project ./",
+    "lint": "yarn lint:ci --fix",
+    "lint:ci": "stylelint --color --cache \"{packages,apps}/**/*.tsx\" && eslint --ext .ts,.tsx --cache --color --max-warnings 10 apps/ packages/ autotests/",
     "format": "prettier -w \"{packages,apps}/**/*.{js,tsx,ts}\"",
     "storybook": "start-storybook -p 6006 -s ./apps/web/src/public,./packages/ui/src/fonts",
     "build-storybook": "build-storybook --quiet -s ./apps/web/src/public,./packages/ui/src/fonts"

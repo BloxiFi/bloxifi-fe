@@ -1,0 +1,66 @@
+#
+# This workflow runs on pull_request events of the develop branch
+#
+# It will report errors from eslint as comments in PR.
+#
+
+name: Review dog
+on: [pull_request]
+
+jobs:
+  eslint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      #
+      # Checkout the repository.
+      #
+      - uses: actions/checkout@v3
+      #
+      # Cache files in ./frontend
+      #
+      - name: Cache
+        uses: actions/cache@v3
+        id: use-cache
+        with:
+          path: |
+            node_modules/
+            .eslintcache
+            .stylelintcache
+            **/.cache
+            apps/**/node_modules/
+            packages/**/node_modules/
+            ~/.cache/Cypress
+          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            develop-fe-
+
+      #
+      # Install dependencies and build the app
+      #
+      - name: Install dependencies
+        id: build-project
+        run: yarn install --frozen-lockfile && yarn bootstrap
+
+      #
+      # Set the reviewdog to add comments for every eslint warning
+      #
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-pr-review
+          level: warning
+          eslint_flags: '--ext .ts,.tsx --cache --color apps/ packages/ autotests/'
+      #
+      # Set the reviewdog to add comments for every typescript warning
+      #
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        with:
+          reporter: github-pr-review
+          level: warning
+          tsc_flags: '--noEmit --project ./'
+
+      - uses: reviewdog/action-stylelint@v1
+        with:
+          reporter: github-pr-review
+          stylelint_input: '{packages,apps}/**/*.tsx'
+          level: warning
