@@ -63,7 +63,7 @@ export const details = () => (
     <GridLayout.Column span={3}>
       <Placeholder color="#199fd5" />
     </GridLayout.Column>
-    <GridLayout.Column span={3}>
+    <GridLayout.Column span={4}>
       <Placeholder color="#199fd5" />
     </GridLayout.Column>
     <GridLayout.Column span={4}>

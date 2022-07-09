@@ -10,10 +10,8 @@ initTranslations()
 export const decorators = [
   Story => (
     <ThemeProvider theme={Colors['light']}>
-      <div style={{ padding: '2rem' }}>
-        <Story />
-        <GlobalStyle />
-      </div>
+      <GlobalStyle />
+      <Story />
     </ThemeProvider>
   ),
 ]
