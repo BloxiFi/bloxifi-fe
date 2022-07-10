@@ -20,6 +20,7 @@ import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
 import { Web3Container } from '@/containers/Web3Container'
 import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
+import { Header } from '@/components/Header/Header'
 
 const HomePage = () => {
   const { t } = useTranslation()
@@ -49,7 +50,7 @@ const HomePage = () => {
         <button onClick={() => changeTheme('dark')}>Dark theme</button>
         <button
           onClick={() =>
-            pageLayout.setHeader(!pageLayout.header ? <div>HEADER</div> : null)
+            pageLayout.setHeader(!pageLayout.header ? <Header /> : null)
           }
         >
           {!pageLayout.header ? 'Add' : 'Remove'} header

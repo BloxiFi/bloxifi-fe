@@ -2,37 +2,29 @@
 
 exports[`Storyshots Layout/CoverLayout Overview 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-kgflAQ bICwEM"
 >
   <div
-    className="sc-fEOsli daVPOo"
+    className="sc-evZas sc-fLlhyt ldkTlK kwpFEs"
+    gap={4}
   >
     <div
-      className="sc-kDDrLX sc-bjUoiL djFTLY ccPoRk"
-      gap={4}
+      className="sc-ksZaOG fMphTp"
+      style={
+        Object {
+          "background": "#f9d56e",
+        }
+      }
     >
       <div
-        className="sc-crXcEl hucXHh"
         style={
           Object {
-            "background": "#f9d56e",
+            "background": "#e8505b",
+            "minHeight": 120,
+            "minWidth": 240,
           }
         }
-      >
-        <div
-          style={
-            Object {
-              "background": "#e8505b",
-              "minHeight": 120,
-              "minWidth": 240,
-            }
-          }
-        />
-      </div>
+      />
     </div>
   </div>
 </div>

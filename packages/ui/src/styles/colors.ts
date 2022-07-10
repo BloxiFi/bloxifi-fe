@@ -9,7 +9,8 @@ export const Colors = {
     tabHover: '#218BFF',
     white: '#FFFFFF',
     chartTitleBackground: '#F7F9FC',
-
+    error: '#CD595A',
+    success: '#13BAA6',
     //Text
     textColorLight: '#818181',
     textColorDark: '#212121',
@@ -49,10 +50,21 @@ export const Colors = {
     //Modal
     modalBackgroud: 'rgba(0,0,0,0.6)',
     modalShadow: '0px 2px 1px rgba(1, 39, 73, 0.05)',
+    //Menu
+    menuShadow: '0px 5px 20px rgba(0, 0, 0, 0.05)',
     //Table
     tableBorderColor: '#DAE3ED',
     tableTextColor: '#012749',
     tableCellBackgroundColor: 'white',
+    //Input
+    inputBorder: '#677789',
+    inputTextColor: '#012749',
+    inputHoverBackground: '#dae3ed80',
+    //Header
+    headerBackgroundColor: '#012749',
+    activeHeaderItemBorderColorStart: '#90ABC8',
+    activeHeaderItemBorderColorEnd: '#DAE3ED',
+    headerWrapperBorderColor: 'rgba(255, 255, 255, 0.3)',
   },
   dark: {
     headerBackground: '#F6F8FA',
@@ -61,6 +73,8 @@ export const Colors = {
     tabHover: '#218BFF',
     white: '#000000',
     chartTitleBackground: '#F7F9FC',
+    error: '#CD595A',
+    success: '#13BAA6',
 
     //Text
     textColorLight: '#818181',
@@ -101,9 +115,20 @@ export const Colors = {
     //Modal
     modalBackgroud: 'rgba(0,0,0,0.6)',
     modalShadow: '0px 2px 1px rgba(1, 39, 73, 0.05)',
+    //Menu
+    menuShadow: '0px 5px 20px rgba(0, 0, 0, 0.05)',
     //Table
     tableBorderColor: '#DAE3ED',
     tableTextColor: '#012749',
     tableCellBackgroundColor: 'white',
+    //Input
+    inputBorder: '#677789',
+    inputTextColor: '#012749',
+    inputHoverBackground: '#dae3ed80',
+    //Header
+    headerBackgroundColor: '#012749',
+    activeHeaderItemBorderColorStart: '#90ABC8',
+    activeHeaderItemBorderColorEnd: '#DAE3ED',
+    headerWrapperBorderColor: 'rgba(255, 255, 255, 0.3)',
   },
 }

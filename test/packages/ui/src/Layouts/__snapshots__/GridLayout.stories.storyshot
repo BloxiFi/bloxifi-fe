@@ -2,14 +2,107 @@
 
 exports[`Storyshots Layout/GridLayout Details 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-fnykZs fmpsuH"
 >
   <div
-    className="sc-breuTD CrUSC"
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
   >
     <div
       style={
@@ -19,6 +112,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
     <div
       style={
         Object {
@@ -27,6 +125,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
     <div
       style={
         Object {
@@ -35,6 +138,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
     <div
       style={
         Object {
@@ -43,6 +151,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
     <div
       style={
         Object {
@@ -51,6 +164,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
     <div
       style={
         Object {
@@ -59,6 +177,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl lhzMBx"
+    span={3}
+  >
     <div
       style={
         Object {
@@ -67,6 +190,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl lhzMBx"
+    span={3}
+  >
     <div
       style={
         Object {
@@ -75,6 +203,12 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+   
+  <section
+    className="sc-hAZoDl lhzMBx"
+    span={3}
+  >
     <div
       style={
         Object {
@@ -83,6 +217,12 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+   
+  <section
+    className="sc-hAZoDl lhzMBx"
+    span={3}
+  >
     <div
       style={
         Object {
@@ -91,6 +231,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl iZItRi"
+    span={4}
+  >
     <div
       style={
         Object {
@@ -99,6 +244,11 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
+  </section>
+  <section
+    className="sc-hAZoDl iZItRi"
+    span={4}
+  >
     <div
       style={
         Object {
@@ -107,218 +257,60 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
         }
       }
     />
-    <section
-      className="sc-evZas jwSIGD"
-      span={2}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
+  </section>
+   
+  <section
+    className="sc-hAZoDl iZItRi"
+    span={4}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
         }
-      />
-    </section>
-    <section
-      className="sc-evZas jwSIGD"
-      span={2}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
+      }
+    />
+  </section>
+   
+  <section
+    className="sc-hAZoDl kPgGYO"
+    span={6}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
         }
-      />
-    </section>
-    <section
-      className="sc-evZas jwSIGD"
-      span={2}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
+      }
+    />
+  </section>
+  <section
+    className="sc-hAZoDl kPgGYO"
+    span={6}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
         }
-      />
-    </section>
-    <section
-      className="sc-evZas jwSIGD"
-      span={2}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
+      }
+    />
+  </section>
+  <section
+    className="sc-hAZoDl dpdcIP"
+    span={12}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
         }
-      />
-    </section>
-    <section
-      className="sc-evZas jwSIGD"
-      span={2}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-    <section
-      className="sc-evZas jwSIGD"
-      span={2}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-    <section
-      className="sc-evZas bderWS"
-      span={3}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-    <section
-      className="sc-evZas bderWS"
-      span={3}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-     
-    <section
-      className="sc-evZas bderWS"
-      span={3}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-     
-    <section
-      className="sc-evZas bderWS"
-      span={3}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-    <section
-      className="sc-evZas bderWS"
-      span={3}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-    <section
-      className="sc-evZas dkVKHh"
-      span={4}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-     
-    <section
-      className="sc-evZas dkVKHh"
-      span={4}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-     
-    <section
-      className="sc-evZas guyAxt"
-      span={6}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-    <section
-      className="sc-evZas guyAxt"
-      span={6}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-    <section
-      className="sc-evZas ecBViU"
-      span={12}
-    >
-      <div
-        style={
-          Object {
-            "background": "#199fd5",
-            "minHeight": 50,
-          }
-        }
-      />
-    </section>
-  </div>
+      }
+    />
+  </section>
 </div>
 `;

@@ -1,137 +1,115 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
-<div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
->
+Array [
   <div
-    className="sc-fLlhyt ezaMqY rts-toggle__container undefined"
+    className="sc-iTONeN kUmXZG rts-toggle__container undefined"
     data-element="toggle"
     height={12.5}
     width={25}
   >
     <input
-      className="sc-ivTmOn gkLJPi rts-toggle__toggle"
+      className="sc-efBctP PrTOz rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-bBrHrO fyGJBw rts-toggle__background"
+      className="sc-iAvgwm kPJRHI rts-toggle__background"
       data-element="toggle-background"
       height={12.5}
     />
-  </div>
+  </div>,
   <div
-    className="sc-fLlhyt dUxrxF rts-toggle__container undefined"
+    className="sc-iTONeN fVhXQT rts-toggle__container undefined"
     data-element="toggle"
     height={25}
     width={50}
   >
     <input
-      className="sc-ivTmOn jXNCDT rts-toggle__toggle"
+      className="sc-efBctP iJKBRO rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-bBrHrO hqQMCD rts-toggle__background"
+      className="sc-iAvgwm ZhnSP rts-toggle__background"
       data-element="toggle-background"
       height={25}
     />
-  </div>
+  </div>,
   <div
-    className="sc-fLlhyt bsKxcP rts-toggle__container undefined"
+    className="sc-iTONeN exTpxd rts-toggle__container undefined"
     data-element="toggle"
     height={37.5}
     width={75}
   >
     <input
-      className="sc-ivTmOn kzHRxn rts-toggle__toggle"
+      className="sc-efBctP gKXnCS rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-bBrHrO cngOjA rts-toggle__background"
+      className="sc-iAvgwm bdUiPw rts-toggle__background"
       data-element="toggle-background"
       height={37.5}
     />
-  </div>
+  </div>,
   <div
-    className="sc-fLlhyt kXApXQ rts-toggle__container undefined"
+    className="sc-iTONeN bPNMUy rts-toggle__container undefined"
     data-element="toggle"
     height={50}
     width={100}
   >
     <input
-      className="sc-ivTmOn iXAOpU rts-toggle__toggle"
+      className="sc-efBctP cZYXhd rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-bBrHrO ePBvri rts-toggle__background"
+      className="sc-iAvgwm jxVemy rts-toggle__background"
       data-element="toggle-background"
       height={50}
     />
-  </div>
-</div>
+  </div>,
+]
 `;
 
 exports[`Storyshots Components/Toggle Toggle checked 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-iTONeN fVhXQT rts-toggle__container undefined"
+  data-element="toggle"
+  height={25}
+  width={50}
 >
-  <div
-    className="sc-fLlhyt dUxrxF rts-toggle__container undefined"
-    data-element="toggle"
+  <input
+    checked={true}
+    className="sc-efBctP iJKBRO rts-toggle__toggle"
+    data-element="toggle-input"
+    type="checkbox"
+  />
+  <span
+    className="sc-iAvgwm ZhnSP rts-toggle__background"
+    data-element="toggle-background"
     height={25}
-    width={50}
-  >
-    <input
-      checked={true}
-      className="sc-ivTmOn jXNCDT rts-toggle__toggle"
-      data-element="toggle-input"
-      type="checkbox"
-    />
-    <span
-      className="sc-bBrHrO hqQMCD rts-toggle__background"
-      data-element="toggle-background"
-      height={25}
-    />
-  </div>
+  />
 </div>
 `;
 
 exports[`Storyshots Components/Toggle Toggle unchecked 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-iTONeN fVhXQT rts-toggle__container undefined"
+  data-element="toggle"
+  height={25}
+  width={50}
 >
-  <div
-    className="sc-fLlhyt dUxrxF rts-toggle__container undefined"
-    data-element="toggle"
+  <input
+    className="sc-efBctP iJKBRO rts-toggle__toggle"
+    data-element="toggle-input"
+    type="checkbox"
+  />
+  <span
+    className="sc-iAvgwm ZhnSP rts-toggle__background"
+    data-element="toggle-background"
     height={25}
-    width={50}
-  >
-    <input
-      className="sc-ivTmOn jXNCDT rts-toggle__toggle"
-      data-element="toggle-input"
-      type="checkbox"
-    />
-    <span
-      className="sc-bBrHrO hqQMCD rts-toggle__background"
-      data-element="toggle-background"
-      height={25}
-    />
-  </div>
+  />
 </div>
 `;
