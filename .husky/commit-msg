@@ -2,7 +2,7 @@
 . "$(dirname "$0")/_/husky.sh"
 
 yarn format
-yarn lint
+yarn lint:ci
 yarn commitlint --edit $1
 
 
