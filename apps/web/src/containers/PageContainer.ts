@@ -41,6 +41,7 @@ function usePage(initialState: State = defaultState): PageContainerState {
     reducer,
     initialState,
   )
+
   const pageLayout = usePageLayout()
 
   function setTitle(title = 'BloxiFi') {
