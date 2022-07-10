@@ -1,6 +1,16 @@
 import { useQuery } from '@apollo/client'
-import { GRAPHQLEXAMPLEQUERY } from '@bloxifi/core'
-import { Text, CoverLayout, CardLayout, BoxLayout } from '@bloxifi/ui'
+import {
+  DepositGraph,
+  DepositGraphVariables,
+  GRAPHQLEXAMPLEQUERY,
+} from '@bloxifi/core'
+import {
+  Text,
+  CoverLayout,
+  CardLayout,
+  BoxLayout,
+  ContentLoader,
+} from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -19,12 +29,16 @@ const HomePage = () => {
   const {
     state: { isConnected, loading },
   } = Web3Container.useContainer()
-  const { loading: loadingQuery, error, data } = useQuery(GRAPHQLEXAMPLEQUERY)
+  const { loading: loadingQuery } = useQuery<
+    DepositGraph,
+    DepositGraphVariables
+  >(GRAPHQLEXAMPLEQUERY)
 
   return (
     <Wrapper>
       <CoverLayout>
         <BoxLayout>
+          {loadingQuery ? <ContentLoader /> : <Text>Graph data loaded</Text>}
           <CardLayout>
             <Text align="left" type="heading 1" semiBold>
               {t('global.button')}

@@ -13,6 +13,8 @@ import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
 import { Router } from '@/components/router/Router'
 
+const GRAPHQL_URL = process.env.GRAPHQL_URL
+
 export const App = () => {
   const style = StyleContainer.useContainer()
 
@@ -23,7 +25,7 @@ export const App = () => {
   }
 
   const client = new ApolloClient({
-    uri: 'https://api.thegraph.com/subgraphs/name/milos1991/bloxifi-protocol',
+    uri: GRAPHQL_URL,
     cache: new InMemoryCache(),
   })
 
