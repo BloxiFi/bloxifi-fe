@@ -2,6 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "types": ["styled-components", "react"]
+    "types": ["styled-components", "react", "react-router-dom"]
   }
 }
