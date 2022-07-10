@@ -1,4 +1,3 @@
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client'
 import { Action } from '@bloxifi/types'
 import { PageLayoutActions, PageLayoutState, usePageLayout } from '@bloxifi/ui'
 import { Reducer } from 'preact/compat'
