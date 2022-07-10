@@ -8,7 +8,7 @@ import {
 import detectEthereumProvider from '@metamask/detect-provider'
 import { useWeb3React } from '@web3-react/core'
 import { InjectedConnector } from '@web3-react/injected-connector'
-import { useCallback, useEffect, useMemo, useReducer, useState } from 'react'
+import { useCallback, useEffect, useReducer, useState } from 'react'
 import { createContainer } from 'unstated-next'
 
 const defaultState: Web3ContainerProps = {
@@ -64,14 +64,14 @@ function useContainer(initialState: Web3ContainerProps) {
     }
   }, [activateNetwork, setNetworkError])
 
-  const disconnectWallet = useCallback(() => {
+  const disconnectWallet = (): void => {
     try {
       deactivateNetwork()
       localStorage.removeItem('isConnected')
     } catch (error) {
       setNetworkError(error)
     }
-  }, [deactivateNetwork, setNetworkError])
+  }
 
   const checkForMetamask: CheckForMetamaskFunction = useCallback(async () => {
     try {
@@ -94,8 +94,9 @@ function useContainer(initialState: Web3ContainerProps) {
     }
   }, [connectWallet])
 
-  const stateNew = useMemo(
-    () => ({
+  return {
+    state: {
+      ...state,
       isSupportedNetwork,
       isConnected: networkActive,
       currentAccount: account,
@@ -103,23 +104,8 @@ function useContainer(initialState: Web3ContainerProps) {
       chainId,
       provider: library,
       loading,
-    }),
-    [
-      account,
-      chainId,
-      isSupportedNetwork,
-      library,
-      loading,
-      networkActive,
-      networkError,
-    ],
-  )
-
-  return {
-    state: {
-      ...state,
-      ...stateNew,
     },
+    dispatch,
     connectWallet,
     disconnectWallet,
   }
