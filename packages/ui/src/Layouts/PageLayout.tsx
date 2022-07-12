@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 
 import { zIndex } from '../styles/constants'
+import background from '../images/background.svg'
 
 import { CoverLayout } from './CoverLayout'
 import { GridLayout } from './GridLayout'
@@ -177,7 +178,11 @@ export const PageLayout = styled(Page)`
   flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  background: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.background};
+  background-repeat: no-repeat;
+  background-image: url(${background});
+  background-position: 0 0;
+  background-size: 100% 890px;
 
   .c-page-layout__header {
     position: sticky;

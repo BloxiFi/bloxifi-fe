@@ -55,7 +55,7 @@ export const PageLayoutHeader = React.forwardRef(
               </HeaderLink>
             ))}
           </HeaderLinksWrapper>
-          {children}
+          <HeaderButtonsWrapper>{children}</HeaderButtonsWrapper>
         </HeaderWrapper>
       </Component>
     )
@@ -95,4 +95,12 @@ const HeaderLinksWrapper = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+`
+const HeaderButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-left: 13px;
+  }
 `
