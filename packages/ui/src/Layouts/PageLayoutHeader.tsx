@@ -100,7 +100,7 @@ const HeaderButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  & button {
+  button {
     margin-left: 13px;
   }
 `
