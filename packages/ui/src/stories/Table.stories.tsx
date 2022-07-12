@@ -42,6 +42,7 @@ const defaultColumns = {
   borrowAPY: {
     header: 'Borrow APY',
     Cell: ({ data: { borrowAPY } }: CellProps) => <span>{borrowAPY}</span>,
+    alignText: 'right',
   },
 }
 
