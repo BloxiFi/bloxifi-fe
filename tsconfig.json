@@ -9,8 +9,13 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["apps/web/src/*"]
+    }
   },
   "exclude": [
+    "**/downloads/**/*",
     "node_modules",
     "**/dist/**/*",
     "**/__tests__/**/*",

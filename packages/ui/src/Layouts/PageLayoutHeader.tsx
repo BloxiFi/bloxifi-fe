@@ -50,7 +50,7 @@ export const PageLayoutHeader = React.forwardRef(
         <HeaderWrapper>
           <HeaderLinksWrapper>
             {navigationItems.map(({ to, label, onClick }) => (
-              <HeaderLink key={to} to={to} onClick={onClick}>
+              <HeaderLink data-cy={label} key={to} to={to} onClick={onClick}>
                 {label}
               </HeaderLink>
             ))}

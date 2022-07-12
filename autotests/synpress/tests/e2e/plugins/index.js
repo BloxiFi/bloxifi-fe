@@ -1,7 +1,6 @@
 const helpers = require('../support/helpers')
 const puppeteer = require('../support/puppeteer')
 const metamask = require('../support/metamask')
-const synthetix = require('../support/synthetix')
 const etherscan = require('../support/etherscan')
 
 /**
@@ -202,23 +201,6 @@ module.exports = (on, config) => {
         password,
       })
       return true
-    },
-    snxExchangerSettle: async ({ asset, walletAddress, privateKey }) => {
-      if (process.env.PRIVATE_KEY) {
-        privateKey = process.env.PRIVATE_KEY
-      }
-      // todo: wait for confirmation?
-      return await synthetix.settle({
-        asset,
-        walletAddress,
-        privateKey,
-      })
-    },
-    snxCheckWaitingPeriod: async ({ asset, walletAddress }) => {
-      return await synthetix.checkWaitingPeriod({
-        asset,
-        walletAddress,
-      })
     },
     getNetwork: () => {
       return helpers.getNetwork()
