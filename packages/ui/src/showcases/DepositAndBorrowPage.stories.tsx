@@ -354,40 +354,32 @@ export const Connected = args => {
           <GridLayout>
             <GridLayout.Column span={6}>
               <StackLayout gap={1.5}>
-                <CardLayout>
-                  <Table
-                    columns={yourDepositColumns}
-                    data={depositData}
-                    titleComponent={<DepositTitleBox />}
-                    footer={<BoxLayout gap={1} />}
-                  />
-                </CardLayout>
-                <CardLayout>
-                  <Table
-                    columns={assetsToDepositColumns}
-                    data={defaultData}
-                    titleComponent="Assets to deposit"
-                  />
-                </CardLayout>
+                <Table
+                  columns={yourDepositColumns}
+                  data={depositData}
+                  titleComponent={<DepositTitleBox />}
+                  footer={<BoxLayout gap={1} />}
+                />
+                <Table
+                  columns={assetsToDepositColumns}
+                  data={defaultData}
+                  titleComponent="Assets to deposit"
+                />
               </StackLayout>
             </GridLayout.Column>
             <GridLayout.Column span={6}>
               <StackLayout gap={1.5}>
-                <CardLayout>
-                  <Table
-                    columns={yourBorrowColumns}
-                    data={borrowData}
-                    titleComponent={<BorrowTitleBox />}
-                    footer={<BoxLayout gap={1} />}
-                  />
-                </CardLayout>
-                <CardLayout>
-                  <Table
-                    columns={assetsToBorrowColumns}
-                    data={defaultData}
-                    titleComponent="Assets to borrow"
-                  />
-                </CardLayout>
+                <Table
+                  columns={yourBorrowColumns}
+                  data={borrowData}
+                  titleComponent={<BorrowTitleBox />}
+                  footer={<BoxLayout gap={1} />}
+                />
+                <Table
+                  columns={assetsToBorrowColumns}
+                  data={defaultData}
+                  titleComponent="Assets to borrow"
+                />
               </StackLayout>
             </GridLayout.Column>
           </GridLayout>
