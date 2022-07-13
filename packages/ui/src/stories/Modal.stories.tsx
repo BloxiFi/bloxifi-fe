@@ -93,6 +93,7 @@ const tableColumns = {
       </ColumnLayout>
     ),
     alignText: 'left',
+    width: '50%',
   },
   asset: {
     header: '',
@@ -113,6 +114,7 @@ export const DepositModal = args => {
       <StackLayout gap={5}>
         <StackLayout>
           <Table
+            compact
             columns={tableColumns}
             data={tableData}
             titleComponent={<Title />}
@@ -205,11 +207,12 @@ export const BorrowModal = args => {
       <StackLayout gap={5}>
         <StackLayout>
           <Table
+            compact
             columns={tableColumns}
             data={tableData}
             titleComponent={<Title />}
           />
-          <Table columns={transactionColumns} data={transactionData} />
+          <Table compact columns={transactionColumns} data={transactionData} />
         </StackLayout>
 
         <BoxLayout gap={1.875}>
@@ -305,8 +308,9 @@ export const RepayModal = args => {
             columns={tableColumns}
             data={tableData}
             titleComponent={<Title />}
+            compact
           />
-          <Table columns={transactionColumns} data={transactionData} />
+          <Table compact columns={transactionColumns} data={transactionData} />
         </StackLayout>
 
         <BoxLayout gap={1.875}>
@@ -391,11 +395,12 @@ export const WithdrawModal = args => {
       <StackLayout gap={5}>
         <StackLayout>
           <Table
+            compact
             columns={tableColumns}
             data={tableData}
             titleComponent={<Title />}
           />
-          <Table columns={transactionColumns} data={transactionData} />
+          <Table compact columns={transactionColumns} data={transactionData} />
         </StackLayout>
 
         <BoxLayout gap={1.875}>

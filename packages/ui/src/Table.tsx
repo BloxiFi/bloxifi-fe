@@ -41,7 +41,7 @@ interface ColumnData {
   /**
    * Optional width prop, used to limit the column width
    */
-  width?: number
+  width?: number | string
   /**
    * Optional component that will render if {@link CellProps.onRowExpand} is triggered in Cell with some data.
    */
@@ -80,6 +80,10 @@ export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
    * Optional footer that will appear below table body
    */
   footer?: React.ReactNode
+  /**
+   * Optional compact that will remove table borders
+   */
+  compact?: boolean
 }
 
 /**
@@ -142,12 +146,7 @@ const Row = ({
         }
 
         return (
-          <Column
-            key={index}
-            alignText={alignText}
-            withTitle={withTitle}
-            isTitleAString={isTitleAString}
-          >
+          <Column key={index} alignText={alignText}>
             <Cell onRowExpand={onRowExpand} data={rowData} index={rowIndex} />
           </Column>
         )
@@ -190,13 +189,14 @@ export const Table = ({
   noDataMessage = '',
   titleComponent = '',
   footer,
+  compact,
   ...props
 }: TableProps) => {
   const isTitleAString = typeof titleComponent === 'string'
   const numberOfColumns = Object.values(columns).length
 
   return (
-    <Wrapper data-element="tableWrapper">
+    <Wrapper data-element="tableWrapper" compact={compact}>
       <TableWrapper data-element="table" {...props}>
         <THead>
           {titleComponent && isTitleAString && (
@@ -225,7 +225,6 @@ export const Table = ({
                         key={index}
                         alignText={alignText}
                         withTitle={!!titleComponent}
-                        isTitleAString={isTitleAString}
                       >
                         <TableHeaderText>{header}</TableHeaderText>
                       </HeaderColumn>
@@ -284,7 +283,7 @@ export const Table = ({
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ compact?: boolean }>`
   display: flex;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.tableBorderColor};
@@ -292,6 +291,11 @@ const Wrapper = styled.div`
   font-family: ${Fonts.ClashDisplay}, serif;
   border-radius: 10px;
   overflow: hidden;
+  ${({ compact, theme }) =>
+    compact &&
+    ` border: none;
+  border-bottom: 1px solid ${theme.tableBorderColor};
+  border-radius: unset;`}
 `
 
 const TableWrapper = styled.table`
@@ -318,7 +322,6 @@ export const Column = styled.td<{
   width?: number | string
   alignText?: string
   withTitle?: boolean
-  isTitleAString?: boolean
 }>`
   border-top: 1px solid ${({ theme }) => theme.tableBorderColor};
   background-color: ${({ theme }) => theme.tableCellBackgroundColor};
@@ -326,8 +329,8 @@ export const Column = styled.td<{
   font-family: ${Fonts.Inter}, serif;
   font-weight: 600;
   font-size: 16px;
-  ${({ width, alignText, withTitle, isTitleAString }) => `
-      padding: ${!isTitleAString && withTitle ? '15px' : '30px'} 20px;
+  ${({ width, alignText }) => `
+      padding: 15px 20px;
       text-align: ${alignText || 'center'};
 
       ${
