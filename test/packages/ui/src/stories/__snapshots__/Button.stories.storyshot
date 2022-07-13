@@ -2,7 +2,7 @@
 
 exports[`Storyshots Components/Button Appearance 1`] = `
 <div
-  className="sc-fnykZs fmpsuH"
+  className="sc-hAZoDl gyXFzs"
   style={
     Object {
       "background": "#EFF0F6",
@@ -11,21 +11,21 @@ exports[`Storyshots Components/Button Appearance 1`] = `
   }
 >
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Primary Button
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
         data-element="button"
         size="medium"
         variant="medium"
@@ -34,7 +34,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
         data-element="button"
         disabled={true}
         size="medium"
@@ -45,21 +45,21 @@ exports[`Storyshots Components/Button Appearance 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Primary Ghost (Transparent)
       </h3>
       <button
         appearance="primary-ghost"
-        className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+        className="sc-dkzDqf sc-gKXOVf eOixSn kXEJUw"
         data-element="button"
         size="medium"
         variant="medium"
@@ -68,7 +68,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="primary-ghost"
-        className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+        className="sc-dkzDqf sc-gKXOVf eOixSn kXEJUw"
         data-element="button"
         disabled={true}
         size="medium"
@@ -79,21 +79,21 @@ exports[`Storyshots Components/Button Appearance 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Secondary Button
       </h3>
       <button
         appearance="secondary"
-        className="sc-hKMtZM sc-jSMfEi lgNmZZ ioWRiD"
+        className="sc-dkzDqf sc-eCYdqJ hOdlxO hSTXnF"
         data-element="button"
         size="medium"
         variant="medium"
@@ -102,7 +102,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="secondary"
-        className="sc-hKMtZM sc-jSMfEi lgNmZZ ioWRiD"
+        className="sc-dkzDqf sc-eCYdqJ hOdlxO hSTXnF"
         data-element="button"
         disabled={true}
         size="medium"
@@ -113,21 +113,21 @@ exports[`Storyshots Components/Button Appearance 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Dark Button
       </h3>
       <button
         appearance="dark"
-        className="sc-hKMtZM sc-gKXOVf kiXBJA llhpmf"
+        className="sc-dkzDqf sc-jSMfEi eOixSn kcPxMO"
         data-element="button"
         size="medium"
         variant="medium"
@@ -136,7 +136,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="dark"
-        className="sc-hKMtZM sc-gKXOVf kiXBJA llhpmf"
+        className="sc-dkzDqf sc-jSMfEi eOixSn kcPxMO"
         data-element="button"
         disabled={true}
         size="medium"
@@ -147,21 +147,21 @@ exports[`Storyshots Components/Button Appearance 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Gradient Button
       </h3>
       <button
         appearance="gradient"
-        className="sc-hKMtZM sc-ftvSup kiXBJA cVtMTO"
+        className="sc-dkzDqf sc-iBkjds eOixSn dusIcB"
         data-element="button"
         size="medium"
         variant="medium"
@@ -170,7 +170,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="gradient"
-        className="sc-hKMtZM sc-ftvSup kiXBJA cVtMTO"
+        className="sc-dkzDqf sc-iBkjds eOixSn dusIcB"
         data-element="button"
         disabled={true}
         size="medium"
@@ -181,21 +181,21 @@ exports[`Storyshots Components/Button Appearance 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Text Button default
       </h3>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jFDAjs ltXRM u-fit-content-width"
+        className="sc-dkzDqf sc-ftvSup eLXFHP gyjXwR u-fit-content-width"
         data-element="button"
         size="medium"
         variant="medium"
@@ -204,7 +204,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jFDAjs ltXRM u-fit-content-width"
+        className="sc-dkzDqf sc-ftvSup eLXFHP gyjXwR u-fit-content-width"
         data-element="button"
         disabled={true}
         size="medium"
@@ -215,21 +215,21 @@ exports[`Storyshots Components/Button Appearance 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Text Button custom color
       </h3>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jFDAjs IZlkj u-fit-content-width"
+        className="sc-dkzDqf sc-ftvSup eLXFHP gJsrXC u-fit-content-width"
         color="red"
         data-element="button"
         size="medium"
@@ -239,7 +239,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jFDAjs IZlkj u-fit-content-width"
+        className="sc-dkzDqf sc-ftvSup eLXFHP gJsrXC u-fit-content-width"
         color="red"
         data-element="button"
         disabled={true}
@@ -255,24 +255,24 @@ exports[`Storyshots Components/Button Appearance 1`] = `
 
 exports[`Storyshots Components/Button CustomSizes 1`] = `
 <div
-  className="sc-fnykZs fmpsuH"
+  className="sc-hAZoDl gyXFzs"
 >
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Small
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ gpChpt jriGrI"
+        className="sc-dkzDqf sc-hKMtZM gUmaLa jyzXNF"
         data-element="button"
         size="small"
         variant="medium"
@@ -282,21 +282,21 @@ exports[`Storyshots Components/Button CustomSizes 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Medium
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
         data-element="button"
         size="medium"
         variant="medium"
@@ -306,21 +306,21 @@ exports[`Storyshots Components/Button CustomSizes 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Large
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ hEWZCc jriGrI"
+        className="sc-dkzDqf sc-hKMtZM dJKYDL jyzXNF"
         data-element="button"
         size="large"
         variant="medium"
@@ -330,21 +330,21 @@ exports[`Storyshots Components/Button CustomSizes 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Full width
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ gBDpjX jriGrI u-full-width"
+        className="sc-dkzDqf sc-hKMtZM iKXAtc jyzXNF u-full-width"
         data-element="button"
         size="medium"
         variant="large"
@@ -354,21 +354,21 @@ exports[`Storyshots Components/Button CustomSizes 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Fit content
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ imnoeU jriGrI u-fit-content-width"
+        className="sc-dkzDqf sc-hKMtZM kkgIkn jyzXNF u-fit-content-width"
         data-element="button"
         size="medium"
         variant="large"
@@ -382,24 +382,24 @@ exports[`Storyshots Components/Button CustomSizes 1`] = `
 
 exports[`Storyshots Components/Button Details 1`] = `
 <div
-  className="sc-fnykZs fmpsuH"
+  className="sc-hAZoDl gyXFzs"
 >
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Button
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
         data-element="button"
         disabled={false}
         size="medium"
@@ -414,7 +414,7 @@ exports[`Storyshots Components/Button Details 1`] = `
 
 exports[`Storyshots Components/Button Icon 1`] = `
 <div
-  className="sc-fnykZs fmpsuH"
+  className="sc-hAZoDl gyXFzs"
   style={
     Object {
       "background": "#EFF0F6",
@@ -423,24 +423,24 @@ exports[`Storyshots Components/Button Icon 1`] = `
   }
 >
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Primary Button
       </h3>
       <section
-        className="sc-hAZoDl kBYSim css-1btod5z"
+        className="sc-ksZaOG jtZrUR css-1btod5z"
       >
         <button
           appearance="primary"
-          className="sc-hKMtZM sc-eCYdqJ loalxy jriGrI"
+          className="sc-dkzDqf sc-hKMtZM kyKQdd jyzXNF"
           data-element="button"
           icon="settings"
           size="large"
@@ -448,7 +448,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="primary"
-          className="sc-hKMtZM sc-eCYdqJ jQZGYc jriGrI"
+          className="sc-dkzDqf sc-hKMtZM eJVGuX jyzXNF"
           data-element="button"
           icon="settings"
           size="medium"
@@ -458,24 +458,24 @@ exports[`Storyshots Components/Button Icon 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Primary Ghost (Transparent)
       </h3>
       <section
-        className="sc-hAZoDl kBYSim css-1btod5z"
+        className="sc-ksZaOG jtZrUR css-1btod5z"
       >
         <button
           appearance="primary-ghost"
-          className="sc-hKMtZM sc-iBkjds loalxy izdpQA"
+          className="sc-dkzDqf sc-gKXOVf kyKQdd eVoEKu"
           data-element="button"
           icon="settings"
           size="large"
@@ -483,7 +483,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="primary-ghost"
-          className="sc-hKMtZM sc-iBkjds jQZGYc izdpQA"
+          className="sc-dkzDqf sc-gKXOVf eJVGuX eVoEKu"
           data-element="button"
           icon="settings"
           size="medium"
@@ -493,24 +493,24 @@ exports[`Storyshots Components/Button Icon 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Secondary Button
       </h3>
       <section
-        className="sc-hAZoDl kBYSim css-1btod5z"
+        className="sc-ksZaOG jtZrUR css-1btod5z"
       >
         <button
           appearance="secondary"
-          className="sc-hKMtZM sc-jSMfEi bucezJ cWQGDz"
+          className="sc-dkzDqf sc-eCYdqJ fGMKEe hUhnoB"
           data-element="button"
           icon="settings"
           size="large"
@@ -518,7 +518,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="secondary"
-          className="sc-hKMtZM sc-jSMfEi lngkZn cWQGDz"
+          className="sc-dkzDqf sc-eCYdqJ hCDODE hUhnoB"
           data-element="button"
           icon="settings"
           size="medium"
@@ -528,24 +528,24 @@ exports[`Storyshots Components/Button Icon 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Dark Button
       </h3>
       <section
-        className="sc-hAZoDl kBYSim css-1btod5z"
+        className="sc-ksZaOG jtZrUR css-1btod5z"
       >
         <button
           appearance="dark"
-          className="sc-hKMtZM sc-gKXOVf loalxy llhpmf"
+          className="sc-dkzDqf sc-jSMfEi kyKQdd kcPxMO"
           data-element="button"
           icon="settings"
           size="large"
@@ -553,7 +553,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="dark"
-          className="sc-hKMtZM sc-gKXOVf jQZGYc llhpmf"
+          className="sc-dkzDqf sc-jSMfEi eJVGuX kcPxMO"
           data-element="button"
           icon="settings"
           size="medium"
@@ -563,24 +563,24 @@ exports[`Storyshots Components/Button Icon 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Gradient Button
       </h3>
       <section
-        className="sc-hAZoDl kBYSim css-1btod5z"
+        className="sc-ksZaOG jtZrUR css-1btod5z"
       >
         <button
           appearance="gradient"
-          className="sc-hKMtZM sc-ftvSup loalxy cVtMTO"
+          className="sc-dkzDqf sc-iBkjds kyKQdd dusIcB"
           data-element="button"
           icon="settings"
           size="large"
@@ -588,7 +588,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="gradient"
-          className="sc-hKMtZM sc-ftvSup jQZGYc cVtMTO"
+          className="sc-dkzDqf sc-iBkjds eJVGuX dusIcB"
           data-element="button"
           icon="settings"
           size="medium"
@@ -598,24 +598,24 @@ exports[`Storyshots Components/Button Icon 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Text Button default
       </h3>
       <section
-        className="sc-hAZoDl kBYSim css-1btod5z"
+        className="sc-ksZaOG jtZrUR css-1btod5z"
       >
         <button
           appearance="text"
-          className="sc-hKMtZM sc-papXJ nskp ltXRM"
+          className="sc-dkzDqf sc-ftvSup fdVBNG gyjXwR"
           data-element="button"
           icon="settings"
           size="large"
@@ -623,7 +623,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="text"
-          className="sc-hKMtZM sc-papXJ jpeCQH ltXRM"
+          className="sc-dkzDqf sc-ftvSup eAkEZg gyjXwR"
           data-element="button"
           icon="settings"
           size="medium"
@@ -633,24 +633,24 @@ exports[`Storyshots Components/Button Icon 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Text Button custom color
       </h3>
       <section
-        className="sc-hAZoDl kBYSim css-1btod5z"
+        className="sc-ksZaOG jtZrUR css-1btod5z"
       >
         <button
           appearance="text"
-          className="sc-hKMtZM sc-papXJ nskp IZlkj"
+          className="sc-dkzDqf sc-ftvSup fdVBNG gJsrXC"
           color="red"
           data-element="button"
           icon="settings"
@@ -659,7 +659,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="text"
-          className="sc-hKMtZM sc-papXJ jpeCQH IZlkj"
+          className="sc-dkzDqf sc-ftvSup eAkEZg gJsrXC"
           color="red"
           data-element="button"
           icon="settings"
@@ -674,7 +674,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
 
 exports[`Storyshots Components/Button Text with Icon 1`] = `
 <div
-  className="sc-fnykZs fmpsuH"
+  className="sc-hAZoDl gyXFzs"
   style={
     Object {
       "background": "#EFF0F6",
@@ -683,34 +683,34 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
   }
 >
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Primary Button
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
         data-element="button"
         size="medium"
         variant="medium"
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
         data-element="button"
         disabled={true}
         size="medium"
@@ -718,41 +718,41 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Primary Ghost (Transparent)
       </h3>
       <button
         appearance="primary-ghost"
-        className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+        className="sc-dkzDqf sc-gKXOVf eOixSn kXEJUw"
         data-element="button"
         size="medium"
         variant="medium"
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
       <button
         appearance="primary-ghost"
-        className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+        className="sc-dkzDqf sc-gKXOVf eOixSn kXEJUw"
         data-element="button"
         disabled={true}
         size="medium"
@@ -760,41 +760,41 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Secondary Button
       </h3>
       <button
         appearance="secondary"
-        className="sc-hKMtZM sc-jSMfEi lgNmZZ ioWRiD"
+        className="sc-dkzDqf sc-eCYdqJ hOdlxO hSTXnF"
         data-element="button"
         size="medium"
         variant="medium"
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
       <button
         appearance="secondary"
-        className="sc-hKMtZM sc-jSMfEi lgNmZZ ioWRiD"
+        className="sc-dkzDqf sc-eCYdqJ hOdlxO hSTXnF"
         data-element="button"
         disabled={true}
         size="medium"
@@ -802,41 +802,41 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Dark Button
       </h3>
       <button
         appearance="dark"
-        className="sc-hKMtZM sc-gKXOVf kiXBJA llhpmf"
+        className="sc-dkzDqf sc-jSMfEi eOixSn kcPxMO"
         data-element="button"
         size="medium"
         variant="medium"
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
       <button
         appearance="dark"
-        className="sc-hKMtZM sc-gKXOVf kiXBJA llhpmf"
+        className="sc-dkzDqf sc-jSMfEi eOixSn kcPxMO"
         data-element="button"
         disabled={true}
         size="medium"
@@ -844,41 +844,41 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Gradient Button
       </h3>
       <button
         appearance="gradient"
-        className="sc-hKMtZM sc-ftvSup kiXBJA cVtMTO"
+        className="sc-dkzDqf sc-iBkjds eOixSn dusIcB"
         data-element="button"
         size="medium"
         variant="medium"
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
       <button
         appearance="gradient"
-        className="sc-hKMtZM sc-ftvSup kiXBJA cVtMTO"
+        className="sc-dkzDqf sc-iBkjds eOixSn dusIcB"
         data-element="button"
         disabled={true}
         size="medium"
@@ -886,41 +886,41 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Text Button default
       </h3>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ grTfbb ltXRM"
+        className="sc-dkzDqf sc-ftvSup weoio gyjXwR"
         data-element="button"
         size="medium"
         variant="medium"
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ grTfbb ltXRM"
+        className="sc-dkzDqf sc-ftvSup weoio gyjXwR"
         data-element="button"
         disabled={true}
         size="medium"
@@ -928,28 +928,28 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Text Button custom color
       </h3>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ grTfbb IZlkj"
+        className="sc-dkzDqf sc-ftvSup weoio gJsrXC"
         color="red"
         data-element="button"
         size="medium"
@@ -957,13 +957,13 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ grTfbb IZlkj"
+        className="sc-dkzDqf sc-ftvSup weoio gJsrXC"
         color="red"
         data-element="button"
         disabled={true}
@@ -972,7 +972,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       >
         Oxfd...586c
         <div
-          className="sc-kDDrLX ddEmQZ"
+          className="sc-jqUVSM cKPcLS"
           gap={0.75}
         />
       </button>
@@ -983,24 +983,24 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
 
 exports[`Storyshots Components/Button Variants 1`] = `
 <div
-  className="sc-fnykZs fmpsuH"
+  className="sc-hAZoDl gyXFzs"
 >
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Thin
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ bgFKdZ jriGrI"
+        className="sc-dkzDqf sc-hKMtZM jSjkyK jyzXNF"
         data-element="button"
         size="medium"
         variant="thin"
@@ -1010,21 +1010,21 @@ exports[`Storyshots Components/Button Variants 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Medium
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
         data-element="button"
         size="medium"
         variant="medium"
@@ -1034,21 +1034,21 @@ exports[`Storyshots Components/Button Variants 1`] = `
     </div>
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
-      className="sc-evZas cMVNHr"
+      className="sc-crXcEl dvcSNb"
       gap={1}
     >
       <h3
-        className="sc-fEOsli gExXSc c-text--heading-3"
+        className="sc-fnykZs lfSzVV c-text--heading-3"
       >
         Large
       </h3>
       <button
         appearance="primary"
-        className="sc-hKMtZM sc-eCYdqJ lnHxxH jriGrI"
+        className="sc-dkzDqf sc-hKMtZM eaXzyM jyzXNF"
         data-element="button"
         size="medium"
         variant="large"

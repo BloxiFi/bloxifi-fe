@@ -3,69 +3,69 @@
 exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
 Array [
   <div
-    className="sc-iAvgwm jnXqLu rts-toggle__container undefined"
+    className="sc-iTONeN kUmXZG rts-toggle__container undefined"
     data-element="toggle"
     height={12.5}
     width={25}
   >
     <input
-      className="sc-cTQhss fqsKeu rts-toggle__toggle"
+      className="sc-efBctP PrTOz rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP cizkut rts-toggle__background"
+      className="sc-iAvgwm kPJRHI rts-toggle__background"
       data-element="toggle-background"
       height={12.5}
     />
   </div>,
   <div
-    className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+    className="sc-iTONeN fVhXQT rts-toggle__container undefined"
     data-element="toggle"
     height={25}
     width={50}
   >
     <input
-      className="sc-cTQhss hPRWpT rts-toggle__toggle"
+      className="sc-efBctP iJKBRO rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP gnXphq rts-toggle__background"
+      className="sc-iAvgwm ZhnSP rts-toggle__background"
       data-element="toggle-background"
       height={25}
     />
   </div>,
   <div
-    className="sc-iAvgwm bhCHDx rts-toggle__container undefined"
+    className="sc-iTONeN exTpxd rts-toggle__container undefined"
     data-element="toggle"
     height={37.5}
     width={75}
   >
     <input
-      className="sc-cTQhss hNRxeb rts-toggle__toggle"
+      className="sc-efBctP gKXnCS rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP iJPOip rts-toggle__background"
+      className="sc-iAvgwm bdUiPw rts-toggle__background"
       data-element="toggle-background"
       height={37.5}
     />
   </div>,
   <div
-    className="sc-iAvgwm emqSUS rts-toggle__container undefined"
+    className="sc-iTONeN bPNMUy rts-toggle__container undefined"
     data-element="toggle"
     height={50}
     width={100}
   >
     <input
-      className="sc-cTQhss ceXTXo rts-toggle__toggle"
+      className="sc-efBctP cZYXhd rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP jfnEnj rts-toggle__background"
+      className="sc-iAvgwm jxVemy rts-toggle__background"
       data-element="toggle-background"
       height={50}
     />
@@ -75,19 +75,19 @@ Array [
 
 exports[`Storyshots Components/Toggle Toggle checked 1`] = `
 <div
-  className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+  className="sc-iTONeN fVhXQT rts-toggle__container undefined"
   data-element="toggle"
   height={25}
   width={50}
 >
   <input
     checked={true}
-    className="sc-cTQhss hPRWpT rts-toggle__toggle"
+    className="sc-efBctP iJKBRO rts-toggle__toggle"
     data-element="toggle-input"
     type="checkbox"
   />
   <span
-    className="sc-efBctP gnXphq rts-toggle__background"
+    className="sc-iAvgwm ZhnSP rts-toggle__background"
     data-element="toggle-background"
     height={25}
   />
@@ -96,18 +96,18 @@ exports[`Storyshots Components/Toggle Toggle checked 1`] = `
 
 exports[`Storyshots Components/Toggle Toggle unchecked 1`] = `
 <div
-  className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+  className="sc-iTONeN fVhXQT rts-toggle__container undefined"
   data-element="toggle"
   height={25}
   width={50}
 >
   <input
-    className="sc-cTQhss hPRWpT rts-toggle__toggle"
+    className="sc-efBctP iJKBRO rts-toggle__toggle"
     data-element="toggle-input"
     type="checkbox"
   />
   <span
-    className="sc-efBctP gnXphq rts-toggle__background"
+    className="sc-iAvgwm ZhnSP rts-toggle__background"
     data-element="toggle-background"
     height={25}
   />

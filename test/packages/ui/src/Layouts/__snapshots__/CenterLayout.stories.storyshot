@@ -2,7 +2,7 @@
 
 exports[`Storyshots Layout/CenterLayout Details 1`] = `
 <div
-  className="o-center-layout sc-crXcEl TBZtj"
+  className="o-center-layout sc-iqcoie dSwmDQ"
   gap={1}
   style={
     Object {
@@ -51,7 +51,7 @@ exports[`Storyshots Layout/CenterLayout Details 1`] = `
 
 exports[`Storyshots Layout/CenterLayout Overview 1`] = `
 <div
-  className="o-center-layout sc-crXcEl gyrspw"
+  className="o-center-layout sc-iqcoie fLAPGP"
   style={
     Object {
       "background": "#f9d56e",

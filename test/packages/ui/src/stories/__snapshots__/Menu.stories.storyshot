@@ -3,7 +3,7 @@
 exports[`Storyshots Components/Menu Left menu 1`] = `
 <div
   align="flex-start"
-  className="sc-kDDrLX sc-BeQoi iFyCNQ iFaNR"
+  className="sc-jqUVSM sc-BeQoi gFyWwL iFaNR"
 >
   <span
     className="sc-jOrMOR iPuprY"
@@ -11,7 +11,7 @@ exports[`Storyshots Components/Menu Left menu 1`] = `
   >
     <button
       appearance="primary-ghost"
-      className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+      className="sc-dkzDqf sc-gKXOVf eOixSn kXEJUw"
       data-element="button"
       onMouseUp={[Function]}
       size="medium"
@@ -19,7 +19,7 @@ exports[`Storyshots Components/Menu Left menu 1`] = `
     >
       Oxfd...586c
       <div
-        className="sc-kDDrLX ddEmQZ"
+        className="sc-jqUVSM cKPcLS"
         gap={0.75}
       />
     </button>
@@ -30,7 +30,7 @@ exports[`Storyshots Components/Menu Left menu 1`] = `
 exports[`Storyshots Components/Menu Right menu 1`] = `
 <div
   align="flex-end"
-  className="sc-kDDrLX sc-BeQoi iFyCNQ gWcVEW"
+  className="sc-jqUVSM sc-BeQoi gFyWwL gWcVEW"
 >
   <span
     className="sc-jOrMOR iPuprY"
@@ -38,7 +38,7 @@ exports[`Storyshots Components/Menu Right menu 1`] = `
   >
     <button
       appearance="primary-ghost"
-      className="sc-hKMtZM sc-iBkjds jQZGYc izdpQA"
+      className="sc-dkzDqf sc-gKXOVf eJVGuX eVoEKu"
       data-element="button"
       icon="settings"
       onMouseUp={[Function]}
