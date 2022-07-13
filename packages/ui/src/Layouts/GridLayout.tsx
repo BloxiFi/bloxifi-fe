@@ -75,6 +75,7 @@ const getMaxWidth = (columns, gap, padding, maxColumnSize, minColumnSize) => {
 
 export const GridLayout = styled(Grid)`
   display: grid;
+  width: 100%;
   grid-auto-flow: dense;
   margin: 0 auto;
   ${getMaxWidth(4, 16, 16, 135, 60)};
@@ -88,6 +89,6 @@ export const GridLayout = styled(Grid)`
   }
 
   @media (min-width: ${metrics['large-desktop']}px) {
-    ${getMaxWidth(12, 24, 32, 68, 54)}
+    ${getMaxWidth(12, 24, 32, 84, 54)}
   }
 `

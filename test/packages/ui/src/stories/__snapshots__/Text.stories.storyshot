@@ -2,77 +2,61 @@
 
 exports[`Storyshots Components/Text Headings 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-evZas iMkEgE"
+  gap={2}
 >
-  <div
-    className="sc-evZas iMkEgE"
-    gap={2}
+  <h1
+    className="sc-fEOsli jTMouS c-text--heading-1"
   >
-    <h1
-      className="sc-fEOsli jTMouS c-text--heading-1"
-    >
-      Heading 1
-    </h1>
-    <h2
-      className="sc-fEOsli eGBAop c-text--heading-2"
-    >
-      Heading 2
-    </h2>
-    <h3
-      className="sc-fEOsli gExXSc c-text--heading-3"
-    >
-      Heading 3
-    </h3>
-  </div>
+    Heading 1
+  </h1>
+  <h2
+    className="sc-fEOsli eGBAop c-text--heading-2"
+  >
+    Heading 2
+  </h2>
+  <h3
+    className="sc-fEOsli gExXSc c-text--heading-3"
+  >
+    Heading 3
+  </h3>
 </div>
 `;
 
 exports[`Storyshots Components/Text Paragraphs 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-evZas iMkEgE"
+  gap={2}
 >
-  <div
-    className="sc-evZas iMkEgE"
-    gap={2}
+  <p
+    className="sc-fEOsli jwMyez c-text--body-1"
   >
-    <p
-      className="sc-fEOsli jwMyez c-text--body-1"
-    >
-      Body 1
-    </p>
-    <p
-      className="sc-fEOsli jCQRNG c-text--body-2"
-    >
-      Body 2
-    </p>
-    <p
-      className="sc-fEOsli kteIPi c-text--body-3"
-    >
-      Body 3
-    </p>
-    <p
-      className="sc-fEOsli dgHUOs c-text--body-4"
-    >
-      Body 4
-    </p>
-    <p
-      className="sc-fEOsli EtKXH c-text--body-5"
-    >
-      Body 5
-    </p>
-    <span
-      className="sc-fEOsli eOAcbC c-text--small-text c-text--color-textColorDark"
-    >
-      Small text
-    </span>
-  </div>
+    Body 1
+  </p>
+  <p
+    className="sc-fEOsli jCQRNG c-text--body-2"
+  >
+    Body 2
+  </p>
+  <p
+    className="sc-fEOsli kteIPi c-text--body-3"
+  >
+    Body 3
+  </p>
+  <p
+    className="sc-fEOsli dgHUOs c-text--body-4"
+  >
+    Body 4
+  </p>
+  <p
+    className="sc-fEOsli EtKXH c-text--body-5"
+  >
+    Body 5
+  </p>
+  <span
+    className="sc-fEOsli eOAcbC c-text--small-text c-text--color-textColorDark"
+  >
+    Small text
+  </span>
 </div>
 `;

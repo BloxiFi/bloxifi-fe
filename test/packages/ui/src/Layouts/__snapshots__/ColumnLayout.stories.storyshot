@@ -2,47 +2,39 @@
 
 exports[`Storyshots Layout/ColumnLayout Overview 1`] = `
 <div
+  className="sc-breuTD bJNqQj"
   style={
     Object {
-      "padding": "2rem",
+      "minHeight": 400,
     }
   }
 >
   <div
-    className="sc-breuTD gkAgNQ"
     style={
       Object {
-        "minHeight": 400,
+        "background": "#e8505b",
+        "minHeight": 50,
+        "width": 160,
       }
     }
-  >
-    <div
-      style={
-        Object {
-          "background": "#e8505b",
-          "minHeight": 50,
-          "width": 160,
-        }
+  />
+  <div
+    style={
+      Object {
+        "background": "#00FF00",
+        "minHeight": 50,
+        "width": 160,
       }
-    />
-    <div
-      style={
-        Object {
-          "background": "#00FF00",
-          "minHeight": 50,
-          "width": 160,
-        }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#FF00FF",
+        "minHeight": 50,
+        "width": 160,
       }
-    />
-    <div
-      style={
-        Object {
-          "background": "#FF00FF",
-          "minHeight": 50,
-          "width": 160,
-        }
-      }
-    />
-  </div>
+    }
+  />
 </div>
 `;

@@ -2,89 +2,73 @@
 
 exports[`Storyshots Layout/CenterLayout Details 1`] = `
 <div
+  className="o-center-layout sc-crXcEl TBZtj"
+  gap={1}
   style={
     Object {
-      "padding": "2rem",
+      "background": "#f9d56e",
     }
   }
 >
   <div
-    className="o-center-layout sc-crXcEl TBZtj"
-    gap={1}
     style={
       Object {
-        "background": "#f9d56e",
+        "background": "#e8505b",
+        "color": "#fff",
+        "minHeight": 100,
+        "minWidth": 300,
       }
     }
   >
-    <div
-      style={
-        Object {
-          "background": "#e8505b",
-          "color": "#fff",
-          "minHeight": 100,
-          "minWidth": 300,
-        }
+    Lorem ipsum dolor sit amet
+  </div>
+  <div
+    style={
+      Object {
+        "background": "#e8505b",
+        "color": "#fff",
+        "minHeight": 100,
+        "minWidth": 300,
       }
-    >
-      Lorem ipsum dolor sit amet
-    </div>
-    <div
-      style={
-        Object {
-          "background": "#e8505b",
-          "color": "#fff",
-          "minHeight": 100,
-          "minWidth": 300,
-        }
+    }
+  >
+    Lorem ipsum dolor sit amet
+  </div>
+  <div
+    style={
+      Object {
+        "background": "#e8505b",
+        "color": "#fff",
+        "minHeight": 100,
+        "minWidth": 300,
       }
-    >
-      Lorem ipsum dolor sit amet
-    </div>
-    <div
-      style={
-        Object {
-          "background": "#e8505b",
-          "color": "#fff",
-          "minHeight": 100,
-          "minWidth": 300,
-        }
-      }
-    >
-      Lorem ipsum dolor sit amet
-    </div>
+    }
+  >
+    Lorem ipsum dolor sit amet
   </div>
 </div>
 `;
 
 exports[`Storyshots Layout/CenterLayout Overview 1`] = `
 <div
+  className="o-center-layout sc-crXcEl gyrspw"
   style={
     Object {
-      "padding": "2rem",
+      "background": "#f9d56e",
     }
   }
 >
   <div
-    className="o-center-layout sc-crXcEl gyrspw"
     style={
       Object {
-        "background": "#f9d56e",
+        "background": "#e8505b",
+        "color": "#fff",
+        "minHeight": 100,
+        "minWidth": 300,
       }
     }
   >
-    <div
-      style={
-        Object {
-          "background": "#e8505b",
-          "color": "#fff",
-          "minHeight": 100,
-          "minWidth": 300,
-        }
-      }
-    >
-      Lorem ipsum dolor sit amet
-    </div>
+    Lorem ipsum dolor sit amet
   </div>
 </div>
 `;

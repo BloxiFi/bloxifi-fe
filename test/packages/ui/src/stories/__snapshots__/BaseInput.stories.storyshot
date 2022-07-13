@@ -2,98 +2,90 @@
 
 exports[`Storyshots Components/BaseInput Details 1`] = `
 <div
-  style={
-    Object {
-      "padding": "2rem",
-    }
-  }
+  className="sc-fnykZs fmpsuH"
 >
-  <div
-    className="sc-fnykZs jqTsjB"
+  <section
+    className="sc-hAZoDl lhzMBx"
+    span={3}
   >
-    <section
-      className="sc-hAZoDl lhzMBx"
-      span={3}
+    <div
+      className="sc-bczRLJ ekBFnZ"
     >
       <div
-        className="sc-bczRLJ ekBFnZ"
+        className="sc-gsnTZi bhsjPj"
       >
-        <div
-          className="sc-gsnTZi bhsjPj"
-        >
-          <input
-            disabled={false}
-            type="text"
-          />
-        </div>
-        
+        <input
+          disabled={false}
+          type="text"
+        />
       </div>
-    </section>
-    <section
-      className="sc-hAZoDl lhzMBx"
-      span={3}
+      
+    </div>
+  </section>
+  <section
+    className="sc-hAZoDl lhzMBx"
+    span={3}
+  >
+    <div
+      className="sc-bczRLJ ekBFnZ"
     >
       <div
-        className="sc-bczRLJ ekBFnZ"
+        className="sc-gsnTZi hfPkFb"
       >
-        <div
-          className="sc-gsnTZi hfPkFb"
-        >
-          <input
-            disabled={false}
-            type="text"
-            value="Success"
-          />
-        </div>
-        <span
-          className="sc-dkzDqf sIBYp"
-        >
-          Success
-        </span>
+        <input
+          disabled={false}
+          type="text"
+          value="Success"
+        />
       </div>
-    </section>
-    <section
-      className="sc-hAZoDl lhzMBx"
-      span={3}
+      <span
+        className="sc-dkzDqf sIBYp"
+      >
+        Success
+      </span>
+    </div>
+  </section>
+  <section
+    className="sc-hAZoDl lhzMBx"
+    span={3}
+  >
+    <div
+      className="sc-bczRLJ ekBFnZ"
     >
       <div
-        className="sc-bczRLJ ekBFnZ"
+        className="sc-gsnTZi gdjqYL"
       >
-        <div
-          className="sc-gsnTZi gdjqYL"
-        >
-          <input
-            disabled={false}
-            type="text"
-            value="Error"
-          />
-        </div>
-        <span
-          className="sc-dkzDqf kCHank"
-        >
-          Error
-        </span>
+        <input
+          disabled={false}
+          type="text"
+          value="Error"
+        />
       </div>
-    </section>
-    <section
-      className="sc-hAZoDl lhzMBx"
-      span={3}
+      <span
+        className="sc-dkzDqf kCHank"
+      >
+        Error
+      </span>
+    </div>
+  </section>
+  <section
+    className="sc-hAZoDl lhzMBx"
+    span={3}
+  >
+    <div
+      className="sc-bczRLJ ekBFnZ"
     >
       <div
-        className="sc-bczRLJ ekBFnZ"
+        className="sc-gsnTZi bhsjPj"
       >
-        <div
-          className="sc-gsnTZi bhsjPj"
-        >
-          <input
-            disabled={true}
-            type="text"
-            value="Disabled"
-          />
-        </div>
-        
+        <input
+          disabled={true}
+          type="text"
+          value="Disabled"
+        />
       </div>
-    </section>
-  </div>
+      
+    </div>
+  </section>
 </div>
 `;

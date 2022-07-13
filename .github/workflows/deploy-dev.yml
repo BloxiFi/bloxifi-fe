@@ -117,7 +117,7 @@ jobs:
       #
       - name: Lint
         id: lint
-        run: NODE=production yarn lint
+        run: NODE=production yarn lint:ci
 
       #
       # Run tests

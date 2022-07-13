@@ -50,12 +50,12 @@ export const PageLayoutHeader = React.forwardRef(
         <HeaderWrapper>
           <HeaderLinksWrapper>
             {navigationItems.map(({ to, label, onClick }) => (
-              <HeaderLink key={to} to={to} onClick={onClick}>
+              <HeaderLink data-cy={label} key={to} to={to} onClick={onClick}>
                 {label}
               </HeaderLink>
             ))}
           </HeaderLinksWrapper>
-          <ChildrenLinksWrapper>{children}</ChildrenLinksWrapper>
+          <HeaderButtonsWrapper>{children}</HeaderButtonsWrapper>
         </HeaderWrapper>
       </Component>
     )
@@ -97,13 +97,11 @@ const HeaderLinksWrapper = styled.div`
   justify-content: center;
   display: flex;
 `
-
-const ChildrenLinksWrapper = styled.div`
-  align-items: center;
-  justify-content: flex-end;
+const HeaderButtonsWrapper = styled.div`
   display: flex;
+  align-items: center;
 
-  & > * {
+  button {
     margin-left: 13px;
   }
 `
