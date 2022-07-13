@@ -218,7 +218,7 @@ export const Table = ({
             {columns &&
               Object.values(columns).map(
                 ({ header, width, alignText = 'center' }, index) => {
-                  if (header && !isLoading) {
+                  if (!isLoading) {
                     return (
                       <HeaderColumn
                         width={width}
