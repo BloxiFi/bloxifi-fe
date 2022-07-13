@@ -137,6 +137,8 @@ export const Connected = args => {
     'borrow' | 'deposit' | 'withdraw' | 'repay' | undefined
   >(undefined)
   const closeModal = () => setIsModalOpen(undefined)
+  const isDepositEmpty = args.depositRows === 0
+  const isBorrowEmpty = args.borrowRows === 0
 
   const yourDepositColumns = {
     assets: {
@@ -290,21 +292,23 @@ export const Connected = args => {
       <Text as="span" color="oxfordBlue" type="heading 2">
         Your deposit
       </Text>
-      <ColumnLayout center gap={1}>
-        <Text color="oxfordBlue" as="span" type="body 2">
-          Balance $
-          <Text as="span" color="oxfordBlue" bold>
-            1.00
+      {!isDepositEmpty && (
+        <ColumnLayout center gap={1}>
+          <Text color="oxfordBlue" as="span" type="body 2">
+            Balance $
+            <Text as="span" color="oxfordBlue" bold>
+              1.00
+            </Text>
           </Text>
-        </Text>
 
-        <Text color="oxfordBlue" as="span" type="body 2">
-          Collateral $
-          <Text as="span" color="oxfordBlue" bold>
-            1.00
+          <Text color="oxfordBlue" as="span" type="body 2">
+            Collateral $
+            <Text as="span" color="oxfordBlue" bold>
+              1.00
+            </Text>
           </Text>
-        </Text>
-      </ColumnLayout>
+        </ColumnLayout>
+      )}
     </StackLayout>
   )
 
@@ -314,20 +318,23 @@ export const Connected = args => {
         <Text as="span" color="oxfordBlue" type="heading 2">
           Your borrow
         </Text>
-
-        <Text color="oxfordBlue" type="body 2" as="span">
-          Balance $
-          <Text as="span" color="oxfordBlue" bold>
-            1.00
+        {!isBorrowEmpty && (
+          <Text color="oxfordBlue" type="body 2" as="span">
+            Balance $
+            <Text as="span" color="oxfordBlue" bold>
+              1.00
+            </Text>
           </Text>
-        </Text>
+        )}
       </StackLayout>
-      <ProgressBar
-        className={stylings.tableHeaderProgressBar}
-        title="Borrowed"
-        value={50}
-        showBottomLabel
-      />
+      {!isBorrowEmpty && (
+        <ProgressBar
+          className={stylings.tableHeaderProgressBar}
+          title="Borrowed"
+          value={50}
+          showBottomLabel
+        />
+      )}
     </ColumnLayout>
   )
   const initialRowData = {
@@ -335,17 +342,8 @@ export const Connected = args => {
     balance: '1.00',
     APY: '0.50%',
   }
-
-  const depositData = [initialRowData]
-  const borrowData = [initialRowData]
-
-  if (args.appendDepositRow) {
-    depositData.push(initialRowData)
-  }
-
-  if (args.appendBorrowRow) {
-    borrowData.push(initialRowData)
-  }
+  const depositData = new Array(args.depositRows).fill(initialRowData)
+  const borrowData = new Array(args.borrowRows).fill(initialRowData)
 
   return (
     <BrowserRouter>
@@ -357,6 +355,7 @@ export const Connected = args => {
                 <Table
                   columns={yourDepositColumns}
                   data={depositData}
+                  noDataMessage="Nothing deposited yet"
                   titleComponent={<DepositTitleBox />}
                   footer={<BoxLayout gap={1} />}
                 />
@@ -372,6 +371,7 @@ export const Connected = args => {
                 <Table
                   columns={yourBorrowColumns}
                   data={borrowData}
+                  noDataMessage="Nothing borrowed yet"
                   titleComponent={<BorrowTitleBox />}
                   footer={<BoxLayout gap={1} />}
                 />
@@ -394,8 +394,8 @@ export const Connected = args => {
 }
 
 Connected.args = {
-  appendDepositRow: false,
-  appendBorrowRow: false,
+  depositRows: 3,
+  borrowRows: 3,
 }
 
 NotConnected.storyName = 'Not Connected'

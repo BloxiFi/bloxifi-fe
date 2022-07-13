@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { Fonts } from './styles/fonts'
+import { Text } from './Text'
 
 /**
  * Table data.
@@ -114,7 +115,7 @@ export const stylings = {
   // Use this class on titleComponent to target its ProgressBar component
   tableHeaderWithProgressBar: 'c-table__header--progressbar',
   //Use this class on ProgressBar inside the titleComponent in order to position ProgressBar to the bottom of the parent
-  tableHeaderProgressBar: 'c-progressbar',
+  tableHeaderProgressBar: 'c-table__bottom-progressbar',
 }
 
 const Row = ({
@@ -194,9 +195,10 @@ export const Table = ({
 }: TableProps) => {
   const isTitleAString = typeof titleComponent === 'string'
   const numberOfColumns = Object.values(columns).length
+  const isEmpty = data.length === 0
 
   return (
-    <Wrapper data-element="tableWrapper" compact={compact}>
+    <Wrapper data-element="tableWrapper" compact={compact} isEmpty={isEmpty}>
       <TableWrapper data-element="table" {...props}>
         <THead>
           {titleComponent && isTitleAString && (
@@ -213,40 +215,41 @@ export const Table = ({
               </HeaderTitleComponent>
             </tr>
           )}
+          {!isEmpty && (
+            <tr>
+              {columns &&
+                Object.values(columns).map(
+                  ({ header, width, alignText = 'center' }, index) => {
+                    if (!isLoading) {
+                      return (
+                        <HeaderColumn
+                          width={width}
+                          key={index}
+                          alignText={alignText}
+                          withTitle={!!titleComponent}
+                        >
+                          <TableHeaderText>{header}</TableHeaderText>
+                        </HeaderColumn>
+                      )
+                    }
 
-          <tr>
-            {columns &&
-              Object.values(columns).map(
-                ({ header, width, alignText = 'center' }, index) => {
-                  if (!isLoading) {
-                    return (
-                      <HeaderColumn
-                        width={width}
-                        key={index}
-                        alignText={alignText}
-                        withTitle={!!titleComponent}
-                      >
-                        <TableHeaderText>{header}</TableHeaderText>
-                      </HeaderColumn>
-                    )
-                  }
+                    if (index === 0 && isLoading) {
+                      return (
+                        <Column
+                          width="100%"
+                          key={index}
+                          withTitle={!!titleComponent}
+                        >
+                          <TableHeaderText>Loading...</TableHeaderText>
+                        </Column>
+                      )
+                    }
 
-                  if (index === 0 && isLoading) {
-                    return (
-                      <Column
-                        width="100%"
-                        key={index}
-                        withTitle={!!titleComponent}
-                      >
-                        <TableHeaderText>Loading...</TableHeaderText>
-                      </Column>
-                    )
-                  }
-
-                  return null
-                },
-              )}
-          </tr>
+                    return null
+                  },
+                )}
+            </tr>
+          )}
         </THead>
         <tbody>
           {isLoading ? (
@@ -255,9 +258,11 @@ export const Table = ({
                 <div>TODO - Loader</div>
               </LoadingColumn>
             </tr>
-          ) : data.length === 0 ? (
+          ) : isEmpty ? (
             <tr>
-              <Column colSpan={numberOfColumns}>{noDataMessage}</Column>
+              <Column alignText="left" isEmpty colSpan={numberOfColumns}>
+                <Text type="body 5">{noDataMessage}</Text>
+              </Column>
             </tr>
           ) : (
             data.map((rowData, rowIndex) => (
@@ -275,7 +280,9 @@ export const Table = ({
 
         {footer && (
           <Footer className="c-table__footer">
-            <Column colSpan={numberOfColumns}>{footer}</Column>
+            <Column isEmpty colSpan={numberOfColumns}>
+              {footer}
+            </Column>
           </Footer>
         )}
       </TableWrapper>
@@ -283,7 +290,7 @@ export const Table = ({
   )
 }
 
-const Wrapper = styled.div<{ compact?: boolean }>`
+const Wrapper = styled.div<{ compact?: boolean; isEmpty?: boolean }>`
   display: flex;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.tableBorderColor};
@@ -291,16 +298,20 @@ const Wrapper = styled.div<{ compact?: boolean }>`
   font-family: ${Fonts.ClashDisplay}, serif;
   border-radius: 10px;
   overflow: hidden;
-  ${({ compact, theme }) =>
+  ${({ compact, isEmpty }) => (compact || isEmpty) && ` border: none;`};
+  ${({ compact, isEmpty, theme }) =>
     compact &&
-    ` border: none;
-  border-bottom: 1px solid ${theme.tableBorderColor};
-  border-radius: unset;`}
+    !isEmpty &&
+    `
+border-bottom: 1px solid ${theme.tableBorderColor};
+border-radius: 0;
+`}
 `
 
 const TableWrapper = styled.table`
   table-layout: fixed;
   border-spacing: 0;
+  background: ${({ theme }) => theme.white};
 `
 
 export const TruncatedText = styled.div`
@@ -322,8 +333,10 @@ export const Column = styled.td<{
   width?: number | string
   alignText?: string
   withTitle?: boolean
+  isEmpty?: boolean
 }>`
-  border-top: 1px solid ${({ theme }) => theme.tableBorderColor};
+  ${({ theme, isEmpty }) =>
+    !isEmpty && `border-top: 1px solid ${theme.tableBorderColor}`};
   background-color: ${({ theme }) => theme.tableCellBackgroundColor};
   color: ${({ theme }) => theme.tableTextColor};
   font-family: ${Fonts.Inter}, serif;
@@ -385,7 +398,7 @@ const HeaderTitleComponent = styled.td`
   .c-table__header--progressbar {
     position: relative;
 
-    .c-progressbar {
+    .c-table__bottom-progressbar {
       position: absolute;
       bottom: -4px;
       right: 0;
