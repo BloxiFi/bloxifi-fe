@@ -46,7 +46,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
             onClick={onClose}
           />
         )}
-        {props.children}
+        <ChildrenWrapper>{props.children}</ChildrenWrapper>
       </Content>
     </Container>
   ) : null
@@ -87,6 +87,9 @@ const Content = styled(CenterLayout)`
     border-radius: 0;
     height: auto;
   }
+`
+const ChildrenWrapper = styled.div`
+  min-width: 450px;
 `
 const CloseButton = styled(Button)`
   position: absolute;

@@ -280,7 +280,7 @@ export const Table = ({
 
         {footer && (
           <Footer className="c-table__footer">
-            <Column isEmpty colSpan={numberOfColumns}>
+            <Column isEmpty={isEmpty} colSpan={numberOfColumns}>
               {footer}
             </Column>
           </Footer>

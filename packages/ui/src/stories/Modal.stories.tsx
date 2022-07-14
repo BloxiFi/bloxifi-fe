@@ -80,7 +80,7 @@ const tableColumns = {
   action: {
     header: 'Amount',
     Cell: () => (
-      <ColumnLayout>
+      <ColumnLayout gap={0.5}>
         <BaseInput />
         <Button
           appearance="secondary"
@@ -93,7 +93,7 @@ const tableColumns = {
       </ColumnLayout>
     ),
     alignText: 'left',
-    width: '50%',
+    width: 250,
   },
   asset: {
     header: '',
@@ -104,7 +104,7 @@ const tableColumns = {
 
 export const DepositModal = args => {
   const Title = () => (
-    <Text color="oxfordBlue" type="heading 2">
+    <Text color="oxfordBlue" type="heading 2" as="span">
       Deposit asset
     </Text>
   )
@@ -156,7 +156,7 @@ export const DepositModal = args => {
 export const BorrowModal = args => {
   const themeContext = useContext(ThemeContext)
   const Title = () => (
-    <Text color="oxfordBlue" type="heading 2">
+    <Text color="oxfordBlue" type="heading 2" as="span">
       Borrow asset
     </Text>
   )
@@ -235,7 +235,7 @@ export const BorrowModal = args => {
 export const RepayModal = args => {
   const themeContext = useContext(ThemeContext)
   const Title = () => (
-    <Text color="oxfordBlue" type="heading 2">
+    <Text color="oxfordBlue" type="heading 2" as="span">
       Repay asset
     </Text>
   )
@@ -333,7 +333,7 @@ export const RepayModal = args => {
 export const WithdrawModal = args => {
   const themeContext = useContext(ThemeContext)
   const Title = () => (
-    <Text color="oxfordBlue" type="heading 2">
+    <Text color="oxfordBlue" type="heading 2" as="span">
       Withdraw asset
     </Text>
   )
