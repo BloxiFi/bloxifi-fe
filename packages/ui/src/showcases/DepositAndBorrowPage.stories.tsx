@@ -170,11 +170,12 @@ export const Connected = args => {
           variant="thin"
           size="small"
           onClick={() => setIsModalOpen('withdraw')}
+          className="u-full-width"
         >
           Withdraw
         </Button>
       ),
-      width: 100,
+      width: 160,
     },
   }
 
@@ -202,11 +203,12 @@ export const Connected = args => {
           variant="thin"
           size="small"
           onClick={() => setIsModalOpen('repay')}
+          className="u-full-width"
         >
           Repay
         </Button>
       ),
-      width: 100,
+      width: 160,
     },
   }
   const defaultColumns = {

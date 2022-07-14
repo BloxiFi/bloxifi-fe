@@ -49,6 +49,10 @@ export interface ColumnLayoutProps {
    */
   readonly center?: boolean
   /**
+   * Set children position horizontally
+   */
+  readonly justify?: 'flex-start' | 'flex-end' | 'space-between' | 'center'
+  /**
    * Whether to align children to the top of cross axis, instead of stretching them.
    */
   readonly top?: boolean
@@ -105,7 +109,7 @@ export const ColumnLayout = React.forwardRef(
 const Column = styled(defaultElement)<ColumnLayoutProps>`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: ${props => props.justify};
   width: 100%;
   ${props => props.center && `align-items: center;`}
   ${props => props.top && `align-items: flex-start !important;`}

@@ -181,7 +181,7 @@ export const BorrowModal = args => {
       header: '',
       Cell: () => (
         <StackLayout>
-          <Center>
+          <ColumnLayout justify="flex-end" center>
             <Icon name="union" size={16} color={themeContext.buttonDark} />
             <Icon
               name="arrow-right"
@@ -191,7 +191,7 @@ export const BorrowModal = args => {
             <Text as="span" type="body 1" color="oxfordBlue">
               1,00
             </Text>
-          </Center>
+          </ColumnLayout>
 
           <Text as="span" type="body 1" color="oxfordBlue">
             {'Liquidation at < 1.00'}
@@ -253,7 +253,7 @@ export const RepayModal = args => {
     switch (index) {
       case 0:
         return (
-          <Center>
+          <ColumnLayout justify="flex-end" center>
             <Text as="span" type="body 1" color="oxfordBlue">
               1.00 Asset
             </Text>
@@ -265,11 +265,11 @@ export const RepayModal = args => {
             <Text as="span" type="body 1" color="oxfordBlue">
               0.000001 Asset
             </Text>
-          </Center>
+          </ColumnLayout>
         )
       case 1:
         return (
-          <Center>
+          <ColumnLayout justify="flex-end" center>
             <Icon name="union" size={16} color={themeContext.buttonDark} />
             <Icon
               name="arrow-right"
@@ -279,7 +279,7 @@ export const RepayModal = args => {
             <Text as="span" type="body 1" color="oxfordBlue">
               1.00
             </Text>
-          </Center>
+          </ColumnLayout>
         )
     }
   }
@@ -359,15 +359,15 @@ export const WithdrawModal = args => {
     switch (index) {
       case 0:
         return (
-          <Center>
+          <ColumnLayout justify="flex-end" center>
             <Text as="span" type="body 1" color="oxfordBlue">
               0.000001 Asset
             </Text>
-          </Center>
+          </ColumnLayout>
         )
       case 1:
         return (
-          <Center>
+          <ColumnLayout justify="flex-end" center>
             <Icon name="union" size={16} color={themeContext.buttonDark} />
             <Icon
               name="arrow-right"
@@ -377,7 +377,7 @@ export const WithdrawModal = args => {
             <Text as="span" type="body 1" color="oxfordBlue">
               1.00
             </Text>
-          </Center>
+          </ColumnLayout>
         )
     }
   }
@@ -435,8 +435,3 @@ export const WithdrawModal = args => {
     </Modal>
   )
 }
-
-const Center = styled(ColumnLayout)`
-  align-items: center;
-  justify-content: flex-end;
-`
