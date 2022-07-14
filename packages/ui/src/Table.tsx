@@ -110,10 +110,6 @@ interface RowProps
    */
   rowData: TableData
   /**
-   * Boolean if table title is present
-   */
-  withTitle?: boolean
-  /**
    * Boolean if table title is a component or a string
    */
   isTitleAString?: boolean
@@ -242,11 +238,7 @@ export const Table = ({
 
                     if (index === 0 && isLoading) {
                       return (
-                        <Column
-                          width="100%"
-                          key={index}
-                          withTitle={!!titleComponent}
-                        >
+                        <Column width="100%" key={index}>
                           <TableHeaderText>Loading...</TableHeaderText>
                         </Column>
                       )
@@ -278,7 +270,6 @@ export const Table = ({
                 columns={columns}
                 rowIndex={rowIndex}
                 rowData={rowData}
-                withTitle={!!titleComponent}
                 isTitleAString={isTitleAString}
                 columnSpacing={columnSpacing}
               />
@@ -340,7 +331,6 @@ const TableHeaderText = styled(TruncatedText)`
 export const Column = styled.td<{
   width?: number | string
   alignText?: string
-  withTitle?: boolean
   isEmpty?: boolean
   columnSpacing?: boolean
 }>`

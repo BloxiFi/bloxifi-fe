@@ -1,3 +1,4 @@
+import { metrics } from '@bloxifi/core'
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
@@ -89,7 +90,12 @@ const Content = styled(CenterLayout)`
   }
 `
 const ChildrenWrapper = styled.div`
+  width: 100%;
   min-width: 450px;
+
+  @media (max-width: ${metrics.tablet}px) {
+    min-width: auto;
+  }
 `
 const CloseButton = styled(Button)`
   position: absolute;
