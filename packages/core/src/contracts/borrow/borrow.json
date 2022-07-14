@@ -1,6 +1,6 @@
 {
   "lendingPool": {
-    "address": "0xAa46AaFD8e85916Abc9B82EF71cD78b0c2bE9306",
+    "address": "0x37b264fCAf304B6ED70Ad1e5D8B27316Bf978b63",
     "abi": [
       {
         "anonymous": false,
@@ -1082,7 +1082,7 @@
     ]
   },
   "lendingPoolAddressesProvider": {
-    "address": "0x884E6c9D44c5DE6d75efD41033695C1851bcb126",
+    "address": "0x52a0b43a8249F1e883c07be2cf9FF06a6B366924",
     "abi": [
       {
         "inputs": [
@@ -1479,7 +1479,7 @@
     ]
   },
   "lendingPoolAddressesProviderRegistry": {
-    "address": "0xF006bea15f7973eF85FA03e3e8488815314c1A43",
+    "address": "0x10c803237ff706Dea4b955141a2Ba6dB122Dc903",
     "abi": []
   }
 }
