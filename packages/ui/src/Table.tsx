@@ -126,7 +126,13 @@ export const stylings = {
   tableHeaderProgressBar: 'c-table__bottom-progressbar',
 }
 
-const Row = ({ columns, rowData, rowIndex, ...props }: RowProps) => {
+const Row = ({
+  columns,
+  rowData,
+  rowIndex,
+  columnSpacing,
+  ...props
+}: RowProps) => {
   const [isRowExpanded, setIsRowExpanded] = useState(false)
   const [expandedRowData, setExpandedRowData] = useState<TableData>({})
 
@@ -148,7 +154,11 @@ const Row = ({ columns, rowData, rowIndex, ...props }: RowProps) => {
         }
 
         return (
-          <Column key={index} alignText={alignText}>
+          <Column
+            columnSpacing={columnSpacing}
+            key={index}
+            alignText={alignText}
+          >
             <Cell onRowExpand={onRowExpand} data={rowData} index={rowIndex} />
           </Column>
         )

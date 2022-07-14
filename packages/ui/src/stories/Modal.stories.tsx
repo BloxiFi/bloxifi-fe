@@ -121,7 +121,9 @@ export const DepositModal = args => {
           />
           <BoxLayout gap={1.875}>
             <ColumnLayout split="-1">
-              <Text type="body 2">Collaterization</Text>
+              <Text type="body 2" as="span">
+                Collaterization
+              </Text>
               <Toggle />
             </ColumnLayout>
           </BoxLayout>

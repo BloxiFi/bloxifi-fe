@@ -16,7 +16,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf eLMNkN"
+      className="sc-cxabCf ilVPpy"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -76,13 +76,12 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
               <tbody>
                 <tr
                   isTitleAString={false}
-                  withTitle={true}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
                   >
                     <div
-                      className="sc-evZas kKnWwp"
+                      className="sc-evZas irQauU"
                     >
                       <div
                         className="sc-bczRLJ bIAKfX"
@@ -152,7 +151,6 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
               <tbody>
                 <tr
                   isTitleAString={true}
-                  withTitle={false}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
@@ -170,7 +168,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas qzYJH sc-jOrMOR dAsxpi"
+                        className="sc-evZas fPmhWT"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
@@ -235,7 +233,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf eLMNkN"
+      className="sc-cxabCf ilVPpy"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -294,13 +292,12 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
               <tbody>
                 <tr
                   isTitleAString={false}
-                  withTitle={true}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
                   >
                     <div
-                      className="sc-evZas kKnWwp"
+                      className="sc-evZas irQauU"
                     >
                       <div
                         className="sc-bczRLJ bIAKfX"
@@ -338,13 +335,14 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
             gap={1.875}
           >
             <div
-              className="sc-evZas ixtDFr"
+              className="sc-evZas iixrna"
             >
-              <p
-                className="sc-fnykZs gMVeoD c-text--body-2"
+              <span
+                className="sc-fnykZs gMVeoD"
+                type="body 2"
               >
                 Collaterization
-              </p>
+              </span>
               <div
                 className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
                 data-element="toggle"
@@ -429,7 +427,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf eLMNkN"
+      className="sc-cxabCf ilVPpy"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -489,13 +487,12 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
               <tbody>
                 <tr
                   isTitleAString={false}
-                  withTitle={true}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
                   >
                     <div
-                      className="sc-evZas kKnWwp"
+                      className="sc-evZas irQauU"
                     >
                       <div
                         className="sc-bczRLJ bIAKfX"
@@ -565,7 +562,6 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
               <tbody>
                 <tr
                   isTitleAString={true}
-                  withTitle={false}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
@@ -585,7 +581,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas qzYJH sc-jOrMOR dAsxpi"
+                        className="sc-evZas fPmhWT"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
@@ -614,7 +610,6 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                 </tr>
                 <tr
                   isTitleAString={true}
-                  withTitle={false}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
@@ -634,7 +629,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas qzYJH sc-jOrMOR dAsxpi"
+                        className="sc-evZas fPmhWT"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
@@ -699,7 +694,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf eLMNkN"
+      className="sc-cxabCf ilVPpy"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -759,13 +754,12 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
               <tbody>
                 <tr
                   isTitleAString={false}
-                  withTitle={true}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
                   >
                     <div
-                      className="sc-evZas kKnWwp"
+                      className="sc-evZas irQauU"
                     >
                       <div
                         className="sc-bczRLJ bIAKfX"
@@ -835,7 +829,6 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
               <tbody>
                 <tr
                   isTitleAString={true}
-                  withTitle={false}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
@@ -855,7 +848,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas qzYJH sc-jOrMOR dAsxpi"
+                        className="sc-evZas fPmhWT"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
@@ -877,7 +870,6 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                 </tr>
                 <tr
                   isTitleAString={true}
-                  withTitle={false}
                 >
                   <td
                     className="sc-jIZahH hijiIt"
@@ -897,7 +889,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas qzYJH sc-jOrMOR dAsxpi"
+                        className="sc-evZas fPmhWT"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
