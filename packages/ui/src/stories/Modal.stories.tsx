@@ -243,12 +243,46 @@ export const RepayModal = args => {
   const transactionData = [
     {
       name: 'Remaining debt',
-      debt: true,
     },
     {
       name: 'Health factor',
     },
   ]
+
+  const getValue = (index: number) => {
+    switch (index) {
+      case 0:
+        return (
+          <Center>
+            <Text as="span" type="body 1" color="oxfordBlue">
+              1.00 Asset
+            </Text>
+            <Icon
+              name="arrow-right"
+              size={15}
+              color={themeContext.buttonDark}
+            />
+            <Text as="span" type="body 1" color="oxfordBlue">
+              0.000001 Asset
+            </Text>
+          </Center>
+        )
+      case 1:
+        return (
+          <Center>
+            <Icon name="union" size={16} color={themeContext.buttonDark} />
+            <Icon
+              name="arrow-right"
+              size={15}
+              color={themeContext.buttonDark}
+            />
+            <Text as="span" type="body 1" color="oxfordBlue">
+              1.00
+            </Text>
+          </Center>
+        )
+    }
+  }
 
   const transactionColumns = {
     action: {
@@ -262,35 +296,9 @@ export const RepayModal = args => {
     },
     value: {
       header: '',
-      Cell: ({ data: { debt } }: CellProps) => (
+      Cell: ({ index }: CellProps) => (
         <StackLayout>
-          {debt ? (
-            <Center>
-              <Text as="span" type="body 1" color="oxfordBlue">
-                1.00 Asset
-              </Text>
-              <Icon
-                name="arrow-right"
-                size={15}
-                color={themeContext.buttonDark}
-              />
-              <Text as="span" type="body 1" color="oxfordBlue">
-                0.000001 Asset
-              </Text>
-            </Center>
-          ) : (
-            <Center>
-              <Icon name="union" size={16} color={themeContext.buttonDark} />
-              <Icon
-                name="arrow-right"
-                size={15}
-                color={themeContext.buttonDark}
-              />
-              <Text as="span" type="body 1" color="oxfordBlue">
-                1.00
-              </Text>
-            </Center>
-          )}
+          {getValue(index)}
           <Text as="span" type="body 1" color="oxfordBlue">
             {'Liquidation at < 1.00'}
           </Text>
@@ -341,12 +349,38 @@ export const WithdrawModal = args => {
   const transactionData = [
     {
       name: 'Remaining supply',
-      debt: true,
     },
     {
       name: 'Health factor',
     },
   ]
+
+  const getValue = (index: number) => {
+    switch (index) {
+      case 0:
+        return (
+          <Center>
+            <Text as="span" type="body 1" color="oxfordBlue">
+              0.000001 Asset
+            </Text>
+          </Center>
+        )
+      case 1:
+        return (
+          <Center>
+            <Icon name="union" size={16} color={themeContext.buttonDark} />
+            <Icon
+              name="arrow-right"
+              size={15}
+              color={themeContext.buttonDark}
+            />
+            <Text as="span" type="body 1" color="oxfordBlue">
+              1.00
+            </Text>
+          </Center>
+        )
+    }
+  }
 
   const transactionColumns = {
     action: {
@@ -360,27 +394,9 @@ export const WithdrawModal = args => {
     },
     value: {
       header: '',
-      Cell: ({ data: { debt } }: CellProps) => (
+      Cell: ({ index }: CellProps) => (
         <StackLayout>
-          {debt ? (
-            <Center>
-              <Text as="span" type="body 1" color="oxfordBlue">
-                0.000001 Asset
-              </Text>
-            </Center>
-          ) : (
-            <Center>
-              <Icon name="union" size={16} color={themeContext.buttonDark} />
-              <Icon
-                name="arrow-right"
-                size={15}
-                color={themeContext.buttonDark}
-              />
-              <Text as="span" type="body 1" color="oxfordBlue">
-                1.00
-              </Text>
-            </Center>
-          )}
+          {getValue(index)}
           <Text as="span" type="body 1" color="oxfordBlue">
             {'Liquidation at < 1.00'}
           </Text>
