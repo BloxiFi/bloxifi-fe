@@ -205,7 +205,7 @@ export const BorrowModal = args => {
   return (
     <Modal isOpen={true} {...args}>
       <StackLayout gap={5}>
-        <StackLayout>
+        <StackLayout gap={3}>
           <Table
             compact
             columns={tableColumns}
@@ -303,7 +303,7 @@ export const RepayModal = args => {
   return (
     <Modal isOpen={true} {...args}>
       <StackLayout gap={5}>
-        <StackLayout>
+        <StackLayout gap={3}>
           <Table
             columns={tableColumns}
             data={tableData}
@@ -393,7 +393,7 @@ export const WithdrawModal = args => {
   return (
     <Modal isOpen={true} {...args}>
       <StackLayout gap={5}>
-        <StackLayout>
+        <StackLayout gap={3}>
           <Table
             compact
             columns={tableColumns}

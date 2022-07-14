@@ -85,6 +85,14 @@ export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
    * Optional compact that will remove table borders
    */
   compact?: boolean
+  /**
+   * Optional additional padding for table row
+   */
+  columnSpacing?: boolean
+  /**
+   * Optional additional padding for table header
+   */
+  headerSpacing?: boolean
 }
 
 /**
@@ -109,6 +117,10 @@ interface RowProps
    * Boolean if table title is a component or a string
    */
   isTitleAString?: boolean
+  /**
+   * Optional additional padding for table row
+   */
+  columnSpacing?: boolean
 }
 
 export const stylings = {
@@ -118,14 +130,7 @@ export const stylings = {
   tableHeaderProgressBar: 'c-table__bottom-progressbar',
 }
 
-const Row = ({
-  columns,
-  rowData,
-  rowIndex,
-  withTitle,
-  isTitleAString,
-  ...props
-}: RowProps) => {
+const Row = ({ columns, rowData, rowIndex, ...props }: RowProps) => {
   const [isRowExpanded, setIsRowExpanded] = useState(false)
   const [expandedRowData, setExpandedRowData] = useState<TableData>({})
 
@@ -191,6 +196,8 @@ export const Table = ({
   titleComponent = '',
   footer,
   compact,
+  columnSpacing,
+  headerSpacing,
   ...props
 }: TableProps) => {
   const isTitleAString = typeof titleComponent === 'string'
@@ -226,7 +233,7 @@ export const Table = ({
                           width={width}
                           key={index}
                           alignText={alignText}
-                          withTitle={!!titleComponent}
+                          headerSpacing={headerSpacing}
                         >
                           <TableHeaderText>{header}</TableHeaderText>
                         </HeaderColumn>
@@ -273,6 +280,7 @@ export const Table = ({
                 rowData={rowData}
                 withTitle={!!titleComponent}
                 isTitleAString={isTitleAString}
+                columnSpacing={columnSpacing}
               />
             ))
           )}
@@ -334,6 +342,7 @@ export const Column = styled.td<{
   alignText?: string
   withTitle?: boolean
   isEmpty?: boolean
+  columnSpacing?: boolean
 }>`
   ${({ theme, isEmpty }) =>
     !isEmpty && `border-top: 1px solid ${theme.tableBorderColor}`};
@@ -342,8 +351,8 @@ export const Column = styled.td<{
   font-family: ${Fonts.Inter}, serif;
   font-weight: 600;
   font-size: 16px;
+  padding: ${({ columnSpacing }) => (columnSpacing ? '20px' : '10px 20px')};
   ${({ width, alignText }) => `
-      padding: 15px 20px;
       text-align: ${alignText || 'center'};
 
       ${
@@ -355,10 +364,10 @@ export const Column = styled.td<{
     `};
 `
 const HeaderColumn = styled(Column)<{
-  withTitle?: boolean
+  headerSpacing?: boolean
 }>`
-  ${({ withTitle }) =>
-    `padding: ${withTitle ? '15px 20px 4px 20px;' : '30px 20px;'}`}
+  ${({ headerSpacing }) =>
+    `padding: ${headerSpacing ? '30px 20px;' : '15px 20px 4px 20px;'}`}
 `
 
 const ExpandedColumn = styled.td`

@@ -363,6 +363,7 @@ export const Connected = args => {
                   columns={assetsToDepositColumns}
                   data={defaultData}
                   titleComponent="Assets to deposit"
+                  columnSpacing
                 />
               </StackLayout>
             </GridLayout.Column>
@@ -379,6 +380,7 @@ export const Connected = args => {
                   columns={assetsToBorrowColumns}
                   data={defaultData}
                   titleComponent="Assets to borrow"
+                  columnSpacing
                 />
               </StackLayout>
             </GridLayout.Column>
