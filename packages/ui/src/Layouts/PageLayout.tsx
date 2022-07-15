@@ -180,7 +180,7 @@ export const PageLayout = styled(Page)`
   z-index: 0;
   background-color: ${({ theme }) => theme.background};
   background-repeat: no-repeat;
-  background-image: url(${background});
+  background-image: url('/img/background.svg');
   background-position: 0 0;
   background-size: 100% 890px;
 
