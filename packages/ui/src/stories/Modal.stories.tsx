@@ -102,30 +102,82 @@ const tableColumns = {
 }
 
 export const DepositModal = args => {
+  const themeContext = useContext(ThemeContext)
   const Title = () => (
     <Text color="oxfordBlue" type="heading 2" as="span">
       Deposit asset
     </Text>
   )
 
+  const transactionData = [
+    {
+      name: 'Supply APY',
+    },
+    {
+      name: 'Health factor',
+    },
+  ]
+
+  const getValue = (index: number) => {
+    switch (index) {
+      case 0:
+        return (
+          <ColumnLayout align="flex-end" center>
+            <Text as="span" type="body 1" color="oxfordBlue">
+              2.22%
+            </Text>
+          </ColumnLayout>
+        )
+      case 1:
+        return (
+          <StackLayout>
+            <ColumnLayout align="flex-end" center>
+              <Icon name="union" size={16} color={themeContext.buttonDark} />
+              <Icon
+                name="arrow-right"
+                size={15}
+                color={themeContext.buttonDark}
+              />
+              <Text as="span" type="body 1" color="oxfordBlue">
+                1.00
+              </Text>
+            </ColumnLayout>
+            <Text as="span" type="body 1" color="oxfordBlue">
+              {'Liquidation at < 1.00'}
+            </Text>
+          </StackLayout>
+        )
+    }
+  }
+
+  const transactionColumns = {
+    action: {
+      header: 'Transaction overview',
+      Cell: ({ data: { name } }: CellProps) => (
+        <Text type="body 3" color="oxfordBlue" as="span">
+          {name}
+        </Text>
+      ),
+      alignText: 'left',
+    },
+    value: {
+      header: '',
+      Cell: ({ index }: CellProps) => getValue(index),
+      alignText: 'right',
+    },
+  }
+
   return (
     <Modal isOpen={true} {...args}>
       <StackLayout gap={5}>
-        <StackLayout>
+        <StackLayout gap={3}>
           <Table
             compact
             columns={tableColumns}
             data={tableData}
             titleComponent={<Title />}
           />
-          <BoxLayout gap={1.875}>
-            <ColumnLayout split="-1">
-              <Text type="body 2" as="span">
-                Collaterization
-              </Text>
-              <Toggle />
-            </ColumnLayout>
-          </BoxLayout>
+          <Table compact columns={transactionColumns} data={transactionData} />
         </StackLayout>
 
         <BoxLayout gap={1.875}>
@@ -254,19 +306,9 @@ export const RepayModal = args => {
     switch (index) {
       case 0:
         return (
-          <ColumnLayout align="flex-end" center>
-            <Text as="span" type="body 1" color="oxfordBlue">
-              1.00 Asset
-            </Text>
-            <Icon
-              name="arrow-right"
-              size={15}
-              color={themeContext.buttonDark}
-            />
-            <Text as="span" type="body 1" color="oxfordBlue">
-              0.000001 Asset
-            </Text>
-          </ColumnLayout>
+          <Text align="right" as="span" type="body 1" color="oxfordBlue">
+            0.000001 Asset
+          </Text>
         )
       case 1:
         return (

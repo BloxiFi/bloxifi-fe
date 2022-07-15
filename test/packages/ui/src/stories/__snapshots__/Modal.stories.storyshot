@@ -239,7 +239,8 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
         gap={5}
       >
         <div
-          className="sc-crXcEl dZlCHs"
+          className="sc-crXcEl dvwiip"
+          gap={3}
         >
           <div
             className="sc-ezWOiH cEJcsa"
@@ -329,36 +330,113 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
             </table>
           </div>
           <div
-            className="sc-jqUVSM PwVrf"
-            gap={1.875}
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
           >
-            <div
-              className="sc-evZas iixrna"
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
             >
-              <span
-                className="sc-fnykZs gMVeoD"
-                type="body 2"
+              <thead
+                className="sc-ciZhAO dpuqFH"
               >
-                Collaterization
-              </span>
-              <div
-                className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
-                data-element="toggle"
-                height={25}
-                width={50}
-              >
-                <input
-                  className="sc-cTQhss hPRWpT rts-toggle__toggle"
-                  data-element="toggle-input"
-                  type="checkbox"
-                />
-                <span
-                  className="sc-efBctP gnXphq rts-toggle__background"
-                  data-element="toggle-background"
-                  height={25}
-                />
-              </div>
-            </div>
+                
+                
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Transaction overview
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <span
+                      className="sc-fnykZs jgfqoh"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Supply APY
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-evZas fPmhWT"
+                    >
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        2.22%
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <span
+                      className="sc-fnykZs jgfqoh"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Health factor
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-crXcEl dZlCHs"
+                    >
+                      <div
+                        className="sc-evZas fPmhWT"
+                      >
+                        <span
+                          className="sc-fnykZs gXNkYI"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          1.00
+                        </span>
+                      </div>
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <div
@@ -577,24 +655,13 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     <div
                       className="sc-crXcEl dZlCHs"
                     >
-                      <div
-                        className="sc-evZas fPmhWT"
+                      <span
+                        className="sc-fnykZs dhmHoq"
+                        color="oxfordBlue"
+                        type="body 1"
                       >
-                        <span
-                          className="sc-fnykZs gXNkYI"
-                          color="oxfordBlue"
-                          type="body 1"
-                        >
-                          1.00 Asset
-                        </span>
-                        <span
-                          className="sc-fnykZs gXNkYI"
-                          color="oxfordBlue"
-                          type="body 1"
-                        >
-                          0.000001 Asset
-                        </span>
-                      </div>
+                        0.000001 Asset
+                      </span>
                       <span
                         className="sc-fnykZs gXNkYI"
                         color="oxfordBlue"
