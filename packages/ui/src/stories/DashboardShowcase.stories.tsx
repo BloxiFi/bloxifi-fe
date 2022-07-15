@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { ThemeContext } from 'styled-components'
 
 import { Button } from '../Button'
 import { Icon } from '../Icon'
@@ -23,6 +24,7 @@ export default {
 export const Overview = args => {
   const nav = usePageLayout()
   const { setHeader } = nav
+  const themeContext = useContext(ThemeContext)
 
   useEffect(() => {
     if (args.header) {
@@ -64,15 +66,15 @@ export const Overview = args => {
             <ColumnLayout>
               <ColumnLayout>
                 <Icon
-                  color="#DAE3ED"
+                  color={themeContext.tableBorderColor}
                   withBorder
-                  size={50}
+                  size={53}
                   name="total-deposited"
                 />
               </ColumnLayout>
 
               <ColumnLayout>
-                <StackLayout>
+                <StackLayout gap={0.5}>
                   <Text color="white" as="span" type="body 2">
                     Total Deposited
                   </Text>
@@ -86,15 +88,15 @@ export const Overview = args => {
             <ColumnLayout>
               <ColumnLayout>
                 <Icon
-                  color="#DAE3ED"
+                  color={themeContext.tableBorderColor}
                   withBorder
-                  size={50}
+                  size={53}
                   name="total-borrowed"
                 />
               </ColumnLayout>
 
               <ColumnLayout>
-                <StackLayout>
+                <StackLayout gap={0.5}>
                   <Text color="white" as="span" type="body 2">
                     Total Borrowed
                   </Text>

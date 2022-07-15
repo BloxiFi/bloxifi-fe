@@ -2,7 +2,7 @@
 
 exports[`Storyshots Showcases/Dashboard Overview 1`] = `
 <div
-  className="sc-fLlhyt gqdsGO"
+  className="sc-fLlhyt dIrUqQ"
 >
   <header
     className="c-page-layout__header"
@@ -104,7 +104,8 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             className="sc-breuTD hpJktj"
           >
             <div
-              className="sc-evZas fQdIpY"
+              className="sc-evZas mpzUh"
+              gap={0.5}
             >
               <span
                 className="sc-fEOsli bCiyHl"
@@ -114,7 +115,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 Total Deposited
               </span>
               <span
-                className="sc-fEOsli lozHZL"
+                className="sc-fEOsli bSuZsI"
                 color="white"
                 type="body 4"
               >
@@ -133,7 +134,8 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             className="sc-breuTD hpJktj"
           >
             <div
-              className="sc-evZas fQdIpY"
+              className="sc-evZas mpzUh"
+              gap={0.5}
             >
               <span
                 className="sc-fEOsli bCiyHl"
@@ -143,7 +145,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 Total Borrowed
               </span>
               <span
-                className="sc-fEOsli lozHZL"
+                className="sc-fEOsli bSuZsI"
                 color="white"
                 type="body 4"
               >
