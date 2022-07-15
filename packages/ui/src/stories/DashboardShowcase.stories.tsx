@@ -99,7 +99,7 @@ const DepositInfoWrapper = styled.div`
   align-items: stretch;
   justify-content: space-between;
 
-  & svg {
+  svg {
     width: 50px;
     height: 50px;
     border: 0.5px solid ${({ theme }) => theme.borderColor};
@@ -108,7 +108,7 @@ const DepositInfoWrapper = styled.div`
     fill: white;
   }
 
-  & p {
+  p {
     color: white;
     margin: 0;
     line-height: 1;
