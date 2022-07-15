@@ -3,7 +3,6 @@ import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 
 import { zIndex } from '../styles/constants'
-import background from '../images/background.svg'
 
 import { CoverLayout } from './CoverLayout'
 import { GridLayout } from './GridLayout'

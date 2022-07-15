@@ -15,7 +15,7 @@ export default {
   },
 } as Meta
 
-export const defaultColumns = {
+const defaultColumns = {
   assets: {
     header: 'Assets',
     Cell: ({ data: { assets } }: CellProps) => (
@@ -46,7 +46,7 @@ export const defaultColumns = {
   },
 }
 
-export const defaultData = [
+const defaultData = [
   {
     assets: 'ETH',
     totalValueDeposited: '1.250.000$',

@@ -11,15 +11,73 @@ import {
   StackLayout,
   usePageLayout,
 } from '../Layouts'
-import { Table } from '../Table'
+import { CellProps, Table } from '../Table'
 import { Text } from '../Text'
-
-import { defaultColumns, defaultData } from './Table.stories'
 
 export default {
   title: 'Showcases/Dashboard',
   component: Page,
 }
+
+const defaultColumns = {
+  assets: {
+    header: 'Assets',
+    Cell: ({ data: { assets } }: CellProps) => <div>{assets}</div>,
+    alignText: 'left',
+  },
+  totalValueDeposited: {
+    header: 'Total value deposited',
+    Cell: ({ data: { totalValueDeposited } }: CellProps) => (
+      <span>{totalValueDeposited}</span>
+    ),
+  },
+  totalBorrowed: {
+    header: 'Total borrowed',
+    Cell: ({ data: { totalBorrowed } }: CellProps) => (
+      <span>{totalBorrowed}</span>
+    ),
+  },
+  depositAPY: {
+    header: 'Deposit APY',
+    Cell: ({ data: { depositAPY } }: CellProps) => <span>{depositAPY}</span>,
+  },
+  borrowAPY: {
+    header: 'Borrow APY',
+    Cell: ({ data: { borrowAPY } }: CellProps) => <span>{borrowAPY}</span>,
+    alignText: 'right',
+  },
+}
+
+const defaultData = [
+  {
+    assets: 'ETH',
+    totalValueDeposited: '1.250.000$',
+    totalBorrowed: '1.250.000$',
+    depositAPY: '3.5%',
+    borrowAPY: '7.5%',
+  },
+  {
+    assets: 'DAI',
+    totalValueDeposited: '1.250.000$',
+    totalBorrowed: '1.250.000$',
+    depositAPY: '3.5%',
+    borrowAPY: '7.5%',
+  },
+  {
+    assets: 'POLKA',
+    totalValueDeposited: '1.250.000$',
+    totalBorrowed: '1.250.000$',
+    depositAPY: '3.5%',
+    borrowAPY: '7.5%',
+  },
+  {
+    assets: 'BTC',
+    totalValueDeposited: '1.250.000$',
+    totalBorrowed: '1.250.000$',
+    depositAPY: '3.5%',
+    borrowAPY: '7.5%',
+  },
+]
 
 export const Overview = args => {
   const nav = usePageLayout()

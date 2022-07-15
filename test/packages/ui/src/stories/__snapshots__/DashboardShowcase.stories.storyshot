@@ -225,9 +225,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
               <td
                 className="sc-jIZahH lkBcUc"
               >
-                <div
-                  className="sc-jOrMOR jKmhWI"
-                >
+                <div>
                   ETH
                 </div>
               </td>
@@ -264,9 +262,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
               <td
                 className="sc-jIZahH lkBcUc"
               >
-                <div
-                  className="sc-jOrMOR jKmhWI"
-                >
+                <div>
                   DAI
                 </div>
               </td>
@@ -303,9 +299,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
               <td
                 className="sc-jIZahH lkBcUc"
               >
-                <div
-                  className="sc-jOrMOR jKmhWI"
-                >
+                <div>
                   POLKA
                 </div>
               </td>
@@ -342,9 +336,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
               <td
                 className="sc-jIZahH lkBcUc"
               >
-                <div
-                  className="sc-jOrMOR jKmhWI"
-                >
+                <div>
                   BTC
                 </div>
               </td>
