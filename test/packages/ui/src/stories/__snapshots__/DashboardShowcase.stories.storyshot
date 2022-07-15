@@ -1,0 +1,368 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Showcases/Dashboard Overview 1`] = `
+<div
+  className="sc-fLlhyt gqdsGO"
+>
+  <header
+    className="c-page-layout__header"
+  >
+    <div
+      className="sc-bjUoiL hkPefi"
+    >
+      <div
+        className="sc-dIouRR ggKksK"
+      >
+        <a
+          aria-current="page"
+          className="sc-idiyUo iYWGrY active"
+          data-cy="Dashboard"
+          href="/"
+          onClick={[Function]}
+        >
+          Dashboard
+        </a>
+        <a
+          className="sc-idiyUo iYWGrY"
+          data-cy="Deposit & Borrow"
+          href="/deposit"
+          onClick={[Function]}
+        >
+          Deposit & Borrow
+        </a>
+        <a
+          className="sc-idiyUo iYWGrY"
+          data-cy="Stake"
+          href="/stake"
+          onClick={[Function]}
+        >
+          Stake
+        </a>
+        <a
+          className="sc-idiyUo iYWGrY"
+          data-cy="More information"
+          href="/moreInformation"
+          onClick={[Function]}
+        >
+          More information
+        </a>
+      </div>
+      <div
+        className="sc-hHLeRK fdVAtw"
+      >
+        <button
+          appearance="primary-ghost"
+          className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+          data-element="button"
+          size="medium"
+          variant="medium"
+        >
+          Blox Balance
+        </button>
+        <button
+          appearance="primary"
+          className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+          data-element="button"
+          size="medium"
+          variant="medium"
+        >
+          Connect Wallet
+        </button>
+      </div>
+    </div>
+  </header>
+  <div
+    className="sc-evZas sc-bBrHrO ldkTlK kWECVY"
+    gap={4}
+  >
+    <section
+      className="c-page-layout__section"
+    >
+      <h1
+        className="sc-fEOsli sc-BeQoi bvOkZJ cSOYpw c-text--heading-1 c-text--color-white"
+      >
+        Dashboard
+      </h1>
+    </section>
+    <section
+      className="c-page-layout__section"
+    >
+      <div
+        className="sc-fnykZs fmpsuH"
+      >
+        <section
+          className="sc-hAZoDl lhzMBx"
+          span={3}
+        >
+          <div
+            className="sc-bBXxYQ gyYnGg"
+          >
+            <div
+              className="sc-cOFTSb buEvht"
+            >
+              <p
+                className="sc-fEOsli jCQRNG c-text--body-2"
+              >
+                Total Deposited
+              </p>
+              <p
+                className="sc-fEOsli dgHUOs c-text--body-4"
+              >
+                $100,000,000
+              </p>
+            </div>
+          </div>
+        </section>
+        <section
+          className="sc-hAZoDl lhzMBx"
+          span={3}
+        >
+          <div
+            className="sc-bBXxYQ gyYnGg"
+          >
+            <div
+              className="sc-cOFTSb buEvht"
+            >
+              <p
+                className="sc-fEOsli jCQRNG c-text--body-2"
+              >
+                Total Borrowed
+              </p>
+              <p
+                className="sc-fEOsli dgHUOs c-text--body-4"
+              >
+                $100,000,000
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section
+      className="c-page-layout__section"
+    >
+      <div
+        className="sc-ezWOiH cseTil"
+        data-element="tableWrapper"
+      >
+        <table
+          className="sc-bZkfAO bGwcNz"
+          data-element="table"
+        >
+          <thead
+            className="sc-ciZhAO dpuqFH"
+          >
+            
+            
+            <tr>
+              <td
+                className="sc-jIZahH sc-himrzO lkBcUc dDMa-dg"
+              >
+                <div
+                  className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                >
+                  Assets
+                </div>
+              </td>
+              <td
+                className="sc-jIZahH sc-himrzO CGbrM dDMa-dg"
+              >
+                <div
+                  className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                >
+                  Total value deposited
+                </div>
+              </td>
+              <td
+                className="sc-jIZahH sc-himrzO CGbrM dDMa-dg"
+              >
+                <div
+                  className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                >
+                  Total borrowed
+                </div>
+              </td>
+              <td
+                className="sc-jIZahH sc-himrzO CGbrM dDMa-dg"
+              >
+                <div
+                  className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                >
+                  Deposit APY
+                </div>
+              </td>
+              <td
+                className="sc-jIZahH sc-himrzO jrZvoz dDMa-dg"
+              >
+                <div
+                  className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                >
+                  Borrow APY
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td
+                className="sc-jIZahH lkBcUc"
+              >
+                <div
+                  className="sc-jOrMOR jKmhWI"
+                >
+                  ETH
+                </div>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  1.250.000$
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  1.250.000$
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  3.5%
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH jrZvoz"
+              >
+                <span>
+                  7.5%
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td
+                className="sc-jIZahH lkBcUc"
+              >
+                <div
+                  className="sc-jOrMOR jKmhWI"
+                >
+                  DAI
+                </div>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  1.250.000$
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  1.250.000$
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  3.5%
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH jrZvoz"
+              >
+                <span>
+                  7.5%
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td
+                className="sc-jIZahH lkBcUc"
+              >
+                <div
+                  className="sc-jOrMOR jKmhWI"
+                >
+                  POLKA
+                </div>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  1.250.000$
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  1.250.000$
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  3.5%
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH jrZvoz"
+              >
+                <span>
+                  7.5%
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td
+                className="sc-jIZahH lkBcUc"
+              >
+                <div
+                  className="sc-jOrMOR jKmhWI"
+                >
+                  BTC
+                </div>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  1.250.000$
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  1.250.000$
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH CGbrM"
+              >
+                <span>
+                  3.5%
+                </span>
+              </td>
+              <td
+                className="sc-jIZahH jrZvoz"
+              >
+                <span>
+                  7.5%
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+`;
