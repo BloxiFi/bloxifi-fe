@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import styled from 'styled-components'
 
 import { Button } from '../Button'
 import { Icon } from '../Icon'
-import { Page, PageLayout, usePageLayout } from '../Layouts'
-import { GridLayout } from '../Layouts/GridLayout'
+import {
+  ColumnLayout,
+  Page,
+  PageLayout,
+  StackLayout,
+  usePageLayout,
+} from '../Layouts'
 import { Table } from '../Table'
 import { Text } from '../Text'
 
@@ -14,12 +18,6 @@ import { defaultColumns, defaultData } from './Table.stories'
 export default {
   title: 'Showcases/Dashboard',
   component: Page,
-  argTypes: {
-    header: {
-      defaultValue: true,
-      control: 'boolean',
-    },
-  },
 }
 
 export const Overview = args => {
@@ -55,34 +53,58 @@ export const Overview = args => {
     <BrowserRouter>
       <PageLayout {...nav}>
         <PageLayout.Section>
-          <Header type="heading 1" color="white">
-            Dashboard
-          </Header>
+          <StackLayout>
+            <Text type="heading 1" color="white">
+              Dashboard
+            </Text>
+          </StackLayout>
         </PageLayout.Section>
         <PageLayout.Section>
-          <GridLayout>
-            <GridLayout.Column span={3}>
-              <DepositInfoWrapper>
-                <Icon size={50} name="total-deposited" />
+          <ColumnLayout gap={2}>
+            <ColumnLayout>
+              <ColumnLayout>
+                <Icon
+                  color="#DAE3ED"
+                  withBorder
+                  size={50}
+                  name="total-deposited"
+                />
+              </ColumnLayout>
 
-                <DepositAmountWrapper>
-                  <Text type="body 2">Total Deposited</Text>
-                  <Text type="body 4">$100,000,000</Text>
-                </DepositAmountWrapper>
-              </DepositInfoWrapper>
-            </GridLayout.Column>
+              <ColumnLayout>
+                <StackLayout>
+                  <Text color="white" as="span" type="body 2">
+                    Total Deposited
+                  </Text>
+                  <Text color="white" as="span" type="body 4">
+                    $100,000,000
+                  </Text>
+                </StackLayout>
+              </ColumnLayout>
+            </ColumnLayout>
 
-            <GridLayout.Column span={3}>
-              <DepositInfoWrapper>
-                <Icon size={50} name="total-borrowed" />
+            <ColumnLayout>
+              <ColumnLayout>
+                <Icon
+                  color="#DAE3ED"
+                  withBorder
+                  size={50}
+                  name="total-borrowed"
+                />
+              </ColumnLayout>
 
-                <DepositAmountWrapper>
-                  <Text type="body 2">Total Borrowed</Text>
-                  <Text type="body 4">$100,000,000</Text>
-                </DepositAmountWrapper>
-              </DepositInfoWrapper>
-            </GridLayout.Column>
-          </GridLayout>
+              <ColumnLayout>
+                <StackLayout>
+                  <Text color="white" as="span" type="body 2">
+                    Total Borrowed
+                  </Text>
+                  <Text color="white" as="span" type="body 4">
+                    $100,000,000
+                  </Text>
+                </StackLayout>
+              </ColumnLayout>
+            </ColumnLayout>
+          </ColumnLayout>
         </PageLayout.Section>
 
         <PageLayout.Section>
@@ -93,35 +115,4 @@ export const Overview = args => {
   )
 }
 
-const DepositInfoWrapper = styled.div`
-  color: white;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-
-  svg {
-    width: 50px;
-    height: 50px;
-    border: 0.5px solid ${({ theme }) => theme.borderColor};
-    border-radius: 10px;
-    padding: 4px;
-    fill: white;
-  }
-
-  p {
-    color: white;
-    margin: 0;
-    line-height: 1;
-  }
-`
-
-const DepositAmountWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-`
-const Header = styled(Text)`
-  margin: 0;
-  line-height: 1;
-`
+Overview.args = { header: true }

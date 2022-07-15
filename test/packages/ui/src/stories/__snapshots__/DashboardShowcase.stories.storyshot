@@ -78,64 +78,80 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
     <section
       className="c-page-layout__section"
     >
-      <h1
-        className="sc-fEOsli sc-BeQoi bvOkZJ cSOYpw c-text--heading-1 c-text--color-white"
+      <div
+        className="sc-evZas fQdIpY"
       >
-        Dashboard
-      </h1>
+        <h1
+          className="sc-fEOsli bvOkZJ c-text--heading-1 c-text--color-white"
+        >
+          Dashboard
+        </h1>
+      </div>
     </section>
     <section
       className="c-page-layout__section"
     >
       <div
-        className="sc-fnykZs fmpsuH"
+        className="sc-breuTD gMRqqg"
       >
-        <section
-          className="sc-hAZoDl lhzMBx"
-          span={3}
+        <div
+          className="sc-breuTD hpJktj"
         >
           <div
-            className="sc-bBXxYQ gyYnGg"
+            className="sc-breuTD hpJktj"
+          />
+          <div
+            className="sc-breuTD hpJktj"
           >
             <div
-              className="sc-cOFTSb buEvht"
+              className="sc-evZas fQdIpY"
             >
-              <p
-                className="sc-fEOsli jCQRNG c-text--body-2"
+              <span
+                className="sc-fEOsli bCiyHl"
+                color="white"
+                type="body 2"
               >
                 Total Deposited
-              </p>
-              <p
-                className="sc-fEOsli dgHUOs c-text--body-4"
+              </span>
+              <span
+                className="sc-fEOsli lozHZL"
+                color="white"
+                type="body 4"
               >
                 $100,000,000
-              </p>
+              </span>
             </div>
           </div>
-        </section>
-        <section
-          className="sc-hAZoDl lhzMBx"
-          span={3}
+        </div>
+        <div
+          className="sc-breuTD hpJktj"
         >
           <div
-            className="sc-bBXxYQ gyYnGg"
+            className="sc-breuTD hpJktj"
+          />
+          <div
+            className="sc-breuTD hpJktj"
           >
             <div
-              className="sc-cOFTSb buEvht"
+              className="sc-evZas fQdIpY"
             >
-              <p
-                className="sc-fEOsli jCQRNG c-text--body-2"
+              <span
+                className="sc-fEOsli bCiyHl"
+                color="white"
+                type="body 2"
               >
                 Total Borrowed
-              </p>
-              <p
-                className="sc-fEOsli dgHUOs c-text--body-4"
+              </span>
+              <span
+                className="sc-fEOsli lozHZL"
+                color="white"
+                type="body 4"
               >
                 $100,000,000
-              </p>
+              </span>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </section>
     <section

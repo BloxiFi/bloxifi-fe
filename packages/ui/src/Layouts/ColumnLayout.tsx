@@ -106,13 +106,11 @@ const Column = styled(defaultElement)<ColumnLayoutProps>`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 100%;
   ${props => props.center && `align-items: center;`}
   ${props => props.top && `align-items: flex-start !important;`}
   ${props => `${props.recursive ? '*' : '> *'}{
     margin-left: 0;
     margin-right: 0;
-    flex-grow: 1;
   }`}
   ${props => `${props.recursive ? '* + *' : '> * + *'}{
     margin-left: ${props.gap || 1}rem;

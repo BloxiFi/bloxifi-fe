@@ -27,6 +27,10 @@ export interface IconProps extends Omit<Props, 'src'> {
    * This represents icon color you want to render
    * */
   readonly color?: string
+  /**
+   * Optional prop that shows border around icon with small border radius
+   */
+  withBorder?: boolean
 }
 
 export const Icon = styled(
@@ -44,8 +48,20 @@ export const Icon = styled(
       />
     )
   },
-)`
+)<{
+  withBorder?: boolean
+  color?: string
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${({ withBorder = false, color = 'white' }) => {
+    if (withBorder) {
+      return `
+        border: 0.5px solid ${color};
+        padding: 8px;
+        border-radius: 10px;
+      `
+    }
+  }};
 `
