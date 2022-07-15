@@ -16,7 +16,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf ilVPpy"
+      className="sc-cxabCf dqXJUW"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -53,8 +53,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                 </tr>
                 <tr>
                   <td
-                    className="sc-jIZahH sc-himrzO doMgFy eifDIB"
-                    width={250}
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
                   >
                     <div
                       className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -233,7 +232,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf ilVPpy"
+      className="sc-cxabCf dqXJUW"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -269,8 +268,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                 </tr>
                 <tr>
                   <td
-                    className="sc-jIZahH sc-himrzO doMgFy eifDIB"
-                    width={250}
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
                   >
                     <div
                       className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -427,7 +425,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf ilVPpy"
+      className="sc-cxabCf dqXJUW"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -464,8 +462,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                 </tr>
                 <tr>
                   <td
-                    className="sc-jIZahH sc-himrzO doMgFy eifDIB"
-                    width={250}
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
                   >
                     <div
                       className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -694,7 +691,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf ilVPpy"
+      className="sc-cxabCf dqXJUW"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -731,8 +728,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                 </tr>
                 <tr>
                   <td
-                    className="sc-jIZahH sc-himrzO doMgFy eifDIB"
-                    width={250}
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
                   >
                     <div
                       className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"

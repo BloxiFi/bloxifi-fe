@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react'
 import React, { Fragment, useContext, useState } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import { ThemeContext } from 'styled-components'
 
 import { Button } from '..'
 import { BoxLayout, ColumnLayout, StackLayout } from '../Layouts'
@@ -93,7 +93,6 @@ const tableColumns = {
       </ColumnLayout>
     ),
     alignText: 'left',
-    width: 250,
   },
   asset: {
     header: '',
@@ -183,7 +182,7 @@ export const BorrowModal = args => {
       header: '',
       Cell: () => (
         <StackLayout>
-          <ColumnLayout justify="flex-end" center>
+          <ColumnLayout align="flex-end" center>
             <Icon name="union" size={16} color={themeContext.buttonDark} />
             <Icon
               name="arrow-right"
@@ -255,7 +254,7 @@ export const RepayModal = args => {
     switch (index) {
       case 0:
         return (
-          <ColumnLayout justify="flex-end" center>
+          <ColumnLayout align="flex-end" center>
             <Text as="span" type="body 1" color="oxfordBlue">
               1.00 Asset
             </Text>
@@ -271,7 +270,7 @@ export const RepayModal = args => {
         )
       case 1:
         return (
-          <ColumnLayout justify="flex-end" center>
+          <ColumnLayout align="flex-end" center>
             <Icon name="union" size={16} color={themeContext.buttonDark} />
             <Icon
               name="arrow-right"
@@ -361,7 +360,7 @@ export const WithdrawModal = args => {
     switch (index) {
       case 0:
         return (
-          <ColumnLayout justify="flex-end" center>
+          <ColumnLayout align="flex-end" center>
             <Text as="span" type="body 1" color="oxfordBlue">
               0.000001 Asset
             </Text>
@@ -369,7 +368,7 @@ export const WithdrawModal = args => {
         )
       case 1:
         return (
-          <ColumnLayout justify="flex-end" center>
+          <ColumnLayout align="flex-end" center>
             <Icon name="union" size={16} color={themeContext.buttonDark} />
             <Icon
               name="arrow-right"

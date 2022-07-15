@@ -91,11 +91,7 @@ const Content = styled(CenterLayout)`
 `
 const ChildrenWrapper = styled.div`
   width: 100%;
-  min-width: 450px;
-
-  @media (max-width: ${metrics.tablet}px) {
-    min-width: auto;
-  }
+  max-width: 450px;
 `
 const CloseButton = styled(Button)`
   position: absolute;
