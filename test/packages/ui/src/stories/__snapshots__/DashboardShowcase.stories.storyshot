@@ -98,60 +98,46 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           className="sc-breuTD hpJktj"
         >
           <div
-            className="sc-breuTD hpJktj"
-          />
-          <div
-            className="sc-breuTD hpJktj"
+            className="sc-evZas mpzUh"
+            gap={0.5}
           >
-            <div
-              className="sc-evZas mpzUh"
-              gap={0.5}
+            <span
+              className="sc-fEOsli bCiyHl"
+              color="white"
+              type="body 2"
             >
-              <span
-                className="sc-fEOsli bCiyHl"
-                color="white"
-                type="body 2"
-              >
-                Total Deposited
-              </span>
-              <span
-                className="sc-fEOsli bSuZsI"
-                color="white"
-                type="body 4"
-              >
-                $100,000,000
-              </span>
-            </div>
+              Total Deposited
+            </span>
+            <span
+              className="sc-fEOsli bSuZsI"
+              color="white"
+              type="body 4"
+            >
+              $100,000,000
+            </span>
           </div>
         </div>
         <div
           className="sc-breuTD hpJktj"
         >
           <div
-            className="sc-breuTD hpJktj"
-          />
-          <div
-            className="sc-breuTD hpJktj"
+            className="sc-evZas mpzUh"
+            gap={0.5}
           >
-            <div
-              className="sc-evZas mpzUh"
-              gap={0.5}
+            <span
+              className="sc-fEOsli bCiyHl"
+              color="white"
+              type="body 2"
             >
-              <span
-                className="sc-fEOsli bCiyHl"
-                color="white"
-                type="body 2"
-              >
-                Total Borrowed
-              </span>
-              <span
-                className="sc-fEOsli bSuZsI"
-                color="white"
-                type="body 4"
-              >
-                $100,000,000
-              </span>
-            </div>
+              Total Borrowed
+            </span>
+            <span
+              className="sc-fEOsli bSuZsI"
+              color="white"
+              type="body 4"
+            >
+              $100,000,000
+            </span>
           </div>
         </div>
       </div>
@@ -210,7 +196,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </div>
               </td>
               <td
-                className="sc-jIZahH sc-himrzO jrZvoz dDMa-dg"
+                className="sc-jIZahH sc-himrzO CGbrM dDMa-dg"
               >
                 <div
                   className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -251,7 +237,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </span>
               </td>
               <td
-                className="sc-jIZahH jrZvoz"
+                className="sc-jIZahH CGbrM"
               >
                 <span>
                   7.5%
@@ -288,7 +274,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </span>
               </td>
               <td
-                className="sc-jIZahH jrZvoz"
+                className="sc-jIZahH CGbrM"
               >
                 <span>
                   7.5%
@@ -325,7 +311,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </span>
               </td>
               <td
-                className="sc-jIZahH jrZvoz"
+                className="sc-jIZahH CGbrM"
               >
                 <span>
                   7.5%
@@ -362,7 +348,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </span>
               </td>
               <td
-                className="sc-jIZahH jrZvoz"
+                className="sc-jIZahH CGbrM"
               >
                 <span>
                   7.5%
