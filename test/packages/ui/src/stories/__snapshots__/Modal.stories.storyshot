@@ -5,7 +5,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
   className="sc-bBrHrO kfhXhC"
 >
   <div
-    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ frqDXP"
+    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ bkjUML"
   >
     <button
       appearance="text"
@@ -16,7 +16,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf dqXJUW"
+      className="sc-cxabCf cSLbaL"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -221,7 +221,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
   className="sc-bBrHrO kfhXhC"
 >
   <div
-    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ frqDXP"
+    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ bkjUML"
   >
     <button
       appearance="text"
@@ -232,7 +232,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf dqXJUW"
+      className="sc-cxabCf cSLbaL"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -492,7 +492,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
   className="sc-bBrHrO kfhXhC"
 >
   <div
-    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ frqDXP"
+    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ bkjUML"
   >
     <button
       appearance="text"
@@ -503,7 +503,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf dqXJUW"
+      className="sc-cxabCf cSLbaL"
     >
       <div
         className="sc-crXcEl gXvOqP"
@@ -747,7 +747,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
   className="sc-bBrHrO kfhXhC"
 >
   <div
-    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ frqDXP"
+    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ bkjUML"
   >
     <button
       appearance="text"
@@ -758,7 +758,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
       variant="medium"
     />
     <div
-      className="sc-cxabCf dqXJUW"
+      className="sc-cxabCf cSLbaL"
     >
       <div
         className="sc-crXcEl gXvOqP"
