@@ -80,7 +80,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <div
-                      className="sc-evZas irQauU"
+                      className="sc-evZas cSoGjd"
                     >
                       <div
                         className="sc-bczRLJ bIAKfX"
@@ -167,7 +167,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas fPmhWT"
+                        className="sc-evZas iHSrCo"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
@@ -296,7 +296,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <div
-                      className="sc-evZas irQauU"
+                      className="sc-evZas cSoGjd"
                     >
                       <div
                         className="sc-bczRLJ bIAKfX"
@@ -382,7 +382,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     className="sc-jIZahH jzXBki"
                   >
                     <div
-                      className="sc-evZas fPmhWT"
+                      className="sc-evZas iHSrCo"
                     >
                       <span
                         className="sc-fnykZs gXNkYI"
@@ -415,7 +415,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas fPmhWT"
+                        className="sc-evZas iHSrCo"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
@@ -567,7 +567,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <div
-                      className="sc-evZas irQauU"
+                      className="sc-evZas cSoGjd"
                     >
                       <div
                         className="sc-bczRLJ bIAKfX"
@@ -693,7 +693,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas fPmhWT"
+                        className="sc-evZas iHSrCo"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
@@ -822,7 +822,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <div
-                      className="sc-evZas irQauU"
+                      className="sc-evZas cSoGjd"
                     >
                       <div
                         className="sc-bczRLJ bIAKfX"
@@ -911,7 +911,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas fPmhWT"
+                        className="sc-evZas iHSrCo"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"
@@ -952,7 +952,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <div
-                        className="sc-evZas fPmhWT"
+                        className="sc-evZas iHSrCo"
                       >
                         <span
                           className="sc-fnykZs gXNkYI"

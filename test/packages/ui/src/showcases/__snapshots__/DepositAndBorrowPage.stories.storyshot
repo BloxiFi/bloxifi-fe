@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots showcase/Deposit and Borrow Connected 1`] = `
+exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
 <div
-  className="sc-kgflAQ eHnlrq"
+  className="sc-kgflAQ jXiapk"
 >
   <div
     className="sc-crXcEl sc-fLlhyt bLbIru BdeJf"
@@ -50,7 +50,7 @@ exports[`Storyshots showcase/Deposit and Borrow Connected 1`] = `
                           Your deposit
                         </span>
                         <div
-                          className="sc-evZas hZllKO"
+                          className="sc-evZas imwzNf"
                         >
                           <span
                             className="sc-fnykZs iOrXYh"
@@ -574,7 +574,7 @@ exports[`Storyshots showcase/Deposit and Borrow Connected 1`] = `
                       colSpan={4}
                     >
                       <div
-                        className="sc-evZas jIytYm c-table__header--progressbar"
+                        className="sc-evZas bpHdpr c-table__header--progressbar"
                       >
                         <div
                           className="sc-crXcEl loOuzI"
@@ -1026,9 +1026,9 @@ exports[`Storyshots showcase/Deposit and Borrow Connected 1`] = `
 </div>
 `;
 
-exports[`Storyshots showcase/Deposit and Borrow Not Connected 1`] = `
+exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
 <div
-  className="sc-kgflAQ eHnlrq"
+  className="sc-kgflAQ jXiapk"
 >
   <div
     className="sc-crXcEl sc-fLlhyt bLbIru BdeJf"

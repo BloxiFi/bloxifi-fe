@@ -2,20 +2,20 @@
 
 exports[`Storyshots Showcases/Dashboard Overview 1`] = `
 <div
-  className="sc-fLlhyt dIrUqQ"
+  className="sc-kgflAQ jXiapk"
 >
   <header
     className="c-page-layout__header"
   >
     <div
-      className="sc-bjUoiL hkPefi"
+      className="sc-fEOsli fUKZQP"
     >
       <div
-        className="sc-dIouRR ggKksK"
+        className="sc-idiyUo fXYDkK"
       >
         <a
           aria-current="page"
-          className="sc-idiyUo iYWGrY active"
+          className="sc-bjUoiL iozvTc active"
           data-cy="Dashboard"
           href="/"
           onClick={[Function]}
@@ -23,7 +23,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           Dashboard
         </a>
         <a
-          className="sc-idiyUo iYWGrY"
+          className="sc-bjUoiL iozvTc"
           data-cy="Deposit & Borrow"
           href="/deposit"
           onClick={[Function]}
@@ -31,7 +31,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           Deposit & Borrow
         </a>
         <a
-          className="sc-idiyUo iYWGrY"
+          className="sc-bjUoiL iozvTc"
           data-cy="Stake"
           href="/stake"
           onClick={[Function]}
@@ -39,7 +39,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           Stake
         </a>
         <a
-          className="sc-idiyUo iYWGrY"
+          className="sc-bjUoiL iozvTc"
           data-cy="More information"
           href="/moreInformation"
           onClick={[Function]}
@@ -48,11 +48,11 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
         </a>
       </div>
       <div
-        className="sc-hHLeRK fdVAtw"
+        className="sc-dIouRR cwihlj"
       >
         <button
           appearance="primary-ghost"
-          className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+          className="sc-dkzDqf sc-gKXOVf eOixSn kXEJUw"
           data-element="button"
           size="medium"
           variant="medium"
@@ -61,7 +61,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
         </button>
         <button
           appearance="primary"
-          className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+          className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
           data-element="button"
           size="medium"
           variant="medium"
@@ -72,17 +72,17 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
     </div>
   </header>
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK kWECVY"
+    className="sc-crXcEl sc-fLlhyt bLbIru BdeJf"
     gap={4}
   >
     <section
       className="c-page-layout__section"
     >
       <div
-        className="sc-evZas fQdIpY"
+        className="sc-crXcEl dZlCHs"
       >
         <h1
-          className="sc-fEOsli bvOkZJ c-text--heading-1 c-text--color-white"
+          className="sc-fnykZs ehjzRk c-text--heading-1 c-text--color-white"
         >
           Dashboard
         </h1>
@@ -92,24 +92,24 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
       className="c-page-layout__section"
     >
       <div
-        className="sc-breuTD gMRqqg"
+        className="sc-evZas fqyvyE"
       >
         <div
-          className="sc-breuTD hpJktj"
+          className="sc-evZas bpHdpr"
         >
           <div
-            className="sc-evZas mpzUh"
+            className="sc-crXcEl uAAnZ"
             gap={0.5}
           >
             <span
-              className="sc-fEOsli bCiyHl"
+              className="sc-fnykZs izjDrY"
               color="white"
               type="body 2"
             >
               Total Deposited
             </span>
             <span
-              className="sc-fEOsli bSuZsI"
+              className="sc-fnykZs dYwVWJ"
               color="white"
               type="body 4"
             >
@@ -118,21 +118,21 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           </div>
         </div>
         <div
-          className="sc-breuTD hpJktj"
+          className="sc-evZas bpHdpr"
         >
           <div
-            className="sc-evZas mpzUh"
+            className="sc-crXcEl uAAnZ"
             gap={0.5}
           >
             <span
-              className="sc-fEOsli bCiyHl"
+              className="sc-fnykZs izjDrY"
               color="white"
               type="body 2"
             >
               Total Borrowed
             </span>
             <span
-              className="sc-fEOsli bSuZsI"
+              className="sc-fnykZs dYwVWJ"
               color="white"
               type="body 4"
             >
@@ -146,11 +146,11 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
       className="c-page-layout__section"
     >
       <div
-        className="sc-ezWOiH cseTil"
+        className="sc-ezWOiH kQmwHd"
         data-element="tableWrapper"
       >
         <table
-          className="sc-bZkfAO bGwcNz"
+          className="sc-bZkfAO ddqNNK"
           data-element="table"
         >
           <thead
@@ -160,7 +160,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             
             <tr>
               <td
-                className="sc-jIZahH sc-himrzO lkBcUc dDMa-dg"
+                className="sc-jIZahH sc-himrzO hijiIt eifDIB"
               >
                 <div
                   className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -169,7 +169,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </div>
               </td>
               <td
-                className="sc-jIZahH sc-himrzO CGbrM dDMa-dg"
+                className="sc-jIZahH sc-himrzO gfrNml eifDIB"
               >
                 <div
                   className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -178,7 +178,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </div>
               </td>
               <td
-                className="sc-jIZahH sc-himrzO CGbrM dDMa-dg"
+                className="sc-jIZahH sc-himrzO gfrNml eifDIB"
               >
                 <div
                   className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -187,7 +187,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </div>
               </td>
               <td
-                className="sc-jIZahH sc-himrzO CGbrM dDMa-dg"
+                className="sc-jIZahH sc-himrzO gfrNml eifDIB"
               >
                 <div
                   className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -196,7 +196,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </div>
               </td>
               <td
-                className="sc-jIZahH sc-himrzO CGbrM dDMa-dg"
+                className="sc-jIZahH sc-himrzO gfrNml eifDIB"
               >
                 <div
                   className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
@@ -207,148 +207,156 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr
+              isTitleAString={true}
+            >
               <td
-                className="sc-jIZahH lkBcUc"
+                className="sc-jIZahH hijiIt"
               >
                 <div>
                   ETH
                 </div>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   7.5%
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr
+              isTitleAString={true}
+            >
               <td
-                className="sc-jIZahH lkBcUc"
+                className="sc-jIZahH hijiIt"
               >
                 <div>
                   DAI
                 </div>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   7.5%
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr
+              isTitleAString={true}
+            >
               <td
-                className="sc-jIZahH lkBcUc"
+                className="sc-jIZahH hijiIt"
               >
                 <div>
                   POLKA
                 </div>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   7.5%
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr
+              isTitleAString={true}
+            >
               <td
-                className="sc-jIZahH lkBcUc"
+                className="sc-jIZahH hijiIt"
               >
                 <div>
                   BTC
                 </div>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-jIZahH CGbrM"
+                className="sc-jIZahH gfrNml"
               >
                 <span>
                   7.5%

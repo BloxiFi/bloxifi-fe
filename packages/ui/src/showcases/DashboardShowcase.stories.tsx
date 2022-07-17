@@ -6,7 +6,6 @@ import { Button } from '../Button'
 import { Icon } from '../Icon'
 import {
   ColumnLayout,
-  Page,
   PageLayout,
   StackLayout,
   usePageLayout,
@@ -158,7 +157,12 @@ export const Overview = args => {
         </PageLayout.Section>
 
         <PageLayout.Section>
-          <Table columns={defaultColumns} data={defaultData} />
+          <Table
+            columnSpacing
+            headerSpacing
+            columns={defaultColumns}
+            data={defaultData}
+          />
         </PageLayout.Section>
       </PageLayout>
     </BrowserRouter>
