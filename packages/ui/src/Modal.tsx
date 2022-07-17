@@ -46,7 +46,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
             onClick={onClose}
           />
         )}
-        {props.children}
+        <ChildrenWrapper>{props.children}</ChildrenWrapper>
       </Content>
     </Container>
   ) : null
@@ -67,12 +67,13 @@ const Container = styled.div`
 
 const Content = styled(CenterLayout)`
   position: absolute;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 450px;
   max-height: 100vh;
   overflow: auto;
   display: flex;
   flex-direction: column;
-  padding: 1.875rem;
+  padding: 0;
   background: ${({ theme }) => theme.white};
   box-shadow: ${({ theme }) => theme.modalShadow};
   border-radius: 0.345rem;
@@ -87,6 +88,9 @@ const Content = styled(CenterLayout)`
     border-radius: 0;
     height: auto;
   }
+`
+const ChildrenWrapper = styled.div`
+  width: 100%;
 `
 const CloseButton = styled(Button)`
   position: absolute;

@@ -2,7 +2,7 @@
 
 exports[`Storyshots Layout/GridLayout Details 1`] = `
 <div
-  className="sc-fnykZs fmpsuH"
+  className="sc-hAZoDl gyXFzs"
 >
   <div
     style={
@@ -101,7 +101,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     }
   />
   <section
-    className="sc-hAZoDl cmpTMQ"
+    className="sc-ksZaOG labvxr"
     span={2}
   >
     <div
@@ -114,7 +114,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl cmpTMQ"
+    className="sc-ksZaOG labvxr"
     span={2}
   >
     <div
@@ -127,7 +127,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl cmpTMQ"
+    className="sc-ksZaOG labvxr"
     span={2}
   >
     <div
@@ -140,7 +140,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl cmpTMQ"
+    className="sc-ksZaOG labvxr"
     span={2}
   >
     <div
@@ -153,7 +153,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl cmpTMQ"
+    className="sc-ksZaOG labvxr"
     span={2}
   >
     <div
@@ -166,7 +166,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl cmpTMQ"
+    className="sc-ksZaOG labvxr"
     span={2}
   >
     <div
@@ -179,7 +179,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl lhzMBx"
+    className="sc-ksZaOG jCovuS"
     span={3}
   >
     <div
@@ -192,21 +192,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl lhzMBx"
-    span={3}
-  >
-    <div
-      style={
-        Object {
-          "background": "#199fd5",
-          "minHeight": 50,
-        }
-      }
-    />
-  </section>
-   
-  <section
-    className="sc-hAZoDl lhzMBx"
+    className="sc-ksZaOG jCovuS"
     span={3}
   >
     <div
@@ -220,7 +206,21 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
   </section>
    
   <section
-    className="sc-hAZoDl lhzMBx"
+    className="sc-ksZaOG jCovuS"
+    span={3}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+   
+  <section
+    className="sc-ksZaOG jCovuS"
     span={3}
   >
     <div
@@ -233,7 +233,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
@@ -246,21 +246,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl iZItRi"
-    span={4}
-  >
-    <div
-      style={
-        Object {
-          "background": "#199fd5",
-          "minHeight": 50,
-        }
-      }
-    />
-  </section>
-   
-  <section
-    className="sc-hAZoDl iZItRi"
+    className="sc-ksZaOG brpprN"
     span={4}
   >
     <div
@@ -274,7 +260,21 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
   </section>
    
   <section
-    className="sc-hAZoDl kPgGYO"
+    className="sc-ksZaOG brpprN"
+    span={4}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+   
+  <section
+    className="sc-ksZaOG gMzIlt"
     span={6}
   >
     <div
@@ -287,7 +287,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl kPgGYO"
+    className="sc-ksZaOG gMzIlt"
     span={6}
   >
     <div
@@ -300,7 +300,7 @@ exports[`Storyshots Layout/GridLayout Details 1`] = `
     />
   </section>
   <section
-    className="sc-hAZoDl dpdcIP"
+    className="sc-ksZaOG bsmpXQ"
     span={12}
   >
     <div

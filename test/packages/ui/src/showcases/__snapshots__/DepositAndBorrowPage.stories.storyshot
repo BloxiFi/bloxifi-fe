@@ -1,0 +1,1153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots showcase/Deposit and Borrow Connected 1`] = `
+<div
+  className="sc-kgflAQ eHnlrq"
+>
+  <div
+    className="sc-crXcEl sc-fLlhyt bLbIru BdeJf"
+    gap={4}
+  >
+    <section
+      className="c-page-layout__section"
+    >
+      <div
+        className="sc-hAZoDl gyXFzs"
+      >
+        <section
+          className="sc-ksZaOG gMzIlt"
+          span={6}
+        >
+          <div
+            className="sc-crXcEl fiwKoE"
+            gap={1.5}
+          >
+            <div
+              className="sc-ezWOiH kQmwHd"
+              data-element="tableWrapper"
+            >
+              <table
+                className="sc-bZkfAO ddqNNK"
+                data-element="table"
+              >
+                <thead
+                  className="sc-ciZhAO dpuqFH"
+                >
+                  <tr>
+                    <td
+                      className="sc-bZnhIo kpuJSw"
+                      colSpan={5}
+                    >
+                      <div
+                        className="sc-crXcEl loOuzI"
+                        gap={2.125}
+                      >
+                        <span
+                          className="sc-fnykZs cLtCZi"
+                          color="oxfordBlue"
+                          type="heading 2"
+                        >
+                          Your deposit
+                        </span>
+                        <div
+                          className="sc-evZas hZllKO"
+                        >
+                          <span
+                            className="sc-fnykZs iOrXYh"
+                            color="oxfordBlue"
+                            type="body 2"
+                          >
+                            Balance $
+                            <span
+                              className="sc-fnykZs ftbmDr"
+                              color="oxfordBlue"
+                            >
+                              1.00
+                            </span>
+                          </span>
+                          <span
+                            className="sc-fnykZs iOrXYh"
+                            color="oxfordBlue"
+                            type="body 2"
+                          >
+                            Collateral $
+                            <span
+                              className="sc-fnykZs ftbmDr"
+                              color="oxfordBlue"
+                            >
+                              1.00
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Assets
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Balance
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        APY
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO gfrNml eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Collateral
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO gAFNva eifDIB"
+                      width={160}
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        
+                      </div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        Asset
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        1.00
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        0.50%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <div
+                        className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+                        data-element="toggle"
+                        height={25}
+                        width={50}
+                      >
+                        <input
+                          className="sc-cTQhss hPRWpT rts-toggle__toggle"
+                          data-element="toggle-input"
+                          type="checkbox"
+                        />
+                        <span
+                          className="sc-efBctP gnXphq rts-toggle__background"
+                          data-element="toggle-background"
+                          height={25}
+                        />
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ krEHuS hSTXnF u-full-width"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="thin"
+                      >
+                        Withdraw
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        Asset
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        1.00
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        0.50%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <div
+                        className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+                        data-element="toggle"
+                        height={25}
+                        width={50}
+                      >
+                        <input
+                          className="sc-cTQhss hPRWpT rts-toggle__toggle"
+                          data-element="toggle-input"
+                          type="checkbox"
+                        />
+                        <span
+                          className="sc-efBctP gnXphq rts-toggle__background"
+                          data-element="toggle-background"
+                          height={25}
+                        />
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ krEHuS hSTXnF u-full-width"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="thin"
+                      >
+                        Withdraw
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        Asset
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        1.00
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        0.50%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <div
+                        className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+                        data-element="toggle"
+                        height={25}
+                        width={50}
+                      >
+                        <input
+                          className="sc-cTQhss hPRWpT rts-toggle__toggle"
+                          data-element="toggle-input"
+                          type="checkbox"
+                        />
+                        <span
+                          className="sc-efBctP gnXphq rts-toggle__background"
+                          data-element="toggle-background"
+                          height={25}
+                        />
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ krEHuS hSTXnF u-full-width"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="thin"
+                      >
+                        Withdraw
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot
+                  className="sc-iTONeN gtuFum c-table__footer"
+                >
+                  <td
+                    className="sc-jIZahH gfrNml"
+                    colSpan={5}
+                  >
+                    <div
+                      className="sc-jqUVSM gFyWwL"
+                      gap={1}
+                    />
+                  </td>
+                </tfoot>
+              </table>
+            </div>
+            <div
+              className="sc-ezWOiH kQmwHd"
+              data-element="tableWrapper"
+            >
+              <table
+                className="sc-bZkfAO ddqNNK"
+                data-element="table"
+              >
+                <thead
+                  className="sc-ciZhAO dpuqFH"
+                >
+                  <tr>
+                    <td
+                      className="sc-jdAMXn etFNKQ"
+                      colSpan={4}
+                    >
+                      Assets to deposit
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Assets
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO gfrNml eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Wallet balance
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO gfrNml eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        APY
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO ecHkwA eifDIB"
+                      width={100}
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        
+                      </div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    isTitleAString={true}
+                  >
+                    <td
+                      className="sc-jIZahH fnGgSc"
+                    >
+                      <span>
+                        ETH
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        1.250.000$
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        3.5%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ ccsdxr hSTXnF"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="medium"
+                      >
+                        Deposit
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={true}
+                  >
+                    <td
+                      className="sc-jIZahH fnGgSc"
+                    >
+                      <span>
+                        DAI
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        1.250.000$
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        3.5%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ ccsdxr hSTXnF"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="medium"
+                      >
+                        Deposit
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={true}
+                  >
+                    <td
+                      className="sc-jIZahH fnGgSc"
+                    >
+                      <span>
+                        POLKA
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        1.250.000$
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        3.5%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ ccsdxr hSTXnF"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="medium"
+                      >
+                        Deposit
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={true}
+                  >
+                    <td
+                      className="sc-jIZahH fnGgSc"
+                    >
+                      <span>
+                        BTC
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        1.250.000$
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        3.5%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ ccsdxr hSTXnF"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="medium"
+                      >
+                        Deposit
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section
+          className="sc-ksZaOG gMzIlt"
+          span={6}
+        >
+          <div
+            className="sc-crXcEl fiwKoE"
+            gap={1.5}
+          >
+            <div
+              className="sc-ezWOiH kQmwHd"
+              data-element="tableWrapper"
+            >
+              <table
+                className="sc-bZkfAO ddqNNK"
+                data-element="table"
+              >
+                <thead
+                  className="sc-ciZhAO dpuqFH"
+                >
+                  <tr>
+                    <td
+                      className="sc-bZnhIo kpuJSw"
+                      colSpan={4}
+                    >
+                      <div
+                        className="sc-evZas jIytYm c-table__header--progressbar"
+                      >
+                        <div
+                          className="sc-crXcEl loOuzI"
+                          gap={2.125}
+                        >
+                          <span
+                            className="sc-fnykZs cLtCZi"
+                            color="oxfordBlue"
+                            type="heading 2"
+                          >
+                            Your borrow
+                          </span>
+                          <span
+                            className="sc-fnykZs iOrXYh"
+                            color="oxfordBlue"
+                            type="body 2"
+                          >
+                            Balance $
+                            <span
+                              className="sc-fnykZs ftbmDr"
+                              color="oxfordBlue"
+                            >
+                              1.00
+                            </span>
+                          </span>
+                        </div>
+                        <div
+                          className="sc-iIPllB iMhdDX c-table__bottom-progressbar"
+                        >
+                          <p
+                            className="sc-fnykZs sc-gicCDI iOrXYh lmrWau c-text--body-2 c-text--color-oxfordBlue"
+                          >
+                            Borrowed
+                          </p>
+                          <div
+                            className="recharts-responsive-container"
+                            style={
+                              Object {
+                                "height": "100%",
+                                "maxHeight": undefined,
+                                "minHeight": undefined,
+                                "minWidth": undefined,
+                                "width": "100%",
+                              }
+                            }
+                          />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Assets
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Balance
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        APY
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO gAFNva eifDIB"
+                      width={160}
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        
+                      </div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        Asset
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        1.00
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        0.50%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ krEHuS hSTXnF u-full-width"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="thin"
+                      >
+                        Repay
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        Asset
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        1.00
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        0.50%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ krEHuS hSTXnF u-full-width"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="thin"
+                      >
+                        Repay
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        Asset
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        1.00
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH hijiIt"
+                    >
+                      <span>
+                        0.50%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH gfrNml"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ krEHuS hSTXnF u-full-width"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="thin"
+                      >
+                        Repay
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot
+                  className="sc-iTONeN gtuFum c-table__footer"
+                >
+                  <td
+                    className="sc-jIZahH gfrNml"
+                    colSpan={4}
+                  >
+                    <div
+                      className="sc-jqUVSM gFyWwL"
+                      gap={1}
+                    />
+                  </td>
+                </tfoot>
+              </table>
+            </div>
+            <div
+              className="sc-ezWOiH kQmwHd"
+              data-element="tableWrapper"
+            >
+              <table
+                className="sc-bZkfAO ddqNNK"
+                data-element="table"
+              >
+                <thead
+                  className="sc-ciZhAO dpuqFH"
+                >
+                  <tr>
+                    <td
+                      className="sc-jdAMXn etFNKQ"
+                      colSpan={4}
+                    >
+                      Assets to borrow
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Assets
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO gfrNml eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        Wallet balance
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO gfrNml eifDIB"
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        APY
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jIZahH sc-himrzO ecHkwA eifDIB"
+                      width={100}
+                    >
+                      <div
+                        className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                      >
+                        
+                      </div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    isTitleAString={true}
+                  >
+                    <td
+                      className="sc-jIZahH fnGgSc"
+                    >
+                      <span>
+                        ETH
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        1.250.000$
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        3.5%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ ccsdxr hSTXnF"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="medium"
+                      >
+                        Borrow
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={true}
+                  >
+                    <td
+                      className="sc-jIZahH fnGgSc"
+                    >
+                      <span>
+                        DAI
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        1.250.000$
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        3.5%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ ccsdxr hSTXnF"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="medium"
+                      >
+                        Borrow
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={true}
+                  >
+                    <td
+                      className="sc-jIZahH fnGgSc"
+                    >
+                      <span>
+                        POLKA
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        1.250.000$
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        3.5%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ ccsdxr hSTXnF"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="medium"
+                      >
+                        Borrow
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={true}
+                  >
+                    <td
+                      className="sc-jIZahH fnGgSc"
+                    >
+                      <span>
+                        BTC
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        1.250.000$
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <span>
+                        3.5%
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jIZahH fRaiTE"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ ccsdxr hSTXnF"
+                        data-element="button"
+                        onClick={[Function]}
+                        size="small"
+                        variant="medium"
+                      >
+                        Borrow
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`Storyshots showcase/Deposit and Borrow Not Connected 1`] = `
+<div
+  className="sc-kgflAQ eHnlrq"
+>
+  <div
+    className="sc-crXcEl sc-fLlhyt bLbIru BdeJf"
+    gap={4}
+  >
+    <section
+      className="c-page-layout__section"
+    >
+      <div
+        center={true}
+        className="sc-crXcEl dbkuws"
+      >
+        <div
+          className="sc-hAZoDl gyXFzs"
+        >
+          <section
+            className="sc-ksZaOG gMzIlt"
+            span={6}
+          >
+            <div
+              className="sc-kDDrLX iuJtAY c-card-layout"
+            >
+              <div
+                className="sc-jqUVSM gFykXQ"
+                gap={2}
+              >
+                <div
+                  className="sc-crXcEl dwhmKm"
+                  gap={2.815}
+                >
+                  <span
+                    className="sc-fnykZs cLtCZi"
+                    color="oxfordBlue"
+                    type="heading 2"
+                  >
+                    Your deposit
+                  </span>
+                  <p
+                    className="sc-fnykZs hZjXuC c-text--body-5"
+                  >
+                    Nothing deposited yet
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section
+            className="sc-ksZaOG gMzIlt"
+            span={6}
+          >
+            <div
+              className="sc-kDDrLX iuJtAY c-card-layout"
+            >
+              <div
+                className="sc-jqUVSM gFykXQ"
+                gap={2}
+              >
+                <div
+                  className="sc-crXcEl dwhmKm"
+                  gap={2.815}
+                >
+                  <span
+                    className="sc-fnykZs cLtCZi"
+                    color="oxfordBlue"
+                    type="heading 2"
+                  >
+                    Your borrow
+                  </span>
+                  <p
+                    className="sc-fnykZs hZjXuC c-text--body-5"
+                  >
+                    Nothing borrowed yet
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section
+            className="sc-ksZaOG bsmpXQ"
+            span={12}
+          >
+            <div
+              className="sc-kDDrLX iuJtAY c-card-layout"
+            >
+              <div
+                className="sc-jqUVSM gFwHRO"
+                gap={8}
+              >
+                <div
+                  className="o-center-layout sc-iqcoie dSwmDQ"
+                >
+                  <span
+                    className="sc-fnykZs cLtCZi"
+                    color="oxfordBlue"
+                    type="heading 2"
+                  >
+                    Please, connect your wallet
+                  </span>
+                  <p
+                    className="sc-fnykZs cWohwo c-text--body-5 c-text--color-oxfordBlue"
+                  >
+                    Please, connect your wallet to see your deposits and borrowings
+                  </p>
+                  <button
+                    appearance="primary"
+                    className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
+                    data-element="button"
+                    size="medium"
+                    variant="medium"
+                  >
+                    Connect wallet
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+`;

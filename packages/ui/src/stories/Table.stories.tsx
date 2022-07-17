@@ -86,7 +86,12 @@ export const EmptyDataTable: React.FC = () => (
 )
 
 export const BasicTable = () => (
-  <Table columns={defaultColumns} data={defaultData} />
+  <Table
+    headerSpacing
+    columnSpacing
+    columns={defaultColumns}
+    data={defaultData}
+  />
 )
 
 export const TitleAsPlainText = () => (
@@ -94,6 +99,7 @@ export const TitleAsPlainText = () => (
     columns={defaultColumns}
     data={defaultData}
     titleComponent="Assets to deposit"
+    columnSpacing
   />
 )
 
@@ -105,6 +111,7 @@ export const TitleAsComponent = () => {
       columns={defaultColumns}
       data={defaultData}
       titleComponent={<ComponentTitle />}
+      columnSpacing
     />
   )
 }
@@ -117,6 +124,8 @@ export const WithFooter = () => {
       columns={defaultColumns}
       data={defaultData}
       footer={<FooterComponent />}
+      columnSpacing
+      headerSpacing
     />
   )
 }
@@ -151,7 +160,9 @@ export const ExpandableTable = () => {
     },
   }
 
-  return <Table columns={columns} data={defaultData} />
+  return (
+    <Table columns={columns} data={defaultData} columnSpacing headerSpacing />
+  )
 }
 
 ExpandableTable.storyName = 'Expandable table'

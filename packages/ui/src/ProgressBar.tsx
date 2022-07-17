@@ -17,7 +17,7 @@ export interface ProgressBarProps {
   /**
    * Progress value
    */
-  value: number
+  value?: number
   /**
    * Title of the progress bar
    */
@@ -26,6 +26,10 @@ export interface ProgressBarProps {
    * The bottom label shows progress value
    */
   showBottomLabel?: boolean
+  /**
+   * Class to append to ProgressBar
+   */
+  className?: string
 }
 
 /**
@@ -37,6 +41,7 @@ export const ProgressBar = ({
   value,
   title,
   showBottomLabel,
+  className,
 }: ProgressBarProps) => {
   const themeContext = useContext(ThemeContext)
   const data = [
@@ -66,7 +71,7 @@ export const ProgressBar = ({
   const displayLabel = value > 10
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       {title && (
         <Title color="oxfordBlue" type="body 2">
           {title}
