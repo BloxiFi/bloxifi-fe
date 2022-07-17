@@ -1,9 +1,483 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Components/Modal Borrow Modal 1`] = `
+<div
+  className="sc-bBrHrO kfhXhC"
+>
+  <div
+    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ bkjUML"
+  >
+    <button
+      appearance="text"
+      className="sc-dkzDqf sc-ftvSup dwqmAz gyjXwR sc-llJcti cfzvuc u-fit-content-width"
+      data-element="button"
+      icon="close"
+      size="medium"
+      variant="medium"
+    />
+    <div
+      className="sc-cxabCf cSLbaL"
+    >
+      <div
+        className="sc-crXcEl gXvOqP"
+        gap={5}
+      >
+        <div
+          className="sc-crXcEl dvwiip"
+          gap={3}
+        >
+          <div
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                <tr>
+                  <td
+                    className="sc-bZnhIo kpuJSw"
+                    colSpan={2}
+                  >
+                    <span
+                      className="sc-fnykZs cLtCZi"
+                      color="oxfordBlue"
+                      type="heading 2"
+                    >
+                      Borrow asset
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Amount
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={false}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <div
+                      className="sc-evZas irQauU"
+                    >
+                      <div
+                        className="sc-bczRLJ bIAKfX"
+                      >
+                        <input
+                          disabled={false}
+                          type="text"
+                        />
+                      </div>
+                      
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ gMEeex hSTXnF u-fit-content-width"
+                        data-element="button"
+                        size="small"
+                        variant="thin"
+                      >
+                        MAX
+                      </button>
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <span>
+                      ETH
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                
+                
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Transaction overview
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <p
+                      className="sc-fnykZs jgfqoh c-text--body-3 c-text--color-oxfordBlue"
+                    >
+                      Health factor
+                    </p>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-crXcEl dZlCHs"
+                    >
+                      <div
+                        className="sc-evZas fPmhWT"
+                      >
+                        <span
+                          className="sc-fnykZs gXNkYI"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          1,00
+                        </span>
+                      </div>
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="sc-jqUVSM PwVrf"
+          gap={1.875}
+        >
+          <div
+            className="sc-crXcEl dvcSNb"
+            gap={1}
+          >
+            <button
+              appearance="dark"
+              className="sc-dkzDqf sc-jSMfEi eqULik kcPxMO u-full-width"
+              data-element="button"
+              size="large"
+              variant="large"
+            >
+              Borrow asset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Modal Deposit Modal 1`] = `
+<div
+  className="sc-bBrHrO kfhXhC"
+>
+  <div
+    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ bkjUML"
+  >
+    <button
+      appearance="text"
+      className="sc-dkzDqf sc-ftvSup dwqmAz gyjXwR sc-llJcti cfzvuc u-fit-content-width"
+      data-element="button"
+      icon="close"
+      size="medium"
+      variant="medium"
+    />
+    <div
+      className="sc-cxabCf cSLbaL"
+    >
+      <div
+        className="sc-crXcEl gXvOqP"
+        gap={5}
+      >
+        <div
+          className="sc-crXcEl dvwiip"
+          gap={3}
+        >
+          <div
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                <tr>
+                  <td
+                    className="sc-bZnhIo kpuJSw"
+                    colSpan={2}
+                  >
+                    <span
+                      className="sc-fnykZs cLtCZi"
+                      color="oxfordBlue"
+                      type="heading 2"
+                    >
+                      Deposit asset
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Amount
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={false}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <div
+                      className="sc-evZas irQauU"
+                    >
+                      <div
+                        className="sc-bczRLJ bIAKfX"
+                      >
+                        <input
+                          disabled={false}
+                          type="text"
+                        />
+                      </div>
+                      
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ gMEeex hSTXnF u-fit-content-width"
+                        data-element="button"
+                        size="small"
+                        variant="thin"
+                      >
+                        MAX
+                      </button>
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <span>
+                      ETH
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                
+                
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Transaction overview
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <span
+                      className="sc-fnykZs jgfqoh"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Supply APY
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-evZas fPmhWT"
+                    >
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        2.22%
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <span
+                      className="sc-fnykZs jgfqoh"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Health factor
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-crXcEl dZlCHs"
+                    >
+                      <div
+                        className="sc-evZas fPmhWT"
+                      >
+                        <span
+                          className="sc-fnykZs gXNkYI"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          1.00
+                        </span>
+                      </div>
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="sc-jqUVSM PwVrf"
+          gap={1.875}
+        >
+          <div
+            className="sc-crXcEl dvcSNb"
+            gap={1}
+          >
+            <button
+              appearance="dark"
+              className="sc-dkzDqf sc-jSMfEi eqULik kcPxMO u-full-width"
+              data-element="button"
+              size="large"
+              variant="large"
+            >
+              Approve to conitinue
+            </button>
+            <button
+              appearance="secondary"
+              className="sc-dkzDqf sc-eCYdqJ dZVtol hSTXnF u-full-width"
+              data-element="button"
+              disabled={true}
+              size="large"
+              variant="large"
+            >
+              Deposit ETH
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Components/Modal Modal Example 1`] = `
 <button
   appearance="primary"
-  className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+  className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
   data-element="button"
   onClick={[Function]}
   size="medium"
@@ -11,4 +485,518 @@ exports[`Storyshots Components/Modal Modal Example 1`] = `
 >
   Open Modal
 </button>
+`;
+
+exports[`Storyshots Components/Modal Repay Modal 1`] = `
+<div
+  className="sc-bBrHrO kfhXhC"
+>
+  <div
+    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ bkjUML"
+  >
+    <button
+      appearance="text"
+      className="sc-dkzDqf sc-ftvSup dwqmAz gyjXwR sc-llJcti cfzvuc u-fit-content-width"
+      data-element="button"
+      icon="close"
+      size="medium"
+      variant="medium"
+    />
+    <div
+      className="sc-cxabCf cSLbaL"
+    >
+      <div
+        className="sc-crXcEl gXvOqP"
+        gap={5}
+      >
+        <div
+          className="sc-crXcEl dvwiip"
+          gap={3}
+        >
+          <div
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                <tr>
+                  <td
+                    className="sc-bZnhIo kpuJSw"
+                    colSpan={2}
+                  >
+                    <span
+                      className="sc-fnykZs cLtCZi"
+                      color="oxfordBlue"
+                      type="heading 2"
+                    >
+                      Repay asset
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Amount
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={false}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <div
+                      className="sc-evZas irQauU"
+                    >
+                      <div
+                        className="sc-bczRLJ bIAKfX"
+                      >
+                        <input
+                          disabled={false}
+                          type="text"
+                        />
+                      </div>
+                      
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ gMEeex hSTXnF u-fit-content-width"
+                        data-element="button"
+                        size="small"
+                        variant="thin"
+                      >
+                        MAX
+                      </button>
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <span>
+                      ETH
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                
+                
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Transaction overview
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <span
+                      className="sc-fnykZs jgfqoh"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Remaining debt
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-crXcEl dZlCHs"
+                    >
+                      <span
+                        className="sc-fnykZs dhmHoq"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        0.000001 Asset
+                      </span>
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <span
+                      className="sc-fnykZs jgfqoh"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Health factor
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-crXcEl dZlCHs"
+                    >
+                      <div
+                        className="sc-evZas fPmhWT"
+                      >
+                        <span
+                          className="sc-fnykZs gXNkYI"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          1.00
+                        </span>
+                      </div>
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="sc-jqUVSM PwVrf"
+          gap={1.875}
+        >
+          <div
+            className="sc-crXcEl dvcSNb"
+            gap={1}
+          >
+            <button
+              appearance="dark"
+              className="sc-dkzDqf sc-jSMfEi eqULik kcPxMO u-full-width"
+              data-element="button"
+              size="large"
+              variant="large"
+            >
+              Repay asset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
+<div
+  className="sc-bBrHrO kfhXhC"
+>
+  <div
+    className="o-center-layout sc-iqcoie sc-ivTmOn dSwmDQ bkjUML"
+  >
+    <button
+      appearance="text"
+      className="sc-dkzDqf sc-ftvSup dwqmAz gyjXwR sc-llJcti cfzvuc u-fit-content-width"
+      data-element="button"
+      icon="close"
+      size="medium"
+      variant="medium"
+    />
+    <div
+      className="sc-cxabCf cSLbaL"
+    >
+      <div
+        className="sc-crXcEl gXvOqP"
+        gap={5}
+      >
+        <div
+          className="sc-crXcEl dvwiip"
+          gap={3}
+        >
+          <div
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                <tr>
+                  <td
+                    className="sc-bZnhIo kpuJSw"
+                    colSpan={2}
+                  >
+                    <span
+                      className="sc-fnykZs cLtCZi"
+                      color="oxfordBlue"
+                      type="heading 2"
+                    >
+                      Withdraw asset
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Amount
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={false}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <div
+                      className="sc-evZas irQauU"
+                    >
+                      <div
+                        className="sc-bczRLJ bIAKfX"
+                      >
+                        <input
+                          disabled={false}
+                          type="text"
+                        />
+                      </div>
+                      
+                      <button
+                        appearance="secondary"
+                        className="sc-dkzDqf sc-eCYdqJ gMEeex hSTXnF u-fit-content-width"
+                        data-element="button"
+                        size="small"
+                        variant="thin"
+                      >
+                        MAX
+                      </button>
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <span>
+                      ETH
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            className="sc-ezWOiH cEJcsa"
+            data-element="tableWrapper"
+          >
+            <table
+              className="sc-bZkfAO ddqNNK"
+              data-element="table"
+            >
+              <thead
+                className="sc-ciZhAO dpuqFH"
+              >
+                
+                
+                <tr>
+                  <td
+                    className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      Transaction overview
+                    </div>
+                  </td>
+                  <td
+                    className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+                  >
+                    <div
+                      className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+                    >
+                      
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <span
+                      className="sc-fnykZs jgfqoh"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Remaining supply
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-crXcEl dZlCHs"
+                    >
+                      <div
+                        className="sc-evZas fPmhWT"
+                      >
+                        <span
+                          className="sc-fnykZs gXNkYI"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          0.000001 Asset
+                        </span>
+                      </div>
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  isTitleAString={true}
+                >
+                  <td
+                    className="sc-jIZahH hijiIt"
+                  >
+                    <span
+                      className="sc-fnykZs jgfqoh"
+                      color="oxfordBlue"
+                      type="body 3"
+                    >
+                      Health factor
+                    </span>
+                  </td>
+                  <td
+                    className="sc-jIZahH jzXBki"
+                  >
+                    <div
+                      className="sc-crXcEl dZlCHs"
+                    >
+                      <div
+                        className="sc-evZas fPmhWT"
+                      >
+                        <span
+                          className="sc-fnykZs gXNkYI"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          1.00
+                        </span>
+                      </div>
+                      <span
+                        className="sc-fnykZs gXNkYI"
+                        color="oxfordBlue"
+                        type="body 1"
+                      >
+                        Liquidation at &lt; 1.00
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="sc-jqUVSM PwVrf"
+          gap={1.875}
+        >
+          <div
+            className="sc-crXcEl dvcSNb"
+            gap={1}
+          >
+            <button
+              appearance="dark"
+              className="sc-dkzDqf sc-jSMfEi eqULik kcPxMO u-full-width"
+              data-element="button"
+              size="large"
+              variant="large"
+            >
+              Repay asset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;

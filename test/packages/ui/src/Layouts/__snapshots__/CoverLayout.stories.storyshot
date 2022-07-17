@@ -2,14 +2,14 @@
 
 exports[`Storyshots Layout/CoverLayout Overview 1`] = `
 <div
-  className="sc-fLlhyt dIrUqQ"
+  className="sc-kgflAQ eHnlrq"
 >
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK kWECVY"
+    className="sc-crXcEl sc-fLlhyt bLbIru BdeJf"
     gap={4}
   >
     <div
-      className="sc-ksZaOG fMphTp"
+      className="sc-breuTD bdxGre"
       style={
         Object {
           "background": "#f9d56e",

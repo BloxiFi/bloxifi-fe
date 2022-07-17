@@ -91,6 +91,7 @@ const HeaderLink = styled(NavLink)`
     border-image-slice: 1;
   }
 `
+
 const HeaderLinksWrapper = styled.div`
   align-items: center;
   justify-content: center;

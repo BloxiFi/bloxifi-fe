@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { Fonts } from './styles/fonts'
+import { Text } from './Text'
 
 /**
  * Table data.
@@ -41,7 +42,7 @@ interface ColumnData {
   /**
    * Optional width prop, used to limit the column width
    */
-  width?: number
+  width?: number | string
   /**
    * Optional component that will render if {@link CellProps.onRowExpand} is triggered in Cell with some data.
    */
@@ -80,6 +81,18 @@ export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
    * Optional footer that will appear below table body
    */
   footer?: React.ReactNode
+  /**
+   * Optional compact that will remove table borders
+   */
+  compact?: boolean
+  /**
+   * Optional additional padding for table row
+   */
+  columnSpacing?: boolean
+  /**
+   * Optional additional padding for table header
+   */
+  headerSpacing?: boolean
 }
 
 /**
@@ -97,21 +110,27 @@ interface RowProps
    */
   rowData: TableData
   /**
-   * Boolean if table title is present
-   */
-  withTitle?: boolean
-  /**
    * Boolean if table title is a component or a string
    */
   isTitleAString?: boolean
+  /**
+   * Optional additional padding for table row
+   */
+  columnSpacing?: boolean
+}
+
+export const stylings = {
+  // Use this class on titleComponent to target its ProgressBar component
+  tableHeaderWithProgressBar: 'c-table__header--progressbar',
+  //Use this class on ProgressBar inside the titleComponent in order to position ProgressBar to the bottom of the parent
+  tableHeaderProgressBar: 'c-table__bottom-progressbar',
 }
 
 const Row = ({
   columns,
   rowData,
   rowIndex,
-  withTitle,
-  isTitleAString,
+  columnSpacing,
   ...props
 }: RowProps) => {
   const [isRowExpanded, setIsRowExpanded] = useState(false)
@@ -136,10 +155,9 @@ const Row = ({
 
         return (
           <Column
+            columnSpacing={columnSpacing}
             key={index}
             alignText={alignText}
-            withTitle={withTitle}
-            isTitleAString={isTitleAString}
           >
             <Cell onRowExpand={onRowExpand} data={rowData} index={rowIndex} />
           </Column>
@@ -183,13 +201,17 @@ export const Table = ({
   noDataMessage = '',
   titleComponent = '',
   footer,
+  compact,
+  columnSpacing,
+  headerSpacing,
   ...props
 }: TableProps) => {
   const isTitleAString = typeof titleComponent === 'string'
   const numberOfColumns = Object.values(columns).length
+  const isEmpty = data.length === 0
 
   return (
-    <Wrapper data-element="tableWrapper">
+    <Wrapper data-element="tableWrapper" compact={compact} isEmpty={isEmpty}>
       <TableWrapper data-element="table" {...props}>
         <THead>
           {titleComponent && isTitleAString && (
@@ -206,41 +228,37 @@ export const Table = ({
               </HeaderTitleComponent>
             </tr>
           )}
+          {!isEmpty && (
+            <tr>
+              {columns &&
+                Object.values(columns).map(
+                  ({ header, width, alignText = 'center' }, index) => {
+                    if (!isLoading) {
+                      return (
+                        <HeaderColumn
+                          width={width}
+                          key={index}
+                          alignText={alignText}
+                          headerSpacing={headerSpacing}
+                        >
+                          <TableHeaderText>{header}</TableHeaderText>
+                        </HeaderColumn>
+                      )
+                    }
 
-          <tr>
-            {columns &&
-              Object.values(columns).map(
-                ({ header, width, alignText = 'center' }, index) => {
-                  if (header && !isLoading) {
-                    return (
-                      <HeaderColumn
-                        width={width}
-                        key={index}
-                        alignText={alignText}
-                        withTitle={!!titleComponent}
-                        isTitleAString={isTitleAString}
-                      >
-                        <TableHeaderText>{header}</TableHeaderText>
-                      </HeaderColumn>
-                    )
-                  }
+                    if (index === 0 && isLoading) {
+                      return (
+                        <Column width="100%" key={index}>
+                          <TableHeaderText>Loading...</TableHeaderText>
+                        </Column>
+                      )
+                    }
 
-                  if (index === 0 && isLoading) {
-                    return (
-                      <Column
-                        width="100%"
-                        key={index}
-                        withTitle={!!titleComponent}
-                      >
-                        <TableHeaderText>Loading...</TableHeaderText>
-                      </Column>
-                    )
-                  }
-
-                  return null
-                },
-              )}
-          </tr>
+                    return null
+                  },
+                )}
+            </tr>
+          )}
         </THead>
         <tbody>
           {isLoading ? (
@@ -249,9 +267,11 @@ export const Table = ({
                 <div>TODO - Loader</div>
               </LoadingColumn>
             </tr>
-          ) : data.length === 0 ? (
+          ) : isEmpty ? (
             <tr>
-              <Column colSpan={numberOfColumns}>{noDataMessage}</Column>
+              <Column alignText="left" isEmpty colSpan={numberOfColumns}>
+                <Text type="body 5">{noDataMessage}</Text>
+              </Column>
             </tr>
           ) : (
             data.map((rowData, rowIndex) => (
@@ -260,8 +280,8 @@ export const Table = ({
                 columns={columns}
                 rowIndex={rowIndex}
                 rowData={rowData}
-                withTitle={!!titleComponent}
                 isTitleAString={isTitleAString}
+                columnSpacing={columnSpacing}
               />
             ))
           )}
@@ -269,7 +289,9 @@ export const Table = ({
 
         {footer && (
           <Footer className="c-table__footer">
-            <Column colSpan={numberOfColumns}>{footer}</Column>
+            <Column isEmpty={isEmpty} colSpan={numberOfColumns}>
+              {footer}
+            </Column>
           </Footer>
         )}
       </TableWrapper>
@@ -277,7 +299,7 @@ export const Table = ({
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ compact?: boolean; isEmpty?: boolean }>`
   display: flex;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.tableBorderColor};
@@ -285,11 +307,20 @@ const Wrapper = styled.div`
   font-family: ${Fonts.ClashDisplay}, serif;
   border-radius: 10px;
   overflow: hidden;
+  ${({ compact, isEmpty }) => (compact || isEmpty) && ` border: none;`};
+  ${({ compact, isEmpty, theme }) =>
+    compact &&
+    !isEmpty &&
+    `
+border-bottom: 1px solid ${theme.tableBorderColor};
+border-radius: 0;
+`}
 `
 
 const TableWrapper = styled.table`
   table-layout: fixed;
   border-spacing: 0;
+  background: ${({ theme }) => theme.white};
 `
 
 export const TruncatedText = styled.div`
@@ -310,17 +341,18 @@ const TableHeaderText = styled(TruncatedText)`
 export const Column = styled.td<{
   width?: number | string
   alignText?: string
-  withTitle?: boolean
-  isTitleAString?: boolean
+  isEmpty?: boolean
+  columnSpacing?: boolean
 }>`
-  border-top: 1px solid ${({ theme }) => theme.tableBorderColor};
+  ${({ theme, isEmpty }) =>
+    !isEmpty && `border-top: 1px solid ${theme.tableBorderColor}`};
   background-color: ${({ theme }) => theme.tableCellBackgroundColor};
   color: ${({ theme }) => theme.tableTextColor};
   font-family: ${Fonts.Inter}, serif;
   font-weight: 600;
   font-size: 16px;
-  ${({ width, alignText, withTitle, isTitleAString }) => `
-      padding: ${!isTitleAString && withTitle ? '15px' : '30px'} 20px;
+  padding: ${({ columnSpacing }) => (columnSpacing ? '20px' : '10px 20px')};
+  ${({ width, alignText }) => `
       text-align: ${alignText || 'center'};
 
       ${
@@ -332,10 +364,10 @@ export const Column = styled.td<{
     `};
 `
 const HeaderColumn = styled(Column)<{
-  withTitle?: boolean
+  headerSpacing?: boolean
 }>`
-  ${({ withTitle }) =>
-    `padding: ${withTitle ? '15px 20px 4px 20px;' : '30px 20px;'}`}
+  ${({ headerSpacing }) =>
+    `padding: ${headerSpacing ? '30px 20px;' : '15px 20px 4px 20px;'}`}
 `
 
 const ExpandedColumn = styled.td`
@@ -371,6 +403,17 @@ const HeaderTitleComponent = styled.td`
   font-size: 24px;
   color: ${({ theme }) => theme.tableTextColor};
   background-color: ${({ theme }) => theme.tableCellBackgroundColor};
+
+  .c-table__header--progressbar {
+    position: relative;
+
+    .c-table__bottom-progressbar {
+      position: absolute;
+      bottom: -4px;
+      right: 0;
+      width: 50%;
+    }
+  }
 `
 
 const Footer = styled.tfoot`
