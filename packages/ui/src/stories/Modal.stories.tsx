@@ -2,6 +2,7 @@ import { Meta } from '@storybook/react'
 import React, { Fragment, useState } from 'react'
 
 import { Button } from '..'
+import { ContentLoader } from '../ContentLoader'
 import { StackLayout } from '../Layouts'
 import { Modal } from '../Modal'
 import { Text } from '../Text'
@@ -33,7 +34,9 @@ export const ModalExample = args => {
       </Button>
       <Modal {...args} isOpen={isOpen} onClose={handleClose}>
         <StackLayout gap={1.5}>
-          <Text type="heading 2">Modal Heading</Text>
+          <Text type="heading 2">
+            <ContentLoader />
+          </Text>
           <Text type="body 1">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             <br /> Voluptatem numquam similique tempora .<br />

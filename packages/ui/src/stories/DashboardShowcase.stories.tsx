@@ -16,7 +16,6 @@ import { Text } from '../Text'
 
 export default {
   title: 'Showcases/Dashboard',
-  component: Page,
 }
 
 const defaultColumns = {
@@ -44,7 +43,6 @@ const defaultColumns = {
   borrowAPY: {
     header: 'Borrow APY',
     Cell: ({ data: { borrowAPY } }: CellProps) => <span>{borrowAPY}</span>,
-    alignText: 'right',
   },
 }
 
@@ -122,47 +120,39 @@ export const Overview = args => {
         <PageLayout.Section>
           <ColumnLayout gap={2}>
             <ColumnLayout>
-              <ColumnLayout>
-                <Icon
-                  color={themeContext.tableBorderColor}
-                  withBorder
-                  size={53}
-                  name="total-deposited"
-                />
-              </ColumnLayout>
+              <Icon
+                color={themeContext.tableBorderColor}
+                withBorder
+                size={53}
+                name="total-deposited"
+              />
 
-              <ColumnLayout>
-                <StackLayout gap={0.5}>
-                  <Text color="white" as="span" type="body 2">
-                    Total Deposited
-                  </Text>
-                  <Text color="white" as="span" type="body 4">
-                    $100,000,000
-                  </Text>
-                </StackLayout>
-              </ColumnLayout>
+              <StackLayout gap={0.5}>
+                <Text color="white" as="span" type="body 2">
+                  Total Deposited
+                </Text>
+                <Text color="white" as="span" type="body 4">
+                  $100,000,000
+                </Text>
+              </StackLayout>
             </ColumnLayout>
 
             <ColumnLayout>
-              <ColumnLayout>
-                <Icon
-                  color={themeContext.tableBorderColor}
-                  withBorder
-                  size={53}
-                  name="total-borrowed"
-                />
-              </ColumnLayout>
+              <Icon
+                color={themeContext.tableBorderColor}
+                withBorder
+                size={53}
+                name="total-borrowed"
+              />
 
-              <ColumnLayout>
-                <StackLayout gap={0.5}>
-                  <Text color="white" as="span" type="body 2">
-                    Total Borrowed
-                  </Text>
-                  <Text color="white" as="span" type="body 4">
-                    $100,000,000
-                  </Text>
-                </StackLayout>
-              </ColumnLayout>
+              <StackLayout gap={0.5}>
+                <Text color="white" as="span" type="body 2">
+                  Total Borrowed
+                </Text>
+                <Text color="white" as="span" type="body 4">
+                  $100,000,000
+                </Text>
+              </StackLayout>
             </ColumnLayout>
           </ColumnLayout>
         </PageLayout.Section>

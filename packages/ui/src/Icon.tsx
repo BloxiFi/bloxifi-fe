@@ -30,7 +30,7 @@ export interface IconProps extends Omit<Props, 'src'> {
   /**
    * Optional prop that shows border around icon with small border radius
    */
-  withBorder?: boolean
+  readonly withBorder?: boolean
 }
 
 export const Icon = styled(
@@ -48,10 +48,7 @@ export const Icon = styled(
       />
     )
   },
-)<{
-  withBorder?: boolean
-  color?: string
-}>`
+)`
   display: flex;
   align-items: center;
   justify-content: center;
