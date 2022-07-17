@@ -145,7 +145,7 @@ export const Text = styled(TextComponent)<TextProps>`
       case 'body 4':
         return `
         font-size: 1.5rem;
-        line-height: 2.815rem;
+        line-height: 1;
         font-weight: bold;
         font-family:${Fonts.ClashDisplay};
       `
