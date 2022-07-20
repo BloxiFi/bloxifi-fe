@@ -1,13 +1,7 @@
 import React, { FunctionComponent } from 'react'
-import {
-  Button,
-  CellProps,
-  ColumnLayout,
-  Icon,
-  StackLayout,
-  Table,
-  Text,
-} from '@bloxifi/ui'
+import { Button, CellProps, Table, Text } from '@bloxifi/ui'
+
+import { AssetName } from '../AssetName'
 
 import { WalletContainer } from '@/containers/WalletContainer'
 
@@ -20,17 +14,7 @@ export const AssetsToDepositTable: FunctionComponent = () => {
     assets: {
       header: 'Assets',
       Cell: ({ data: { symbol, icon, fullName } }: any) => (
-        <ColumnLayout>
-          <Icon name={icon} size={40} />
-          <StackLayout>
-            <Text type="heading 3" as="span">
-              {fullName}
-            </Text>
-            <Text type="body 1" as="span">
-              {symbol}
-            </Text>
-          </StackLayout>
-        </ColumnLayout>
+        <AssetName symbol={symbol} icon={icon} fullName={fullName} />
       ),
       alignText: 'left',
     },
