@@ -26,7 +26,7 @@ import {
 } from '../stories/Modal.stories'
 
 export default {
-  title: 'showcase/Deposit and Borrow',
+  title: 'Showcases/Deposit and Borrow',
 } as Meta
 
 const getHeader = (isConnected = true) => (

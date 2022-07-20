@@ -7,7 +7,6 @@ import { BoxLayout, ColumnLayout, StackLayout } from '../Layouts'
 import { Modal } from '../Modal'
 import { Table, CellProps } from '../Table'
 import { Text } from '../Text'
-import { Toggle } from '../Toggle'
 import { BaseInput } from '../BaseInput'
 import { Icon } from '../Icon'
 

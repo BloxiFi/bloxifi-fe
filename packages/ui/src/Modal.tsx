@@ -67,7 +67,8 @@ const Container = styled.div`
 
 const Content = styled(CenterLayout)`
   position: absolute;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 450px;
   max-height: 100vh;
   overflow: auto;
   display: flex;
@@ -90,7 +91,6 @@ const Content = styled(CenterLayout)`
 `
 const ChildrenWrapper = styled.div`
   width: 100%;
-  max-width: 450px;
 `
 const CloseButton = styled(Button)`
   position: absolute;

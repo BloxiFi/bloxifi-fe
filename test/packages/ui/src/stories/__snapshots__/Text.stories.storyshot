@@ -44,7 +44,7 @@ exports[`Storyshots Components/Text Paragraphs 1`] = `
     Body 3
   </p>
   <p
-    className="sc-fnykZs iJMAjN c-text--body-4"
+    className="sc-fnykZs eSixKq c-text--body-4"
   >
     Body 4
   </p>
