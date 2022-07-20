@@ -29,7 +29,7 @@ export default {
   title: 'showcase/Deposit and Borrow',
 } as Meta
 
-const getHeader = () => (
+const getHeader = (isConnected = true) => (
   <PageLayout.Header
     navigationItems={[
       { to: '/', label: 'Dashboard' },
@@ -41,14 +41,20 @@ const getHeader = () => (
     <Button variant="medium" appearance="primary-ghost" size="medium">
       Blox Balance
     </Button>
-    <Button appearance="primary-ghost" variant="medium" size="medium">
-      <>
-        Oxfd...586c
-        <BoxLayout gap={0.75}>
-          <Icon color="white" name="arrow-down" />
-        </BoxLayout>
-      </>
-    </Button>
+    {isConnected ? (
+      <Button appearance="primary-ghost" variant="medium" size="medium">
+        <>
+          Oxfd...586c
+          <BoxLayout gap={0.75}>
+            <Icon color="white" name="arrow-down" />
+          </BoxLayout>
+        </>
+      </Button>
+    ) : (
+      <Button appearance="primary" variant="medium" size="medium">
+        Connect wallet
+      </Button>
+    )}
     <Button
       appearance="primary-ghost"
       variant="medium"
@@ -63,7 +69,7 @@ export const NotConnected = () => {
   const { setHeader } = nav
 
   useEffect(() => {
-    setHeader(getHeader())
+    setHeader(getHeader(false))
   }, [setHeader])
   return (
     <BrowserRouter>
