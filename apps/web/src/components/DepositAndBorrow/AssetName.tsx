@@ -6,7 +6,7 @@ import {
   IconNamesType,
 } from '@bloxifi/ui'
 import { TokenList } from 'packages/core/src'
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { FunctionComponent } from 'react'
 
 type Props = {
   /**

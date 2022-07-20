@@ -1,7 +1,5 @@
 import { useQuery } from '@apollo/client'
 import {
-  BALANCE_DECIMALS,
-  CURRENT_BALANCE_DECIMALS,
   GET_RESERVE_DATA,
   ReservesData,
   ReservesGraph,
@@ -101,9 +99,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         type: 'setReserveData',
         value: {
           ...reserve,
-          balance: Number(ethers.utils.formatUnits(balance)).toFixed(
-            BALANCE_DECIMALS,
-          ),
+          balance: Number(ethers.utils.formatUnits(balance)),
           icon: Assets[reserve.symbol].icon,
           fullName: Assets[reserve.symbol].fullName,
         },
@@ -125,7 +121,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         ...reserve,
         currentATokenBalance: Number(
           ethers.utils.formatUnits(currentATokenBalance),
-        ).toFixed(CURRENT_BALANCE_DECIMALS),
+        ),
         icon: Assets[reserve.symbol].icon,
         fullName: Assets[reserve.symbol].fullName,
       },

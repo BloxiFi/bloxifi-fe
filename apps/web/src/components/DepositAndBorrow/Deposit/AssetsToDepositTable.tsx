@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { Button, CellProps, Table, Text } from '@bloxifi/ui'
 
 import { AssetName } from '../AssetName'
+import { FormattedNumber } from '../FormattedNumber'
 
 import { WalletContainer } from '@/containers/WalletContainer'
 
@@ -20,12 +21,8 @@ export const AssetsToDepositTable: FunctionComponent = () => {
     },
     walletBalance: {
       header: 'Wallet balance',
-      Cell: ({ data: { balance } }: CellProps) => {
-        return (
-          <Text type="body 3" as="span">
-            {balance}
-          </Text>
-        )
+      Cell: ({ data: { balance } }: any) => {
+        return <FormattedNumber value={balance} />
       },
       alignText: 'center',
     },
@@ -33,15 +30,20 @@ export const AssetsToDepositTable: FunctionComponent = () => {
       header: 'APY',
       Cell: ({ data: { liquidityRate } }: CellProps) => (
         <Text type="body 3" as="span">
-          1.22%
+          <FormattedNumber value={0.7436} percent />
         </Text>
       ),
       alignText: 'center',
     },
     action: {
       header: '',
-      Cell: () => (
-        <Button appearance="secondary" variant="medium" size="small">
+      Cell: ({ data: { balance } }: CellProps) => (
+        <Button
+          disabled={!balance}
+          appearance="secondary"
+          variant="medium"
+          size="small"
+        >
           Deposit
         </Button>
       ),
