@@ -10,11 +10,11 @@ import {
   UserReserveData,
   UserReserveVariables,
 } from '@bloxifi/core'
+import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
 import { ethers } from 'ethers'
 import { Dispatch, Reducer, useEffect, useReducer, useState } from 'react'
 import { createContainer } from 'unstated-next'
-import Assets from '@bloxifi/core/src/utilities/assets.json'
 
 import { Web3Container } from './Web3Container'
 
