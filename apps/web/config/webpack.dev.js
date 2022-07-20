@@ -5,7 +5,7 @@ const base = require('./webpack.base')
 
 const { moduleRules, pluginsRules } = require('@bloxifi/build')
 
-const { PORT = 8080 } = process.env
+const { PORT = 3000 } = process.env
 
 module.exports = merge(base, {
   target: 'web',

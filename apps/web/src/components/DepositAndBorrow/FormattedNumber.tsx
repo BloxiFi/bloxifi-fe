@@ -22,6 +22,7 @@ export const FormattedNumber: FunctionComponent<Props> = ({
   percent,
 }: Props) => {
   let visibleDecimals = decimals
+
   if (value === 0) {
     visibleDecimals = 0
   } else if (decimals === undefined) {
@@ -33,9 +34,15 @@ export const FormattedNumber: FunctionComponent<Props> = ({
       visibleDecimals = 7
     }
   }
+
+  const minValue = 10 ** -visibleDecimals
+  const isSmallerThanMin = value !== 0 && Math.abs(value) < Math.abs(minValue)
+  const formattedNumber = isSmallerThanMin ? minValue : value
+
   return (
     <Text type="body 3" as="span">
-      {value.toFixed(visibleDecimals)}
+      {isSmallerThanMin && '<'}
+      {formattedNumber.toFixed(visibleDecimals)}
       {percent && '%'}
     </Text>
   )
