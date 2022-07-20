@@ -28,9 +28,9 @@ export const AssetsToDepositTable: FunctionComponent = () => {
     },
     APY: {
       header: 'APY',
-      Cell: ({ data: { liquidityRate } }: CellProps) => (
+      Cell: ({ data: { supplyAPY } }: any) => (
         <Text type="body 3" as="span">
-          <FormattedNumber value={0.7436} percent />
+          <FormattedNumber value={supplyAPY} percent />
         </Text>
       ),
       alignText: 'center',
@@ -50,7 +50,7 @@ export const AssetsToDepositTable: FunctionComponent = () => {
       width: 100,
     },
   }
-
+  console.log('reserves', reserves)
   return (
     <Table
       columns={columns}

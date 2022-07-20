@@ -20,6 +20,8 @@ export interface WalletBalance extends ReservesData {
   balance: string
   icon: string
   fullName: string
+  supplyAPY: number
+  variableBorrowAPY: number
 }
 
 type State = {
@@ -59,6 +61,17 @@ const reducer = (state: State, action: Action<ActionType>) => {
     default:
       return defaultState
   }
+}
+
+// Deposit and Borrow APY calculation
+const calculateAPY = (liquidityRate: number, inPercents = true) => {
+  const RAY = 10 ** 27
+  const SECONDS_PER_YEAR = 31536000
+
+  const APR = liquidityRate / RAY
+  const APY = Math.pow(1 + APR / SECONDS_PER_YEAR, SECONDS_PER_YEAR) - 1
+
+  return inPercents ? APY * 100 : APY
 }
 
 function useWallet(initialState: State = defaultState): DepositContainerState {
@@ -102,6 +115,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
           balance: Number(ethers.utils.formatUnits(balance)),
           icon: Assets[reserve.symbol].icon,
           fullName: Assets[reserve.symbol].fullName,
+          supplyAPY: calculateAPY(reserve.liquidityRate),
+          variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
         },
       })
       setError(undefined)
