@@ -60,7 +60,7 @@ export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
   /**
    * Required data prop, should be array of objects.
    */
-  data: TableData[]
+  data: any
   /**
    * Required columns prop, used to layout the content in cells and columns
    */

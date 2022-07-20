@@ -20,6 +20,7 @@ const defaultState: Web3ContainerProps = {
   error: undefined,
   isSupportedNetwork: false,
   isMetamaskInstalled: false,
+  signer: undefined,
 }
 type ActionType = 'isMetamaskInstalled'
 
@@ -51,6 +52,7 @@ function useContainer(initialState: Web3ContainerProps) {
   } = useWeb3React()
   const [loading, setLoading] = useState(false)
   const isSupportedNetwork = supportedChainIds.includes(chainId)
+  const [signer, setSigner] = useState()
 
   const connectWallet: ConnectWalletFunction = useCallback(async () => {
     setLoading(true)
@@ -94,6 +96,12 @@ function useContainer(initialState: Web3ContainerProps) {
     }
   }, [connectWallet])
 
+  useEffect(() => {
+    if (library) {
+      setSigner(library.getSigner())
+    }
+  }, [library])
+
   return {
     state: {
       ...state,
@@ -104,6 +112,7 @@ function useContainer(initialState: Web3ContainerProps) {
       chainId,
       provider: library,
       loading,
+      signer,
     },
     dispatch,
     connectWallet,

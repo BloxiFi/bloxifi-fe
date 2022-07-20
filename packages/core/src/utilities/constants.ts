@@ -1,0 +1,2 @@
+export const BALANCE_DECIMALS = 3
+export const CURRENT_BALANCE_DECIMALS = 2

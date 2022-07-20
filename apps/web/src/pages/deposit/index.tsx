@@ -1,45 +1,48 @@
-import { CoverLayout, BoxLayout, Text } from '@bloxifi/ui'
+import { StackLayout } from '@bloxifi/ui'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { GridLayout } from '@bloxifi/ui/src/Layouts/GridLayout'
 
-import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
 import { Web3Container } from '@/containers/Web3Container'
-import { DepositModalContent } from '@/components/Deposit/DepositModalContent'
-import AssetList from '@/components/Deposit/AssetList'
-import { DepositContainer } from '@/containers/DepositContainer'
+import { WalletContainer } from '@/containers/WalletContainer'
+import { NotConnected } from '@/components/DepositAndBorrow/NotConnected'
+import { CurrentBorrowTable } from '@/components/DepositAndBorrow/Borrow/CurrentBorrowTable'
+import { AssetsToBorrowTable } from '@/components/DepositAndBorrow/Borrow/AssetsToBorrowTable'
+import { CurrentDepositTable } from '@/components/DepositAndBorrow/Deposit/CurrentDepositTable'
+import { AssetsToDepositTable } from '@/components/DepositAndBorrow/Deposit/AssetsToDepositTable'
 
 const DepositPage = () => {
   const {
-    state: { isConnected, loading },
+    state: { isConnected, loading: connectionLoading },
   } = Web3Container.useContainer()
-  const { t } = useTranslation()
+  const {
+    state: { loading: reservesLoading, error },
+  } = WalletContainer.useContainer()
 
-  return (
-    <DepositContainer.Provider>
-      <BoxLayout>
-        <Text type="heading 2" semiBold>
-          {t('deposit.pageTitle')}
-        </Text>
+  if (reservesLoading || connectionLoading) {
+    return <>loading...</>
+  }
 
-        <CoverLayout>
-          {isConnected ? (
-            <GridLayout>
-              <GridLayout.Column span={6}>
-                <AssetList />
-              </GridLayout.Column>
-              <GridLayout.Column span={6}>
-                <DepositModalContent />
-              </GridLayout.Column>
-            </GridLayout>
-          ) : (
-            <ConnectWalletPaper loading={loading}>
-              {t('dashboard.notConnectedMessage')}
-            </ConnectWalletPaper>
-          )}
-        </CoverLayout>
-      </BoxLayout>
-    </DepositContainer.Provider>
+  if (error && isConnected) {
+    return <>Something went wrong</>
+  }
+
+  return isConnected ? (
+    <GridLayout>
+      <GridLayout.Column span={6}>
+        <StackLayout gap={1.5}>
+          <CurrentDepositTable />
+          <AssetsToDepositTable />
+        </StackLayout>
+      </GridLayout.Column>
+      <GridLayout.Column span={6}>
+        <StackLayout gap={1.5}>
+          <CurrentBorrowTable />
+          <AssetsToBorrowTable />
+        </StackLayout>
+      </GridLayout.Column>
+    </GridLayout>
+  ) : (
+    <NotConnected />
   )
 }
 export default DepositPage
