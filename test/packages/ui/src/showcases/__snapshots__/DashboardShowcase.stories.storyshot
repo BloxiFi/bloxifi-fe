@@ -82,7 +82,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
         className="sc-crXcEl dZlCHs"
       >
         <h1
-          className="sc-fnykZs ehjzRk c-text--heading-1 c-text--color-white"
+          className="sc-fnykZs jwhJMv c-text--heading-1 c-text--color-white"
         >
           Dashboard
         </h1>
@@ -102,14 +102,14 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             gap={0.5}
           >
             <span
-              className="sc-fnykZs izjDrY"
+              className="sc-fnykZs fcrOjj"
               color="white"
               type="body 2"
             >
               Total Deposited
             </span>
             <span
-              className="sc-fnykZs dYwVWJ"
+              className="sc-fnykZs habRCy"
               color="white"
               type="body 4"
             >
@@ -125,14 +125,14 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             gap={0.5}
           >
             <span
-              className="sc-fnykZs izjDrY"
+              className="sc-fnykZs fcrOjj"
               color="white"
               type="body 2"
             >
               Total Borrowed
             </span>
             <span
-              className="sc-fnykZs dYwVWJ"
+              className="sc-fnykZs habRCy"
               color="white"
               type="body 4"
             >

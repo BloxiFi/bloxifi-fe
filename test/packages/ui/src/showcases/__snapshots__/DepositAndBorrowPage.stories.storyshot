@@ -43,7 +43,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                         gap={2.125}
                       >
                         <span
-                          className="sc-fnykZs cLtCZi"
+                          className="sc-fnykZs cMOKyV"
                           color="oxfordBlue"
                           type="heading 2"
                         >
@@ -53,26 +53,26 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                           className="sc-evZas imwzNf"
                         >
                           <span
-                            className="sc-fnykZs iOrXYh"
+                            className="sc-fnykZs krGwCe"
                             color="oxfordBlue"
                             type="body 2"
                           >
                             Balance $
                             <span
-                              className="sc-fnykZs ftbmDr"
+                              className="sc-fnykZs kOyRWU"
                               color="oxfordBlue"
                             >
                               1.00
                             </span>
                           </span>
                           <span
-                            className="sc-fnykZs iOrXYh"
+                            className="sc-fnykZs krGwCe"
                             color="oxfordBlue"
                             type="body 2"
                           >
                             Collateral $
                             <span
-                              className="sc-fnykZs ftbmDr"
+                              className="sc-fnykZs kOyRWU"
                               color="oxfordBlue"
                             >
                               1.00
@@ -581,20 +581,20 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                           gap={2.125}
                         >
                           <span
-                            className="sc-fnykZs cLtCZi"
+                            className="sc-fnykZs cMOKyV"
                             color="oxfordBlue"
                             type="heading 2"
                           >
                             Your borrow
                           </span>
                           <span
-                            className="sc-fnykZs iOrXYh"
+                            className="sc-fnykZs krGwCe"
                             color="oxfordBlue"
                             type="body 2"
                           >
                             Balance $
                             <span
-                              className="sc-fnykZs ftbmDr"
+                              className="sc-fnykZs kOyRWU"
                               color="oxfordBlue"
                             >
                               1.00
@@ -605,7 +605,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                           className="sc-iIPllB iMhdDX c-table__bottom-progressbar"
                         >
                           <p
-                            className="sc-fnykZs sc-gicCDI iOrXYh lmrWau c-text--body-2 c-text--color-oxfordBlue"
+                            className="sc-fnykZs sc-gicCDI krGwCe lmrWau c-text--body-2 c-text--color-oxfordBlue"
                           >
                             Borrowed
                           </p>
@@ -1060,14 +1060,14 @@ exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
                   gap={2.815}
                 >
                   <span
-                    className="sc-fnykZs cLtCZi"
+                    className="sc-fnykZs cMOKyV"
                     color="oxfordBlue"
                     type="heading 2"
                   >
                     Your deposit
                   </span>
                   <p
-                    className="sc-fnykZs hZjXuC c-text--body-5"
+                    className="sc-fnykZs jhxngp c-text--body-5"
                   >
                     Nothing deposited yet
                   </p>
@@ -1091,14 +1091,14 @@ exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
                   gap={2.815}
                 >
                   <span
-                    className="sc-fnykZs cLtCZi"
+                    className="sc-fnykZs cMOKyV"
                     color="oxfordBlue"
                     type="heading 2"
                   >
                     Your borrow
                   </span>
                   <p
-                    className="sc-fnykZs hZjXuC c-text--body-5"
+                    className="sc-fnykZs jhxngp c-text--body-5"
                   >
                     Nothing borrowed yet
                   </p>
@@ -1121,14 +1121,14 @@ exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
                   className="o-center-layout sc-iqcoie dSwmDQ"
                 >
                   <span
-                    className="sc-fnykZs cLtCZi"
+                    className="sc-fnykZs cMOKyV"
                     color="oxfordBlue"
                     type="heading 2"
                   >
                     Please, connect your wallet
                   </span>
                   <p
-                    className="sc-fnykZs cWohwo c-text--body-5 c-text--color-oxfordBlue"
+                    className="sc-fnykZs ecczsL c-text--body-5 c-text--color-oxfordBlue"
                   >
                     Please, connect your wallet to see your deposits and borrowings
                   </p>

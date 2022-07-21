@@ -149,7 +149,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         setUserReserveData(reserve),
       )
     }
-  }, [data])
+  }, [data, setReserveData])
 
   return {
     state: { ...state, error, loading: reserveLoading || loading },

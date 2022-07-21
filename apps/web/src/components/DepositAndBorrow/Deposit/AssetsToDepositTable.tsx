@@ -50,7 +50,7 @@ export const AssetsToDepositTable: FunctionComponent = () => {
       width: 100,
     },
   }
-  console.log('reserves', reserves)
+
   return (
     <Table
       columns={columns}

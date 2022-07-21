@@ -12,7 +12,7 @@ exports[`Storyshots Components/Probress bar Overview 1`] = `
       className="sc-iIPllB iMhdDX"
     >
       <p
-        className="sc-fnykZs sc-gicCDI iOrXYh lmrWau c-text--body-2 c-text--color-oxfordBlue"
+        className="sc-fnykZs sc-gicCDI krGwCe lmrWau c-text--body-2 c-text--color-oxfordBlue"
       >
         Borrowed
       </p>
