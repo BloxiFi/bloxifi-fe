@@ -2,7 +2,7 @@
 
 exports[`Storyshots Components/Button Appearance 1`] = `
 <div
-  className="sc-hAZoDl gyXFzs"
+  className="sc-hAZoDl bEApCe"
   style={
     Object {
       "background": "#EFF0F6",
@@ -255,7 +255,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
 
 exports[`Storyshots Components/Button CustomSizes 1`] = `
 <div
-  className="sc-hAZoDl gyXFzs"
+  className="sc-hAZoDl bEApCe"
 >
   <section
     className="sc-ksZaOG brpprN"
@@ -382,7 +382,7 @@ exports[`Storyshots Components/Button CustomSizes 1`] = `
 
 exports[`Storyshots Components/Button Details 1`] = `
 <div
-  className="sc-hAZoDl gyXFzs"
+  className="sc-hAZoDl bEApCe"
 >
   <section
     className="sc-ksZaOG brpprN"
@@ -414,7 +414,7 @@ exports[`Storyshots Components/Button Details 1`] = `
 
 exports[`Storyshots Components/Button Icon 1`] = `
 <div
-  className="sc-hAZoDl gyXFzs"
+  className="sc-hAZoDl bEApCe"
   style={
     Object {
       "background": "#EFF0F6",
@@ -674,7 +674,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
 
 exports[`Storyshots Components/Button Text with Icon 1`] = `
 <div
-  className="sc-hAZoDl gyXFzs"
+  className="sc-hAZoDl bEApCe"
   style={
     Object {
       "background": "#EFF0F6",
@@ -983,7 +983,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
 
 exports[`Storyshots Components/Button Variants 1`] = `
 <div
-  className="sc-hAZoDl gyXFzs"
+  className="sc-hAZoDl bEApCe"
 >
   <section
     className="sc-ksZaOG brpprN"

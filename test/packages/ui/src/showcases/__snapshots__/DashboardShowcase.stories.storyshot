@@ -2,7 +2,7 @@
 
 exports[`Storyshots Showcases/Dashboard Overview 1`] = `
 <div
-  className="sc-kgflAQ jXiapk"
+  className="sc-kgflAQ buhjpP"
 >
   <header
     className="c-page-layout__header"
@@ -72,7 +72,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
     </div>
   </header>
   <div
-    className="sc-crXcEl sc-fLlhyt bLbIru BdeJf"
+    className="sc-crXcEl sc-fLlhyt bLbIru ePbkGr"
     gap={4}
   >
     <section
