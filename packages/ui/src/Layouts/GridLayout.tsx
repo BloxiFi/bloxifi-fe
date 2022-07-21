@@ -68,6 +68,7 @@ const getMaxWidth = (columns, gap, padding, maxColumnSize, minColumnSize) => {
   padding-left: ${padding}px;
   padding-right: ${padding}px;
   grid-gap: ${gap}px;
+  max-width: ${padding * 2 + (columns - 1) * gap + columns * maxColumnSize}px;
   grid-template-columns: repeat(${columns}, minmax(${minColumnSize}px, 1fr));
   `
 }

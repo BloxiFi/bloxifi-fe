@@ -2,7 +2,7 @@
 
 exports[`Storyshots Components/Button Appearance 1`] = `
 <div
-  className="sc-hAZoDl bEApCe"
+  className="sc-hAZoDl gyXFzs"
   style={
     Object {
       "background": "#EFF0F6",
@@ -255,166 +255,174 @@ exports[`Storyshots Components/Button Appearance 1`] = `
 
 exports[`Storyshots Components/Button CustomSizes 1`] = `
 <div
-  className="sc-hAZoDl bEApCe"
+  className="sc-jqUVSM gFyWwL"
 >
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
+  <div
+    className="sc-hAZoDl gyXFzs"
   >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Small
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM gUmaLa jyzXNF"
-        data-element="button"
-        size="small"
-        variant="medium"
-      >
-        Button
-      </button>
-    </div>
-  </section>
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
-  >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Small
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM gUmaLa jyzXNF"
+          data-element="button"
+          size="small"
+          variant="medium"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Medium
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
-        data-element="button"
-        size="medium"
-        variant="medium"
-      >
-        Button
-      </button>
-    </div>
-  </section>
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
-  >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Medium
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
+          data-element="button"
+          size="medium"
+          variant="medium"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Large
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM dJKYDL jyzXNF"
-        data-element="button"
-        size="large"
-        variant="medium"
-      >
-        Button
-      </button>
-    </div>
-  </section>
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
-  >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Large
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM dJKYDL jyzXNF"
+          data-element="button"
+          size="large"
+          variant="medium"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Full width
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM iKXAtc jyzXNF u-full-width"
-        data-element="button"
-        size="medium"
-        variant="large"
-      >
-        Button
-      </button>
-    </div>
-  </section>
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
-  >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Full width
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM iKXAtc jyzXNF u-full-width"
+          data-element="button"
+          size="medium"
+          variant="large"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Fit content
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM kkgIkn jyzXNF u-fit-content-width"
-        data-element="button"
-        size="medium"
-        variant="large"
-      >
-        Button
-      </button>
-    </div>
-  </section>
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Fit content
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM kkgIkn jyzXNF u-fit-content-width"
+          data-element="button"
+          size="medium"
+          variant="large"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+  </div>
 </div>
 `;
 
 exports[`Storyshots Components/Button Details 1`] = `
 <div
-  className="sc-hAZoDl bEApCe"
+  className="sc-jqUVSM gFyWwL"
 >
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
+  <div
+    className="sc-hAZoDl gyXFzs"
   >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Button
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
-        data-element="button"
-        disabled={false}
-        size="medium"
-        variant="medium"
-      >
-        Button
-      </button>
-    </div>
-  </section>
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Button
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
+          data-element="button"
+          disabled={false}
+          size="medium"
+          variant="medium"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+  </div>
 </div>
 `;
 
 exports[`Storyshots Components/Button Icon 1`] = `
 <div
-  className="sc-hAZoDl bEApCe"
+  className="sc-hAZoDl gyXFzs"
   style={
     Object {
       "background": "#EFF0F6",
@@ -674,7 +682,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
 
 exports[`Storyshots Components/Button Text with Icon 1`] = `
 <div
-  className="sc-hAZoDl bEApCe"
+  className="sc-hAZoDl gyXFzs"
   style={
     Object {
       "background": "#EFF0F6",
@@ -983,79 +991,83 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
 
 exports[`Storyshots Components/Button Variants 1`] = `
 <div
-  className="sc-hAZoDl bEApCe"
+  className="sc-jqUVSM gFyWwL"
 >
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
+  <div
+    className="sc-hAZoDl gyXFzs"
   >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Thin
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM jSjkyK jyzXNF"
-        data-element="button"
-        size="medium"
-        variant="thin"
-      >
-        Button
-      </button>
-    </div>
-  </section>
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
-  >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Thin
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM jSjkyK jyzXNF"
+          data-element="button"
+          size="medium"
+          variant="thin"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Medium
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
-        data-element="button"
-        size="medium"
-        variant="medium"
-      >
-        Button
-      </button>
-    </div>
-  </section>
-  <section
-    className="sc-ksZaOG brpprN"
-    span={4}
-  >
-    <div
-      className="sc-crXcEl dvcSNb"
-      gap={1}
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Medium
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM eOixSn jyzXNF"
+          data-element="button"
+          size="medium"
+          variant="medium"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+    <section
+      className="sc-ksZaOG brpprN"
+      span={4}
     >
-      <h3
-        className="sc-fnykZs lfSzVV c-text--heading-3"
+      <div
+        className="sc-crXcEl dvcSNb"
+        gap={1}
       >
-        Large
-      </h3>
-      <button
-        appearance="primary"
-        className="sc-dkzDqf sc-hKMtZM eaXzyM jyzXNF"
-        data-element="button"
-        size="medium"
-        variant="large"
-      >
-        Button
-      </button>
-    </div>
-  </section>
+        <h3
+          className="sc-fnykZs lfSzVV c-text--heading-3"
+        >
+          Large
+        </h3>
+        <button
+          appearance="primary"
+          className="sc-dkzDqf sc-hKMtZM eaXzyM jyzXNF"
+          data-element="button"
+          size="medium"
+          variant="large"
+        >
+          Button
+        </button>
+      </div>
+    </section>
+  </div>
 </div>
 `;

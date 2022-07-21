@@ -2,6 +2,7 @@ import { Meta } from '@storybook/react'
 import React from 'react'
 
 import { BaseInput } from '../BaseInput'
+import { BoxLayout, CenterLayout, StackLayout } from '../Layouts'
 import { GridLayout } from '../Layouts/GridLayout'
 
 export default {
@@ -11,20 +12,22 @@ export default {
 
 export const Details = args => {
   return (
-    <GridLayout>
-      <GridLayout.Column span={3}>
-        <BaseInput {...args} />
-      </GridLayout.Column>
-      <GridLayout.Column span={3}>
-        <BaseInput status="success" info="Success" value="Success" />
-      </GridLayout.Column>
-      <GridLayout.Column span={3}>
-        <BaseInput status="error" info="Error" value="Error" />
-      </GridLayout.Column>
-      <GridLayout.Column span={3}>
-        <BaseInput disabled value="Disabled" />
-      </GridLayout.Column>
-    </GridLayout>
+    <BoxLayout>
+      <GridLayout>
+        <GridLayout.Column span={3}>
+          <BaseInput {...args} />
+        </GridLayout.Column>
+        <GridLayout.Column span={3}>
+          <BaseInput status="success" info="Success" value="Success" />
+        </GridLayout.Column>
+        <GridLayout.Column span={3}>
+          <BaseInput status="error" info="Error" value="Error" />
+        </GridLayout.Column>
+        <GridLayout.Column span={3}>
+          <BaseInput disabled value="Disabled" />
+        </GridLayout.Column>
+      </GridLayout>
+    </BoxLayout>
   )
 }
 

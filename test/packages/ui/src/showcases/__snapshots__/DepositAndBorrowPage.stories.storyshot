@@ -2,17 +2,17 @@
 
 exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
 <div
-  className="sc-kgflAQ buhjpP"
+  className="sc-kgflAQ bLIPJp"
 >
   <div
-    className="sc-crXcEl sc-fLlhyt bLbIru ePbkGr"
+    className="sc-crXcEl sc-fLlhyt bLbIru fMREOo"
     gap={4}
   >
     <section
       className="c-page-layout__section"
     >
       <div
-        className="sc-hAZoDl bEApCe"
+        className="sc-hAZoDl gyXFzs"
       >
         <section
           className="sc-ksZaOG gMzIlt"
@@ -1028,10 +1028,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
 
 exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
 <div
-  className="sc-kgflAQ buhjpP"
+  className="sc-kgflAQ bLIPJp"
 >
   <div
-    className="sc-crXcEl sc-fLlhyt bLbIru ePbkGr"
+    className="sc-crXcEl sc-fLlhyt bLbIru fMREOo"
     gap={4}
   >
     <section
@@ -1042,7 +1042,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
         className="sc-crXcEl dbkuws"
       >
         <div
-          className="sc-hAZoDl bEApCe"
+          className="sc-hAZoDl gyXFzs"
         >
           <section
             className="sc-ksZaOG gMzIlt"

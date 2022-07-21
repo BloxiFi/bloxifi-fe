@@ -3,7 +3,7 @@ import React from 'react'
 import { Text } from 'recharts'
 
 import { Icon, IconNames, IconProps } from '../Icon'
-import { ColumnLayout, StackLayout } from '../Layouts'
+import { BoxLayout, ColumnLayout, StackLayout } from '../Layouts'
 import { Colors } from '../styles/colors'
 
 export default {
@@ -14,21 +14,28 @@ export default {
 
 export const AllIcons = () => {
   return (
-    <ColumnLayout>
-      {IconNames.map(iconName => (
-        <StackLayout center key={iconName}>
-          <Icon size={36} name={iconName} />
-          <Text type="body 1">{iconName}</Text>
-        </StackLayout>
-      ))}
-    </ColumnLayout>
+    <BoxLayout>
+      <ColumnLayout>
+        {IconNames.map(iconName => (
+          <StackLayout center key={iconName}>
+            <Icon size={36} name={iconName} />
+            <Text type="body 1">{iconName}</Text>
+          </StackLayout>
+        ))}
+      </ColumnLayout>
+    </BoxLayout>
   )
 }
 
 export const Details: Story<IconProps> = args => {
-  return <Icon {...args} />
+  return (
+    <BoxLayout>
+      <Icon {...args} />
+    </BoxLayout>
+  )
 }
 
 Details.storyName = 'Details'
+Details.args = { color: 'gray' }
 
 AllIcons.storyName = 'All icons'
