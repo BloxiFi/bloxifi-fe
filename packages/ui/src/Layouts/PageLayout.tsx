@@ -169,7 +169,6 @@ export const Page: PageLayout = Object.assign(
 )
 
 const HEADER_HEIGHT = 64
-const CONTENT_MAX_WIDTH = 1203
 
 export const PageLayout = styled(Page)`
   position: relative;
@@ -197,7 +196,6 @@ export const PageLayout = styled(Page)`
     display: flex;
     width: 100vw;
     height: 6.25rem;
-    max-width: calc(1203px - 4rem);
     margin: auto auto 0;
     border-top: 1px solid ${({ theme }) => theme.borderColor};
     color: ${({ theme }) => theme.logoBackground};
@@ -218,7 +216,7 @@ const PageContent = styled(StackLayout)`
   height: 100%;
   grid-column: 2;
   grid-row: 2;
-  padding-bottom: 4rem;
+  padding: 4rem;
 
   .c-page-layout__section {
     padding-left: 2rem;
@@ -226,11 +224,6 @@ const PageContent = styled(StackLayout)`
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: ${CONTENT_MAX_WIDTH}px;
-
-    &:first-of-type {
-      padding-top: 4rem;
-    }
   }
 
   ${CoverLayout} {
