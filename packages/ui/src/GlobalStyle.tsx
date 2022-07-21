@@ -41,4 +41,26 @@ export const GlobalStyle = createGlobalStyle`
   body * {
     box-sizing: border-box;
   }
+
+  html,
+  body {
+    min-height: 100%;
+    height: 100%;
+    overscroll-behavior: none;
+    overflow-y: unset;
+  }
+
+  #root {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    min-height: 100vh;
+
+    > .c-page-layout {
+      min-height: 100%;
+      flex: 1 1 100%;
+    }
+  }
 `
