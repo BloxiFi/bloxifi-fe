@@ -4,7 +4,7 @@ import React, { FunctionComponent } from 'react'
 
 import { BorrowTitleBox } from './BorrowTitleBox'
 
-export const CurrentBorrowTable: FunctionComponent = () => {
+export const YourBorrowsTable: FunctionComponent = () => {
   const columns = {
     assets: {
       header: 'Assets',

@@ -4,9 +4,9 @@ import { GridLayout } from '@bloxifi/ui/src/Layouts/GridLayout'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { WalletContainer } from '@/containers/WalletContainer'
-import { NotConnected } from '@/components/DepositAndBorrow/NotConnected'
-import { AssetsToBorrowTable } from '@/components/DepositAndBorrow/Borrow/AssetsToBorrowTable'
-import { AssetsToDepositTable } from '@/components/DepositAndBorrow/Deposit/AssetsToDepositTable'
+import { NotConnected } from '@/components/borrow/NotConnected'
+import { AvailableToBorrowTable } from '@/components/borrow/table/AvailableToBorrowTable'
+import { AvaliableToDepositTable } from '@/components/borrow/table/AvaliableToDepositTable'
 
 const DepositPage = () => {
   const {
@@ -32,7 +32,7 @@ const DepositPage = () => {
            * //TODO COMPLETE FETCHING & DISPLAYING CURRENT DEPOSIT DATA
            * <CurrentDepositTable />
            */}
-          <AssetsToDepositTable />
+          <AvaliableToDepositTable />
         </StackLayout>
       </GridLayout.Column>
       <GridLayout.Column span={6}>
@@ -41,7 +41,7 @@ const DepositPage = () => {
            * //TODO COMPLETE FETCHING & DISPLAYING CURRENT BORROW DATA
            * <CurrentBorrowTable />
            */}
-          <AssetsToBorrowTable />
+          <AvailableToBorrowTable />
         </StackLayout>
       </GridLayout.Column>
     </GridLayout>

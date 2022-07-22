@@ -15,7 +15,7 @@ import { DepositTitleBox } from './DepositTitleBox'
 
 import { WalletContainer } from '@/containers/WalletContainer'
 
-export const CurrentDepositTable: FunctionComponent = () => {
+export const YourDepositsTable: FunctionComponent = () => {
   const {
     state: { userReserves },
   } = WalletContainer.useContainer()

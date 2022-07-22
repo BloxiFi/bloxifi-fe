@@ -17,7 +17,7 @@ export default defineConfig({
   viewportWidth: 1280,
   viewportHeight: 720,
   responseTimeout: 60000,
-  baseUrl: 'http://localhost:8080',
+  baseUrl: 'http://localhost:3000',
   chromeWebSecurity: true,
   taskTimeout: 30000,
   retries: { runMode: 0, openMode: 0 },

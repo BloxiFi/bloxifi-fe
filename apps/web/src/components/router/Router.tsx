@@ -2,7 +2,7 @@ import { PageLayout } from '@bloxifi/ui'
 import React, { FC, lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { Header } from '../Header/Header'
+import { Header } from '../header/Header'
 
 import { PublicRoute } from './PublicRoute'
 

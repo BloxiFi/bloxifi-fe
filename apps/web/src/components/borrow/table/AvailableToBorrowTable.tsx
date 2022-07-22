@@ -6,7 +6,7 @@ import { FormattedNumber } from '../FormattedNumber'
 
 import { WalletContainer } from '@/containers/WalletContainer'
 
-export const AssetsToBorrowTable: FunctionComponent = () => {
+export const AvailableToBorrowTable: FunctionComponent = () => {
   const {
     state: { reserves },
   } = WalletContainer.useContainer()

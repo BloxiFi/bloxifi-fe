@@ -11,7 +11,14 @@ import {
 import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
 import { ethers } from 'ethers'
-import { Dispatch, Reducer, useEffect, useReducer, useState } from 'react'
+import {
+  Dispatch,
+  Reducer,
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import { createContainer } from 'unstated-next'
 
 import { Web3Container } from './Web3Container'
@@ -95,38 +102,42 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     },
   })
 
-  const setReserveData = async (reserve: ReservesData) => {
-    setLoading(true)
-    try {
-      const tokenContract: TokenContract = Tokens.getTokenContract(
-        signer,
-        reserve.name,
-      )
+  const setReserveData = useCallback(
+    async (reserve: ReservesData) => {
+      setLoading(true)
+      try {
+        const tokenContract: TokenContract = Tokens.getTokenContract(
+          signer,
+          reserve.name,
+        )
 
-      const balance = await Tokens.getTokenBalance(
-        tokenContract,
-        currentAccount,
-      )
+        const balance = await Tokens.getTokenBalance(
+          tokenContract,
+          currentAccount,
+        )
 
-      dispatch({
-        type: 'setReserveData',
-        value: {
-          ...reserve,
-          balance: Number(ethers.utils.formatUnits(balance)),
-          icon: Assets[reserve.symbol].icon,
-          fullName: Assets[reserve.symbol].fullName,
-          supplyAPY: calculateAPY(reserve.liquidityRate),
-          variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-        },
-      })
-      setError(undefined)
-    } catch (error) {
-      setError(error)
-    } finally {
-      setLoading(false)
-    }
-  }
+        dispatch({
+          type: 'setReserveData',
+          value: {
+            ...reserve,
+            balance: Number(ethers.utils.formatUnits(balance)),
+            icon: Assets[reserve.symbol].icon,
+            fullName: Assets[reserve.symbol].fullName,
+            supplyAPY: calculateAPY(reserve.liquidityRate),
+            variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+          },
+        })
+        setError(undefined)
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
+    },
+    [currentAccount, signer],
+  )
 
+  //We might have to turn this into useCallback (if we notice some rerendering)
   const setUserReserveData = (data: UserReserveData) => {
     const { reserve, currentATokenBalance, ...rest } = data
     dispatch({
@@ -142,6 +153,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       },
     })
   }
+
   useEffect(() => {
     if (data) {
       data.reserves.map((reserve: ReservesData) => setReserveData(reserve))
@@ -149,7 +161,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         setUserReserveData(reserve),
       )
     }
-  }, [data])
+  }, [data, setReserveData])
 
   return {
     state: { ...state, error, loading: reserveLoading || loading },
