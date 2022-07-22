@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
-Array [
+<div
+  className="sc-jqUVSM gFyWwL"
+>
   <div
     className="sc-iAvgwm jnXqLu rts-toggle__container undefined"
     data-element="toggle"
@@ -18,7 +20,7 @@ Array [
       data-element="toggle-background"
       height={12.5}
     />
-  </div>,
+  </div>
   <div
     className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
     data-element="toggle"
@@ -35,7 +37,7 @@ Array [
       data-element="toggle-background"
       height={25}
     />
-  </div>,
+  </div>
   <div
     className="sc-iAvgwm bhCHDx rts-toggle__container undefined"
     data-element="toggle"
@@ -52,7 +54,7 @@ Array [
       data-element="toggle-background"
       height={37.5}
     />
-  </div>,
+  </div>
   <div
     className="sc-iAvgwm emqSUS rts-toggle__container undefined"
     data-element="toggle"
@@ -69,47 +71,55 @@ Array [
       data-element="toggle-background"
       height={50}
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`Storyshots Components/Toggle Toggle checked 1`] = `
 <div
-  className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
-  data-element="toggle"
-  height={25}
-  width={50}
+  className="sc-jqUVSM gFyWwL"
 >
-  <input
-    checked={true}
-    className="sc-cTQhss hPRWpT rts-toggle__toggle"
-    data-element="toggle-input"
-    type="checkbox"
-  />
-  <span
-    className="sc-efBctP gnXphq rts-toggle__background"
-    data-element="toggle-background"
+  <div
+    className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+    data-element="toggle"
     height={25}
-  />
+    width={50}
+  >
+    <input
+      checked={true}
+      className="sc-cTQhss hPRWpT rts-toggle__toggle"
+      data-element="toggle-input"
+      type="checkbox"
+    />
+    <span
+      className="sc-efBctP gnXphq rts-toggle__background"
+      data-element="toggle-background"
+      height={25}
+    />
+  </div>
 </div>
 `;
 
 exports[`Storyshots Components/Toggle Toggle unchecked 1`] = `
 <div
-  className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
-  data-element="toggle"
-  height={25}
-  width={50}
+  className="sc-jqUVSM gFyWwL"
 >
-  <input
-    className="sc-cTQhss hPRWpT rts-toggle__toggle"
-    data-element="toggle-input"
-    type="checkbox"
-  />
-  <span
-    className="sc-efBctP gnXphq rts-toggle__background"
-    data-element="toggle-background"
+  <div
+    className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+    data-element="toggle"
     height={25}
-  />
+    width={50}
+  >
+    <input
+      className="sc-cTQhss hPRWpT rts-toggle__toggle"
+      data-element="toggle-input"
+      type="checkbox"
+    />
+    <span
+      className="sc-efBctP gnXphq rts-toggle__background"
+      data-element="toggle-background"
+      height={25}
+    />
+  </div>
 </div>
 `;

@@ -20,17 +20,19 @@ export default {
 } as ComponentMeta<typeof Button>
 
 export const Details: ComponentStory<typeof Button> = args => (
-  <GridLayout>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Button</Text>
+  <BoxLayout>
+    <GridLayout>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Button</Text>
 
-        <Button appearance="primary" variant="medium" size="medium" {...args}>
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-  </GridLayout>
+          <Button appearance="primary" variant="medium" size="medium" {...args}>
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+    </GridLayout>
+  </BoxLayout>
 )
 
 export const Appearance: ComponentStory<typeof Button> = () => (
@@ -159,95 +161,99 @@ export const Appearance: ComponentStory<typeof Button> = () => (
 )
 
 export const Variants: ComponentStory<typeof Button> = () => (
-  <GridLayout>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Thin</Text>
+  <BoxLayout>
+    <GridLayout>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Thin</Text>
 
-        <Button appearance="primary" variant="thin" size="medium">
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Medium</Text>
+          <Button appearance="primary" variant="thin" size="medium">
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Medium</Text>
 
-        <Button appearance="primary" variant="medium" size="medium">
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Large</Text>
+          <Button appearance="primary" variant="medium" size="medium">
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Large</Text>
 
-        <Button appearance="primary" variant="large" size="medium">
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-  </GridLayout>
+          <Button appearance="primary" variant="large" size="medium">
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+    </GridLayout>
+  </BoxLayout>
 )
 
 export const CustomSizes: ComponentStory<typeof Button> = () => (
-  <GridLayout>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Small</Text>
+  <BoxLayout>
+    <GridLayout>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Small</Text>
 
-        <Button appearance="primary" variant="medium" size="small">
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Medium</Text>
+          <Button appearance="primary" variant="medium" size="small">
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Medium</Text>
 
-        <Button appearance="primary" variant="medium" size="medium">
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Large</Text>
+          <Button appearance="primary" variant="medium" size="medium">
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Large</Text>
 
-        <Button appearance="primary" variant="medium" size="large">
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Full width</Text>
+          <Button appearance="primary" variant="medium" size="large">
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Full width</Text>
 
-        <Button
-          appearance="primary"
-          variant="large"
-          size="medium"
-          className="u-full-width"
-        >
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-    <GridLayout.Column span={4}>
-      <StackLayout gap={1}>
-        <Text type="heading 3">Fit content</Text>
+          <Button
+            appearance="primary"
+            variant="large"
+            size="medium"
+            className="u-full-width"
+          >
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+      <GridLayout.Column span={4}>
+        <StackLayout gap={1}>
+          <Text type="heading 3">Fit content</Text>
 
-        <Button
-          appearance="primary"
-          variant="large"
-          size="medium"
-          className="u-fit-content-width"
-        >
-          Button
-        </Button>
-      </StackLayout>
-    </GridLayout.Column>
-  </GridLayout>
+          <Button
+            appearance="primary"
+            variant="large"
+            size="medium"
+            className="u-fit-content-width"
+          >
+            Button
+          </Button>
+        </StackLayout>
+      </GridLayout.Column>
+    </GridLayout>
+  </BoxLayout>
 )
 
 export const IconButton: ComponentStory<typeof Button> = () => (

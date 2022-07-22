@@ -2,74 +2,78 @@
 
 exports[`Storyshots Components/BaseInput Details 1`] = `
 <div
-  className="sc-hAZoDl gyXFzs"
+  className="sc-jqUVSM gFyWwL"
 >
-  <section
-    className="sc-ksZaOG jCovuS"
-    span={3}
+  <div
+    className="sc-hAZoDl gyXFzs"
   >
-    <div
-      className="sc-bczRLJ bIAKfX"
+    <section
+      className="sc-ksZaOG jCovuS"
+      span={3}
     >
-      <input
-        disabled={false}
-        type="text"
-      />
-    </div>
-    
-  </section>
-  <section
-    className="sc-ksZaOG jCovuS"
-    span={3}
-  >
-    <div
-      className="sc-bczRLJ wJMuf"
+      <div
+        className="sc-bczRLJ bIAKfX"
+      >
+        <input
+          disabled={false}
+          type="text"
+        />
+      </div>
+      
+    </section>
+    <section
+      className="sc-ksZaOG jCovuS"
+      span={3}
     >
-      <input
-        disabled={false}
-        type="text"
-        value="Success"
-      />
-    </div>
-    <span
-      className="sc-gsnTZi hiBvZq"
+      <div
+        className="sc-bczRLJ wJMuf"
+      >
+        <input
+          disabled={false}
+          type="text"
+          value="Success"
+        />
+      </div>
+      <span
+        className="sc-gsnTZi hiBvZq"
+      >
+        Success
+      </span>
+    </section>
+    <section
+      className="sc-ksZaOG jCovuS"
+      span={3}
     >
-      Success
-    </span>
-  </section>
-  <section
-    className="sc-ksZaOG jCovuS"
-    span={3}
-  >
-    <div
-      className="sc-bczRLJ knxpZj"
+      <div
+        className="sc-bczRLJ knxpZj"
+      >
+        <input
+          disabled={false}
+          type="text"
+          value="Error"
+        />
+      </div>
+      <span
+        className="sc-gsnTZi fpxYHH"
+      >
+        Error
+      </span>
+    </section>
+    <section
+      className="sc-ksZaOG jCovuS"
+      span={3}
     >
-      <input
-        disabled={false}
-        type="text"
-        value="Error"
-      />
-    </div>
-    <span
-      className="sc-gsnTZi fpxYHH"
-    >
-      Error
-    </span>
-  </section>
-  <section
-    className="sc-ksZaOG jCovuS"
-    span={3}
-  >
-    <div
-      className="sc-bczRLJ bIAKfX"
-    >
-      <input
-        disabled={true}
-        type="text"
-        value="Disabled"
-      />
-    </div>
-    
-  </section>
+      <div
+        className="sc-bczRLJ bIAKfX"
+      >
+        <input
+          disabled={true}
+          type="text"
+          value="Disabled"
+        />
+      </div>
+      
+    </section>
+  </div>
 </div>
 `;

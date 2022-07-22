@@ -94,16 +94,17 @@ export const BasicTable = () => (
   />
 )
 
-export const TitleAsPlainText = () => (
+export const BiggerSpacings = () => (
   <Table
     columns={defaultColumns}
     data={defaultData}
     titleComponent="Assets to deposit"
     columnSpacing
+    headerSpacing
   />
 )
 
-export const TitleAsComponent = () => {
+export const SmallSpacing = () => {
   const ComponentTitle = () => <div>Your deposit</div>
 
   return (
@@ -111,7 +112,6 @@ export const TitleAsComponent = () => {
       columns={defaultColumns}
       data={defaultData}
       titleComponent={<ComponentTitle />}
-      columnSpacing
     />
   )
 }
