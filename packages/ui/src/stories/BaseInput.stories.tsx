@@ -2,7 +2,7 @@ import { Meta } from '@storybook/react'
 import React from 'react'
 
 import { BaseInput } from '../BaseInput'
-import { BoxLayout, CenterLayout, StackLayout } from '../Layouts'
+import { BoxLayout } from '../Layouts'
 import { GridLayout } from '../Layouts/GridLayout'
 
 export default {
