@@ -3,11 +3,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { GridLayout } from '@bloxifi/ui/src/Layouts/GridLayout'
 
-import { StakeModalContent } from '@/components/Staking/StakeModalContent'
-import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
-import { UnstakeModalContent } from '@/components/Staking/UnstakeModalContent'
+import { StakeModalContent } from '@/components/staking/StakeModalContent'
+import { ConnectWalletPaper } from '@/components/connector/ConnectWalletPaper'
+import { UnstakeModalContent } from '@/components/staking/UnstakeModalContent'
 import { Web3Container } from '@/containers/Web3Container'
-import { ClaimRewards } from '@/components/Staking/ClaimRewards'
+import { ClaimRewards } from '@/components/staking/ClaimRewards'
 
 const StakingPage = () => {
   const {

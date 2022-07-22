@@ -6,17 +6,17 @@ exports[`Storyshots Components/Text Headings 1`] = `
   gap={2}
 >
   <h1
-    className="sc-fnykZs fVnnTH c-text--heading-1"
+    className="sc-fnykZs jLneMg c-text--heading-1"
   >
     Heading 1
   </h1>
   <h2
-    className="sc-fnykZs buafps c-text--heading-2"
+    className="sc-fnykZs deqfKL c-text--heading-2"
   >
     Heading 2
   </h2>
   <h3
-    className="sc-fnykZs lfSzVV c-text--heading-3"
+    className="sc-fnykZs gQEKKq c-text--heading-3"
   >
     Heading 3
   </h3>
@@ -29,32 +29,32 @@ exports[`Storyshots Components/Text Paragraphs 1`] = `
   gap={2}
 >
   <p
-    className="sc-fnykZs bJLWlK c-text--body-1"
+    className="sc-fnykZs hrCmTN c-text--body-1"
   >
     Body 1
   </p>
   <p
-    className="sc-fnykZs gMVeoD c-text--body-2"
+    className="sc-fnykZs cKzTww c-text--body-2"
   >
     Body 2
   </p>
   <p
-    className="sc-fnykZs jOCAZz c-text--body-3"
+    className="sc-fnykZs etxHTk c-text--body-3"
   >
     Body 3
   </p>
   <p
-    className="sc-fnykZs eSixKq c-text--body-4"
+    className="sc-fnykZs jaTOiB c-text--body-4"
   >
     Body 4
   </p>
   <p
-    className="sc-fnykZs hZjXuC c-text--body-5"
+    className="sc-fnykZs jhxngp c-text--body-5"
   >
     Body 5
   </p>
   <span
-    className="sc-fnykZs bElBn c-text--small-text c-text--color-textColorDark"
+    className="sc-fnykZs hSTrBg c-text--small-text c-text--color-textColorDark"
   >
     Small text
   </span>

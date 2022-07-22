@@ -7,6 +7,7 @@ import { providers } from 'ethers'
 import { ExternalProvider } from '@ethersproject/providers'
 
 import { Web3Container } from './containers/Web3Container'
+import { WalletContainer } from './containers/WalletContainer'
 
 import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
@@ -36,11 +37,13 @@ export const App = () => {
         <Web3ReactProvider getLibrary={getWeb3Library}>
           <Web3Container.Provider>
             <ApolloProvider client={client}>
-              <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
-                <LocaleContainer.Provider>
-                  <Router />
-                </LocaleContainer.Provider>
-              </PageContainer.Provider>
+              <WalletContainer.Provider>
+                <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
+                  <LocaleContainer.Provider>
+                    <Router />
+                  </LocaleContainer.Provider>
+                </PageContainer.Provider>
+              </WalletContainer.Provider>
             </ApolloProvider>
           </Web3Container.Provider>
         </Web3ReactProvider>

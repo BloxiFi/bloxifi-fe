@@ -1,7 +1,7 @@
 import { PageLayout } from '@bloxifi/ui'
 import React from 'react'
 
-import { ConnectWalletButton } from '../WalletConnection/ConnectWalletButton'
+import { ConnectWalletButton } from '../connector/ConnectWalletButton'
 
 export const Header = () => {
   return (

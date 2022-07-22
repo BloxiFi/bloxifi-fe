@@ -3,7 +3,7 @@ import { Action } from '@bloxifi/types'
 import { Dispatch, Reducer, useReducer } from 'react'
 import { createContainer } from 'unstated-next'
 
-const initialToken = 'DAI'
+const initialToken = 'DAImb'
 
 interface State {
   selectedAsset: TokenList

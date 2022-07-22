@@ -1,16 +1,4 @@
-import { useQuery } from '@apollo/client'
-import {
-  DepositGraph,
-  DepositGraphVariables,
-  GRAPHQLEXAMPLEQUERY,
-} from '@bloxifi/core'
-import {
-  Text,
-  CoverLayout,
-  CardLayout,
-  BoxLayout,
-  ContentLoader,
-} from '@bloxifi/ui'
+import { Text, CoverLayout, CardLayout, BoxLayout } from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -19,8 +7,8 @@ import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
 import { Web3Container } from '@/containers/Web3Container'
-import { ConnectWalletPaper } from '@/components/WalletConnection/ConnectWalletPaper'
-import { Header } from '@/components/Header/Header'
+import { ConnectWalletPaper } from '@/components/connector/ConnectWalletPaper'
+import { Header } from '@/components/header/Header'
 
 const HomePage = () => {
   const { t } = useTranslation()
@@ -30,16 +18,11 @@ const HomePage = () => {
   const {
     state: { isConnected, loading },
   } = Web3Container.useContainer()
-  const { loading: loadingQuery } = useQuery<
-    DepositGraph,
-    DepositGraphVariables
-  >(GRAPHQLEXAMPLEQUERY)
 
   return (
     <Wrapper>
       <CoverLayout>
         <BoxLayout>
-          {loadingQuery ? <ContentLoader /> : <Text>Graph data loaded</Text>}
           <CardLayout>
             <Text align="left" type="heading 1" semiBold>
               {t('global.button')}

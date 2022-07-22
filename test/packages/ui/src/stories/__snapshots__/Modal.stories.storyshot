@@ -43,7 +43,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                     colSpan={2}
                   >
                     <span
-                      className="sc-fnykZs cLtCZi"
+                      className="sc-fnykZs cMOKyV"
                       color="oxfordBlue"
                       type="heading 2"
                     >
@@ -155,7 +155,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <p
-                      className="sc-fnykZs jgfqoh c-text--body-3 c-text--color-oxfordBlue"
+                      className="sc-fnykZs gQMrPq c-text--body-3 c-text--color-oxfordBlue"
                     >
                       Health factor
                     </p>
@@ -170,7 +170,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                         className="sc-evZas iHSrCo"
                       >
                         <span
-                          className="sc-fnykZs gXNkYI"
+                          className="sc-fnykZs eDgbT"
                           color="oxfordBlue"
                           type="body 1"
                         >
@@ -178,7 +178,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                         </span>
                       </div>
                       <span
-                        className="sc-fnykZs gXNkYI"
+                        className="sc-fnykZs eDgbT"
                         color="oxfordBlue"
                         type="body 1"
                       >
@@ -259,7 +259,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     colSpan={2}
                   >
                     <span
-                      className="sc-fnykZs cLtCZi"
+                      className="sc-fnykZs cMOKyV"
                       color="oxfordBlue"
                       type="heading 2"
                     >
@@ -371,7 +371,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <span
-                      className="sc-fnykZs jgfqoh"
+                      className="sc-fnykZs gQMrPq"
                       color="oxfordBlue"
                       type="body 3"
                     >
@@ -385,7 +385,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                       className="sc-evZas iHSrCo"
                     >
                       <span
-                        className="sc-fnykZs gXNkYI"
+                        className="sc-fnykZs eDgbT"
                         color="oxfordBlue"
                         type="body 1"
                       >
@@ -401,7 +401,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <span
-                      className="sc-fnykZs jgfqoh"
+                      className="sc-fnykZs gQMrPq"
                       color="oxfordBlue"
                       type="body 3"
                     >
@@ -418,7 +418,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                         className="sc-evZas iHSrCo"
                       >
                         <span
-                          className="sc-fnykZs gXNkYI"
+                          className="sc-fnykZs eDgbT"
                           color="oxfordBlue"
                           type="body 1"
                         >
@@ -426,7 +426,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                         </span>
                       </div>
                       <span
-                        className="sc-fnykZs gXNkYI"
+                        className="sc-fnykZs eDgbT"
                         color="oxfordBlue"
                         type="body 1"
                       >
@@ -530,7 +530,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     colSpan={2}
                   >
                     <span
-                      className="sc-fnykZs cLtCZi"
+                      className="sc-fnykZs cMOKyV"
                       color="oxfordBlue"
                       type="heading 2"
                     >
@@ -642,7 +642,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <span
-                      className="sc-fnykZs jgfqoh"
+                      className="sc-fnykZs gQMrPq"
                       color="oxfordBlue"
                       type="body 3"
                     >
@@ -656,14 +656,14 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                       className="sc-crXcEl dZlCHs"
                     >
                       <span
-                        className="sc-fnykZs dhmHoq"
+                        className="sc-fnykZs kPYysR"
                         color="oxfordBlue"
                         type="body 1"
                       >
                         0.000001 Asset
                       </span>
                       <span
-                        className="sc-fnykZs gXNkYI"
+                        className="sc-fnykZs eDgbT"
                         color="oxfordBlue"
                         type="body 1"
                       >
@@ -679,7 +679,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <span
-                      className="sc-fnykZs jgfqoh"
+                      className="sc-fnykZs gQMrPq"
                       color="oxfordBlue"
                       type="body 3"
                     >
@@ -696,7 +696,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                         className="sc-evZas iHSrCo"
                       >
                         <span
-                          className="sc-fnykZs gXNkYI"
+                          className="sc-fnykZs eDgbT"
                           color="oxfordBlue"
                           type="body 1"
                         >
@@ -704,7 +704,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                         </span>
                       </div>
                       <span
-                        className="sc-fnykZs gXNkYI"
+                        className="sc-fnykZs eDgbT"
                         color="oxfordBlue"
                         type="body 1"
                       >
@@ -785,7 +785,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                     colSpan={2}
                   >
                     <span
-                      className="sc-fnykZs cLtCZi"
+                      className="sc-fnykZs cMOKyV"
                       color="oxfordBlue"
                       type="heading 2"
                     >
@@ -897,7 +897,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <span
-                      className="sc-fnykZs jgfqoh"
+                      className="sc-fnykZs gQMrPq"
                       color="oxfordBlue"
                       type="body 3"
                     >
@@ -914,7 +914,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                         className="sc-evZas iHSrCo"
                       >
                         <span
-                          className="sc-fnykZs gXNkYI"
+                          className="sc-fnykZs eDgbT"
                           color="oxfordBlue"
                           type="body 1"
                         >
@@ -922,7 +922,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                         </span>
                       </div>
                       <span
-                        className="sc-fnykZs gXNkYI"
+                        className="sc-fnykZs eDgbT"
                         color="oxfordBlue"
                         type="body 1"
                       >
@@ -938,7 +938,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                     className="sc-jIZahH hijiIt"
                   >
                     <span
-                      className="sc-fnykZs jgfqoh"
+                      className="sc-fnykZs gQMrPq"
                       color="oxfordBlue"
                       type="body 3"
                     >
@@ -955,7 +955,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                         className="sc-evZas iHSrCo"
                       >
                         <span
-                          className="sc-fnykZs gXNkYI"
+                          className="sc-fnykZs eDgbT"
                           color="oxfordBlue"
                           type="body 1"
                         >
@@ -963,7 +963,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                         </span>
                       </div>
                       <span
-                        className="sc-fnykZs gXNkYI"
+                        className="sc-fnykZs eDgbT"
                         color="oxfordBlue"
                         type="body 1"
                       >

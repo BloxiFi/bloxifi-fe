@@ -1,0 +1,26 @@
+{
+  "KSMmb": {
+    "fullName": "Kusama",
+    "icon": "dai"
+  },
+  "WBTCmb": {
+    "fullName": "Wrapped Bitcoin",
+    "icon": "wbtc"
+  },
+  "WETHmb": {
+    "fullName": "Wrapped Ethereum",
+    "icon": "weth"
+  },
+  "DAImb": {
+    "fullName": "DAI",
+    "icon": "dai"
+  },
+  "USDCmb": {
+    "fullName": "USD Coin",
+    "icon": "usdc"
+  },
+  "MOWRmb": {
+    "fullName": "Moonriver",
+    "icon": "dai"
+  }
+}
