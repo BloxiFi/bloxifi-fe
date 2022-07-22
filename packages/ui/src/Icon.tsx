@@ -3,6 +3,8 @@ import InlineSVG, { Props } from 'react-inlinesvg'
 import styled from 'styled-components'
 
 const assetsIcons = ['dai', 'usdc', 'weth', 'wbtc']
+const notFilled = ['success', 'error', ...assetsIcons]
+
 export const IconNames = [
   'close',
   'arrow-down',
@@ -12,6 +14,8 @@ export const IconNames = [
   'total-borrowed',
   'total-deposited',
   'union',
+  'success',
+  'error',
   ...assetsIcons,
 ] as const
 export type IconNamesType = typeof IconNames[number]
@@ -46,7 +50,7 @@ export const Icon = styled(
         style={{ width: size, height: size, fill: color }}
         className={`rts-icon ${className}`}
         preProcessor={code => {
-          if (assetsIcons.includes(name)) {
+          if (notFilled.includes(name)) {
             return code
           }
           return code.replace(/fill=".*?"/g, 'fill="color"')
