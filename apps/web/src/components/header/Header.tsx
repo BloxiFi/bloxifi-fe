@@ -9,7 +9,7 @@ export const Header = () => {
       navigationItems={[
         { to: '/', label: 'Dashboard' },
         { to: '/staking', label: 'Staking' },
-        { to: '/deposit', label: 'Deposit & Borrow' },
+        { to: '/borrow', label: 'Deposit & Borrow' },
       ]}
     >
       <ConnectWalletButton />
