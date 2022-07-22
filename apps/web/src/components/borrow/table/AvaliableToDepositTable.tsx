@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react'
-import { Button, CellProps, Table, Text } from '@bloxifi/ui'
+import { Button, CellProps, ColumnData, Table, Text } from '@bloxifi/ui'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
 
-import { WalletContainer } from '@/containers/WalletContainer'
+import { WalletBalance, WalletContainer } from '@/containers/WalletContainer'
 
 export const AvaliableToDepositTable: FunctionComponent = () => {
   const {
@@ -14,21 +14,22 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
   const columns = {
     assets: {
       header: 'Assets',
-      Cell: ({ data: { symbol, icon, fullName } }: any) => (
-        <AssetName symbol={symbol} icon={icon} fullName={fullName} />
+      //TODO@Kiki I changed symbol to "name" because that was the appropriate type (but not sure that this is correct) please check this.
+      Cell: ({ data: { name, icon, fullName } }) => (
+        <AssetName symbol={name} icon={icon} fullName={fullName} />
       ),
       alignText: 'left',
     },
     walletBalance: {
       header: 'Wallet balance',
-      Cell: ({ data: { balance } }: any) => {
-        return <FormattedNumber value={balance} />
+      Cell: ({ data: { balance } }) => {
+        return <FormattedNumber value={parseFloat(balance)} />
       },
       alignText: 'center',
     },
     APY: {
       header: 'APY',
-      Cell: ({ data: { supplyAPY } }: any) => (
+      Cell: ({ data: { supplyAPY } }) => (
         <Text type="body 3" as="span">
           <FormattedNumber value={supplyAPY} percent />
         </Text>
@@ -49,7 +50,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
       ),
       width: 100,
     },
-  }
+  } as Record<string, ColumnData<WalletBalance>>
 
   return (
     <Table

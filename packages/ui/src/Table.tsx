@@ -12,7 +12,7 @@ export type TableData = Record<string, unknown>
 /**
  * Cell props representing `<td>` element.
  */
-export interface CellProps {
+export interface CellProps<T = TableData> {
   /**
    * Function that if triggered with some data, it will show {@link ColumnData.ExpandedCell}
    */
@@ -20,7 +20,7 @@ export interface CellProps {
   /**
    * Row data passed in Cell.
    */
-  data: TableData
+  data: T
   /**
    * Row index.
    */
@@ -30,7 +30,7 @@ export interface CellProps {
 /**
  * Column props representing `<th>` element.
  */
-interface ColumnData {
+export interface ColumnData<T = TableData> {
   /**
    * Header content
    */
@@ -38,7 +38,7 @@ interface ColumnData {
   /**
    * A Cell component that will be placed in this Column in every row.
    */
-  Cell: (props: CellProps) => JSX.Element
+  Cell: (props: CellProps<T>) => JSX.Element
   /**
    * Optional width prop, used to limit the column width
    */
@@ -46,7 +46,7 @@ interface ColumnData {
   /**
    * Optional component that will render if {@link CellProps.onRowExpand} is triggered in Cell with some data.
    */
-  ExpandedCell?: (props: Omit<CellProps, 'onRowExpand'>) => JSX.Element
+  ExpandedCell?: (props: Omit<CellProps<T>, 'onRowExpand'>) => JSX.Element
   /**
    * Optional align prop, used to align the column text
    */
@@ -56,7 +56,8 @@ interface ColumnData {
 /**
  * Table props.
  */
-export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
+export interface TableProps<T = TableData>
+  extends React.ComponentPropsWithoutRef<'table'> {
   /**
    * Required data prop, should be array of objects.
    */
@@ -64,7 +65,7 @@ export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
   /**
    * Required columns prop, used to layout the content in cells and columns
    */
-  columns: Record<string, ColumnData>
+  columns: Record<string, ColumnData<T>>
   /**
    * Renders Loader instead of table content.
    */
