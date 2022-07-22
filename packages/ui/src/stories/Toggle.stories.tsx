@@ -2,6 +2,7 @@ import { Meta } from '@storybook/react'
 import React from 'react'
 
 import { Toggle } from '../Toggle'
+import { BoxLayout } from '../Layouts'
 
 export default {
   title: 'Components/Toggle',
@@ -9,13 +10,21 @@ export default {
 } as Meta
 
 export const ToggleDefault = () => {
-  return <Toggle />
+  return (
+    <BoxLayout>
+      <Toggle />
+    </BoxLayout>
+  )
 }
 
 ToggleDefault.storyName = 'Toggle unchecked'
 
 export const ToggleChecked = () => {
-  return <Toggle checked />
+  return (
+    <BoxLayout>
+      <Toggle checked />
+    </BoxLayout>
+  )
 }
 
 ToggleChecked.storyName = 'Toggle checked'
@@ -28,7 +37,13 @@ export const ToggleCustomSizes = () => {
     { width: 100, paddingTop: 4 },
   ]
 
-  return sizes.map(sizes => <Toggle key={sizes.width} styleProps={sizes} />)
+  return (
+    <BoxLayout>
+      {sizes.map(sizes => (
+        <Toggle key={sizes.width} styleProps={sizes} />
+      ))}
+    </BoxLayout>
+  )
 }
 
 ToggleCustomSizes.storyName = 'Custom size togglers'
