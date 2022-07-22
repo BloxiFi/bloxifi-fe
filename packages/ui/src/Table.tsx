@@ -7,7 +7,7 @@ import { Text } from './Text'
 /**
  * Table data.
  */
-type TableData = Record<string, unknown>
+export type TableData = Record<string, unknown>
 
 /**
  * Cell props representing `<td>` element.
@@ -60,7 +60,7 @@ export interface TableProps extends React.ComponentPropsWithoutRef<'table'> {
   /**
    * Required data prop, should be array of objects.
    */
-  data: any
+  data: TableData[]
   /**
    * Required columns prop, used to layout the content in cells and columns
    */

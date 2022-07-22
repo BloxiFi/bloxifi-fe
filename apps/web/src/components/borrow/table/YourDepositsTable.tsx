@@ -6,6 +6,7 @@ import {
   ColumnLayout,
   Icon,
   Table,
+  TableData,
   Text,
   Toggle,
 } from '@bloxifi/ui'
@@ -72,7 +73,7 @@ export const YourDepositsTable: FunctionComponent = () => {
   return (
     <Table
       columns={columns}
-      data={userReserves}
+      data={userReserves as unknown as TableData[]}
       noDataMessage="Nothing deposited yet"
       titleComponent={<DepositTitleBox isEmpty={userReserves.length > 0} />}
       footer={<BoxLayout gap={1} />}

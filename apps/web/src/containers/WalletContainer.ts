@@ -31,12 +31,13 @@ export interface WalletBalance extends ReservesData {
   variableBorrowAPY: number
 }
 
-type State = {
+interface State {
   reserves: WalletBalance[]
   userReserves: UserReserveData[]
   error?: Error
   loading: boolean
 }
+
 interface DepositContainerState {
   state: State
   dispatch: Dispatch<Action<ActionType>>
