@@ -5,7 +5,7 @@ import { TokenList } from '../../contracts'
 /**
  * User Reserve Data - Data related to assets deposited by current user
  */
-export interface UserReserveData {
+export type UserReserveData = {
   id: string
   currentATokenBalance: string
   currentVariableDebt: string
@@ -20,7 +20,7 @@ export interface UserReserveData {
 /**
  * Reserves Data - Data related to all existing assets
  */
-export interface ReservesData {
+export type ReservesData = {
   id: string
   name: TokenList
   symbol: string

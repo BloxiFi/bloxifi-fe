@@ -23,7 +23,7 @@ import { createContainer } from 'unstated-next'
 
 import { Web3Container } from './Web3Container'
 
-export interface WalletBalance extends ReservesData {
+export type WalletBalance = ReservesData & {
   balance: string
   icon: string
   fullName: string
