@@ -3,7 +3,6 @@ import { Button, ColumnData, Table } from '@bloxifi/ui'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
-
 import { DepositModal } from '../modal/DepositModal'
 
 import { WalletBalance, WalletContainer } from '@/containers/WalletContainer'

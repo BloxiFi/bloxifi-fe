@@ -24,6 +24,7 @@ import { BorrowAndLending, Tokens } from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 
 import { FormattedNumber } from '../FormattedNumber'
+import { TableInput } from '../table/TableInput'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { WalletBalance } from '@/containers/WalletContainer'
@@ -46,7 +47,7 @@ interface Props {
 export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
   const themeContext = useContext(ThemeContext)
   const [amountError, setAmountError] = useState<boolean>(false)
-  const [amount, setAmount] = useState<number>()
+  const [amount, setAmount] = useState<string>()
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
@@ -129,11 +130,6 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
       setLoading(false)
     }
   }
-  const Title = () => (
-    <Text color="oxfordBlue" type="heading 2" as="span">
-      Deposit asset
-    </Text>
-  )
 
   const transactionData = [
     {
@@ -143,46 +139,15 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
       name: 'Health factor',
     },
   ]
-  const handleInputCHange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value)
-    if (value > Number(reserveData.balance) || value === 0) {
+  const handleInputChange = (value: string) => {
+    const number = Number(value)
+    if (number > Number(reserveData.balance) || number === 0) {
       setAmountError(true)
     } else {
       setAmountError(false)
     }
     setAmount(value)
   }
-  const tableColumns = {
-    action: {
-      header: 'Amount',
-      Cell: () => (
-        <ColumnLayout gap={0.5}>
-          <StackLayout>
-            <BaseInput
-              status={amountError ? 'error' : undefined}
-              onChange={handleInputCHange}
-              value={amount}
-            />
-          </StackLayout>
-          <Button
-            appearance="secondary"
-            variant="thin"
-            size="small"
-            className="u-fit-content-width"
-            onClick={() => setAmount(Number(reserveData.balance))}
-          >
-            MAX
-          </Button>
-        </ColumnLayout>
-      ),
-      alignText: 'left',
-    },
-    asset: {
-      header: '',
-      Cell: ({ data: { symbol } }) => <span>{symbol}</span>,
-      alignText: 'right',
-    },
-  } as Record<string, ColumnData<WalletBalance>>
 
   const getValue = (index: number) => {
     switch (index) {
@@ -237,11 +202,11 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <StackLayout gap={5}>
         <StackLayout gap={3}>
-          <Table
-            compact
-            columns={tableColumns}
-            data={[reserveData]}
-            titleComponent={<Title />}
+          <TableInput
+            reserveData={reserveData}
+            amount={amount}
+            handleInputChange={handleInputChange}
+            status={amountError ? 'error' : undefined}
           />
           <Table compact columns={transactionColumns} data={transactionData} />
         </StackLayout>
