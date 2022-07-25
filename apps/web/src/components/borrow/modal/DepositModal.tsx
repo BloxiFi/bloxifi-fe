@@ -10,12 +10,13 @@ import {
 } from '@bloxifi/ui'
 import { BorrowAndLending, Tokens } from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
+import { useTranslation } from 'react-i18next'
 
 import { TableInput } from '../table/TableInput'
+import { TransactionOverview } from '../table/TransactionOverview'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { WalletBalance } from '@/containers/WalletContainer'
-import { TransactionOverview } from '../table/TransactionOverview'
 
 interface Props {
   /**
@@ -33,6 +34,7 @@ interface Props {
 }
 
 export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
+  const { t } = useTranslation()
   const [amountError, setAmountError] = useState<boolean>(false)
   const [amount, setAmount] = useState<string>()
 
@@ -140,7 +142,7 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
           />
           <TransactionOverview
             reserveData={reserveData}
-            headers={['Supply APY', 'Health factor']}
+            headers={['supplyAPY', 'healthFactor']}
           />
         </StackLayout>
 
@@ -148,12 +150,16 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
           {hasError ? (
             <CenterLayout>
               <Icon name="error" size={75} />
-              <Text type="body 2">Transaction failed</Text>
+              <Text type="body 2">
+                {t('global.notifications.transaction_failed')}
+              </Text>
             </CenterLayout>
           ) : depositCompleted ? (
             <CenterLayout>
               <Icon name="success" size={75} />
-              <Text type="body 2">Deposit successful</Text>
+              <Text type="body 2">
+                {t('global.notifications.deposit_successful')}
+              </Text>
             </CenterLayout>
           ) : (
             <StackLayout gap={1}>
@@ -166,7 +172,7 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
                   disabled={isApproveDisabled}
                   onClick={approve}
                 >
-                  Approve to conitinue
+                  {t('global.buttons.approve')}
                 </Button>
               )}
               <Button
@@ -177,7 +183,7 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
                 disabled={isDepositDisabled}
                 onClick={deposit}
               >
-                Deposit {reserveData.symbol}
+                {t('global.buttons.deposit')} {reserveData.symbol}
               </Button>
             </StackLayout>
           )}

@@ -8,6 +8,7 @@ import {
   Text,
 } from '@bloxifi/ui'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { WalletBalance } from '@/containers/WalletContainer'
 
@@ -24,9 +25,11 @@ export const TableInput = ({
   reserveData,
   status,
 }: Props) => {
+  const { t } = useTranslation()
+
   const tableColumns = {
     action: {
-      header: 'Amount',
+      header: t('deposit.amount'),
       Cell: () => (
         <ColumnLayout gap={0.5}>
           <StackLayout>
@@ -60,7 +63,7 @@ export const TableInput = ({
 
   const Title = () => (
     <Text color="oxfordBlue" type="heading 2" as="span">
-      Deposit asset
+      {t('deposit.depositAsset')}
     </Text>
   )
 

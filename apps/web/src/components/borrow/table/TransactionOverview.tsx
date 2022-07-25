@@ -8,12 +8,13 @@ import {
   Text,
 } from '@bloxifi/ui'
 import { ThemeContext } from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
 
 import { WalletBalance } from '@/containers/WalletContainer'
 
-type TableHeader = 'Supply APY' | 'Health factor'
+type TableHeader = 'supplyAPY' | 'healthFactor'
 type TransactionData = { name: TableHeader }
 
 interface Props {
@@ -29,13 +30,14 @@ interface Props {
 
 export const TransactionOverview = ({ reserveData, headers }: Props) => {
   const themeContext = useContext(ThemeContext)
+  const { t } = useTranslation()
 
   const transactionData: TransactionData[] = []
   headers.map(name => transactionData.push({ name }))
 
   const getColumnValue = (name: TableHeader) => {
     switch (name) {
-      case 'Supply APY':
+      case 'supplyAPY':
         return (
           <ColumnLayout align="flex-end" center>
             <Text as="span" type="body 1" color="oxfordBlue">
@@ -43,7 +45,7 @@ export const TransactionOverview = ({ reserveData, headers }: Props) => {
             </Text>
           </ColumnLayout>
         )
-      case 'Health factor':
+      case 'healthFactor':
         return (
           <StackLayout>
             <ColumnLayout align="flex-end" center>
@@ -67,10 +69,10 @@ export const TransactionOverview = ({ reserveData, headers }: Props) => {
 
   const transactionColumns = {
     action: {
-      header: 'Transaction overview',
+      header: t('deposit.transactionOverview'),
       Cell: ({ data: { name } }) => (
         <Text type="body 3" color="oxfordBlue" as="span">
-          {name}
+          {t(`deposit.${name}`)}
         </Text>
       ),
       alignText: 'left',

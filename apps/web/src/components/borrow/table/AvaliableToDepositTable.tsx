@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import { Button, ColumnData, Table } from '@bloxifi/ui'
+import { useTranslation } from 'react-i18next'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
@@ -8,6 +9,7 @@ import { DepositModal } from '../modal/DepositModal'
 import { WalletBalance, WalletContainer } from '@/containers/WalletContainer'
 
 export const AvaliableToDepositTable: FunctionComponent = () => {
+  const { t } = useTranslation()
   const {
     state: { reserves },
   } = WalletContainer.useContainer()
@@ -24,21 +26,21 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
 
   const columns = {
     assets: {
-      header: 'Assets',
+      header: t('global.table.assets'),
       Cell: ({ data: { name, icon, fullName } }) => (
         <AssetName symbol={name} icon={icon} fullName={fullName} />
       ),
       alignText: 'left',
     },
     walletBalance: {
-      header: 'Wallet balance',
+      header: t('global.table.walletBalance'),
       Cell: ({ data: { balance } }) => {
         return <FormattedNumber value={parseFloat(balance)} />
       },
       alignText: 'center',
     },
     APY: {
-      header: 'APY',
+      header: t('global.table.apy'),
       Cell: ({ data: { supplyAPY } }) => (
         <FormattedNumber value={supplyAPY} percent />
       ),
@@ -54,7 +56,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
           size="small"
           onClick={() => openModal(data)}
         >
-          Deposit
+          {t('global.button.deposit')}
         </Button>
       ),
       width: 100,
