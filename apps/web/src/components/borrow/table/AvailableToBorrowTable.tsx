@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react'
-import { Button, CellProps, Table } from '@bloxifi/ui'
+import { Button, ColumnData, Table } from '@bloxifi/ui'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
 
-import { WalletContainer } from '@/containers/WalletContainer'
+import { WalletBalance, WalletContainer } from '@/containers/WalletContainer'
 
 export const AvailableToBorrowTable: FunctionComponent = () => {
   const {
@@ -28,9 +28,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     },
     APY: {
       header: 'APY',
-      Cell: ({ data: { stableBorrowRate } }: CellProps) => (
-        <FormattedNumber value={0.0568} percent />
-      ),
+      Cell: () => <FormattedNumber value={0.0568} percent />,
       alignText: 'center',
     },
     action: {
@@ -42,7 +40,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
       ),
       width: 100,
     },
-  }
+  } as Record<string, ColumnData<WalletBalance>>
 
   return (
     <Table

@@ -11,6 +11,7 @@ import {
   Button,
   CellProps,
   CenterLayout,
+  ColumnData,
   ColumnLayout,
   Icon,
   Modal,
@@ -27,7 +28,7 @@ import { FormattedNumber } from '../FormattedNumber'
 import { Web3Container } from '@/containers/Web3Container'
 import { WalletBalance } from '@/containers/WalletContainer'
 
-type Props = {
+interface Props {
   /**
    * Boolean value that defines if modal is open or closed
    */
@@ -39,14 +40,10 @@ type Props = {
   /**
    * Selected asset reserve data
    */
-  data: WalletBalance
+  reserveData: WalletBalance
 }
 
-export const DepositModal: FunctionComponent<Props> = ({
-  isOpen,
-  onClose,
-  data,
-}: Props) => {
+export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
   const themeContext = useContext(ThemeContext)
   const [amountError, setAmountError] = useState<boolean>(false)
   const [amount, setAmount] = useState<number>()
@@ -62,12 +59,12 @@ export const DepositModal: FunctionComponent<Props> = ({
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
   const [approved, setApproved] = useState<boolean>(false)
   const [depositCompleted, setDepositCompleted] = useState<boolean>(false)
-  const tokenContract = Tokens.getTokenContract(signer, data.symbol)
+  const tokenContract = Tokens.getTokenContract(signer, reserveData.symbol)
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
   const isApproveDisabled =
-    !isSupportedNetwork || loading || approved || !data.balance
+    !isSupportedNetwork || loading || approved || !reserveData.balance
   const isDepositDisabled =
     !isSupportedNetwork ||
     loading ||
@@ -119,7 +116,7 @@ export const DepositModal: FunctionComponent<Props> = ({
     try {
       const response = await BorrowAndLending.lendingPool.deposit(
         lendingPoolContract,
-        data.underlyingAsset,
+        reserveData.underlyingAsset,
         amount,
         currentAccount,
       )
@@ -148,7 +145,7 @@ export const DepositModal: FunctionComponent<Props> = ({
   ]
   const handleInputCHange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value)
-    if (value > Number(data.balance) || value === 0) {
+    if (value > Number(reserveData.balance) || value === 0) {
       setAmountError(true)
     } else {
       setAmountError(false)
@@ -172,7 +169,7 @@ export const DepositModal: FunctionComponent<Props> = ({
             variant="thin"
             size="small"
             className="u-fit-content-width"
-            onClick={() => setAmount(Number(data.balance))}
+            onClick={() => setAmount(Number(reserveData.balance))}
           >
             MAX
           </Button>
@@ -182,10 +179,10 @@ export const DepositModal: FunctionComponent<Props> = ({
     },
     asset: {
       header: '',
-      Cell: ({ data: { symbol } }: CellProps) => <span>{symbol}</span>,
+      Cell: ({ data: { symbol } }) => <span>{symbol}</span>,
       alignText: 'right',
     },
-  }
+  } as Record<string, ColumnData<WalletBalance>>
 
   const getValue = (index: number) => {
     switch (index) {
@@ -193,7 +190,7 @@ export const DepositModal: FunctionComponent<Props> = ({
         return (
           <ColumnLayout align="flex-end" center>
             <Text as="span" type="body 1" color="oxfordBlue">
-              <FormattedNumber value={data.supplyAPY} percent />
+              <FormattedNumber value={reserveData.supplyAPY} percent />
             </Text>
           </ColumnLayout>
         )
@@ -222,7 +219,7 @@ export const DepositModal: FunctionComponent<Props> = ({
   const transactionColumns = {
     action: {
       header: 'Transaction overview',
-      Cell: ({ data: { name } }: CellProps) => (
+      Cell: ({ data: { name } }) => (
         <Text type="body 3" color="oxfordBlue" as="span">
           {name}
         </Text>
@@ -231,10 +228,10 @@ export const DepositModal: FunctionComponent<Props> = ({
     },
     value: {
       header: '',
-      Cell: ({ index }: CellProps) => getValue(index),
+      Cell: ({ index }) => getValue(index),
       alignText: 'right',
     },
-  }
+  } as Record<string, ColumnData<WalletBalance>>
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -243,7 +240,7 @@ export const DepositModal: FunctionComponent<Props> = ({
           <Table
             compact
             columns={tableColumns}
-            data={[data]}
+            data={[reserveData]}
             titleComponent={<Title />}
           />
           <Table compact columns={transactionColumns} data={transactionData} />
@@ -282,7 +279,7 @@ export const DepositModal: FunctionComponent<Props> = ({
                 disabled={isDepositDisabled}
                 onClick={deposit}
               >
-                Deposit {data.symbol}
+                Deposit {reserveData.symbol}
               </Button>
             </StackLayout>
           )}
