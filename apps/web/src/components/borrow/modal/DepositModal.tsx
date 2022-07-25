@@ -1,33 +1,21 @@
-import React, {
-  FunctionComponent,
-  useCallback,
-  useEffect,
-  useState,
-  useContext,
-} from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
-  BaseInput,
   BoxLayout,
   Button,
-  CellProps,
   CenterLayout,
-  ColumnData,
-  ColumnLayout,
   Icon,
   Modal,
   StackLayout,
-  Table,
   Text,
 } from '@bloxifi/ui'
-import { ThemeContext } from 'styled-components'
 import { BorrowAndLending, Tokens } from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 
-import { FormattedNumber } from '../FormattedNumber'
 import { TableInput } from '../table/TableInput'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { WalletBalance } from '@/containers/WalletContainer'
+import { TransactionOverview } from '../table/TransactionOverview'
 
 interface Props {
   /**
@@ -45,7 +33,6 @@ interface Props {
 }
 
 export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
-  const themeContext = useContext(ThemeContext)
   const [amountError, setAmountError] = useState<boolean>(false)
   const [amount, setAmount] = useState<string>()
 
@@ -131,14 +118,6 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
     }
   }
 
-  const transactionData = [
-    {
-      name: 'Supply APY',
-    },
-    {
-      name: 'Health factor',
-    },
-  ]
   const handleInputChange = (value: string) => {
     const number = Number(value)
     if (number > Number(reserveData.balance) || number === 0) {
@@ -148,55 +127,6 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
     }
     setAmount(value)
   }
-
-  const getValue = (index: number) => {
-    switch (index) {
-      case 0:
-        return (
-          <ColumnLayout align="flex-end" center>
-            <Text as="span" type="body 1" color="oxfordBlue">
-              <FormattedNumber value={reserveData.supplyAPY} percent />
-            </Text>
-          </ColumnLayout>
-        )
-      case 1:
-        return (
-          <StackLayout>
-            <ColumnLayout align="flex-end" center>
-              <Icon name="union" size={16} color={themeContext.buttonDark} />
-              <Icon
-                name="arrow-right"
-                size={15}
-                color={themeContext.buttonDark}
-              />
-              <Text as="span" type="body 1" color="oxfordBlue">
-                1.00
-              </Text>
-            </ColumnLayout>
-            <Text as="span" type="body 1" color="oxfordBlue">
-              {'Liquidation at < 1.00'}
-            </Text>
-          </StackLayout>
-        )
-    }
-  }
-
-  const transactionColumns = {
-    action: {
-      header: 'Transaction overview',
-      Cell: ({ data: { name } }) => (
-        <Text type="body 3" color="oxfordBlue" as="span">
-          {name}
-        </Text>
-      ),
-      alignText: 'left',
-    },
-    value: {
-      header: '',
-      Cell: ({ index }) => getValue(index),
-      alignText: 'right',
-    },
-  } as Record<string, ColumnData<WalletBalance>>
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -208,7 +138,10 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
             handleInputChange={handleInputChange}
             status={amountError ? 'error' : undefined}
           />
-          <Table compact columns={transactionColumns} data={transactionData} />
+          <TransactionOverview
+            reserveData={reserveData}
+            headers={['Supply APY', 'Health factor']}
+          />
         </StackLayout>
 
         <BoxLayout gap={1.875}>
