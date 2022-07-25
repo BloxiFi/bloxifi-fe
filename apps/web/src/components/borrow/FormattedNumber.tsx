@@ -5,9 +5,5 @@ import React from 'react'
 export const FormattedNumber = (props: FormatAPYOptions) => {
   const formatedValue = useFormatAPY(props)
 
-  return (
-    <Text type="body 3" as="span">
-      {formatedValue}
-    </Text>
-  )
+  return <span>{formatedValue}</span>
 }
