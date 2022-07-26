@@ -11,7 +11,7 @@
       "deposit_successful": "Deposit successful"
     },
     "table": {
-      "asstes": "Assets",
+      "assets": "Assets",
       "walletBalance": "Wallet balance",
       "apy": "APY"
     }

@@ -56,7 +56,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
           size="small"
           onClick={() => openModal(data)}
         >
-          {t('global.button.deposit')}
+          {t('global.buttons.deposit')}
         </Button>
       ),
       width: 100,
