@@ -1,6 +1,10 @@
+import { v1, v2 } from '@aave/protocol-js'
 import { useQuery } from '@apollo/client'
 import {
   GET_RESERVE_DATA,
+  POOL_RESERVES_DATA,
+  PRICE_ORACLE,
+  RAW_USER_RESERVES,
   ReservesData,
   ReservesGraph,
   TokenContract,
@@ -102,6 +106,58 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       user: currentAccount?.toLowerCase(),
     },
   })
+
+  //************************ */
+
+  const { data: poolReservesData } = useQuery(POOL_RESERVES_DATA, {
+    variables: {
+      user: currentAccount?.toLowerCase(),
+    },
+  })
+
+  const { data: rawUserReserves } = useQuery(RAW_USER_RESERVES, {
+    variables: {
+      user: currentAccount?.toLowerCase(),
+    },
+  })
+
+  const { data: usdPriceEth } = useQuery(PRICE_ORACLE)
+
+  useEffect(() => {
+    let price
+    let reserve
+    let pool
+    if (usdPriceEth) {
+      price = usdPriceEth.priceOracle.usdPriceEth
+    }
+    if (rawUserReserves) {
+      reserve = rawUserReserves.userReserves
+    }
+    if (poolReservesData) {
+      pool = poolReservesData.reserves
+    }
+
+    if (price && reserve && pool) {
+      const resuilt = v2.formatUserSummaryData(
+        pool,
+        reserve,
+        currentAccount?.toLowerCase(),
+        price,
+        Math.floor(Date.now() / 1000),
+        {
+          rewardTokenAddress: '',
+          rewardTokenDecimals: undefined,
+          incentivePrecision: undefined,
+          rewardTokenPriceEth: '',
+          emissionEndTimestamp: undefined,
+        },
+      )
+
+      console.log('********RESULT', resuilt)
+    }
+  }, [usdPriceEth, rawUserReserves, poolReservesData])
+
+  //************************* */
 
   const setReserveData = useCallback(
     async (reserve: ReservesData) => {
