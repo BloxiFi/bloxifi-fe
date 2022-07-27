@@ -32,6 +32,23 @@ export type WalletBalance = ReservesData & {
   variableBorrowAPY: number
 }
 
+export const initailReserveData = {
+  balance: undefined,
+  icon: '',
+  fullName: '',
+  supplyAPY: undefined,
+  variableBorrowAPY: undefined,
+  id: '',
+  name: null,
+  symbol: null,
+  decimals: undefined,
+  totalATokenSupply: undefined,
+  totalCurrentVariableDebt: undefined,
+  liquidityRate: undefined,
+  variableBorrowRate: undefined,
+  underlyingAsset: '',
+}
+
 interface State {
   reserves: WalletBalance[]
   userReserves: UserReserveData[]
@@ -119,24 +136,28 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }
   }
   const setReserveData = useCallback(
-    async (reserves: any) => {
-      const reserveData = await Promise.all(
-        reserves.map(async (reserve: ReservesData) => {
-          const balance = await getReserveBalance(reserve.name)
-          return {
-            ...reserve,
-            balance: Number(ethers.utils.formatUnits(balance)),
-            icon: Assets[reserve.symbol].icon,
-            fullName: Assets[reserve.symbol].fullName,
-            supplyAPY: calculateAPY(reserve.liquidityRate),
-            variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-          }
-        }),
-      )
-      dispatch({
-        type: 'setReserveData',
-        value: reserveData,
-      })
+    async (reserves: ReservesData[]) => {
+      try {
+        const reserveData = await Promise.all(
+          reserves.map(async (reserve: ReservesData) => {
+            const balance = await getReserveBalance(reserve.name)
+            return {
+              ...reserve,
+              balance: Number(ethers.utils.formatUnits(balance)),
+              icon: Assets[reserve.symbol].icon,
+              fullName: Assets[reserve.symbol].fullName,
+              supplyAPY: calculateAPY(reserve.liquidityRate),
+              variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+            }
+          }),
+        )
+        dispatch({
+          type: 'setReserveData',
+          value: reserveData,
+        })
+      } catch (error) {
+        setError(error)
+      }
     },
     [currentAccount, signer],
   )

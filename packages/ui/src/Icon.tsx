@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import InlineSVG, { Props } from 'react-inlinesvg'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 
 const assetsIcons = ['dai', 'usdc', 'weth', 'wbtc']
 const notFilled = ['success', 'error', ...assetsIcons]
@@ -40,14 +40,30 @@ export interface IconProps extends Omit<Props, 'src'> {
 }
 
 export const Icon = styled(
-  ({ name, size = 16, color, className, ...props }: IconProps): JSX.Element => {
+  ({ name, size = 16, className, ...props }: IconProps): JSX.Element => {
     const icon = require(`./icons/${name}.svg`) as string
+    const themeContext = useContext(ThemeContext)
 
+    const getColor = (color: string) => {
+      switch (color) {
+        case 'white':
+          return themeContext.white
+        case 'textColorLight':
+          return themeContext.textColorLight
+        case 'textColorDark':
+          return themeContext.textColorDark
+        case 'oxfordBlue':
+          return themeContext.buttonDark
+        default:
+          return themeContext.textColorDark
+      }
+    }
+    const color = getColor(props.color)
     return (
       <InlineSVG
         src={icon}
         //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
-        style={{ width: size, height: size, fill: color }}
+        style={{ width: size, height: size, fill: getColor(color) }}
         className={`rts-icon ${className}`}
         preProcessor={code => {
           if (notFilled.includes(name)) {

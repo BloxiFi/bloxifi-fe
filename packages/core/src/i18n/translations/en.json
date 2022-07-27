@@ -25,6 +25,7 @@
   "deposit": {
     "pageTitle": "Deposit page",
     "assetsToDeposit": "Assets to deposit",
+    "assetsToBorrow": "Assets to borrow",
     "depositAsset": "Deposit asset",
     "amount": "Amount",
     "transactionOverview": "Transaction overview",

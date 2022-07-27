@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   ColumnData,
   ColumnLayout,
@@ -7,7 +7,6 @@ import {
   Table,
   Text,
 } from '@bloxifi/ui'
-import { ThemeContext } from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
@@ -29,11 +28,9 @@ interface Props {
 }
 
 export const TransactionOverview = ({ reserveData, headers }: Props) => {
-  const themeContext = useContext(ThemeContext)
   const { t } = useTranslation()
 
-  const transactionData: TransactionData[] = []
-  headers.map(name => transactionData.push({ name }))
+  const transactionData: TransactionData[] = headers.map(name => ({ name }))
 
   const getColumnValue = (name: TableHeader) => {
     switch (name) {
@@ -49,12 +46,8 @@ export const TransactionOverview = ({ reserveData, headers }: Props) => {
         return (
           <StackLayout>
             <ColumnLayout align="flex-end" center>
-              <Icon name="union" size={16} color={themeContext.buttonDark} />
-              <Icon
-                name="arrow-right"
-                size={15}
-                color={themeContext.buttonDark}
-              />
+              <Icon name="union" size={16} color="oxfordBlue" />
+              <Icon name="arrow-right" size={15} color="oxfordBlue" />
               <Text as="span" type="body 1" color="oxfordBlue">
                 1.00
               </Text>

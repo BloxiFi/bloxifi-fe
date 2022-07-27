@@ -48,7 +48,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     <Table
       columns={columns}
       data={reserves}
-      titleComponent="Assets to borrow"
+      titleComponent={t('deposit.assetsToBorrow')}
       columnSpacing
     />
   )

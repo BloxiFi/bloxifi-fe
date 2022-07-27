@@ -16,7 +16,7 @@ import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { WalletBalance } from '@/containers/WalletContainer'
+import { initailReserveData } from '@/containers/WalletContainer'
 
 interface Props {
   /**
@@ -30,10 +30,14 @@ interface Props {
   /**
    * Selected asset reserve data
    */
-  reserveData: WalletBalance
+  reserveData?: typeof initailReserveData
 }
 
-export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
+export const DepositModal = ({
+  isOpen,
+  onClose,
+  reserveData = initailReserveData,
+}: Props) => {
   const { t } = useTranslation()
   const [amountError, setAmountError] = useState<boolean>(false)
   const [amount, setAmount] = useState<string>()
@@ -49,7 +53,9 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
   const [approved, setApproved] = useState<boolean>(false)
   const [depositCompleted, setDepositCompleted] = useState<boolean>(false)
-  const tokenContract = Tokens.getTokenContract(signer, reserveData.symbol)
+  const tokenContract = reserveData.symbol
+    ? Tokens.getTokenContract(signer, reserveData.symbol)
+    : null
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
@@ -64,16 +70,18 @@ export const DepositModal = ({ isOpen, onClose, reserveData }: Props) => {
     (shouldApproveContract && !approved)
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
-    try {
-      const approvedTokens = await Tokens.getAllowance(
-        tokenContract,
-        currentAccount,
-        'deposit',
-      )
-      setShouldApproveContract(approvedTokens.toString() === '0')
-      setHasError(null)
-    } catch (error) {
-      setHasError(error)
+    if (tokenContract) {
+      try {
+        const approvedTokens = await Tokens.getAllowance(
+          tokenContract,
+          currentAccount,
+          'deposit',
+        )
+        setShouldApproveContract(approvedTokens.toString() === '0')
+        setHasError(null)
+      } catch (error) {
+        setHasError(error)
+      }
     }
   }, [currentAccount, tokenContract])
 

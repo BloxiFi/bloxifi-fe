@@ -68,16 +68,14 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
       <Table
         columns={columns}
         data={reserves}
-        titleComponent="Assets to deposit"
+        titleComponent={t('deposit.assetsToDeposit')}
         columnSpacing
       />
-      {!!modalData && (
-        <DepositModal
-          isOpen={!!modalData}
-          onClose={closeModal}
-          reserveData={modalData}
-        />
-      )}
+      <DepositModal
+        isOpen={!!modalData}
+        onClose={closeModal}
+        reserveData={modalData}
+      />
     </>
   )
 }
