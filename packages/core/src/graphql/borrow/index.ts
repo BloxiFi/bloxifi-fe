@@ -23,7 +23,7 @@ export type UserReserveData = {
 export type ReservesData = {
   id: string
   name: TokenList
-  symbol: string
+  symbol: TokenList
   decimals: number
   totalATokenSupply: number
   totalCurrentVariableDebt: number

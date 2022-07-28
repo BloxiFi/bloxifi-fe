@@ -174,6 +174,44 @@ exports[`Storyshots Components/Icon All icons 1`] = `
           dy="0em"
           x={0}
         >
+          success
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-crXcEl dbkuws"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          error
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-crXcEl dbkuws"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
           dai
         </tspan>
       </text>

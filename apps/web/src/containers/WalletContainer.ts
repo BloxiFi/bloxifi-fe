@@ -4,6 +4,7 @@ import {
   ReservesData,
   ReservesGraph,
   TokenContract,
+  TokenList,
   Tokens,
   UserReserveData,
   UserReserveVariables,
@@ -29,6 +30,23 @@ export type WalletBalance = ReservesData & {
   fullName: string
   supplyAPY: number
   variableBorrowAPY: number
+}
+
+export const initailReserveData = {
+  balance: undefined,
+  icon: '',
+  fullName: '',
+  supplyAPY: undefined,
+  variableBorrowAPY: undefined,
+  id: '',
+  name: null,
+  symbol: null,
+  decimals: undefined,
+  totalATokenSupply: undefined,
+  totalCurrentVariableDebt: undefined,
+  liquidityRate: undefined,
+  variableBorrowRate: undefined,
+  underlyingAsset: '',
 }
 
 interface State {
@@ -57,7 +75,7 @@ const reducer = (state: State, action: Action<ActionType>) => {
     case 'setReserveData': {
       return {
         ...state,
-        reserves: [...state.reserves, action.value],
+        reserves: action.value,
       }
     }
     case 'setUserReservesData': {
@@ -92,47 +110,53 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     state: { currentAccount, signer },
   } = Web3Container.useContainer()
   const [error, setError] = useState<Error | undefined>()
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
 
-  const { data, loading: reserveLoading } = useQuery<
-    ReservesGraph,
-    UserReserveVariables
-  >(GET_RESERVE_DATA, {
-    variables: {
-      user: currentAccount?.toLowerCase(),
+  const { data } = useQuery<ReservesGraph, UserReserveVariables>(
+    GET_RESERVE_DATA,
+    {
+      variables: {
+        user: currentAccount?.toLowerCase(),
+      },
     },
-  })
+  )
 
+  const getReserveBalance = async (name: TokenList) => {
+    try {
+      const tokenContract: TokenContract = Tokens.getTokenContract(signer, name)
+
+      const balance = await Tokens.getTokenBalance(
+        tokenContract,
+        currentAccount,
+      )
+      setError(undefined)
+      return balance
+    } catch (error) {
+      setError(error)
+    }
+  }
   const setReserveData = useCallback(
-    async (reserve: ReservesData) => {
-      setLoading(true)
+    async (reserves: ReservesData[]) => {
       try {
-        const tokenContract: TokenContract = Tokens.getTokenContract(
-          signer,
-          reserve.name,
+        const reserveData = await Promise.all(
+          reserves.map(async (reserve: ReservesData) => {
+            const balance = await getReserveBalance(reserve.name)
+            return {
+              ...reserve,
+              balance: Number(ethers.utils.formatUnits(balance)),
+              icon: Assets[reserve.symbol].icon,
+              fullName: Assets[reserve.symbol].fullName,
+              supplyAPY: calculateAPY(reserve.liquidityRate),
+              variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+            }
+          }),
         )
-
-        const balance = await Tokens.getTokenBalance(
-          tokenContract,
-          currentAccount,
-        )
-
         dispatch({
           type: 'setReserveData',
-          value: {
-            ...reserve,
-            balance: Number(ethers.utils.formatUnits(balance)),
-            icon: Assets[reserve.symbol].icon,
-            fullName: Assets[reserve.symbol].fullName,
-            supplyAPY: calculateAPY(reserve.liquidityRate),
-            variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-          },
+          value: reserveData,
         })
-        setError(undefined)
       } catch (error) {
         setError(error)
-      } finally {
-        setLoading(false)
       }
     },
     [currentAccount, signer],
@@ -141,31 +165,32 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   //We might have to turn this into useCallback (if we notice some rerendering)
   const setUserReserveData = (data: UserReserveData) => {
     const { reserve, currentATokenBalance, ...rest } = data
-    dispatch({
-      type: 'setUserReservesData',
-      value: {
-        ...rest,
-        ...reserve,
-        currentATokenBalance: Number(
-          ethers.utils.formatUnits(currentATokenBalance),
-        ),
-        icon: Assets[reserve.symbol].icon,
-        fullName: Assets[reserve.symbol].fullName,
-      },
-    })
+    return {
+      ...rest,
+      ...reserve,
+      currentATokenBalance: Number(
+        ethers.utils.formatUnits(currentATokenBalance),
+      ),
+      icon: Assets[reserve.symbol].icon,
+      fullName: Assets[reserve.symbol].fullName,
+    }
   }
 
   useEffect(() => {
     if (data) {
-      data.reserves.map((reserve: ReservesData) => setReserveData(reserve))
-      data.userReserves.map((reserve: UserReserveData) =>
-        setUserReserveData(reserve),
+      void setReserveData(data.reserves)
+      const userReserveData = data.userReserves.map(
+        (reserve: UserReserveData) => setUserReserveData(reserve),
       )
+      dispatch({
+        type: 'setUserReservesData',
+        value: userReserveData,
+      })
+      setLoading(false)
     }
   }, [data, setReserveData])
-
   return {
-    state: { ...state, error, loading: reserveLoading || loading },
+    state: { ...state, error, loading },
     dispatch,
   }
 }
