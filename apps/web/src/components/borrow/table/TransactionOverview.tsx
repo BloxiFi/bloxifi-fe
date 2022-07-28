@@ -1,33 +1,32 @@
 import React from 'react'
-import {
-  ColumnData,
-  ColumnLayout,
-  Icon,
-  StackLayout,
-  Table,
-  Text,
-} from '@bloxifi/ui'
+import { ColumnData, ColumnLayout, StackLayout, Table, Text } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
-
-import { WalletBalance } from '@/containers/WalletContainer'
 
 type TableHeader = 'supplyAPY' | 'healthFactor'
 type TransactionData = { name: TableHeader }
 
 interface Props {
   /**
-   * Selected asset reserve data
+   * Selected asset APY
    */
-  reserveData: WalletBalance
+  supplyAPY?: number
+  /**
+   * User health factor value
+   */
+  healthFactor?: number
   /**
    * List of table headers
    */
   headers: TableHeader[]
 }
 
-export const TransactionOverview = ({ reserveData, headers }: Props) => {
+export const TransactionOverview = ({
+  healthFactor,
+  supplyAPY,
+  headers,
+}: Props) => {
   const { t } = useTranslation()
 
   const transactionData: TransactionData[] = headers.map(name => ({ name }))
@@ -38,20 +37,24 @@ export const TransactionOverview = ({ reserveData, headers }: Props) => {
         return (
           <ColumnLayout align="flex-end" center>
             <Text as="span" type="body 1" color="oxfordBlue">
-              <FormattedNumber value={reserveData.supplyAPY} percent />
+              <FormattedNumber value={supplyAPY} percent />
             </Text>
           </ColumnLayout>
         )
       case 'healthFactor':
         return (
           <StackLayout>
-            <ColumnLayout align="flex-end" center>
-              <Icon name="union" size={16} color="oxfordBlue" />
-              <Icon name="arrow-right" size={15} color="oxfordBlue" />
-              <Text as="span" type="body 1" color="oxfordBlue">
-                1.00
-              </Text>
-            </ColumnLayout>
+            {/**
+             * We will use this code to display future health factor
+             * 
+             * <ColumnLayout align="flex-end" center>
+                <Icon name="union" size={16} color="oxfordBlue" />
+                <Icon name="arrow-right" size={15} color="oxfordBlue" />
+              </ColumnLayout>
+             */}
+            <Text as="span" type="body 1" color="oxfordBlue">
+              <FormattedNumber value={healthFactor} />
+            </Text>
             <Text as="span" type="body 1" color="oxfordBlue">
               {'Liquidation at < 1.00'}
             </Text>

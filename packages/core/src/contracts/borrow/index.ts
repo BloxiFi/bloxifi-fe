@@ -60,5 +60,11 @@ export const BorrowAndLending = {
         referralCode,
       )
     },
+    async getUserAccountData(
+      contract: LendingPoolContract,
+      currentAccount: Web3ReactContextInterface['account'],
+    ) {
+      return await contract.getUserAccountData(currentAccount)
+    },
   },
 }
