@@ -8,8 +8,7 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, Tokens } from '@bloxifi/core'
-import { CheckAllowanceFunction } from '@bloxifi/types'
+import { BorrowAndLending } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { ethers } from 'ethers'
 
@@ -34,7 +33,7 @@ interface Props {
   reserveData?: typeof initailReserveData
 }
 
-export const DepositModal = ({
+export const BorrowModal = ({
   isOpen,
   onClose,
   reserveData = initailReserveData,
@@ -51,52 +50,19 @@ export const DepositModal = ({
   const [hasError, setHasError] = useState()
   const [loading, setLoading] = useState(false)
 
-  const [shouldApproveContract, setShouldApproveContract] = useState(false)
-  const [approved, setApproved] = useState<boolean>(false)
   const [healthFactor, setHealthFactor] = useState<number>()
 
-  const [depositCompleted, setDepositCompleted] = useState<boolean>(false)
-  const tokenContract = reserveData.symbol
-    ? Tokens.getTokenContract(signer, reserveData.symbol)
-    : null
+  const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
+
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
-  const isApproveDisabled =
-    !isSupportedNetwork || loading || approved || !reserveData.balance
-  const isDepositDisabled =
-    !isSupportedNetwork ||
-    loading ||
-    amountError ||
-    !amount ||
-    hasError ||
-    (shouldApproveContract && !approved)
+  const isBorrowDisabled =
+    !isSupportedNetwork || loading || amountError || !amount || hasError
 
   const resetState = () => {
     setAmount(undefined)
   }
-
-  const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
-    if (tokenContract) {
-      try {
-        const approvedTokens = await Tokens.getAllowance(
-          tokenContract,
-          currentAccount,
-          'deposit',
-        )
-        setShouldApproveContract(approvedTokens.toString() === '0')
-        setHasError(null)
-      } catch (error) {
-        setHasError(error)
-      }
-    }
-  }, [currentAccount, tokenContract])
-
-  useEffect(() => {
-    if (isSupportedNetwork) {
-      void checkAllowance()
-    }
-  }, [checkAllowance, isSupportedNetwork])
 
   const getHealthFactor = async () => {
     setLoading(true)
@@ -117,31 +83,17 @@ export const DepositModal = ({
     void getHealthFactor()
   }, [isOpen])
 
-  const approve = async () => {
+  const borrow = async () => {
     setLoading(true)
     try {
-      const response = await Tokens.approveToken(tokenContract, 'deposit')
-      const isApproved = await response.wait()
-
-      setApproved(!!isApproved)
-    } catch (error) {
-      setHasError(error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const deposit = async () => {
-    setLoading(true)
-    try {
-      const response = await BorrowAndLending.lendingPool.deposit(
+      const response = await BorrowAndLending.lendingPool.borrow(
         lendingPoolContract,
         reserveData.underlyingAsset,
         amount,
         currentAccount,
       )
-      const isDeposited = await response.wait()
-      setDepositCompleted(!!isDeposited)
+      const isBorrowed = await response.wait()
+      setBorrowCompleted(!!isBorrowed)
       resetState()
     } catch (error) {
       setHasError(error)
@@ -169,12 +121,11 @@ export const DepositModal = ({
             amount={amount}
             handleInputChange={handleInputChange}
             status={amountError ? 'error' : undefined}
-            title={t('deposit.depositAsset')}
+            title={t('deposit.borrowAsset')}
           />
           <TransactionOverview
             healthFactor={healthFactor}
-            supplyAPY={reserveData.supplyAPY}
-            headers={['supplyAPY', 'healthFactor']}
+            headers={['healthFactor']}
           />
         </StackLayout>
 
@@ -186,38 +137,24 @@ export const DepositModal = ({
                 {t('global.notifications.transaction_failed')}
               </Text>
             </CenterLayout>
-          ) : depositCompleted ? (
+          ) : borrowCompleted ? (
             <CenterLayout>
               <Icon name="success" size={75} />
               <Text type="body 2">
-                {t('global.notifications.deposit_successful')}
+                {t('global.notifications.borrow_successful')}
               </Text>
             </CenterLayout>
           ) : (
-            <StackLayout gap={1}>
-              {shouldApproveContract && (
-                <Button
-                  className="u-full-width"
-                  appearance="dark"
-                  size="large"
-                  variant="large"
-                  disabled={isApproveDisabled}
-                  onClick={approve}
-                >
-                  {t('global.buttons.approve')}
-                </Button>
-              )}
-              <Button
-                className="u-full-width"
-                appearance="secondary"
-                size="large"
-                variant="large"
-                disabled={isDepositDisabled}
-                onClick={deposit}
-              >
-                {t('global.buttons.deposit')} {reserveData.symbol}
-              </Button>
-            </StackLayout>
+            <Button
+              className="u-full-width"
+              appearance="secondary"
+              size="large"
+              variant="large"
+              disabled={isBorrowDisabled}
+              onClick={borrow}
+            >
+              {t('global.buttons.borrow')} {reserveData.symbol}
+            </Button>
           )}
         </BoxLayout>
       </StackLayout>

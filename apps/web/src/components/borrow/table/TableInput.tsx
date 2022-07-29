@@ -17,6 +17,7 @@ interface Props {
   amount: string
   reserveData: WalletBalance
   status?: 'error'
+  title: string
 }
 
 export const TableInput = ({
@@ -24,6 +25,7 @@ export const TableInput = ({
   amount,
   reserveData,
   status,
+  title,
 }: Props) => {
   const { t } = useTranslation()
 
@@ -63,7 +65,7 @@ export const TableInput = ({
 
   const Title = () => (
     <Text color="oxfordBlue" type="heading 2" as="span">
-      {t('deposit.depositAsset')}
+      {title}
     </Text>
   )
 

@@ -1,9 +1,10 @@
-import React, { FunctionComponent } from 'react'
+import React, { useState, FunctionComponent } from 'react'
 import { Button, ColumnData, Table } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
+import { BorrowModal } from '../modal/BorrowModal'
 
 import { WalletBalance, WalletContainer } from '@/containers/WalletContainer'
 
@@ -12,7 +13,16 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
   const {
     state: { reserves },
   } = WalletContainer.useContainer()
+  const [modalData, setModalData] = useState<WalletBalance>()
 
+  const openModal = (data: WalletBalance) => {
+    setModalData(data)
+  }
+
+  const closeModal = () => {
+    setModalData(undefined)
+    //TODO update balance
+  }
   const columns = {
     assets: {
       header: t('global.table.assets'),
@@ -35,8 +45,13 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     },
     action: {
       header: '',
-      Cell: () => (
-        <Button appearance="secondary" variant="medium" size="small">
+      Cell: ({ data }) => (
+        <Button
+          appearance="secondary"
+          variant="medium"
+          size="small"
+          onClick={() => openModal(data)}
+        >
           {t('global.buttons.borrow')}
         </Button>
       ),
@@ -45,11 +60,18 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
   } as Record<string, ColumnData<WalletBalance>>
 
   return (
-    <Table
-      columns={columns}
-      data={reserves}
-      titleComponent={t('deposit.assetsToBorrow')}
-      columnSpacing
-    />
+    <>
+      <Table
+        columns={columns}
+        data={reserves}
+        titleComponent={t('deposit.assetsToBorrow')}
+        columnSpacing
+      />
+      <BorrowModal
+        isOpen={!!modalData}
+        onClose={closeModal}
+        reserveData={modalData}
+      />
+    </>
   )
 }

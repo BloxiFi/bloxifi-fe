@@ -60,6 +60,22 @@ export const BorrowAndLending = {
         referralCode,
       )
     },
+    async borrow(
+      lendingPoolContract: LendingPoolContract,
+      tokenAddress: string,
+      amountToDeposit: number | string,
+      currentAccount: Web3ReactContextInterface['account'],
+      referralCode = 0, //0 for no referral code.
+      interestRateMode: 1 | 2 = 2, //the type of borrow debt. Stable: 1, Variable: 2
+    ): Promise<ethers.ContractTransaction> {
+      return await lendingPoolContract.borrow(
+        tokenAddress,
+        ethers.utils.parseEther(String(amountToDeposit)),
+        interestRateMode,
+        referralCode,
+        currentAccount,
+      )
+    },
     async getUserAccountData(
       contract: LendingPoolContract,
       currentAccount: Web3ReactContextInterface['account'],
