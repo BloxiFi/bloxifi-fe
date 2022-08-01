@@ -1,12 +1,18 @@
 import { ColumnLayout, StackLayout, Text } from '@bloxifi/ui'
 import React, { FunctionComponent } from 'react'
 
+import { FormattedNumber } from '../FormattedNumber'
+
 interface Props {
   isEmpty: boolean
+  totalSupplyBalance?: number
+  totalCollateral?: number
 }
 
 export const DepositTitleBox: FunctionComponent<Props> = ({
   isEmpty,
+  totalSupplyBalance,
+  totalCollateral,
 }: Props) => (
   <StackLayout gap={2.125}>
     <Text as="span" color="oxfordBlue" type="heading 2">
@@ -16,15 +22,13 @@ export const DepositTitleBox: FunctionComponent<Props> = ({
       <ColumnLayout center gap={1}>
         <Text color="oxfordBlue" as="span" type="body 2">
           Balance $
-          <Text as="span" color="oxfordBlue" bold>
-            1.00
-          </Text>
+          <FormattedNumber value={totalSupplyBalance} />
         </Text>
 
         <Text color="oxfordBlue" as="span" type="body 2">
           Collateral $
           <Text as="span" color="oxfordBlue" bold>
-            1.00
+            <FormattedNumber value={totalCollateral} />
           </Text>
         </Text>
       </ColumnLayout>

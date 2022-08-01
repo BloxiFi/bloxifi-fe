@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client'
 import {
   GET_RESERVE_DATA,
-  ReservesData,
+  ReservesDataQuery,
   ReservesGraph,
   TokenContract,
   TokenList,
   Tokens,
-  UserReserveData,
+  UserReserveDataQuery,
   UserReserveVariables,
 } from '@bloxifi/core'
 import Assets from '@bloxifi/core/src/utilities/assets.json'
@@ -24,12 +24,30 @@ import { createContainer } from 'unstated-next'
 
 import { Web3Container } from './Web3Container'
 
-export type WalletBalance = ReservesData & {
-  balance: string
-  icon: string
+type DefaultReserveData = {
+  id: string
+  name: TokenList
   fullName: string
+  symbol: TokenList
+  icon: string
+  decimals: number
+  balance: string
   supplyAPY: number
+  liquidityRate: number
+}
+export type ReservesData = DefaultReserveData & {
   variableBorrowAPY: number
+  totalATokenSupply: number
+  totalCurrentVariableDebt: number
+  variableBorrowRate: number
+  underlyingAsset: string
+}
+
+export type UserReserveData = DefaultReserveData & {
+  currentATokenBalance: number
+  currentVariableDebt: string
+  currentTotalDebt: string
+  usageAsCollateralEnabledOnUser: boolean
 }
 
 export const initailReserveData = {
@@ -50,7 +68,7 @@ export const initailReserveData = {
 }
 
 interface State {
-  reserves: WalletBalance[]
+  reserves: ReservesData[]
   userReserves: UserReserveData[]
   error?: Error
   loading: boolean
@@ -81,7 +99,7 @@ const reducer = (state: State, action: Action<ActionType>) => {
     case 'setUserReservesData': {
       return {
         ...state,
-        userReserves: [...state.userReserves, action.value],
+        userReserves: action.value,
       }
     }
     default:
@@ -136,10 +154,10 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }
   }
   const setReserveData = useCallback(
-    async (reserves: ReservesData[]) => {
+    async (reserves: ReservesDataQuery[]) => {
       try {
         const reserveData = await Promise.all(
-          reserves.map(async (reserve: ReservesData) => {
+          reserves.map(async (reserve: ReservesDataQuery) => {
             const balance = await getReserveBalance(reserve.name)
             return {
               ...reserve,
@@ -163,7 +181,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   )
 
   //We might have to turn this into useCallback (if we notice some rerendering)
-  const setUserReserveData = (data: UserReserveData) => {
+  const setUserReserveData = (data: UserReserveDataQuery) => {
     const { reserve, currentATokenBalance, ...rest } = data
     return {
       ...rest,
@@ -173,6 +191,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       ),
       icon: Assets[reserve.symbol].icon,
       fullName: Assets[reserve.symbol].fullName,
+      supplyAPY: calculateAPY(reserve.liquidityRate),
     }
   }
 
@@ -180,7 +199,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     if (data) {
       void setReserveData(data.reserves)
       const userReserveData = data.userReserves.map(
-        (reserve: UserReserveData) => setUserReserveData(reserve),
+        (reserve: UserReserveDataQuery) => setUserReserveData(reserve),
       )
       dispatch({
         type: 'setUserReservesData',

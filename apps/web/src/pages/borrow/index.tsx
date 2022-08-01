@@ -7,6 +7,7 @@ import { WalletContainer } from '@/containers/WalletContainer'
 import { NotConnected } from '@/components/borrow/NotConnected'
 import { AvailableToBorrowTable } from '@/components/borrow/table/AvailableToBorrowTable'
 import { AvaliableToDepositTable } from '@/components/borrow/table/AvaliableToDepositTable'
+import { YourDepositsTable } from '@/components/borrow/table/YourDepositsTable'
 
 const DepositPage = () => {
   const {
@@ -28,10 +29,7 @@ const DepositPage = () => {
     <GridLayout>
       <GridLayout.Column span={6}>
         <StackLayout gap={1.5}>
-          {/**
-           * //TODO COMPLETE FETCHING & DISPLAYING CURRENT DEPOSIT DATA
-           * <CurrentDepositTable />
-           */}
+          <YourDepositsTable />
           <AvaliableToDepositTable />
         </StackLayout>
       </GridLayout.Column>

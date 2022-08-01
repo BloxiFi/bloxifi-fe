@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
 
-import { WalletBalance, WalletContainer } from '@/containers/WalletContainer'
+import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 
 export const AvailableToBorrowTable: FunctionComponent = () => {
   const { t } = useTranslation()
@@ -42,7 +42,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
       ),
       width: 100,
     },
-  } as Record<string, ColumnData<WalletBalance>>
+  } as Record<string, ColumnData<ReservesData>>
 
   return (
     <Table
