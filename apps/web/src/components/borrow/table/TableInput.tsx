@@ -10,12 +10,12 @@ import {
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { WalletBalance } from '@/containers/WalletContainer'
+import { ReservesData } from '@/containers/WalletContainer'
 
 interface Props {
   handleInputChange: (value: string) => void
   amount: string
-  reserveData: WalletBalance
+  reserveData: ReservesData
   status?: 'error'
   title: string
 }
@@ -61,7 +61,7 @@ export const TableInput = ({
       Cell: ({ data: { symbol } }) => <span>{symbol}</span>,
       alignText: 'right',
     },
-  } as Record<string, ColumnData<WalletBalance>>
+  } as Record<string, ColumnData<ReservesData>>
 
   const Title = () => (
     <Text color="oxfordBlue" type="heading 2" as="span">

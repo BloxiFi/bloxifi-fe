@@ -1,8 +1,7 @@
-//TODO COMPLETE FETCHING & DISPLAYING DATA
 import {
   BoxLayout,
   Button,
-  CellProps,
+  ColumnData,
   ColumnLayout,
   Icon,
   Table,
@@ -11,9 +10,11 @@ import {
 } from '@bloxifi/ui'
 import React, { FunctionComponent } from 'react'
 
+import { FormattedNumber } from '../FormattedNumber'
+
 import { DepositTitleBox } from './DepositTitleBox'
 
-import { WalletContainer } from '@/containers/WalletContainer'
+import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export const YourDepositsTable: FunctionComponent = () => {
   const {
@@ -35,22 +36,26 @@ export const YourDepositsTable: FunctionComponent = () => {
     },
     balance: {
       header: 'Balance',
-      Cell: ({ data: { currentATokenBalance } }: CellProps) => (
+      Cell: ({ data: { currentATokenBalance } }) => (
         <Text type="body 3" as="span">
-          {currentATokenBalance}
+          <FormattedNumber value={currentATokenBalance} />
         </Text>
       ),
       alignText: 'left',
     },
     APY: {
       header: 'APY',
-      Cell: ({ data: { APY } }: CellProps) => <span>{APY}</span>,
+      Cell: ({ data: { supplyAPY } }) => (
+        <FormattedNumber value={supplyAPY} percent />
+      ),
       alignText: 'left',
     },
 
     collateral: {
       header: 'Collateral',
-      Cell: () => <Toggle />,
+      Cell: ({ data: { usageAsCollateralEnabledOnUser } }) => (
+        <Toggle checked={usageAsCollateralEnabledOnUser} />
+      ),
       alignText: 'center',
     },
     action: {
@@ -67,14 +72,14 @@ export const YourDepositsTable: FunctionComponent = () => {
       ),
       width: 160,
     },
-  }
+  } as Record<string, ColumnData<UserReserveData>>
 
   return (
     <Table
       columns={columns}
       data={userReserves}
       noDataMessage="Nothing deposited yet"
-      titleComponent={<DepositTitleBox isEmpty={userReserves.length > 0} />}
+      titleComponent={<DepositTitleBox isEmpty={userReserves.length === 0} />}
       footer={<BoxLayout gap={1} />}
     />
   )

@@ -6,16 +6,16 @@ import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
 import { DepositModal } from '../modal/DepositModal'
 
-import { WalletBalance, WalletContainer } from '@/containers/WalletContainer'
+import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 
 export const AvaliableToDepositTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
     state: { reserves },
   } = WalletContainer.useContainer()
-  const [modalData, setModalData] = useState<WalletBalance>()
+  const [modalData, setModalData] = useState<ReservesData>()
 
-  const openModal = (data: WalletBalance) => {
+  const openModal = (data: ReservesData) => {
     setModalData(data)
   }
 
@@ -61,7 +61,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
       ),
       width: 100,
     },
-  } as Record<string, ColumnData<WalletBalance>>
+  } as Record<string, ColumnData<ReservesData>>
 
   return (
     <>

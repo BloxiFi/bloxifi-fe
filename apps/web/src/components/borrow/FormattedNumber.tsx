@@ -1,5 +1,4 @@
 import { FormatAPYOptions, useFormatAPY } from '@bloxifi/core'
-import { Text } from '@bloxifi/ui'
 import React from 'react'
 
 export const FormattedNumber = (props: FormatAPYOptions) => {
