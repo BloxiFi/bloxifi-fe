@@ -11,7 +11,10 @@ import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 export const AvaliableToDepositTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: { reserves },
+    state: {
+      reserves,
+      userAccountData: { healthFactor },
+    },
   } = WalletContainer.useContainer()
   const [modalData, setModalData] = useState<ReservesData>()
 
@@ -75,6 +78,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
         isOpen={!!modalData}
         onClose={closeModal}
         reserveData={modalData}
+        healthFactor={healthFactor}
       />
     </>
   )

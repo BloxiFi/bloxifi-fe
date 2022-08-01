@@ -31,12 +31,17 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: typeof initailReserveData
+  /**
+   * Health factor - the 'health' of the loans within the system
+   */
+  healthFactor?: number
 }
 
 export const BorrowModal = ({
   isOpen,
   onClose,
   reserveData = initailReserveData,
+  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
   const [amountError, setAmountError] = useState<boolean>(false)
@@ -50,8 +55,6 @@ export const BorrowModal = ({
   const [hasError, setHasError] = useState()
   const [loading, setLoading] = useState(false)
 
-  const [healthFactor, setHealthFactor] = useState<number>()
-
   const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
 
   const lendingPoolContract =
@@ -64,23 +67,8 @@ export const BorrowModal = ({
     setAmount(undefined)
   }
 
-  const getHealthFactor = async () => {
-    setLoading(true)
-    try {
-      const response = await BorrowAndLending.lendingPool.getUserAccountData(
-        lendingPoolContract,
-        currentAccount,
-      )
-      setHealthFactor(Number(ethers.utils.formatUnits(response.healthFactor)))
-    } catch (error) {
-      setHasError(error)
-    } finally {
-      setLoading(false)
-    }
-  }
   useEffect(() => {
     resetState()
-    void getHealthFactor()
   }, [isOpen])
 
   const borrow = async () => {

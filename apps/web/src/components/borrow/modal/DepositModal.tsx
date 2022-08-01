@@ -32,12 +32,17 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: typeof initailReserveData
+  /**
+   * Health factor - the 'health' of the loans within the system
+   */
+  healthFactor?: number
 }
 
 export const DepositModal = ({
   isOpen,
   onClose,
   reserveData = initailReserveData,
+  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
   const [amountError, setAmountError] = useState<boolean>(false)
@@ -53,7 +58,6 @@ export const DepositModal = ({
 
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
   const [approved, setApproved] = useState<boolean>(false)
-  const [healthFactor, setHealthFactor] = useState<number>()
 
   const [depositCompleted, setDepositCompleted] = useState<boolean>(false)
   const tokenContract = reserveData.symbol
@@ -98,23 +102,8 @@ export const DepositModal = ({
     }
   }, [checkAllowance, isSupportedNetwork])
 
-  const getHealthFactor = async () => {
-    setLoading(true)
-    try {
-      const response = await BorrowAndLending.lendingPool.getUserAccountData(
-        lendingPoolContract,
-        currentAccount,
-      )
-      setHealthFactor(Number(ethers.utils.formatUnits(response.healthFactor)))
-    } catch (error) {
-      setHasError(error)
-    } finally {
-      setLoading(false)
-    }
-  }
   useEffect(() => {
     resetState()
-    void getHealthFactor()
   }, [isOpen])
 
   const approve = async () => {

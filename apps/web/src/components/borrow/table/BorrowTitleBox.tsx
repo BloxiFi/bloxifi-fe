@@ -12,13 +12,11 @@ import { FormattedNumber } from '../FormattedNumber'
 interface Props {
   isEmpty: boolean
   totalBorrowBalance?: number
-  currentBorrowedValue?: number
 }
 
 export const BorrowTitleBox: FunctionComponent<Props> = ({
   isEmpty,
   totalBorrowBalance,
-  currentBorrowedValue = 0,
 }: Props) => (
   <ColumnLayout className={stylings.tableHeaderWithProgressBar}>
     <StackLayout gap={2.125}>

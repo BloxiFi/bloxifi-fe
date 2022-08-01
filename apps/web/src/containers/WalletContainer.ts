@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import {
+  BorrowAndLending,
   GET_RESERVE_DATA,
   ReservesDataQuery,
   ReservesGraph,
@@ -11,7 +12,7 @@ import {
 } from '@bloxifi/core'
 import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 import {
   Dispatch,
   Reducer,
@@ -49,6 +50,12 @@ export type UserReserveData = DefaultReserveData & {
   usageAsCollateralEnabledOnUser: boolean
 }
 
+export type UserAccountData = {
+  totalDebtETH: number
+  availableBorrowsETH: number
+  healthFactor: number
+}
+
 export const initailReserveData = {
   balance: undefined,
   icon: '',
@@ -68,6 +75,7 @@ export const initailReserveData = {
 interface State {
   reserves: ReservesData[]
   userReserves: UserReserveData[]
+  userAccountData: UserAccountData
   error?: Error
   loading: boolean
 }
@@ -82,6 +90,7 @@ type ActionType = 'setReserveData' | 'setUserReservesData'
 const defaultState = {
   reserves: [],
   userReserves: [],
+  userAccountData: null,
   error: undefined,
   loading: false,
 }
@@ -127,6 +136,9 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   } = Web3Container.useContainer()
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
+  const [userAccountData, setUserAccountData] = useState<UserAccountData>()
+  const formatNumber = (value: BigNumber) =>
+    Number(ethers.utils.formatUnits(value))
 
   const { data } = useQuery<ReservesGraph, UserReserveVariables>(
     GET_RESERVE_DATA,
@@ -136,6 +148,24 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       },
     },
   )
+
+  const getUserAccountData = async () => {
+    try {
+      const lendingPoolContract =
+        BorrowAndLending.lendingPool.getLendingPoolContract(signer)
+      const response = await BorrowAndLending.lendingPool.getUserAccountData(
+        lendingPoolContract,
+        currentAccount,
+      )
+      setUserAccountData({
+        healthFactor: formatNumber(response.healthFactor),
+        availableBorrowsETH: formatNumber(response.availableBorrowsETH),
+        totalDebtETH: formatNumber(response.totalDebtETH),
+      })
+    } catch (error) {
+      setError(error)
+    }
+  }
 
   const getReserveBalance = async (name: TokenList) => {
     try {
@@ -159,7 +189,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
             const balance = await getReserveBalance(reserve.name)
             return {
               ...reserve,
-              balance: Number(ethers.utils.formatUnits(balance)),
+              balance: formatNumber(balance),
               icon: Assets[reserve.symbol].icon,
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
@@ -184,10 +214,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     return {
       ...rest,
       ...reserve,
-      currentATokenBalance: Number(
-        ethers.utils.formatUnits(currentATokenBalance),
-      ),
-      currentTotalDebt: Number(ethers.utils.formatUnits(currentTotalDebt)),
+      currentATokenBalance: formatNumber(currentATokenBalance),
+      currentTotalDebt: formatNumber(currentTotalDebt),
       icon: Assets[reserve.symbol].icon,
       fullName: Assets[reserve.symbol].fullName,
       supplyAPY: calculateAPY(reserve.liquidityRate),
@@ -208,8 +236,15 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       setLoading(false)
     }
   }, [data, setReserveData])
+
+  useEffect(() => {
+    if (signer && currentAccount) {
+      void getUserAccountData()
+    }
+  }, [currentAccount, signer])
+
   return {
-    state: { ...state, error, loading },
+    state: { ...state, error, loading, userAccountData },
     dispatch,
   }
 }
