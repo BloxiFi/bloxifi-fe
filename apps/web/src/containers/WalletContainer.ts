@@ -34,19 +34,18 @@ type DefaultReserveData = {
   balance: string
   supplyAPY: number
   liquidityRate: number
+  variableBorrowAPY: number
 }
 export type ReservesData = DefaultReserveData & {
-  variableBorrowAPY: number
   totalATokenSupply: number
   totalCurrentVariableDebt: number
-  variableBorrowRate: number
   underlyingAsset: string
 }
 
 export type UserReserveData = DefaultReserveData & {
   currentATokenBalance: number
   currentVariableDebt: string
-  currentTotalDebt: string
+  currentTotalDebt: number
   usageAsCollateralEnabledOnUser: boolean
 }
 
@@ -63,7 +62,6 @@ export const initailReserveData = {
   totalATokenSupply: undefined,
   totalCurrentVariableDebt: undefined,
   liquidityRate: undefined,
-  variableBorrowRate: undefined,
   underlyingAsset: '',
 }
 
@@ -182,16 +180,18 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
 
   //We might have to turn this into useCallback (if we notice some rerendering)
   const setUserReserveData = (data: UserReserveDataQuery) => {
-    const { reserve, currentATokenBalance, ...rest } = data
+    const { reserve, currentATokenBalance, currentTotalDebt, ...rest } = data
     return {
       ...rest,
       ...reserve,
       currentATokenBalance: Number(
         ethers.utils.formatUnits(currentATokenBalance),
       ),
+      currentTotalDebt: Number(ethers.utils.formatUnits(currentTotalDebt)),
       icon: Assets[reserve.symbol].icon,
       fullName: Assets[reserve.symbol].fullName,
       supplyAPY: calculateAPY(reserve.liquidityRate),
+      variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
     }
   }
 

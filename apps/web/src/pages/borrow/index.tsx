@@ -8,6 +8,7 @@ import { NotConnected } from '@/components/borrow/NotConnected'
 import { AvailableToBorrowTable } from '@/components/borrow/table/AvailableToBorrowTable'
 import { AvaliableToDepositTable } from '@/components/borrow/table/AvaliableToDepositTable'
 import { YourDepositsTable } from '@/components/borrow/table/YourDepositsTable'
+import { YourBorrowsTable } from '@/components/borrow/table/YourBorrowsTable'
 
 const DepositPage = () => {
   const {
@@ -35,10 +36,7 @@ const DepositPage = () => {
       </GridLayout.Column>
       <GridLayout.Column span={6}>
         <StackLayout gap={1.5}>
-          {/**
-           * //TODO COMPLETE FETCHING & DISPLAYING CURRENT BORROW DATA
-           * <CurrentBorrowTable />
-           */}
+          <YourBorrowsTable />
           <AvailableToBorrowTable />
         </StackLayout>
       </GridLayout.Column>

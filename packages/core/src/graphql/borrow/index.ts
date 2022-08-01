@@ -17,6 +17,7 @@ export interface UserReserveDataQuery {
     name: TokenList
     decimals: string
     liquidityRate: number
+    variableBorrowRate: number
   }
 }
 
@@ -74,6 +75,7 @@ export const GET_RESERVE_DATA = gql`
         name
         decimals
         liquidityRate
+        variableBorrowRate
       }
     }
   }

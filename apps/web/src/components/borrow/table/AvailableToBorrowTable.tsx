@@ -13,9 +13,9 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
   const {
     state: { reserves },
   } = WalletContainer.useContainer()
-  const [modalData, setModalData] = useState<WalletBalance>()
+  const [modalData, setModalData] = useState<ReservesData>()
 
-  const openModal = (data: WalletBalance) => {
+  const openModal = (data: ReservesData) => {
     setModalData(data)
   }
 
@@ -40,7 +40,9 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     },
     APY: {
       header: t('global.table.apy'),
-      Cell: () => <FormattedNumber value={0.0568} percent />,
+      Cell: ({ data: { variableBorrowAPY } }) => (
+        <FormattedNumber value={variableBorrowAPY} percent />
+      ),
       alignText: 'center',
     },
     action: {

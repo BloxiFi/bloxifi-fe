@@ -20,7 +20,9 @@ export const YourDepositsTable: FunctionComponent = () => {
   const {
     state: { userReserves },
   } = WalletContainer.useContainer()
-
+  const formatedData = userReserves.filter(
+    (reserve: UserReserveData) => reserve.currentATokenBalance !== 0,
+  )
   const columns = {
     assets: {
       header: 'Assets',
@@ -77,9 +79,9 @@ export const YourDepositsTable: FunctionComponent = () => {
   return (
     <Table
       columns={columns}
-      data={userReserves}
+      data={formatedData}
       noDataMessage="Nothing deposited yet"
-      titleComponent={<DepositTitleBox isEmpty={userReserves.length === 0} />}
+      titleComponent={<DepositTitleBox isEmpty={formatedData.length === 0} />}
       footer={<BoxLayout gap={1} />}
     />
   )
