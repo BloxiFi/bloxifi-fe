@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BoxLayout,
   Button,
@@ -10,7 +10,6 @@ import {
 } from '@bloxifi/ui'
 import { BorrowAndLending } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
-import { ethers } from 'ethers'
 
 import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'

@@ -18,11 +18,18 @@ import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export const YourBorrowsTable: FunctionComponent = () => {
   const {
-    state: { userReserves },
+    state: {
+      userReserves,
+      userAccountData: { totalDebtETH, availableBorrowsETH },
+    },
   } = WalletContainer.useContainer()
   const formatedData = userReserves.filter(
     (reserve: UserReserveData) => reserve.currentTotalDebt !== 0,
   )
+  //Calculate total borrowed balance compared to total available borrow for the current user (in percentage)
+  const currentBorrowedValue =
+    (totalDebtETH / (totalDebtETH + availableBorrowsETH)) * 100
+
   const columns = {
     assets: {
       header: 'Assets',
@@ -71,7 +78,12 @@ export const YourBorrowsTable: FunctionComponent = () => {
       columns={columns}
       data={formatedData}
       noDataMessage="Nothing borrowed yet"
-      titleComponent={<BorrowTitleBox isEmpty={formatedData.length === 0} />}
+      titleComponent={
+        <BorrowTitleBox
+          isEmpty={formatedData.length === 0}
+          currentBorrowedValue={Number(currentBorrowedValue.toFixed(2))}
+        />
+      }
       footer={<BoxLayout gap={1} />}
     />
   )

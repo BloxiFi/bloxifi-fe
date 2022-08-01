@@ -11,7 +11,6 @@ import {
 import { BorrowAndLending, Tokens } from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useTranslation } from 'react-i18next'
-import { ethers } from 'ethers'
 
 import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
