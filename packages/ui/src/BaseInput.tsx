@@ -78,6 +78,12 @@ const InnerWrapper = styled.div<{ status?: Status }>`
 
     &[type='number'] {
       appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
     }
 
     &[disabled] {

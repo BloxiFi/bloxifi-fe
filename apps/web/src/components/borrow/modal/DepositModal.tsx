@@ -193,6 +193,7 @@ export const DepositModal = ({
                   <TableInput
                     id="amount"
                     name="amount"
+                    type="number"
                     reserveData={reserveData}
                     amount={values.amount}
                     onChange={handleChange}

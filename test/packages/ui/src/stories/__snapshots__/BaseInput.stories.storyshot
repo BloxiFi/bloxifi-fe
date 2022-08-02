@@ -15,7 +15,7 @@ exports[`Storyshots Components/BaseInput Details 1`] = `
         className="sc-bczRLJ ehiAyy"
       >
         <div
-          className="sc-gsnTZi oxHIV"
+          className="sc-gsnTZi ZViBu"
         >
           <input
             disabled={false}
@@ -37,7 +37,7 @@ exports[`Storyshots Components/BaseInput Details 1`] = `
         className="sc-bczRLJ ehiAyy"
       >
         <div
-          className="sc-gsnTZi hfZHKh"
+          className="sc-gsnTZi ifzSXC"
         >
           <input
             disabled={false}
@@ -60,7 +60,7 @@ exports[`Storyshots Components/BaseInput Details 1`] = `
         className="sc-bczRLJ ehiAyy"
       >
         <div
-          className="sc-gsnTZi krowEp"
+          className="sc-gsnTZi hBDMhK"
         >
           <input
             disabled={false}
@@ -83,7 +83,7 @@ exports[`Storyshots Components/BaseInput Details 1`] = `
         className="sc-bczRLJ ehiAyy"
       >
         <div
-          className="sc-gsnTZi oxHIV"
+          className="sc-gsnTZi ZViBu"
         >
           <input
             disabled={true}

@@ -86,7 +86,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                         className="sc-bczRLJ ehiAyy"
                       >
                         <div
-                          className="sc-gsnTZi oxHIV"
+                          className="sc-gsnTZi ZViBu"
                         >
                           <input
                             disabled={false}
@@ -310,7 +310,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                         className="sc-bczRLJ ehiAyy"
                       >
                         <div
-                          className="sc-gsnTZi oxHIV"
+                          className="sc-gsnTZi ZViBu"
                         >
                           <input
                             disabled={false}
@@ -589,7 +589,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                         className="sc-bczRLJ ehiAyy"
                       >
                         <div
-                          className="sc-gsnTZi oxHIV"
+                          className="sc-gsnTZi ZViBu"
                         >
                           <input
                             disabled={false}
@@ -852,7 +852,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                         className="sc-bczRLJ ehiAyy"
                       >
                         <div
-                          className="sc-gsnTZi oxHIV"
+                          className="sc-gsnTZi ZViBu"
                         >
                           <input
                             disabled={false}
