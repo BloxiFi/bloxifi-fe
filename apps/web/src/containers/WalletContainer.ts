@@ -50,23 +50,6 @@ export type UserReserveData = DefaultReserveData & {
   usageAsCollateralEnabledOnUser: boolean
 }
 
-export const initailReserveData = {
-  balance: undefined,
-  icon: '',
-  fullName: '',
-  supplyAPY: undefined,
-  variableBorrowAPY: undefined,
-  id: '',
-  name: null,
-  symbol: null,
-  decimals: undefined,
-  totalATokenSupply: undefined,
-  totalCurrentVariableDebt: undefined,
-  liquidityRate: undefined,
-  variableBorrowRate: undefined,
-  underlyingAsset: '',
-}
-
 interface State {
   reserves: ReservesData[]
   userReserves: UserReserveData[]
@@ -198,9 +181,9 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   useEffect(() => {
     if (data) {
       void setReserveData(data.reserves)
-      const userReserveData = data.userReserves.map(
-        (reserve: UserReserveDataQuery) => setUserReserveData(reserve),
-      )
+      const mapUserReserveData = (data: UserReserveDataQuery) =>
+        setUserReserveData(data)
+      const userReserveData = data.userReserves.map(mapUserReserveData)
       dispatch({
         type: 'setUserReservesData',
         value: userReserveData,

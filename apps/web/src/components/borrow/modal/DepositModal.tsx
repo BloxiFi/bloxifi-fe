@@ -17,7 +17,7 @@ import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { initailReserveData } from '@/containers/WalletContainer'
+import { ReservesData } from '@/containers/WalletContainer'
 
 interface Props {
   /**
@@ -31,7 +31,24 @@ interface Props {
   /**
    * Selected asset reserve data
    */
-  reserveData?: typeof initailReserveData
+  reserveData?: ReservesData
+}
+
+const initailReserveData = {
+  balance: undefined,
+  icon: '',
+  fullName: '',
+  supplyAPY: undefined,
+  variableBorrowAPY: undefined,
+  id: '',
+  name: null,
+  symbol: null,
+  decimals: undefined,
+  totalATokenSupply: undefined,
+  totalCurrentVariableDebt: undefined,
+  liquidityRate: undefined,
+  variableBorrowRate: undefined,
+  underlyingAsset: '',
 }
 
 export const DepositModal = ({
