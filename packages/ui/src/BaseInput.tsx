@@ -31,17 +31,19 @@ export const BaseInput: FunctionComponent<Props> = forwardRef(
     ref,
   ) => {
     return (
-      <>
+      <Wrapper>
         <InnerWrapper className={className} status={status}>
           <input ref={ref} type={type} {...props} disabled={disabled} />
         </InnerWrapper>
 
-        {info && <Info status={status}>{info}</Info>}
-      </>
+        <Info status={status}>{info}</Info>
+      </Wrapper>
     )
   },
 )
-
+const Wrapper = styled.span`
+  position: relative;
+`
 const InnerWrapper = styled.div<{ status?: Status }>`
   input {
     width: 100%;
@@ -87,6 +89,8 @@ const InnerWrapper = styled.div<{ status?: Status }>`
 
 const Info = styled.span<{ status?: Status }>`
   max-width: 100%;
+  position: absolute;
+  bottom: -1rem;
   padding: 0 1.125rem;
   font-weight: 400;
   font-size: 0.75rem;

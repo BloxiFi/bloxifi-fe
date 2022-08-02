@@ -12,6 +12,8 @@ import { BorrowAndLending, Tokens } from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useTranslation } from 'react-i18next'
 import { ethers } from 'ethers'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
 
 import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
@@ -57,8 +59,6 @@ export const DepositModal = ({
   reserveData = initailReserveData,
 }: Props) => {
   const { t } = useTranslation()
-  const [amountError, setAmountError] = useState<boolean>(false)
-  const [amount, setAmount] = useState<string>()
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
@@ -81,13 +81,6 @@ export const DepositModal = ({
 
   const isApproveDisabled =
     !isSupportedNetwork || loading || approved || !reserveData.balance
-  const isDepositDisabled =
-    !isSupportedNetwork ||
-    loading ||
-    amountError ||
-    !amount ||
-    hasError ||
-    (shouldApproveContract && !approved)
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     if (tokenContract) {
@@ -143,11 +136,7 @@ export const DepositModal = ({
     }
   }
 
-  const resetState = () => {
-    setAmount(undefined)
-  }
-
-  const deposit = async () => {
+  const deposit = async (amount: number) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.deposit(
@@ -158,7 +147,6 @@ export const DepositModal = ({
       )
       const isDeposited = await response.wait()
       setDepositCompleted(!!isDeposited)
-      resetState()
     } catch (error) {
       setHasError(error)
     } finally {
@@ -166,76 +154,109 @@ export const DepositModal = ({
     }
   }
 
-  const handleInputChange = (value: string) => {
-    const number = Number(value)
-    if (number > Number(reserveData.balance) || number === 0) {
-      setAmountError(true)
-    } else {
-      setAmountError(false)
-    }
-    setAmount(value)
-  }
+  const depositValidationSchemaa = Yup.object().shape({
+    amount: Yup.number()
+      .typeError(t('global.errors.numbersOnly'))
+      .positive(t('global.errors.positiveValue'))
+      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
+      .required(t('global.errors.required')),
+  })
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <StackLayout gap={5}>
-        <StackLayout gap={3}>
-          <TableInput
-            reserveData={reserveData}
-            amount={amount}
-            handleInputChange={handleInputChange}
-            status={amountError ? 'error' : undefined}
-          />
-          <TransactionOverview
-            healthFactor={healthFactor}
-            supplyAPY={reserveData.supplyAPY}
-            headers={['supplyAPY', 'healthFactor']}
-          />
-        </StackLayout>
+      <Formik
+        initialValues={{ amount: '' }}
+        validationSchema={depositValidationSchemaa}
+        onSubmit={values => deposit(Number(values.amount))}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          setFieldValue,
+        }) => {
+          const isDepositDisabled =
+            !isSupportedNetwork ||
+            loading ||
+            !!errors.amount ||
+            !values.amount ||
+            hasError ||
+            (shouldApproveContract && !approved)
 
-        <BoxLayout gap={1.875}>
-          {hasError ? (
-            <CenterLayout>
-              <Icon name="error" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.transaction_failed')}
-              </Text>
-            </CenterLayout>
-          ) : depositCompleted ? (
-            <CenterLayout>
-              <Icon name="success" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.deposit_successful')}
-              </Text>
-            </CenterLayout>
-          ) : (
-            <StackLayout gap={1}>
-              {shouldApproveContract && (
-                <Button
-                  className="u-full-width"
-                  appearance="dark"
-                  size="large"
-                  variant="large"
-                  disabled={isApproveDisabled}
-                  onClick={approve}
-                >
-                  {t('global.buttons.approve')}
-                </Button>
-              )}
-              <Button
-                className="u-full-width"
-                appearance="secondary"
-                size="large"
-                variant="large"
-                disabled={isDepositDisabled}
-                onClick={deposit}
-              >
-                {t('global.buttons.deposit')} {reserveData.symbol}
-              </Button>
-            </StackLayout>
-          )}
-        </BoxLayout>
-      </StackLayout>
+          return (
+            <form onSubmit={handleSubmit}>
+              <StackLayout gap={5}>
+                <StackLayout gap={3}>
+                  <TableInput
+                    id="amount"
+                    name="amount"
+                    reserveData={reserveData}
+                    amount={values.amount}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    setFieldValue={setFieldValue}
+                    status={
+                      errors.amount && touched.amount ? 'error' : undefined
+                    }
+                    info={errors.amount && touched.amount && errors.amount}
+                  />
+                  <TransactionOverview
+                    healthFactor={healthFactor}
+                    supplyAPY={reserveData.supplyAPY}
+                    headers={['supplyAPY', 'healthFactor']}
+                  />
+                </StackLayout>
+
+                <BoxLayout gap={1.875}>
+                  {hasError ? (
+                    <CenterLayout>
+                      <Icon name="error" size={75} />
+                      <Text type="body 2">
+                        {t('global.notifications.transaction_failed')}
+                      </Text>
+                    </CenterLayout>
+                  ) : depositCompleted ? (
+                    <CenterLayout>
+                      <Icon name="success" size={75} />
+                      <Text type="body 2">
+                        {t('global.notifications.deposit_successful')}
+                      </Text>
+                    </CenterLayout>
+                  ) : (
+                    <StackLayout gap={1}>
+                      {shouldApproveContract && (
+                        <Button
+                          className="u-full-width"
+                          appearance="dark"
+                          size="large"
+                          variant="large"
+                          disabled={isApproveDisabled}
+                          onClick={approve}
+                        >
+                          {t('global.buttons.approve')}
+                        </Button>
+                      )}
+                      <Button
+                        className="u-full-width"
+                        appearance="secondary"
+                        size="large"
+                        variant="large"
+                        type="submit"
+                        disabled={isDepositDisabled}
+                      >
+                        {t('global.buttons.deposit')} {reserveData.symbol}
+                      </Button>
+                    </StackLayout>
+                  )}
+                </BoxLayout>
+              </StackLayout>
+            </form>
+          )
+        }}
+      </Formik>
     </Modal>
   )
 }

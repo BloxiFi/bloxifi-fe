@@ -2,60 +2,60 @@
 
 exports[`Storyshots Components/Table Basic Table 1`] = `
 <div
-  className="sc-ezWOiH kQmwHd"
+  className="sc-bZkfAO kvKdAY"
   data-element="tableWrapper"
 >
   <table
-    className="sc-bZkfAO ddqNNK"
+    className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
     <thead
-      className="sc-ciZhAO dpuqFH"
+      className="sc-jdAMXn fcA-dUh"
     >
       
       
       <tr>
         <td
-          className="sc-jIZahH sc-himrzO hijiIt dDMa-dg"
+          className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Assets
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total value deposited
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total borrowed
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Deposit APY
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO jzXBki dDMa-dg"
+          className="sc-himrzO sc-gXmSlM kgJha-d leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Borrow APY
           </div>
@@ -67,37 +67,37 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             ETH
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -108,37 +108,37 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             DAI
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -149,37 +149,37 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             POLKA
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -190,37 +190,37 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             BTC
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -234,19 +234,19 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
 
 exports[`Storyshots Components/Table Bigger Spacings 1`] = `
 <div
-  className="sc-ezWOiH kQmwHd"
+  className="sc-bZkfAO kvKdAY"
   data-element="tableWrapper"
 >
   <table
-    className="sc-bZkfAO ddqNNK"
+    className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
     <thead
-      className="sc-ciZhAO dpuqFH"
+      className="sc-jdAMXn fcA-dUh"
     >
       <tr>
         <td
-          className="sc-jdAMXn etFNKQ"
+          className="sc-bZnhIo jzMmPY"
           colSpan={5}
         >
           Assets to deposit
@@ -254,46 +254,46 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
       </tr>
       <tr>
         <td
-          className="sc-jIZahH sc-himrzO hijiIt dDMa-dg"
+          className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Assets
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total value deposited
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total borrowed
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Deposit APY
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO jzXBki dDMa-dg"
+          className="sc-himrzO sc-gXmSlM kgJha-d leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Borrow APY
           </div>
@@ -305,37 +305,37 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             ETH
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -346,37 +346,37 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             DAI
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -387,37 +387,37 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             POLKA
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -428,37 +428,37 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             BTC
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -472,15 +472,15 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
 
 exports[`Storyshots Components/Table Empty Data Table 1`] = `
 <div
-  className="sc-ezWOiH hrokTS"
+  className="sc-bZkfAO dwJdgL"
   data-element="tableWrapper"
 >
   <table
-    className="sc-bZkfAO ddqNNK"
+    className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
     <thead
-      className="sc-ciZhAO dpuqFH"
+      className="sc-jdAMXn fcA-dUh"
     >
       
       
@@ -488,11 +488,11 @@ exports[`Storyshots Components/Table Empty Data Table 1`] = `
     <tbody>
       <tr>
         <td
-          className="sc-jIZahH cdqNpc"
+          className="sc-himrzO bUGxJb"
           colSpan={5}
         >
           <p
-            className="sc-fnykZs jhxngp c-text--body-5"
+            className="sc-fEOsli kVdAuo c-text--body-5"
           >
             There is no data loaded.
           </p>
@@ -505,70 +505,70 @@ exports[`Storyshots Components/Table Empty Data Table 1`] = `
 
 exports[`Storyshots Components/Table Expandable table 1`] = `
 <div
-  className="sc-ezWOiH kQmwHd"
+  className="sc-bZkfAO kvKdAY"
   data-element="tableWrapper"
 >
   <table
-    className="sc-bZkfAO ddqNNK"
+    className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
     <thead
-      className="sc-ciZhAO dpuqFH"
+      className="sc-jdAMXn fcA-dUh"
     >
       
       
       <tr>
         <td
-          className="sc-jIZahH sc-himrzO hijiIt dDMa-dg"
+          className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Assets
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total value deposited
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total borrowed
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Deposit APY
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO jzXBki dDMa-dg"
+          className="sc-himrzO sc-gXmSlM kgJha-d leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Borrow APY
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO ecHkwA dDMa-dg"
+          className="sc-himrzO sc-gXmSlM jzqDDn leESXv"
           width={100}
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Action
           </div>
@@ -580,48 +580,48 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             ETH
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <button
             appearance="primary"
-            className="sc-dkzDqf sc-hKMtZM dsAMhH jyzXNF"
+            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
             data-element="button"
             onClick={[Function]}
             size="small"
@@ -635,48 +635,48 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             DAI
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <button
             appearance="primary"
-            className="sc-dkzDqf sc-hKMtZM dsAMhH jyzXNF"
+            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
             data-element="button"
             onClick={[Function]}
             size="small"
@@ -690,48 +690,48 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             POLKA
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <button
             appearance="primary"
-            className="sc-dkzDqf sc-hKMtZM dsAMhH jyzXNF"
+            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
             data-element="button"
             onClick={[Function]}
             size="small"
@@ -745,48 +745,48 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             BTC
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <button
             appearance="primary"
-            className="sc-dkzDqf sc-hKMtZM dsAMhH jyzXNF"
+            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
             data-element="button"
             onClick={[Function]}
             size="small"
@@ -803,19 +803,19 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
 
 exports[`Storyshots Components/Table Small Spacing 1`] = `
 <div
-  className="sc-ezWOiH kQmwHd"
+  className="sc-bZkfAO kvKdAY"
   data-element="tableWrapper"
 >
   <table
-    className="sc-bZkfAO ddqNNK"
+    className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
     <thead
-      className="sc-ciZhAO dpuqFH"
+      className="sc-jdAMXn fcA-dUh"
     >
       <tr>
         <td
-          className="sc-bZnhIo kpuJSw"
+          className="sc-iTONeN knoCVT"
           colSpan={5}
         >
           <div>
@@ -825,46 +825,46 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
       </tr>
       <tr>
         <td
-          className="sc-jIZahH sc-himrzO hijiIt eifDIB"
+          className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Assets
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml eifDIB"
+          className="sc-himrzO sc-gXmSlM bJjlxC cydyBC"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total value deposited
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml eifDIB"
+          className="sc-himrzO sc-gXmSlM bJjlxC cydyBC"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total borrowed
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml eifDIB"
+          className="sc-himrzO sc-gXmSlM bJjlxC cydyBC"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Deposit APY
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO jzXBki eifDIB"
+          className="sc-himrzO sc-gXmSlM kgJha-d cydyBC"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Borrow APY
           </div>
@@ -876,37 +876,37 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
         isTitleAString={false}
       >
         <td
-          className="sc-jIZahH hijiIt"
+          className="sc-himrzO fkWGJm"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             ETH
           </div>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH jzXBki"
+          className="sc-himrzO kgJha-d"
         >
           <span>
             7.5%
@@ -917,37 +917,37 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
         isTitleAString={false}
       >
         <td
-          className="sc-jIZahH hijiIt"
+          className="sc-himrzO fkWGJm"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             DAI
           </div>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH jzXBki"
+          className="sc-himrzO kgJha-d"
         >
           <span>
             7.5%
@@ -958,37 +958,37 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
         isTitleAString={false}
       >
         <td
-          className="sc-jIZahH hijiIt"
+          className="sc-himrzO fkWGJm"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             POLKA
           </div>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH jzXBki"
+          className="sc-himrzO kgJha-d"
         >
           <span>
             7.5%
@@ -999,37 +999,37 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
         isTitleAString={false}
       >
         <td
-          className="sc-jIZahH hijiIt"
+          className="sc-himrzO fkWGJm"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             BTC
           </div>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH gfrNml"
+          className="sc-himrzO bJjlxC"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH jzXBki"
+          className="sc-himrzO kgJha-d"
         >
           <span>
             7.5%
@@ -1043,60 +1043,60 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
 
 exports[`Storyshots Components/Table With Footer 1`] = `
 <div
-  className="sc-ezWOiH kQmwHd"
+  className="sc-bZkfAO kvKdAY"
   data-element="tableWrapper"
 >
   <table
-    className="sc-bZkfAO ddqNNK"
+    className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
     <thead
-      className="sc-ciZhAO dpuqFH"
+      className="sc-jdAMXn fcA-dUh"
     >
       
       
       <tr>
         <td
-          className="sc-jIZahH sc-himrzO hijiIt dDMa-dg"
+          className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Assets
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total value deposited
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Total borrowed
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO gfrNml dDMa-dg"
+          className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Deposit APY
           </div>
         </td>
         <td
-          className="sc-jIZahH sc-himrzO jzXBki dDMa-dg"
+          className="sc-himrzO sc-gXmSlM kgJha-d leESXv"
         >
           <div
-            className="sc-kLLXSd sc-ikZpkk hnWIYw hqKFhs"
+            className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
           >
             Borrow APY
           </div>
@@ -1108,37 +1108,37 @@ exports[`Storyshots Components/Table With Footer 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             ETH
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -1149,37 +1149,37 @@ exports[`Storyshots Components/Table With Footer 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             DAI
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -1190,37 +1190,37 @@ exports[`Storyshots Components/Table With Footer 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             POLKA
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -1231,37 +1231,37 @@ exports[`Storyshots Components/Table With Footer 1`] = `
         isTitleAString={true}
       >
         <td
-          className="sc-jIZahH fnGgSc"
+          className="sc-himrzO kysAtL"
         >
           <div
-            className="sc-kgUAyh dDFYwe"
+            className="sc-hTtwUo hRSDHm"
           >
             BTC
           </div>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             1.250.000$
           </span>
         </td>
         <td
-          className="sc-jIZahH fRaiTE"
+          className="sc-himrzO fZpOqX"
         >
           <span>
             3.5%
           </span>
         </td>
         <td
-          className="sc-jIZahH cqqSND"
+          className="sc-himrzO hrZPNE"
         >
           <span>
             7.5%
@@ -1270,10 +1270,10 @@ exports[`Storyshots Components/Table With Footer 1`] = `
       </tr>
     </tbody>
     <tfoot
-      className="sc-iTONeN gtuFum c-table__footer"
+      className="sc-iAvgwm cyIQxm c-table__footer"
     >
       <td
-        className="sc-jIZahH gfrNml"
+        className="sc-himrzO bJjlxC"
         colSpan={5}
       >
         <div>

@@ -7,23 +7,26 @@ import {
   Table,
   Text,
 } from '@bloxifi/ui'
-import React from 'react'
+import React, { HTMLProps } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ReservesData } from '@/containers/WalletContainer'
 
-interface Props {
-  handleInputChange: (value: string) => void
+interface Props extends HTMLProps<HTMLInputElement> {
+  setFieldValue: (field: 'amount', value: number) => void
   amount: string
   reserveData: ReservesData
   status?: 'error'
+  info?: string
 }
 
 export const TableInput = ({
-  handleInputChange,
   amount,
   reserveData,
   status,
+  setFieldValue,
+  info,
+  ...inputProps
 }: Props) => {
   const { t } = useTranslation()
 
@@ -35,10 +38,9 @@ export const TableInput = ({
           <StackLayout>
             <BaseInput
               status={status}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleInputChange(e.target.value)
-              }
               value={amount}
+              info={info}
+              {...inputProps}
             />
           </StackLayout>
           <Button
@@ -46,7 +48,7 @@ export const TableInput = ({
             variant="thin"
             size="small"
             className="u-fit-content-width"
-            onClick={() => handleInputChange(reserveData.balance)}
+            onClick={() => setFieldValue('amount', Number(reserveData.balance))}
           >
             MAX
           </Button>
@@ -73,6 +75,7 @@ export const TableInput = ({
       columns={tableColumns}
       data={[reserveData]}
       titleComponent={<Title />}
+      columnSpacing
     />
   )
 }
