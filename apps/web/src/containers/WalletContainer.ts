@@ -36,11 +36,11 @@ type DefaultReserveData = {
   supplyAPY: number
   liquidityRate: number
   variableBorrowAPY: number
+  underlyingAsset: string
 }
 export type ReservesData = DefaultReserveData & {
   totalATokenSupply: number
   totalCurrentVariableDebt: number
-  underlyingAsset: string
 }
 
 export type UserReserveData = DefaultReserveData & {

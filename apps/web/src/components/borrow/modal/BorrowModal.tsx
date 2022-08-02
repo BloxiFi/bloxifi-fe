@@ -51,8 +51,8 @@ export const BorrowModal = ({
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
 
-  const [hasError, setHasError] = useState()
-  const [loading, setLoading] = useState(false)
+  const [hasError, setHasError] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
 
@@ -64,6 +64,8 @@ export const BorrowModal = ({
 
   const resetState = () => {
     setAmount(undefined)
+    setAmountError(undefined)
+    setHasError(undefined)
   }
 
   useEffect(() => {

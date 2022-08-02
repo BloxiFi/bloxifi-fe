@@ -82,5 +82,15 @@ export const BorrowAndLending = {
     ) {
       return await contract.getUserAccountData(currentAccount)
     },
+    async setUserUseReserveAsCollateral(
+      contract: LendingPoolContract,
+      address: string,
+      useAsCollateral: boolean,
+    ) {
+      return await contract.setUserUseReserveAsCollateral(
+        address,
+        useAsCollateral,
+      )
+    },
   },
 }

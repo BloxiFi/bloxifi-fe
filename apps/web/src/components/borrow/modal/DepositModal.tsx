@@ -52,8 +52,8 @@ export const DepositModal = ({
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
 
-  const [hasError, setHasError] = useState()
-  const [loading, setLoading] = useState(false)
+  const [hasError, setHasError] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
   const [approved, setApproved] = useState<boolean>(false)
@@ -77,6 +77,8 @@ export const DepositModal = ({
 
   const resetState = () => {
     setAmount(undefined)
+    setAmountError(undefined)
+    setHasError(undefined)
   }
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {

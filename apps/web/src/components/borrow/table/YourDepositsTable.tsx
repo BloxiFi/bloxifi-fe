@@ -8,21 +8,54 @@ import {
   Text,
   Toggle,
 } from '@bloxifi/ui'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
+import { BorrowAndLending } from '@bloxifi/core'
 
 import { FormattedNumber } from '../FormattedNumber'
 
 import { DepositTitleBox } from './DepositTitleBox'
 
 import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
+import { Web3Container } from '@/containers/Web3Container'
 
 export const YourDepositsTable: FunctionComponent = () => {
   const {
     state: { userReserves },
   } = WalletContainer.useContainer()
+  const {
+    state: { provider },
+  } = Web3Container.useContainer()
+  const signer = provider.getSigner()
+  const [selectedCollateralAsset, setSelectedCollateralAsset] =
+    useState<string>()
   const formatedData = userReserves.filter(
     (reserve: UserReserveData) => reserve.currentATokenBalance !== 0,
   )
+
+  const lendingPoolContract =
+    BorrowAndLending.lendingPool.getLendingPoolContract(signer)
+
+  const toggleCollateral = async (
+    underlyingAsset: string,
+    usageAsCollateralEnabledOnUser: boolean,
+  ) => {
+    setSelectedCollateralAsset(underlyingAsset)
+    try {
+      const response =
+        await BorrowAndLending.lendingPool.setUserUseReserveAsCollateral(
+          lendingPoolContract,
+          underlyingAsset,
+          !usageAsCollateralEnabledOnUser,
+        )
+      await response.wait()
+      //TODO@refetch data - collateral, health factor
+    } catch (error) {
+      //TODO@handle error - user cannot click on toggle button if he can't change collateral(if his health factor goes under 1)
+    } finally {
+      setSelectedCollateralAsset(null)
+    }
+  }
+
   const columns = {
     assets: {
       header: 'Assets',
@@ -55,9 +88,24 @@ export const YourDepositsTable: FunctionComponent = () => {
 
     collateral: {
       header: 'Collateral',
-      Cell: ({ data: { usageAsCollateralEnabledOnUser } }) => (
-        <Toggle checked={usageAsCollateralEnabledOnUser} />
-      ),
+      Cell: ({ data: { usageAsCollateralEnabledOnUser, underlyingAsset } }) => {
+        if (selectedCollateralAsset === underlyingAsset) {
+          return <>loading...</>
+        } else {
+          return (
+            <Toggle
+              checked={usageAsCollateralEnabledOnUser}
+              onClick={() => {
+                setSelectedCollateralAsset(underlyingAsset)
+                void toggleCollateral(
+                  underlyingAsset,
+                  usageAsCollateralEnabledOnUser,
+                )
+              }}
+            />
+          )
+        }
+      },
       alignText: 'center',
     },
     action: {

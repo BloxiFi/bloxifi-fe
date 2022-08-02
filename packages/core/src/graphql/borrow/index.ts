@@ -19,6 +19,7 @@ export interface UserReserveDataQuery {
     decimals: string
     liquidityRate: number
     variableBorrowRate: number
+    underlyingAsset: string
   }
 }
 
@@ -77,6 +78,7 @@ export const GET_RESERVE_DATA = gql`
         decimals
         liquidityRate
         variableBorrowRate
+        underlyingAsset
       }
     }
   }
