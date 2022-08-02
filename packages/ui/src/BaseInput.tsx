@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent, HTMLProps } from 'react'
+import React, { ForwardedRef, forwardRef, HTMLProps } from 'react'
 import styled from 'styled-components'
 
 import { Fonts } from './styles/fonts'
@@ -7,7 +7,7 @@ type Status = 'error' | 'success'
 /**
  * BaseInput props.
  */
-export interface Props extends HTMLProps<HTMLInputElement> {
+export interface BaseInputProps extends HTMLProps<HTMLInputElement> {
   /**
    * Status error or success will paint input border and info text to red or green respectively
    */
@@ -18,7 +18,7 @@ export interface Props extends HTMLProps<HTMLInputElement> {
   info?: string
 }
 
-export const BaseInput: FunctionComponent<Props> = forwardRef(
+export const BaseInput = forwardRef(
   (
     {
       type = 'text',
@@ -27,8 +27,8 @@ export const BaseInput: FunctionComponent<Props> = forwardRef(
       info = '',
       status,
       ...props
-    }: Props,
-    ref,
+    }: BaseInputProps,
+    ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
       <Wrapper>

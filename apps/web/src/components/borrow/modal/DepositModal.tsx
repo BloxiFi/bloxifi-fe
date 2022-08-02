@@ -36,27 +36,10 @@ interface Props {
   reserveData?: ReservesData
 }
 
-const initailReserveData = {
-  balance: undefined,
-  icon: '',
-  fullName: '',
-  supplyAPY: undefined,
-  variableBorrowAPY: undefined,
-  id: '',
-  name: null,
-  symbol: null,
-  decimals: undefined,
-  totalATokenSupply: undefined,
-  totalCurrentVariableDebt: undefined,
-  liquidityRate: undefined,
-  variableBorrowRate: undefined,
-  underlyingAsset: '',
-}
-
 export const DepositModal = ({
   isOpen,
   onClose,
-  reserveData = initailReserveData,
+  reserveData = {} as ReservesData,
 }: Props) => {
   const { t } = useTranslation()
 
@@ -191,11 +174,12 @@ export const DepositModal = ({
               <StackLayout gap={5}>
                 <StackLayout gap={3}>
                   <TableInput
-                    id="amount"
                     name="amount"
                     type="number"
+                    max={reserveData.balance}
+                    min={0}
                     reserveData={reserveData}
-                    amount={values.amount}
+                    value={values.amount}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     setFieldValue={setFieldValue}

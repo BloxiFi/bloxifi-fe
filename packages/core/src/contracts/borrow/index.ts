@@ -33,6 +33,12 @@ interface LendingPoolContract extends ethers.Contract {
     account: Web3ReactContextInterface['account'],
     referralCode: number,
   ) => Promise<ethers.ContractTransaction>
+  /**
+   * Function that we use to fetch healthFactor, and ...(more TODO)
+   **/
+  getUserAccountData: (
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<{ healthFactor: BigNumber }>
 }
 
 export const BorrowAndLending = {
