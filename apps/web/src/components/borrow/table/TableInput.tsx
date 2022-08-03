@@ -20,7 +20,7 @@ interface Props extends BaseInputProps {
 
 export const TableInput = forwardRef(
   (
-    { reserveData, setFieldValue, ...inputProps }: Props,
+    { reserveData, setFieldValue, disabled, ...inputProps }: Props,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const { t } = useTranslation()
@@ -31,7 +31,7 @@ export const TableInput = forwardRef(
         Cell: () => (
           <ColumnLayout gap={0.5}>
             <StackLayout>
-              <BaseInput {...inputProps} ref={ref} />
+              <BaseInput disabled={disabled} {...inputProps} ref={ref} />
             </StackLayout>
             <Button
               appearance="secondary"
@@ -41,6 +41,7 @@ export const TableInput = forwardRef(
               onClick={() =>
                 setFieldValue('amount', Number(reserveData.balance))
               }
+              disabled={disabled}
             >
               MAX
             </Button>
