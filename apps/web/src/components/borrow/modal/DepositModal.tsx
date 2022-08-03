@@ -156,15 +156,17 @@ export const DepositModal = ({
     errors,
     touched,
     handleChange,
-    handleSubmit,
+    submitForm,
     handleBlur,
     setFieldValue,
     resetForm,
   } = formik
 
+  const resetState = useCallback(() => resetForm(), [resetForm])
+
   useEffect(() => {
-    resetForm()
-  }, [isOpen])
+    resetState()
+  }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || depositCompleted
   const isDepositDisabled =
@@ -176,7 +178,7 @@ export const DepositModal = ({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <form onSubmit={handleSubmit}>
+      <form>
         <StackLayout gap={5}>
           <StackLayout gap={3}>
             <TableInput
@@ -235,6 +237,7 @@ export const DepositModal = ({
                   variant="large"
                   type="submit"
                   disabled={isDepositDisabled}
+                  onClick={submitForm}
                 >
                   {t('global.buttons.deposit')} {reserveData.symbol}
                 </Button>
