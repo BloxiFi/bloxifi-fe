@@ -8,7 +8,7 @@ import {
 import { TokenList } from 'packages/core/src'
 import React, { FunctionComponent } from 'react'
 
-type Props = {
+interface Props {
   /**
    * Represents the asset icon
    * */

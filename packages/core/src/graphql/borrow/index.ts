@@ -5,25 +5,28 @@ import { TokenList } from '../../contracts'
 /**
  * User Reserve Data - Data related to assets deposited by current user
  */
-export type UserReserveData = {
+
+export interface UserReserveDataQuery {
   id: string
   currentATokenBalance: string
   currentVariableDebt: string
   currentTotalDebt: string
+  usageAsCollateralEnabledOnUser: boolean
   reserve: {
     symbol: string
     name: TokenList
     decimals: string
+    liquidityRate: number
   }
 }
 
 /**
  * Reserves Data - Data related to all existing assets
  */
-export type ReservesData = {
+export interface ReservesDataQuery {
   id: string
   name: TokenList
-  symbol: string
+  symbol: TokenList
   decimals: number
   totalATokenSupply: number
   totalCurrentVariableDebt: number
@@ -33,8 +36,8 @@ export type ReservesData = {
 }
 
 export interface ReservesGraph {
-  reserves: ReservesData[]
-  userReserves: UserReserveData[]
+  reserves: ReservesDataQuery[]
+  userReserves: UserReserveDataQuery[]
 }
 
 /**
@@ -65,10 +68,12 @@ export const GET_RESERVE_DATA = gql`
       currentATokenBalance
       currentVariableDebt
       currentTotalDebt
+      usageAsCollateralEnabledOnUser
       reserve {
         symbol
         name
         decimals
+        liquidityRate
       }
     }
   }

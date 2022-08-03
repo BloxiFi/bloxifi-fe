@@ -1,4 +1,4 @@
-import React, { forwardRef, FunctionComponent, HTMLProps } from 'react'
+import React, { ForwardedRef, forwardRef, HTMLProps } from 'react'
 import styled from 'styled-components'
 
 import { Fonts } from './styles/fonts'
@@ -7,7 +7,7 @@ type Status = 'error' | 'success'
 /**
  * BaseInput props.
  */
-export interface Props extends HTMLProps<HTMLInputElement> {
+export interface BaseInputProps extends HTMLProps<HTMLInputElement> {
   /**
    * Status error or success will paint input border and info text to red or green respectively
    */
@@ -18,7 +18,7 @@ export interface Props extends HTMLProps<HTMLInputElement> {
   info?: string
 }
 
-export const BaseInput: FunctionComponent<Props> = forwardRef(
+export const BaseInput = forwardRef(
   (
     {
       type = 'text',
@@ -27,21 +27,23 @@ export const BaseInput: FunctionComponent<Props> = forwardRef(
       info = '',
       status,
       ...props
-    }: Props,
-    ref,
+    }: BaseInputProps,
+    ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
-      <>
+      <Wrapper>
         <InnerWrapper className={className} status={status}>
           <input ref={ref} type={type} {...props} disabled={disabled} />
         </InnerWrapper>
 
-        {info && <Info status={status}>{info}</Info>}
-      </>
+        <Info status={status}>{info}</Info>
+      </Wrapper>
     )
   },
 )
-
+const Wrapper = styled.span`
+  position: relative;
+`
 const InnerWrapper = styled.div<{ status?: Status }>`
   input {
     width: 100%;
@@ -76,6 +78,12 @@ const InnerWrapper = styled.div<{ status?: Status }>`
 
     &[type='number'] {
       appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
     }
 
     &[disabled] {
@@ -87,6 +95,8 @@ const InnerWrapper = styled.div<{ status?: Status }>`
 
 const Info = styled.span<{ status?: Status }>`
   max-width: 100%;
+  position: absolute;
+  bottom: -1rem;
   padding: 0 1.125rem;
   font-weight: 400;
   font-size: 0.75rem;

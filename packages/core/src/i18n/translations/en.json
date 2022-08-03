@@ -1,6 +1,26 @@
 {
   "global": {
-    "button": "Button"
+    "button": "Button",
+    "buttons": {
+      "approve": "Approve to conitinue",
+      "deposit": "Deposit",
+      "borrow": "Borrow"
+    },
+    "notifications": {
+      "transaction_failed": "Transaction failed",
+      "deposit_successful": "Deposit successful"
+    },
+    "table": {
+      "assets": "Assets",
+      "walletBalance": "Wallet balance",
+      "apy": "APY"
+    },
+    "errors": {
+      "required": "Required",
+      "positiveValue": "Must be greater than 0",
+      "numbersOnly": "Must be a number",
+      "exceededBalance": "Not enough balance"
+    }
   },
   "walletConnection": {
     "notConnectedTitle": "Please, connect your wallet"
@@ -11,7 +31,12 @@
   "deposit": {
     "pageTitle": "Deposit page",
     "assetsToDeposit": "Assets to deposit",
-    "depositAsset": "Deposit asset"
+    "assetsToBorrow": "Assets to borrow",
+    "depositAsset": "Deposit asset",
+    "amount": "Amount",
+    "transactionOverview": "Transaction overview",
+    "supplyAPY": "Supply APY",
+    "healthFactor": "Health factor"
   },
   "staking": {
     "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."

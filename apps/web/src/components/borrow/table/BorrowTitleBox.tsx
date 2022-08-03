@@ -7,7 +7,7 @@ import {
 } from '@bloxifi/ui'
 import React, { FunctionComponent } from 'react'
 
-type Props = {
+interface Props {
   isEmpty: boolean
 }
 

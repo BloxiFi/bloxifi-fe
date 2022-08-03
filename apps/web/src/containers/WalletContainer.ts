@@ -1,11 +1,12 @@
 import { useQuery } from '@apollo/client'
 import {
   GET_RESERVE_DATA,
-  ReservesData,
+  ReservesDataQuery,
   ReservesGraph,
   TokenContract,
+  TokenList,
   Tokens,
-  UserReserveData,
+  UserReserveDataQuery,
   UserReserveVariables,
 } from '@bloxifi/core'
 import Assets from '@bloxifi/core/src/utilities/assets.json'
@@ -23,16 +24,34 @@ import { createContainer } from 'unstated-next'
 
 import { Web3Container } from './Web3Container'
 
-export type WalletBalance = ReservesData & {
-  balance: string
-  icon: string
+type DefaultReserveData = {
+  id: string
+  name: TokenList
   fullName: string
+  symbol: TokenList
+  icon: string
+  decimals: number
+  balance: string
   supplyAPY: number
+  liquidityRate: number
+}
+export type ReservesData = DefaultReserveData & {
   variableBorrowAPY: number
+  totalATokenSupply: number
+  totalCurrentVariableDebt: number
+  variableBorrowRate: number
+  underlyingAsset: string
+}
+
+export type UserReserveData = DefaultReserveData & {
+  currentATokenBalance: number
+  currentVariableDebt: string
+  currentTotalDebt: string
+  usageAsCollateralEnabledOnUser: boolean
 }
 
 interface State {
-  reserves: WalletBalance[]
+  reserves: ReservesData[]
   userReserves: UserReserveData[]
   error?: Error
   loading: boolean
@@ -57,13 +76,13 @@ const reducer = (state: State, action: Action<ActionType>) => {
     case 'setReserveData': {
       return {
         ...state,
-        reserves: [...state.reserves, action.value],
+        reserves: action.value,
       }
     }
     case 'setUserReservesData': {
       return {
         ...state,
-        userReserves: [...state.userReserves, action.value],
+        userReserves: action.value,
       }
     }
     default:
@@ -92,80 +111,100 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     state: { currentAccount, signer },
   } = Web3Container.useContainer()
   const [error, setError] = useState<Error | undefined>()
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
 
-  const { data, loading: reserveLoading } = useQuery<
-    ReservesGraph,
-    UserReserveVariables
-  >(GET_RESERVE_DATA, {
-    variables: {
-      user: currentAccount?.toLowerCase(),
+  const { data } = useQuery<ReservesGraph, UserReserveVariables>(
+    GET_RESERVE_DATA,
+    {
+      variables: {
+        user: currentAccount?.toLowerCase(),
+      },
     },
-  })
+  )
 
-  const setReserveData = useCallback(
-    async (reserve: ReservesData) => {
-      setLoading(true)
+  const getReserveBalance = useCallback(
+    async (name: TokenList) => {
       try {
         const tokenContract: TokenContract = Tokens.getTokenContract(
           signer,
-          reserve.name,
+          name,
         )
 
         const balance = await Tokens.getTokenBalance(
           tokenContract,
           currentAccount,
         )
+        setError(undefined)
+        return balance
+      } catch (error) {
+        setError(error)
+      }
+    },
+    [currentAccount, signer],
+  )
 
+  const setReserveData = useCallback(
+    async (reserves: ReservesDataQuery[]) => {
+      try {
+        const reserveData = await Promise.all(
+          reserves.map(async (reserve: ReservesDataQuery) => {
+            const balance = await getReserveBalance(reserve.name)
+            return {
+              ...reserve,
+              balance: Number(ethers.utils.formatUnits(balance)),
+              icon: Assets[reserve.symbol].icon,
+              fullName: Assets[reserve.symbol].fullName,
+              supplyAPY: calculateAPY(reserve.liquidityRate),
+              variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+            }
+          }),
+        )
         dispatch({
           type: 'setReserveData',
-          value: {
-            ...reserve,
-            balance: Number(ethers.utils.formatUnits(balance)),
-            icon: Assets[reserve.symbol].icon,
-            fullName: Assets[reserve.symbol].fullName,
-            supplyAPY: calculateAPY(reserve.liquidityRate),
-            variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-          },
+          value: reserveData,
         })
-        setError(undefined)
       } catch (error) {
         setError(error)
       } finally {
         setLoading(false)
       }
     },
-    [currentAccount, signer],
+    [getReserveBalance],
   )
 
   //We might have to turn this into useCallback (if we notice some rerendering)
-  const setUserReserveData = (data: UserReserveData) => {
+  const mapUserReserveData = (data: UserReserveDataQuery) => {
     const { reserve, currentATokenBalance, ...rest } = data
-    dispatch({
-      type: 'setUserReservesData',
-      value: {
-        ...rest,
-        ...reserve,
-        currentATokenBalance: Number(
-          ethers.utils.formatUnits(currentATokenBalance),
-        ),
-        icon: Assets[reserve.symbol].icon,
-        fullName: Assets[reserve.symbol].fullName,
-      },
-    })
+    return {
+      ...rest,
+      ...reserve,
+      currentATokenBalance: Number(
+        ethers.utils.formatUnits(currentATokenBalance),
+      ),
+      icon: Assets[reserve.symbol].icon,
+      fullName: Assets[reserve.symbol].fullName,
+      supplyAPY: calculateAPY(reserve.liquidityRate),
+    }
   }
 
   useEffect(() => {
     if (data) {
-      data.reserves.map((reserve: ReservesData) => setReserveData(reserve))
-      data.userReserves.map((reserve: UserReserveData) =>
-        setUserReserveData(reserve),
-      )
+      void setReserveData(data.reserves)
     }
   }, [data, setReserveData])
 
+  useEffect(() => {
+    if (data) {
+      const userReserveData = data.userReserves.map(mapUserReserveData)
+      dispatch({
+        type: 'setUserReservesData',
+        value: userReserveData,
+      })
+    }
+  }, [data])
+
   return {
-    state: { ...state, error, loading: reserveLoading || loading },
+    state: { ...state, error, loading },
     dispatch,
   }
 }

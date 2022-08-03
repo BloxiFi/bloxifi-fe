@@ -36,6 +36,8 @@
     "unstated-next": "^1.1.0",
     "normalize.css": "^8.0.1",
     "@metamask/detect-provider": "^1.2.0",
-    "@web3-react/injected-connector": "^6.0.7"
+    "@web3-react/injected-connector": "^6.0.7",
+    "formik": "^2.2.9",
+    "yup": "^0.32.11"
   }
 }
