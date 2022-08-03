@@ -56,22 +56,6 @@ export type UserAccountData = {
   healthFactor: number
 }
 
-export const initailReserveData = {
-  balance: undefined,
-  icon: '',
-  fullName: '',
-  supplyAPY: undefined,
-  variableBorrowAPY: undefined,
-  id: '',
-  name: null,
-  symbol: null,
-  decimals: undefined,
-  totalATokenSupply: undefined,
-  totalCurrentVariableDebt: undefined,
-  liquidityRate: undefined,
-  underlyingAsset: '',
-}
-
 interface State {
   reserves: ReservesData[]
   userReserves: UserReserveData[]
@@ -167,20 +151,27 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }
   }
 
-  const getReserveBalance = async (name: TokenList) => {
-    try {
-      const tokenContract: TokenContract = Tokens.getTokenContract(signer, name)
+  const getReserveBalance = useCallback(
+    async (name: TokenList) => {
+      try {
+        const tokenContract: TokenContract = Tokens.getTokenContract(
+          signer,
+          name,
+        )
 
-      const balance = await Tokens.getTokenBalance(
-        tokenContract,
-        currentAccount,
-      )
-      setError(undefined)
-      return balance
-    } catch (error) {
-      setError(error)
-    }
-  }
+        const balance = await Tokens.getTokenBalance(
+          tokenContract,
+          currentAccount,
+        )
+        setError(undefined)
+        return balance
+      } catch (error) {
+        setError(error)
+      }
+    },
+    [currentAccount, signer],
+  )
+
   const setReserveData = useCallback(
     async (reserves: ReservesDataQuery[]) => {
       try {
@@ -203,13 +194,15 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         })
       } catch (error) {
         setError(error)
+      } finally {
+        setLoading(false)
       }
     },
-    [currentAccount, signer],
+    [getReserveBalance],
   )
 
   //We might have to turn this into useCallback (if we notice some rerendering)
-  const setUserReserveData = (data: UserReserveDataQuery) => {
+  const mapUserReserveData = (data: UserReserveDataQuery) => {
     const { reserve, currentATokenBalance, currentTotalDebt, ...rest } = data
     return {
       ...rest,
@@ -226,14 +219,16 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   useEffect(() => {
     if (data) {
       void setReserveData(data.reserves)
-      const userReserveData = data.userReserves.map(
-        (reserve: UserReserveDataQuery) => setUserReserveData(reserve),
-      )
+    }
+  }, [data, setReserveData])
+
+  useEffect(() => {
+    if (data) {
+      const userReserveData = data.userReserves.map(mapUserReserveData)
       dispatch({
         type: 'setUserReservesData',
         value: userReserveData,
       })
-      setLoading(false)
     }
   }, [data, setReserveData])
 

@@ -2,72 +2,72 @@
 
 exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
 <div
-  className="sc-jqUVSM gFyWwL"
+  className="sc-kDDrLX iFyCNQ"
 >
   <div
-    className="sc-iAvgwm jnXqLu rts-toggle__container undefined"
+    className="sc-efBctP lxvIf rts-toggle__container undefined"
     data-element="toggle"
     height={12.5}
     width={25}
   >
     <input
-      className="sc-cTQhss fqsKeu rts-toggle__toggle"
+      className="sc-jOrMOR oJFuf rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP cizkut rts-toggle__background"
+      className="sc-cTQhss cuJRel rts-toggle__background"
       data-element="toggle-background"
       height={12.5}
     />
   </div>
   <div
-    className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+    className="sc-efBctP icFweK rts-toggle__container undefined"
     data-element="toggle"
     height={25}
     width={50}
   >
     <input
-      className="sc-cTQhss hPRWpT rts-toggle__toggle"
+      className="sc-jOrMOR eGAMdC rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP gnXphq rts-toggle__background"
+      className="sc-cTQhss eHicdO rts-toggle__background"
       data-element="toggle-background"
       height={25}
     />
   </div>
   <div
-    className="sc-iAvgwm bhCHDx rts-toggle__container undefined"
+    className="sc-efBctP lhRDTA rts-toggle__container undefined"
     data-element="toggle"
     height={37.5}
     width={75}
   >
     <input
-      className="sc-cTQhss hNRxeb rts-toggle__toggle"
+      className="sc-jOrMOR ggDUnC rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP iJPOip rts-toggle__background"
+      className="sc-cTQhss orvNR rts-toggle__background"
       data-element="toggle-background"
       height={37.5}
     />
   </div>
   <div
-    className="sc-iAvgwm emqSUS rts-toggle__container undefined"
+    className="sc-efBctP gBOOaH rts-toggle__container undefined"
     data-element="toggle"
     height={50}
     width={100}
   >
     <input
-      className="sc-cTQhss ceXTXo rts-toggle__toggle"
+      className="sc-jOrMOR xnCIl rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP jfnEnj rts-toggle__background"
+      className="sc-cTQhss rwaID rts-toggle__background"
       data-element="toggle-background"
       height={50}
     />
@@ -77,22 +77,22 @@ exports[`Storyshots Components/Toggle Custom size togglers 1`] = `
 
 exports[`Storyshots Components/Toggle Toggle checked 1`] = `
 <div
-  className="sc-jqUVSM gFyWwL"
+  className="sc-kDDrLX iFyCNQ"
 >
   <div
-    className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+    className="sc-efBctP icFweK rts-toggle__container undefined"
     data-element="toggle"
     height={25}
     width={50}
   >
     <input
       checked={true}
-      className="sc-cTQhss hPRWpT rts-toggle__toggle"
+      className="sc-jOrMOR eGAMdC rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP gnXphq rts-toggle__background"
+      className="sc-cTQhss eHicdO rts-toggle__background"
       data-element="toggle-background"
       height={25}
     />
@@ -102,21 +102,21 @@ exports[`Storyshots Components/Toggle Toggle checked 1`] = `
 
 exports[`Storyshots Components/Toggle Toggle unchecked 1`] = `
 <div
-  className="sc-jqUVSM gFyWwL"
+  className="sc-kDDrLX iFyCNQ"
 >
   <div
-    className="sc-iAvgwm kWSyMz rts-toggle__container undefined"
+    className="sc-efBctP icFweK rts-toggle__container undefined"
     data-element="toggle"
     height={25}
     width={50}
   >
     <input
-      className="sc-cTQhss hPRWpT rts-toggle__toggle"
+      className="sc-jOrMOR eGAMdC rts-toggle__toggle"
       data-element="toggle-input"
       type="checkbox"
     />
     <span
-      className="sc-efBctP gnXphq rts-toggle__background"
+      className="sc-cTQhss eHicdO rts-toggle__background"
       data-element="toggle-background"
       height={25}
     />

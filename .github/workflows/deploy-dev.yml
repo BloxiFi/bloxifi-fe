@@ -45,6 +45,14 @@ jobs:
             develop-fe-
 
       #
+      # Generate env from secrets
+      #
+      - name: Generate env
+        working-directory: ./apps/web
+        run: |
+          echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" > .env
+
+      #
       # Install dependencies and build the app
       #
       - name: Build React App

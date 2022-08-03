@@ -1,5 +1,6 @@
 import {
   BaseInput,
+  BaseInputProps,
   Button,
   ColumnData,
   ColumnLayout,
@@ -7,74 +8,68 @@ import {
   Table,
   Text,
 } from '@bloxifi/ui'
-import React from 'react'
+import React, { ForwardedRef, forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ReservesData } from '@/containers/WalletContainer'
 
-interface Props {
-  handleInputChange: (value: string) => void
-  amount: string
+interface Props extends BaseInputProps {
+  setFieldValue: (field: 'amount', value: number) => void
   reserveData: ReservesData
-  status?: 'error'
-  title: string
 }
 
-export const TableInput = ({
-  handleInputChange,
-  amount,
-  reserveData,
-  status,
-  title,
-}: Props) => {
-  const { t } = useTranslation()
+export const TableInput = forwardRef(
+  (
+    { reserveData, setFieldValue, disabled, ...inputProps }: Props,
+    ref: ForwardedRef<HTMLInputElement>,
+  ) => {
+    const { t } = useTranslation()
 
-  const tableColumns = {
-    action: {
-      header: t('deposit.amount'),
-      Cell: () => (
-        <ColumnLayout gap={0.5}>
-          <StackLayout>
-            <BaseInput
-              status={status}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleInputChange(e.target.value)
+    const tableColumns = {
+      action: {
+        header: t('deposit.amount'),
+        Cell: () => (
+          <ColumnLayout gap={0.5}>
+            <StackLayout>
+              <BaseInput disabled={disabled} {...inputProps} ref={ref} />
+            </StackLayout>
+            <Button
+              appearance="secondary"
+              variant="thin"
+              size="small"
+              className="u-fit-content-width"
+              onClick={() =>
+                setFieldValue('amount', Number(reserveData.balance))
               }
-              value={amount}
-            />
-          </StackLayout>
-          <Button
-            appearance="secondary"
-            variant="thin"
-            size="small"
-            className="u-fit-content-width"
-            onClick={() => handleInputChange(reserveData.balance)}
-          >
-            MAX
-          </Button>
-        </ColumnLayout>
-      ),
-      alignText: 'left',
-    },
-    asset: {
-      header: '',
-      Cell: ({ data: { symbol } }) => <span>{symbol}</span>,
-      alignText: 'right',
-    },
-  } as Record<string, ColumnData<ReservesData>>
+              disabled={disabled}
+            >
+              MAX
+            </Button>
+          </ColumnLayout>
+        ),
+        alignText: 'left',
+      },
+      asset: {
+        header: '',
+        Cell: ({ data: { symbol } }) => <span>{symbol}</span>,
+        alignText: 'right',
+      },
+    } as Record<string, ColumnData<ReservesData>>
 
-  const Title = () => (
-    <Text color="oxfordBlue" type="heading 2" as="span">
-      {title}
-    </Text>
-  )
+    const Title = () => (
+      <Text color="oxfordBlue" type="heading 2" as="span">
+        {t('deposit.depositAsset')}
+      </Text>
+    )
 
-  return (
-    <Table
-      compact
-      columns={tableColumns}
-      data={[reserveData]}
-      titleComponent={<Title />}
-    />
-  )
-}
+    return (
+      <Table
+        compact
+        columns={tableColumns}
+        data={[reserveData]}
+        titleComponent={<Title />}
+        columnSpacing
+      />
+    )
+  },
+)
