@@ -1,5 +1,5 @@
 import React, { useState, FunctionComponent } from 'react'
-import { Button, ColumnData, Table } from '@bloxifi/ui'
+import { Button, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 
 import { AssetName } from '../AssetName'
@@ -37,7 +37,11 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     walletBalance: {
       header: t('global.table.walletBalance'),
       Cell: ({ data: { balance } }: any) => {
-        return <FormattedNumber value={balance} />
+        return (
+          <TruncatedText>
+            <FormattedNumber value={balance} />
+          </TruncatedText>
+        )
       },
       alignText: 'center',
     },
@@ -47,6 +51,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
         <FormattedNumber value={variableBorrowAPY} percent />
       ),
       alignText: 'center',
+      width: 100,
     },
     action: {
       header: '',
@@ -60,7 +65,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           {t('global.buttons.borrow')}
         </Button>
       ),
-      width: 100,
+      width: 160,
     },
   } as Record<string, ColumnData<ReservesData>>
 

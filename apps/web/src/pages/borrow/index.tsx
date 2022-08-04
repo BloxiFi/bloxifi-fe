@@ -1,6 +1,5 @@
-import { StackLayout } from '@bloxifi/ui'
 import React from 'react'
-import { GridLayout } from '@bloxifi/ui/src/Layouts/GridLayout'
+import { GridLayout, PageLayout, StackLayout } from '@bloxifi/ui'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { WalletContainer } from '@/containers/WalletContainer'
@@ -26,23 +25,27 @@ const DepositPage = () => {
     return <>Something went wrong</> //TODO DISPLAYING ERROR MESSAGES
   }
 
-  return isConnected ? (
-    <GridLayout>
-      <GridLayout.Column span={6}>
-        <StackLayout gap={1.5}>
-          <YourDepositsTable />
-          <AvaliableToDepositTable />
-        </StackLayout>
-      </GridLayout.Column>
-      <GridLayout.Column span={6}>
-        <StackLayout gap={1.5}>
-          <YourBorrowsTable />
-          <AvailableToBorrowTable />
-        </StackLayout>
-      </GridLayout.Column>
-    </GridLayout>
-  ) : (
-    <NotConnected />
+  return (
+    <PageLayout.Section>
+      {isConnected ? (
+        <GridLayout>
+          <GridLayout.Column span={6}>
+            <StackLayout gap={1.5}>
+              <YourDepositsTable />
+              <AvaliableToDepositTable />
+            </StackLayout>
+          </GridLayout.Column>
+          <GridLayout.Column span={6}>
+            <StackLayout gap={1.5}>
+              <YourBorrowsTable />
+              <AvailableToBorrowTable />
+            </StackLayout>
+          </GridLayout.Column>
+        </GridLayout>
+      ) : (
+        <NotConnected />
+      )}
+    </PageLayout.Section>
   )
 }
 export default DepositPage

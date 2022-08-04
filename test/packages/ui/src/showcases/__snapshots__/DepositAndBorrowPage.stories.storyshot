@@ -5,7 +5,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
   className="sc-fLlhyt YhHCP"
 >
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK fhPXfp"
+    className="sc-evZas sc-bBrHrO ldkTlK fxLELT"
     gap={4}
   >
     <section
@@ -1031,7 +1031,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
   className="sc-fLlhyt YhHCP"
 >
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK fhPXfp"
+    className="sc-evZas sc-bBrHrO ldkTlK fxLELT"
     gap={4}
   >
     <section
