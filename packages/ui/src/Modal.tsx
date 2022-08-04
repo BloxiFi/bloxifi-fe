@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { Button } from './Button'
 import { CenterLayout } from './Layouts'
+import { zIndex } from './styles/constants'
 
 export interface ModalProps {
   /**
@@ -58,11 +59,12 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100;
+  z-index: ${zIndex.layer500};
   display: flex;
   align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.modalBackgroud};
+  margin: 0;
 `
 
 const Content = styled(CenterLayout)`

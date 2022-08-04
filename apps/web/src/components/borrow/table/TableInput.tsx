@@ -53,6 +53,7 @@ export const TableInput = forwardRef(
         header: '',
         Cell: ({ data: { symbol } }) => <span>{symbol}</span>,
         alignText: 'right',
+        width: 120,
       },
     } as Record<string, ColumnData<ReservesData>>
 

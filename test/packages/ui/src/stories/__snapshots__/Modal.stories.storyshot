@@ -2,7 +2,7 @@
 
 exports[`Storyshots Components/Modal Borrow Modal 1`] = `
 <div
-  className="sc-ivTmOn fTyfVC"
+  className="sc-ivTmOn tJyHk"
 >
   <div
     className="o-center-layout sc-crXcEl sc-cxabCf TBZtj gAjELd"
@@ -227,7 +227,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
 
 exports[`Storyshots Components/Modal Deposit Modal 1`] = `
 <div
-  className="sc-ivTmOn fTyfVC"
+  className="sc-ivTmOn tJyHk"
 >
   <div
     className="o-center-layout sc-crXcEl sc-cxabCf TBZtj gAjELd"
@@ -507,7 +507,7 @@ exports[`Storyshots Components/Modal Modal Example 1`] = `
 
 exports[`Storyshots Components/Modal Repay Modal 1`] = `
 <div
-  className="sc-ivTmOn fTyfVC"
+  className="sc-ivTmOn tJyHk"
 >
   <div
     className="o-center-layout sc-crXcEl sc-cxabCf TBZtj gAjELd"
@@ -771,7 +771,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
 
 exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
 <div
-  className="sc-ivTmOn fTyfVC"
+  className="sc-ivTmOn tJyHk"
 >
   <div
     className="o-center-layout sc-crXcEl sc-cxabCf TBZtj gAjELd"
