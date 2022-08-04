@@ -69,12 +69,15 @@ interface DepositContainerState {
   dispatch: Dispatch<Action<ActionType>>
 }
 
-type ActionType = 'setReserveData' | 'setUserReservesData'
+type ActionType =
+  | 'setReserveData'
+  | 'setUserReservesData'
+  | 'setUserAccountData'
 
 const defaultState = {
   reserves: [],
   userReserves: [],
-  userAccountData: null,
+  userAccountData: {} as UserAccountData,
   error: undefined,
   loading: false,
 }
@@ -91,6 +94,12 @@ const reducer = (state: State, action: Action<ActionType>) => {
       return {
         ...state,
         userReserves: action.value,
+      }
+    }
+    case 'setUserAccountData': {
+      return {
+        ...state,
+        userAccountData: action.value,
       }
     }
     default:
@@ -120,7 +129,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   } = Web3Container.useContainer()
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
-  const [userAccountData, setUserAccountData] = useState<UserAccountData>()
+
   const formatNumber = (value: BigNumber) =>
     Number(ethers.utils.formatUnits(value))
 
@@ -141,10 +150,14 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         lendingPoolContract,
         currentAccount,
       )
-      setUserAccountData({
-        healthFactor: formatNumber(response.healthFactor),
-        availableBorrowsETH: formatNumber(response.availableBorrowsETH),
-        totalDebtETH: formatNumber(response.totalDebtETH),
+      console.log('REEES', response)
+      dispatch({
+        type: 'setUserAccountData',
+        value: {
+          healthFactor: formatNumber(response.healthFactor),
+          availableBorrowsETH: formatNumber(response.availableBorrowsETH),
+          totalDebtETH: formatNumber(response.totalDebtETH),
+        },
       })
     } catch (error) {
       setError(error)
@@ -239,7 +252,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   }, [currentAccount, signer])
 
   return {
-    state: { ...state, error, loading, userAccountData },
+    state: { ...state, error, loading },
     dispatch,
   }
 }

@@ -69,12 +69,6 @@ export const DepositModal = ({
   const isApproveDisabled =
     !isSupportedNetwork || loading || approved || !reserveData.balance
 
-  const resetState = () => {
-    setAmount(undefined)
-    setAmountError(undefined)
-    setHasError(undefined)
-  }
-
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     if (tokenContract) {
       try {
@@ -96,10 +90,6 @@ export const DepositModal = ({
       void checkAllowance()
     }
   }, [checkAllowance, isSupportedNetwork])
-
-  useEffect(() => {
-    resetState()
-  }, [isOpen])
 
   const approve = async () => {
     setLoading(true)
@@ -158,7 +148,10 @@ export const DepositModal = ({
     resetForm,
   } = formik
 
-  const resetState = useCallback(() => resetForm(), [resetForm])
+  const resetState = useCallback(() => {
+    setHasError(undefined)
+    resetForm()
+  }, [resetForm])
 
   useEffect(() => {
     resetState()

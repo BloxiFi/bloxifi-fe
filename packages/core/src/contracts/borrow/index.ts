@@ -8,6 +8,12 @@ import LENDING_POOL_ABI from './borrow.json'
 
 type LandingPoolAbi = typeof LENDING_POOL_ABI
 
+type FetchUserAccountData = {
+  totalDebtETH: BigNumber
+  availableBorrowsETH: BigNumber
+  healthFactor: BigNumber
+}
+
 export function getLandingPoolContractInfo(
   contractName: keyof LandingPoolAbi,
   type: keyof LandingPoolAbi[keyof LandingPoolAbi],
@@ -34,11 +40,29 @@ interface LendingPoolContract extends ethers.Contract {
     referralCode: number,
   ) => Promise<ethers.ContractTransaction>
   /**
-   * Function that we use to fetch healthFactor, and ...(more TODO)
+   * Transfers a specific amount of the asset to the user reserve.
+   * @param address The address of the underlying asset to borrow
+   * @param amount The amount to borrow
+   * @param interestRateMode Type of interest rate mode to use. Uint 2 representing variable rate and uint 1 representing stable rate
+   * @param referralCode Code used to register the integrator originating the operation, for potential rewards.
+   *   0 if the action is executed directly by the user, without any middle-man
+   * @param account The user account address
+   **/
+  borrow: (
+    address: string,
+    amount: BigNumber,
+    interestRateMode: 1 | 2,
+    referralCode: number,
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<ethers.ContractTransaction>
+  /**
+   * Function that we use to fetch healthFactor and data to calculate borrowed progress bar
+   * Returns information of a reserve exclusively related with a particular user address
+   * @param account The user account address
    **/
   getUserAccountData: (
     account: Web3ReactContextInterface['account'],
-  ) => Promise<{ healthFactor: BigNumber }>
+  ) => Promise<FetchUserAccountData>
 }
 
 export const BorrowAndLending = {
@@ -70,23 +94,23 @@ export const BorrowAndLending = {
       lendingPoolContract: LendingPoolContract,
       tokenAddress: string,
       amountToDeposit: number | string,
-      currentAccount: Web3ReactContextInterface['account'],
-      referralCode = 0, //0 for no referral code.
-      interestRateMode: 1 | 2 = 2, //the type of borrow debt. Stable: 1, Variable: 2
+      account: Web3ReactContextInterface['account'],
+      referralCode = 0,
+      interestRateMode: 1 | 2 = 2,
     ): Promise<ethers.ContractTransaction> {
       return await lendingPoolContract.borrow(
         tokenAddress,
         ethers.utils.parseEther(String(amountToDeposit)),
         interestRateMode,
         referralCode,
-        currentAccount,
+        account,
       )
     },
     async getUserAccountData(
       contract: LendingPoolContract,
-      currentAccount: Web3ReactContextInterface['account'],
+      account: Web3ReactContextInterface['account'],
     ) {
-      return await contract.getUserAccountData(currentAccount)
+      return await contract.getUserAccountData(account)
     },
     async setUserUseReserveAsCollateral(
       contract: LendingPoolContract,

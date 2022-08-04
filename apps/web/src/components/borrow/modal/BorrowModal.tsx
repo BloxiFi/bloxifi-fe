@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   BoxLayout,
   Button,
@@ -10,12 +10,14 @@ import {
 } from '@bloxifi/ui'
 import { BorrowAndLending } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { initailReserveData } from '@/containers/WalletContainer'
+import { ReservesData } from '@/containers/WalletContainer'
 
 interface Props {
   /**
@@ -29,7 +31,7 @@ interface Props {
   /**
    * Selected asset reserve data
    */
-  reserveData?: typeof initailReserveData
+  reserveData?: ReservesData
   /**
    * Health factor - the 'health' of the loans within the system
    */
@@ -39,12 +41,10 @@ interface Props {
 export const BorrowModal = ({
   isOpen,
   onClose,
-  reserveData = initailReserveData,
+  reserveData = {} as ReservesData,
   healthFactor,
 }: Props) => {
   const { t } = useTranslation()
-  const [amountError, setAmountError] = useState<boolean>(false)
-  const [amount, setAmount] = useState<string>()
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
@@ -59,20 +59,7 @@ export const BorrowModal = ({
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
-  const isBorrowDisabled =
-    !isSupportedNetwork || loading || amountError || !amount || hasError
-
-  const resetState = () => {
-    setAmount(undefined)
-    setAmountError(undefined)
-    setHasError(undefined)
-  }
-
-  useEffect(() => {
-    resetState()
-  }, [isOpen])
-
-  const borrow = async () => {
+  const borrow = async (amount: number) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.borrow(
@@ -91,26 +78,59 @@ export const BorrowModal = ({
     }
   }
 
-  const handleInputChange = (value: string) => {
-    const number = Number(value)
-    if (number > Number(reserveData.balance) || number === 0) {
-      setAmountError(true)
-    } else {
-      setAmountError(false)
-    }
-    setAmount(value)
-  }
+  const depositValidationSchemaa = Yup.object().shape({
+    amount: Yup.number()
+      .typeError(t('global.errors.numbersOnly'))
+      .positive(t('global.errors.positiveValue'))
+      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
+      .required(t('global.errors.required')),
+  })
+
+  const formik = useFormik({
+    initialValues: { amount: '' },
+    validationSchema: depositValidationSchemaa,
+    onSubmit: values => borrow(Number(values.amount)),
+  })
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    submitForm,
+    handleBlur,
+    setFieldValue,
+    resetForm,
+  } = formik
+
+  const resetState = useCallback(() => {
+    setHasError(undefined)
+    resetForm()
+  }, [resetForm])
+
+  useEffect(() => {
+    resetState()
+  }, [isOpen, resetState])
+
+  const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted
+  const isBorrowDisabled = isInputDisabled || !!errors.amount || !values.amount
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <StackLayout gap={5}>
         <StackLayout gap={3}>
           <TableInput
+            name="amount"
+            type="number"
+            max={reserveData.balance}
             reserveData={reserveData}
-            amount={amount}
-            handleInputChange={handleInputChange}
-            status={amountError ? 'error' : undefined}
-            title={t('deposit.borrowAsset')}
+            value={values.amount}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            setFieldValue={setFieldValue}
+            status={errors.amount && touched.amount ? 'error' : undefined}
+            info={errors.amount && touched.amount && errors.amount}
+            disabled={isInputDisabled}
           />
           <TransactionOverview
             healthFactor={healthFactor}
@@ -140,7 +160,7 @@ export const BorrowModal = ({
               size="large"
               variant="large"
               disabled={isBorrowDisabled}
-              onClick={borrow}
+              onClick={submitForm}
             >
               {t('global.buttons.borrow')} {reserveData.symbol}
             </Button>
