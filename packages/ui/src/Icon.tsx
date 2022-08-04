@@ -63,7 +63,12 @@ export const Icon = styled(
       <InlineSVG
         src={icon}
         //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
-        style={{ width: size, height: size, fill: getColor(color) }}
+        style={{
+          width: size,
+          height: size,
+          minWidth: size,
+          fill: getColor(color),
+        }}
         className={`rts-icon ${className}`}
         preProcessor={code => {
           if (notFilled.includes(name)) {

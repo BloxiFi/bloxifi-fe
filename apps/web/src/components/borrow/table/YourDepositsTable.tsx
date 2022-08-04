@@ -7,29 +7,67 @@ import {
   Table,
   Text,
   Toggle,
+  TruncatedText,
 } from '@bloxifi/ui'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
+import { BorrowAndLending } from '@bloxifi/core'
 
 import { FormattedNumber } from '../FormattedNumber'
 
 import { DepositTitleBox } from './DepositTitleBox'
 
 import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
+import { Web3Container } from '@/containers/Web3Container'
 
 export const YourDepositsTable: FunctionComponent = () => {
   const {
     state: { userReserves },
   } = WalletContainer.useContainer()
+  const {
+    state: { provider },
+  } = Web3Container.useContainer()
+  const signer = provider.getSigner()
+  const [selectedCollateralAsset, setSelectedCollateralAsset] =
+    useState<string>()
+  const userReservesWithDept = userReserves.filter(
+    (reserve: UserReserveData) => reserve.currentATokenBalance !== 0,
+  )
+
+  const lendingPoolContract =
+    BorrowAndLending.lendingPool.getLendingPoolContract(signer)
+
+  const toggleCollateral = async (
+    underlyingAsset: string,
+    usageAsCollateralEnabledOnUser: boolean,
+  ) => {
+    setSelectedCollateralAsset(underlyingAsset)
+    try {
+      const response =
+        await BorrowAndLending.lendingPool.setUserUseReserveAsCollateral(
+          lendingPoolContract,
+          underlyingAsset,
+          !usageAsCollateralEnabledOnUser,
+        )
+      await response.wait()
+      //TODO@refetch data - collateral, health factor
+    } catch (error) {
+      //TODO@handle error - user cannot click on toggle button if he can't change collateral(if his health factor goes under 1)
+    } finally {
+      setSelectedCollateralAsset(null)
+    }
+  }
 
   const columns = {
     assets: {
       header: 'Assets',
       Cell: ({ data: { symbol, icon } }: any) => (
         <ColumnLayout>
-          <Icon name={icon} size={40} />
-          <Text type="heading 3" as="span">
-            {symbol}
-          </Text>
+          <Icon name={icon} size={25} />
+          <TruncatedText>
+            <Text type="heading 3" as="span">
+              {symbol}
+            </Text>
+          </TruncatedText>
         </ColumnLayout>
       ),
       alignText: 'left',
@@ -37,9 +75,11 @@ export const YourDepositsTable: FunctionComponent = () => {
     balance: {
       header: 'Balance',
       Cell: ({ data: { currentATokenBalance } }) => (
-        <Text type="body 3" as="span">
-          <FormattedNumber value={currentATokenBalance} />
-        </Text>
+        <TruncatedText>
+          <Text type="body 3" as="span">
+            <FormattedNumber value={currentATokenBalance} />
+          </Text>
+        </TruncatedText>
       ),
       alignText: 'left',
     },
@@ -49,14 +89,30 @@ export const YourDepositsTable: FunctionComponent = () => {
         <FormattedNumber value={supplyAPY} percent />
       ),
       alignText: 'left',
+      width: 100,
     },
 
     collateral: {
       header: 'Collateral',
-      Cell: ({ data: { usageAsCollateralEnabledOnUser } }) => (
-        <Toggle checked={usageAsCollateralEnabledOnUser} />
-      ),
+      Cell: ({ data: { usageAsCollateralEnabledOnUser, underlyingAsset } }) => {
+        if (selectedCollateralAsset === underlyingAsset) {
+          return <>loading...</>
+        } else {
+          return (
+            <Toggle
+              checked={usageAsCollateralEnabledOnUser}
+              onClick={() =>
+                void toggleCollateral(
+                  underlyingAsset,
+                  usageAsCollateralEnabledOnUser,
+                )
+              }
+            />
+          )
+        }
+      },
       alignText: 'center',
+      width: 120,
     },
     action: {
       header: '',
@@ -77,9 +133,11 @@ export const YourDepositsTable: FunctionComponent = () => {
   return (
     <Table
       columns={columns}
-      data={userReserves}
+      data={userReservesWithDept}
       noDataMessage="Nothing deposited yet"
-      titleComponent={<DepositTitleBox isEmpty={userReserves.length === 0} />}
+      titleComponent={
+        <DepositTitleBox isEmpty={userReservesWithDept.length === 0} />
+      }
       footer={<BoxLayout gap={1} />}
     />
   )

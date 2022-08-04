@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Fonts } from './styles/fonts'
 import { Text } from './Text'
@@ -214,21 +214,15 @@ export const Table = ({
   return (
     <Wrapper data-element="tableWrapper" compact={compact} isEmpty={isEmpty}>
       <TableWrapper data-element="table" {...props}>
-        <THead>
+        <caption>
           {titleComponent && isTitleAString && (
-            <tr>
-              <HeaderTitle colSpan={numberOfColumns}>
-                {titleComponent}
-              </HeaderTitle>
-            </tr>
+            <HeaderTitle>{titleComponent}</HeaderTitle>
           )}
           {titleComponent && !isTitleAString && (
-            <tr>
-              <HeaderTitleComponent colSpan={numberOfColumns}>
-                {titleComponent}
-              </HeaderTitleComponent>
-            </tr>
+            <HeaderTitleComponent>{titleComponent}</HeaderTitleComponent>
           )}
+        </caption>
+        <THead>
           {!isEmpty && (
             <tr>
               {columns &&
@@ -290,9 +284,11 @@ export const Table = ({
 
         {footer && (
           <Footer className="c-table__footer">
-            <Column isEmpty={isEmpty} colSpan={numberOfColumns}>
-              {footer}
-            </Column>
+            <tr>
+              <Column isEmpty={isEmpty} colSpan={numberOfColumns}>
+                {footer}
+              </Column>
+            </tr>
           </Footer>
         )}
       </TableWrapper>
@@ -308,14 +304,27 @@ const Wrapper = styled.div<{ compact?: boolean; isEmpty?: boolean }>`
   font-family: ${Fonts.ClashDisplay}, serif;
   border-radius: 10px;
   overflow: hidden;
-  ${({ compact, isEmpty }) => (compact || isEmpty) && ` border: none;`};
+  ${({ compact, isEmpty }) =>
+    (compact || isEmpty) &&
+    css`
+      border: none;
+    `};
   ${({ compact, isEmpty, theme }) =>
     compact &&
     !isEmpty &&
-    `
-border-bottom: 1px solid ${theme.tableBorderColor};
-border-radius: 0;
-`}
+    css`
+      border-bottom: 1px solid ${theme.tableBorderColor};
+      border-radius: 0;
+    `}
+
+  > table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  caption {
+    text-align: left;
+  }
 `
 
 const TableWrapper = styled.table`
@@ -392,14 +401,14 @@ const THead = styled.thead`
   }
 `
 
-const HeaderTitle = styled.td`
+const HeaderTitle = styled.div`
   padding: 30px 20px 19px;
   font-size: 24px;
   color: ${({ theme }) => theme.tableTextColor};
   background-color: ${({ theme }) => theme.tableCellBackgroundColor};
 `
 
-const HeaderTitleComponent = styled.td`
+const HeaderTitleComponent = styled.div`
   padding: 30px 20px 14px;
   font-size: 24px;
   color: ${({ theme }) => theme.tableTextColor};

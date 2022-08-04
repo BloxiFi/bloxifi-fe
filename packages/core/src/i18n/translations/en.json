@@ -8,7 +8,8 @@
     },
     "notifications": {
       "transaction_failed": "Transaction failed",
-      "deposit_successful": "Deposit successful"
+      "deposit_successful": "Deposit successful",
+      "borrow_successful": "Borrow successful"
     },
     "table": {
       "assets": "Assets",
@@ -33,6 +34,7 @@
     "assetsToDeposit": "Assets to deposit",
     "assetsToBorrow": "Assets to borrow",
     "depositAsset": "Deposit asset",
+    "borrowAsset": "Borrow asset",
     "amount": "Amount",
     "transactionOverview": "Transaction overview",
     "supplyAPY": "Supply APY",

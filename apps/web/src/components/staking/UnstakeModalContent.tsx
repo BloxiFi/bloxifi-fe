@@ -1,4 +1,4 @@
-import { Staking } from '@bloxifi/core'
+import { bigNumberToNumber, Staking } from '@bloxifi/core'
 import { FetchCooldownPeriod, FetchStakedBalance } from '@bloxifi/types'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
@@ -28,7 +28,7 @@ export const UnstakeModalContent = () => {
   const getStakedBalance: FetchStakedBalance = useCallback(async () => {
     try {
       const balanceEth = await stakeContract.balanceOf(currentAccount)
-      setStakedBalance(Number(ethers.utils.formatUnits(balanceEth)))
+      setStakedBalance(bigNumberToNumber(balanceEth))
     } catch (error) {
       setHasError(error)
     }

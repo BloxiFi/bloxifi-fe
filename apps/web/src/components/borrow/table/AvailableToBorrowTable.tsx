@@ -1,18 +1,31 @@
-import React, { FunctionComponent } from 'react'
-import { Button, ColumnData, Table } from '@bloxifi/ui'
+import React, { useState, FunctionComponent } from 'react'
+import { Button, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
+import { BorrowModal } from '../modal/BorrowModal'
 
 import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 
 export const AvailableToBorrowTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: { reserves },
+    state: {
+      reserves,
+      userAccountData: { healthFactor },
+    },
   } = WalletContainer.useContainer()
+  const [modalData, setModalData] = useState<ReservesData>()
 
+  const openModal = (data: ReservesData) => {
+    setModalData(data)
+  }
+
+  const closeModal = () => {
+    setModalData(undefined)
+    //TODO update balance
+  }
   const columns = {
     assets: {
       header: t('global.table.assets'),
@@ -24,32 +37,52 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     walletBalance: {
       header: t('global.table.walletBalance'),
       Cell: ({ data: { balance } }: any) => {
-        return <FormattedNumber value={balance} />
+        return (
+          <TruncatedText>
+            <FormattedNumber value={balance} />
+          </TruncatedText>
+        )
       },
       alignText: 'center',
     },
     APY: {
       header: t('global.table.apy'),
-      Cell: () => <FormattedNumber value={0.0568} percent />,
+      Cell: ({ data: { variableBorrowAPY } }) => (
+        <FormattedNumber value={variableBorrowAPY} percent />
+      ),
       alignText: 'center',
+      width: 100,
     },
     action: {
       header: '',
-      Cell: () => (
-        <Button appearance="secondary" variant="medium" size="small">
+      Cell: ({ data }) => (
+        <Button
+          appearance="secondary"
+          variant="medium"
+          size="small"
+          onClick={() => openModal(data)}
+        >
           {t('global.buttons.borrow')}
         </Button>
       ),
-      width: 100,
+      width: 160,
     },
   } as Record<string, ColumnData<ReservesData>>
 
   return (
-    <Table
-      columns={columns}
-      data={reserves}
-      titleComponent={t('deposit.assetsToBorrow')}
-      columnSpacing
-    />
+    <>
+      <Table
+        columns={columns}
+        data={reserves}
+        titleComponent={t('deposit.assetsToBorrow')}
+        columnSpacing
+      />
+      <BorrowModal
+        isOpen={!!modalData}
+        onClose={closeModal}
+        reserveData={modalData}
+        healthFactor={healthFactor}
+      />
+    </>
   )
 }

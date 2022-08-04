@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react'
-import { Button, ColumnData, Table } from '@bloxifi/ui'
+import { Button, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 
 import { AssetName } from '../AssetName'
@@ -11,7 +11,10 @@ import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 export const AvaliableToDepositTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: { reserves },
+    state: {
+      reserves,
+      userAccountData: { healthFactor },
+    },
   } = WalletContainer.useContainer()
   const [modalData, setModalData] = useState<ReservesData>()
 
@@ -35,7 +38,11 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
     walletBalance: {
       header: t('global.table.walletBalance'),
       Cell: ({ data: { balance } }) => {
-        return <FormattedNumber value={parseFloat(balance)} />
+        return (
+          <TruncatedText>
+            <FormattedNumber value={parseFloat(balance)} />
+          </TruncatedText>
+        )
       },
       alignText: 'center',
     },
@@ -45,6 +52,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
         <FormattedNumber value={supplyAPY} percent />
       ),
       alignText: 'center',
+      width: 100,
     },
     action: {
       header: '',
@@ -59,7 +67,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
           {t('global.buttons.deposit')}
         </Button>
       ),
-      width: 100,
+      width: 160,
     },
   } as Record<string, ColumnData<ReservesData>>
 
@@ -75,6 +83,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
         isOpen={!!modalData}
         onClose={closeModal}
         reserveData={modalData}
+        healthFactor={healthFactor}
       />
     </>
   )

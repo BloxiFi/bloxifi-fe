@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client'
 import {
+  bigNumberToNumber,
+  BorrowAndLending,
   GET_RESERVE_DATA,
   ReservesDataQuery,
   ReservesGraph,
@@ -11,7 +13,6 @@ import {
 } from '@bloxifi/core'
 import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
-import { ethers } from 'ethers'
 import {
   Dispatch,
   Reducer,
@@ -34,25 +35,31 @@ type DefaultReserveData = {
   balance: string
   supplyAPY: number
   liquidityRate: number
+  variableBorrowAPY: number
+  underlyingAsset: string
 }
 export type ReservesData = DefaultReserveData & {
-  variableBorrowAPY: number
   totalATokenSupply: number
   totalCurrentVariableDebt: number
-  variableBorrowRate: number
-  underlyingAsset: string
 }
 
 export type UserReserveData = DefaultReserveData & {
   currentATokenBalance: number
   currentVariableDebt: string
-  currentTotalDebt: string
+  currentTotalDebt: number
   usageAsCollateralEnabledOnUser: boolean
+}
+
+export type UserAccountData = {
+  totalDebtETH: number
+  availableBorrowsETH: number
+  healthFactor: number
 }
 
 interface State {
   reserves: ReservesData[]
   userReserves: UserReserveData[]
+  userAccountData: UserAccountData
   error?: Error
   loading: boolean
 }
@@ -62,11 +69,15 @@ interface DepositContainerState {
   dispatch: Dispatch<Action<ActionType>>
 }
 
-type ActionType = 'setReserveData' | 'setUserReservesData'
+type ActionType =
+  | 'setReserveData'
+  | 'setUserReservesData'
+  | 'setUserAccountData'
 
 const defaultState = {
   reserves: [],
   userReserves: [],
+  userAccountData: {} as UserAccountData,
   error: undefined,
   loading: false,
 }
@@ -83,6 +94,12 @@ const reducer = (state: State, action: Action<ActionType>) => {
       return {
         ...state,
         userReserves: action.value,
+      }
+    }
+    case 'setUserAccountData': {
+      return {
+        ...state,
+        userAccountData: action.value,
       }
     }
     default:
@@ -122,6 +139,28 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     },
   )
 
+  const getUserAccountData = useCallback(async () => {
+    try {
+      const lendingPoolContract =
+        BorrowAndLending.lendingPool.getLendingPoolContract(signer)
+      const response = await BorrowAndLending.lendingPool.getUserAccountData(
+        lendingPoolContract,
+        currentAccount,
+      )
+
+      dispatch({
+        type: 'setUserAccountData',
+        value: {
+          healthFactor: bigNumberToNumber(response.healthFactor),
+          availableBorrowsETH: bigNumberToNumber(response.availableBorrowsETH),
+          totalDebtETH: bigNumberToNumber(response.totalDebtETH),
+        },
+      })
+    } catch (error) {
+      setError(error)
+    }
+  }, [currentAccount, signer])
+
   const getReserveBalance = useCallback(
     async (name: TokenList) => {
       try {
@@ -151,7 +190,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
             const balance = await getReserveBalance(reserve.name)
             return {
               ...reserve,
-              balance: Number(ethers.utils.formatUnits(balance)),
+              balance: bigNumberToNumber(balance),
               icon: Assets[reserve.symbol].icon,
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
@@ -172,36 +211,41 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     [getReserveBalance],
   )
 
-  //We might have to turn this into useCallback (if we notice some rerendering)
-  const mapUserReserveData = (data: UserReserveDataQuery) => {
-    const { reserve, currentATokenBalance, ...rest } = data
-    return {
+  const mapUserReserveData = useCallback(
+    ({
+      reserve,
+      currentATokenBalance,
+      currentTotalDebt,
+      ...rest
+    }: UserReserveDataQuery) => ({
       ...rest,
       ...reserve,
-      currentATokenBalance: Number(
-        ethers.utils.formatUnits(currentATokenBalance),
-      ),
+      currentATokenBalance: bigNumberToNumber(currentATokenBalance),
+      currentTotalDebt: bigNumberToNumber(currentTotalDebt),
       icon: Assets[reserve.symbol].icon,
       fullName: Assets[reserve.symbol].fullName,
       supplyAPY: calculateAPY(reserve.liquidityRate),
-    }
-  }
+      variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+    }),
+    [],
+  )
 
   useEffect(() => {
     if (data) {
       void setReserveData(data.reserves)
-    }
-  }, [data, setReserveData])
-
-  useEffect(() => {
-    if (data) {
       const userReserveData = data.userReserves.map(mapUserReserveData)
       dispatch({
         type: 'setUserReservesData',
         value: userReserveData,
       })
     }
-  }, [data])
+  }, [data, setReserveData, mapUserReserveData])
+
+  useEffect(() => {
+    if (signer && currentAccount) {
+      void getUserAccountData()
+    }
+  }, [currentAccount, signer, getUserAccountData])
 
   return {
     state: { ...state, error, loading },

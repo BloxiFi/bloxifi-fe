@@ -11,7 +11,6 @@ import {
 import { BorrowAndLending, Tokens } from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useTranslation } from 'react-i18next'
-import { ethers } from 'ethers'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
@@ -34,12 +33,17 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: ReservesData
+  /**
+   * Health factor - the 'health' of the loans within the system
+   */
+  healthFactor?: number
 }
 
 export const DepositModal = ({
   isOpen,
   onClose,
   reserveData = {} as ReservesData,
+  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
 
@@ -48,12 +52,11 @@ export const DepositModal = ({
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
 
-  const [hasError, setHasError] = useState()
-  const [loading, setLoading] = useState(false)
+  const [hasError, setHasError] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [shouldApproveContract, setShouldApproveContract] = useState(false)
   const [approved, setApproved] = useState<boolean>(false)
-  const [healthFactor, setHealthFactor] = useState<number>()
 
   const [depositCompleted, setDepositCompleted] = useState<boolean>(false)
   const tokenContract = reserveData.symbol
@@ -86,24 +89,6 @@ export const DepositModal = ({
       void checkAllowance()
     }
   }, [checkAllowance, isSupportedNetwork])
-
-  const getHealthFactor = async () => {
-    setLoading(true)
-    try {
-      const response = await BorrowAndLending.lendingPool.getUserAccountData(
-        lendingPoolContract,
-        currentAccount,
-      )
-      setHealthFactor(Number(ethers.utils.formatUnits(response.healthFactor)))
-    } catch (error) {
-      setHasError(error)
-    } finally {
-      setLoading(false)
-    }
-  }
-  useEffect(() => {
-    void getHealthFactor()
-  }, [])
 
   const approve = async () => {
     setLoading(true)
@@ -162,7 +147,10 @@ export const DepositModal = ({
     resetForm,
   } = formik
 
-  const resetState = useCallback(() => resetForm(), [resetForm])
+  const resetState = useCallback(() => {
+    setHasError(undefined)
+    resetForm()
+  }, [resetForm])
 
   useEffect(() => {
     resetState()
