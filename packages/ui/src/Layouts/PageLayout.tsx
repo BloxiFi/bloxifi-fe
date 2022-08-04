@@ -219,6 +219,7 @@ const PageContent = styled(StackLayout)`
   grid-column: 2;
   grid-row: 2;
   padding-bottom: 4rem;
+  padding-top: 4rem;
 
   .c-page-layout__section {
     padding-left: 2rem;
