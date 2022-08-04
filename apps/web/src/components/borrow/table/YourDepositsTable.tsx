@@ -28,7 +28,7 @@ export const YourDepositsTable: FunctionComponent = () => {
   const signer = provider.getSigner()
   const [selectedCollateralAsset, setSelectedCollateralAsset] =
     useState<string>()
-  const formatedData = userReserves.filter(
+  const userReservesWithDept = userReserves.filter(
     (reserve: UserReserveData) => reserve.currentATokenBalance !== 0,
   )
 
@@ -95,13 +95,12 @@ export const YourDepositsTable: FunctionComponent = () => {
           return (
             <Toggle
               checked={usageAsCollateralEnabledOnUser}
-              onClick={() => {
-                setSelectedCollateralAsset(underlyingAsset)
+              onClick={() =>
                 void toggleCollateral(
                   underlyingAsset,
                   usageAsCollateralEnabledOnUser,
                 )
-              }}
+              }
             />
           )
         }
@@ -127,9 +126,11 @@ export const YourDepositsTable: FunctionComponent = () => {
   return (
     <Table
       columns={columns}
-      data={formatedData}
+      data={userReservesWithDept}
       noDataMessage="Nothing deposited yet"
-      titleComponent={<DepositTitleBox isEmpty={formatedData.length === 0} />}
+      titleComponent={
+        <DepositTitleBox isEmpty={userReservesWithDept.length === 0} />
+      }
       footer={<BoxLayout gap={1} />}
     />
   )

@@ -1,4 +1,4 @@
-import { Staking, Tokens } from '@bloxifi/core'
+import { bigNumberToNumber, Staking, Tokens } from '@bloxifi/core'
 import {
   CheckAllowanceFunction,
   FetchTokenBalanceFunction,
@@ -37,7 +37,7 @@ export const StakeModalContent = () => {
         mockTokenContract,
         currentAccount,
       )
-      setBalance(Number(ethers.utils.formatUnits(balanceEth)))
+      setBalance(bigNumberToNumber(balanceEth))
       //probably should setHasError(undefined)
     } catch (error) {
       setHasError(error)

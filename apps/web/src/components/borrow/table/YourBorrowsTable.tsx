@@ -9,6 +9,7 @@ import {
   Text,
 } from '@bloxifi/ui'
 import React, { FunctionComponent } from 'react'
+import { numberToPercentage } from '@bloxifi/core'
 
 import { FormattedNumber } from '../FormattedNumber'
 
@@ -23,12 +24,13 @@ export const YourBorrowsTable: FunctionComponent = () => {
       userAccountData: { totalDebtETH, availableBorrowsETH },
     },
   } = WalletContainer.useContainer()
-  const formatedData = userReserves.filter(
+  const userReservesWithDept = userReserves.filter(
     (reserve: UserReserveData) => reserve.currentTotalDebt !== 0,
   )
   //Calculate total borrowed balance compared to total available borrow for the current user (in percentage)
-  const currentBorrowedValue =
-    (totalDebtETH / (totalDebtETH + availableBorrowsETH)) * 100
+  const currentBorrowedValue = numberToPercentage(
+    totalDebtETH / (totalDebtETH + availableBorrowsETH),
+  )
 
   const columns = {
     assets: {
@@ -76,11 +78,11 @@ export const YourBorrowsTable: FunctionComponent = () => {
   return (
     <Table
       columns={columns}
-      data={formatedData}
+      data={userReservesWithDept}
       noDataMessage="Nothing borrowed yet"
       titleComponent={
         <BorrowTitleBox
-          isEmpty={formatedData.length === 0}
+          isEmpty={userReservesWithDept.length === 0}
           currentBorrowedValue={Number(currentBorrowedValue.toFixed(2))}
         />
       }

@@ -1,4 +1,4 @@
-import { Staking } from '@bloxifi/core'
+import { bigNumberToNumber, Staking } from '@bloxifi/core'
 import { FetchRewardBalance } from '@bloxifi/types'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, StackLayout } from '@bloxifi/ui'
@@ -13,7 +13,7 @@ export const ClaimRewards = () => {
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
   const [claimCompleted, setClaimCompleted] = useState(false)
-  const [tokenRewards, setTokenRewards] = useState('')
+  const [tokenRewards, setTokenRewards] = useState(undefined)
   const [loading, setLoading] = useState(false)
   const [hasError, setHasError] = useState()
 
@@ -27,7 +27,7 @@ export const ClaimRewards = () => {
       const balanceEth = await stakeContract.getTotalRewardsBalance(
         currentAccount,
       )
-      setTokenRewards(ethers.utils.formatUnits(balanceEth))
+      setTokenRewards(bigNumberToNumber(balanceEth))
       setHasError(null)
     } catch (error) {
       setHasError(error)

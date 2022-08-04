@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import {
+  bigNumberToNumber,
   BorrowAndLending,
   GET_RESERVE_DATA,
   ReservesDataQuery,
@@ -12,7 +13,6 @@ import {
 } from '@bloxifi/core'
 import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
-import { BigNumber, ethers } from 'ethers'
 import {
   Dispatch,
   Reducer,
@@ -130,9 +130,6 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
 
-  const formatNumber = (value: BigNumber) =>
-    Number(ethers.utils.formatUnits(value))
-
   const { data } = useQuery<ReservesGraph, UserReserveVariables>(
     GET_RESERVE_DATA,
     {
@@ -154,9 +151,9 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       dispatch({
         type: 'setUserAccountData',
         value: {
-          healthFactor: formatNumber(response.healthFactor),
-          availableBorrowsETH: formatNumber(response.availableBorrowsETH),
-          totalDebtETH: formatNumber(response.totalDebtETH),
+          healthFactor: bigNumberToNumber(response.healthFactor),
+          availableBorrowsETH: bigNumberToNumber(response.availableBorrowsETH),
+          totalDebtETH: bigNumberToNumber(response.totalDebtETH),
         },
       })
     } catch (error) {
@@ -193,7 +190,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
             const balance = await getReserveBalance(reserve.name)
             return {
               ...reserve,
-              balance: formatNumber(balance),
+              balance: bigNumberToNumber(balance),
               icon: Assets[reserve.symbol].icon,
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
@@ -214,19 +211,24 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     [getReserveBalance],
   )
 
-  const mapUserReserveData = useCallback((data: UserReserveDataQuery) => {
-    const { reserve, currentATokenBalance, currentTotalDebt, ...rest } = data
-    return {
+  const mapUserReserveData = useCallback(
+    ({
+      reserve,
+      currentATokenBalance,
+      currentTotalDebt,
+      ...rest
+    }: UserReserveDataQuery) => ({
       ...rest,
       ...reserve,
-      currentATokenBalance: formatNumber(currentATokenBalance),
-      currentTotalDebt: formatNumber(currentTotalDebt),
+      currentATokenBalance: bigNumberToNumber(currentATokenBalance),
+      currentTotalDebt: bigNumberToNumber(currentTotalDebt),
       icon: Assets[reserve.symbol].icon,
       fullName: Assets[reserve.symbol].fullName,
       supplyAPY: calculateAPY(reserve.liquidityRate),
       variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-    }
-  }, [])
+    }),
+    [],
+  )
 
   useEffect(() => {
     if (data) {
