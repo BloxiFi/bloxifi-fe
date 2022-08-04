@@ -8,7 +8,7 @@ import LENDING_POOL_ABI from './borrow.json'
 
 type LandingPoolAbi = typeof LENDING_POOL_ABI
 
-type FetchUserAccountData = {
+interface FetchUserAccountData {
   totalDebtETH: BigNumber
   availableBorrowsETH: BigNumber
   healthFactor: BigNumber
@@ -63,6 +63,15 @@ interface LendingPoolContract extends ethers.Contract {
   getUserAccountData: (
     account: Web3ReactContextInterface['account'],
   ) => Promise<FetchUserAccountData>
+  /**
+   * Enable the user's specific deposit to be used as collateral.
+   * @param address The address of the underlying asset
+   * @param useAsCollateral If true, the asset is allowed as a collateral for borrow
+   **/
+  setUserUseReserveAsCollateral: (
+    address: string,
+    useAsCollateral: boolean,
+  ) => Promise<ethers.ContractTransaction>
 }
 
 export const BorrowAndLending = {

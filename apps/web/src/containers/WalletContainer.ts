@@ -142,7 +142,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     },
   )
 
-  const getUserAccountData = async () => {
+  const getUserAccountData = useCallback(async () => {
     try {
       const lendingPoolContract =
         BorrowAndLending.lendingPool.getLendingPoolContract(signer)
@@ -150,7 +150,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         lendingPoolContract,
         currentAccount,
       )
-      console.log('REEES', response)
+
       dispatch({
         type: 'setUserAccountData',
         value: {
@@ -162,7 +162,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     } catch (error) {
       setError(error)
     }
-  }
+  }, [currentAccount, signer])
 
   const getReserveBalance = useCallback(
     async (name: TokenList) => {
@@ -214,8 +214,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     [getReserveBalance],
   )
 
-  //We might have to turn this into useCallback (if we notice some rerendering)
-  const mapUserReserveData = (data: UserReserveDataQuery) => {
+  const mapUserReserveData = useCallback((data: UserReserveDataQuery) => {
     const { reserve, currentATokenBalance, currentTotalDebt, ...rest } = data
     return {
       ...rest,
@@ -227,29 +226,24 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       supplyAPY: calculateAPY(reserve.liquidityRate),
       variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
     }
-  }
+  }, [])
 
   useEffect(() => {
     if (data) {
       void setReserveData(data.reserves)
-    }
-  }, [data, setReserveData])
-
-  useEffect(() => {
-    if (data) {
       const userReserveData = data.userReserves.map(mapUserReserveData)
       dispatch({
         type: 'setUserReservesData',
         value: userReserveData,
       })
     }
-  }, [data, setReserveData])
+  }, [data, setReserveData, mapUserReserveData])
 
   useEffect(() => {
     if (signer && currentAccount) {
       void getUserAccountData()
     }
-  }, [currentAccount, signer])
+  }, [currentAccount, signer, getUserAccountData])
 
   return {
     state: { ...state, error, loading },
