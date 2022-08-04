@@ -7,6 +7,7 @@ import {
   Table,
   Text,
   Toggle,
+  TruncatedText,
 } from '@bloxifi/ui'
 import React, { FunctionComponent, useState } from 'react'
 import { BorrowAndLending } from '@bloxifi/core'
@@ -61,10 +62,12 @@ export const YourDepositsTable: FunctionComponent = () => {
       header: 'Assets',
       Cell: ({ data: { symbol, icon } }: any) => (
         <ColumnLayout>
-          <Icon name={icon} size={40} />
-          <Text type="heading 3" as="span">
-            {symbol}
-          </Text>
+          <Icon name={icon} size={25} />
+          <TruncatedText>
+            <Text type="heading 3" as="span">
+              {symbol}
+            </Text>
+          </TruncatedText>
         </ColumnLayout>
       ),
       alignText: 'left',
@@ -72,9 +75,11 @@ export const YourDepositsTable: FunctionComponent = () => {
     balance: {
       header: 'Balance',
       Cell: ({ data: { currentATokenBalance } }) => (
-        <Text type="body 3" as="span">
-          <FormattedNumber value={currentATokenBalance} />
-        </Text>
+        <TruncatedText>
+          <Text type="body 3" as="span">
+            <FormattedNumber value={currentATokenBalance} />
+          </Text>
+        </TruncatedText>
       ),
       alignText: 'left',
     },
@@ -84,6 +89,7 @@ export const YourDepositsTable: FunctionComponent = () => {
         <FormattedNumber value={supplyAPY} percent />
       ),
       alignText: 'left',
+      width: 100,
     },
 
     collateral: {
@@ -106,6 +112,7 @@ export const YourDepositsTable: FunctionComponent = () => {
         }
       },
       alignText: 'center',
+      width: 120,
     },
     action: {
       header: '',

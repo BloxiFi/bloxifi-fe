@@ -7,6 +7,7 @@ import {
   Icon,
   Table,
   Text,
+  TruncatedText,
 } from '@bloxifi/ui'
 import React, { FunctionComponent } from 'react'
 import { numberToPercentage } from '@bloxifi/core'
@@ -37,10 +38,12 @@ export const YourBorrowsTable: FunctionComponent = () => {
       header: 'Assets',
       Cell: ({ data: { symbol, icon } }: any) => (
         <ColumnLayout>
-          <Icon name={icon} size={40} />
-          <Text type="heading 3" as="span">
-            {symbol}
-          </Text>
+          <Icon name={icon} size={25} />
+          <TruncatedText>
+            <Text type="heading 3" as="span">
+              {symbol}
+            </Text>
+          </TruncatedText>
         </ColumnLayout>
       ),
       alignText: 'left',
@@ -48,7 +51,9 @@ export const YourBorrowsTable: FunctionComponent = () => {
     balance: {
       header: 'Balance',
       Cell: ({ data: { currentTotalDebt } }) => (
-        <FormattedNumber value={currentTotalDebt} />
+        <TruncatedText>
+          <FormattedNumber value={currentTotalDebt} />
+        </TruncatedText>
       ),
       alignText: 'left',
     },
@@ -58,6 +63,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
         <FormattedNumber value={variableBorrowAPY} percent />
       ),
       alignText: 'left',
+      width: 100,
     },
     action: {
       header: '',

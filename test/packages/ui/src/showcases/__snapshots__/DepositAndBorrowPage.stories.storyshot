@@ -5,7 +5,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
   className="sc-fLlhyt YhHCP"
 >
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK fxLELT"
+    className="sc-evZas sc-bBrHrO ldkTlK fhPXfp"
     gap={4}
   >
     <section
@@ -23,65 +23,64 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
             gap={1.5}
           >
             <div
-              className="sc-bZkfAO kvKdAY"
+              className="sc-bZkfAO dJBbcc"
               data-element="tableWrapper"
             >
               <table
                 className="sc-kLLXSd eXWyzl"
                 data-element="table"
               >
+                <caption>
+                  <div
+                    className="sc-iTONeN knoCVT"
+                  >
+                    <div
+                      className="sc-evZas dTrqhc"
+                      gap={2.125}
+                    >
+                      <span
+                        className="sc-fEOsli fJZHYU"
+                        color="oxfordBlue"
+                        type="heading 2"
+                      >
+                        Your deposit
+                      </span>
+                      <div
+                        className="sc-breuTD iSAPZE"
+                      >
+                        <span
+                          className="sc-fEOsli StzYL"
+                          color="oxfordBlue"
+                          type="body 2"
+                        >
+                          Balance $
+                          <span
+                            className="sc-fEOsli hUSnLJ"
+                            color="oxfordBlue"
+                          >
+                            1.00
+                          </span>
+                        </span>
+                        <span
+                          className="sc-fEOsli StzYL"
+                          color="oxfordBlue"
+                          type="body 2"
+                        >
+                          Collateral $
+                          <span
+                            className="sc-fEOsli hUSnLJ"
+                            color="oxfordBlue"
+                          >
+                            1.00
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </caption>
                 <thead
                   className="sc-jdAMXn fcA-dUh"
                 >
-                  <tr>
-                    <td
-                      className="sc-iTONeN knoCVT"
-                      colSpan={5}
-                    >
-                      <div
-                        className="sc-evZas dTrqhc"
-                        gap={2.125}
-                      >
-                        <span
-                          className="sc-fEOsli fJZHYU"
-                          color="oxfordBlue"
-                          type="heading 2"
-                        >
-                          Your deposit
-                        </span>
-                        <div
-                          className="sc-breuTD iSAPZE"
-                        >
-                          <span
-                            className="sc-fEOsli StzYL"
-                            color="oxfordBlue"
-                            type="body 2"
-                          >
-                            Balance $
-                            <span
-                              className="sc-fEOsli hUSnLJ"
-                              color="oxfordBlue"
-                            >
-                              1.00
-                            </span>
-                          </span>
-                          <span
-                            className="sc-fEOsli StzYL"
-                            color="oxfordBlue"
-                            type="body 2"
-                          >
-                            Collateral $
-                            <span
-                              className="sc-fEOsli hUSnLJ"
-                              color="oxfordBlue"
-                            >
-                              1.00
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
                   <tr>
                     <td
                       className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
@@ -316,37 +315,38 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                 <tfoot
                   className="sc-iAvgwm cyIQxm c-table__footer"
                 >
-                  <td
-                    className="sc-himrzO bJjlxC"
-                    colSpan={5}
-                  >
-                    <div
-                      className="sc-kDDrLX iFyCNQ"
-                      gap={1}
-                    />
-                  </td>
+                  <tr>
+                    <td
+                      className="sc-himrzO bJjlxC"
+                      colSpan={5}
+                    >
+                      <div
+                        className="sc-kDDrLX iFyCNQ"
+                        gap={1}
+                      />
+                    </td>
+                  </tr>
                 </tfoot>
               </table>
             </div>
             <div
-              className="sc-bZkfAO kvKdAY"
+              className="sc-bZkfAO dJBbcc"
               data-element="tableWrapper"
             >
               <table
                 className="sc-kLLXSd eXWyzl"
                 data-element="table"
               >
+                <caption>
+                  <div
+                    className="sc-bZnhIo jzMmPY"
+                  >
+                    Assets to deposit
+                  </div>
+                </caption>
                 <thead
                   className="sc-jdAMXn fcA-dUh"
                 >
-                  <tr>
-                    <td
-                      className="sc-bZnhIo jzMmPY"
-                      colSpan={4}
-                    >
-                      Assets to deposit
-                    </td>
-                  </tr>
                   <tr>
                     <td
                       className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
@@ -558,73 +558,72 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
             gap={1.5}
           >
             <div
-              className="sc-bZkfAO kvKdAY"
+              className="sc-bZkfAO dJBbcc"
               data-element="tableWrapper"
             >
               <table
                 className="sc-kLLXSd eXWyzl"
                 data-element="table"
               >
+                <caption>
+                  <div
+                    className="sc-iTONeN knoCVT"
+                  >
+                    <div
+                      className="sc-breuTD eqtFAo c-table__header--progressbar"
+                    >
+                      <div
+                        className="sc-evZas dTrqhc"
+                        gap={2.125}
+                      >
+                        <span
+                          className="sc-fEOsli fJZHYU"
+                          color="oxfordBlue"
+                          type="heading 2"
+                        >
+                          Your borrow
+                        </span>
+                        <span
+                          className="sc-fEOsli StzYL"
+                          color="oxfordBlue"
+                          type="body 2"
+                        >
+                          Balance $
+                          <span
+                            className="sc-fEOsli hUSnLJ"
+                            color="oxfordBlue"
+                          >
+                            1.00
+                          </span>
+                        </span>
+                      </div>
+                      <div
+                        className="sc-gicCDI ijCjom c-table__bottom-progressbar"
+                      >
+                        <p
+                          className="sc-fEOsli sc-ezWOiH StzYL ccsyrD c-text--body-2 c-text--color-oxfordBlue"
+                        >
+                          Borrowed
+                        </p>
+                        <div
+                          className="recharts-responsive-container"
+                          style={
+                            Object {
+                              "height": "100%",
+                              "maxHeight": undefined,
+                              "minHeight": undefined,
+                              "minWidth": undefined,
+                              "width": "100%",
+                            }
+                          }
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </caption>
                 <thead
                   className="sc-jdAMXn fcA-dUh"
                 >
-                  <tr>
-                    <td
-                      className="sc-iTONeN knoCVT"
-                      colSpan={4}
-                    >
-                      <div
-                        className="sc-breuTD eqtFAo c-table__header--progressbar"
-                      >
-                        <div
-                          className="sc-evZas dTrqhc"
-                          gap={2.125}
-                        >
-                          <span
-                            className="sc-fEOsli fJZHYU"
-                            color="oxfordBlue"
-                            type="heading 2"
-                          >
-                            Your borrow
-                          </span>
-                          <span
-                            className="sc-fEOsli StzYL"
-                            color="oxfordBlue"
-                            type="body 2"
-                          >
-                            Balance $
-                            <span
-                              className="sc-fEOsli hUSnLJ"
-                              color="oxfordBlue"
-                            >
-                              1.00
-                            </span>
-                          </span>
-                        </div>
-                        <div
-                          className="sc-gicCDI ijCjom c-table__bottom-progressbar"
-                        >
-                          <p
-                            className="sc-fEOsli sc-ezWOiH StzYL ccsyrD c-text--body-2 c-text--color-oxfordBlue"
-                          >
-                            Borrowed
-                          </p>
-                          <div
-                            className="recharts-responsive-container"
-                            style={
-                              Object {
-                                "height": "100%",
-                                "maxHeight": undefined,
-                                "minHeight": undefined,
-                                "minWidth": undefined,
-                                "width": "100%",
-                              }
-                            }
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
                   <tr>
                     <td
                       className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
@@ -787,37 +786,38 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                 <tfoot
                   className="sc-iAvgwm cyIQxm c-table__footer"
                 >
-                  <td
-                    className="sc-himrzO bJjlxC"
-                    colSpan={4}
-                  >
-                    <div
-                      className="sc-kDDrLX iFyCNQ"
-                      gap={1}
-                    />
-                  </td>
+                  <tr>
+                    <td
+                      className="sc-himrzO bJjlxC"
+                      colSpan={4}
+                    >
+                      <div
+                        className="sc-kDDrLX iFyCNQ"
+                        gap={1}
+                      />
+                    </td>
+                  </tr>
                 </tfoot>
               </table>
             </div>
             <div
-              className="sc-bZkfAO kvKdAY"
+              className="sc-bZkfAO dJBbcc"
               data-element="tableWrapper"
             >
               <table
                 className="sc-kLLXSd eXWyzl"
                 data-element="table"
               >
+                <caption>
+                  <div
+                    className="sc-bZnhIo jzMmPY"
+                  >
+                    Assets to borrow
+                  </div>
+                </caption>
                 <thead
                   className="sc-jdAMXn fcA-dUh"
                 >
-                  <tr>
-                    <td
-                      className="sc-bZnhIo jzMmPY"
-                      colSpan={4}
-                    >
-                      Assets to borrow
-                    </td>
-                  </tr>
                   <tr>
                     <td
                       className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
@@ -1031,7 +1031,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
   className="sc-fLlhyt YhHCP"
 >
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK fxLELT"
+    className="sc-evZas sc-bBrHrO ldkTlK fhPXfp"
     gap={4}
   >
     <section

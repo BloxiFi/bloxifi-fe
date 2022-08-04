@@ -2,18 +2,20 @@
 
 exports[`Storyshots Components/Table Basic Table 1`] = `
 <div
-  className="sc-bZkfAO kvKdAY"
+  className="sc-bZkfAO dJBbcc"
   data-element="tableWrapper"
 >
   <table
     className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
+    <caption>
+      
+      
+    </caption>
     <thead
       className="sc-jdAMXn fcA-dUh"
     >
-      
-      
       <tr>
         <td
           className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
@@ -234,24 +236,23 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
 
 exports[`Storyshots Components/Table Bigger Spacings 1`] = `
 <div
-  className="sc-bZkfAO kvKdAY"
+  className="sc-bZkfAO dJBbcc"
   data-element="tableWrapper"
 >
   <table
     className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
+    <caption>
+      <div
+        className="sc-bZnhIo jzMmPY"
+      >
+        Assets to deposit
+      </div>
+    </caption>
     <thead
       className="sc-jdAMXn fcA-dUh"
     >
-      <tr>
-        <td
-          className="sc-bZnhIo jzMmPY"
-          colSpan={5}
-        >
-          Assets to deposit
-        </td>
-      </tr>
       <tr>
         <td
           className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
@@ -472,19 +473,20 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
 
 exports[`Storyshots Components/Table Empty Data Table 1`] = `
 <div
-  className="sc-bZkfAO dwJdgL"
+  className="sc-bZkfAO cAxotH"
   data-element="tableWrapper"
 >
   <table
     className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
+    <caption>
+      
+      
+    </caption>
     <thead
       className="sc-jdAMXn fcA-dUh"
-    >
-      
-      
-    </thead>
+    />
     <tbody>
       <tr>
         <td
@@ -505,18 +507,20 @@ exports[`Storyshots Components/Table Empty Data Table 1`] = `
 
 exports[`Storyshots Components/Table Expandable table 1`] = `
 <div
-  className="sc-bZkfAO kvKdAY"
+  className="sc-bZkfAO dJBbcc"
   data-element="tableWrapper"
 >
   <table
     className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
+    <caption>
+      
+      
+    </caption>
     <thead
       className="sc-jdAMXn fcA-dUh"
     >
-      
-      
       <tr>
         <td
           className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
@@ -803,26 +807,25 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
 
 exports[`Storyshots Components/Table Small Spacing 1`] = `
 <div
-  className="sc-bZkfAO kvKdAY"
+  className="sc-bZkfAO dJBbcc"
   data-element="tableWrapper"
 >
   <table
     className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
+    <caption>
+      <div
+        className="sc-iTONeN knoCVT"
+      >
+        <div>
+          Your deposit
+        </div>
+      </div>
+    </caption>
     <thead
       className="sc-jdAMXn fcA-dUh"
     >
-      <tr>
-        <td
-          className="sc-iTONeN knoCVT"
-          colSpan={5}
-        >
-          <div>
-            Your deposit
-          </div>
-        </td>
-      </tr>
       <tr>
         <td
           className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
@@ -1043,18 +1046,20 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
 
 exports[`Storyshots Components/Table With Footer 1`] = `
 <div
-  className="sc-bZkfAO kvKdAY"
+  className="sc-bZkfAO dJBbcc"
   data-element="tableWrapper"
 >
   <table
     className="sc-kLLXSd eXWyzl"
     data-element="table"
   >
+    <caption>
+      
+      
+    </caption>
     <thead
       className="sc-jdAMXn fcA-dUh"
     >
-      
-      
       <tr>
         <td
           className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
@@ -1272,14 +1277,16 @@ exports[`Storyshots Components/Table With Footer 1`] = `
     <tfoot
       className="sc-iAvgwm cyIQxm c-table__footer"
     >
-      <td
-        className="sc-himrzO bJjlxC"
-        colSpan={5}
-      >
-        <div>
-          Footer component
-        </div>
-      </td>
+      <tr>
+        <td
+          className="sc-himrzO bJjlxC"
+          colSpan={5}
+        >
+          <div>
+            Footer component
+          </div>
+        </td>
+      </tr>
     </tfoot>
   </table>
 </div>
