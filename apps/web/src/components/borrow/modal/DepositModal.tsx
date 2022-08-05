@@ -173,7 +173,10 @@ export const DepositModal = ({
               name="amount"
               type="number"
               max={reserveData.balance}
-              reserveData={reserveData}
+              reserveData={{
+                balance: reserveData.balance,
+                symbol: reserveData.symbol,
+              }}
               value={values.amount}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -181,6 +184,7 @@ export const DepositModal = ({
               status={errors.amount && touched.amount ? 'error' : undefined}
               info={errors.amount && touched.amount && errors.amount}
               disabled={isInputDisabled}
+              title={t('deposit.depositAsset')}
             />
             <TransactionOverview
               healthFactor={healthFactor}

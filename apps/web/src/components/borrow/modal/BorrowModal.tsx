@@ -123,7 +123,10 @@ export const BorrowModal = ({
             name="amount"
             type="number"
             max={reserveData.balance}
-            reserveData={reserveData}
+            reserveData={{
+              balance: reserveData.balance,
+              symbol: reserveData.symbol,
+            }}
             value={values.amount}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -131,6 +134,7 @@ export const BorrowModal = ({
             status={errors.amount && touched.amount ? 'error' : undefined}
             info={errors.amount && touched.amount && errors.amount}
             disabled={isInputDisabled}
+            title={t('deposit.borrowAsset')}
           />
           <TransactionOverview
             healthFactor={healthFactor}
