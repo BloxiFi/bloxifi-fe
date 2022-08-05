@@ -11,6 +11,7 @@ import {
 } from '@bloxifi/ui'
 import React, { FunctionComponent, useState } from 'react'
 import { BorrowAndLending } from '@bloxifi/core'
+import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
 
@@ -20,6 +21,7 @@ import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 import { Web3Container } from '@/containers/Web3Container'
 
 export const YourDepositsTable: FunctionComponent = () => {
+  const { t } = useTranslation()
   const {
     state: { userReserves },
   } = WalletContainer.useContainer()
@@ -134,7 +136,7 @@ export const YourDepositsTable: FunctionComponent = () => {
     <Table
       columns={columns}
       data={userReservesWithDept}
-      noDataMessage="Nothing deposited yet"
+      noDataMessage={t('deposit.depositEmpty')}
       titleComponent={
         <DepositTitleBox isEmpty={userReservesWithDept.length === 0} />
       }
