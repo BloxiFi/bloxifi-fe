@@ -33,6 +33,7 @@
   },
   "deposit": {
     "pageTitle": "Deposit page",
+    "depositEmpty": "Nothing deposited yet",
     "assetsToDeposit": "Assets to deposit",
     "assetsToBorrow": "Assets to borrow",
     "depositAsset": "Deposit asset",

@@ -10,14 +10,10 @@ import {
 } from '@bloxifi/ui'
 import React, { ForwardedRef, forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { TokenList } from 'packages/core/src'
 
 import { ReservesData } from '@/containers/WalletContainer'
 
-type TableInputData = {
-  balance: string
-  symbol: TokenList
-}
+type TableInputData = Pick<ReservesData, 'balance' | 'symbol'>
 interface Props extends BaseInputProps {
   /**
    *  Function that is used to set amount value when user clicks on MAX button

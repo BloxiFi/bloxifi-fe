@@ -8,7 +8,7 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, TokenList } from '@bloxifi/core'
+import { BorrowAndLending } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -17,12 +17,12 @@ import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { Web3Container } from '@/containers/Web3Container'
+import { ReservesData } from '@/containers/WalletContainer'
 
-export interface WithdrawModalData {
-  underlyingAsset: string
-  balance: string
-  symbol: TokenList
-}
+export type WithdrawModalData = Pick<
+  ReservesData,
+  'underlyingAsset' | 'balance' | 'symbol'
+>
 
 interface Props {
   /**
