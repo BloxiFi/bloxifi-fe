@@ -5,13 +5,15 @@
       "approve": "Approve to conitinue",
       "deposit": "Deposit",
       "borrow": "Borrow",
-      "withdraw": "Withdraw"
+      "withdraw": "Withdraw",
+      "repay": "Repay"
     },
     "notifications": {
       "transaction_failed": "Transaction failed",
       "deposit_successful": "Deposit successful",
       "borrow_successful": "Borrow successful",
-      "withdraw_successful": "Withdraw successful"
+      "withdraw_successful": "Withdraw successful",
+      "repay_successful": "Repay successful"
     },
     "table": {
       "assets": "Assets",
@@ -34,16 +36,19 @@
   "deposit": {
     "pageTitle": "Deposit page",
     "depositEmpty": "Nothing deposited yet",
+    "borrowEmpty": "Nothing borrowed yet",
     "assetsToDeposit": "Assets to deposit",
     "assetsToBorrow": "Assets to borrow",
     "depositAsset": "Deposit asset",
     "borrowAsset": "Borrow asset",
     "withdrawAsset": "Withdraw asset",
+    "repayAsset": "Repay asset",
     "amount": "Amount",
     "transactionOverview": "Transaction overview",
     "supplyAPY": "Supply APY",
     "healthFactor": "Health factor",
-    "remainingSupply": "Remaining Supply"
+    "remainingSupply": "Remaining Supply",
+    "remainingDebt": "Remaining debt"
   },
   "staking": {
     "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."

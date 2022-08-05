@@ -12,7 +12,6 @@ import React, { ForwardedRef, forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ReservesData } from '@/containers/WalletContainer'
-import { TokenList } from 'packages/core/src'
 
 type TableInputData = Pick<ReservesData, 'balance' | 'symbol'>
 interface Props extends BaseInputProps {

@@ -5,7 +5,11 @@ import { TokenList } from 'packages/core/src'
 
 import { FormattedNumber } from '../FormattedNumber'
 
-type TableHeader = 'supplyAPY' | 'healthFactor' | 'remainingSupply'
+type TableHeader =
+  | 'supplyAPY'
+  | 'healthFactor'
+  | 'remainingSupply'
+  | 'remainingDebt'
 type TransactionData = { name: TableHeader }
 
 interface Props {
@@ -22,6 +26,10 @@ interface Props {
    */
   remainingSupply?: number
   /**
+   * TODO Research how we get and calculate this value
+   */
+  remainingDebt?: number
+  /**
    * Symbol of selected asset
    */
   symbol?: TokenList
@@ -35,6 +43,7 @@ export const TransactionOverview = ({
   healthFactor,
   supplyAPY,
   remainingSupply,
+  remainingDebt,
   symbol,
   headers,
 }: Props) => {
@@ -79,6 +88,17 @@ export const TransactionOverview = ({
                * TODO Research how we get and calculate this value
                */}
               {remainingSupply} {symbol}
+            </Text>{' '}
+          </ColumnLayout>
+        )
+      case 'remainingDebt':
+        return (
+          <ColumnLayout align="flex-end" center>
+            <Text as="span" type="body 1" color="oxfordBlue">
+              {/**
+               * TODO Research how we get and calculate this value
+               */}
+              {remainingDebt} {symbol}
             </Text>
           </ColumnLayout>
         )
