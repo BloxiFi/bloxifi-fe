@@ -131,7 +131,9 @@ export const YourDepositsTable: FunctionComponent = () => {
     },
     action: {
       header: '',
-      Cell: ({ data: { balance, symbol, underlyingAsset } }) => (
+      Cell: ({
+        data: { balance, symbol, underlyingAsset, currentATokenBalance },
+      }) => (
         <Button
           appearance="secondary"
           variant="thin"
@@ -142,6 +144,7 @@ export const YourDepositsTable: FunctionComponent = () => {
               balance,
               symbol,
               underlyingAsset,
+              currentATokenBalance,
             })
           }
         >

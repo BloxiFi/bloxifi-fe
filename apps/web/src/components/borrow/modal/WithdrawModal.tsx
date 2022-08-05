@@ -17,11 +17,11 @@ import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { ReservesData } from '@/containers/WalletContainer'
+import { UserReserveData } from '@/containers/WalletContainer'
 
 export type WithdrawModalData = Pick<
-  ReservesData,
-  'underlyingAsset' | 'balance' | 'symbol'
+  UserReserveData,
+  'underlyingAsset' | 'balance' | 'symbol' | 'currentATokenBalance'
 >
 
 interface Props {
@@ -87,6 +87,10 @@ export const WithdrawModal = ({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
+      .max(
+        Number(reserveData.currentATokenBalance),
+        t('global.errors.exceededBalance'),
+      )
       .required(t('global.errors.required')),
     /**
      * TODO need to research more requirements.
@@ -134,7 +138,7 @@ export const WithdrawModal = ({
             type="number"
             max={reserveData.balance}
             reserveData={{
-              balance: reserveData.balance,
+              balance: reserveData.currentATokenBalance,
               symbol: reserveData.symbol,
             }}
             value={values.amount}
