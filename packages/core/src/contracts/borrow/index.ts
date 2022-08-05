@@ -56,6 +56,17 @@ interface LendingPoolContract extends ethers.Contract {
     account: Web3ReactContextInterface['account'],
   ) => Promise<ethers.ContractTransaction>
   /**
+   * Withdraws amount of the underlying asset, i.e. redeems the underlying token and burns the aTokens.
+   * @param address The address of the underlying asset to withdraw
+   * @param amount The amount to withdraw
+   * @param account The user account address
+   **/
+  withdraw: (
+    address: string,
+    amount: BigNumber,
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<ethers.ContractTransaction>
+  /**
    * Function that we use to fetch healthFactor and data to calculate borrowed progress bar
    * Returns information of a reserve exclusively related with a particular user address
    * @param account The user account address
@@ -112,6 +123,18 @@ export const BorrowAndLending = {
         ethers.utils.parseEther(String(amountToDeposit)),
         interestRateMode,
         referralCode,
+        account,
+      )
+    },
+    async withdraw(
+      lendingPoolContract: LendingPoolContract,
+      tokenAddress: string,
+      amountToDeposit: number | string,
+      account: Web3ReactContextInterface['account'],
+    ): Promise<ethers.ContractTransaction> {
+      return await lendingPoolContract.withdraw(
+        tokenAddress,
+        ethers.utils.parseEther(String(amountToDeposit)),
         account,
       )
     },

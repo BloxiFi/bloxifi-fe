@@ -10,9 +10,9 @@ import {
 } from '@bloxifi/ui'
 import React, { ForwardedRef, forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { TokenList } from 'packages/core/src'
 
 import { ReservesData } from '@/containers/WalletContainer'
-import { TokenList } from 'packages/core/src'
 
 type TableInputData = {
   balance: string
