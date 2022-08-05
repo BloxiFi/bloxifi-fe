@@ -8,7 +8,7 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending } from '@bloxifi/core'
+import { BorrowAndLending, useFormatAPY } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -125,6 +125,14 @@ export const WithdrawModal = ({
     resetState()
   }, [isOpen, resetState])
 
+  const calculateRemainingSupply = () => {
+    const remainingSupply =
+      reserveData.currentATokenBalance - Number(values.amount)
+    if (remainingSupply > 0) {
+      return remainingSupply
+    }
+    return 0
+  }
   const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted
   const isWithdrawDisabled =
     isInputDisabled || !!errors.amount || !values.amount
@@ -153,6 +161,9 @@ export const WithdrawModal = ({
           <TransactionOverview
             healthFactor={healthFactor}
             symbol={reserveData.symbol}
+            remainingSupply={useFormatAPY({
+              value: calculateRemainingSupply(),
+            })}
             headers={['remainingSupply', 'healthFactor']}
           />
         </StackLayout>
