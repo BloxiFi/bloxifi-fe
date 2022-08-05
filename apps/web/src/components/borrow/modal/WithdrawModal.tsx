@@ -19,6 +19,11 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { Web3Container } from '@/containers/Web3Container'
 import { ReservesData } from '@/containers/WalletContainer'
 
+export type WithdrawModalData = Pick<
+  ReservesData,
+  'underlyingAsset' | 'balance' | 'symbol'
+>
+
 interface Props {
   /**
    * Boolean value that defines if modal is open or closed
@@ -31,17 +36,17 @@ interface Props {
   /**
    * Selected asset reserve data
    */
-  reserveData?: ReservesData
+  reserveData?: WithdrawModalData
   /**
    * Health factor - the 'health' of the loans within the system
    */
   healthFactor?: number
 }
 
-export const BorrowModal = ({
+export const WithdrawModal = ({
   isOpen,
   onClose,
-  reserveData = {} as ReservesData,
+  reserveData = {} as WithdrawModalData,
   healthFactor,
 }: Props) => {
   const { t } = useTranslation()
@@ -54,22 +59,22 @@ export const BorrowModal = ({
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
-  const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
+  const [withdrawCompleted, setWithdrawCompleted] = useState<boolean>(false)
 
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
-  const borrow = async (amount: number) => {
+  const withdraw = async (amount: number) => {
     setLoading(true)
     try {
-      const response = await BorrowAndLending.lendingPool.borrow(
+      const response = await BorrowAndLending.lendingPool.withdraw(
         lendingPoolContract,
         reserveData.underlyingAsset,
         amount,
         currentAccount,
       )
-      const isBorrowed = await response.wait()
-      setBorrowCompleted(!!isBorrowed)
+      const isCompleted = await response.wait()
+      setWithdrawCompleted(!!isCompleted)
       resetState()
     } catch (error) {
       setHasError(error)
@@ -78,18 +83,22 @@ export const BorrowModal = ({
     }
   }
 
-  const depositValidationSchemaa = Yup.object().shape({
+  const withdrawValidationSchemaa = Yup.object().shape({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
+    /**
+     * TODO need to research more requirements.
+     * - Compare with health factor
+     * - Max amount to withdraw
+     */
   })
 
   const formik = useFormik({
     initialValues: { amount: '' },
-    validationSchema: depositValidationSchemaa,
-    onSubmit: values => borrow(Number(values.amount)),
+    validationSchema: withdrawValidationSchemaa,
+    onSubmit: values => withdraw(Number(values.amount)),
   })
 
   const {
@@ -112,8 +121,9 @@ export const BorrowModal = ({
     resetState()
   }, [isOpen, resetState])
 
-  const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted
-  const isBorrowDisabled = isInputDisabled || !!errors.amount || !values.amount
+  const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted
+  const isWithdrawDisabled =
+    isInputDisabled || !!errors.amount || !values.amount
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -134,11 +144,12 @@ export const BorrowModal = ({
             status={errors.amount && touched.amount ? 'error' : undefined}
             info={errors.amount && touched.amount && errors.amount}
             disabled={isInputDisabled}
-            title={t('deposit.borrowAsset')}
+            title={t('deposit.withdrawAsset')}
           />
           <TransactionOverview
             healthFactor={healthFactor}
-            headers={['healthFactor']}
+            symbol={reserveData.symbol}
+            headers={['remainingSupply', 'healthFactor']}
           />
         </StackLayout>
 
@@ -150,11 +161,11 @@ export const BorrowModal = ({
                 {t('global.notifications.transaction_failed')}
               </Text>
             </CenterLayout>
-          ) : borrowCompleted ? (
+          ) : withdrawCompleted ? (
             <CenterLayout>
               <Icon name="success" size={75} />
               <Text type="body 2">
-                {t('global.notifications.borrow_successful')}
+                {t('global.notifications.withdraw_successful')}
               </Text>
             </CenterLayout>
           ) : (
@@ -163,10 +174,10 @@ export const BorrowModal = ({
               appearance="secondary"
               size="large"
               variant="large"
-              disabled={isBorrowDisabled}
+              disabled={isWithdrawDisabled}
               onClick={submitForm}
             >
-              {t('global.buttons.borrow')} {reserveData.symbol}
+              {t('global.buttons.withdraw')} {reserveData.symbol}
             </Button>
           )}
         </BoxLayout>

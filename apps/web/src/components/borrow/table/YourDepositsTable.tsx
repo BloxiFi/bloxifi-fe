@@ -11,8 +11,10 @@ import {
 } from '@bloxifi/ui'
 import React, { FunctionComponent, useState } from 'react'
 import { BorrowAndLending } from '@bloxifi/core'
+import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
+import { WithdrawModal, WithdrawModalData } from '../modal/WithdrawModal'
 
 import { DepositTitleBox } from './DepositTitleBox'
 
@@ -20,8 +22,12 @@ import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 import { Web3Container } from '@/containers/Web3Container'
 
 export const YourDepositsTable: FunctionComponent = () => {
+  const { t } = useTranslation()
   const {
-    state: { userReserves },
+    state: {
+      userReserves,
+      userAccountData: { healthFactor },
+    },
   } = WalletContainer.useContainer()
   const {
     state: { provider },
@@ -32,7 +38,16 @@ export const YourDepositsTable: FunctionComponent = () => {
   const userReservesWithDept = userReserves.filter(
     (reserve: UserReserveData) => reserve.currentATokenBalance !== 0,
   )
+  const [modalData, setModalData] = useState<WithdrawModalData>()
 
+  const openModal = (data: WithdrawModalData) => {
+    setModalData(data)
+  }
+
+  const closeModal = () => {
+    setModalData(undefined)
+    //TODO update balance
+  }
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
@@ -116,12 +131,19 @@ export const YourDepositsTable: FunctionComponent = () => {
     },
     action: {
       header: '',
-      Cell: () => (
+      Cell: ({ data: { balance, symbol, underlyingAsset } }) => (
         <Button
           appearance="secondary"
           variant="thin"
           size="small"
           className="u-full-width"
+          onClick={() =>
+            openModal({
+              balance,
+              symbol,
+              underlyingAsset,
+            })
+          }
         >
           Withdraw
         </Button>
@@ -131,14 +153,22 @@ export const YourDepositsTable: FunctionComponent = () => {
   } as Record<string, ColumnData<UserReserveData>>
 
   return (
-    <Table
-      columns={columns}
-      data={userReservesWithDept}
-      noDataMessage="Nothing deposited yet"
-      titleComponent={
-        <DepositTitleBox isEmpty={userReservesWithDept.length === 0} />
-      }
-      footer={<BoxLayout gap={1} />}
-    />
+    <>
+      <Table
+        columns={columns}
+        data={userReservesWithDept}
+        noDataMessage={t('deposit.depositEmpty')}
+        titleComponent={
+          <DepositTitleBox isEmpty={userReservesWithDept.length === 0} />
+        }
+        footer={<BoxLayout gap={1} />}
+      />
+      <WithdrawModal
+        isOpen={!!modalData}
+        onClose={closeModal}
+        reserveData={modalData}
+        healthFactor={healthFactor}
+      />
+    </>
   )
 }
