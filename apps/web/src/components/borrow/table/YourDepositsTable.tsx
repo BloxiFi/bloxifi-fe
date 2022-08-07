@@ -10,7 +10,11 @@ import {
   TruncatedText,
 } from '@bloxifi/ui'
 import React, { FunctionComponent, useState } from 'react'
-import { BorrowAndLending } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  convertBalancesInUsdArray,
+  sumArrayItems,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
@@ -148,12 +152,26 @@ export const YourDepositsTable: FunctionComponent = () => {
             })
           }
         >
-          Withdraw
+          {t('global.buttons.withdraw')}
         </Button>
       ),
       width: 160,
     },
   } as Record<string, ColumnData<UserReserveData>>
+
+  //Total supply(deposit) balance value converted in USD
+  const totalSupplyBalance = sumArrayItems(
+    convertBalancesInUsdArray(userReserves, 'currentATokenBalance'),
+  )
+
+  //Array of supplied assets which are enabled as collateral
+  const collateralAsstes = userReserves.filter(
+    reserve => reserve.usageAsCollateralEnabledOnUser,
+  )
+  //Total collateral balance value converted in USD
+  const totalCollateral = sumArrayItems(
+    convertBalancesInUsdArray(collateralAsstes, 'currentATokenBalance'),
+  )
 
   return (
     <>
@@ -162,7 +180,11 @@ export const YourDepositsTable: FunctionComponent = () => {
         data={userReservesWithDept}
         noDataMessage={t('deposit.depositEmpty')}
         titleComponent={
-          <DepositTitleBox isEmpty={userReservesWithDept.length === 0} />
+          <DepositTitleBox
+            isEmpty={userReservesWithDept.length === 0}
+            totalSupplyBalance={totalSupplyBalance}
+            totalCollateral={totalCollateral}
+          />
         }
         footer={<BoxLayout gap={1} />}
       />

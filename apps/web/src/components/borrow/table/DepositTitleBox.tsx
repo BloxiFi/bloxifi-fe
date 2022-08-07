@@ -22,7 +22,9 @@ export const DepositTitleBox: FunctionComponent<Props> = ({
       <ColumnLayout center gap={1}>
         <Text color="oxfordBlue" as="span" type="body 2">
           Balance $
-          <FormattedNumber value={totalSupplyBalance} />
+          <Text as="span" color="oxfordBlue" bold>
+            <FormattedNumber value={totalSupplyBalance} />
+          </Text>
         </Text>
 
         <Text color="oxfordBlue" as="span" type="body 2">
