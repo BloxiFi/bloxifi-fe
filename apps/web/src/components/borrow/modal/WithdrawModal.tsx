@@ -8,7 +8,7 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending } from '@bloxifi/core'
+import { BorrowAndLending, useFormatAPY } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -17,11 +17,11 @@ import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { ReservesData } from '@/containers/WalletContainer'
+import { UserReserveData } from '@/containers/WalletContainer'
 
 export type WithdrawModalData = Pick<
-  ReservesData,
-  'underlyingAsset' | 'balance' | 'symbol'
+  UserReserveData,
+  'underlyingAsset' | 'balance' | 'symbol' | 'currentATokenBalance'
 >
 
 interface Props {
@@ -87,6 +87,10 @@ export const WithdrawModal = ({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
+      .max(
+        Number(reserveData.currentATokenBalance),
+        t('global.errors.exceededBalance'),
+      )
       .required(t('global.errors.required')),
     /**
      * TODO need to research more requirements.
@@ -121,6 +125,14 @@ export const WithdrawModal = ({
     resetState()
   }, [isOpen, resetState])
 
+  const calculateRemainingSupply = () => {
+    const remainingSupply =
+      reserveData.currentATokenBalance - Number(values.amount)
+    if (remainingSupply > 0) {
+      return remainingSupply
+    }
+    return 0
+  }
   const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted
   const isWithdrawDisabled =
     isInputDisabled || !!errors.amount || !values.amount
@@ -134,7 +146,7 @@ export const WithdrawModal = ({
             type="number"
             max={reserveData.balance}
             reserveData={{
-              balance: reserveData.balance,
+              balance: reserveData.currentATokenBalance,
               symbol: reserveData.symbol,
             }}
             value={values.amount}
@@ -149,6 +161,9 @@ export const WithdrawModal = ({
           <TransactionOverview
             healthFactor={healthFactor}
             symbol={reserveData.symbol}
+            remainingSupply={useFormatAPY({
+              value: calculateRemainingSupply(),
+            })}
             headers={['remainingSupply', 'healthFactor']}
           />
         </StackLayout>
