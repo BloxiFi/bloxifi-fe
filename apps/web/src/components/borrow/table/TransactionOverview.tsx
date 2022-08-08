@@ -1,10 +1,11 @@
 import React from 'react'
 import { ColumnData, ColumnLayout, StackLayout, Table, Text } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
+import { TokenList } from 'packages/core/src'
 
 import { FormattedNumber } from '../FormattedNumber'
 
-type TableHeader = 'supplyAPY' | 'healthFactor'
+type TableHeader = 'supplyAPY' | 'healthFactor' | 'remainingSupply'
 type TransactionData = { name: TableHeader }
 
 interface Props {
@@ -17,6 +18,14 @@ interface Props {
    */
   healthFactor?: number
   /**
+   * TODO Research how we get and calculate this value
+   */
+  remainingSupply?: string
+  /**
+   * Symbol of selected asset
+   */
+  symbol?: TokenList
+  /**
    * List of table headers
    */
   headers: TableHeader[]
@@ -25,6 +34,8 @@ interface Props {
 export const TransactionOverview = ({
   healthFactor,
   supplyAPY,
+  remainingSupply,
+  symbol,
   headers,
 }: Props) => {
   const { t } = useTranslation()
@@ -59,6 +70,17 @@ export const TransactionOverview = ({
               {'Liquidation at < 1.00'}
             </Text>
           </StackLayout>
+        )
+      case 'remainingSupply':
+        return (
+          <ColumnLayout align="flex-end" center>
+            <Text as="span" type="body 1" color="oxfordBlue">
+              {/**
+               * TODO Research how we get and calculate this value
+               */}
+              {remainingSupply} {symbol}
+            </Text>
+          </ColumnLayout>
         )
     }
   }

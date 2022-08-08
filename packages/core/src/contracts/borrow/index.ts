@@ -8,6 +8,12 @@ import LENDING_POOL_ABI from './borrow.json'
 
 type LandingPoolAbi = typeof LENDING_POOL_ABI
 
+interface FetchUserAccountData {
+  totalDebtETH: BigNumber
+  availableBorrowsETH: BigNumber
+  healthFactor: BigNumber
+}
+
 export function getLandingPoolContractInfo(
   contractName: keyof LandingPoolAbi,
   type: keyof LandingPoolAbi[keyof LandingPoolAbi],
@@ -34,11 +40,49 @@ interface LendingPoolContract extends ethers.Contract {
     referralCode: number,
   ) => Promise<ethers.ContractTransaction>
   /**
-   * Function that we use to fetch healthFactor, and ...(more TODO)
+   * Transfers a specific amount of the asset to the user reserve.
+   * @param address The address of the underlying asset to borrow
+   * @param amount The amount to borrow
+   * @param interestRateMode Type of interest rate mode to use. Uint 2 representing variable rate and uint 1 representing stable rate
+   * @param referralCode Code used to register the integrator originating the operation, for potential rewards.
+   *   0 if the action is executed directly by the user, without any middle-man
+   * @param account The user account address
+   **/
+  borrow: (
+    address: string,
+    amount: BigNumber,
+    interestRateMode: 1 | 2,
+    referralCode: number,
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<ethers.ContractTransaction>
+  /**
+   * Withdraws amount of the underlying asset, i.e. redeems the underlying token and burns the aTokens.
+   * @param address The address of the underlying asset to withdraw
+   * @param amount The amount to withdraw
+   * @param account The user account address
+   **/
+  withdraw: (
+    address: string,
+    amount: BigNumber,
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<ethers.ContractTransaction>
+  /**
+   * Function that we use to fetch healthFactor and data to calculate borrowed progress bar
+   * Returns information of a reserve exclusively related with a particular user address
+   * @param account The user account address
    **/
   getUserAccountData: (
     account: Web3ReactContextInterface['account'],
-  ) => Promise<{ healthFactor: BigNumber }>
+  ) => Promise<FetchUserAccountData>
+  /**
+   * Enable the user's specific deposit to be used as collateral.
+   * @param address The address of the underlying asset
+   * @param useAsCollateral If true, the asset is allowed as a collateral for borrow
+   **/
+  setUserUseReserveAsCollateral: (
+    address: string,
+    useAsCollateral: boolean,
+  ) => Promise<ethers.ContractTransaction>
 }
 
 export const BorrowAndLending = {
@@ -66,11 +110,49 @@ export const BorrowAndLending = {
         referralCode,
       )
     },
+    async borrow(
+      lendingPoolContract: LendingPoolContract,
+      tokenAddress: string,
+      amountToDeposit: number | string,
+      account: Web3ReactContextInterface['account'],
+      referralCode = 0,
+      interestRateMode: 1 | 2 = 2,
+    ): Promise<ethers.ContractTransaction> {
+      return await lendingPoolContract.borrow(
+        tokenAddress,
+        ethers.utils.parseEther(String(amountToDeposit)),
+        interestRateMode,
+        referralCode,
+        account,
+      )
+    },
+    async withdraw(
+      lendingPoolContract: LendingPoolContract,
+      tokenAddress: string,
+      amountToDeposit: number | string,
+      account: Web3ReactContextInterface['account'],
+    ): Promise<ethers.ContractTransaction> {
+      return await lendingPoolContract.withdraw(
+        tokenAddress,
+        ethers.utils.parseEther(String(amountToDeposit)),
+        account,
+      )
+    },
     async getUserAccountData(
       contract: LendingPoolContract,
-      currentAccount: Web3ReactContextInterface['account'],
+      account: Web3ReactContextInterface['account'],
     ) {
-      return await contract.getUserAccountData(currentAccount)
+      return await contract.getUserAccountData(account)
+    },
+    async setUserUseReserveAsCollateral(
+      contract: LendingPoolContract,
+      address: string,
+      useAsCollateral: boolean,
+    ) {
+      return await contract.setUserUseReserveAsCollateral(
+        address,
+        useAsCollateral,
+      )
     },
   },
 }

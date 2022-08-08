@@ -13,14 +13,25 @@ import { useTranslation } from 'react-i18next'
 
 import { ReservesData } from '@/containers/WalletContainer'
 
+type TableInputData = Pick<ReservesData, 'balance' | 'symbol'>
 interface Props extends BaseInputProps {
+  /**
+   *  Function that is used to set amount value when user clicks on MAX button
+   */
   setFieldValue: (field: 'amount', value: number) => void
-  reserveData: ReservesData
+  /**
+   * Selected asset data - Balance and symbol
+   */
+  reserveData: TableInputData
+  /**
+   * Optional title that will appear above input field
+   */
+  title?: string
 }
 
 export const TableInput = forwardRef(
   (
-    { reserveData, setFieldValue, disabled, ...inputProps }: Props,
+    { reserveData, setFieldValue, disabled, title, ...inputProps }: Props,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const { t } = useTranslation()
@@ -53,12 +64,13 @@ export const TableInput = forwardRef(
         header: '',
         Cell: ({ data: { symbol } }) => <span>{symbol}</span>,
         alignText: 'right',
+        width: 120,
       },
     } as Record<string, ColumnData<ReservesData>>
 
     const Title = () => (
       <Text color="oxfordBlue" type="heading 2" as="span">
-        {t('deposit.depositAsset')}
+        {title}
       </Text>
     )
 

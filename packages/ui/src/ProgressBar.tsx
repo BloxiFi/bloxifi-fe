@@ -68,7 +68,7 @@ export const ProgressBar = ({
   /**
    * Calculate if progress value should be displayed
    */
-  const displayLabel = value > 10
+  const displayLabel = value > 20
 
   return (
     <Wrapper className={className}>

@@ -4,6 +4,7 @@ import {
   StackLayout,
   Text,
   IconNamesType,
+  TruncatedText,
 } from '@bloxifi/ui'
 import { TokenList } from 'packages/core/src'
 import React, { FunctionComponent } from 'react'
@@ -35,11 +36,11 @@ export const AssetName: FunctionComponent<Props> = ({
 }: Props) => (
   <ColumnLayout>
     <Icon name={icon} size={iconSize} />
-    <StackLayout>
-      <Text type="heading 3" as="span">
+    <StackLayout as={TruncatedText}>
+      <Text type="heading 3" as={TruncatedText}>
         {fullName}
       </Text>
-      <Text type="body 1" as="span">
+      <Text type="body 1" as={TruncatedText}>
         {symbol}
       </Text>
     </StackLayout>
