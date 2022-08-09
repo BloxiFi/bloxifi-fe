@@ -28,7 +28,7 @@ interface Props {
   /**
    * TODO Research how we get and calculate this value
    */
-  remainingDebt?: number
+  remainingDebt?: string
   /**
    * Symbol of selected asset
    */

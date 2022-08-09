@@ -8,7 +8,7 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending } from '@bloxifi/core'
+import { BorrowAndLending, useFormatAPY } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -127,6 +127,14 @@ export const RepayModal = ({
   const isInputDisabled = !isSupportedNetwork || loading || repayCompleted
   const isRepayDisabled = isInputDisabled || !!errors.amount || !values.amount
 
+  const calculateRemainingDebt = () => {
+    const remainingSupply = reserveData.currentTotalDebt - Number(values.amount)
+    if (remainingSupply > 0) {
+      return remainingSupply
+    }
+    return 0
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <StackLayout gap={5}>
@@ -151,6 +159,9 @@ export const RepayModal = ({
           <TransactionOverview
             healthFactor={healthFactor}
             headers={['remainingDebt', 'healthFactor']}
+            remainingDebt={useFormatAPY({
+              value: calculateRemainingDebt(),
+            })}
           />
         </StackLayout>
 
@@ -172,7 +183,7 @@ export const RepayModal = ({
           ) : (
             <Button
               className="u-full-width"
-              appearance="secondary"
+              appearance="dark"
               size="large"
               variant="large"
               disabled={isRepayDisabled}
