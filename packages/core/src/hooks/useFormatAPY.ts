@@ -33,7 +33,7 @@ export const useFormatAPY = ({
     } else if (!decimals) {
       if (percent) {
         return 2
-      } else if (value > 1) {
+      } else if (value >= 1) {
         return 4
       } else {
         return 7

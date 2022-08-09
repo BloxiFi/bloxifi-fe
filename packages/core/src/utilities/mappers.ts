@@ -39,7 +39,7 @@ export const sumArrayItems = (array: number[]): number =>
  * @param usdPriceEth Eth price in USD, 1ETH = usdPriceEth USD
  * @returns balance value converted in USD
  */
-const convertToUSD = (
+export const convertToUSD = (
   balance: number,
   priceInEth: number,
   usdPriceEth: number,
