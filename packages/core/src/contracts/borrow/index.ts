@@ -8,6 +8,9 @@ import LENDING_POOL_ABI from './borrow.json'
 
 type LandingPoolAbi = typeof LENDING_POOL_ABI
 
+//Type of interest rate mode to use. Uint 2 representing variable rate and uint 1 representing stable rate
+type RateMode = 1 | 2
+
 interface FetchUserAccountData {
   totalDebtETH: BigNumber
   availableBorrowsETH: BigNumber
@@ -51,7 +54,7 @@ interface LendingPoolContract extends ethers.Contract {
   borrow: (
     address: string,
     amount: BigNumber,
-    interestRateMode: 1 | 2,
+    interestRateMode: RateMode,
     referralCode: number,
     account: Web3ReactContextInterface['account'],
   ) => Promise<ethers.ContractTransaction>
@@ -64,6 +67,18 @@ interface LendingPoolContract extends ethers.Contract {
   withdraw: (
     address: string,
     amount: BigNumber,
+    account: Web3ReactContextInterface['account'],
+  ) => Promise<ethers.ContractTransaction>
+  /**
+   * @param address The address of the underlying asset to repay
+   * @param amount The amount to repay
+   * @param interestRateMode Type of interest rate mode to use. Uint 2 representing variable rate and uint 1 representing stable rate
+   * @param account The user account address
+   */
+  repay: (
+    tokenAddress: string,
+    amount: BigNumber,
+    rateMode: RateMode,
     account: Web3ReactContextInterface['account'],
   ) => Promise<ethers.ContractTransaction>
   /**
@@ -116,7 +131,7 @@ export const BorrowAndLending = {
       amountToDeposit: number | string,
       account: Web3ReactContextInterface['account'],
       referralCode = 0,
-      interestRateMode: 1 | 2 = 2,
+      interestRateMode: RateMode = 2,
     ): Promise<ethers.ContractTransaction> {
       return await lendingPoolContract.borrow(
         tokenAddress,
@@ -135,6 +150,20 @@ export const BorrowAndLending = {
       return await lendingPoolContract.withdraw(
         tokenAddress,
         ethers.utils.parseEther(String(amountToDeposit)),
+        account,
+      )
+    },
+    async repay(
+      lendingPoolContract: LendingPoolContract,
+      tokenAddress: string,
+      amountToRepay: number | string,
+      account: Web3ReactContextInterface['account'],
+      rateMode: RateMode = 2,
+    ): Promise<ethers.ContractTransaction> {
+      return await lendingPoolContract.repay(
+        tokenAddress,
+        ethers.utils.parseEther(String(amountToRepay)),
+        rateMode,
         account,
       )
     },

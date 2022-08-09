@@ -9,25 +9,40 @@ import {
   Text,
   TruncatedText,
 } from '@bloxifi/ui'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import { numberToPercentage } from '@bloxifi/core'
+import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
+import { RepayModal, RepayModalData } from '../modal/RepayModal'
 
 import { BorrowTitleBox } from './BorrowTitleBox'
 
 import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export const YourBorrowsTable: FunctionComponent = () => {
+  const { t } = useTranslation()
   const {
     state: {
       userReserves,
-      userAccountData: { totalDebtETH, availableBorrowsETH },
+      userAccountData: { totalDebtETH, availableBorrowsETH, healthFactor },
     },
   } = WalletContainer.useContainer()
   const userReservesWithDept = userReserves.filter(
     (reserve: UserReserveData) => reserve.currentTotalDebt !== 0,
   )
+
+  const [modalData, setModalData] = useState<RepayModalData>()
+
+  const openModal = (data: RepayModalData) => {
+    setModalData(data)
+  }
+
+  const closeModal = () => {
+    setModalData(undefined)
+    //TODO update balance
+  }
+
   //Calculate total borrowed balance compared to total available borrow for the current user (in percentage)
   const currentBorrowedValue = numberToPercentage(
     totalDebtETH / (totalDebtETH + availableBorrowsETH),
@@ -67,12 +82,19 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
     action: {
       header: '',
-      Cell: () => (
+      Cell: ({ data: { currentTotalDebt, symbol, underlyingAsset } }) => (
         <Button
           appearance="secondary"
           variant="thin"
           size="small"
           className="u-full-width"
+          onClick={() =>
+            openModal({
+              currentTotalDebt,
+              symbol,
+              underlyingAsset,
+            })
+          }
         >
           Repay
         </Button>
@@ -82,17 +104,25 @@ export const YourBorrowsTable: FunctionComponent = () => {
   } as Record<string, ColumnData<UserReserveData>>
 
   return (
-    <Table
-      columns={columns}
-      data={userReservesWithDept}
-      noDataMessage="Nothing borrowed yet"
-      titleComponent={
-        <BorrowTitleBox
-          isEmpty={userReservesWithDept.length === 0}
-          currentBorrowedValue={Number(currentBorrowedValue.toFixed(2))}
-        />
-      }
-      footer={<BoxLayout gap={1} />}
-    />
+    <>
+      <Table
+        columns={columns}
+        data={userReservesWithDept}
+        noDataMessage={t('deposit.borrowEmpty')}
+        titleComponent={
+          <BorrowTitleBox
+            isEmpty={userReservesWithDept.length === 0}
+            currentBorrowedValue={Number(currentBorrowedValue.toFixed(2))}
+          />
+        }
+        footer={<BoxLayout gap={1} />}
+      />
+      <RepayModal
+        isOpen={!!modalData}
+        onClose={closeModal}
+        reserveData={modalData}
+        healthFactor={healthFactor}
+      />
+    </>
   )
 }
