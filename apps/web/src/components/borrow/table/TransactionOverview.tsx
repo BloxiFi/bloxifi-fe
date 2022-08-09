@@ -24,7 +24,7 @@ interface Props {
   /**
    * TODO Research how we get and calculate this value
    */
-  remainingSupply?: number
+  remainingSupply?: string
   /**
    * TODO Research how we get and calculate this value
    */

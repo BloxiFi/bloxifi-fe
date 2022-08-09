@@ -37,6 +37,8 @@ type DefaultReserveData = {
   liquidityRate: number
   variableBorrowAPY: number
   underlyingAsset: string
+  priceInEth: number
+  usdPriceEth: number
 }
 export type ReservesData = DefaultReserveData & {
   totalATokenSupply: number
@@ -195,6 +197,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+              priceInEth: bigNumberToNumber(reserve.price.priceInEth),
+              usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
             }
           }),
         )
@@ -213,19 +217,28 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
 
   const mapUserReserveData = useCallback(
     ({
-      reserve,
+      reserve: {
+        symbol,
+        liquidityRate,
+        variableBorrowRate,
+        price,
+        ...restReserve
+      },
       currentATokenBalance,
       currentTotalDebt,
       ...rest
     }: UserReserveDataQuery) => ({
       ...rest,
-      ...reserve,
+      ...restReserve,
       currentATokenBalance: bigNumberToNumber(currentATokenBalance),
       currentTotalDebt: bigNumberToNumber(currentTotalDebt),
-      icon: Assets[reserve.symbol].icon,
-      fullName: Assets[reserve.symbol].fullName,
-      supplyAPY: calculateAPY(reserve.liquidityRate),
-      variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+      symbol: symbol,
+      icon: Assets[symbol].icon,
+      fullName: Assets[symbol].fullName,
+      supplyAPY: calculateAPY(liquidityRate),
+      variableBorrowAPY: calculateAPY(variableBorrowRate),
+      priceInEth: bigNumberToNumber(price.priceInEth),
+      usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
     }),
     [],
   )
