@@ -37,6 +37,8 @@ type DefaultReserveData = {
   liquidityRate: number
   variableBorrowAPY: number
   underlyingAsset: string
+  priceInEth: number
+  usdPriceEth: number
 }
 export type ReservesData = DefaultReserveData & {
   totalATokenSupply: number
@@ -48,8 +50,6 @@ export type UserReserveData = DefaultReserveData & {
   currentVariableDebt: string
   currentTotalDebt: number
   usageAsCollateralEnabledOnUser: boolean
-  priceInEth: number
-  usdPriceEth: number
 }
 
 export type UserAccountData = {
@@ -197,6 +197,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+              priceInEth: bigNumberToNumber(reserve.price.priceInEth),
+              usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
             }
           }),
         )
@@ -230,6 +232,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       ...restReserve,
       currentATokenBalance: bigNumberToNumber(currentATokenBalance),
       currentTotalDebt: bigNumberToNumber(currentTotalDebt),
+      symbol: symbol,
       icon: Assets[symbol].icon,
       fullName: Assets[symbol].fullName,
       supplyAPY: calculateAPY(liquidityRate),

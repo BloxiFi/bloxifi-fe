@@ -42,6 +42,12 @@ export interface ReservesDataQuery {
   liquidityRate: number
   variableBorrowRate: number
   underlyingAsset: string
+  price: {
+    priceInEth: BigNumber
+    oracle: {
+      usdPriceEth: BigNumber
+    }
+  }
 }
 
 export interface ReservesGraph {
@@ -71,6 +77,12 @@ export const GET_RESERVE_DATA = gql`
       liquidityRate
       variableBorrowRate
       underlyingAsset
+      price {
+        priceInEth
+        oracle {
+          usdPriceEth
+        }
+      }
     }
     userReserves(where: { user: $user }) {
       id

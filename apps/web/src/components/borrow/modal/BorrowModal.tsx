@@ -160,7 +160,7 @@ export const BorrowModal = ({
           ) : (
             <Button
               className="u-full-width"
-              appearance="secondary"
+              appearance="dark"
               size="large"
               variant="large"
               disabled={isBorrowDisabled}

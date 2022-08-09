@@ -186,7 +186,7 @@ export const WithdrawModal = ({
           ) : (
             <Button
               className="u-full-width"
-              appearance="secondary"
+              appearance="dark"
               size="large"
               variant="large"
               disabled={isWithdrawDisabled}
