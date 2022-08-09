@@ -32,7 +32,7 @@ type DefaultReserveData = {
   symbol: TokenList
   icon: string
   decimals: number
-  balance: string
+  balance: number
   supplyAPY: number
   liquidityRate: number
   variableBorrowAPY: number

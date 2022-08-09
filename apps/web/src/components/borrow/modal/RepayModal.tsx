@@ -17,11 +17,11 @@ import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { ReservesData } from '@/containers/WalletContainer'
+import { UserReserveData } from '@/containers/WalletContainer'
 
 export type RepayModalData = Pick<
-  ReservesData,
-  'underlyingAsset' | 'balance' | 'symbol'
+  UserReserveData,
+  'underlyingAsset' | 'currentTotalDebt' | 'symbol'
 >
 interface Props {
   /**
@@ -45,7 +45,7 @@ interface Props {
 export const RepayModal = ({
   isOpen,
   onClose,
-  reserveData = {} as ReservesData,
+  reserveData = {} as UserReserveData,
   healthFactor,
 }: Props) => {
   const { t } = useTranslation()
@@ -86,6 +86,10 @@ export const RepayModal = ({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
+      .max(
+        Number(reserveData.currentTotalDebt),
+        t('global.errors.exceededBalance'),
+      )
       .required(t('global.errors.required')),
     /**
      * TODO need to research more requirements.
@@ -130,9 +134,9 @@ export const RepayModal = ({
           <TableInput
             name="amount"
             type="number"
-            max={reserveData.balance}
+            max={reserveData.currentTotalDebt}
             reserveData={{
-              balance: reserveData.balance,
+              balance: reserveData.currentTotalDebt,
               symbol: reserveData.symbol,
             }}
             value={values.amount}

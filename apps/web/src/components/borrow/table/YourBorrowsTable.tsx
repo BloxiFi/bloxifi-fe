@@ -82,7 +82,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
     action: {
       header: '',
-      Cell: ({ data: { balance, symbol, underlyingAsset } }) => (
+      Cell: ({ data: { currentTotalDebt, symbol, underlyingAsset } }) => (
         <Button
           appearance="secondary"
           variant="thin"
@@ -90,7 +90,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
           className="u-full-width"
           onClick={() =>
             openModal({
-              balance,
+              currentTotalDebt,
               symbol,
               underlyingAsset,
             })
