@@ -224,7 +224,7 @@ export const DepositModal = ({
                 )}
                 <Button
                   className="u-full-width"
-                  appearance="secondary"
+                  appearance="dark"
                   size="large"
                   variant="large"
                   type="submit"
