@@ -1,4 +1,4 @@
-import { PageLayout } from '@bloxifi/ui'
+import { CoverLayout, Loader, PageLayout } from '@bloxifi/ui'
 import React, { FC, lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -32,7 +32,13 @@ export const Router: FC = ({ children }) => {
     <BrowserRouter>
       <PageLayout {...pageLayout}>
         {children}
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <CoverLayout>
+              <Loader />
+            </CoverLayout>
+          }
+        >
           <Routes>{routes.map(route => renderRoute(route))}</Routes>
         </Suspense>
       </PageLayout>
