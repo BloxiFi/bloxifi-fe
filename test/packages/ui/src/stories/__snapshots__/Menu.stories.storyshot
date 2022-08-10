@@ -3,10 +3,10 @@
 exports[`Storyshots Components/Menu Left menu 1`] = `
 <div
   align="flex-start"
-  className="sc-kDDrLX sc-kgUAyh iFyCNQ erDyRY"
+  className="sc-kDDrLX sc-jgbSNz iFyCNQ igEoHB"
 >
   <span
-    className="sc-dPyBCJ kwFAnt"
+    className="sc-cOFTSb hxfyJI"
     data-element="menuWrapper"
   >
     <button
@@ -30,10 +30,10 @@ exports[`Storyshots Components/Menu Left menu 1`] = `
 exports[`Storyshots Components/Menu Right menu 1`] = `
 <div
   align="flex-end"
-  className="sc-kDDrLX sc-kgUAyh iFyCNQ dlWemr"
+  className="sc-kDDrLX sc-jgbSNz iFyCNQ khPiWa"
 >
   <span
-    className="sc-dPyBCJ kwFAnt"
+    className="sc-cOFTSb hxfyJI"
     data-element="menuWrapper"
   >
     <button

@@ -4,6 +4,7 @@ import {
   Button,
   CenterLayout,
   Icon,
+  Loader,
   Modal,
   StackLayout,
   Text,
@@ -122,6 +123,7 @@ export const RepayModal = ({
 
   useEffect(() => {
     resetState()
+    setRepayCompleted(false)
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || repayCompleted
@@ -166,7 +168,11 @@ export const RepayModal = ({
         </StackLayout>
 
         <BoxLayout gap={1.875}>
-          {hasError ? (
+          {loading ? (
+            <CenterLayout>
+              <Loader />
+            </CenterLayout>
+          ) : hasError ? (
             <CenterLayout>
               <Icon name="error" size={75} />
               <Text type="body 2">

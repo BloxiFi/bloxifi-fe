@@ -1,9 +1,11 @@
 import {
   BoxLayout,
   Button,
+  CenterLayout,
   ColumnData,
   ColumnLayout,
   Icon,
+  Loader,
   Table,
   Text,
   Toggle,
@@ -116,7 +118,11 @@ export const YourDepositsTable: FunctionComponent = () => {
       header: 'Collateral',
       Cell: ({ data: { usageAsCollateralEnabledOnUser, underlyingAsset } }) => {
         if (selectedCollateralAsset === underlyingAsset) {
-          return <>loading...</>
+          return (
+            <CenterLayout>
+              <Loader loaderSize={24} />
+            </CenterLayout>
+          )
         } else {
           return (
             <Toggle
