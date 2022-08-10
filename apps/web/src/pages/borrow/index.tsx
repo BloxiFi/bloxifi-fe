@@ -14,10 +14,10 @@ const DepositPage = () => {
     state: { isConnected, loading: connectionLoading },
   } = Web3Container.useContainer()
   const {
-    state: { loading: reservesLoading, error },
+    state: { error },
   } = WalletContainer.useContainer()
 
-  if (reservesLoading || connectionLoading) {
+  if (connectionLoading) {
     return <>loading...</> //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
   }
 

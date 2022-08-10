@@ -31,6 +31,7 @@ export const YourDepositsTable: FunctionComponent = () => {
     state: {
       userReserves,
       userAccountData: { healthFactor },
+      loading,
     },
   } = WalletContainer.useContainer()
   const {
@@ -179,8 +180,10 @@ export const YourDepositsTable: FunctionComponent = () => {
         columns={columns}
         data={userReservesWithDept}
         noDataMessage={t('deposit.depositEmpty')}
+        isLoading={loading}
         titleComponent={
           <DepositTitleBox
+            isLoading={loading}
             isEmpty={userReservesWithDept.length === 0}
             totalSupplyBalance={totalSupplyBalance}
             totalCollateral={totalCollateral}
