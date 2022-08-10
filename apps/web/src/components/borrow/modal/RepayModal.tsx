@@ -123,6 +123,7 @@ export const RepayModal = ({
 
   useEffect(() => {
     resetState()
+    setRepayCompleted(false)
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || repayCompleted

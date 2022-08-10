@@ -111,6 +111,7 @@ export const BorrowModal = ({
 
   useEffect(() => {
     resetState()
+    setBorrowCompleted(false)
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted

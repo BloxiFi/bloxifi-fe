@@ -124,6 +124,7 @@ export const WithdrawModal = ({
 
   useEffect(() => {
     resetState()
+    setWithdrawCompleted(false)
   }, [isOpen, resetState])
 
   const calculateRemainingSupply = () => {

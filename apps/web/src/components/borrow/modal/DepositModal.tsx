@@ -155,6 +155,7 @@ export const DepositModal = ({
 
   useEffect(() => {
     resetState()
+    setDepositCompleted(false)
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || depositCompleted
