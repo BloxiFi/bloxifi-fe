@@ -60,6 +60,57 @@ export const ConnectWalletButton = () => {
     )
   }
 
+  const settings = (
+    <Menu
+      right
+      bottom
+      positionOffset={{ top: 5, left: 0 }}
+      forceClose={closeMenu}
+      onClose={handleClose}
+      toggler={
+        <Button
+          appearance="primary-ghost"
+          variant="medium"
+          size="medium"
+          icon="settings"
+        />
+      }
+      field={
+        <StackLayout>
+          <MenuItemTitle type="heading 3">
+            {t('header.globalSettings')}
+          </MenuItemTitle>
+
+          <MenuItem
+            appearance="text"
+            variant="large"
+            size="large"
+            onClick={() => toggleDarkMode(!darkMode)}
+          >
+            {t('global.buttons.darkMode')}{' '}
+            <Toggle
+              checked={darkMode}
+              styleProps={{ width: 50, paddingTop: 2 }}
+            />
+          </MenuItem>
+          <MenuItem
+            appearance="text"
+            variant="large"
+            size="large"
+            isLastItem
+            onClick={() => toggleTestnetMode(!testnetMode)}
+          >
+            {t('global.buttons.testnetMode')}{' '}
+            <Toggle
+              checked={testnetMode}
+              styleProps={{ width: 50, paddingTop: 2 }}
+            />
+          </MenuItem>
+        </StackLayout>
+      }
+    />
+  )
+
   return isConnected ? (
     <ColumnLayout>
       {/**TODO handle BLOX balance button click when we get BLOX token on Moonbeam, wait for BE to generate it */}
@@ -115,54 +166,7 @@ export const ConnectWalletButton = () => {
               </StackLayout>
             }
           />
-          <Menu
-            right
-            bottom
-            positionOffset={{ top: 5, left: 0 }}
-            forceClose={closeMenu}
-            onClose={handleClose}
-            toggler={
-              <Button
-                appearance="primary-ghost"
-                variant="medium"
-                size="medium"
-                icon="settings"
-              />
-            }
-            field={
-              <StackLayout>
-                <MenuItemTitle type="heading 3">
-                  {t('header.globalSettings')}
-                </MenuItemTitle>
-
-                <MenuItem
-                  appearance="text"
-                  variant="large"
-                  size="large"
-                  onClick={() => toggleDarkMode(!darkMode)}
-                >
-                  {t('global.buttons.darkMode')}{' '}
-                  <Toggle
-                    checked={darkMode}
-                    styleProps={{ width: 50, paddingTop: 2 }}
-                  />
-                </MenuItem>
-                <MenuItem
-                  appearance="text"
-                  variant="large"
-                  size="large"
-                  isLastItem
-                  onClick={() => toggleTestnetMode(!testnetMode)}
-                >
-                  {t('global.buttons.testnetMode')}{' '}
-                  <Toggle
-                    checked={testnetMode}
-                    styleProps={{ width: 50, paddingTop: 2 }}
-                  />
-                </MenuItem>
-              </StackLayout>
-            }
-          />
+          {settings}
         </ColumnLayout>
       ) : (
         <Button appearance="text" variant="medium" size="medium" color="red">
@@ -171,13 +175,16 @@ export const ConnectWalletButton = () => {
       )}
     </ColumnLayout>
   ) : (
-    <Button
-      onClick={connectWallet}
-      variant="medium"
-      appearance="primary"
-      size="medium"
-    >
-      {t('global.buttons.connectWallet')}
-    </Button>
+    <ColumnLayout>
+      <Button
+        onClick={connectWallet}
+        variant="medium"
+        appearance="primary"
+        size="medium"
+      >
+        {t('global.buttons.connectWallet')}
+      </Button>
+      {settings}
+    </ColumnLayout>
   )
 }
