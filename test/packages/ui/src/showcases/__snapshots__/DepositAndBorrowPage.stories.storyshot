@@ -2,10 +2,10 @@
 
 exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
 <div
-  className="sc-fLlhyt YhHCP"
+  className="sc-bBrHrO cbMfJH"
 >
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK fxLELT"
+    className="sc-evZas sc-ivTmOn ldkTlK kPozQz"
     gap={4}
   >
     <section
@@ -23,16 +23,16 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
             gap={1.5}
           >
             <div
-              className="sc-bZkfAO dJBbcc"
+              className="sc-kLLXSd dUkFhP"
               data-element="tableWrapper"
             >
               <table
-                className="sc-kLLXSd eXWyzl"
+                className="sc-ikZpkk eFtnVx"
                 data-element="table"
               >
                 <caption>
                   <div
-                    className="sc-iTONeN knoCVT"
+                    className="sc-iAvgwm eiTdTz"
                   >
                     <div
                       className="sc-evZas dTrqhc"
@@ -79,51 +79,51 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </div>
                 </caption>
                 <thead
-                  className="sc-jdAMXn fcA-dUh"
+                  className="sc-bZnhIo blrvud"
                 >
                   <tr>
                     <td
-                      className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Assets
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Balance
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         APY
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM bJjlxC cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp ksYnaJ hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Collateral
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM gByKGh cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dcWspa hSgQmU"
                       width={160}
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         
                       </div>
@@ -135,49 +135,49 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={false}
                   >
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         Asset
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         1.00
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         0.50%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <div
-                        className="sc-efBctP icFweK rts-toggle__container undefined"
+                        className="sc-cTQhss gnlxse rts-toggle__container undefined"
                         data-element="toggle"
                         height={25}
                         width={50}
                       >
                         <input
-                          className="sc-jOrMOR eGAMdC rts-toggle__toggle"
+                          className="sc-dPyBCJ gjIEqq rts-toggle__toggle"
                           data-element="toggle-input"
                           type="checkbox"
                         />
                         <span
-                          className="sc-cTQhss eHicdO rts-toggle__background"
+                          className="sc-jOrMOR iLLATP rts-toggle__background"
                           data-element="toggle-background"
                           height={25}
                         />
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <button
                         appearance="secondary"
@@ -195,49 +195,49 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={false}
                   >
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         Asset
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         1.00
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         0.50%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <div
-                        className="sc-efBctP icFweK rts-toggle__container undefined"
+                        className="sc-cTQhss gnlxse rts-toggle__container undefined"
                         data-element="toggle"
                         height={25}
                         width={50}
                       >
                         <input
-                          className="sc-jOrMOR eGAMdC rts-toggle__toggle"
+                          className="sc-dPyBCJ gjIEqq rts-toggle__toggle"
                           data-element="toggle-input"
                           type="checkbox"
                         />
                         <span
-                          className="sc-cTQhss eHicdO rts-toggle__background"
+                          className="sc-jOrMOR iLLATP rts-toggle__background"
                           data-element="toggle-background"
                           height={25}
                         />
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <button
                         appearance="secondary"
@@ -255,49 +255,49 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={false}
                   >
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         Asset
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         1.00
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         0.50%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <div
-                        className="sc-efBctP icFweK rts-toggle__container undefined"
+                        className="sc-cTQhss gnlxse rts-toggle__container undefined"
                         data-element="toggle"
                         height={25}
                         width={50}
                       >
                         <input
-                          className="sc-jOrMOR eGAMdC rts-toggle__toggle"
+                          className="sc-dPyBCJ gjIEqq rts-toggle__toggle"
                           data-element="toggle-input"
                           type="checkbox"
                         />
                         <span
-                          className="sc-cTQhss eHicdO rts-toggle__background"
+                          className="sc-jOrMOR iLLATP rts-toggle__background"
                           data-element="toggle-background"
                           height={25}
                         />
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <button
                         appearance="secondary"
@@ -313,11 +313,11 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </tbody>
                 <tfoot
-                  className="sc-iAvgwm cyIQxm c-table__footer"
+                  className="sc-efBctP iNXHcf c-table__footer"
                 >
                   <tr>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                       colSpan={5}
                     >
                       <div
@@ -330,57 +330,57 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
               </table>
             </div>
             <div
-              className="sc-bZkfAO dJBbcc"
+              className="sc-kLLXSd dUkFhP"
               data-element="tableWrapper"
             >
               <table
-                className="sc-kLLXSd eXWyzl"
+                className="sc-ikZpkk eFtnVx"
                 data-element="table"
               >
                 <caption>
                   <div
-                    className="sc-bZnhIo jzMmPY"
+                    className="sc-iTONeN jKbVOz"
                   >
                     Assets to deposit
                   </div>
                 </caption>
                 <thead
-                  className="sc-jdAMXn fcA-dUh"
+                  className="sc-bZnhIo blrvud"
                 >
                   <tr>
                     <td
-                      className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Assets
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM bJjlxC cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp ksYnaJ hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Wallet balance
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM bJjlxC cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp ksYnaJ hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         APY
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM jzqDDn cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp kHGbIY hSgQmU"
                       width={100}
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         
                       </div>
@@ -392,28 +392,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={true}
                   >
                     <td
-                      className="sc-himrzO kysAtL"
+                      className="sc-gXmSlM SQWQ"
                     >
                       <span>
                         ETH
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         1.250.000$
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         3.5%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <button
                         appearance="secondary"
@@ -431,28 +431,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={true}
                   >
                     <td
-                      className="sc-himrzO kysAtL"
+                      className="sc-gXmSlM SQWQ"
                     >
                       <span>
                         DAI
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         1.250.000$
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         3.5%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <button
                         appearance="secondary"
@@ -470,28 +470,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={true}
                   >
                     <td
-                      className="sc-himrzO kysAtL"
+                      className="sc-gXmSlM SQWQ"
                     >
                       <span>
                         POLKA
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         1.250.000$
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         3.5%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <button
                         appearance="secondary"
@@ -509,28 +509,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={true}
                   >
                     <td
-                      className="sc-himrzO kysAtL"
+                      className="sc-gXmSlM SQWQ"
                     >
                       <span>
                         BTC
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         1.250.000$
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         3.5%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <button
                         appearance="secondary"
@@ -558,16 +558,16 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
             gap={1.5}
           >
             <div
-              className="sc-bZkfAO dJBbcc"
+              className="sc-kLLXSd dUkFhP"
               data-element="tableWrapper"
             >
               <table
-                className="sc-kLLXSd eXWyzl"
+                className="sc-ikZpkk eFtnVx"
                 data-element="table"
               >
                 <caption>
                   <div
-                    className="sc-iTONeN knoCVT"
+                    className="sc-iAvgwm eiTdTz"
                   >
                     <div
                       className="sc-breuTD eqtFAo c-table__header--progressbar"
@@ -598,10 +598,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                         </span>
                       </div>
                       <div
-                        className="sc-gicCDI ijCjom c-table__bottom-progressbar"
+                        className="sc-ezWOiH irrRXT c-table__bottom-progressbar"
                       >
                         <p
-                          className="sc-fEOsli sc-ezWOiH StzYL ccsyrD c-text--body-2 c-text--color-oxfordBlue"
+                          className="sc-fEOsli sc-bZkfAO StzYL dljfNq c-text--body-2 c-text--color-oxfordBlue"
                         >
                           Borrowed
                         </p>
@@ -622,42 +622,42 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </div>
                 </caption>
                 <thead
-                  className="sc-jdAMXn fcA-dUh"
+                  className="sc-bZnhIo blrvud"
                 >
                   <tr>
                     <td
-                      className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Assets
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Balance
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         APY
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM gByKGh cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dcWspa hSgQmU"
                       width={160}
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         
                       </div>
@@ -669,28 +669,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={false}
                   >
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         Asset
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         1.00
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         0.50%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <button
                         appearance="secondary"
@@ -708,28 +708,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={false}
                   >
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         Asset
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         1.00
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         0.50%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <button
                         appearance="secondary"
@@ -747,28 +747,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={false}
                   >
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         Asset
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         1.00
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fkWGJm"
+                      className="sc-gXmSlM dJFjIR"
                     >
                       <span>
                         0.50%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                     >
                       <button
                         appearance="secondary"
@@ -784,11 +784,11 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </tbody>
                 <tfoot
-                  className="sc-iAvgwm cyIQxm c-table__footer"
+                  className="sc-efBctP iNXHcf c-table__footer"
                 >
                   <tr>
                     <td
-                      className="sc-himrzO bJjlxC"
+                      className="sc-gXmSlM ksYnaJ"
                       colSpan={4}
                     >
                       <div
@@ -801,57 +801,57 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
               </table>
             </div>
             <div
-              className="sc-bZkfAO dJBbcc"
+              className="sc-kLLXSd dUkFhP"
               data-element="tableWrapper"
             >
               <table
-                className="sc-kLLXSd eXWyzl"
+                className="sc-ikZpkk eFtnVx"
                 data-element="table"
               >
                 <caption>
                   <div
-                    className="sc-bZnhIo jzMmPY"
+                    className="sc-iTONeN jKbVOz"
                   >
                     Assets to borrow
                   </div>
                 </caption>
                 <thead
-                  className="sc-jdAMXn fcA-dUh"
+                  className="sc-bZnhIo blrvud"
                 >
                   <tr>
                     <td
-                      className="sc-himrzO sc-gXmSlM fkWGJm cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Assets
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM bJjlxC cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp ksYnaJ hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         Wallet balance
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM bJjlxC cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp ksYnaJ hSgQmU"
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         APY
                       </div>
                     </td>
                     <td
-                      className="sc-himrzO sc-gXmSlM jzqDDn cydyBC"
+                      className="sc-gXmSlM sc-cCsOjp kHGbIY hSgQmU"
                       width={100}
                     >
                       <div
-                        className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                       >
                         
                       </div>
@@ -863,28 +863,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={true}
                   >
                     <td
-                      className="sc-himrzO kysAtL"
+                      className="sc-gXmSlM SQWQ"
                     >
                       <span>
                         ETH
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         1.250.000$
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         3.5%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <button
                         appearance="secondary"
@@ -902,28 +902,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={true}
                   >
                     <td
-                      className="sc-himrzO kysAtL"
+                      className="sc-gXmSlM SQWQ"
                     >
                       <span>
                         DAI
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         1.250.000$
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         3.5%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <button
                         appearance="secondary"
@@ -941,28 +941,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={true}
                   >
                     <td
-                      className="sc-himrzO kysAtL"
+                      className="sc-gXmSlM SQWQ"
                     >
                       <span>
                         POLKA
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         1.250.000$
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         3.5%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <button
                         appearance="secondary"
@@ -980,28 +980,28 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     isTitleAString={true}
                   >
                     <td
-                      className="sc-himrzO kysAtL"
+                      className="sc-gXmSlM SQWQ"
                     >
                       <span>
                         BTC
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         1.250.000$
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <span>
                         3.5%
                       </span>
                     </td>
                     <td
-                      className="sc-himrzO fZpOqX"
+                      className="sc-gXmSlM bdTOUc"
                     >
                       <button
                         appearance="secondary"
@@ -1028,10 +1028,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
 
 exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
 <div
-  className="sc-fLlhyt YhHCP"
+  className="sc-bBrHrO cbMfJH"
 >
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK fxLELT"
+    className="sc-evZas sc-ivTmOn ldkTlK kPozQz"
     gap={4}
   >
     <section

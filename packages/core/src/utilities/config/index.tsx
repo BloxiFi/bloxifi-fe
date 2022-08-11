@@ -8,6 +8,9 @@ export const supportedChainIds: number[] = Object.values(ChainIds).map(value =>
   Number(value),
 )
 
+export const isSupportedNetwork = (chainId: number): boolean =>
+  supportedChainIds.includes(chainId)
+
 export const networkConfig: NetworkConfigType = {
   [ChainIds.moonbaseAlpha]: {
     name: 'Moonbase',

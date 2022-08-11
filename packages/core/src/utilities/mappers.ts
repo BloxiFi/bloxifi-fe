@@ -10,6 +10,15 @@ export const filterItems = (items, filter, filterBy) => {
   )
 }
 
+/**
+ * sliceMiddleOfString
+ * @param string String that needs to be sliced
+ * @param n Number of first and last characters to display
+ * @returns string
+ */
+export const sliceMiddleOfString = (string: string, n: number): string =>
+  `${string.slice(0, n)}...${string.slice(string.length - n)}`
+
 export function getContract<Contract>(
   value: Contract = {} as Contract,
   contractName: keyof Contract,

@@ -6,7 +6,13 @@
       "deposit": "Deposit",
       "borrow": "Borrow",
       "withdraw": "Withdraw",
-      "repay": "Repay"
+      "repay": "Repay",
+      "connectWallet": "Connect wallet",
+      "bloxBalance": "Blox Balance",
+      "disconnectWallet": "Disconnect wallet",
+      "viewOnExplorer": "View on explorer",
+      "darkMode": "Dark mode",
+      "testnetMode": "Testnet mode"
     },
     "notifications": {
       "transaction_failed": "Transaction failed",
@@ -27,8 +33,12 @@
       "exceededBalance": "Not enough balance"
     }
   },
+  "header": {
+    "globalSettings": "Global settings"
+  },
   "walletConnection": {
-    "notConnectedTitle": "Please, connect your wallet"
+    "notConnectedTitle": "Please, connect your wallet",
+    "wrongNetworkConnection": "Wrong network"
   },
   "dashboard": {
     "notConnectedMessage": "Please, connect your wallet to see your supplies, borrowings, and open positions."

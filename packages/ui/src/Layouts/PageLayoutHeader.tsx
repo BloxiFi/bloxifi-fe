@@ -5,6 +5,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { CONTENT_MAX_WIDTH } from '../styles/constants'
 import { Fonts } from '../styles/fonts'
 
 interface NavigationItem {
@@ -47,16 +48,18 @@ export const PageLayoutHeader = React.forwardRef(
 
     return (
       <Component ref={ref} {...props} className={className}>
-        <HeaderWrapper>
-          <HeaderLinksWrapper>
-            {navigationItems.map(({ to, label, onClick }) => (
-              <HeaderLink data-cy={label} key={to} to={to} onClick={onClick}>
-                {label}
-              </HeaderLink>
-            ))}
-          </HeaderLinksWrapper>
-          <HeaderButtonsWrapper>{children}</HeaderButtonsWrapper>
-        </HeaderWrapper>
+        <HeaderBorder>
+          <HeaderWrapper>
+            <HeaderLinksWrapper>
+              {navigationItems.map(({ to, label, onClick }) => (
+                <HeaderLink data-cy={label} key={to} to={to} onClick={onClick}>
+                  {label}
+                </HeaderLink>
+              ))}
+            </HeaderLinksWrapper>
+            <HeaderButtonsWrapper>{children}</HeaderButtonsWrapper>
+          </HeaderWrapper>
+        </HeaderBorder>
       </Component>
     )
   },
@@ -64,12 +67,20 @@ export const PageLayoutHeader = React.forwardRef(
   props: { as?: T } & Omit<ReactProps<T>, 'as'> & HeaderProps,
 ) => JSX.Element
 
+const HeaderBorder = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.headerWrapperBorderColor};
+`
+
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding: 0 64px;
+  max-width: ${CONTENT_MAX_WIDTH + 4 * 16}px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: auto;
+  margin-right: auto;
   font-family: ${Fonts.ClashDisplay};
   border-bottom: 1px solid ${({ theme }) => theme.headerWrapperBorderColor};
 `
@@ -101,7 +112,7 @@ const HeaderButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  button {
+  & > button {
     margin-left: 13px;
   }
 `
