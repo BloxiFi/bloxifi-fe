@@ -26,6 +26,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
     state: {
       userReserves,
       userAccountData: { totalDebtETH, availableBorrowsETH, healthFactor },
+      loading,
     },
   } = WalletContainer.useContainer()
   const userReservesWithDept = userReserves.filter(
@@ -113,9 +114,11 @@ export const YourBorrowsTable: FunctionComponent = () => {
           <BorrowTitleBox
             isEmpty={userReservesWithDept.length === 0}
             currentBorrowedValue={Number(currentBorrowedValue.toFixed(2))}
+            isLoading={loading}
           />
         }
         footer={<BoxLayout gap={1} />}
+        isLoading={loading}
       />
       <RepayModal
         isOpen={!!modalData}

@@ -1,6 +1,5 @@
 import React from 'react'
 import { default as Loader, IContentLoaderProps } from 'react-content-loader'
-import { ResponsiveContainer } from 'recharts'
 
 /**
  * ContentLoaderProps extending existing props {@link IContentLoaderProps} to have some custom loader appearance
@@ -22,31 +21,28 @@ interface ContentLoaderProps extends IContentLoaderProps {
  */
 export const ContentLoader = ({
   appearance = 'text',
-  width,
-  height,
+  width = 50,
+  height = 30,
   borderRadius = 5,
   ...props
 }: ContentLoaderProps) => {
   return (
-    <ResponsiveContainer
+    <Loader
       width={width ?? '100%'}
       height={appearance === 'text' ? 30 : height}
+      {...props}
+      speed={2}
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
     >
-      <Loader
-        {...props}
-        speed={2}
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-      >
-        <rect
-          x="0"
-          y="0"
-          rx={borderRadius}
-          ry={borderRadius}
-          width="100%"
-          height="100%"
-        />
-      </Loader>
-    </ResponsiveContainer>
+      <rect
+        x="0"
+        y="0"
+        rx={borderRadius}
+        ry={borderRadius}
+        width={width}
+        height={height}
+      />
+    </Loader>
   )
 }

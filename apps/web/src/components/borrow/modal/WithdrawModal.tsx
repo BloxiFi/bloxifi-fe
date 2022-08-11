@@ -4,6 +4,7 @@ import {
   Button,
   CenterLayout,
   Icon,
+  Loader,
   Modal,
   StackLayout,
   Text,
@@ -123,6 +124,7 @@ export const WithdrawModal = ({
 
   useEffect(() => {
     resetState()
+    setWithdrawCompleted(false)
   }, [isOpen, resetState])
 
   const calculateRemainingSupply = () => {
@@ -169,7 +171,11 @@ export const WithdrawModal = ({
         </StackLayout>
 
         <BoxLayout gap={1.875}>
-          {hasError ? (
+          {loading ? (
+            <CenterLayout>
+              <Loader />
+            </CenterLayout>
+          ) : hasError ? (
             <CenterLayout>
               <Icon name="error" size={75} />
               <Text type="body 2">

@@ -12,9 +12,9 @@ import {
   Toggle,
 } from '@bloxifi/ui'
 import { sliceMiddleOfString } from '@bloxifi/core'
+import { useTranslation } from 'react-i18next'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { useTranslation } from 'react-i18next'
 
 export const ConnectWalletButton = () => {
   const { t } = useTranslation()

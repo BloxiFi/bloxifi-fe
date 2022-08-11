@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
+import { ContentLoader } from './ContentLoader'
 import { Fonts } from './styles/fonts'
 import { Text } from './Text'
 
@@ -118,6 +119,10 @@ interface RowProps
    * Optional additional padding for table row
    */
   columnSpacing?: boolean
+  /**
+   * Renders Loader instead of row content.
+   */
+  isLoading?: boolean
 }
 
 export const stylings = {
@@ -132,6 +137,7 @@ const Row = ({
   rowData,
   rowIndex,
   columnSpacing,
+  isLoading,
   ...props
 }: RowProps) => {
   const [isRowExpanded, setIsRowExpanded] = useState(false)
@@ -160,7 +166,11 @@ const Row = ({
             key={index}
             alignText={alignText}
           >
-            <Cell onRowExpand={onRowExpand} data={rowData} index={rowIndex} />
+            {isLoading ? (
+              <ContentLoader />
+            ) : (
+              <Cell onRowExpand={onRowExpand} data={rowData} index={rowIndex} />
+            )}
           </Column>
         )
       })}
@@ -241,14 +251,6 @@ export const Table = ({
                       )
                     }
 
-                    if (index === 0 && isLoading) {
-                      return (
-                        <Column width="100%" key={index}>
-                          <TableHeaderText>Loading...</TableHeaderText>
-                        </Column>
-                      )
-                    }
-
                     return null
                   },
                 )}
@@ -256,13 +258,7 @@ export const Table = ({
           )}
         </THead>
         <tbody>
-          {isLoading ? (
-            <tr>
-              <LoadingColumn>
-                <div>TODO - Loader</div>
-              </LoadingColumn>
-            </tr>
-          ) : isEmpty ? (
+          {!isLoading && isEmpty ? (
             <tr>
               <Column alignText="left" isEmpty colSpan={numberOfColumns}>
                 <Text type="body 5">{noDataMessage}</Text>
@@ -277,6 +273,7 @@ export const Table = ({
                 rowData={rowData}
                 isTitleAString={isTitleAString}
                 columnSpacing={columnSpacing}
+                isLoading={isLoading}
               />
             ))
           )}
