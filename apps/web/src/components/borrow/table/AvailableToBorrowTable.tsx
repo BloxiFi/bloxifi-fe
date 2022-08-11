@@ -14,6 +14,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     state: {
       reserves,
       userAccountData: { healthFactor },
+      loading,
     },
   } = WalletContainer.useContainer()
   const [modalData, setModalData] = useState<ReservesData>()
@@ -76,6 +77,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
         data={reserves}
         titleComponent={t('deposit.assetsToBorrow')}
         columnSpacing
+        isLoading={loading}
       />
       <BorrowModal
         isOpen={!!modalData}
