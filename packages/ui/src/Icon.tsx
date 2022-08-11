@@ -3,7 +3,10 @@ import InlineSVG, { Props } from 'react-inlinesvg'
 import styled, { ThemeContext } from 'styled-components'
 
 const assetsIcons = ['dai', 'usdc', 'weth', 'wbtc']
-const notFilled = ['success', 'error', ...assetsIcons]
+/**
+ * TODO Refactor color prop and applying color
+ */
+const notFilled = ['success', 'error', ...assetsIcons, 'arrow-down', 'settings']
 
 export const IconNames = [
   'close',

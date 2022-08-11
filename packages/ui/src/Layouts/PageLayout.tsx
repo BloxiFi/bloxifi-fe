@@ -2,7 +2,7 @@ import { ReactProps, RefForwardingComponent } from '@bloxifi/types'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 
-import { zIndex } from '../styles/constants'
+import { CONTENT_MAX_WIDTH, zIndex } from '../styles/constants'
 
 import { CoverLayout } from './CoverLayout'
 import { GridLayout } from './GridLayout'
@@ -169,7 +169,6 @@ export const Page: PageLayout = Object.assign(
 )
 
 const HEADER_HEIGHT = 64
-const CONTENT_MAX_WIDTH = 1330
 
 export const PageLayout = styled(Page)`
   position: relative;
