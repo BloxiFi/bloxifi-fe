@@ -109,7 +109,6 @@ export const RepayModal = ({
     values,
     errors,
     touched,
-    handleChange,
     submitForm,
     handleBlur,
     setFieldValue,
@@ -137,11 +136,15 @@ export const RepayModal = ({
     return 0
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFieldValue('amount', e.target.value)
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <StackLayout gap={5}>
         <StackLayout gap={3}>
           <TableInput
+            autoFocus
             name="amount"
             type="number"
             max={reserveData.currentTotalDebt}

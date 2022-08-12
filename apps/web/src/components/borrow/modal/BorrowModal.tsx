@@ -97,7 +97,6 @@ export const BorrowModal = ({
     values,
     errors,
     touched,
-    handleChange,
     submitForm,
     handleBlur,
     setFieldValue,
@@ -117,11 +116,15 @@ export const BorrowModal = ({
   const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted
   const isBorrowDisabled = isInputDisabled || !!errors.amount || !values.amount
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFieldValue('amount', e.target.value)
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <StackLayout gap={5}>
         <StackLayout gap={3}>
           <TableInput
+            autoFocus
             name="amount"
             type="number"
             max={reserveData.balance}
