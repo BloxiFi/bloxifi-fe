@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import {
+  BaseInput,
   BoxLayout,
   Button,
   CenterLayout,
@@ -141,7 +142,6 @@ export const DepositModal = ({
     values,
     errors,
     touched,
-    handleChange,
     submitForm,
     handleBlur,
     setFieldValue,
@@ -166,84 +166,86 @@ export const DepositModal = ({
     hasError ||
     (shouldApproveContract && !approved)
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFieldValue('amount', e.target.value)
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <form>
-        <StackLayout gap={5}>
-          <StackLayout gap={3}>
-            <TableInput
-              name="amount"
-              type="number"
-              max={reserveData.balance}
-              reserveData={{
-                balance: reserveData.balance,
-                symbol: reserveData.symbol,
-              }}
-              value={values.amount}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              setFieldValue={setFieldValue}
-              status={errors.amount && touched.amount ? 'error' : undefined}
-              info={errors.amount && touched.amount && errors.amount}
-              disabled={isInputDisabled}
-              title={t('deposit.depositAsset')}
-            />
-            <TransactionOverview
-              healthFactor={healthFactor}
-              supplyAPY={reserveData.supplyAPY}
-              headers={['supplyAPY', 'healthFactor']}
-            />
-          </StackLayout>
+      <StackLayout gap={5}>
+        <StackLayout gap={3}>
+          <TableInput
+            autoFocus
+            name="amount"
+            type="number"
+            max={reserveData.balance}
+            reserveData={{
+              balance: reserveData.balance,
+              symbol: reserveData.symbol,
+            }}
+            value={values.amount}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            setFieldValue={setFieldValue}
+            status={errors.amount && touched.amount ? 'error' : undefined}
+            info={errors.amount && touched.amount && errors.amount}
+            disabled={isInputDisabled}
+            title={t('deposit.depositAsset')}
+          />
+          <TransactionOverview
+            healthFactor={healthFactor}
+            supplyAPY={reserveData.supplyAPY}
+            headers={['supplyAPY', 'healthFactor']}
+          />
+        </StackLayout>
 
-          <BoxLayout gap={1.875}>
-            {loading ? (
-              <CenterLayout>
-                <Loader />
-              </CenterLayout>
-            ) : hasError ? (
-              <CenterLayout>
-                <Icon name="error" size={75} />
-                <Text type="body 2">
-                  {t('global.notifications.transaction_failed')}
-                </Text>
-              </CenterLayout>
-            ) : depositCompleted ? (
-              <CenterLayout>
-                <Icon name="success" size={75} />
-                <Text type="body 2">
-                  {t('global.notifications.deposit_successful')}
-                </Text>
-              </CenterLayout>
-            ) : (
-              <StackLayout gap={1}>
-                {shouldApproveContract && (
-                  <Button
-                    className="u-full-width"
-                    appearance="dark"
-                    size="large"
-                    variant="large"
-                    disabled={isApproveDisabled}
-                    onClick={approve}
-                  >
-                    {t('global.buttons.approve')}
-                  </Button>
-                )}
+        <BoxLayout gap={1.875}>
+          {loading ? (
+            <CenterLayout>
+              <Loader />
+            </CenterLayout>
+          ) : hasError ? (
+            <CenterLayout>
+              <Icon name="error" size={75} />
+              <Text type="body 2">
+                {t('global.notifications.transaction_failed')}
+              </Text>
+            </CenterLayout>
+          ) : depositCompleted ? (
+            <CenterLayout>
+              <Icon name="success" size={75} />
+              <Text type="body 2">
+                {t('global.notifications.deposit_successful')}
+              </Text>
+            </CenterLayout>
+          ) : (
+            <StackLayout gap={1}>
+              {shouldApproveContract && (
                 <Button
                   className="u-full-width"
                   appearance="dark"
                   size="large"
                   variant="large"
-                  type="submit"
-                  disabled={isDepositDisabled}
-                  onClick={submitForm}
+                  disabled={isApproveDisabled}
+                  onClick={approve}
                 >
-                  {t('global.buttons.deposit')} {reserveData.symbol}
+                  {t('global.buttons.approve')}
                 </Button>
-              </StackLayout>
-            )}
-          </BoxLayout>
-        </StackLayout>
-      </form>
+              )}
+              <Button
+                className="u-full-width"
+                appearance="dark"
+                size="large"
+                variant="large"
+                type="submit"
+                disabled={isDepositDisabled}
+                onClick={submitForm}
+              >
+                {t('global.buttons.deposit')} {reserveData.symbol}
+              </Button>
+            </StackLayout>
+          )}
+        </BoxLayout>
+      </StackLayout>
     </Modal>
   )
 }
