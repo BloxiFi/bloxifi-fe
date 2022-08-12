@@ -1,7 +1,7 @@
 {
   "KSMmb": {
     "fullName": "Kusama",
-    "icon": "dai"
+    "icon": "ksm"
   },
   "WBTCmb": {
     "fullName": "Wrapped Bitcoin",
@@ -21,6 +21,6 @@
   },
   "MOWRmb": {
     "fullName": "Moonriver",
-    "icon": "dai"
+    "icon": "mowr"
   }
 }
