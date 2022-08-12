@@ -14,15 +14,16 @@ import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
+
+import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { UserReserveData } from '@/containers/WalletContainer'
 
 export type WithdrawModalData = Pick<
   UserReserveData,
-  'underlyingAsset' | 'balance' | 'symbol' | 'currentATokenBalance'
+  'underlyingAsset' | 'balance' | 'symbol' | 'currentATokenBalance' | 'icon'
 >
 
 interface Props {
@@ -141,15 +142,22 @@ export const WithdrawModal = ({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
+      <BoxLayout gap={0.25} />
       <StackLayout gap={5}>
-        <StackLayout gap={3}>
-          <TableInput
+        <StackLayout gap={2}>
+          <BoxLayout gap={1.25}>
+            <Text color="oxfordBlue" type="heading 2" as="span">
+              {t('deposit.withdrawAsset')}
+            </Text>
+          </BoxLayout>
+          <AmountInput
             name="amount"
             type="number"
             max={reserveData.balance}
             reserveData={{
               balance: reserveData.currentATokenBalance,
               symbol: reserveData.symbol,
+              icon: reserveData.icon,
             }}
             value={values.amount}
             onChange={handleChange}
@@ -158,7 +166,6 @@ export const WithdrawModal = ({
             status={errors.amount && touched.amount ? 'error' : undefined}
             info={errors.amount && touched.amount && errors.amount}
             disabled={isInputDisabled}
-            title={t('deposit.withdrawAsset')}
           />
           <TransactionOverview
             healthFactor={healthFactor}

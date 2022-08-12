@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
 import { RepayModal, RepayModalData } from '../modal/RepayModal'
+import { AssetName } from '../AssetName'
 
 import { BorrowTitleBox } from './BorrowTitleBox'
 
@@ -53,14 +54,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
     assets: {
       header: 'Assets',
       Cell: ({ data: { symbol, icon } }: any) => (
-        <ColumnLayout>
-          <Icon name={icon} size={25} />
-          <TruncatedText>
-            <Text type="heading 3" as="span">
-              {symbol}
-            </Text>
-          </TruncatedText>
-        </ColumnLayout>
+        <AssetName symbol={symbol} icon={icon} iconSize={25} />
       ),
       alignText: 'left',
     },
@@ -83,7 +77,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
     action: {
       header: '',
-      Cell: ({ data: { currentTotalDebt, symbol, underlyingAsset } }) => (
+      Cell: ({ data: { currentTotalDebt, symbol, underlyingAsset, icon } }) => (
         <Button
           appearance="secondary"
           variant="thin"
@@ -94,6 +88,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
               currentTotalDebt,
               symbol,
               underlyingAsset,
+              icon,
             })
           }
         >
