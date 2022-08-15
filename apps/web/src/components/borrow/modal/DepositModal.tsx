@@ -125,9 +125,9 @@ export const DepositModal = ({
   }
 
   const depositValidationSchemaa = Yup.object().shape({
-    amount: Yup.string()
+    amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
-      // .positive(t('global.errors.positiveValue'))
+      .positive(t('global.errors.positiveValue'))
       .max(reserveData.balance, t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
   })
