@@ -3,8 +3,6 @@ import {
   Button,
   CenterLayout,
   ColumnData,
-  ColumnLayout,
-  Icon,
   Loader,
   Table,
   Text,
@@ -21,6 +19,7 @@ import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
 import { WithdrawModal, WithdrawModalData } from '../modal/WithdrawModal'
+import { AssetName } from '../AssetName'
 
 import { DepositTitleBox } from './DepositTitleBox'
 
@@ -83,14 +82,7 @@ export const YourDepositsTable: FunctionComponent = () => {
     assets: {
       header: 'Assets',
       Cell: ({ data: { symbol, icon } }: any) => (
-        <ColumnLayout>
-          <Icon name={icon} size={25} />
-          <TruncatedText>
-            <Text type="heading 3" as="span">
-              {symbol}
-            </Text>
-          </TruncatedText>
-        </ColumnLayout>
+        <AssetName symbol={symbol} icon={icon} iconSize={25} />
       ),
       alignText: 'left',
     },
@@ -143,7 +135,7 @@ export const YourDepositsTable: FunctionComponent = () => {
     action: {
       header: '',
       Cell: ({
-        data: { balance, symbol, underlyingAsset, currentATokenBalance },
+        data: { balance, symbol, underlyingAsset, currentATokenBalance, icon },
       }) => (
         <Button
           appearance="secondary"
@@ -156,6 +148,7 @@ export const YourDepositsTable: FunctionComponent = () => {
               symbol,
               underlyingAsset,
               currentATokenBalance,
+              icon,
             })
           }
         >

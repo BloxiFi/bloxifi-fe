@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import {
-  BaseInput,
   BoxLayout,
   Button,
   CenterLayout,
@@ -16,8 +15,9 @@ import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
+
+import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { ReservesData } from '@/containers/WalletContainer'
@@ -128,7 +128,7 @@ export const DepositModal = ({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
+      .max(reserveData.balance, t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
   })
 
@@ -142,6 +142,7 @@ export const DepositModal = ({
     values,
     errors,
     touched,
+    handleChange,
     submitForm,
     handleBlur,
     setFieldValue,
@@ -166,21 +167,23 @@ export const DepositModal = ({
     hasError ||
     (shouldApproveContract && !approved)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setFieldValue('amount', e.target.value)
-
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
+      <BoxLayout gap={0.25} />
       <StackLayout gap={5}>
-        <StackLayout gap={3}>
-          <TableInput
-            autoFocus
+        <StackLayout gap={2}>
+          <BoxLayout gap={1.25}>
+            <Text color="oxfordBlue" type="heading 2" as="span">
+              {t('deposit.depositAsset')}
+            </Text>
+          </BoxLayout>
+          <AmountInput
             name="amount"
-            type="number"
             max={reserveData.balance}
             reserveData={{
               balance: reserveData.balance,
               symbol: reserveData.symbol,
+              icon: reserveData.icon,
             }}
             value={values.amount}
             onChange={handleChange}
@@ -189,7 +192,6 @@ export const DepositModal = ({
             status={errors.amount && touched.amount ? 'error' : undefined}
             info={errors.amount && touched.amount && errors.amount}
             disabled={isInputDisabled}
-            title={t('deposit.depositAsset')}
           />
           <TransactionOverview
             healthFactor={healthFactor}

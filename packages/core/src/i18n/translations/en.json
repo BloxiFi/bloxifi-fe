@@ -14,6 +14,9 @@
       "darkMode": "Dark mode",
       "testnetMode": "Testnet mode"
     },
+    "inputs": {
+      "amount": "Amount"
+    },
     "notifications": {
       "transaction_failed": "Transaction failed",
       "deposit_successful": "Deposit successful",
