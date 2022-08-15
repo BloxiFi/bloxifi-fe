@@ -3,8 +3,6 @@ import {
   Button,
   CenterLayout,
   ColumnData,
-  ColumnLayout,
-  Icon,
   Loader,
   Table,
   Text,

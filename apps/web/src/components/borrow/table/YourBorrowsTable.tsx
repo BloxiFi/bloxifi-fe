@@ -1,12 +1,8 @@
-//TODO COMPLETE FETCHING & DISPLAYING DATA
 import {
   BoxLayout,
   Button,
   ColumnData,
-  ColumnLayout,
-  Icon,
   Table,
-  Text,
   TruncatedText,
 } from '@bloxifi/ui'
 import React, { FunctionComponent, useState } from 'react'

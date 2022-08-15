@@ -150,7 +150,6 @@ export const RepayModal = ({
           </BoxLayout>
           <AmountInput
             name="amount"
-            type="number"
             max={reserveData.currentTotalDebt}
             reserveData={{
               balance: reserveData.currentTotalDebt,

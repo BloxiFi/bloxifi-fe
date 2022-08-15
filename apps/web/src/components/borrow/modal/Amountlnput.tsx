@@ -26,18 +26,23 @@ interface Props extends BaseInputProps {
    * Selected asset data - Balance and symbol
    */
   reserveData: TableInputData
-  /**
-   * Optional title that will appear above input field
-   */
-  title?: string
 }
 
 export const AmountInput = forwardRef(
   (
-    { reserveData, setFieldValue, disabled, title, ...inputProps }: Props,
+    {
+      type = 'number',
+      reserveData,
+      setFieldValue,
+      disabled,
+      ...inputProps
+    }: Props,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const { t } = useTranslation()
+
+    const blockInvalidChar = (event: React.KeyboardEvent<HTMLInputElement>) =>
+      ['e', 'E', '+', '-'].includes(event.key) && event.preventDefault()
 
     return (
       <StackLayout>
@@ -49,7 +54,13 @@ export const AmountInput = forwardRef(
         <InputWrapper>
           <BoxLayout>
             <ColumnLayout>
-              <BaseInput disabled={disabled} {...inputProps} ref={ref} />
+              <BaseInput
+                type={type}
+                onKeyDown={blockInvalidChar}
+                disabled={disabled}
+                {...inputProps}
+                ref={ref}
+              />
 
               <Button
                 appearance="secondary"

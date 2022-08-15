@@ -152,7 +152,6 @@ export const WithdrawModal = ({
           </BoxLayout>
           <AmountInput
             name="amount"
-            type="number"
             max={reserveData.balance}
             reserveData={{
               balance: reserveData.currentATokenBalance,
