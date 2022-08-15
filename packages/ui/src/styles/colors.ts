@@ -56,6 +56,7 @@ export const Colors = {
     tableBorderColor: '#DAE3ED',
     tableTextColor: '#012749',
     tableCellBackgroundColor: 'white',
+    tableIconColor: 'white',
     //Input
     inputBorder: '#677789',
     inputTextColor: '#012749',
@@ -121,6 +122,7 @@ export const Colors = {
     tableBorderColor: '#DAE3ED',
     tableTextColor: '#012749',
     tableCellBackgroundColor: 'white',
+    tableIconColor: 'white',
     //Input
     inputBorder: '#677789',
     inputTextColor: '#012749',

@@ -1,48 +1,95 @@
-import { Text, CoverLayout, CardLayout, BoxLayout } from '@bloxifi/ui'
+import {
+  CellProps,
+  ColumnLayout,
+  Icon,
+  PageLayout,
+  StackLayout,
+  Table,
+  Text,
+} from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { PageContainer } from '@/containers/PageContainer'
-import { StyleContainer } from '@/containers/StyleContainer'
-import { LocaleContainer } from '@/containers/LocaleContainer'
 import { Web3Container } from '@/containers/Web3Container'
-import { ConnectWalletPaper } from '@/components/connector/ConnectWalletPaper'
-import { Header } from '@/components/header/Header'
 
 const HomePage = () => {
   const { t } = useTranslation()
-  const { setLanguage } = LocaleContainer.useContainer()
-  const { changeTheme } = StyleContainer.useContainer()
-  const { pageLayout } = PageContainer.useContainer()
   const {
     state: { isConnected, loading },
   } = Web3Container.useContainer()
 
+  const defaultColumns = {
+    assets: {
+      header: 'Assets',
+      Cell: ({ data: { assets } }: CellProps) => <div>{assets}</div>,
+      alignText: 'left',
+    },
+    totalValueDeposited: {
+      header: 'Total value deposited',
+      Cell: ({ data: { totalValueDeposited } }: CellProps) => (
+        <span>{totalValueDeposited}</span>
+      ),
+    },
+    totalBorrowed: {
+      header: 'Total borrowed',
+      Cell: ({ data: { totalBorrowed } }: CellProps) => (
+        <span>{totalBorrowed}</span>
+      ),
+    },
+    depositAPY: {
+      header: 'Deposit APY',
+      Cell: ({ data: { depositAPY } }: CellProps) => <span>{depositAPY}</span>,
+    },
+    borrowAPY: {
+      header: 'Borrow APY',
+      Cell: ({ data: { borrowAPY } }: CellProps) => <span>{borrowAPY}</span>,
+    },
+  }
+
   return (
-    <Wrapper>
-      <CoverLayout>
-        <BoxLayout>
-          <CardLayout>
-            <Text align="left" type="heading 1" semiBold>
-              {t('global.button')}
-            </Text>
-          </CardLayout>
-        </BoxLayout>
-        {!isConnected && <ConnectWalletPaper loading={loading} />}
-        <button onClick={() => changeTheme('dark')}>Dark theme</button>
-        <button
-          onClick={() =>
-            pageLayout.setHeader(!pageLayout.header ? <Header /> : null)
-          }
-        >
-          {!pageLayout.header ? 'Add' : 'Remove'} header
-        </button>
-        <button onClick={() => changeTheme('light')}>Light theme</button>
-        <button onClick={() => setLanguage('en')}>Change to Eng</button>
-        <button onClick={() => setLanguage('sr')}>Change to Serbian</button>
-      </CoverLayout>
-    </Wrapper>
+    <>
+      <PageLayout.Section>
+        <StackLayout>
+          <Text type="heading 1" color="white">
+            Dashboard
+          </Text>
+        </StackLayout>
+      </PageLayout.Section>
+      <PageLayout.Section>
+        <ColumnLayout gap={2}>
+          <ColumnLayout>
+            <Icon color="white" withBorder size={53} name="total-deposited" />
+
+            <StackLayout gap={0.5}>
+              <Text color="white" as="span" type="body 2">
+                Total Deposited
+              </Text>
+              <Text color="white" as="span" type="body 4">
+                $100,000,000
+              </Text>
+            </StackLayout>
+          </ColumnLayout>
+
+          <ColumnLayout>
+            <Icon color="white" withBorder size={53} name="total-borrowed" />
+
+            <StackLayout gap={0.5}>
+              <Text color="white" as="span" type="body 2">
+                Total Borrowed
+              </Text>
+              <Text color="white" as="span" type="body 4">
+                $100,000,000
+              </Text>
+            </StackLayout>
+          </ColumnLayout>
+        </ColumnLayout>
+      </PageLayout.Section>
+
+      <PageLayout.Section>
+        <Table columnSpacing headerSpacing columns={defaultColumns} data={[]} />
+      </PageLayout.Section>
+    </>
   )
 }
 export default HomePage
