@@ -2,7 +2,7 @@
   "global": {
     "button": "Button",
     "buttons": {
-      "approve": "Approve to conitinue",
+      "approve": "Approve to continue",
       "deposit": "Deposit",
       "borrow": "Borrow",
       "withdraw": "Withdraw",
