@@ -78,7 +78,11 @@ export const AmountInput = forwardRef(
           </BoxLayout>
           <BoxLayout>
             <Text color="oxfordBlue" type="heading 3" as="span">
-              <AssetName symbol={reserveData.symbol} icon={reserveData.icon} />
+              <AssetName
+                symbol={reserveData.symbol}
+                icon={reserveData.icon}
+                iconSize={25}
+              />
             </Text>
           </BoxLayout>
         </InputWrapper>
