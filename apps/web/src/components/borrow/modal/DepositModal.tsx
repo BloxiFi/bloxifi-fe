@@ -4,6 +4,7 @@ import {
   Button,
   CenterLayout,
   Icon,
+  Loader,
   Modal,
   StackLayout,
   Text,
@@ -14,8 +15,9 @@ import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-import { TableInput } from '../table/TableInput'
 import { TransactionOverview } from '../table/TransactionOverview'
+
+import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { ReservesData } from '@/containers/WalletContainer'
@@ -126,7 +128,7 @@ export const DepositModal = ({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
+      .max(reserveData.balance, t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
   })
 
@@ -154,6 +156,7 @@ export const DepositModal = ({
 
   useEffect(() => {
     resetState()
+    setDepositCompleted(false)
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || depositCompleted
@@ -166,78 +169,85 @@ export const DepositModal = ({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <form>
-        <StackLayout gap={5}>
-          <StackLayout gap={3}>
-            <TableInput
-              name="amount"
-              type="number"
-              max={reserveData.balance}
-              reserveData={{
-                balance: reserveData.balance,
-                symbol: reserveData.symbol,
-              }}
-              value={values.amount}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              setFieldValue={setFieldValue}
-              status={errors.amount && touched.amount ? 'error' : undefined}
-              info={errors.amount && touched.amount && errors.amount}
-              disabled={isInputDisabled}
-              title={t('deposit.depositAsset')}
-            />
-            <TransactionOverview
-              healthFactor={healthFactor}
-              supplyAPY={reserveData.supplyAPY}
-              headers={['supplyAPY', 'healthFactor']}
-            />
-          </StackLayout>
+      <BoxLayout gap={0.25} />
+      <StackLayout gap={5}>
+        <StackLayout gap={2}>
+          <BoxLayout gap={1.25}>
+            <Text color="oxfordBlue" type="heading 2" as="span">
+              {t('deposit.depositAsset')}
+            </Text>
+          </BoxLayout>
+          <AmountInput
+            name="amount"
+            max={reserveData.balance}
+            reserveData={{
+              balance: reserveData.balance,
+              symbol: reserveData.symbol,
+              icon: reserveData.icon,
+            }}
+            value={values.amount}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            setFieldValue={setFieldValue}
+            status={errors.amount && touched.amount ? 'error' : undefined}
+            info={errors.amount && touched.amount && errors.amount}
+            disabled={isInputDisabled}
+          />
+          <TransactionOverview
+            healthFactor={healthFactor}
+            supplyAPY={reserveData.supplyAPY}
+            headers={['supplyAPY', 'healthFactor']}
+          />
+        </StackLayout>
 
-          <BoxLayout gap={1.875}>
-            {hasError ? (
-              <CenterLayout>
-                <Icon name="error" size={75} />
-                <Text type="body 2">
-                  {t('global.notifications.transaction_failed')}
-                </Text>
-              </CenterLayout>
-            ) : depositCompleted ? (
-              <CenterLayout>
-                <Icon name="success" size={75} />
-                <Text type="body 2">
-                  {t('global.notifications.deposit_successful')}
-                </Text>
-              </CenterLayout>
-            ) : (
-              <StackLayout gap={1}>
-                {shouldApproveContract && (
-                  <Button
-                    className="u-full-width"
-                    appearance="dark"
-                    size="large"
-                    variant="large"
-                    disabled={isApproveDisabled}
-                    onClick={approve}
-                  >
-                    {t('global.buttons.approve')}
-                  </Button>
-                )}
+        <BoxLayout gap={1.875}>
+          {loading ? (
+            <CenterLayout>
+              <Loader />
+            </CenterLayout>
+          ) : hasError ? (
+            <CenterLayout>
+              <Icon name="error" size={75} />
+              <Text type="body 2">
+                {t('global.notifications.transaction_failed')}
+              </Text>
+            </CenterLayout>
+          ) : depositCompleted ? (
+            <CenterLayout>
+              <Icon name="success" size={75} />
+              <Text type="body 2">
+                {t('global.notifications.deposit_successful')}
+              </Text>
+            </CenterLayout>
+          ) : (
+            <StackLayout gap={1}>
+              {shouldApproveContract && (
                 <Button
                   className="u-full-width"
                   appearance="dark"
                   size="large"
                   variant="large"
-                  type="submit"
-                  disabled={isDepositDisabled}
-                  onClick={submitForm}
+                  disabled={isApproveDisabled}
+                  onClick={approve}
                 >
-                  {t('global.buttons.deposit')} {reserveData.symbol}
+                  {t('global.buttons.approve')}
                 </Button>
-              </StackLayout>
-            )}
-          </BoxLayout>
-        </StackLayout>
-      </form>
+              )}
+              <Button
+                className="u-full-width"
+                appearance="dark"
+                size="large"
+                variant="large"
+                type="submit"
+                disabled={isDepositDisabled}
+                onClick={submitForm}
+              >
+                {t('global.buttons.deposit')} {reserveData.symbol}
+              </Button>
+            </StackLayout>
+          )}
+        </BoxLayout>
+      </StackLayout>
     </Modal>
   )
 }

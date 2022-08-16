@@ -66,6 +66,9 @@ export const Colors = {
     activeHeaderItemBorderColorStart: '#90ABC8',
     activeHeaderItemBorderColorEnd: '#DAE3ED',
     headerWrapperBorderColor: 'rgba(255, 255, 255, 0.3)',
+    //Loader
+    loaderBackground: '#DAE3ED',
+    loaderBorder: '#0072C3',
   },
   dark: {
     headerBackground: '#F6F8FA',
@@ -132,5 +135,8 @@ export const Colors = {
     activeHeaderItemBorderColorStart: '#90ABC8',
     activeHeaderItemBorderColorEnd: '#DAE3ED',
     headerWrapperBorderColor: 'rgba(255, 255, 255, 0.3)',
+    //Loader
+    loaderBackground: '#DAE3ED',
+    loaderBorder: '#0072C3',
   },
 }

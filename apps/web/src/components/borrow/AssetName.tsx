@@ -21,7 +21,7 @@ interface Props {
   /**
    * Represents the asset full name
    * */
-  readonly fullName: string
+  readonly fullName?: string
   /**
    * Represents width and height of icon. Defaults to 40px
    * */
@@ -37,10 +37,12 @@ export const AssetName: FunctionComponent<Props> = ({
   <ColumnLayout>
     <Icon name={icon} size={iconSize} />
     <StackLayout as={TruncatedText}>
-      <Text type="heading 3" as={TruncatedText}>
-        {fullName}
-      </Text>
-      <Text type="body 1" as={TruncatedText}>
+      {fullName && (
+        <Text type="heading 3" as={TruncatedText}>
+          {fullName}
+        </Text>
+      )}
+      <Text type={fullName ? 'body 1' : 'heading 3'} as={TruncatedText}>
         {symbol}
       </Text>
     </StackLayout>

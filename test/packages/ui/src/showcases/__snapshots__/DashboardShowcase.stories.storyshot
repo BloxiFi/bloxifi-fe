@@ -2,77 +2,81 @@
 
 exports[`Storyshots Showcases/Dashboard Overview 1`] = `
 <div
-  className="sc-fLlhyt YhHCP"
+  className="sc-bBrHrO cbMfJH"
 >
   <header
     className="c-page-layout__header"
   >
     <div
-      className="sc-bjUoiL hkPefi"
+      className="sc-bjUoiL eXGQde"
     >
       <div
-        className="sc-dIouRR ggKksK"
+        className="sc-idiyUo gFedQu"
       >
-        <a
-          aria-current="page"
-          className="sc-idiyUo iYWGrY active"
-          data-cy="Dashboard"
-          href="/"
-          onClick={[Function]}
+        <div
+          className="sc-hHLeRK dONXuR"
         >
-          Dashboard
-        </a>
-        <a
-          className="sc-idiyUo iYWGrY"
-          data-cy="Deposit & Borrow"
-          href="/deposit"
-          onClick={[Function]}
+          <a
+            aria-current="page"
+            className="sc-dIouRR gTJMko active"
+            data-cy="Dashboard"
+            href="/"
+            onClick={[Function]}
+          >
+            Dashboard
+          </a>
+          <a
+            className="sc-dIouRR gTJMko"
+            data-cy="Deposit & Borrow"
+            href="/deposit"
+            onClick={[Function]}
+          >
+            Deposit & Borrow
+          </a>
+          <a
+            className="sc-dIouRR gTJMko"
+            data-cy="Stake"
+            href="/stake"
+            onClick={[Function]}
+          >
+            Stake
+          </a>
+          <a
+            className="sc-dIouRR gTJMko"
+            data-cy="More information"
+            href="/moreInformation"
+            onClick={[Function]}
+          >
+            More information
+          </a>
+        </div>
+        <div
+          className="sc-dmRaPn couMNs"
         >
-          Deposit & Borrow
-        </a>
-        <a
-          className="sc-idiyUo iYWGrY"
-          data-cy="Stake"
-          href="/stake"
-          onClick={[Function]}
-        >
-          Stake
-        </a>
-        <a
-          className="sc-idiyUo iYWGrY"
-          data-cy="More information"
-          href="/moreInformation"
-          onClick={[Function]}
-        >
-          More information
-        </a>
-      </div>
-      <div
-        className="sc-hHLeRK fdVAtw"
-      >
-        <button
-          appearance="primary-ghost"
-          className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
-          data-element="button"
-          size="medium"
-          variant="medium"
-        >
-          Blox Balance
-        </button>
-        <button
-          appearance="primary"
-          className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
-          data-element="button"
-          size="medium"
-          variant="medium"
-        >
-          Connect Wallet
-        </button>
+          <button
+            appearance="primary-ghost"
+            className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+            data-element="button"
+            size="medium"
+            variant="medium"
+          >
+            Blox Balance
+          </button>
+          <button
+            appearance="primary"
+            className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+            data-element="button"
+            size="medium"
+            variant="medium"
+          >
+            Connect Wallet
+          </button>
+        </div>
       </div>
     </div>
   </header>
   <div
-    className="sc-evZas sc-bBrHrO ldkTlK fxLELT"
+    className="sc-evZas sc-ivTmOn ldkTlK kPozQz"
     gap={4}
   >
     <section
@@ -146,11 +150,11 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
       className="c-page-layout__section"
     >
       <div
-        className="sc-bZkfAO dJBbcc"
+        className="sc-kLLXSd dUkFhP"
         data-element="tableWrapper"
       >
         <table
-          className="sc-kLLXSd eXWyzl"
+          className="sc-ikZpkk eFtnVx"
           data-element="table"
         >
           <caption>
@@ -158,50 +162,50 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             
           </caption>
           <thead
-            className="sc-jdAMXn fcA-dUh"
+            className="sc-bZnhIo blrvud"
           >
             <tr>
               <td
-                className="sc-himrzO sc-gXmSlM fkWGJm leESXv"
+                className="sc-gXmSlM sc-cCsOjp dJFjIR gNHjqF"
               >
                 <div
-                  className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                 >
                   Assets
                 </div>
               </td>
               <td
-                className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
+                className="sc-gXmSlM sc-cCsOjp ksYnaJ gNHjqF"
               >
                 <div
-                  className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                 >
                   Total value deposited
                 </div>
               </td>
               <td
-                className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
+                className="sc-gXmSlM sc-cCsOjp ksYnaJ gNHjqF"
               >
                 <div
-                  className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                 >
                   Total borrowed
                 </div>
               </td>
               <td
-                className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
+                className="sc-gXmSlM sc-cCsOjp ksYnaJ gNHjqF"
               >
                 <div
-                  className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                 >
                   Deposit APY
                 </div>
               </td>
               <td
-                className="sc-himrzO sc-gXmSlM bJjlxC leESXv"
+                className="sc-gXmSlM sc-cCsOjp ksYnaJ gNHjqF"
               >
                 <div
-                  className="sc-ikZpkk sc-jIZahH cMqjgQ kRYfFI"
+                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
                 >
                   Borrow APY
                 </div>
@@ -213,35 +217,35 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
               isTitleAString={true}
             >
               <td
-                className="sc-himrzO kysAtL"
+                className="sc-gXmSlM SQWQ"
               >
                 <div>
                   ETH
                 </div>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   7.5%
@@ -252,35 +256,35 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
               isTitleAString={true}
             >
               <td
-                className="sc-himrzO kysAtL"
+                className="sc-gXmSlM SQWQ"
               >
                 <div>
                   DAI
                 </div>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   7.5%
@@ -291,35 +295,35 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
               isTitleAString={true}
             >
               <td
-                className="sc-himrzO kysAtL"
+                className="sc-gXmSlM SQWQ"
               >
                 <div>
                   POLKA
                 </div>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   7.5%
@@ -330,35 +334,35 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
               isTitleAString={true}
             >
               <td
-                className="sc-himrzO kysAtL"
+                className="sc-gXmSlM SQWQ"
               >
                 <div>
                   BTC
                 </div>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-himrzO fZpOqX"
+                className="sc-gXmSlM bdTOUc"
               >
                 <span>
                   7.5%

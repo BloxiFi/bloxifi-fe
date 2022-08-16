@@ -6,3 +6,4 @@ export const zIndex = {
   layer400: 400, //slideout
   layer500: 500, //modals
 }
+export const CONTENT_MAX_WIDTH = 1330

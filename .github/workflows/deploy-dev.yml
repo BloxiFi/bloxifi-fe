@@ -53,6 +53,7 @@ jobs:
         working-directory: ./apps/web
         run: |
           echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" > .env
+          echo "MOONBASE_EXPLORER=${{ secrets.MOONBASE_EXPLORER }}" >> .env
 
       #
       # Install dependencies and build the app

@@ -14,6 +14,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
     state: {
       reserves,
       userAccountData: { healthFactor },
+      loading,
     },
   } = WalletContainer.useContainer()
   const [modalData, setModalData] = useState<ReservesData>()
@@ -78,6 +79,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
         data={reserves}
         titleComponent={t('deposit.assetsToDeposit')}
         columnSpacing
+        isLoading={loading}
       />
       <DepositModal
         isOpen={!!modalData}

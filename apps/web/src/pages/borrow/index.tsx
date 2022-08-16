@@ -1,5 +1,11 @@
 import React from 'react'
-import { GridLayout, PageLayout, StackLayout } from '@bloxifi/ui'
+import {
+  CoverLayout,
+  GridLayout,
+  Loader,
+  PageLayout,
+  StackLayout,
+} from '@bloxifi/ui'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { WalletContainer } from '@/containers/WalletContainer'
@@ -14,11 +20,15 @@ const BorrowPage = () => {
     state: { isConnected, loading: connectionLoading },
   } = Web3Container.useContainer()
   const {
-    state: { loading: reservesLoading, error },
+    state: { error },
   } = WalletContainer.useContainer()
 
-  if (reservesLoading || connectionLoading) {
-    return <>loading...</> //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
+  if (connectionLoading) {
+    return (
+      <CoverLayout>
+        <Loader />
+      </CoverLayout>
+    )
   }
 
   if (error && isConnected) {

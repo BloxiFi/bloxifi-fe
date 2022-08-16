@@ -8,8 +8,8 @@ export const Header = () => {
     <PageLayout.Header
       navigationItems={[
         { to: '/', label: 'Dashboard' },
-        { to: '/staking', label: 'Staking' },
         { to: '/borrow', label: 'Deposit & Borrow' },
+        { to: '/information', label: 'More information' },
       ]}
     >
       <ConnectWalletButton />

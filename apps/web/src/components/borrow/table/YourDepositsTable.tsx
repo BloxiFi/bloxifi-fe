@@ -1,9 +1,9 @@
 import {
   BoxLayout,
   Button,
+  CenterLayout,
   ColumnData,
-  ColumnLayout,
-  Icon,
+  Loader,
   Table,
   Text,
   Toggle,
@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
 import { WithdrawModal, WithdrawModalData } from '../modal/WithdrawModal'
+import { AssetName } from '../AssetName'
 
 import { DepositTitleBox } from './DepositTitleBox'
 
@@ -31,6 +32,7 @@ export const YourDepositsTable: FunctionComponent = () => {
     state: {
       userReserves,
       userAccountData: { healthFactor },
+      loading,
     },
   } = WalletContainer.useContainer()
   const {
@@ -80,14 +82,7 @@ export const YourDepositsTable: FunctionComponent = () => {
     assets: {
       header: 'Assets',
       Cell: ({ data: { symbol, icon } }: any) => (
-        <ColumnLayout>
-          <Icon name={icon} size={25} />
-          <TruncatedText>
-            <Text type="heading 3" as="span">
-              {symbol}
-            </Text>
-          </TruncatedText>
-        </ColumnLayout>
+        <AssetName symbol={symbol} icon={icon} iconSize={25} />
       ),
       alignText: 'left',
     },
@@ -115,7 +110,11 @@ export const YourDepositsTable: FunctionComponent = () => {
       header: 'Collateral',
       Cell: ({ data: { usageAsCollateralEnabledOnUser, underlyingAsset } }) => {
         if (selectedCollateralAsset === underlyingAsset) {
-          return <>loading...</>
+          return (
+            <CenterLayout>
+              <Loader loaderSize={24} />
+            </CenterLayout>
+          )
         } else {
           return (
             <Toggle
@@ -136,7 +135,7 @@ export const YourDepositsTable: FunctionComponent = () => {
     action: {
       header: '',
       Cell: ({
-        data: { balance, symbol, underlyingAsset, currentATokenBalance },
+        data: { balance, symbol, underlyingAsset, currentATokenBalance, icon },
       }) => (
         <Button
           appearance="secondary"
@@ -149,6 +148,7 @@ export const YourDepositsTable: FunctionComponent = () => {
               symbol,
               underlyingAsset,
               currentATokenBalance,
+              icon,
             })
           }
         >
@@ -179,8 +179,10 @@ export const YourDepositsTable: FunctionComponent = () => {
         columns={columns}
         data={userReservesWithDept}
         noDataMessage={t('deposit.depositEmpty')}
+        isLoading={loading}
         titleComponent={
           <DepositTitleBox
+            isLoading={loading}
             isEmpty={userReservesWithDept.length === 0}
             totalSupplyBalance={totalSupplyBalance}
             totalCollateral={totalCollateral}

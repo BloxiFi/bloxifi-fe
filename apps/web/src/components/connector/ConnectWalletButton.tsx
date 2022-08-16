@@ -1,11 +1,25 @@
-import React from 'react'
-import { Text } from '@bloxifi/ui'
-import styled from 'styled-components'
-import { getNetworkName } from '@bloxifi/core'
+import React, { useState } from 'react'
+import {
+  BoxLayout,
+  Button,
+  ColumnLayout,
+  Menu,
+  MenuItem,
+  MenuItemTitle,
+  Icon,
+  Text,
+  StackLayout,
+} from '@bloxifi/ui'
+import { sliceMiddleOfString } from '@bloxifi/core'
+import { useTranslation } from 'react-i18next'
 
 import { Web3Container } from '@/containers/Web3Container'
 
 export const ConnectWalletButton = () => {
+  const { t } = useTranslation()
+  const MOONBASE_EXPLORER = process.env.MOONBASE_EXPLORER
+  const [closeMenu, setCloseMenu] = useState(false)
+
   const {
     connectWallet,
     disconnectWallet,
@@ -14,10 +28,18 @@ export const ConnectWalletButton = () => {
       currentAccount,
       error,
       isSupportedNetwork,
-      chainId,
       isMetamaskInstalled,
     },
   } = Web3Container.useContainer()
+
+  const handleClose = () => {
+    setCloseMenu(false)
+  }
+
+  const handleDisconnect = () => {
+    setCloseMenu(false)
+    disconnectWallet()
+  }
 
   if (!isMetamaskInstalled) {
     return (
@@ -34,32 +56,72 @@ export const ConnectWalletButton = () => {
       </Text>
     )
   }
+
   return isConnected ? (
-    <div>
-      <StyledText type="body 3" as="span" semiBold>
-        Account:
-      </StyledText>
-      <StyledText
-        as="span"
-        type="body 3"
-        color={isSupportedNetwork ? 'textColorLight' : 'red'}
-      >{`${currentAccount.slice(0, 8)}...`}</StyledText>
-      <StyledText as="span" type="body 3" semiBold>
-        Network:
-      </StyledText>
-      <StyledText
-        as="span"
-        type="body 3"
-        color={isSupportedNetwork ? 'textColorLight' : 'red'}
-      >
-        {getNetworkName(chainId)}
-      </StyledText>
-      <button onClick={disconnectWallet}> Disconnect</button>
-    </div>
+    <ColumnLayout>
+      {/**TODO handle BLOX balance button click when we get BLOX token on Moonbeam, wait for BE to generate it */}
+      <Button variant="medium" appearance="primary-ghost" size="medium">
+        {t('global.buttons.bloxBalance')}
+      </Button>
+      {isSupportedNetwork ? (
+        <Menu
+          right
+          bottom
+          positionOffset={{ top: 5, left: 0 }}
+          forceClose={closeMenu}
+          onClose={handleClose}
+          toggler={
+            <Button appearance="primary-ghost" variant="medium" size="medium">
+              <>
+                {sliceMiddleOfString(currentAccount, 4)}
+                <BoxLayout gap={0.75}>
+                  <Icon name="arrow-down" color="white" />
+                </BoxLayout>
+              </>
+            </Button>
+          }
+          field={
+            <StackLayout>
+              <MenuItemTitle type="heading 3">
+                {sliceMiddleOfString(currentAccount, 4)}
+              </MenuItemTitle>
+
+              <MenuItem
+                appearance="text"
+                variant="large"
+                size="large"
+                onClick={() =>
+                  window.open(`${MOONBASE_EXPLORER}${currentAccount}`, '_blank')
+                }
+              >
+                {t('global.buttons.viewOnExplorer')}
+              </MenuItem>
+              <MenuItem
+                appearance="text"
+                variant="large"
+                size="large"
+                onClick={handleDisconnect}
+                isLastItem
+              >
+                {t('global.buttons.disconnectWallet')}
+              </MenuItem>
+            </StackLayout>
+          }
+        />
+      ) : (
+        <Button appearance="text" variant="medium" size="medium" color="red">
+          {t('walletConnection.wrongNetworkConnection')}
+        </Button>
+      )}
+    </ColumnLayout>
   ) : (
-    <button onClick={connectWallet}>Connect wallet</button>
+    <Button
+      onClick={connectWallet}
+      variant="medium"
+      appearance="primary"
+      size="medium"
+    >
+      {t('global.buttons.connectWallet')}
+    </Button>
   )
 }
-const StyledText = styled(Text)`
-  margin: 0 10px;
-`
