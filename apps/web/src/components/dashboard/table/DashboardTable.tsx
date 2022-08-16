@@ -65,5 +65,5 @@ export const DashboardTable: FunctionComponent = () => {
     },
   } as Record<string, ColumnData<ReservesData>>
 
-  return <Table columns={columns} data={reserves} columnSpacing />
+  return <Table columns={columns} data={reserves} columnSpacing headerSpacing />
 }
