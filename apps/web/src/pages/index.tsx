@@ -1,4 +1,13 @@
-import { ColumnLayout, Icon, PageLayout, StackLayout, Text } from '@bloxifi/ui'
+import {
+  ColumnLayout,
+  ContentLoader,
+  CoverLayout,
+  Icon,
+  Loader,
+  PageLayout,
+  StackLayout,
+  Text,
+} from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { convertBalancesInUsdArray, sumArrayItems } from '@bloxifi/core'
@@ -6,13 +15,24 @@ import { convertBalancesInUsdArray, sumArrayItems } from '@bloxifi/core'
 import { DashboardTable } from '@/components/dashboard/table/DashboardTable'
 import { WalletContainer } from '@/containers/WalletContainer'
 import { FormattedNumber } from '@/components/borrow/FormattedNumber'
+import { Web3Container } from '@/containers/Web3Container'
 
 const DasboardPage = () => {
   const { t } = useTranslation()
   const {
-    state: { reserves },
+    state: { loading: connectionLoading },
+  } = Web3Container.useContainer()
+  const {
+    state: { reserves, loading },
   } = WalletContainer.useContainer()
 
+  if (connectionLoading) {
+    return (
+      <CoverLayout>
+        <Loader />
+      </CoverLayout>
+    )
+  }
   //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
   //TODO DISPLAYING ERROR MESSAGES
 
@@ -45,7 +65,11 @@ const DasboardPage = () => {
                 {t('dashboard.totalDeposited')}
               </Text>
               <Text color="white" as="span" type="body 4">
-                <FormattedNumber value={totalDeposited} />
+                {loading ? (
+                  <ContentLoader />
+                ) : (
+                  <FormattedNumber value={totalDeposited} />
+                )}
               </Text>
             </StackLayout>
           </ColumnLayout>
@@ -58,7 +82,11 @@ const DasboardPage = () => {
                 {t('dashboard.totalBorrowed')}
               </Text>
               <Text color="white" as="span" type="body 4">
-                <FormattedNumber value={totalBorrowed} />
+                {loading ? (
+                  <ContentLoader />
+                ) : (
+                  <FormattedNumber value={totalBorrowed} />
+                )}
               </Text>
             </StackLayout>
           </ColumnLayout>

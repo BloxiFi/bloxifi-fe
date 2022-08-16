@@ -10,7 +10,7 @@ import { FormattedNumber } from '@/components/borrow/FormattedNumber'
 export const DashboardTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: { reserves },
+    state: { reserves, loading },
   } = WalletContainer.useContainer()
 
   const columns = {
@@ -65,5 +65,13 @@ export const DashboardTable: FunctionComponent = () => {
     },
   } as Record<string, ColumnData<ReservesData>>
 
-  return <Table columns={columns} data={reserves} columnSpacing headerSpacing />
+  return (
+    <Table
+      columns={columns}
+      data={reserves}
+      columnSpacing
+      headerSpacing
+      isLoading={loading}
+    />
+  )
 }
