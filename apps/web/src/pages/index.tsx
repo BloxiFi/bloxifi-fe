@@ -1,9 +1,11 @@
 import { ColumnLayout, Icon, PageLayout, StackLayout, Text } from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { convertBalancesInUsdArray, sumArrayItems } from '@bloxifi/core'
 
 import { DashboardTable } from '@/components/dashboard/table/DashboardTable'
 import { WalletContainer } from '@/containers/WalletContainer'
+import { FormattedNumber } from '@/components/borrow/FormattedNumber'
 
 const DasboardPage = () => {
   const { t } = useTranslation()
@@ -13,6 +15,16 @@ const DasboardPage = () => {
 
   //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
   //TODO DISPLAYING ERROR MESSAGES
+
+  //Total deposited value converted in USD
+  const totalDeposited = sumArrayItems(
+    convertBalancesInUsdArray(reserves, 'totalATokenSupply'),
+  )
+
+  //Total borrowed value converted in USD
+  const totalBorrowed = sumArrayItems(
+    convertBalancesInUsdArray(reserves, 'totalCurrentVariableDebt'),
+  )
 
   return (
     <>
@@ -33,7 +45,7 @@ const DasboardPage = () => {
                 {t('dashboard.totalDeposited')}
               </Text>
               <Text color="white" as="span" type="body 4">
-                $100,000,000
+                <FormattedNumber value={totalDeposited} />
               </Text>
             </StackLayout>
           </ColumnLayout>
@@ -46,7 +58,7 @@ const DasboardPage = () => {
                 {t('dashboard.totalBorrowed')}
               </Text>
               <Text color="white" as="span" type="body 4">
-                $100,000,000
+                <FormattedNumber value={totalBorrowed} />
               </Text>
             </StackLayout>
           </ColumnLayout>
