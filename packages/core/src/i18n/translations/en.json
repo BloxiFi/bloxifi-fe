@@ -31,6 +31,9 @@
     "notConnectedTitle": "Please, connect your wallet"
   },
   "dashboard": {
+    "pageTitle": "Dashboard",
+    "totalDeposited": "Total Deposited",
+    "totalBorrowed": "Total Borrowed",
     "notConnectedMessage": "Please, connect your wallet to see your supplies, borrowings, and open positions."
   },
   "deposit": {

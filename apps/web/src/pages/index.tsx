@@ -1,58 +1,25 @@
-import {
-  CellProps,
-  ColumnLayout,
-  Icon,
-  PageLayout,
-  StackLayout,
-  Table,
-  Text,
-} from '@bloxifi/ui'
+import { ColumnLayout, Icon, PageLayout, StackLayout, Text } from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
 
-import { Web3Container } from '@/containers/Web3Container'
+import { DashboardTable } from '@/components/dashboard/table/DashboardTable'
+import { WalletContainer } from '@/containers/WalletContainer'
 
-const HomePage = () => {
+const DasboardPage = () => {
   const { t } = useTranslation()
   const {
-    state: { isConnected, loading },
-  } = Web3Container.useContainer()
+    state: { reserves },
+  } = WalletContainer.useContainer()
 
-  const defaultColumns = {
-    assets: {
-      header: 'Assets',
-      Cell: ({ data: { assets } }: CellProps) => <div>{assets}</div>,
-      alignText: 'left',
-    },
-    totalValueDeposited: {
-      header: 'Total value deposited',
-      Cell: ({ data: { totalValueDeposited } }: CellProps) => (
-        <span>{totalValueDeposited}</span>
-      ),
-    },
-    totalBorrowed: {
-      header: 'Total borrowed',
-      Cell: ({ data: { totalBorrowed } }: CellProps) => (
-        <span>{totalBorrowed}</span>
-      ),
-    },
-    depositAPY: {
-      header: 'Deposit APY',
-      Cell: ({ data: { depositAPY } }: CellProps) => <span>{depositAPY}</span>,
-    },
-    borrowAPY: {
-      header: 'Borrow APY',
-      Cell: ({ data: { borrowAPY } }: CellProps) => <span>{borrowAPY}</span>,
-    },
-  }
+  //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
+  //TODO DISPLAYING ERROR MESSAGES
 
   return (
     <>
       <PageLayout.Section>
         <StackLayout>
           <Text type="heading 1" color="white">
-            Dashboard
+            {t('dashboard.pageTitle')}
           </Text>
         </StackLayout>
       </PageLayout.Section>
@@ -63,7 +30,7 @@ const HomePage = () => {
 
             <StackLayout gap={0.5}>
               <Text color="white" as="span" type="body 2">
-                Total Deposited
+                {t('dashboard.totalDeposited')}
               </Text>
               <Text color="white" as="span" type="body 4">
                 $100,000,000
@@ -76,7 +43,7 @@ const HomePage = () => {
 
             <StackLayout gap={0.5}>
               <Text color="white" as="span" type="body 2">
-                Total Borrowed
+                {t('dashboard.totalBorrowed')}
               </Text>
               <Text color="white" as="span" type="body 4">
                 $100,000,000
@@ -87,15 +54,9 @@ const HomePage = () => {
       </PageLayout.Section>
 
       <PageLayout.Section>
-        <Table columnSpacing headerSpacing columns={defaultColumns} data={[]} />
+        <DashboardTable />
       </PageLayout.Section>
     </>
   )
 }
-export default HomePage
-
-const Wrapper = styled.body`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-`
+export default DasboardPage

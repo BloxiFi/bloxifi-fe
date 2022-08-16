@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { ThemeContext } from 'styled-components'
 
 import { Button } from '../Button'
 import { Icon } from '../Icon'
