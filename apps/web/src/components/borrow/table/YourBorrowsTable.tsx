@@ -6,7 +6,11 @@ import {
   TruncatedText,
 } from '@bloxifi/ui'
 import React, { FunctionComponent, useState } from 'react'
-import { numberToPercentage } from '@bloxifi/core'
+import {
+  convertBalancesInUsdArray,
+  numberToPercentage,
+  sumArrayItems,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 
 import { FormattedNumber } from '../FormattedNumber'
@@ -95,6 +99,11 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
   } as Record<string, ColumnData<UserReserveData>>
 
+  //Total borrowed balance value converted in USD
+  const totalBorrowBalance = sumArrayItems(
+    convertBalancesInUsdArray(userReserves, 'currentTotalDebt'),
+  )
+
   return (
     <>
       <Table
@@ -105,6 +114,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
           <BorrowTitleBox
             isEmpty={userReservesWithDept.length === 0}
             currentBorrowedValue={Number(currentBorrowedValue.toFixed(2))}
+            totalBorrowBalance={totalBorrowBalance}
             isLoading={loading}
           />
         }
