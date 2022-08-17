@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { ThemeContext } from 'styled-components'
 
 import { Button } from '../Button'
 import { Icon } from '../Icon'
@@ -79,7 +78,6 @@ const defaultData = [
 export const Overview = args => {
   const nav = usePageLayout()
   const { setHeader } = nav
-  const themeContext = useContext(ThemeContext)
 
   useEffect(() => {
     if (args.header) {
@@ -119,12 +117,7 @@ export const Overview = args => {
         <PageLayout.Section>
           <ColumnLayout gap={2}>
             <ColumnLayout>
-              <Icon
-                color={themeContext.tableBorderColor}
-                withBorder
-                size={53}
-                name="total-deposited"
-              />
+              <Icon withBorder size={53} name="total-deposited" />
 
               <StackLayout gap={0.5}>
                 <Text color="white" as="span" type="body 2">
@@ -137,12 +130,7 @@ export const Overview = args => {
             </ColumnLayout>
 
             <ColumnLayout>
-              <Icon
-                color={themeContext.tableBorderColor}
-                withBorder
-                size={53}
-                name="total-borrowed"
-              />
+              <Icon withBorder size={53} name="total-borrowed" />
 
               <StackLayout gap={0.5}>
                 <Text color="white" as="span" type="body 2">

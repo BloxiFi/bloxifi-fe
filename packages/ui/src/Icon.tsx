@@ -61,7 +61,6 @@ export const Icon = styled(
           return themeContext.textColorDark
       }
     }
-    const color = getColor(props.color)
     return (
       <InlineSVG
         src={icon}
@@ -70,7 +69,7 @@ export const Icon = styled(
           width: size,
           height: size,
           minWidth: size,
-          fill: getColor(color),
+          fill: getColor(props.color),
         }}
         className={`rts-icon ${className}`}
         preProcessor={code => {

@@ -37,8 +37,8 @@ export interface ReservesDataQuery {
   name: TokenList
   symbol: TokenList
   decimals: number
-  totalATokenSupply: number
-  totalCurrentVariableDebt: number
+  totalATokenSupply: BigNumber
+  totalCurrentVariableDebt: BigNumber
   liquidityRate: number
   variableBorrowRate: number
   underlyingAsset: string

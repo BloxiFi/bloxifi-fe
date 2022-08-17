@@ -28,8 +28,8 @@ export const ContentLoader = ({
 }: ContentLoaderProps) => {
   return (
     <Loader
-      width={width ?? '100%'}
-      height={appearance === 'text' ? 30 : height}
+      width={width}
+      height={height}
       {...props}
       speed={2}
       backgroundColor="#f3f3f3"

@@ -1,54 +1,102 @@
-import { Text, CoverLayout, CardLayout, BoxLayout } from '@bloxifi/ui'
+import {
+  ColumnLayout,
+  ContentLoader,
+  CoverLayout,
+  Icon,
+  Loader,
+  PageLayout,
+  StackLayout,
+  Text,
+} from '@bloxifi/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { convertBalancesInUsdArray, sumArrayItems } from '@bloxifi/core'
 
-import { PageContainer } from '@/containers/PageContainer'
-import { StyleContainer } from '@/containers/StyleContainer'
-import { LocaleContainer } from '@/containers/LocaleContainer'
+import { DashboardTable } from '@/components/dashboard/table/DashboardTable'
+import { WalletContainer } from '@/containers/WalletContainer'
+import { FormattedNumber } from '@/components/borrow/FormattedNumber'
 import { Web3Container } from '@/containers/Web3Container'
-import { ConnectWalletPaper } from '@/components/connector/ConnectWalletPaper'
-import { Header } from '@/components/header/Header'
 
-const HomePage = () => {
+const DasboardPage = () => {
   const { t } = useTranslation()
-  const { setLanguage } = LocaleContainer.useContainer()
-  const { changeTheme } = StyleContainer.useContainer()
-  const { pageLayout } = PageContainer.useContainer()
   const {
-    state: { isConnected, loading },
+    state: { loading: connectionLoading },
   } = Web3Container.useContainer()
+  const {
+    state: { reserves, loading },
+  } = WalletContainer.useContainer()
+
+  if (connectionLoading) {
+    return (
+      <CoverLayout>
+        <Loader />
+      </CoverLayout>
+    )
+  }
+  //TODO LOADER COMPONENT loader={<Loader loaderSize={size} />}
+  //TODO DISPLAYING ERROR MESSAGES
+
+  //Total deposited value converted in USD
+  const totalDeposited = sumArrayItems(
+    convertBalancesInUsdArray(reserves, 'totalATokenSupply'),
+  )
+
+  //Total borrowed value converted in USD
+  const totalBorrowed = sumArrayItems(
+    convertBalancesInUsdArray(reserves, 'totalCurrentVariableDebt'),
+  )
 
   return (
-    <Wrapper>
-      <CoverLayout>
-        <BoxLayout>
-          <CardLayout>
-            <Text align="left" type="heading 1" semiBold>
-              {t('global.button')}
-            </Text>
-          </CardLayout>
-        </BoxLayout>
-        {!isConnected && <ConnectWalletPaper loading={loading} />}
-        <button onClick={() => changeTheme('dark')}>Dark theme</button>
-        <button
-          onClick={() =>
-            pageLayout.setHeader(!pageLayout.header ? <Header /> : null)
-          }
-        >
-          {!pageLayout.header ? 'Add' : 'Remove'} header
-        </button>
-        <button onClick={() => changeTheme('light')}>Light theme</button>
-        <button onClick={() => setLanguage('en')}>Change to Eng</button>
-        <button onClick={() => setLanguage('sr')}>Change to Serbian</button>
-      </CoverLayout>
-    </Wrapper>
+    <>
+      <PageLayout.Section>
+        <StackLayout>
+          <Text type="heading 1" color="white">
+            {t('dashboard.pageTitle')}
+          </Text>
+        </StackLayout>
+      </PageLayout.Section>
+      <PageLayout.Section>
+        <ColumnLayout gap={2}>
+          <ColumnLayout>
+            <Icon color="white" withBorder size={53} name="total-deposited" />
+
+            <StackLayout gap={0.5}>
+              <Text color="white" as="span" type="body 2">
+                {t('dashboard.totalDeposited')}
+              </Text>
+              <Text color="white" as="span" type="body 4">
+                {loading ? (
+                  <ContentLoader />
+                ) : (
+                  <FormattedNumber value={totalDeposited} />
+                )}
+              </Text>
+            </StackLayout>
+          </ColumnLayout>
+
+          <ColumnLayout>
+            <Icon color="white" withBorder size={53} name="total-borrowed" />
+
+            <StackLayout gap={0.5}>
+              <Text color="white" as="span" type="body 2">
+                {t('dashboard.totalBorrowed')}
+              </Text>
+              <Text color="white" as="span" type="body 4">
+                {loading ? (
+                  <ContentLoader />
+                ) : (
+                  <FormattedNumber value={totalBorrowed} />
+                )}
+              </Text>
+            </StackLayout>
+          </ColumnLayout>
+        </ColumnLayout>
+      </PageLayout.Section>
+
+      <PageLayout.Section>
+        <DashboardTable />
+      </PageLayout.Section>
+    </>
   )
 }
-export default HomePage
-
-const Wrapper = styled.body`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-`
+export default DasboardPage
