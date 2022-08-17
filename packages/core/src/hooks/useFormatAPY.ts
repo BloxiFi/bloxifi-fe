@@ -1,3 +1,5 @@
+import { TokenList } from '../contracts'
+
 /**
  * Options that can be used to configure useFormatAPY() hook.
  */
@@ -14,6 +16,10 @@ export interface FormatAPYOptions {
    * This is true if value should be displayed in percentage
    * */
   readonly percent?: boolean
+  /**
+   * Represents currency symbol
+   */
+  readonly symbol?: TokenList | 'USD' | ''
 }
 
 /**
@@ -25,6 +31,7 @@ export const useFormatAPY = ({
   value = 0,
   decimals,
   percent,
+  symbol = '',
 }: FormatAPYOptions = {}): string => {
   //TODO This function seems a bit buggy (keep an eye on this one)
   const getVisibleDecimals = () => {
@@ -48,7 +55,15 @@ export const useFormatAPY = ({
   const isSmallerThanMin = value !== 0 && Math.abs(value) < Math.abs(minValue)
   const formattedValue = isSmallerThanMin ? minValue : value
 
+  const getSymbol = () => {
+    switch (symbol) {
+      case 'USD':
+        return '$'
+      default:
+        return symbol
+    }
+  }
   return `${isSmallerThanMin ? '<' : ''}${formattedValue.toFixed(
     visibleDecimals,
-  )}${percent ? '%' : ''}`
+  )}${percent ? '%' : ''}${getSymbol()}`
 }
