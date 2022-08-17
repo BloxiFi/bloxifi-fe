@@ -15,7 +15,7 @@ import { AvaliableToDepositTable } from '@/components/borrow/table/AvaliableToDe
 import { YourDepositsTable } from '@/components/borrow/table/YourDepositsTable'
 import { YourBorrowsTable } from '@/components/borrow/table/YourBorrowsTable'
 
-const DepositPage = () => {
+const BorrowPage = () => {
   const {
     state: { isConnected, loading: connectionLoading },
   } = Web3Container.useContainer()
@@ -58,4 +58,4 @@ const DepositPage = () => {
     </PageLayout.Section>
   )
 }
-export default DepositPage
+export default BorrowPage

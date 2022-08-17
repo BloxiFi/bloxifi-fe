@@ -199,6 +199,10 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
               priceInEth: bigNumberToNumber(reserve.price.priceInEth),
               usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
+              totalATokenSupply: bigNumberToNumber(reserve.totalATokenSupply),
+              totalCurrentVariableDebt: bigNumberToNumber(
+                reserve.totalCurrentVariableDebt,
+              ),
             }
           }),
         )

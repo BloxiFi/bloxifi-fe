@@ -58,7 +58,12 @@ export const convertToUSD = (
   return balanceInUsd
 }
 
-type BalanceField = 'balance' | 'currentATokenBalance' | 'currentTotalDebt'
+type BalanceField =
+  | 'balance'
+  | 'currentATokenBalance'
+  | 'currentTotalDebt'
+  | 'totalCurrentVariableDebt'
+  | 'totalATokenSupply'
 
 type ReserveArrayItem = {
   /**
