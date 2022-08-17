@@ -26,16 +26,24 @@ export const DepositTitleBox: FunctionComponent<Props> = ({
       !isEmpty && (
         <ColumnLayout center gap={1}>
           <Text color="oxfordBlue" as="span" type="body 2">
-            Balance $
+            Balance {''}
             <Text as="span" color="oxfordBlue" bold>
-              <FormattedNumber value={totalSupplyBalance} />
+              <FormattedNumber
+                value={totalSupplyBalance}
+                symbol="USD"
+                symbolPosition="before"
+              />
             </Text>
           </Text>
 
           <Text color="oxfordBlue" as="span" type="body 2">
-            Collateral $
+            Collateral {''}
             <Text as="span" color="oxfordBlue" bold>
-              <FormattedNumber value={totalCollateral} />
+              <FormattedNumber
+                value={totalCollateral}
+                symbol="USD"
+                symbolPosition="before"
+              />
             </Text>
           </Text>
         </ColumnLayout>

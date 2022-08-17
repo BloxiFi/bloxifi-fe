@@ -20,6 +20,12 @@ export interface FormatAPYOptions {
    * Represents currency symbol
    */
   readonly symbol?: TokenList | 'USD' | ''
+  /**
+   * Represents the position of the currency symbol related to the value
+   * before-symbol goes in front of the value
+   * after-symbol goes after value
+   */
+  readonly symbolPosition?: 'before' | 'after'
 }
 
 /**
@@ -32,6 +38,7 @@ export const useFormatAPY = ({
   decimals,
   percent,
   symbol = '',
+  symbolPosition = 'after',
 }: FormatAPYOptions = {}): string => {
   //TODO This function seems a bit buggy (keep an eye on this one)
   const getVisibleDecimals = () => {
@@ -63,7 +70,19 @@ export const useFormatAPY = ({
         return symbol
     }
   }
-  return `${isSmallerThanMin ? '<' : ''}${formattedValue.toFixed(
+
+  //If value is smaller than minimum, we display "<" sign before it,
+  //In that case symbol should goes after the value
+  if (isSmallerThanMin) {
+    symbolPosition = 'after'
+  }
+  const displayValue = `${isSmallerThanMin ? '<' : ''}${formattedValue.toFixed(
     visibleDecimals,
-  )}${percent ? '%' : ''}${getSymbol()}`
+  )}${percent ? '%' : ''}`
+
+  if (symbolPosition === 'before') {
+    return `${getSymbol()}${displayValue}`
+  } else {
+    return `${displayValue}${getSymbol()}`
+  }
 }
