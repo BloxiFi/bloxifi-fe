@@ -59,10 +59,11 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
       header: '',
       Cell: ({ data }) => (
         <Button
-          disabled={!data.balance}
+          //disabled={!data.balance}
           appearance="secondary"
           variant="medium"
           size="small"
+          disabled={data.balance<0.0000001 ? true : false}
           onClick={() => openModal(data)}
         >
           {t('global.buttons.deposit')}
