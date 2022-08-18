@@ -83,6 +83,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
           variant="thin"
           size="small"
           className="u-full-width"
+          disabled={currentTotalDebt<0.0000001 ? true : false}
           onClick={() =>
             openModal({
               currentTotalDebt,

@@ -142,6 +142,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           variant="thin"
           size="small"
           className="u-full-width"
+          disabled={currentATokenBalance<0.0000001 ? true : false}
           onClick={() =>
             openModal({
               balance,
