@@ -13,6 +13,7 @@ import React, { FunctionComponent, useState } from 'react'
 import {
   BorrowAndLending,
   convertBalancesInUsdArray,
+  MIN_VALUE_FOR_TRANSACTION,
   sumArrayItems,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
@@ -142,7 +143,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           variant="thin"
           size="small"
           className="u-full-width"
-          disabled={currentATokenBalance<0.0000001 ? true : false}
+          disabled={currentATokenBalance < MIN_VALUE_FOR_TRANSACTION}
           onClick={() =>
             openModal({
               balance,

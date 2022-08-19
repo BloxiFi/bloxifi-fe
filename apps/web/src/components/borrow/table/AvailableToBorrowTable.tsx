@@ -1,7 +1,10 @@
 import React, { useState, FunctionComponent } from 'react'
 import { Button, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
-import { convertUSDToAssetValue } from '@bloxifi/core'
+import {
+  convertUSDToAssetValue,
+  MIN_VALUE_FOR_TRANSACTION,
+} from '@bloxifi/core'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
@@ -69,7 +72,13 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           appearance="secondary"
           variant="medium"
           size="small"
-          //disabled={data.balance<0.0000001 ? true : false}
+          disabled={
+            convertUSDToAssetValue(
+              availableToBorrowUSD,
+              data.priceInEth,
+              data.usdPriceEth,
+            ) < MIN_VALUE_FOR_TRANSACTION
+          }
           onClick={() => openModal(data)}
         >
           {t('global.buttons.borrow')}

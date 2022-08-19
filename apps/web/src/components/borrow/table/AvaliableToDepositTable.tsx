@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from 'react'
 import { Button, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
+import { MIN_VALUE_FOR_TRANSACTION } from '@bloxifi/core'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
@@ -59,11 +60,10 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
       header: '',
       Cell: ({ data }) => (
         <Button
-          //disabled={!data.balance}
           appearance="secondary"
           variant="medium"
           size="small"
-          disabled={data.balance<0.0000001 ? true : false}
+          disabled={data.balance < MIN_VALUE_FOR_TRANSACTION}
           onClick={() => openModal(data)}
         >
           {t('global.buttons.deposit')}
