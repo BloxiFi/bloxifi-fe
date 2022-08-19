@@ -7,11 +7,13 @@ import { FormattedNumber } from '../FormattedNumber'
 import { BorrowModal } from '../modal/BorrowModal'
 
 import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
+import { convertUSDToAssetValue } from '@bloxifi/core'
 
 export const AvailableToBorrowTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
     state: {
+      availableToBorrow,
       reserves,
       userAccountData: { healthFactor },
       loading,
@@ -35,12 +37,18 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
       ),
       alignText: 'left',
     },
-    walletBalance: {
-      header: t('global.table.walletBalance'),
-      Cell: ({ data: { balance } }: any) => {
+    available: {
+      header: t('global.table.available'),
+      Cell: ({ data: { usdPriceEth, priceInEth } }) => {
         return (
           <TruncatedText>
-            <FormattedNumber value={balance} />
+            <FormattedNumber
+              value={convertUSDToAssetValue(
+                availableToBorrow,
+                priceInEth,
+                usdPriceEth,
+              )}
+            />
           </TruncatedText>
         )
       },

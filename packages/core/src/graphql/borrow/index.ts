@@ -20,6 +20,7 @@ export interface UserReserveDataQuery {
     liquidityRate: number
     variableBorrowRate: number
     underlyingAsset: string
+    baseLTVasCollateral: number
     price: {
       priceInEth: BigNumber
       oracle: {
@@ -97,6 +98,7 @@ export const GET_RESERVE_DATA = gql`
         liquidityRate
         variableBorrowRate
         underlyingAsset
+        baseLTVasCollateral
         price {
           priceInEth
           oracle {
