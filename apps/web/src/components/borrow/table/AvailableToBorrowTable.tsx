@@ -1,13 +1,13 @@
 import React, { useState, FunctionComponent } from 'react'
 import { Button, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
+import { convertUSDToAssetValue } from '@bloxifi/core'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
 import { BorrowModal } from '../modal/BorrowModal'
 
 import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
-import { convertUSDToAssetValue } from '@bloxifi/core'
 
 export const AvailableToBorrowTable: FunctionComponent = () => {
   const { t } = useTranslation()
