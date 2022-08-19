@@ -66,7 +66,7 @@ interface State {
   reserves: ReservesData[]
   userReserves: UserReserveData[]
   userAccountData: UserAccountData
-  availableToBorrow: number
+  availableToBorrowUSD: number
   error?: Error
   loading: boolean
 }
@@ -86,7 +86,7 @@ const defaultState = {
   reserves: [],
   userReserves: [],
   userAccountData: {} as UserAccountData,
-  availableToBorrow: undefined,
+  availableToBorrowUSD: undefined,
   error: undefined,
   loading: false,
 }
@@ -114,7 +114,7 @@ const reducer = (state: State, action: Action<ActionType>) => {
     case 'setAvailableToBorrow': {
       return {
         ...state,
-        availableToBorrow: action.value,
+        availableToBorrowUSD: action.value,
       }
     }
     default:

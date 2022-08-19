@@ -13,7 +13,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
     state: {
-      availableToBorrow,
+      availableToBorrowUSD,
       reserves,
       userAccountData: { healthFactor },
       loading,
@@ -44,7 +44,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           <TruncatedText>
             <FormattedNumber
               value={convertUSDToAssetValue(
-                availableToBorrow,
+                availableToBorrowUSD,
                 priceInEth,
                 usdPriceEth,
               )}
