@@ -1,4 +1,5 @@
 import { BigNumber, ethers } from 'ethers'
+import { UserReserveData } from '@/containers/WalletContainer'
 
 export const filterItems = (items, filter, filterBy) => {
   if (filter.trim().length === 0) {
@@ -58,6 +59,21 @@ export const convertToUSD = (
   return balanceInUsd
 }
 
+/**
+ * convertUSDToAssetValue function converts USD to asset value. E.g. 1000USD converts to KSM
+ * @param value Value in USD
+ * @param priceInEth Asset price in ETH, 1asset = priceInEth ETH
+ * @param usdPriceEth Eth price in USD, 1ETH = usdPriceEth USD
+ * @returns converted USD value in selected asset
+ */
+export const convertUSDToAssetValue = (
+  value: number,
+  priceInEth: number,
+  usdPriceEth: number,
+) => {
+  return value / (priceInEth * usdPriceEth)
+}
+
 type BalanceField =
   | 'balance'
   | 'currentATokenBalance'
@@ -93,3 +109,40 @@ export const convertBalancesInUsdArray = (
 
     return convertToUSD(balance, priceInEth, usdPriceEth)
   })
+
+/**
+ * Calculate total deposits of asset denominated in USD, multiplied by its LTV
+ * @param currentATokenBalance total deposits of X token
+ * @param priceInEth Asset price in ETH, e.g. 1KSMmb = priceInEth ETH
+ * @param usdPriceEth Eth price in USD, 1ETH = usdPriceEth USD
+ * @param usageAsCollateralEnabledOnUser
+ * * @param baseLTVasCollateral  LTV(Loan to Value of X token), the maximum amount of currency that can be borrowed
+ * @returns number,  total deposits of asset denominated in USD, multiplied by its LTV
+ */
+
+type GetDepositAssetUSD = Pick<
+  UserReserveData,
+  | 'currentATokenBalance'
+  | 'priceInEth'
+  | 'usdPriceEth'
+  | 'usageAsCollateralEnabledOnUser'
+  | 'baseLTVasCollateral'
+>
+export const getDepositedAssetsUSD = ({
+  currentATokenBalance,
+  priceInEth,
+  usdPriceEth,
+  usageAsCollateralEnabledOnUser,
+  baseLTVasCollateral,
+}: GetDepositAssetUSD): number => {
+  if (usageAsCollateralEnabledOnUser) {
+    //total deposits of X asset denominated in USD
+    const depositAssetUSD = convertToUSD(
+      currentATokenBalance,
+      priceInEth,
+      usdPriceEth,
+    )
+    return depositAssetUSD * baseLTVasCollateral
+  }
+  return 0
+}

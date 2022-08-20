@@ -9,7 +9,7 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending } from '@bloxifi/core'
+import { BorrowAndLending, convertUSDToAssetValue } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -19,7 +19,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { ReservesData } from '@/containers/WalletContainer'
+import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 
 interface Props {
   /**
@@ -51,6 +51,9 @@ export const BorrowModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
+  const {
+    state: { availableToBorrowUSD },
+  } = WalletContainer.useContainer()
   const signer = provider.getSigner()
 
   const [hasError, setHasError] = useState<boolean>(false)
@@ -80,11 +83,17 @@ export const BorrowModal = ({
     }
   }
 
+  const availableToBorrow = convertUSDToAssetValue(
+    availableToBorrowUSD,
+    reserveData.priceInEth,
+    reserveData.usdPriceEth,
+  )
+
   const depositValidationSchemaa = Yup.object().shape({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
+      .max(Number(availableToBorrow), t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
   })
 
@@ -132,7 +141,7 @@ export const BorrowModal = ({
             name="amount"
             max={reserveData.balance}
             reserveData={{
-              balance: reserveData.balance,
+              balance: availableToBorrow,
               symbol: reserveData.symbol,
               icon: reserveData.icon,
             }}

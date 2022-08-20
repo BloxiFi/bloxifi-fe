@@ -24,3 +24,5 @@ export const getNetworkName = (chainId: number): string => {
   }
   return 'Unknown'
 }
+
+export const MIN_VALUE_FOR_TRANSACTION = 0.0000001

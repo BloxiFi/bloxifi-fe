@@ -2,9 +2,12 @@ import { useQuery } from '@apollo/client'
 import {
   bigNumberToNumber,
   BorrowAndLending,
+  convertBalancesInUsdArray,
+  getDepositedAssetsUSD,
   GET_RESERVE_DATA,
   ReservesDataQuery,
   ReservesGraph,
+  sumArrayItems,
   TokenContract,
   TokenList,
   Tokens,
@@ -50,6 +53,7 @@ export type UserReserveData = DefaultReserveData & {
   currentVariableDebt: string
   currentTotalDebt: number
   usageAsCollateralEnabledOnUser: boolean
+  baseLTVasCollateral: number
 }
 
 export type UserAccountData = {
@@ -62,6 +66,7 @@ interface State {
   reserves: ReservesData[]
   userReserves: UserReserveData[]
   userAccountData: UserAccountData
+  availableToBorrowUSD: number
   error?: Error
   loading: boolean
 }
@@ -75,11 +80,13 @@ type ActionType =
   | 'setReserveData'
   | 'setUserReservesData'
   | 'setUserAccountData'
+  | 'setAvailableToBorrow'
 
 const defaultState = {
   reserves: [],
   userReserves: [],
   userAccountData: {} as UserAccountData,
+  availableToBorrowUSD: undefined,
   error: undefined,
   loading: false,
 }
@@ -102,6 +109,12 @@ const reducer = (state: State, action: Action<ActionType>) => {
       return {
         ...state,
         userAccountData: action.value,
+      }
+    }
+    case 'setAvailableToBorrow': {
+      return {
+        ...state,
+        availableToBorrowUSD: action.value,
       }
     }
     default:
@@ -140,6 +153,36 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       },
     },
   )
+
+  const calculateAvailableBorrowsUSD = userReserves => {
+    //total user deposit amount denominated in USD
+    const depositAssetsUSD = userReserves.map(
+      ({
+        currentATokenBalance,
+        priceInEth,
+        usdPriceEth,
+        usageAsCollateralEnabledOnUser,
+        baseLTVasCollateral,
+      }) => {
+        return getDepositedAssetsUSD({
+          currentATokenBalance,
+          priceInEth,
+          usdPriceEth,
+          usageAsCollateralEnabledOnUser,
+          baseLTVasCollateral,
+        })
+      },
+    )
+
+    //total user borrowed amount denominated in USD
+    const totalBorrowUSD = sumArrayItems(
+      convertBalancesInUsdArray(userReserves, 'currentTotalDebt'),
+    )
+    const totalDepositAssetUSD = sumArrayItems(depositAssetsUSD)
+    const availableToBorrowUSD = totalDepositAssetUSD - totalBorrowUSD
+
+    return availableToBorrowUSD
+  }
 
   const getUserAccountData = useCallback(async () => {
     try {
@@ -226,6 +269,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         liquidityRate,
         variableBorrowRate,
         price,
+        baseLTVasCollateral,
         ...restReserve
       },
       currentATokenBalance,
@@ -243,6 +287,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       variableBorrowAPY: calculateAPY(variableBorrowRate),
       priceInEth: bigNumberToNumber(price.priceInEth),
       usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
+      baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
     }),
     [],
   )
@@ -251,6 +296,15 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     if (data) {
       void setReserveData(data.reserves)
       const userReserveData = data.userReserves.map(mapUserReserveData)
+      if (userReserveData) {
+        const availableToBorrowUSD =
+          calculateAvailableBorrowsUSD(userReserveData)
+        dispatch({
+          type: 'setAvailableToBorrow',
+          value: availableToBorrowUSD > 0 ? availableToBorrowUSD : 0,
+        })
+      }
+
       dispatch({
         type: 'setUserReservesData',
         value: userReserveData,

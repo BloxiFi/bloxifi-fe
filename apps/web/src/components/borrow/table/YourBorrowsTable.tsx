@@ -8,6 +8,7 @@ import {
 import React, { FunctionComponent, useState } from 'react'
 import {
   convertBalancesInUsdArray,
+  MIN_VALUE_FOR_TRANSACTION,
   numberToPercentage,
   sumArrayItems,
 } from '@bloxifi/core'
@@ -83,7 +84,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
           variant="thin"
           size="small"
           className="u-full-width"
-          disabled={currentTotalDebt<0.0000001 ? true : false}
+          disabled={currentTotalDebt < MIN_VALUE_FOR_TRANSACTION}
           onClick={() =>
             openModal({
               currentTotalDebt,

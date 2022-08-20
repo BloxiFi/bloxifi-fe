@@ -27,7 +27,8 @@
     "table": {
       "assets": "Assets",
       "walletBalance": "Wallet balance",
-      "apy": "APY"
+      "apy": "APY",
+      "available": "Available"
     },
     "errors": {
       "required": "Required",
