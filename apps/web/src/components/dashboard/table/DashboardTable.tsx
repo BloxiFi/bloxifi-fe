@@ -27,6 +27,7 @@ export const DashboardTable: FunctionComponent = () => {
         <TruncatedText>
           <FormattedNumber
             value={convertToUSD(totalATokenSupply, priceInEth, usdPriceEth)}
+            symbol="USD"
           />
         </TruncatedText>
       ),
@@ -43,6 +44,7 @@ export const DashboardTable: FunctionComponent = () => {
               priceInEth,
               usdPriceEth,
             )}
+            symbol="USD"
           />
         </TruncatedText>
       ),

@@ -68,7 +68,11 @@ const DasboardPage = () => {
                 {loading ? (
                   <ContentLoader />
                 ) : (
-                  <FormattedNumber value={totalDeposited} />
+                  <FormattedNumber
+                    value={totalDeposited}
+                    symbol="USD"
+                    symbolPosition="before"
+                  />
                 )}
               </Text>
             </StackLayout>
@@ -85,7 +89,11 @@ const DasboardPage = () => {
                 {loading ? (
                   <ContentLoader />
                 ) : (
-                  <FormattedNumber value={totalBorrowed} />
+                  <FormattedNumber
+                    value={totalBorrowed}
+                    symbol="USD"
+                    symbolPosition="before"
+                  />
                 )}
               </Text>
             </StackLayout>
