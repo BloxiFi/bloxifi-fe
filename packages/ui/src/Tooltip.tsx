@@ -2,9 +2,6 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
 
-import { Colors } from './styles/colors'
-import { Icon, IconNamesType } from './Icon'
-
 interface Props {
   element: JSX.Element
   children: any
@@ -14,7 +11,7 @@ interface Props {
   effect?: 'float' | 'solid'
   position?: 'top' | 'right' | 'bottom' | 'left'
   tooltipText?: string
-  icon: string
+  icon?: string
 }
 
 export const Tooltip = ({ effect = 'float', ...props }: Props) => {
@@ -49,12 +46,13 @@ const Content = styled.span`
 `
 
 const StyledTooltip = styled(ReactTooltip)<{ width: number }>`
+  padding: 1rem 0.625rem !important;
+
   &.type-dark.__react_component_tooltip {
-    box-shadow: 0 3px 6px 0 ${Colors.dark.menuShadow};
-    background-color: #fff;
-    border: 1px solid ${Colors.dark.borderColor};
-    border-radius: 3px;
-    color: ${Colors.dark.textColorDark};
+    box-shadow: ${({ theme }) => theme.tooltipShadow};
+    background-color: ${({ theme }) => theme.white};
+    border-radius: 4px;
+    color: ${({ theme }) => theme.textColorDark};
     text-transform: none;
     ${props => {
       return props.width ? `max-width: ${props.width}px;` : ''
@@ -63,12 +61,19 @@ const StyledTooltip = styled(ReactTooltip)<{ width: number }>`
       &::after {
         width: 12px;
         height: 12px;
-        background: #fff;
+        background: ${({ theme }) => theme.white};
         transform: rotate(45deg);
+        z-index: -100;
         border-top: 1px solid transparent;
         border-left: 1px solid transparent;
-        border-right: 1px solid ${Colors.dark.borderColor};
-        border-bottom: 1px solid ${Colors.dark.borderColor};
+        border-right: 1px solid ${({ theme }) => theme.borderColor};
+        border-bottom: 1px solid ${({ theme }) => theme.borderColor};
+      }
+
+      &::before {
+        bottom: -1px;
+        background: ${({ theme }) => theme.white};
+        z-index: -1;
       }
     }
 
@@ -80,40 +85,54 @@ const StyledTooltip = styled(ReactTooltip)<{ width: number }>`
       &::after {
         width: 12px;
         height: 12px;
-        background: #fff;
+        background: ${({ theme }) => theme.white};
         transform: rotate(45deg);
-        border: 1px solid ${Colors.dark.borderColor};
+        z-index: -100;
+        border: 1px solid ${({ theme }) => theme.borderColor};
       }
 
       &::before {
         left: 50%;
         margin-left: -10px;
-        top: 0;
-        background: #fff;
+        top: -1px;
+        background: ${({ theme }) => theme.white};
         width: 16px;
-        height: 8px;
-        z-index: 9999999;
+        height: 12px;
+        z-index: -1;
+      }
+    }
+
+    &.place-right,
+    &.place-left {
+      &::after {
+        width: 12px;
+        height: 12px;
+        background: ${({ theme }) => theme.white};
+        transform: rotate(45deg);
+        border: 1px solid ${({ theme }) => theme.borderColor};
+        margin-top: -6px;
+        z-index: -100;
+      }
+
+      &::before {
+        margin-top: -8px;
+        top: 50%;
+        background: ${({ theme }) => theme.white};
+        width: 10px;
+        height: 16px;
+        z-index: -1;
       }
     }
 
     &.place-right {
-      &::after {
-        width: 12px;
-        height: 12px;
-        background: #fff;
-        transform: rotate(45deg);
-        border: 1px solid ${Colors.dark.borderColor};
-        margin-top: -6px;
-      }
-
       &::before {
-        margin-left: 8px;
-        margin-top: -8px;
-        top: 50%;
-        background: #fff;
-        width: 10px;
-        height: 16px;
-        z-index: 9999999;
+        margin-left: 7px;
+      }
+    }
+
+    &.place-left {
+      &::before {
+        margin-right: 7px;
       }
     }
   }

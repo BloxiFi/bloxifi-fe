@@ -1,9 +1,7 @@
 import { Meta } from '@storybook/react'
 import React from 'react'
-import { styled } from '@storybook/theming'
-import { element } from 'prop-types'
 
-import { BoxLayout, GridLayout, ColumnLayout, StackLayout } from '../Layouts'
+import { ColumnLayout } from '../Layouts'
 import { Text } from '../Text'
 import { Tooltip } from '../Tooltip'
 
@@ -14,27 +12,25 @@ export default {
     width: 200,
     position: 'top',
     effect: 'float',
+    tooltipText: 'Total Borrowed amount divided by total collateral amount.',
   },
 } as Meta
 
 export const TooltipDefault = args => {
   return (
-    <StackLayout gap={2.125}>
-      <ColumnLayout center gap={1}>
-        <Text color="oxfordBlue" as="span" type="body 2">
-          Balance $
-          <Tooltip
-            element={
-              <Text as="span" color="oxfordBlue" bold data-tip="adsfv">
-                1.00
-              </Text>
-            }
-            {...args}
-          />
-        </Text>
-      </ColumnLayout>
-    </StackLayout>
+    <ColumnLayout align="center" style={{ minHeight: 400 }}>
+      <Text color="oxfordBlue" as="p" type="body 2">
+        <Tooltip
+          {...args}
+          element={
+            <Text as="span" color="oxfordBlue" bold>
+              Remaining debt
+            </Text>
+          }
+        />
+      </Text>
+    </ColumnLayout>
   )
 }
 
-TooltipDefault.storyName = 'Tooltip text'
+TooltipDefault.storyName = 'Overview'

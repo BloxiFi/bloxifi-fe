@@ -69,6 +69,8 @@ export const Colors = {
     //Loader
     loaderBackground: '#DAE3ED',
     loaderBorder: '#0072C3',
+    //Tooltip
+    tooltipShadow: '0px 4px 24px rgba(0, 0, 0, 0.25)',
   },
   dark: {
     headerBackground: '#F6F8FA',
@@ -138,5 +140,7 @@ export const Colors = {
     //Loader
     loaderBackground: '#DAE3ED',
     loaderBorder: '#0072C3',
+    //Tooltip
+    tooltipShadow: '0px 4px 24px rgba(0, 0, 0, 0.25)',
   },
 }
