@@ -172,6 +172,7 @@ export const WithdrawModal = ({
             remainingSupply={useFormatAPY({
               value: calculateRemainingSupply(),
             })}
+            amount={values.amount}
             headers={['remainingSupply', 'healthFactor']}
           />
         </StackLayout>

@@ -1,5 +1,12 @@
 import React, { useState, FunctionComponent } from 'react'
-import { Button, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
+import {
+  Button,
+  ColumnData,
+  Table,
+  Text,
+  Tooltip,
+  TruncatedText,
+} from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 import {
   convertUSDToAssetValue,
@@ -58,7 +65,13 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
       alignText: 'center',
     },
     APY: {
-      header: t('global.table.apy'),
+      header: (
+        <Tooltip element={t('global.table.apy')}>
+          <Text color="oxfordBlue" as="span" type="small-text">
+            {t('global.tooltips.borrowAPY')}
+          </Text>
+        </Tooltip>
+      ),
       Cell: ({ data: { variableBorrowAPY } }) => (
         <FormattedNumber value={variableBorrowAPY} percent />
       ),

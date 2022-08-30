@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 interface Props {
   element: JSX.Element
-  children: any
+  children?: JSX.Element
   tooltipId?: string
   multiline?: boolean
   width?: number
@@ -23,11 +23,16 @@ export const Tooltip = ({ effect = 'float', ...props }: Props) => {
         data-effect={effect}
         data-place={props.position}
         data-for={`${id}`}
-        data-tip={props.tooltipText}
+        data-tip={props.children || props.tooltipText}
       >
         {props.element}
       </Content>
-      <StyledTooltip data-element="tooltip" width={props.width} id={`${id}`}>
+      <StyledTooltip
+        offset={{ top: 15, right: 15 }}
+        data-element="tooltip"
+        width={props.width}
+        id={`${id}`}
+      >
         {props.children}
       </StyledTooltip>
     </>
@@ -38,15 +43,18 @@ const Content = styled.span`
   .u-text-truncated {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: break-spaces;
     vertical-align: middle;
     max-width: 100%;
     display: block;
+    font-weight: 400;
   }
 `
 
 const StyledTooltip = styled(ReactTooltip)<{ width: number }>`
-  padding: 1rem 0.625rem !important;
+  padding: 0.625rem 1rem !important;
+  white-space: break-spaces;
+  text-align: left;
 
   &.type-dark.__react_component_tooltip {
     box-shadow: ${({ theme }) => theme.tooltipShadow};

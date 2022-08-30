@@ -35,6 +35,17 @@
       "positiveValue": "Must be greater than 0",
       "numbersOnly": "Must be a number",
       "exceededBalance": "Not enough balance"
+    },
+    "tooltips": {
+      "depositedBalance": "Your total deposited balance denominated in USD",
+      "totalCollateral": "Total collateral amount denominated in USD",
+      "supplyAPY": "Annual Percentage Yield, \nincome you receive on \nyour deposit after 365 days \nof continuous lending",
+      "borrowAPY": "Interest you'll have to repay \non your debt after 365 days \nwithout repaying",
+      "modals": {
+        "healthFactor": "Total Borrowed amount divided by total collateral amount.\nIf Hf <1 your assets can be liquidated in order to repay outstanding debt",
+        "remainingSupply": "Remaining amount of deposited tokens \nafter you withdraw {{amount}} {{symbol}}",
+        "remainingDebt": "Remaining debt after you repay {{amount}} {{symbol}}"
+      }
     }
   },
   "header": {

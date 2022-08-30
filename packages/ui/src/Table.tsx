@@ -35,7 +35,7 @@ export interface ColumnData<T = TableData> {
   /**
    * Header content
    */
-  header: string
+  header: string | JSX.Element
   /**
    * A Cell component that will be placed in this Column in every row.
    */

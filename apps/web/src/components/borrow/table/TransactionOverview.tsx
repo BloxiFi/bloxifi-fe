@@ -1,5 +1,12 @@
 import React from 'react'
-import { ColumnData, ColumnLayout, StackLayout, Table, Text } from '@bloxifi/ui'
+import {
+  ColumnData,
+  ColumnLayout,
+  StackLayout,
+  Table,
+  Text,
+  Tooltip,
+} from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 import { TokenList } from 'packages/core/src'
 
@@ -37,6 +44,10 @@ interface Props {
    * List of table headers
    */
   headers: TableHeader[]
+  /**
+   * Transaction amount
+   */
+  amount?: string
 }
 
 export const TransactionOverview = ({
@@ -46,6 +57,7 @@ export const TransactionOverview = ({
   remainingDebt,
   symbol,
   headers,
+  amount,
 }: Props) => {
   const { t } = useTranslation()
 
@@ -84,9 +96,6 @@ export const TransactionOverview = ({
         return (
           <ColumnLayout align="flex-end" center>
             <Text as="span" type="body 1" color="oxfordBlue">
-              {/**
-               * TODO Research how we get and calculate this value
-               */}
               {remainingSupply} {symbol}
             </Text>{' '}
           </ColumnLayout>
@@ -105,14 +114,32 @@ export const TransactionOverview = ({
     }
   }
 
+  //The following headers will be displayed with tooltip explanation
+  const headersWithTooltip = [
+    'healthFactor',
+    'remainingSupply',
+    'remainingDebt',
+  ]
+
   const transactionColumns = {
     action: {
       header: t('deposit.transactionOverview'),
-      Cell: ({ data: { name } }) => (
-        <Text type="body 3" color="oxfordBlue" as="span">
-          {t(`deposit.${name}`)}
-        </Text>
-      ),
+      Cell: ({ data: { name } }) => {
+        if (headersWithTooltip.includes(name)) {
+          return (
+            <Tooltip element={t(`deposit.${name}`)}>
+              <Text color="oxfordBlue" as="span" type="small-text">
+                {t(`global.tooltips.modals.${name}`, {
+                  amount,
+                  symbol,
+                })}
+              </Text>
+            </Tooltip>
+          )
+        } else {
+          return t(`deposit.${name}`)
+        }
+      },
       alignText: 'left',
     },
     value: {
