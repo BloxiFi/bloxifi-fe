@@ -17,7 +17,7 @@ exports[`Storyshots Components/Tooltip Overview 1`] = `
     <span
       className="sc-gSAPjG jkvUUi"
       data-effect="float"
-      data-for="56.51616278012555"
+      data-for="0.9102058673963409"
       data-place="top"
       data-tip="Total Borrowed amount divided by total collateral amount."
     >
@@ -29,28 +29,28 @@ exports[`Storyshots Components/Tooltip Overview 1`] = `
       </span>
     </span>
     <div
-      className="__react_component_tooltip tb9db791f-2eec-46d1-8037-300ff9c4d024 place-top type-dark"
+      className="__react_component_tooltip t874286fd-4fb4-40a9-b250-fe139aa6597b place-top type-dark"
       data-id="tooltip"
-      id="56.51616278012555"
+      id="0.9102058673963409"
     >
       <style
         aria-hidden="true"
         dangerouslySetInnerHTML={
           Object {
             "__html": "
-  	.tb9db791f-2eec-46d1-8037-300ff9c4d024 {
+  	.t874286fd-4fb4-40a9-b250-fe139aa6597b {
 	    color: #fff;
 	    background: #222;
 	    border: 1px solid transparent;
   	}
 
-  	.tb9db791f-2eec-46d1-8037-300ff9c4d024.place-top {
+  	.t874286fd-4fb4-40a9-b250-fe139aa6597b.place-top {
         margin-top: -10px;
     }
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-top::before {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-top::before {
         border-top: 8px solid transparent;
     }
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-top::after {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-top::after {
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
         bottom: -6px;
@@ -61,13 +61,13 @@ exports[`Storyshots Components/Tooltip Overview 1`] = `
         border-top-width: 6px;
     }
 
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-bottom {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-bottom {
         margin-top: 10px;
     }
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-bottom::before {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-bottom::before {
         border-bottom: 8px solid transparent;
     }
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-bottom::after {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-bottom::after {
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
         top: -6px;
@@ -78,13 +78,13 @@ exports[`Storyshots Components/Tooltip Overview 1`] = `
         border-bottom-width: 6px;
     }
 
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-left {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-left {
         margin-left: -10px;
     }
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-left::before {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-left::before {
         border-left: 8px solid transparent;
     }
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-left::after {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-left::after {
         border-top: 5px solid transparent;
         border-bottom: 5px solid transparent;
         right: -6px;
@@ -95,13 +95,13 @@ exports[`Storyshots Components/Tooltip Overview 1`] = `
         border-left-width: 6px;
     }
 
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-right {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-right {
         margin-left: 10px;
     }
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-right::before {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-right::before {
         border-right: 8px solid transparent;
     }
-    .tb9db791f-2eec-46d1-8037-300ff9c4d024.place-right::after {
+    .t874286fd-4fb4-40a9-b250-fe139aa6597b.place-right::after {
         border-top: 5px solid transparent;
         border-bottom: 5px solid transparent;
         left: -6px;
