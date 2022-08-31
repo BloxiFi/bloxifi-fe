@@ -34,3 +34,6 @@ export const TooltipDefault = args => {
 }
 
 TooltipDefault.storyName = 'Overview'
+TooltipDefault.parameters = {
+  storyshots: { disable: true },
+}
