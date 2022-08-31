@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 
 import {
@@ -57,14 +57,13 @@ export const useCalculateAPY = ({
   const mapData = () => {
     Object.keys(data).map(function (key) {
       const APR = data[key][0]['liquidityRate'] / RAY
-
       const APY = Math.pow(1 + APR / SECONDS_PER_YEAR, SECONDS_PER_YEAR) - 1
       const secondsAmount = daysAmount * SECOND_PER_DAY
       //Daily yield = The number of total tokens staked × (APY for the staked token ÷ 365)
       //const returnValue = (daysAmount * (tokenAmount * (APY / 365))) + tokenAmount
       const returnValue = tokenAmount + APY * tokenAmount //APY/secondsAmount ?
       setReturnAmount(returnValue)
-      console.log('APR:', APR, 'APY: ', APY, 'return: ', returnValue)
+      //console.log('APR:', APR, 'APY: ', APY, 'return: ', returnValue)
     })
   }
 
