@@ -5,6 +5,7 @@ import {
   convertUSDToAssetValue,
   MIN_VALUE_FOR_TRANSACTION,
 } from '@bloxifi/core'
+import { useCalculateAPY } from '@bloxifi/core/src/hooks/useCalculateAPY'
 
 import { AssetName } from '../AssetName'
 import { FormattedNumber } from '../FormattedNumber'
@@ -38,6 +39,24 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
       Cell: ({ data: { symbol, icon, fullName } }: any) => (
         <AssetName symbol={symbol} icon={icon} fullName={fullName} />
       ),
+      alignText: 'left',
+    },
+    liquidity: {
+      header: 'LIQ',
+      Cell: ({ data: { symbol } }) => {
+        return (
+          <TruncatedText>
+            <FormattedNumber
+              value={useCalculateAPY({
+                tokenSymbol: symbol,
+                daysAmount: 365,
+                tokenAmount: 10,
+                simulationType: 'vborrow',
+              })}
+            />
+          </TruncatedText>
+        )
+      },
       alignText: 'left',
     },
     available: {

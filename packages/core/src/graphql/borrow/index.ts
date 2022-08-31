@@ -19,6 +19,7 @@ export interface UserReserveDataQuery {
     decimals: string
     liquidityRate: number
     variableBorrowRate: number
+    stableBorrowRate: number
     underlyingAsset: string
     baseLTVasCollateral: number
     price: {
@@ -42,6 +43,7 @@ export interface ReservesDataQuery {
   totalCurrentVariableDebt: BigNumber
   liquidityRate: number
   variableBorrowRate: number
+  stableBorrowRate: number
   underlyingAsset: string
   price: {
     priceInEth: BigNumber
@@ -77,6 +79,7 @@ export const GET_RESERVE_DATA = gql`
       totalCurrentVariableDebt
       liquidityRate
       variableBorrowRate
+      stableBorrowRate
       underlyingAsset
       price {
         priceInEth
@@ -97,6 +100,7 @@ export const GET_RESERVE_DATA = gql`
         decimals
         liquidityRate
         variableBorrowRate
+        stableBorrowRate
         underlyingAsset
         baseLTVasCollateral
         price {
