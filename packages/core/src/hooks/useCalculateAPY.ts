@@ -62,20 +62,11 @@ export const useCalculateAPY = ({
       const secondsAmount = daysAmount * SECOND_PER_DAY
       //Daily yield = The number of total tokens staked × (APY for the staked token ÷ 365)
       //const returnValue = (daysAmount * (tokenAmount * (APY / 365))) + tokenAmount
-      const returnValue = tokenAmount + secondsAmount * APY * tokenAmount //secondsAmount *
+      const returnValue = tokenAmount + ((APY) * tokenAmount) //APY/secondsAmount ?
       setReturnAmount(returnValue)
       console.log('APR:', APR, 'APY: ', APY, 'return: ', returnValue)
     })
   }
-
-  /* useEffect(() => {
-    if (data) {
-      glib()
-    }
-  }, [data])
-  const glib = () => {
-    console.log(data)
-  } */
 
   return returnAmount
 }
