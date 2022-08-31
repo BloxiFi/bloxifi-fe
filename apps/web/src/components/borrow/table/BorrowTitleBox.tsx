@@ -33,8 +33,10 @@ export const BorrowTitleBox: FunctionComponent<Props> = ({
     ) : (
       !isEmpty && (
         <ColumnLayout className={stylings.tableHeaderWithProgressBar}>
-          <Text color="oxfordBlue" type="body 2" as="span">
-            Balance
+          <ColumnLayout gap={0.5}>
+            <Text color="oxfordBlue" type="body 2" as="span">
+              Balance
+            </Text>
             <Text as="span" color="oxfordBlue" bold>
               <FormattedNumber
                 value={totalBorrowBalance}
@@ -42,7 +44,7 @@ export const BorrowTitleBox: FunctionComponent<Props> = ({
                 symbolPosition="before"
               />
             </Text>
-          </Text>
+          </ColumnLayout>
           <ProgressBar
             className={stylings.tableHeaderProgressBar}
             title="Borrowed"

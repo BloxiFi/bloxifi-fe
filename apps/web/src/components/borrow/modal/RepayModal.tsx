@@ -170,6 +170,8 @@ export const RepayModal = ({
             remainingDebt={useFormatAPY({
               value: calculateRemainingDebt(),
             })}
+            amount={values.amount}
+            symbol={reserveData.symbol}
           />
         </StackLayout>
 

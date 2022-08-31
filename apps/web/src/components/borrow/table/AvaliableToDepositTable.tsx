@@ -1,5 +1,12 @@
 import React, { FunctionComponent, useState } from 'react'
-import { Button, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
+import {
+  Button,
+  ColumnData,
+  Table,
+  Text,
+  Tooltip,
+  TruncatedText,
+} from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 import { MIN_VALUE_FOR_TRANSACTION } from '@bloxifi/core'
 
@@ -49,7 +56,13 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
       alignText: 'center',
     },
     APY: {
-      header: t('global.table.apy'),
+      header: (
+        <Tooltip element={t('global.table.apy')}>
+          <Text color="oxfordBlue" as="span" type="small-text">
+            {t('global.tooltips.supplyAPY')}
+          </Text>
+        </Tooltip>
+      ),
       Cell: ({ data: { supplyAPY } }) => (
         <FormattedNumber value={supplyAPY} percent />
       ),
