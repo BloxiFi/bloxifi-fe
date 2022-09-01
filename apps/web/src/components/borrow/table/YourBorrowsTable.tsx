@@ -109,7 +109,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
   const totalBorrowBalance = sumArrayItems(
     convertBalancesInUsdArray(userReserves, 'currentTotalDebt'),
   )
-  console.log('userReservesWithDept', userReservesWithDept)
+
   return (
     <>
       <Table
