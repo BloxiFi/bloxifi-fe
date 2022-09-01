@@ -9,7 +9,11 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, convertUSDToAssetValue } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateHealthFactor,
+  convertUSDToAssetValue,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -52,7 +56,14 @@ export const BorrowModal = ({
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
   const {
-    state: { availableToBorrowUSD },
+    state: {
+      availableToBorrowUSD,
+      userAccountData: {
+        liquidationThreshold,
+        totalCollateralETH,
+        totalDebtETH,
+      },
+    },
   } = WalletContainer.useContainer()
   const signer = provider.getSigner()
 
@@ -127,6 +138,12 @@ export const BorrowModal = ({
   const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted
   const isBorrowDisabled = isInputDisabled || !!errors.amount || !values.amount
 
+  const futureHealthFactor = calculateHealthFactor({
+    liquidationThreshold,
+    totalCollateralETH,
+    totalDebtETH: totalDebtETH + Number(values.amount) * reserveData.priceInEth,
+  })
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />
@@ -155,7 +172,9 @@ export const BorrowModal = ({
           />
           <TransactionOverview
             healthFactor={healthFactor}
+            futureHealthFactor={futureHealthFactor}
             headers={['healthFactor']}
+            amount={values.amount}
           />
         </StackLayout>
 

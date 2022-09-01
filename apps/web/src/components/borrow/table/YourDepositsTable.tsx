@@ -136,7 +136,15 @@ export const YourDepositsTable: FunctionComponent = () => {
     action: {
       header: '',
       Cell: ({
-        data: { balance, symbol, underlyingAsset, currentATokenBalance, icon },
+        data: {
+          balance,
+          symbol,
+          underlyingAsset,
+          currentATokenBalance,
+          icon,
+          priceInEth,
+          usageAsCollateralEnabledOnUser,
+        },
       }) => (
         <Button
           appearance="secondary"
@@ -151,6 +159,8 @@ export const YourDepositsTable: FunctionComponent = () => {
               underlyingAsset,
               currentATokenBalance,
               icon,
+              priceInEth,
+              usageAsCollateralEnabledOnUser,
             })
           }
         >

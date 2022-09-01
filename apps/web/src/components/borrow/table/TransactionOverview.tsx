@@ -2,15 +2,18 @@ import React from 'react'
 import {
   ColumnData,
   ColumnLayout,
+  Icon,
   StackLayout,
   Table,
   Text,
   Tooltip,
 } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
-import { TokenList } from 'packages/core/src'
+import { TokenList } from '@bloxifi/core'
 
 import { FormattedNumber } from '../FormattedNumber'
+
+import { HealthFactorNumber } from './HealthFactorNumber'
 
 type TableHeader =
   | 'supplyAPY'
@@ -48,6 +51,10 @@ interface Props {
    * Transaction amount
    */
   amount?: string
+  /**
+   * Future health factor based on transaction type and amount
+   */
+  futureHealthFactor?: number
 }
 
 export const TransactionOverview = ({
@@ -58,9 +65,9 @@ export const TransactionOverview = ({
   symbol,
   headers,
   amount,
+  futureHealthFactor,
 }: Props) => {
   const { t } = useTranslation()
-
   const transactionData: TransactionData[] = headers.map(name => ({ name }))
 
   const getColumnValue = (name: TableHeader) => {
@@ -76,17 +83,16 @@ export const TransactionOverview = ({
       case 'healthFactor':
         return (
           <StackLayout>
-            {/**
-             * We will use this code to display future health factor
-             * 
-             * <ColumnLayout align="flex-end" center>
-                <Icon name="union" size={16} color="oxfordBlue" />
-                <Icon name="arrow-right" size={15} color="oxfordBlue" />
-              </ColumnLayout>
-             */}
-            <Text as="span" type="body 1" color="oxfordBlue">
-              <FormattedNumber value={healthFactor} />
-            </Text>
+            <ColumnLayout align="flex-end" center>
+              <HealthFactorNumber value={healthFactor} />
+              {amount && (
+                <>
+                  <Icon name="arrow-right" size={15} color="oxfordBlue" />
+                  <HealthFactorNumber value={futureHealthFactor} />
+                </>
+              )}
+            </ColumnLayout>
+
             <Text as="span" type="body 1" color="oxfordBlue">
               {'Liquidation at < 1.00'}
             </Text>

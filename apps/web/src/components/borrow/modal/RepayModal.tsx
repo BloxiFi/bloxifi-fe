@@ -9,7 +9,11 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, useFormatAPY } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateHealthFactor,
+  useFormatAPY,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -19,11 +23,11 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { UserReserveData } from '@/containers/WalletContainer'
+import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export type RepayModalData = Pick<
   UserReserveData,
-  'underlyingAsset' | 'currentTotalDebt' | 'symbol' | 'icon'
+  'underlyingAsset' | 'currentTotalDebt' | 'symbol' | 'icon' | 'priceInEth'
 >
 interface Props {
   /**
@@ -55,6 +59,15 @@ export const RepayModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
+  const {
+    state: {
+      userAccountData: {
+        liquidationThreshold,
+        totalCollateralETH,
+        totalDebtETH,
+      },
+    },
+  } = WalletContainer.useContainer()
   const signer = provider.getSigner()
 
   const [hasError, setHasError] = useState<boolean>(false)
@@ -138,6 +151,12 @@ export const RepayModal = ({
     return 0
   }
 
+  const futureHealthFactor = calculateHealthFactor({
+    liquidationThreshold,
+    totalCollateralETH,
+    totalDebtETH: totalDebtETH - Number(values.amount) * reserveData.priceInEth,
+  })
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />
@@ -166,6 +185,7 @@ export const RepayModal = ({
           />
           <TransactionOverview
             healthFactor={healthFactor}
+            futureHealthFactor={futureHealthFactor}
             headers={['remainingDebt', 'healthFactor']}
             remainingDebt={useFormatAPY({
               value: calculateRemainingDebt(),

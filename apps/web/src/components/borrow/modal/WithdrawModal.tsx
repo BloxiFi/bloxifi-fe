@@ -9,7 +9,11 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, useFormatAPY } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateHealthFactor,
+  useFormatAPY,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -19,11 +23,17 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { UserReserveData } from '@/containers/WalletContainer'
+import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export type WithdrawModalData = Pick<
   UserReserveData,
-  'underlyingAsset' | 'balance' | 'symbol' | 'currentATokenBalance' | 'icon'
+  | 'underlyingAsset'
+  | 'balance'
+  | 'symbol'
+  | 'currentATokenBalance'
+  | 'icon'
+  | 'priceInEth'
+  | 'usageAsCollateralEnabledOnUser'
 >
 
 interface Props {
@@ -56,6 +66,15 @@ export const WithdrawModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
+  const {
+    state: {
+      userAccountData: {
+        liquidationThreshold,
+        totalCollateralETH,
+        totalDebtETH,
+      },
+    },
+  } = WalletContainer.useContainer()
   const signer = provider.getSigner()
 
   const [hasError, setHasError] = useState<boolean>(false)
@@ -140,6 +159,14 @@ export const WithdrawModal = ({
   const isWithdrawDisabled =
     isInputDisabled || !!errors.amount || !values.amount
 
+  const futureHealthFactor = calculateHealthFactor({
+    liquidationThreshold,
+    totalCollateralETH: reserveData.usageAsCollateralEnabledOnUser
+      ? totalCollateralETH - Number(values.amount) * reserveData.priceInEth
+      : totalCollateralETH,
+    totalDebtETH,
+  })
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />
@@ -168,6 +195,7 @@ export const WithdrawModal = ({
           />
           <TransactionOverview
             healthFactor={healthFactor}
+            futureHealthFactor={futureHealthFactor}
             symbol={reserveData.symbol}
             remainingSupply={useFormatAPY({
               value: calculateRemainingSupply(),

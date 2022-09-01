@@ -146,3 +146,18 @@ export const getDepositedAssetsUSD = ({
   }
   return 0
 }
+
+/**
+ * Calculate health factor
+ * liquidationThreshold is the percentage at which a position is defined as undercollateralised. For example, a Liquidation threshold of 80% means that if the value rises above 80% of the collateral, the position is undercollateralised and could be liquidated.
+ * totalCollateralETH is sum of collaterals expressed in ETH
+ * totalDebtETH is sum of borrows expressed in ETH
+ * @returns
+ */
+export const calculateHealthFactor = ({
+  liquidationThreshold,
+  totalCollateralETH,
+  totalDebtETH,
+}) => {
+  return (totalCollateralETH * liquidationThreshold) / totalDebtETH
+}

@@ -78,7 +78,9 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
     action: {
       header: '',
-      Cell: ({ data: { currentTotalDebt, symbol, underlyingAsset, icon } }) => (
+      Cell: ({
+        data: { currentTotalDebt, symbol, underlyingAsset, icon, priceInEth },
+      }) => (
         <Button
           appearance="secondary"
           variant="thin"
@@ -91,6 +93,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
               symbol,
               underlyingAsset,
               icon,
+              priceInEth,
             })
           }
         >

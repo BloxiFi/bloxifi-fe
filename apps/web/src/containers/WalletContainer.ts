@@ -60,6 +60,8 @@ export type UserAccountData = {
   totalDebtETH: number
   availableBorrowsETH: number
   healthFactor: number
+  liquidationThreshold: number
+  totalCollateralETH: number
 }
 
 interface State {
@@ -199,6 +201,10 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
           healthFactor: bigNumberToNumber(response.healthFactor),
           availableBorrowsETH: bigNumberToNumber(response.availableBorrowsETH),
           totalDebtETH: bigNumberToNumber(response.totalDebtETH),
+          liquidationThreshold:
+            Number(response.currentLiquidationThreshold.toString()) *
+            Math.pow(10, -4),
+          totalCollateralETH: bigNumberToNumber(response.totalCollateralETH),
         },
       })
     } catch (error) {

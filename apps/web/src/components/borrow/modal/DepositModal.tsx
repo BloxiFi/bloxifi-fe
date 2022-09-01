@@ -9,7 +9,7 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, Tokens } from '@bloxifi/core'
+import { BorrowAndLending, calculateHealthFactor, Tokens } from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
@@ -20,7 +20,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { ReservesData } from '@/containers/WalletContainer'
+import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 
 interface Props {
   /**
@@ -52,6 +52,15 @@ export const DepositModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
+  const {
+    state: {
+      userAccountData: {
+        liquidationThreshold,
+        totalCollateralETH,
+        totalDebtETH,
+      },
+    },
+  } = WalletContainer.useContainer()
   const signer = provider.getSigner()
 
   const [hasError, setHasError] = useState<boolean>(false)
@@ -167,6 +176,13 @@ export const DepositModal = ({
     hasError ||
     (shouldApproveContract && !approved)
 
+  const futureHealthFactor = calculateHealthFactor({
+    liquidationThreshold,
+    totalCollateralETH:
+      totalCollateralETH + Number(values.amount) * reserveData.priceInEth,
+    totalDebtETH: totalDebtETH - Number(values.amount) * reserveData.priceInEth,
+  })
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />
@@ -195,8 +211,10 @@ export const DepositModal = ({
           />
           <TransactionOverview
             healthFactor={healthFactor}
+            futureHealthFactor={futureHealthFactor}
             supplyAPY={reserveData.supplyAPY}
             headers={['supplyAPY', 'healthFactor']}
+            amount={values.amount}
           />
         </StackLayout>
 
