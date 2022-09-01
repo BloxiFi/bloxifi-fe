@@ -29,6 +29,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
       userReserves,
       userAccountData: { totalDebtETH, availableBorrowsETH, healthFactor },
       loading,
+      reserves,
     },
   } = WalletContainer.useContainer()
   const userReservesWithDept = userReserves.filter(
@@ -91,6 +92,9 @@ export const YourBorrowsTable: FunctionComponent = () => {
               symbol,
               underlyingAsset,
               icon,
+              balance: reserves.find(
+                reserve => reserve.underlyingAsset === underlyingAsset,
+              ).balance,
             })
           }
         >
@@ -105,7 +109,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
   const totalBorrowBalance = sumArrayItems(
     convertBalancesInUsdArray(userReserves, 'currentTotalDebt'),
   )
-
+  console.log('userReservesWithDept', userReservesWithDept)
   return (
     <>
       <Table
