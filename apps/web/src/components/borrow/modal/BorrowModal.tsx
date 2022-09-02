@@ -13,6 +13,7 @@ import { BorrowAndLending, convertUSDToAssetValue, Tokens } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { CheckAllowanceFunction } from '@bloxifi/types'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -20,7 +21,6 @@ import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
-import { CheckAllowanceFunction } from '@bloxifi/types'
 
 interface Props {
   /**
