@@ -35,7 +35,6 @@ export const RangeBar = forwardRef(
     }: RangeBarProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    const themeContext = useContext(ThemeContext)
     const [valuePercent, setValuePercent] = useState(0)
     const [rangeValue, setRangeValue] = useState(0)
 
