@@ -9,10 +9,11 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, convertUSDToAssetValue } from '@bloxifi/core'
+import { BorrowAndLending, convertUSDToAssetValue, Tokens } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { CheckAllowanceFunction } from '@bloxifi/types'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -59,10 +60,52 @@ export const BorrowModal = ({
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
+  const [shouldApproveContract, setShouldApproveContract] = useState(false)
+  const [approved, setApproved] = useState<boolean>(false)
+
   const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
 
+  const tokenContract = reserveData.symbol
+    ? Tokens.getTokenContract(signer, reserveData.symbol)
+    : null
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
+
+  const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
+    if (tokenContract) {
+      try {
+        const approvedTokens = await Tokens.getAllowance(
+          tokenContract,
+          currentAccount,
+          'deposit',
+        )
+        setShouldApproveContract(approvedTokens.toString() === '0')
+        setHasError(null)
+      } catch (error) {
+        setHasError(error)
+      }
+    }
+  }, [currentAccount, tokenContract])
+
+  useEffect(() => {
+    if (isSupportedNetwork) {
+      void checkAllowance()
+    }
+  }, [checkAllowance, isSupportedNetwork])
+
+  const approve = async () => {
+    setLoading(true)
+    try {
+      const response = await Tokens.approveToken(tokenContract, 'deposit')
+      const isApproved = await response.wait()
+
+      setApproved(!!isApproved)
+    } catch (error) {
+      setHasError(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const borrow = async (amount: number) => {
     setLoading(true)
@@ -122,10 +165,17 @@ export const BorrowModal = ({
   useEffect(() => {
     resetState()
     setBorrowCompleted(false)
+    setShouldApproveContract(false)
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted
-  const isBorrowDisabled = isInputDisabled || !!errors.amount || !values.amount
+  const isBorrowDisabled =
+    isInputDisabled ||
+    !!errors.amount ||
+    !values.amount ||
+    (shouldApproveContract && !approved)
+  const isApproveDisabled =
+    !isSupportedNetwork || loading || approved || !reserveData.balance
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -179,16 +229,30 @@ export const BorrowModal = ({
               </Text>
             </CenterLayout>
           ) : (
-            <Button
-              className="u-full-width"
-              appearance="dark"
-              size="large"
-              variant="large"
-              disabled={isBorrowDisabled}
-              onClick={submitForm}
-            >
-              {t('global.buttons.borrow')} {reserveData.symbol}
-            </Button>
+            <StackLayout gap={1}>
+              {shouldApproveContract && (
+                <Button
+                  className="u-full-width"
+                  appearance="dark"
+                  size="large"
+                  variant="large"
+                  disabled={isApproveDisabled}
+                  onClick={approve}
+                >
+                  {t('global.buttons.approve')}
+                </Button>
+              )}
+              <Button
+                className="u-full-width"
+                appearance="dark"
+                size="large"
+                variant="large"
+                disabled={isBorrowDisabled}
+                onClick={submitForm}
+              >
+                {t('global.buttons.borrow')} {reserveData.symbol}
+              </Button>
+            </StackLayout>
           )}
         </BoxLayout>
       </StackLayout>
