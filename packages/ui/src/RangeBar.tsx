@@ -6,7 +6,7 @@ import React, {
   forwardRef,
   HTMLProps,
 } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import styled from 'styled-components'
 
 import { Text } from './Text'
 
