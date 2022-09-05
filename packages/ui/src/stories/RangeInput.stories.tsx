@@ -11,7 +11,7 @@ export default {
 } as Meta
 
 export const RangeInp = (args: any) => {
-  const [val, setVal] = useState(24)
+  const [val, setVal] = useState("24")
   return (
     <GridLayout>
       <GridLayout.Column span={12}>
@@ -23,7 +23,7 @@ export const RangeInp = (args: any) => {
           type="range"
           value={val}
           onInput={e => {
-            setVal(e.target.value)
+            setVal((e.target as HTMLInputElement).value)
           }}
         />
       </GridLayout.Column>
