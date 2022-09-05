@@ -48,7 +48,13 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
       alignText: 'left',
     },
     available: {
-      header: t('global.table.available'),
+      header: (
+        <Tooltip element={t('global.table.available')}>
+          <Text color="oxfordBlue" as="span" type="small-text">
+            {t('global.tooltips.availableToBorrow')}
+          </Text>
+        </Tooltip>
+      ),
       Cell: ({ data: { usdPriceEth, priceInEth } }) => {
         return (
           <TruncatedText>

@@ -27,7 +27,12 @@ import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export type RepayModalData = Pick<
   UserReserveData,
-  'underlyingAsset' | 'currentTotalDebt' | 'symbol' | 'icon' | 'priceInEth'
+  | 'underlyingAsset'
+  | 'currentTotalDebt'
+  | 'symbol'
+  | 'icon'
+  | 'priceInEth'
+  | 'balance'
 >
 interface Props {
   /**
@@ -97,14 +102,16 @@ export const RepayModal = ({
     }
   }
 
+  //Maximum amount that can be repayed is min value of current token balance or current token borrow debt.
+  const maxRepayAmount = Math.min(
+    reserveData.balance,
+    reserveData.currentTotalDebt,
+  )
   const repayValidationSchemaa = Yup.object().shape({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(
-        Number(reserveData.currentTotalDebt),
-        t('global.errors.exceededBalance'),
-      )
+      .max(maxRepayAmount, t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
     /**
      * TODO need to research more requirements.
@@ -169,9 +176,9 @@ export const RepayModal = ({
           </BoxLayout>
           <AmountInput
             name="amount"
-            max={reserveData.currentTotalDebt}
+            max={maxRepayAmount}
             reserveData={{
-              balance: reserveData.currentTotalDebt,
+              balance: maxRepayAmount,
               symbol: reserveData.symbol,
               icon: reserveData.icon,
             }}

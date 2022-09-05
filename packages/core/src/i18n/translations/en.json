@@ -41,8 +41,9 @@
       "totalCollateral": "Total collateral amount denominated in USD",
       "supplyAPY": "Annual Percentage Yield, \nincome you receive on \nyour deposit after 365 days \nof continuous lending",
       "borrowAPY": "Interest you'll have to repay \non your debt after 365 days \nwithout repaying",
+      "availableToBorrow": "Total amount available for you to borrow.\nYou can borrow based on your collateral.",
       "modals": {
-        "healthFactor": "Total Borrowed amount divided by total collateral amount.\nIf Hf <1 your assets can be liquidated in order to repay outstanding debt",
+        "healthFactor": "Total collateral amount divided by total borrowed amount.\nIf Hf <1 your assets can be liquidated in order to repay outstanding debt",
         "remainingSupply": "Remaining amount of deposited tokens \nafter you withdraw {{amount}} {{symbol}}",
         "remainingDebt": "Remaining debt after you repay {{amount}} {{symbol}}"
       }
