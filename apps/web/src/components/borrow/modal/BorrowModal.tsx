@@ -174,8 +174,7 @@ export const BorrowModal = ({
     !!errors.amount ||
     !values.amount ||
     (shouldApproveContract && !approved)
-  const isApproveDisabled =
-    !isSupportedNetwork || loading || approved || !reserveData.balance
+  const isApproveDisabled = !isSupportedNetwork || loading || approved
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
