@@ -11,7 +11,7 @@ export default {
 } as Meta
 
 export const RangeInp = (args: any) => {
-  const [val, setVal] = useState("24")
+  const [val, setVal] = useState('24')
   return (
     <GridLayout>
       <GridLayout.Column span={12}>
