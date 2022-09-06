@@ -9,7 +9,12 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, convertUSDToAssetValue, Tokens } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateHealthFactor,
+  convertUSDToAssetValue,
+  Tokens,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'

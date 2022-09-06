@@ -113,3 +113,42 @@ export const GET_RESERVE_DATA = gql`
     }
   }
 `
+export interface HealthFactorQuery {
+  currentATokenBalance: BigNumber
+  currentTotalDebt: BigNumber
+  usageAsCollateralEnabledOnUser: boolean
+  reserve: {
+    underlyingAsset: string
+    reserveLiquidationThreshold: number
+    price: {
+      priceInEth: BigNumber
+      oracle: {
+        usdPriceEth: BigNumber
+      }
+    }
+  }
+}
+
+export interface HealthFactorGraph {
+  userReserves: HealthFactorQuery[]
+}
+
+export const GET_HEALTH_FACTOR_DATA = gql`
+  query Reserves($user: String) {
+    userReserves(where: { user: $user }) {
+      currentATokenBalance
+      currentTotalDebt
+      usageAsCollateralEnabledOnUser
+      reserve {
+        underlyingAsset
+        reserveLiquidationThreshold
+        price {
+          priceInEth
+          oracle {
+            usdPriceEth
+          }
+        }
+      }
+    }
+  }
+`
