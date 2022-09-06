@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Range input Horizontal 1`] = `
+<div
+  className="sc-fnykZs fmpsuH"
+>
+  <section
+    className="sc-hAZoDl dpdcIP"
+    span={12}
+  >
+    <div
+      className="sc-jfmDQi jzEVps"
+    >
+      <p
+        className="sc-fEOsli sc-olbas StzYL OQLPG c-text--body-2 c-text--color-oxfordBlue"
+      >
+        Deposit duration
+      </p>
+      <div
+        className="sc-eKszNL coKqru"
+      >
+        <input
+          max={36}
+          min={1}
+          onInput={[Function]}
+          step={1}
+          title="Deposit duration"
+          type="range"
+          value="24"
+        />
+      </div>
+    </div>
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
+    <p
+      className="sc-fEOsli jRqHjl c-text--body-1 c-text--color-oxfordBlue"
+    >
+      1 month
+    </p>
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
+    <p
+      className="sc-fEOsli jRqHjl c-text--body-1 c-text--color-oxfordBlue"
+    >
+      12 months
+    </p>
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
+    <p
+      className="sc-fEOsli jRqHjl c-text--body-1 c-text--color-oxfordBlue"
+    >
+      24 months
+    </p>
+  </section>
+  <section
+    className="sc-hAZoDl cmpTMQ"
+    span={2}
+  >
+    <p
+      className="sc-fEOsli jRqHjl c-text--body-1 c-text--color-oxfordBlue"
+    >
+      36 months
+    </p>
+  </section>
+</div>
+`;
