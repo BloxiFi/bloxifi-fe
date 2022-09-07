@@ -10,6 +10,29 @@ import {
   UserReserveVariables,
 } from '@bloxifi/core'
 
+const calculateTotalBorrow = (array: HealthFactorQuery[]): number =>
+  array.reduce(function (acc, { currentTotalDebt, reserve: { price } }) {
+    return (
+      acc +
+      bigNumberToNumber(currentTotalDebt) * bigNumberToNumber(price.priceInEth)
+    )
+  }, 0)
+
+const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): number =>
+  array.reduce(function (
+    acc,
+    { currentATokenBalance, reserve: { price, reserveLiquidationThreshold } },
+  ) {
+    return (
+      acc +
+      bigNumberToNumber(currentATokenBalance) *
+        bigNumberToNumber(price.priceInEth) *
+        reserveLiquidationThreshold *
+        Math.pow(10, -4)
+    )
+  },
+  0)
+
 /**
  * Options that can be used to configure useHealthFactor() hook.
  */
@@ -32,40 +55,16 @@ export const useHealthFactor = ({ currentAccount }: Props = {}): number => {
       variables: {
         user: currentAccount?.toLowerCase(),
       },
-      onCompleted: () => calculate(),
+      onCompleted: () => {
+        const totalBorrowETH = calculateTotalBorrow(data.userReserves)
+        const totalCollateralETH = calculateTotalCollateralWithLT(
+          data.userReserves,
+        )
+
+        setValue(totalCollateralETH / totalBorrowETH)
+      },
     },
   )
-
-  const calculateTotalBorrow = (array: HealthFactorQuery[]): number =>
-    array.reduce(function (acc, { currentTotalDebt, reserve: { price } }) {
-      return (
-        acc +
-        bigNumberToNumber(currentTotalDebt) *
-          bigNumberToNumber(price.priceInEth)
-      )
-    }, 0)
-
-  const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): number =>
-    array.reduce(function (
-      acc,
-      { currentATokenBalance, reserve: { price, reserveLiquidationThreshold } },
-    ) {
-      return (
-        acc +
-        bigNumberToNumber(currentATokenBalance) *
-          bigNumberToNumber(price.priceInEth) *
-          reserveLiquidationThreshold *
-          Math.pow(10, -4)
-      )
-    },
-    0)
-
-  const calculate = () => {
-    const totalBorrowETH = calculateTotalBorrow(data.userReserves)
-    const totalCollateralETH = calculateTotalCollateralWithLT(data.userReserves)
-
-    setValue(totalCollateralETH / totalBorrowETH)
-  }
 
   return value
 }
