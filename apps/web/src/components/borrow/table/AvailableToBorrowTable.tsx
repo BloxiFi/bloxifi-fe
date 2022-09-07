@@ -22,12 +22,7 @@ import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 export const AvailableToBorrowTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: {
-      availableToBorrowUSD,
-      reserves,
-      userAccountData: { healthFactor },
-      loading,
-    },
+    state: { availableToBorrowUSD, reserves, loading },
   } = WalletContainer.useContainer()
   const [modalData, setModalData] = useState<ReservesData>()
 
@@ -120,7 +115,6 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
         isOpen={!!modalData}
         onClose={closeModal}
         reserveData={modalData}
-        healthFactor={healthFactor}
       />
     </>
   )

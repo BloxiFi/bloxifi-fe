@@ -1,5 +1,4 @@
 import {
-  Column,
   ColumnLayout,
   ContentLoader,
   StackLayout,

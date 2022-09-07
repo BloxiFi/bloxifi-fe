@@ -9,10 +9,15 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, useFormatAPY } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateHealthFactor,
+  useFormatAPY,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -23,7 +28,12 @@ import { UserReserveData } from '@/containers/WalletContainer'
 
 export type RepayModalData = Pick<
   UserReserveData,
-  'underlyingAsset' | 'currentTotalDebt' | 'symbol' | 'icon' | 'balance'
+  | 'underlyingAsset'
+  | 'currentTotalDebt'
+  | 'symbol'
+  | 'icon'
+  | 'priceInEth'
+  | 'balance'
 >
 interface Props {
   /**
@@ -38,25 +48,23 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: RepayModalData
-  /**
-   * Health factor - the 'health' of the loans within the system
-   */
-  healthFactor?: number
 }
 
 export const RepayModal = ({
   isOpen,
   onClose,
   reserveData = {} as UserReserveData,
-  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
-  const signer = provider.getSigner()
 
+  const signer = provider.getSigner()
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -140,6 +148,11 @@ export const RepayModal = ({
     return 0
   }
 
+  const futureHealthFactor = calculateHealthFactor({
+    totalCollateralETH,
+    totalBorrowETH:
+      totalBorrowETH - Number(values.amount) * reserveData.priceInEth,
+  })
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />
@@ -168,6 +181,7 @@ export const RepayModal = ({
           />
           <TransactionOverview
             healthFactor={healthFactor}
+            futureHealthFactor={futureHealthFactor}
             headers={['remainingDebt', 'healthFactor']}
             remainingDebt={useFormatAPY({
               value: calculateRemainingDebt(),

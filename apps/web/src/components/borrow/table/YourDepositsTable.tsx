@@ -30,11 +30,7 @@ import { Web3Container } from '@/containers/Web3Container'
 export const YourDepositsTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: {
-      userReserves,
-      userAccountData: { healthFactor },
-      loading,
-    },
+    state: { userReserves, loading },
   } = WalletContainer.useContainer()
   const {
     state: { provider },
@@ -136,7 +132,16 @@ export const YourDepositsTable: FunctionComponent = () => {
     action: {
       header: '',
       Cell: ({
-        data: { balance, symbol, underlyingAsset, currentATokenBalance, icon },
+        data: {
+          balance,
+          symbol,
+          underlyingAsset,
+          currentATokenBalance,
+          icon,
+          priceInEth,
+          usageAsCollateralEnabledOnUser,
+          reserveLiquidationThreshold,
+        },
       }) => (
         <Button
           appearance="secondary"
@@ -151,6 +156,9 @@ export const YourDepositsTable: FunctionComponent = () => {
               underlyingAsset,
               currentATokenBalance,
               icon,
+              priceInEth,
+              usageAsCollateralEnabledOnUser,
+              reserveLiquidationThreshold,
             })
           }
         >
@@ -196,7 +204,6 @@ export const YourDepositsTable: FunctionComponent = () => {
         isOpen={!!modalData}
         onClose={closeModal}
         reserveData={modalData}
-        healthFactor={healthFactor}
       />
     </>
   )

@@ -27,7 +27,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
   const {
     state: {
       userReserves,
-      userAccountData: { totalDebtETH, availableBorrowsETH, healthFactor },
+      userAccountData: { totalDebtETH, availableBorrowsETH },
       loading,
       reserves,
     },
@@ -79,7 +79,9 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
     action: {
       header: '',
-      Cell: ({ data: { currentTotalDebt, symbol, underlyingAsset, icon } }) => (
+      Cell: ({
+        data: { currentTotalDebt, symbol, underlyingAsset, icon, priceInEth },
+      }) => (
         <Button
           appearance="secondary"
           variant="thin"
@@ -92,6 +94,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
               symbol,
               underlyingAsset,
               icon,
+              priceInEth,
               balance: reserves.find(
                 reserve => reserve.underlyingAsset === underlyingAsset,
               ).balance,
@@ -131,7 +134,6 @@ export const YourBorrowsTable: FunctionComponent = () => {
         isOpen={!!modalData}
         onClose={closeModal}
         reserveData={modalData}
-        healthFactor={healthFactor}
       />
     </>
   )

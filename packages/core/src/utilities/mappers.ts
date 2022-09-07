@@ -146,3 +146,34 @@ export const getDepositedAssetsUSD = ({
   }
   return 0
 }
+
+/**
+ * Calculate health factor
+ * totalCollateralETH is sum of collaterals expressed in ETH
+ * totalDebtETH is sum of borrows expressed in ETH
+ */
+export const calculateHealthFactor = ({
+  totalCollateralETH,
+  totalBorrowETH,
+}: {
+  totalCollateralETH: number
+  totalBorrowETH: number
+}): number => {
+  return totalCollateralETH / totalBorrowETH
+}
+
+/**
+ * Calculate asset collateral value for the potential transaction (In order to calculate future health factor in most cases)
+ * @param amount Desired amount for the transaction. E.g. The amount that user wants to deposit
+ * @param priceInEth Asset price in ETH, e.g. 1KSMmb = priceInEth ETH
+ * @param reserveLiquidationThreshold LiquidationThreshold for the selected asset
+ * LiquidationThreshold - the percentage at which a position is defined as undercollateralised.
+ * For example, a Liquidation threshold of 80% means that if the value rises above 80% of the collateral, the position is undercollateralised and could be liquidated.
+ */
+export const calculateAssetCollateralAfterTx = (
+  amount: string | number,
+  priceInEth: number,
+  reserveLiquidationThreshold: number,
+): number => {
+  return Number(amount) * priceInEth * reserveLiquidationThreshold
+}

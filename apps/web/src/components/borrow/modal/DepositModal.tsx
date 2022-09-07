@@ -9,18 +9,24 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, Tokens } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateAssetCollateralAfterTx,
+  calculateHealthFactor,
+  Tokens,
+} from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { ReservesData } from '@/containers/WalletContainer'
+import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 
 interface Props {
   /**
@@ -35,24 +41,27 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: ReservesData
-  /**
-   * Health factor - the 'health' of the loans within the system
-   */
-  healthFactor?: number
 }
 
 export const DepositModal = ({
   isOpen,
   onClose,
   reserveData = {} as ReservesData,
-  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
+
+  const {
+    state: { userReserves },
+  } = WalletContainer.useContainer()
+
   const signer = provider.getSigner()
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -69,6 +78,11 @@ export const DepositModal = ({
 
   const isApproveDisabled =
     !isSupportedNetwork || loading || approved || !reserveData.balance
+
+  const isEnabledAsCollateral = userReserves.find(
+    ({ usageAsCollateralEnabledOnUser, symbol }) =>
+      symbol === reserveData.symbol && usageAsCollateralEnabledOnUser,
+  )
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     if (tokenContract) {
@@ -168,6 +182,24 @@ export const DepositModal = ({
     hasError ||
     (shouldApproveContract && !approved)
 
+  const getTotalCollateralAfterDeposit = () => {
+    if (isEnabledAsCollateral) {
+      return (
+        totalCollateralETH +
+        calculateAssetCollateralAfterTx(
+          Number(values.amount),
+          reserveData.priceInEth,
+          reserveData.reserveLiquidationThreshold,
+        )
+      )
+    }
+    return totalCollateralETH
+  }
+  const futureHealthFactor = calculateHealthFactor({
+    totalCollateralETH: getTotalCollateralAfterDeposit(),
+    totalBorrowETH,
+  })
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />
@@ -196,8 +228,10 @@ export const DepositModal = ({
           />
           <TransactionOverview
             healthFactor={healthFactor}
+            futureHealthFactor={futureHealthFactor}
             supplyAPY={reserveData.supplyAPY}
             headers={['supplyAPY', 'healthFactor']}
+            amount={values.amount}
           />
         </StackLayout>
 

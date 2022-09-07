@@ -9,10 +9,16 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, useFormatAPY } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateAssetCollateralAfterTx,
+  calculateHealthFactor,
+  useFormatAPY,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -23,7 +29,14 @@ import { UserReserveData } from '@/containers/WalletContainer'
 
 export type WithdrawModalData = Pick<
   UserReserveData,
-  'underlyingAsset' | 'balance' | 'symbol' | 'currentATokenBalance' | 'icon'
+  | 'underlyingAsset'
+  | 'balance'
+  | 'symbol'
+  | 'currentATokenBalance'
+  | 'icon'
+  | 'priceInEth'
+  | 'usageAsCollateralEnabledOnUser'
+  | 'reserveLiquidationThreshold'
 >
 
 interface Props {
@@ -39,24 +52,23 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: WithdrawModalData
-  /**
-   * Health factor - the 'health' of the loans within the system
-   */
-  healthFactor?: number
 }
 
 export const WithdrawModal = ({
   isOpen,
   onClose,
   reserveData = {} as WithdrawModalData,
-  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
+
   const signer = provider.getSigner()
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -140,6 +152,25 @@ export const WithdrawModal = ({
   const isWithdrawDisabled =
     isInputDisabled || !!errors.amount || !values.amount
 
+  const getTotalCollateralAfterWithdraw = () => {
+    if (reserveData.usageAsCollateralEnabledOnUser) {
+      return (
+        totalCollateralETH -
+        calculateAssetCollateralAfterTx(
+          Number(values.amount),
+          reserveData.priceInEth,
+          reserveData.reserveLiquidationThreshold,
+        )
+      )
+    }
+    return totalCollateralETH
+  }
+
+  const futureHealthFactor = calculateHealthFactor({
+    totalCollateralETH: getTotalCollateralAfterWithdraw(),
+    totalBorrowETH,
+  })
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />
@@ -168,6 +199,7 @@ export const WithdrawModal = ({
           />
           <TransactionOverview
             healthFactor={healthFactor}
+            futureHealthFactor={futureHealthFactor}
             symbol={reserveData.symbol}
             remainingSupply={useFormatAPY({
               value: calculateRemainingSupply(),

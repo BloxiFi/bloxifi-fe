@@ -9,11 +9,17 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, convertUSDToAssetValue, Tokens } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateHealthFactor,
+  convertUSDToAssetValue,
+  Tokens,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { CheckAllowanceFunction } from '@bloxifi/types'
+import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -35,17 +41,12 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: ReservesData
-  /**
-   * Health factor - the 'health' of the loans within the system
-   */
-  healthFactor?: number
 }
 
 export const BorrowModal = ({
   isOpen,
   onClose,
   reserveData = {} as ReservesData,
-  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
 
@@ -55,8 +56,11 @@ export const BorrowModal = ({
   const {
     state: { availableToBorrowUSD },
   } = WalletContainer.useContainer()
-  const signer = provider.getSigner()
 
+  const signer = provider.getSigner()
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -176,6 +180,12 @@ export const BorrowModal = ({
     (shouldApproveContract && !approved)
   const isApproveDisabled = !isSupportedNetwork || loading || approved
 
+  const futureHealthFactor = calculateHealthFactor({
+    totalCollateralETH,
+    totalBorrowETH:
+      totalBorrowETH + Number(values.amount) * reserveData.priceInEth,
+  })
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />
@@ -204,7 +214,9 @@ export const BorrowModal = ({
           />
           <TransactionOverview
             healthFactor={healthFactor}
+            futureHealthFactor={futureHealthFactor}
             headers={['healthFactor']}
+            amount={values.amount}
           />
         </StackLayout>
 

@@ -42,6 +42,7 @@ type DefaultReserveData = {
   underlyingAsset: string
   priceInEth: number
   usdPriceEth: number
+  reserveLiquidationThreshold: number
 }
 export type ReservesData = DefaultReserveData & {
   totalATokenSupply: number
@@ -60,6 +61,8 @@ export type UserAccountData = {
   totalDebtETH: number
   availableBorrowsETH: number
   healthFactor: number
+  liquidationThreshold: number
+  totalCollateralETH: number
 }
 
 interface State {
@@ -199,6 +202,10 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
           healthFactor: bigNumberToNumber(response.healthFactor),
           availableBorrowsETH: bigNumberToNumber(response.availableBorrowsETH),
           totalDebtETH: bigNumberToNumber(response.totalDebtETH),
+          liquidationThreshold:
+            Number(response.currentLiquidationThreshold.toString()) *
+            Math.pow(10, -4),
+          totalCollateralETH: bigNumberToNumber(response.totalCollateralETH),
         },
       })
     } catch (error) {
@@ -246,6 +253,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
               totalCurrentVariableDebt: bigNumberToNumber(
                 reserve.totalCurrentVariableDebt,
               ),
+              reserveLiquidationThreshold:
+                reserve.reserveLiquidationThreshold * Math.pow(10, -4),
             }
           }),
         )
@@ -270,6 +279,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         variableBorrowRate,
         price,
         baseLTVasCollateral,
+        reserveLiquidationThreshold,
         ...restReserve
       },
       currentATokenBalance,
@@ -288,6 +298,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       priceInEth: bigNumberToNumber(price.priceInEth),
       usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
       baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
+      reserveLiquidationThreshold:
+        reserveLiquidationThreshold * Math.pow(10, -4),
     }),
     [],
   )
