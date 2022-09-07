@@ -9,7 +9,12 @@ import {
   StackLayout,
   Text,
 } from '@bloxifi/ui'
-import { BorrowAndLending, calculateHealthFactor, Tokens } from '@bloxifi/core'
+import {
+  BorrowAndLending,
+  calculateAssetCollateralAfterTx,
+  calculateHealthFactor,
+  Tokens,
+} from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
@@ -48,17 +53,15 @@ export const DepositModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
+
   const {
-    state: {
-      userAccountData: {
-        liquidationThreshold,
-        totalCollateralETH,
-        totalDebtETH,
-      },
-    },
+    state: { userReserves },
   } = WalletContainer.useContainer()
+
   const signer = provider.getSigner()
-  const healthFactor = useHealthFactor({ currentAccount })
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -75,6 +78,11 @@ export const DepositModal = ({
 
   const isApproveDisabled =
     !isSupportedNetwork || loading || approved || !reserveData.balance
+
+  const isEnabledAsCollateral = userReserves.find(
+    ({ usageAsCollateralEnabledOnUser, symbol }) =>
+      symbol === reserveData.symbol && usageAsCollateralEnabledOnUser,
+  )
 
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     if (tokenContract) {
@@ -174,11 +182,22 @@ export const DepositModal = ({
     hasError ||
     (shouldApproveContract && !approved)
 
+  const getTotalCollateralAfterDeposit = () => {
+    if (isEnabledAsCollateral) {
+      return (
+        totalCollateralETH +
+        calculateAssetCollateralAfterTx(
+          Number(values.amount),
+          reserveData.priceInEth,
+          reserveData.reserveLiquidationThreshold,
+        )
+      )
+    }
+    return totalCollateralETH
+  }
   const futureHealthFactor = calculateHealthFactor({
-    liquidationThreshold,
-    totalCollateralETH:
-      totalCollateralETH + Number(values.amount) * reserveData.priceInEth,
-    totalDebtETH: totalDebtETH - Number(values.amount) * reserveData.priceInEth,
+    totalCollateralETH: getTotalCollateralAfterDeposit(),
+    totalBorrowETH,
   })
 
   return (

@@ -11,6 +11,7 @@ import {
 } from '@bloxifi/ui'
 import {
   BorrowAndLending,
+  calculateAssetCollateralAfterTx,
   calculateHealthFactor,
   useFormatAPY,
 } from '@bloxifi/core'
@@ -35,6 +36,7 @@ export type WithdrawModalData = Pick<
   | 'icon'
   | 'priceInEth'
   | 'usageAsCollateralEnabledOnUser'
+  | 'reserveLiquidationThreshold'
 >
 
 interface Props {
@@ -62,17 +64,11 @@ export const WithdrawModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
-  const {
-    state: {
-      userAccountData: {
-        liquidationThreshold,
-        totalCollateralETH,
-        totalDebtETH,
-      },
-    },
-  } = WalletContainer.useContainer()
+
   const signer = provider.getSigner()
-  const healthFactor = useHealthFactor({ currentAccount })
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -156,12 +152,23 @@ export const WithdrawModal = ({
   const isWithdrawDisabled =
     isInputDisabled || !!errors.amount || !values.amount
 
+  const getTotalCollateralAfterWithdraw = () => {
+    if (reserveData.usageAsCollateralEnabledOnUser) {
+      return (
+        totalCollateralETH -
+        calculateAssetCollateralAfterTx(
+          Number(values.amount),
+          reserveData.priceInEth,
+          reserveData.reserveLiquidationThreshold,
+        )
+      )
+    }
+    return totalCollateralETH
+  }
+
   const futureHealthFactor = calculateHealthFactor({
-    liquidationThreshold,
-    totalCollateralETH: reserveData.usageAsCollateralEnabledOnUser
-      ? totalCollateralETH - Number(values.amount) * reserveData.priceInEth
-      : totalCollateralETH,
-    totalDebtETH,
+    totalCollateralETH: getTotalCollateralAfterWithdraw(),
+    totalBorrowETH,
   })
 
   return (

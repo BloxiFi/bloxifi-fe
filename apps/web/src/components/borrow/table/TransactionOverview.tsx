@@ -69,6 +69,7 @@ export const TransactionOverview = ({
 }: Props) => {
   const { t } = useTranslation()
   const transactionData: TransactionData[] = headers.map(name => ({ name }))
+  const shouldDisplayFutureHF = amount && healthFactor !== futureHealthFactor
 
   const getColumnValue = (name: TableHeader) => {
     switch (name) {
@@ -85,7 +86,7 @@ export const TransactionOverview = ({
           <StackLayout>
             <ColumnLayout align="flex-end" center>
               <HealthFactorNumber value={healthFactor} />
-              {amount && (
+              {shouldDisplayFutureHF && (
                 <>
                   <Icon name="arrow-right" size={15} color="oxfordBlue" />
                   <HealthFactorNumber value={futureHealthFactor} />

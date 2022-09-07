@@ -24,7 +24,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
+import { UserReserveData } from '@/containers/WalletContainer'
 
 export type RepayModalData = Pick<
   UserReserveData,
@@ -60,18 +60,11 @@ export const RepayModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
-  const {
-    state: {
-      userAccountData: {
-        liquidationThreshold,
-        totalCollateralETH,
-        totalDebtETH,
-      },
-    },
-  } = WalletContainer.useContainer()
-  const signer = provider.getSigner()
-  const healthFactor = useHealthFactor({ currentAccount })
 
+  const signer = provider.getSigner()
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -156,11 +149,10 @@ export const RepayModal = ({
   }
 
   const futureHealthFactor = calculateHealthFactor({
-    liquidationThreshold,
     totalCollateralETH,
-    totalDebtETH: totalDebtETH - Number(values.amount) * reserveData.priceInEth,
+    totalBorrowETH:
+      totalBorrowETH - Number(values.amount) * reserveData.priceInEth,
   })
-
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <BoxLayout gap={0.25} />

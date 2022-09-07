@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 
-import { bigNumberToNumber } from '../utilities'
+import { bigNumberToNumber, calculateHealthFactor } from '../utilities'
 import { HealthFactorQuery } from '../graphql'
 
 import {
@@ -10,6 +10,9 @@ import {
   UserReserveVariables,
 } from '@bloxifi/core'
 
+/**
+ * Calculate total borrows for current user
+ */
 const calculateTotalBorrow = (array: HealthFactorQuery[]): number =>
   array.reduce(function (acc, { currentTotalDebt, reserve: { price } }) {
     return (
@@ -18,8 +21,12 @@ const calculateTotalBorrow = (array: HealthFactorQuery[]): number =>
     )
   }, 0)
 
-const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): number =>
-  array.reduce(function (
+/**
+ * Calculate total deposited balance for collaterals with asset liquidation threshold
+ */
+const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): number => {
+  const data = array.filter(reserve => reserve.usageAsCollateralEnabledOnUser)
+  return data.reduce(function (
     acc,
     { currentATokenBalance, reserve: { price, reserveLiquidationThreshold } },
   ) {
@@ -32,6 +39,7 @@ const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): number =>
     )
   },
   0)
+}
 
 /**
  * Options that can be used to configure useHealthFactor() hook.
@@ -44,10 +52,30 @@ export interface Props {
 }
 
 /**
+ * Return type of useHealthFactor hook
+ */
+export interface HealthFactorData {
+  /**
+   * Calculated health factor value
+   */
+  healthFactor: number
+  /**
+   * Sum of total collateral in ETH calculated with asset liquidation threshold
+   */
+  totalCollateralETH: number
+  /**
+   * Sum of total borrows for current user
+   */
+  totalBorrowETH: number
+}
+
+/**
  * Hook that returns calculated Health Factor value
  */
-export const useHealthFactor = ({ currentAccount }: Props = {}): number => {
-  const [value, setValue] = useState(undefined)
+export const useHealthFactor = ({
+  currentAccount,
+}: Props = {}): HealthFactorData => {
+  const [value, setValue] = useState({} as HealthFactorData)
 
   const { data } = useQuery<HealthFactorGraph, UserReserveVariables>(
     GET_HEALTH_FACTOR_DATA,
@@ -60,8 +88,14 @@ export const useHealthFactor = ({ currentAccount }: Props = {}): number => {
         const totalCollateralETH = calculateTotalCollateralWithLT(
           data.userReserves,
         )
-
-        setValue(totalCollateralETH / totalBorrowETH)
+        setValue({
+          healthFactor: calculateHealthFactor({
+            totalCollateralETH,
+            totalBorrowETH,
+          }),
+          totalCollateralETH,
+          totalBorrowETH,
+        })
       },
     },
   )

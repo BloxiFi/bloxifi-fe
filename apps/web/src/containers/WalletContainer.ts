@@ -42,6 +42,7 @@ type DefaultReserveData = {
   underlyingAsset: string
   priceInEth: number
   usdPriceEth: number
+  reserveLiquidationThreshold: number
 }
 export type ReservesData = DefaultReserveData & {
   totalATokenSupply: number
@@ -252,6 +253,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
               totalCurrentVariableDebt: bigNumberToNumber(
                 reserve.totalCurrentVariableDebt,
               ),
+              reserveLiquidationThreshold:
+                reserve.reserveLiquidationThreshold * Math.pow(10, -4),
             }
           }),
         )
@@ -276,6 +279,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         variableBorrowRate,
         price,
         baseLTVasCollateral,
+        reserveLiquidationThreshold,
         ...restReserve
       },
       currentATokenBalance,
@@ -294,6 +298,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       priceInEth: bigNumberToNumber(price.priceInEth),
       usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
       baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
+      reserveLiquidationThreshold:
+        reserveLiquidationThreshold * Math.pow(10, -4),
     }),
     [],
   )

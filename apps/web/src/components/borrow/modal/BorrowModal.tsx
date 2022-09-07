@@ -54,18 +54,13 @@ export const BorrowModal = ({
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
   const {
-    state: {
-      availableToBorrowUSD,
-      userAccountData: {
-        liquidationThreshold,
-        totalCollateralETH,
-        totalDebtETH,
-      },
-    },
+    state: { availableToBorrowUSD },
   } = WalletContainer.useContainer()
-  const signer = provider.getSigner()
-  const healthFactor = useHealthFactor({ currentAccount })
 
+  const signer = provider.getSigner()
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -186,9 +181,9 @@ export const BorrowModal = ({
   const isApproveDisabled = !isSupportedNetwork || loading || approved
 
   const futureHealthFactor = calculateHealthFactor({
-    liquidationThreshold,
     totalCollateralETH,
-    totalDebtETH: totalDebtETH + Number(values.amount) * reserveData.priceInEth,
+    totalBorrowETH:
+      totalBorrowETH + Number(values.amount) * reserveData.priceInEth,
   })
 
   return (
