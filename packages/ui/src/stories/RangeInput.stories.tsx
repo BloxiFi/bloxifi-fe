@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 
 import { GridLayout } from '../Layouts/GridLayout'
 import { RangeInput } from '../RangeInput'
-import { Text } from '../Text'
 
 export default {
   title: 'Components/Range input',
@@ -22,30 +21,12 @@ export const RangeInp = (args: any) => {
           max={36}
           type="range"
           value={val}
+          showlabel
+          {...args}
           onInput={e => {
             setVal((e.target as HTMLInputElement).value)
           }}
         />
-      </GridLayout.Column>
-      <GridLayout.Column span={2}>
-        <Text color="oxfordBlue" type="body 1" align="center">
-          1 month
-        </Text>
-      </GridLayout.Column>
-      <GridLayout.Column span={2}>
-        <Text color="oxfordBlue" type="body 1" align="center">
-          12 months
-        </Text>
-      </GridLayout.Column>
-      <GridLayout.Column span={2}>
-        <Text color="oxfordBlue" type="body 1" align="center">
-          24 months
-        </Text>
-      </GridLayout.Column>
-      <GridLayout.Column span={2}>
-        <Text color="oxfordBlue" type="body 1" align="center">
-          36 months
-        </Text>
       </GridLayout.Column>
     </GridLayout>
   )

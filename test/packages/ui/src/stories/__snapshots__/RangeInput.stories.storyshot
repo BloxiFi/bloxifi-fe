@@ -9,7 +9,7 @@ exports[`Storyshots Components/Range input Horizontal 1`] = `
     span={12}
   >
     <div
-      className="sc-jfmDQi jzEVps"
+      className="sc-jfmDQi egrkj"
     >
       <p
         className="sc-fEOsli sc-olbas StzYL OQLPG c-text--body-2 c-text--color-oxfordBlue"
@@ -28,48 +28,23 @@ exports[`Storyshots Components/Range input Horizontal 1`] = `
           type="range"
           value="24"
         />
+        <div
+          className="sc-breuTD kbyssD"
+          id="bottom-label"
+        >
+          <p
+            className="sc-fEOsli cjNCtY c-text--body-1 c-text--color-oxfordBlue"
+          >
+            1
+          </p>
+          <p
+            className="sc-fEOsli jAztXw c-text--body-1 c-text--color-oxfordBlue"
+          >
+            36
+          </p>
+        </div>
       </div>
     </div>
-  </section>
-  <section
-    className="sc-hAZoDl cmpTMQ"
-    span={2}
-  >
-    <p
-      className="sc-fEOsli jRqHjl c-text--body-1 c-text--color-oxfordBlue"
-    >
-      1 month
-    </p>
-  </section>
-  <section
-    className="sc-hAZoDl cmpTMQ"
-    span={2}
-  >
-    <p
-      className="sc-fEOsli jRqHjl c-text--body-1 c-text--color-oxfordBlue"
-    >
-      12 months
-    </p>
-  </section>
-  <section
-    className="sc-hAZoDl cmpTMQ"
-    span={2}
-  >
-    <p
-      className="sc-fEOsli jRqHjl c-text--body-1 c-text--color-oxfordBlue"
-    >
-      24 months
-    </p>
-  </section>
-  <section
-    className="sc-hAZoDl cmpTMQ"
-    span={2}
-  >
-    <p
-      className="sc-fEOsli jRqHjl c-text--body-1 c-text--color-oxfordBlue"
-    >
-      36 months
-    </p>
   </section>
 </div>
 `;

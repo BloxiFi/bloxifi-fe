@@ -2,10 +2,18 @@ import React, { ForwardedRef, forwardRef, HTMLProps } from 'react'
 import styled from 'styled-components'
 import { numberToPercentage } from '@bloxifi/core'
 
+import { ColumnLayout } from './Layouts'
 import { Colors } from './styles/colors'
 import { Text } from './Text'
 
-export type RangeInputProps = HTMLProps<HTMLInputElement>
+export interface RangeInputProps extends HTMLProps<HTMLInputElement> {
+  /**
+   * The bottom label shows min and max values
+   */
+  showlabel?: boolean
+}
+
+//export type RangeInputProps = HTMLProps<HTMLInputElement>
 
 /**
  * Height of the scroll bar wrapper container
@@ -13,7 +21,10 @@ export type RangeInputProps = HTMLProps<HTMLInputElement>
 const containerHeight = 30
 
 export const RangeInput = forwardRef(
-  ({ ...props }: RangeInputProps, ref: ForwardedRef<HTMLInputElement>) => {
+  (
+    { showlabel, ...props }: RangeInputProps,
+    ref: ForwardedRef<HTMLInputElement>,
+  ) => {
     const max = Number(props.max)
     const min = Number(props.min)
     const percentage = numberToPercentage((Number(props.value) || 0) / max)
@@ -27,6 +38,16 @@ export const RangeInput = forwardRef(
         )}
         <InnerWrapper className={props.className} valuePercent={percentage}>
           <input ref={ref} {...props} min={min} max={max} />
+          {showlabel && (
+            <ColumnLayout id="bottom-label" align="space-between" top={true}>
+              <Text color="oxfordBlue" type="body 1" align="left">
+                {min}
+              </Text>
+              <Text color="oxfordBlue" type="body 1" align="right">
+                {max}
+              </Text>
+            </ColumnLayout>
+          )}
         </InnerWrapper>
       </Wrapper>
     )
@@ -38,7 +59,9 @@ const Wrapper = styled.div`
   width: 100%;
 
   #bottom-label {
-    transform: translate(-10px, -10px);
+    transform: translate(0, -10px);
+    margin-left: 3px;
+    margin-right: 3px;
   }
 `
 /* stylelint-disable property-no-vendor-prefix */
