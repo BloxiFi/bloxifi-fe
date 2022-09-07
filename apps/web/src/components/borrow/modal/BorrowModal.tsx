@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { CheckAllowanceFunction } from '@bloxifi/types'
+import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -40,17 +41,12 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: ReservesData
-  /**
-   * Health factor - the 'health' of the loans within the system
-   */
-  healthFactor?: number
 }
 
 export const BorrowModal = ({
   isOpen,
   onClose,
   reserveData = {} as ReservesData,
-  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
 
@@ -68,6 +64,7 @@ export const BorrowModal = ({
     },
   } = WalletContainer.useContainer()
   const signer = provider.getSigner()
+  const healthFactor = useHealthFactor({ currentAccount })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)

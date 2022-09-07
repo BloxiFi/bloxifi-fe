@@ -27,7 +27,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
   const {
     state: {
       userReserves,
-      userAccountData: { totalDebtETH, availableBorrowsETH, healthFactor },
+      userAccountData: { totalDebtETH, availableBorrowsETH },
       loading,
       reserves,
     },
@@ -134,7 +134,6 @@ export const YourBorrowsTable: FunctionComponent = () => {
         isOpen={!!modalData}
         onClose={closeModal}
         reserveData={modalData}
-        healthFactor={healthFactor}
       />
     </>
   )
