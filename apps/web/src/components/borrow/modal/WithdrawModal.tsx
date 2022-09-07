@@ -25,7 +25,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
+import { UserReserveData } from '@/containers/WalletContainer'
 
 export type WithdrawModalData = Pick<
   UserReserveData,
