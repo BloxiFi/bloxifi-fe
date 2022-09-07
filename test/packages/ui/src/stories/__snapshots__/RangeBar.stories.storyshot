@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Range bar Horizontal 1`] = `
+<div
+  className="sc-fnykZs fmpsuH"
+>
+  <section
+    className="sc-hAZoDl iZItRi"
+    span={4}
+  >
+    <div
+      className="sc-jfmDQi hlPrVU"
+    >
+      <p
+        className="sc-fEOsli sc-olbas StzYL OQLPG c-text--body-2 c-text--color-oxfordBlue"
+      >
+        Duration
+      </p>
+      <div
+        className="sc-eKszNL iezMBn"
+      >
+        <input
+          disabled={false}
+          max={36}
+          min={1}
+          onChange={[Function]}
+          step={1}
+          title="Duration"
+          type="range"
+          value={0}
+        />
+      </div>
+    </div>
+  </section>
+</div>
+`;
