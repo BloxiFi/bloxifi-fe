@@ -62,8 +62,8 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
     balance: {
       header: 'Balance',
-      Cell: ({ data: { currentTotalDebt } }) => (
-        <TruncatedText>
+      Cell: ({ data: { currentTotalDebt, symbol } }) => (
+        <TruncatedText data-cy={"borrowBalance " + symbol}>
           <FormattedNumber value={currentTotalDebt} />
         </TruncatedText>
       ),
@@ -85,6 +85,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
           variant="thin"
           size="small"
           className="u-full-width"
+          data-cy={"repayBtn " + symbol}
           disabled={currentTotalDebt < MIN_VALUE_FOR_TRANSACTION}
           onClick={() =>
             openModal({

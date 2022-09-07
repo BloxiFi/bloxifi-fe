@@ -46,9 +46,9 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
     },
     walletBalance: {
       header: t('global.table.walletBalance'),
-      Cell: ({ data: { balance } }) => {
+      Cell: ({ data: { balance, symbol } }) => {
         return (
-          <TruncatedText>
+          <TruncatedText data-cy={"walletBalance " + symbol}>
             <FormattedNumber value={balance} />
           </TruncatedText>
         )
@@ -76,6 +76,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
           appearance="secondary"
           variant="medium"
           size="small"
+          data-cy={"depositBtn " + data.symbol}
           disabled={data.balance < MIN_VALUE_FOR_TRANSACTION}
           onClick={() => openModal(data)}
         >
