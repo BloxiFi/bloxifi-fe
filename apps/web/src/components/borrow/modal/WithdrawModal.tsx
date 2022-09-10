@@ -64,11 +64,11 @@ export const WithdrawModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
-
   const signer = provider.getSigner()
-  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
-    currentAccount,
-  })
+  const { healthFactor, totalCollateralETH, totalBorrowETH, refetchHF, ready } =
+    useHealthFactor({
+      currentAccount,
+    })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -89,7 +89,6 @@ export const WithdrawModal = ({
       )
       const isCompleted = await response.wait()
       setWithdrawCompleted(!!isCompleted)
-      resetState()
     } catch (error) {
       setHasError(error)
     } finally {
@@ -138,6 +137,9 @@ export const WithdrawModal = ({
   useEffect(() => {
     resetState()
     setWithdrawCompleted(false)
+    if (ready) {
+      refetchHF()
+    }
   }, [isOpen, resetState])
 
   const calculateRemainingSupply = () => {

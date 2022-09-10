@@ -154,6 +154,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       variables: {
         user: currentAccount?.toLowerCase(),
       },
+      fetchPolicy: 'cache-and-network',
     },
   )
 
