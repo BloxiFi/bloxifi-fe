@@ -76,6 +76,7 @@ interface State {
 
 interface DepositContainerState {
   state: State
+  refetch: () => void
   dispatch: Dispatch<Action<ActionType>>
 }
 
@@ -125,6 +126,7 @@ const reducer = (state: State, action: Action<ActionType>) => {
   }
 }
 
+const POOL_INTERVAL = 10000
 // Deposit and Borrow APY calculation
 const calculateAPY = (liquidityRate: number, inPercents = true) => {
   const RAY = 10 ** 27
@@ -148,13 +150,14 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
 
-  const { data } = useQuery<ReservesGraph, UserReserveVariables>(
+  const { data, refetch } = useQuery<ReservesGraph, UserReserveVariables>(
     GET_RESERVE_DATA,
     {
       variables: {
         user: currentAccount?.toLowerCase(),
       },
       fetchPolicy: 'cache-and-network',
+      pollInterval: POOL_INTERVAL,
     },
   )
 
@@ -305,35 +308,42 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     [],
   )
 
+  const setQueryData = data => {
+    void getUserAccountData()
+    void setReserveData(data.reserves)
+    const userReserveData = data.userReserves.map(mapUserReserveData)
+    if (userReserveData) {
+      const availableToBorrowUSD = calculateAvailableBorrowsUSD(userReserveData)
+      dispatch({
+        type: 'setAvailableToBorrow',
+        value: availableToBorrowUSD > 0 ? availableToBorrowUSD : 0,
+      })
+    }
+
+    dispatch({
+      type: 'setUserReservesData',
+      value: userReserveData,
+    })
+  }
+
   useEffect(() => {
     if (data) {
-      void setReserveData(data.reserves)
-      const userReserveData = data.userReserves.map(mapUserReserveData)
-      if (userReserveData) {
-        const availableToBorrowUSD =
-          calculateAvailableBorrowsUSD(userReserveData)
-        dispatch({
-          type: 'setAvailableToBorrow',
-          value: availableToBorrowUSD > 0 ? availableToBorrowUSD : 0,
-        })
-      }
-
-      dispatch({
-        type: 'setUserReservesData',
-        value: userReserveData,
-      })
+      setQueryData(data)
     }
   }, [data, setReserveData, mapUserReserveData])
 
-  useEffect(() => {
-    if (signer && currentAccount) {
-      void getUserAccountData()
+  const refetchData = async () => {
+    try {
+      const res = await refetch()
+      setQueryData(res.data)
+    } catch (error) {
+      setError(error)
     }
-  }, [currentAccount, signer, getUserAccountData])
-
+  }
   return {
     state: { ...state, error, loading },
     dispatch,
+    refetch: refetchData,
   }
 }
 

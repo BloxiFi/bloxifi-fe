@@ -31,6 +31,7 @@ export const YourDepositsTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
     state: { userReserves, loading },
+    refetch,
   } = WalletContainer.useContainer()
   const {
     state: { provider },
@@ -67,6 +68,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           !usageAsCollateralEnabledOnUser,
         )
       await response.wait()
+      refetch()
       //TODO@refetch data - collateral, health factor
     } catch (error) {
       //TODO@handle error - user cannot click on toggle button if he can't change collateral(if his health factor goes under 1)

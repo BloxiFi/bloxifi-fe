@@ -56,13 +56,13 @@ export const DepositModal = ({
 
   const {
     state: { userReserves },
+    refetch,
   } = WalletContainer.useContainer()
 
   const signer = provider.getSigner()
-  const { healthFactor, totalCollateralETH, totalBorrowETH, refetchHF, ready } =
-    useHealthFactor({
-      currentAccount,
-    })
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -132,6 +132,7 @@ export const DepositModal = ({
       )
       const isDeposited = await response.wait()
       setDepositCompleted(!!isDeposited)
+      resetState()
     } catch (error) {
       setHasError(error)
     } finally {
@@ -167,15 +168,13 @@ export const DepositModal = ({
   const resetState = useCallback(() => {
     setHasError(undefined)
     resetForm()
+    refetch()
   }, [resetForm])
 
   useEffect(() => {
     resetState()
     setDepositCompleted(false)
     setShouldApproveContract(false)
-    if (ready) {
-      refetchHF()
-    }
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || depositCompleted

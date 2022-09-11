@@ -25,7 +25,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { UserReserveData } from '@/containers/WalletContainer'
+import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export type WithdrawModalData = Pick<
   UserReserveData,
@@ -64,11 +64,12 @@ export const WithdrawModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
+  const { refetch } = WalletContainer.useContainer()
+
   const signer = provider.getSigner()
-  const { healthFactor, totalCollateralETH, totalBorrowETH, refetchHF, ready } =
-    useHealthFactor({
-      currentAccount,
-    })
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -89,6 +90,7 @@ export const WithdrawModal = ({
       )
       const isCompleted = await response.wait()
       setWithdrawCompleted(!!isCompleted)
+      resetState()
     } catch (error) {
       setHasError(error)
     } finally {
@@ -132,20 +134,18 @@ export const WithdrawModal = ({
   const resetState = useCallback(() => {
     setHasError(undefined)
     resetForm()
+    refetch()
   }, [resetForm])
 
   useEffect(() => {
     resetState()
     setWithdrawCompleted(false)
-    if (ready) {
-      refetchHF()
-    }
   }, [isOpen, resetState])
 
   const calculateRemainingSupply = () => {
     const remainingSupply =
       reserveData.currentATokenBalance - Number(values.amount)
-    if (remainingSupply > 0) {
+    if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }
     return 0

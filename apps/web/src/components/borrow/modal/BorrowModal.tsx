@@ -55,13 +55,13 @@ export const BorrowModal = ({
   } = Web3Container.useContainer()
   const {
     state: { availableToBorrowUSD },
+    refetch,
   } = WalletContainer.useContainer()
 
   const signer = provider.getSigner()
-  const { healthFactor, totalCollateralETH, totalBorrowETH, refetchHF, ready } =
-    useHealthFactor({
-      currentAccount,
-    })
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -165,15 +165,13 @@ export const BorrowModal = ({
   const resetState = useCallback(() => {
     setHasError(undefined)
     resetForm()
+    refetch()
   }, [resetForm])
 
   useEffect(() => {
     resetState()
     setBorrowCompleted(false)
     setShouldApproveContract(false)
-    if (ready) {
-      refetchHF()
-    }
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted

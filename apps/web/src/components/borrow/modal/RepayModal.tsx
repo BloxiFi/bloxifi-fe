@@ -24,7 +24,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 import { AmountInput } from './Amountlnput'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { UserReserveData } from '@/containers/WalletContainer'
+import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export type RepayModalData = Pick<
   UserReserveData,
@@ -60,12 +60,11 @@ export const RepayModal = ({
   const {
     state: { currentAccount, provider, isSupportedNetwork },
   } = Web3Container.useContainer()
-
+  const { refetch } = WalletContainer.useContainer()
   const signer = provider.getSigner()
-  const { healthFactor, totalCollateralETH, totalBorrowETH, refetchHF, ready } =
-    useHealthFactor({
-      currentAccount,
-    })
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -131,14 +130,12 @@ export const RepayModal = ({
   const resetState = useCallback(() => {
     setHasError(undefined)
     resetForm()
+    refetch()
   }, [resetForm])
 
   useEffect(() => {
     resetState()
     setRepayCompleted(false)
-    if (ready) {
-      refetchHF()
-    }
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || repayCompleted
@@ -146,7 +143,7 @@ export const RepayModal = ({
 
   const calculateRemainingDebt = () => {
     const remainingSupply = reserveData.currentTotalDebt - Number(values.amount)
-    if (remainingSupply > 0) {
+    if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }
     return 0

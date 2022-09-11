@@ -69,7 +69,8 @@ export const TransactionOverview = ({
 }: Props) => {
   const { t } = useTranslation()
   const transactionData: TransactionData[] = headers.map(name => ({ name }))
-  const shouldDisplayFutureHF = amount && healthFactor !== futureHealthFactor
+  const shouldDisplayFutureHF =
+    amount && healthFactor !== futureHealthFactor && Number(amount) > 0
 
   const getColumnValue = (name: TableHeader) => {
     switch (name) {
