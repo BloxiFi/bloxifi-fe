@@ -52,6 +52,7 @@ export const BorrowModal = ({
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
   const {
     state: { availableToBorrowUSD },
@@ -122,6 +123,8 @@ export const BorrowModal = ({
         currentAccount,
       )
       const isBorrowed = await response.wait()
+      await waitTransactionConfirmation(isBorrowed.transactionHash, refetch)
+
       setBorrowCompleted(!!isBorrowed)
       resetState()
     } catch (error) {

@@ -63,6 +63,7 @@ export const WithdrawModal = ({
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
   const { refetch } = WalletContainer.useContainer()
 
@@ -89,6 +90,8 @@ export const WithdrawModal = ({
         currentAccount,
       )
       const isCompleted = await response.wait()
+      await waitTransactionConfirmation(isCompleted.transactionHash, refetch)
+
       setWithdrawCompleted(!!isCompleted)
       resetState()
     } catch (error) {

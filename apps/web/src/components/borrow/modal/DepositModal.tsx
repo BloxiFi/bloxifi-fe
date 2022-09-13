@@ -52,6 +52,7 @@ export const DepositModal = ({
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
 
   const {
@@ -131,6 +132,8 @@ export const DepositModal = ({
         currentAccount,
       )
       const isDeposited = await response.wait()
+      await waitTransactionConfirmation(isDeposited.transactionHash, refetch)
+
       setDepositCompleted(!!isDeposited)
       resetState()
     } catch (error) {

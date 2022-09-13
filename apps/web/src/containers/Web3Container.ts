@@ -15,7 +15,7 @@ import { createContainer } from 'unstated-next'
  * TRANSACTION_REFETCH_INTERVAL
  * Reperesents the number of milliseconds to wait before refetching TX data until TRANSACTION_MIN_CONFIRMATION number is reached
  */
-const TRANSACTION_REFETCH_INTERVAL = 1000
+const TRANSACTION_REFETCH_INTERVAL = 3000
 /**
  * TRANSACTION_MIN_CONFIRMATION
  * Reperesents the min number of TX confirmations that ensures that values are updated on blockchain
@@ -124,14 +124,19 @@ function useContainer(initialState: Web3ContainerProps) {
   ) => {
     let transactionReceipt = null
 
-    while (
-      transactionReceipt == null ||
-      transactionReceipt.confirmations < TRANSACTION_MIN_CONFIRMATION
-    ) {
-      transactionReceipt = await library.getTransactionReceipt(txHash)
+    try {
+      while (
+        transactionReceipt == null ||
+        transactionReceipt.confirmations < TRANSACTION_MIN_CONFIRMATION
+      ) {
+        transactionReceipt = await library.getTransactionReceipt(txHash)
+        await delay(TRANSACTION_REFETCH_INTERVAL)
+      }
       refetch()
-
-      await delay(TRANSACTION_REFETCH_INTERVAL)
+    } catch (error) {
+      /**
+       * TODO error handling
+       */
     }
   }
 

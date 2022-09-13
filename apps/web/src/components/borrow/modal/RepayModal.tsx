@@ -59,6 +59,7 @@ export const RepayModal = ({
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
   const { refetch } = WalletContainer.useContainer()
   const signer = provider.getSigner()
@@ -83,6 +84,8 @@ export const RepayModal = ({
         currentAccount,
       )
       const isRepayed = await response.wait()
+      await waitTransactionConfirmation(isRepayed.transactionHash, refetch)
+
       setRepayCompleted(!!isRepayed)
       resetState()
     } catch (error) {
