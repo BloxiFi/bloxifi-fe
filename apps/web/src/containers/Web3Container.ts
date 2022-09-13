@@ -1,4 +1,4 @@
-import { supportedChainIds } from '@bloxifi/core'
+import { delay, supportedChainIds } from '@bloxifi/core'
 import {
   Action,
   CheckForMetamaskFunction,
@@ -10,6 +10,17 @@ import { useWeb3React } from '@web3-react/core'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { createContainer } from 'unstated-next'
+
+/**
+ * TRANSACTION_REFETCH_INTERVAL
+ * Reperesents the number of milliseconds to wait before refetching TX data until TRANSACTION_MIN_CONFIRMATION number is reached
+ */
+const TRANSACTION_REFETCH_INTERVAL = 1000
+/**
+ * TRANSACTION_MIN_CONFIRMATION
+ * Reperesents the min number of TX confirmations that ensures that values are updated on blockchain
+ */
+const TRANSACTION_MIN_CONFIRMATION = 2
 
 const defaultState: Web3ContainerProps = {
   currentAccount: '',
@@ -102,6 +113,28 @@ function useContainer(initialState: Web3ContainerProps) {
     }
   }, [library])
 
+  /**
+   * The function that is waiting for defined amount of TX confirmations to be completed and refetching data from subgraph
+   * @param txHash - The hash of transaction
+   * @param refetch - The function that refetches subgraph data when tx hash reached defined number of confirmation
+   */
+  const waitTransactionConfirmation = async (
+    txHash: string,
+    refetch: () => void,
+  ) => {
+    let transactionReceipt = null
+
+    while (
+      transactionReceipt == null ||
+      transactionReceipt.confirmations < TRANSACTION_MIN_CONFIRMATION
+    ) {
+      transactionReceipt = await library.getTransactionReceipt(txHash)
+      refetch()
+
+      await delay(TRANSACTION_REFETCH_INTERVAL)
+    }
+  }
+
   return {
     state: {
       ...state,
@@ -117,6 +150,7 @@ function useContainer(initialState: Web3ContainerProps) {
     dispatch,
     connectWallet,
     disconnectWallet,
+    waitTransactionConfirmation,
   }
 }
 

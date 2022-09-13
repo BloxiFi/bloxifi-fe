@@ -1,6 +1,14 @@
 import { BigNumber, ethers } from 'ethers'
 import { UserReserveData } from '@/containers/WalletContainer'
 
+/**
+ * Wait before executing
+ * @param ms Number of milliseconds to wait before executing
+ * @returns
+ */
+export const delay = (ms: number) =>
+  new Promise(resolve => setTimeout(resolve, ms))
+
 export const filterItems = (items, filter, filterBy) => {
   if (filter.trim().length === 0) {
     return items
