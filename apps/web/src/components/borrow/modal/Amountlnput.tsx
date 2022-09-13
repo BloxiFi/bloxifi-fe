@@ -75,7 +75,7 @@ export const AmountInput = forwardRef(
             </ColumnLayout>
           </BoxLayout>
           <BoxLayout>
-            <Text color="oxfordBlue" type="heading 3" as="span">
+            <Text color="oxfordBlue" type="heading 3" as="span" data-cy="token name">
               <AssetName
                 symbol={reserveData.symbol}
                 icon={reserveData.icon}
