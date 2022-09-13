@@ -158,7 +158,7 @@ export const RepayModal = ({
       totalBorrowETH - Number(values.amount) * reserveData.priceInEth,
   })
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
       <BoxLayout gap={0.25} />
       <StackLayout gap={5}>
         <StackLayout gap={2}>
