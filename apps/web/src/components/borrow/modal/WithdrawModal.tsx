@@ -146,7 +146,7 @@ export const WithdrawModal = ({
       <StackLayout gap={5}>
         <StackLayout gap={2}>
           <BoxLayout gap={1.25}>
-            <Text color="oxfordBlue" type="heading 2" as="span">
+            <Text color="oxfordBlue" type="heading 2" as="span" data-cy="withdraw modal title">
               {t('deposit.withdrawAsset')}
             </Text>
           </BoxLayout>
@@ -204,6 +204,7 @@ export const WithdrawModal = ({
               variant="large"
               disabled={isWithdrawDisabled}
               onClick={submitForm}
+              data-cy={"withdrawButtonOnModal " + reserveData.symbol}
             >
               {t('global.buttons.withdraw')} {reserveData.symbol}
             </Button>

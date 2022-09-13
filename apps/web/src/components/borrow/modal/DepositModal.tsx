@@ -173,7 +173,7 @@ export const DepositModal = ({
       <StackLayout gap={5}>
         <StackLayout gap={2}>
           <BoxLayout gap={1.25}>
-            <Text color="oxfordBlue" type="heading 2" as="span">
+            <Text color="oxfordBlue" type="heading 2" as="span" data-cy="deposit modal title">
               {t('deposit.depositAsset')}
             </Text>
           </BoxLayout>
@@ -241,6 +241,7 @@ export const DepositModal = ({
                 type="submit"
                 disabled={isDepositDisabled}
                 onClick={submitForm}
+                data-cy={"depositButtonOnModal " + reserveData.symbol}
               >
                 {t('global.buttons.deposit')} {reserveData.symbol}
               </Button>

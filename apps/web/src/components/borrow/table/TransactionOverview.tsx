@@ -95,7 +95,7 @@ export const TransactionOverview = ({
       case 'remainingSupply':
         return (
           <ColumnLayout align="flex-end" center>
-            <Text as="span" type="body 1" color="oxfordBlue">
+            <Text as="span" type="body 1" color="oxfordBlue" data-cy="remainingSupplyValue">
               {remainingSupply} {symbol}
             </Text>{' '}
           </ColumnLayout>

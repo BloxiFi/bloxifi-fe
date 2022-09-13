@@ -84,7 +84,20 @@ export const DepositAndBorrowPage = {
     cy.get('[data-cy="availableToBorrow USDCmb"] span'),
   MOWRmbAvailableToBorrow_Value: () =>
     cy.get('[data-cy="availableToBorrow MOWRmb"] span'),
-
+  //Modals
+  amountInput_Field: () => cy.get('input[name="amount"]'),
+  maxAmount_Button: () => cy.contains('button[data-element="button"]', 'MAX'),
+  tokenNameOnModal_Text: () => cy.get('[data-cy="token name"]'),
+  closeModal_Button: () => cy.get('button[icon="close"] svg'),
+  //Withdraw Modal
+  withdrawModalTitle_Text: () => cy.get('[data-cy="withdraw modal title"]'),
+  remainingSupply_Value: () => cy.get('[data-cy="remainingSupplyValue"]'),
+  //Deposit Modal
+  depositModalTitle_Text: () => cy.get('[data-cy="deposit modal title"]'),
+  //Repay Modal
+  repayModalTitle_Text: () => cy.get('[data-cy="repay modal title"]'),
+  //Borrow Modal
+  borrowModalTitle_Text: () => cy.get('[data-cy="borrow modal title"]'),
   //Actions
   visibilityOfYourDepositElements: () => {
     DepositAndBorrowPage.depositBalance_Text().should('be.visible')
@@ -151,5 +164,101 @@ export const DepositAndBorrowPage = {
     DepositAndBorrowPage.WETHmbAvailableToBorrow_Value().should('be.visible')
     DepositAndBorrowPage.USDCmbAvailableToBorrow_Value().should('be.visible')
     DepositAndBorrowPage.MOWRmbAvailableToBorrow_Value().should('be.visible')
+  },
+  visibilityOfWithdrawalModalElements: () => {
+    const tokenList = ['KSMmb', 'WBTCmb', 'WETHmb', 'DAImb', 'USDCmb', 'MOWRmb']
+    for (let i = 0; i < tokenList.length; i++) {
+      cy.get('[data-cy="withdrawBtn ' + tokenList[i] + '"]').click()
+      DepositAndBorrowPage.withdrawModalTitle_Text().should(
+        'have.text',
+        'Withdraw asset',
+      )
+      cy.get('[data-cy="withdrawButtonOnModal ' + tokenList[i] + '"]').should(
+        'be.disabled',
+      )
+      DepositAndBorrowPage.maxAmount_Button().click()
+      DepositAndBorrowPage.tokenNameOnModal_Text().should(
+        'have.text',
+        tokenList[i],
+      )
+      DepositAndBorrowPage.remainingSupply_Value().should(
+        'have.text',
+        '0 ' + tokenList[i],
+      )
+      cy.get('[data-cy="withdrawButtonOnModal ' + tokenList[i] + '"]').should(
+        'not.be.disabled',
+      )
+      DepositAndBorrowPage.closeModal_Button().click()
+    }
+  },
+  visibilityOfDepositModalElements: () => {
+    const tokenList = ['KSMmb', 'WBTCmb', 'WETHmb', 'DAImb', 'USDCmb', 'MOWRmb']
+    for (let i = 0; i < tokenList.length; i++) {
+      cy.get('[data-cy="depositBtn ' + tokenList[i] + '"]').click()
+
+      DepositAndBorrowPage.depositModalTitle_Text().should(
+        'have.text',
+        'Deposit asset',
+      )
+      cy.get('[data-cy="depositButtonOnModal ' + tokenList[i] + '"]').should(
+        'be.disabled',
+      )
+      DepositAndBorrowPage.maxAmount_Button().click()
+      DepositAndBorrowPage.tokenNameOnModal_Text().should(
+        'have.text',
+        tokenList[i],
+      )
+      cy.get('[data-cy="depositButtonOnModal ' + tokenList[i] + '"]').should(
+        'not.be.disabled',
+      )
+      DepositAndBorrowPage.closeModal_Button().click()
+    }
+  },
+  visibilityOfRepayModalElements: () => {
+    cy.wait(2000)
+    const tokenList = ['KSMmb', 'WBTCmb', 'WETHmb', 'DAImb', 'USDCmb', 'MOWRmb']
+    for (let i = 0; i < tokenList.length; i++) {
+      cy.get('[data-cy="repayBtn ' + tokenList[i] + '"]').click()
+
+      DepositAndBorrowPage.repayModalTitle_Text().should(
+        'have.text',
+        'Repay asset',
+      )
+      cy.get('[data-cy="repayButtonOnModal ' + tokenList[i] + '"]').should(
+        'be.disabled',
+      )
+      DepositAndBorrowPage.maxAmount_Button().click()
+      DepositAndBorrowPage.tokenNameOnModal_Text().should(
+        'have.text',
+        tokenList[i],
+      )
+      cy.get('[data-cy="repayButtonOnModal ' + tokenList[i] + '"]').should(
+        'not.be.disabled',
+      )
+      DepositAndBorrowPage.closeModal_Button().click()
+    }
+  },
+  visibilityOfBorrowModalElements: () => {
+    const tokenList = ['KSMmb', 'WBTCmb', 'WETHmb', 'DAImb', 'USDCmb', 'MOWRmb']
+    for (let i = 0; i < tokenList.length; i++) {
+      cy.get('[data-cy="borrowBtn ' + tokenList[i] + '"]').click()
+
+      DepositAndBorrowPage.borrowModalTitle_Text().should(
+        'have.text',
+        'Borrow asset',
+      )
+      cy.get('[data-cy="borrowButtonOnModal ' + tokenList[i] + '"]').should(
+        'be.disabled',
+      )
+      DepositAndBorrowPage.maxAmount_Button().click()
+      DepositAndBorrowPage.tokenNameOnModal_Text().should(
+        'have.text',
+        tokenList[i],
+      )
+      cy.get('[data-cy="borrowButtonOnModal ' + tokenList[i] + '"]').should(
+        'not.be.disabled',
+      )
+      DepositAndBorrowPage.closeModal_Button().click()
+    }
   },
 }

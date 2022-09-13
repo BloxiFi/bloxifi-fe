@@ -146,7 +146,7 @@ export const RepayModal = ({
       <StackLayout gap={5}>
         <StackLayout gap={2}>
           <BoxLayout gap={1.25}>
-            <Text color="oxfordBlue" type="heading 2" as="span">
+            <Text color="oxfordBlue" type="heading 2" as="span" data-cy="repay modal title">
               {t('deposit.repayAsset')}
             </Text>
           </BoxLayout>
@@ -204,6 +204,7 @@ export const RepayModal = ({
               variant="large"
               disabled={isRepayDisabled}
               onClick={submitForm}
+              data-cy={"repayButtonOnModal " + reserveData.symbol}
             >
               {t('global.buttons.repay')} {reserveData.symbol}
             </Button>
