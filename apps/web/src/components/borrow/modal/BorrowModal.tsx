@@ -1,14 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import {
-  BoxLayout,
-  Button,
-  CenterLayout,
-  Icon,
-  Loader,
-  Modal,
-  StackLayout,
-  Text,
-} from '@bloxifi/ui'
+import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
   BorrowAndLending,
   calculateHealthFactor,
@@ -24,6 +15,7 @@ import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
+import { ModalState } from './ModalState'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
@@ -86,7 +78,6 @@ export const BorrowModal = ({
           'deposit',
         )
         setShouldApproveContract(approvedTokens.toString() === '0')
-        setHasError(null)
       } catch (error) {
         setHasError(error)
       }
@@ -126,7 +117,6 @@ export const BorrowModal = ({
       await waitTransactionConfirmation(isBorrowed.transactionHash, refetch)
 
       setBorrowCompleted(!!isBorrowed)
-      resetState()
     } catch (error) {
       setHasError(error)
     } finally {
@@ -193,85 +183,76 @@ export const BorrowModal = ({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
-      <BoxLayout gap={0.25} />
-      <StackLayout gap={5}>
-        <StackLayout gap={2}>
-          <BoxLayout gap={1.25}>
-            <Text color="oxfordBlue" type="heading 2" as="span">
-              {t('deposit.borrowAsset')}
-            </Text>
-          </BoxLayout>
-          <AmountInput
-            name="amount"
-            max={reserveData.balance}
-            reserveData={{
-              balance: availableToBorrow,
-              symbol: reserveData.symbol,
-              icon: reserveData.icon,
-            }}
-            value={values.amount}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            setFieldValue={setFieldValue}
-            status={errors.amount && touched.amount ? 'error' : undefined}
-            info={errors.amount && touched.amount && errors.amount}
-            disabled={isInputDisabled}
-          />
-          <TransactionOverview
-            healthFactor={healthFactor}
-            futureHealthFactor={futureHealthFactor}
-            headers={['healthFactor']}
-            amount={values.amount}
-          />
-        </StackLayout>
+      {loading || hasError || borrowCompleted ? (
+        <ModalState
+          loading={loading}
+          error={hasError}
+          success={borrowCompleted}
+          messages={{ success: t('global.notifications.borrow_successful') }}
+        />
+      ) : (
+        <>
+          <BoxLayout gap={0.25} />
+          <StackLayout gap={5}>
+            <StackLayout gap={2}>
+              <BoxLayout gap={1.25}>
+                <Text color="oxfordBlue" type="heading 2" as="span">
+                  {t('deposit.borrowAsset')}
+                </Text>
+              </BoxLayout>
+              <AmountInput
+                name="amount"
+                max={reserveData.balance}
+                reserveData={{
+                  balance: availableToBorrow,
+                  symbol: reserveData.symbol,
+                  icon: reserveData.icon,
+                }}
+                value={values.amount}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                setFieldValue={setFieldValue}
+                status={errors.amount && touched.amount ? 'error' : undefined}
+                info={errors.amount && touched.amount && errors.amount}
+                disabled={isInputDisabled}
+              />
+              <TransactionOverview
+                healthFactor={healthFactor}
+                futureHealthFactor={futureHealthFactor}
+                headers={['healthFactor']}
+                amount={values.amount}
+              />
+            </StackLayout>
 
-        <BoxLayout gap={1.875}>
-          {loading ? (
-            <CenterLayout>
-              <Loader />
-            </CenterLayout>
-          ) : hasError ? (
-            <CenterLayout>
-              <Icon name="error" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.transaction_failed')}
-              </Text>
-            </CenterLayout>
-          ) : borrowCompleted ? (
-            <CenterLayout>
-              <Icon name="success" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.borrow_successful')}
-              </Text>
-            </CenterLayout>
-          ) : (
-            <StackLayout gap={1}>
-              {shouldApproveContract && (
+            <BoxLayout gap={1.875}>
+              <StackLayout gap={1}>
+                {shouldApproveContract && (
+                  <Button
+                    className="u-full-width"
+                    appearance="dark"
+                    size="large"
+                    variant="large"
+                    disabled={isApproveDisabled}
+                    onClick={approve}
+                  >
+                    {t('global.buttons.approve')}
+                  </Button>
+                )}
                 <Button
                   className="u-full-width"
                   appearance="dark"
                   size="large"
                   variant="large"
-                  disabled={isApproveDisabled}
-                  onClick={approve}
+                  disabled={isBorrowDisabled}
+                  onClick={submitForm}
                 >
-                  {t('global.buttons.approve')}
+                  {t('global.buttons.borrow')} {reserveData.symbol}
                 </Button>
-              )}
-              <Button
-                className="u-full-width"
-                appearance="dark"
-                size="large"
-                variant="large"
-                disabled={isBorrowDisabled}
-                onClick={submitForm}
-              >
-                {t('global.buttons.borrow')} {reserveData.symbol}
-              </Button>
-            </StackLayout>
-          )}
-        </BoxLayout>
-      </StackLayout>
+              </StackLayout>
+            </BoxLayout>
+          </StackLayout>
+        </>
+      )}
     </Modal>
   )
 }

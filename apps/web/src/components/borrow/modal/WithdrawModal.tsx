@@ -1,14 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import {
-  BoxLayout,
-  Button,
-  CenterLayout,
-  Icon,
-  Loader,
-  Modal,
-  StackLayout,
-  Text,
-} from '@bloxifi/ui'
+import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
@@ -23,6 +14,7 @@ import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
+import { ModalState } from './ModalState'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
@@ -93,7 +85,6 @@ export const WithdrawModal = ({
       await waitTransactionConfirmation(isCompleted.transactionHash, refetch)
 
       setWithdrawCompleted(!!isCompleted)
-      resetState()
     } catch (error) {
       setHasError(error)
     } finally {
@@ -153,6 +144,10 @@ export const WithdrawModal = ({
     }
     return 0
   }
+
+  const remainingSupply = useFormatAPY({
+    value: calculateRemainingSupply(),
+  })
   const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted
   const isWithdrawDisabled =
     isInputDisabled || !!errors.amount || !values.amount
@@ -178,75 +173,64 @@ export const WithdrawModal = ({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
-      <BoxLayout gap={0.25} />
-      <StackLayout gap={5}>
-        <StackLayout gap={2}>
-          <BoxLayout gap={1.25}>
-            <Text color="oxfordBlue" type="heading 2" as="span">
-              {t('deposit.withdrawAsset')}
-            </Text>
-          </BoxLayout>
-          <AmountInput
-            name="amount"
-            max={reserveData.balance}
-            reserveData={{
-              balance: reserveData.currentATokenBalance,
-              symbol: reserveData.symbol,
-              icon: reserveData.icon,
-            }}
-            value={values.amount}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            setFieldValue={setFieldValue}
-            status={errors.amount && touched.amount ? 'error' : undefined}
-            info={errors.amount && touched.amount && errors.amount}
-            disabled={isInputDisabled}
-          />
-          <TransactionOverview
-            healthFactor={healthFactor}
-            futureHealthFactor={futureHealthFactor}
-            symbol={reserveData.symbol}
-            remainingSupply={useFormatAPY({
-              value: calculateRemainingSupply(),
-            })}
-            amount={values.amount}
-            headers={['remainingSupply', 'healthFactor']}
-          />
-        </StackLayout>
+      {loading || hasError || withdrawCompleted ? (
+        <ModalState
+          loading={loading}
+          error={hasError}
+          success={withdrawCompleted}
+          messages={{ success: t('global.notifications.withdraw_successful') }}
+        />
+      ) : (
+        <>
+          <BoxLayout gap={0.25} />
+          <StackLayout gap={5}>
+            <StackLayout gap={2}>
+              <BoxLayout gap={1.25}>
+                <Text color="oxfordBlue" type="heading 2" as="span">
+                  {t('deposit.withdrawAsset')}
+                </Text>
+              </BoxLayout>
+              <AmountInput
+                name="amount"
+                max={reserveData.balance}
+                reserveData={{
+                  balance: reserveData.currentATokenBalance,
+                  symbol: reserveData.symbol,
+                  icon: reserveData.icon,
+                }}
+                value={values.amount}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                setFieldValue={setFieldValue}
+                status={errors.amount && touched.amount ? 'error' : undefined}
+                info={errors.amount && touched.amount && errors.amount}
+                disabled={isInputDisabled}
+              />
+              <TransactionOverview
+                healthFactor={healthFactor}
+                futureHealthFactor={futureHealthFactor}
+                symbol={reserveData.symbol}
+                remainingSupply={remainingSupply}
+                amount={values.amount}
+                headers={['remainingSupply', 'healthFactor']}
+              />
+            </StackLayout>
 
-        <BoxLayout gap={1.875}>
-          {loading ? (
-            <CenterLayout>
-              <Loader />
-            </CenterLayout>
-          ) : hasError ? (
-            <CenterLayout>
-              <Icon name="error" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.transaction_failed')}
-              </Text>
-            </CenterLayout>
-          ) : withdrawCompleted ? (
-            <CenterLayout>
-              <Icon name="success" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.withdraw_successful')}
-              </Text>
-            </CenterLayout>
-          ) : (
-            <Button
-              className="u-full-width"
-              appearance="dark"
-              size="large"
-              variant="large"
-              disabled={isWithdrawDisabled}
-              onClick={submitForm}
-            >
-              {t('global.buttons.withdraw')} {reserveData.symbol}
-            </Button>
-          )}
-        </BoxLayout>
-      </StackLayout>
+            <BoxLayout gap={1.875}>
+              <Button
+                className="u-full-width"
+                appearance="dark"
+                size="large"
+                variant="large"
+                disabled={isWithdrawDisabled}
+                onClick={submitForm}
+              >
+                {t('global.buttons.withdraw')} {reserveData.symbol}
+              </Button>
+            </BoxLayout>
+          </StackLayout>
+        </>
+      )}
     </Modal>
   )
 }
