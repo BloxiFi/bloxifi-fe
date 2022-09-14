@@ -31,9 +31,11 @@ export const YourDepositsTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
     state: { userReserves, loading },
+    refetch,
   } = WalletContainer.useContainer()
   const {
     state: { provider },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
   const [selectedCollateralAsset, setSelectedCollateralAsset] =
@@ -66,8 +68,8 @@ export const YourDepositsTable: FunctionComponent = () => {
           underlyingAsset,
           !usageAsCollateralEnabledOnUser,
         )
-      await response.wait()
-      //TODO@refetch data - collateral, health factor
+      const isCompleted = await response.wait()
+      await waitTransactionConfirmation(isCompleted.transactionHash, refetch)
     } catch (error) {
       //TODO@handle error - user cannot click on toggle button if he can't change collateral(if his health factor goes under 1)
     } finally {
@@ -109,14 +111,14 @@ export const YourDepositsTable: FunctionComponent = () => {
         if (selectedCollateralAsset === underlyingAsset) {
           return (
             <CenterLayout>
-              <Loader loaderSize={24} />
+              <Loader loaderSize={24} borderWidth={6} />
             </CenterLayout>
           )
         } else {
           return (
             <Toggle
               checked={usageAsCollateralEnabledOnUser}
-              onClick={() =>
+              onChange={() =>
                 void toggleCollateral(
                   underlyingAsset,
                   usageAsCollateralEnabledOnUser,

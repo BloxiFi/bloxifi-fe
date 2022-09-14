@@ -83,6 +83,7 @@ export const useHealthFactor = ({
       variables: {
         user: currentAccount?.toLowerCase(),
       },
+      fetchPolicy: 'cache-and-network',
       onCompleted: () => {
         const totalBorrowETH = calculateTotalBorrow(data.userReserves)
         const totalCollateralETH = calculateTotalCollateralWithLT(

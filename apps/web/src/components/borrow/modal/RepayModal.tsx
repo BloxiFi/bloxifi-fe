@@ -1,14 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import {
-  BoxLayout,
-  Button,
-  CenterLayout,
-  Icon,
-  Loader,
-  Modal,
-  StackLayout,
-  Text,
-} from '@bloxifi/ui'
+import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
   BorrowAndLending,
   calculateHealthFactor,
@@ -22,9 +13,10 @@ import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
+import { ModalState } from './ModalState'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { UserReserveData } from '@/containers/WalletContainer'
+import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export type RepayModalData = Pick<
   UserReserveData,
@@ -59,8 +51,9 @@ export const RepayModal = ({
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
-
+  const { refetch } = WalletContainer.useContainer()
   const signer = provider.getSigner()
   const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
     currentAccount,
@@ -83,8 +76,9 @@ export const RepayModal = ({
         currentAccount,
       )
       const isRepayed = await response.wait()
+      await waitTransactionConfirmation(isRepayed.transactionHash, refetch)
+
       setRepayCompleted(!!isRepayed)
-      resetState()
     } catch (error) {
       setHasError(error)
     } finally {
@@ -130,6 +124,7 @@ export const RepayModal = ({
   const resetState = useCallback(() => {
     setHasError(undefined)
     resetForm()
+    refetch()
   }, [resetForm])
 
   useEffect(() => {
@@ -142,11 +137,15 @@ export const RepayModal = ({
 
   const calculateRemainingDebt = () => {
     const remainingSupply = reserveData.currentTotalDebt - Number(values.amount)
-    if (remainingSupply > 0) {
+    if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }
     return 0
   }
+
+  const remainingDebt = useFormatAPY({
+    value: calculateRemainingDebt(),
+  })
 
   const futureHealthFactor = calculateHealthFactor({
     totalCollateralETH,
@@ -154,76 +153,65 @@ export const RepayModal = ({
       totalBorrowETH - Number(values.amount) * reserveData.priceInEth,
   })
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <BoxLayout gap={0.25} />
-      <StackLayout gap={5}>
-        <StackLayout gap={2}>
-          <BoxLayout gap={1.25}>
-            <Text color="oxfordBlue" type="heading 2" as="span">
-              {t('deposit.repayAsset')}
-            </Text>
-          </BoxLayout>
-          <AmountInput
-            name="amount"
-            max={maxRepayAmount}
-            reserveData={{
-              balance: maxRepayAmount,
-              symbol: reserveData.symbol,
-              icon: reserveData.icon,
-            }}
-            value={values.amount}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            setFieldValue={setFieldValue}
-            status={errors.amount && touched.amount ? 'error' : undefined}
-            info={errors.amount && touched.amount && errors.amount}
-            disabled={isInputDisabled}
-          />
-          <TransactionOverview
-            healthFactor={healthFactor}
-            futureHealthFactor={futureHealthFactor}
-            headers={['remainingDebt', 'healthFactor']}
-            remainingDebt={useFormatAPY({
-              value: calculateRemainingDebt(),
-            })}
-            amount={values.amount}
-            symbol={reserveData.symbol}
-          />
-        </StackLayout>
+    <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
+      {loading || hasError || repayCompleted ? (
+        <ModalState
+          loading={loading}
+          error={hasError}
+          success={repayCompleted}
+          messages={{ success: t('global.notifications.withdraw_successful') }}
+        />
+      ) : (
+        <>
+          <BoxLayout gap={0.25} />
+          <StackLayout gap={5}>
+            <StackLayout gap={2}>
+              <BoxLayout gap={1.25}>
+                <Text color="oxfordBlue" type="heading 2" as="span">
+                  {t('deposit.repayAsset')}
+                </Text>
+              </BoxLayout>
+              <AmountInput
+                name="amount"
+                max={maxRepayAmount}
+                reserveData={{
+                  balance: maxRepayAmount,
+                  symbol: reserveData.symbol,
+                  icon: reserveData.icon,
+                }}
+                value={values.amount}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                setFieldValue={setFieldValue}
+                status={errors.amount && touched.amount ? 'error' : undefined}
+                info={errors.amount && touched.amount && errors.amount}
+                disabled={isInputDisabled}
+              />
+              <TransactionOverview
+                healthFactor={healthFactor}
+                futureHealthFactor={futureHealthFactor}
+                headers={['remainingDebt', 'healthFactor']}
+                remainingDebt={remainingDebt}
+                amount={values.amount}
+                symbol={reserveData.symbol}
+              />
+            </StackLayout>
 
-        <BoxLayout gap={1.875}>
-          {loading ? (
-            <CenterLayout>
-              <Loader />
-            </CenterLayout>
-          ) : hasError ? (
-            <CenterLayout>
-              <Icon name="error" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.transaction_failed')}
-              </Text>
-            </CenterLayout>
-          ) : repayCompleted ? (
-            <CenterLayout>
-              <Icon name="success" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.repay_successful')}
-              </Text>
-            </CenterLayout>
-          ) : (
-            <Button
-              className="u-full-width"
-              appearance="dark"
-              size="large"
-              variant="large"
-              disabled={isRepayDisabled}
-              onClick={submitForm}
-            >
-              {t('global.buttons.repay')} {reserveData.symbol}
-            </Button>
-          )}
-        </BoxLayout>
-      </StackLayout>
+            <BoxLayout gap={1.875}>
+              <Button
+                className="u-full-width"
+                appearance="dark"
+                size="large"
+                variant="large"
+                disabled={isRepayDisabled}
+                onClick={submitForm}
+              >
+                {t('global.buttons.repay')} {reserveData.symbol}
+              </Button>
+            </BoxLayout>
+          </StackLayout>
+        </>
+      )}
     </Modal>
   )
 }

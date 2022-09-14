@@ -13,11 +13,16 @@ export interface LoaderProps {
    * Sets the loader radius.
    */
   loaderSize?: number
+  /**
+   * Sets the thickness of the loader in pixels
+   */
+  borderWidth?: number
 }
 
 export const Loader: FunctionComponent<LoaderProps> = ({
   wrapperHeight,
   loaderSize = 75,
+  borderWidth = 16,
 }) => {
   if (wrapperHeight) {
     return (
@@ -36,6 +41,7 @@ export const Loader: FunctionComponent<LoaderProps> = ({
       className="rts-loader"
       data-element="loader"
       loaderSize={loaderSize}
+      borderWidth={borderWidth}
     />
   )
 }
@@ -61,13 +67,14 @@ const Wrapper = styled.div<Pick<LoaderProps, 'wrapperHeight'>>`
   justify-content: center;
 `
 
-const Element = styled.div<Pick<LoaderProps, 'loaderSize'>>`
+const Element = styled.div<Pick<LoaderProps, 'loaderSize' | 'borderWidth'>>`
   width: 75px;
   height: 75px;
   border-radius: 50%;
   font-size: 10px;
   position: relative;
-  border: 8px solid ${({ theme }) => theme.loaderBackground};
+  border: ${({ theme, borderWidth }) =>
+    `${borderWidth}px solid ${theme.loaderBackground}`};
   border-left-color: ${({ theme }) => theme.loaderBorder};
   transform: translateZ(0);
   animation: ${loaderKeyframe} 1.1s infinite linear;

@@ -19,6 +19,7 @@
     },
     "notifications": {
       "transaction_failed": "Transaction failed",
+      "success": "Success",
       "deposit_successful": "Deposit successful",
       "borrow_successful": "Borrow successful",
       "withdraw_successful": "Withdraw successful",
