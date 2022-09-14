@@ -111,7 +111,7 @@ export const YourDepositsTable: FunctionComponent = () => {
         if (selectedCollateralAsset === underlyingAsset) {
           return (
             <CenterLayout>
-              <Loader loaderSize={24} />
+              <Loader loaderSize={24} borderWidth={6} />
             </CenterLayout>
           )
         } else {
