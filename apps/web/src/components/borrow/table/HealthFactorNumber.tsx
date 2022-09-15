@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, TextColors } from '@bloxifi/ui'
+import { MIN_HEALTH_FACTOR_VALUE } from '@bloxifi/core'
 
 import { FormattedNumber } from '../FormattedNumber'
 
@@ -23,7 +24,11 @@ export const HealthFactorNumber = ({ value }: Props) => {
    **/
   return (
     <Text as="span" type="body 1" color={healthFactorColor}>
-      <FormattedNumber decimals={2} value={value} />
+      <FormattedNumber
+        decimals={2}
+        value={value}
+        minimumDisplayValue={MIN_HEALTH_FACTOR_VALUE}
+      />
     </Text>
   )
 }

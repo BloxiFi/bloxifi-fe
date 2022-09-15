@@ -26,6 +26,10 @@ export interface FormatAPYOptions {
    * after-symbol goes after value
    */
   readonly symbolPosition?: 'before' | 'after'
+  /**
+   * Represents the min value to display in UI. E.g. Health factor min value to display is 1.01
+   */
+  minimumDisplayValue?: number
 }
 
 /**
@@ -39,6 +43,7 @@ export const useFormatAPY = ({
   percent,
   symbol = '',
   symbolPosition = 'after',
+  minimumDisplayValue,
 }: FormatAPYOptions = {}): string => {
   //TODO This function seems a bit buggy (keep an eye on this one)
   const getVisibleDecimals = () => {
@@ -58,7 +63,9 @@ export const useFormatAPY = ({
 
   const visibleDecimals = getVisibleDecimals()
 
-  const minValue = 10 ** -visibleDecimals
+  const minValue = minimumDisplayValue
+    ? minimumDisplayValue
+    : 10 ** -visibleDecimals
   const isSmallerThanMin = value !== 0 && Math.abs(value) < Math.abs(minValue)
   const formattedValue = isSmallerThanMin ? minValue : value
 
