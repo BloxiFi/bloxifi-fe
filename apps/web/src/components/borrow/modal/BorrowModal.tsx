@@ -152,6 +152,7 @@ export const BorrowModal = ({
     submitForm,
     handleBlur,
     setFieldValue,
+    setFieldTouched,
     resetForm,
   } = formik
 
@@ -181,6 +182,11 @@ export const BorrowModal = ({
       totalBorrowETH + Number(values.amount) * reserveData.priceInEth,
   })
 
+  const setMaxValue = async () => {
+    await setFieldValue('amount', availableToBorrow, true)
+    await setFieldTouched('amount', true, true)
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
       {loading || hasError || borrowCompleted ? (
@@ -204,14 +210,13 @@ export const BorrowModal = ({
                 name="amount"
                 max={reserveData.balance}
                 reserveData={{
-                  balance: availableToBorrow,
                   symbol: reserveData.symbol,
                   icon: reserveData.icon,
                 }}
                 value={values.amount}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                setFieldValue={setFieldValue}
+                setMaxValue={setMaxValue}
                 status={errors.amount && touched.amount ? 'error' : undefined}
                 info={errors.amount && touched.amount && errors.amount}
                 disabled={isInputDisabled}

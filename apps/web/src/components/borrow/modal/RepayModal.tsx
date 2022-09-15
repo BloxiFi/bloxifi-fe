@@ -118,6 +118,7 @@ export const RepayModal = ({
     submitForm,
     handleBlur,
     setFieldValue,
+    setFieldTouched,
     resetForm,
   } = formik
 
@@ -152,6 +153,12 @@ export const RepayModal = ({
     totalBorrowETH:
       totalBorrowETH - Number(values.amount) * reserveData.priceInEth,
   })
+
+  const setMaxValue = async () => {
+    await setFieldValue('amount', maxRepayAmount, true)
+    await setFieldTouched('amount', true, true)
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
       {loading || hasError || repayCompleted ? (
@@ -175,14 +182,13 @@ export const RepayModal = ({
                 name="amount"
                 max={maxRepayAmount}
                 reserveData={{
-                  balance: maxRepayAmount,
                   symbol: reserveData.symbol,
                   icon: reserveData.icon,
                 }}
                 value={values.amount}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                setFieldValue={setFieldValue}
+                setMaxValue={setMaxValue}
                 status={errors.amount && touched.amount ? 'error' : undefined}
                 info={errors.amount && touched.amount && errors.amount}
                 disabled={isInputDisabled}

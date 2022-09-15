@@ -122,6 +122,7 @@ export const WithdrawModal = ({
     submitForm,
     handleBlur,
     setFieldValue,
+    setFieldTouched,
     resetForm,
   } = formik
 
@@ -171,6 +172,10 @@ export const WithdrawModal = ({
     totalBorrowETH,
   })
 
+  const setMaxValue = async () => {
+    await setFieldValue('amount', reserveData.currentATokenBalance, true)
+    await setFieldTouched('amount', true, true)
+  }
   return (
     <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
       {loading || hasError || withdrawCompleted ? (
@@ -194,14 +199,13 @@ export const WithdrawModal = ({
                 name="amount"
                 max={reserveData.balance}
                 reserveData={{
-                  balance: reserveData.currentATokenBalance,
                   symbol: reserveData.symbol,
                   icon: reserveData.icon,
                 }}
                 value={values.amount}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                setFieldValue={setFieldValue}
+                setMaxValue={setMaxValue}
                 status={errors.amount && touched.amount ? 'error' : undefined}
                 info={errors.amount && touched.amount && errors.amount}
                 disabled={isInputDisabled}
