@@ -4,7 +4,7 @@ import {
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
   calculateHealthFactor,
-  useFormatAPY,
+  useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
@@ -146,7 +146,7 @@ export const WithdrawModal = ({
     return 0
   }
 
-  const remainingSupply = useFormatAPY({
+  const remainingSupply = useFormatNumber({
     value: calculateRemainingSupply(),
   })
   const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted

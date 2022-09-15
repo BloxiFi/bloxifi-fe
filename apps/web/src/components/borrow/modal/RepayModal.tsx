@@ -3,7 +3,7 @@ import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
   BorrowAndLending,
   calculateHealthFactor,
-  useFormatAPY,
+  useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
@@ -144,7 +144,7 @@ export const RepayModal = ({
     return 0
   }
 
-  const remainingDebt = useFormatAPY({
+  const remainingDebt = useFormatNumber({
     value: calculateRemainingDebt(),
   })
 

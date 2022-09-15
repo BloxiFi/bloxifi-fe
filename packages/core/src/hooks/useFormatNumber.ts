@@ -1,9 +1,9 @@
 import { TokenList } from '../contracts'
 
 /**
- * Options that can be used to configure useFormatAPY() hook.
+ * Options that can be used to configure useFormatNumber() hook.
  */
-export interface FormatAPYOptions {
+export interface FormatNumberOptions {
   /**
    * Represents the number value
    * */
@@ -34,17 +34,15 @@ export interface FormatAPYOptions {
 
 /**
  * Hook that returns a formated string like this `<0.1%`
- *
- * TODO@all rename if we are gonna use it for something else than APY
- * */
-export const useFormatAPY = ({
+ */
+export const useFormatNumber = ({
   value = 0,
   decimals,
   percent,
   symbol = '',
   symbolPosition = 'after',
   minimumDisplayValue,
-}: FormatAPYOptions = {}): string => {
+}: FormatNumberOptions = {}): string => {
   //TODO This function seems a bit buggy (keep an eye on this one)
   const getVisibleDecimals = () => {
     if (!value) {
