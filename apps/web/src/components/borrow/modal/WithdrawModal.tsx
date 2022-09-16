@@ -4,6 +4,7 @@ import {
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
   calculateHealthFactor,
+  MIN_HEALTH_FACTOR_VALUE,
   useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
@@ -15,6 +16,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
 import { ModalState } from './ModalState'
+import { ErrorMessage } from './ErrorMessage'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
@@ -68,6 +70,8 @@ export const WithdrawModal = ({
   const [loading, setLoading] = useState<boolean>(false)
 
   const [withdrawCompleted, setWithdrawCompleted] = useState<boolean>(false)
+  const [futureHealthFactor, setFutureHealthFactor] =
+    useState<number>(undefined)
 
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
@@ -101,11 +105,6 @@ export const WithdrawModal = ({
         t('global.errors.exceededBalance'),
       )
       .required(t('global.errors.required')),
-    /**
-     * TODO need to research more requirements.
-     * - Compare with health factor
-     * - Max amount to withdraw
-     */
   })
 
   const formik = useFormik({
@@ -125,6 +124,35 @@ export const WithdrawModal = ({
     setFieldTouched,
     resetForm,
   } = formik
+
+  const getTotalCollateralAfterWithdraw = useCallback(() => {
+    if (reserveData.usageAsCollateralEnabledOnUser) {
+      return (
+        totalCollateralETH -
+        calculateAssetCollateralAfterTx(
+          Number(values.amount),
+          reserveData.priceInEth,
+          reserveData.reserveLiquidationThreshold,
+        )
+      )
+    }
+    return totalCollateralETH
+  }, [
+    values.amount,
+    totalCollateralETH,
+    reserveData.priceInEth,
+    reserveData.reserveLiquidationThreshold,
+    reserveData.usageAsCollateralEnabledOnUser,
+  ])
+
+  useEffect(() => {
+    setFutureHealthFactor(
+      calculateHealthFactor({
+        totalCollateralETH: getTotalCollateralAfterWithdraw(),
+        totalBorrowETH,
+      }),
+    )
+  }, [values.amount, totalBorrowETH, getTotalCollateralAfterWithdraw])
 
   const resetState = useCallback(() => {
     setHasError(undefined)
@@ -151,26 +179,10 @@ export const WithdrawModal = ({
   })
   const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted
   const isWithdrawDisabled =
-    isInputDisabled || !!errors.amount || !values.amount
-
-  const getTotalCollateralAfterWithdraw = () => {
-    if (reserveData.usageAsCollateralEnabledOnUser) {
-      return (
-        totalCollateralETH -
-        calculateAssetCollateralAfterTx(
-          Number(values.amount),
-          reserveData.priceInEth,
-          reserveData.reserveLiquidationThreshold,
-        )
-      )
-    }
-    return totalCollateralETH
-  }
-
-  const futureHealthFactor = calculateHealthFactor({
-    totalCollateralETH: getTotalCollateralAfterWithdraw(),
-    totalBorrowETH,
-  })
+    isInputDisabled ||
+    !!errors.amount ||
+    !values.amount ||
+    futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
 
   const setMaxValue = async () => {
     await setFieldValue('amount', reserveData.currentATokenBalance, true)
@@ -188,7 +200,7 @@ export const WithdrawModal = ({
       ) : (
         <>
           <BoxLayout gap={0.25} />
-          <StackLayout gap={5}>
+          <StackLayout gap={3}>
             <StackLayout gap={2}>
               <BoxLayout gap={1.25}>
                 <Text color="oxfordBlue" type="heading 2" as="span">
@@ -217,6 +229,13 @@ export const WithdrawModal = ({
                 remainingSupply={remainingSupply}
                 amount={values.amount}
                 headers={['remainingSupply', 'healthFactor']}
+              />
+
+              <ErrorMessage
+                message={
+                  futureHealthFactor < MIN_HEALTH_FACTOR_VALUE &&
+                  t('global.errors.healthFactor')
+                }
               />
             </StackLayout>
 
