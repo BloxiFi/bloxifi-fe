@@ -10,6 +10,7 @@ export const Header = () => {
         { to: '/', label: 'Dashboard' },
         { to: '/borrow', label: 'Deposit & Borrow' },
         { to: '/information', label: 'More information' },
+        { to: '/transfer', label: 'Token Transfer' },
       ]}
     >
       <ConnectWalletButton />
