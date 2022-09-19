@@ -159,7 +159,7 @@ export const RepayModal = ({
           loading={loading}
           error={hasError}
           success={repayCompleted}
-          messages={{ success: t('global.notifications.withdraw_successful') }}
+          messages={{ success: t('global.notifications.repay_successful') }}
         />
       ) : (
         <>
