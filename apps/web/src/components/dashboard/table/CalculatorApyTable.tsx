@@ -81,7 +81,7 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
             <GridLayout.Column span={3}>
               <StackLayout>
                 <Text as="span" color="oxfordBlue" type="heading 3">
-                  Choose currency
+                  {t('global.inputs.chooseCurrency')}
                 </Text>
                 <Menu
                   left
@@ -120,7 +120,7 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
             <GridLayout.Column span={5}>
               <StackLayout>
                 <Text as="span" color="oxfordBlue" type="heading 3">
-                  Amount
+                  {t('global.inputs.amount')}
                 </Text>
                 <BaseInput
                   name="assetAmount"

@@ -9,7 +9,6 @@ import {
 
 const RAY = 10 ** 27
 const SECONDS_PER_YEAR = 31536000
-//const SECOND_PER_DAY = 86400
 const calculateApyReturn = (
   _rate: number,
   _tokenAmount: number,
@@ -17,7 +16,6 @@ const calculateApyReturn = (
 ): number => {
   const APR = _rate / RAY
   const APY = Math.pow(1 + APR / SECONDS_PER_YEAR, SECONDS_PER_YEAR) - 1
-  //const secondsAmount = _daysAmount * SECOND_PER_DAY
   const monthsAmount = _daysAmount / 30
   const returnAPY = (APY / 12) * monthsAmount
   const returnValue = _tokenAmount * (1 + returnAPY)
@@ -85,7 +83,6 @@ export const useCalculateAPY = ({
           } else if (simulationType == 'Borrow') {
             sendRate = data.reserves[0]['stableBorrowRate']
           }
-
           const calculateReturn = calculateApyReturn(
             sendRate,
             tokenAmount,
