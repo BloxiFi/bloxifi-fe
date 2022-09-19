@@ -23,7 +23,15 @@
       "deposit_successful": "Deposit successful",
       "borrow_successful": "Borrow successful",
       "withdraw_successful": "Withdraw successful",
-      "repay_successful": "Repay successful"
+      "repay_successful": "Repay successful",
+      "installMetamaskTitle": "Metamask not installed",
+      "installMetamaskDescription": "Please install Metamask browser extension",
+      "processingTheConnectionTitle": "Already processing the connection",
+      "processingTheConnectionDescription": "Please complete the interrupted wallet connection",
+      "connectTheWalletTitle": "Please, connect your wallet",
+      "connectTheWalletDescription": "Please, connect your wallet to see your deposits and borrowings",
+      "notSupportedNetworkTitle": "Please switch to a correct network",
+      "notSupportedNetworkDescription": "Please switch to a Moonriver network"
     },
     "table": {
       "assets": "Assets",
@@ -66,7 +74,9 @@
   "deposit": {
     "pageTitle": "Deposit page",
     "depositEmpty": "Nothing deposited yet",
+    "yourDeposit": "Your deposit",
     "borrowEmpty": "Nothing borrowed yet",
+    "yourBorrow": "Your borrow",
     "assetsToDeposit": "Assets to deposit",
     "assetsToBorrow": "Assets to borrow",
     "depositAsset": "Deposit asset",

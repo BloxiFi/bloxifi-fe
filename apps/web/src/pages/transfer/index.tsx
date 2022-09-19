@@ -1,40 +1,31 @@
 import React from 'react'
-import {
-  CoverLayout,
-  GridLayout,
-  Loader,
-  PageLayout,
-  StackLayout,
-} from '@bloxifi/ui'
+import { GridLayout, PageLayout, StackLayout } from '@bloxifi/ui'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { WalletContainer } from '@/containers/WalletContainer'
-import { NotConnected } from '@/components/borrow/NotConnected'
+import { ConnectionStatus } from '@/components/borrow/ConnectionStatus'
 import { CrossChainAssetTable } from '@/components/transfer/table/CrossChainAssetTable'
 
 const TokenTransferPage = () => {
   const {
-    state: { isConnected, loading: connectionLoading },
+    state: {
+      isConnected,
+      loading: connectionLoading,
+      isSupportedNetwork,
+      isMetamaskInstalled,
+    },
   } = Web3Container.useContainer()
   const {
     state: { error },
   } = WalletContainer.useContainer()
 
-  if (connectionLoading) {
-    return (
-      <CoverLayout>
-        <Loader />
-      </CoverLayout>
-    )
-  }
-
-  if (error && isConnected) {
-    return <>Something went wrong</> //TODO DISPLAYING ERROR MESSAGES
-  }
-
   return (
     <PageLayout.Section>
-      {isConnected ? (
+      {isMetamaskInstalled &&
+      isSupportedNetwork &&
+      !connectionLoading &&
+      !error &&
+      isConnected ? (
         <GridLayout>
           <GridLayout.Column span={6}>
             <StackLayout gap={1.5}>
@@ -48,7 +39,9 @@ const TokenTransferPage = () => {
           </GridLayout.Column>
         </GridLayout>
       ) : (
-        <NotConnected />
+        <GridLayout>
+          <ConnectionStatus />
+        </GridLayout>
       )}
     </PageLayout.Section>
   )
