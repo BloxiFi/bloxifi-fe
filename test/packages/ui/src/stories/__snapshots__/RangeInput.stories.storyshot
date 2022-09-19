@@ -9,15 +9,15 @@ exports[`Storyshots Components/Range input Horizontal 1`] = `
     span={12}
   >
     <div
-      className="sc-jfmDQi egrkj"
+      className="sc-iNWwEs icJfrX"
     >
-      <p
-        className="sc-fEOsli sc-olbas StzYL OQLPG c-text--body-2 c-text--color-oxfordBlue"
+      <h3
+        className="sc-fEOsli sc-eKszNL fUUCJh iBQEaW c-text--heading-3 c-text--color-oxfordBlue"
       >
         Deposit duration
-      </p>
+      </h3>
       <div
-        className="sc-eKszNL coKqru"
+        className="sc-jfmDQi dPKNRe"
       >
         <input
           max={36}

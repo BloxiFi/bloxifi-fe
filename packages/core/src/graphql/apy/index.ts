@@ -11,7 +11,7 @@ export interface ReservesTokenDataQuery {
 }
 
 export interface ReservesTokenGraph {
-  reservesToken: ReservesTokenDataQuery
+  reserves: ReservesTokenDataQuery
 }
 
 /**
@@ -19,6 +19,8 @@ export interface ReservesTokenGraph {
  */
 export interface ReserveTokenVariables {
   symbol: string
+  amount: number
+  duration: number
 }
 
 /**
