@@ -37,7 +37,11 @@
       "assets": "Assets",
       "walletBalance": "Wallet balance",
       "apy": "APY",
-      "available": "Available"
+      "available": "Available",
+      "totalDeposited": "Total value deposited",
+      "totalBorrowed": "Total borrowed",
+      "depositAPY": "Deposit APY",
+      "borrowAPY": "Borrow APY"
     },
     "errors": {
       "required": "Required",
