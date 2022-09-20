@@ -52,31 +52,29 @@ export const ConnectionStatus: FunctionComponent = () => {
   ])
 
   return (
-    <>
-      <GridLayout.Column span={12}>
-        <CardLayout>
-          <BoxLayout gap={8}>
-            <CenterLayout>
-              <Text as="span" color="oxfordBlue" type="heading 2">
-                {title}
-              </Text>
-              <Text color="oxfordBlue" type="body 5">
-                {description}
-              </Text>
-              {showConnectButton && (
-                <Button
-                  appearance="primary"
-                  size="medium"
-                  variant="medium"
-                  onClick={connectWallet}
-                >
-                  {t('global.buttons.connectWallet')}
-                </Button>
-              )}
-            </CenterLayout>
-          </BoxLayout>
-        </CardLayout>
-      </GridLayout.Column>
-    </>
+    <GridLayout.Column span={12}>
+      <CardLayout>
+        <BoxLayout gap={8}>
+          <CenterLayout>
+            <Text as="span" color="oxfordBlue" type="heading 2">
+              {title}
+            </Text>
+            <Text color="oxfordBlue" type="body 5">
+              {description}
+            </Text>
+            {showConnectButton && (
+              <Button
+                appearance="primary"
+                size="medium"
+                variant="medium"
+                onClick={connectWallet}
+              >
+                {t('global.buttons.connectWallet')}
+              </Button>
+            )}
+          </CenterLayout>
+        </BoxLayout>
+      </CardLayout>
+    </GridLayout.Column>
   )
 }

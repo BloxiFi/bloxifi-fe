@@ -96,5 +96,10 @@
   },
   "staking": {
     "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."
+  },
+  "pageNotFound": {
+    "title": "404 - Page not found",
+    "description": "The page you were looking for does not exist",
+    "goToDashboardButton": "Go to dashboard"
   }
 }
