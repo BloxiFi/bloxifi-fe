@@ -1,0 +1,30 @@
+---
+name: Code checks
+on:
+  push:
+    branches: [super-lint-gha]
+  pull_request:
+    branches: [master, main, development, develop]
+jobs:
+  scanning:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: SuperLint Code Base
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: GitGuardian scan
+      #   uses: GitGuardian/ggshield-action@master
+      #   env:
+      #     GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
+      #     GITHUB_PUSH_BASE_SHA: ${{ github.event.base }}
+      #     GITHUB_PULL_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      #     GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      #     GITGUARDIAN_API_KEY: ${{ secrets.CHANGETHIS }}          
