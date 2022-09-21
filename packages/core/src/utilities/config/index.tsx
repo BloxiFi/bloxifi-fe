@@ -26,3 +26,4 @@ export const getNetworkName = (chainId: number): string => {
 }
 
 export const MIN_VALUE_FOR_TRANSACTION = 0.0000001
+export const MIN_HEALTH_FACTOR_VALUE = 1.01

@@ -155,6 +155,7 @@ export const DepositModal = ({
     submitForm,
     handleBlur,
     setFieldValue,
+    setFieldTouched,
     resetForm,
   } = formik
 
@@ -196,6 +197,11 @@ export const DepositModal = ({
     totalBorrowETH,
   })
 
+  const setMaxValue = async () => {
+    await setFieldValue('amount', reserveData.balance, true)
+    await setFieldTouched('amount', true, true)
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
       {loading || hasError || depositCompleted ? (
@@ -219,14 +225,13 @@ export const DepositModal = ({
                 name="amount"
                 max={reserveData.balance}
                 reserveData={{
-                  balance: reserveData.balance,
                   symbol: reserveData.symbol,
                   icon: reserveData.icon,
                 }}
                 value={values.amount}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                setFieldValue={setFieldValue}
+                setMaxValue={setMaxValue}
                 status={errors.amount && touched.amount ? 'error' : undefined}
                 info={errors.amount && touched.amount && errors.amount}
                 disabled={isInputDisabled}

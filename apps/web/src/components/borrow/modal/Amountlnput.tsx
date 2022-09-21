@@ -15,13 +15,13 @@ import { AssetName } from '../AssetName'
 
 import { ReservesData } from '@/containers/WalletContainer'
 
-type TableInputData = Pick<ReservesData, 'balance' | 'symbol' | 'icon'>
+type TableInputData = Pick<ReservesData, 'symbol' | 'icon'>
 
 interface Props extends BaseInputProps {
   /**
    *  Function that is used to set amount value when user clicks on MAX button
    */
-  setFieldValue: (field: 'amount', value: number) => void
+  setMaxValue: () => void
   /**
    * Selected asset data - Balance and symbol
    */
@@ -33,7 +33,7 @@ export const AmountInput = forwardRef(
     {
       type = 'number',
       reserveData,
-      setFieldValue,
+      setMaxValue,
       disabled,
       ...inputProps
     }: Props,
@@ -67,9 +67,7 @@ export const AmountInput = forwardRef(
                 variant="thin"
                 size="small"
                 className="u-fit-content-width"
-                onClick={() =>
-                  setFieldValue('amount', Number(reserveData.balance))
-                }
+                onClick={setMaxValue}
                 disabled={disabled}
               >
                 MAX

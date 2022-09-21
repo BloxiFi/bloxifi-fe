@@ -4,7 +4,8 @@ import {
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
   calculateHealthFactor,
-  useFormatAPY,
+  MIN_HEALTH_FACTOR_VALUE,
+  useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
@@ -15,6 +16,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
 import { ModalState } from './ModalState'
+import { ErrorMessage } from './ErrorMessage'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
@@ -68,6 +70,8 @@ export const WithdrawModal = ({
   const [loading, setLoading] = useState<boolean>(false)
 
   const [withdrawCompleted, setWithdrawCompleted] = useState<boolean>(false)
+  const [futureHealthFactor, setFutureHealthFactor] =
+    useState<number>(undefined)
 
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
@@ -101,11 +105,6 @@ export const WithdrawModal = ({
         t('global.errors.exceededBalance'),
       )
       .required(t('global.errors.required')),
-    /**
-     * TODO need to research more requirements.
-     * - Compare with health factor
-     * - Max amount to withdraw
-     */
   })
 
   const formik = useFormik({
@@ -122,8 +121,38 @@ export const WithdrawModal = ({
     submitForm,
     handleBlur,
     setFieldValue,
+    setFieldTouched,
     resetForm,
   } = formik
+
+  const getTotalCollateralAfterWithdraw = useCallback(() => {
+    if (reserveData.usageAsCollateralEnabledOnUser) {
+      return (
+        totalCollateralETH -
+        calculateAssetCollateralAfterTx(
+          Number(values.amount),
+          reserveData.priceInEth,
+          reserveData.reserveLiquidationThreshold,
+        )
+      )
+    }
+    return totalCollateralETH
+  }, [
+    values.amount,
+    totalCollateralETH,
+    reserveData.priceInEth,
+    reserveData.reserveLiquidationThreshold,
+    reserveData.usageAsCollateralEnabledOnUser,
+  ])
+
+  useEffect(() => {
+    setFutureHealthFactor(
+      calculateHealthFactor({
+        totalCollateralETH: getTotalCollateralAfterWithdraw(),
+        totalBorrowETH,
+      }),
+    )
+  }, [values.amount, totalBorrowETH, getTotalCollateralAfterWithdraw])
 
   const resetState = useCallback(() => {
     setHasError(undefined)
@@ -145,32 +174,20 @@ export const WithdrawModal = ({
     return 0
   }
 
-  const remainingSupply = useFormatAPY({
+  const remainingSupply = useFormatNumber({
     value: calculateRemainingSupply(),
   })
   const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted
   const isWithdrawDisabled =
-    isInputDisabled || !!errors.amount || !values.amount
+    isInputDisabled ||
+    !!errors.amount ||
+    !values.amount ||
+    futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
 
-  const getTotalCollateralAfterWithdraw = () => {
-    if (reserveData.usageAsCollateralEnabledOnUser) {
-      return (
-        totalCollateralETH -
-        calculateAssetCollateralAfterTx(
-          Number(values.amount),
-          reserveData.priceInEth,
-          reserveData.reserveLiquidationThreshold,
-        )
-      )
-    }
-    return totalCollateralETH
+  const setMaxValue = async () => {
+    await setFieldValue('amount', reserveData.currentATokenBalance, true)
+    await setFieldTouched('amount', true, true)
   }
-
-  const futureHealthFactor = calculateHealthFactor({
-    totalCollateralETH: getTotalCollateralAfterWithdraw(),
-    totalBorrowETH,
-  })
-
   return (
     <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
       {loading || hasError || withdrawCompleted ? (
@@ -183,7 +200,7 @@ export const WithdrawModal = ({
       ) : (
         <>
           <BoxLayout gap={0.25} />
-          <StackLayout gap={5}>
+          <StackLayout gap={3}>
             <StackLayout gap={2}>
               <BoxLayout gap={1.25}>
                 <Text color="oxfordBlue" type="heading 2" as="span">
@@ -194,14 +211,13 @@ export const WithdrawModal = ({
                 name="amount"
                 max={reserveData.balance}
                 reserveData={{
-                  balance: reserveData.currentATokenBalance,
                   symbol: reserveData.symbol,
                   icon: reserveData.icon,
                 }}
                 value={values.amount}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                setFieldValue={setFieldValue}
+                setMaxValue={setMaxValue}
                 status={errors.amount && touched.amount ? 'error' : undefined}
                 info={errors.amount && touched.amount && errors.amount}
                 disabled={isInputDisabled}
@@ -213,6 +229,13 @@ export const WithdrawModal = ({
                 remainingSupply={remainingSupply}
                 amount={values.amount}
                 headers={['remainingSupply', 'healthFactor']}
+              />
+
+              <ErrorMessage
+                message={
+                  futureHealthFactor < MIN_HEALTH_FACTOR_VALUE &&
+                  t('global.errors.healthFactor')
+                }
               />
             </StackLayout>
 

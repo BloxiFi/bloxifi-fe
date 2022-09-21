@@ -4,6 +4,7 @@ import {
   BorrowAndLending,
   calculateHealthFactor,
   convertUSDToAssetValue,
+  MIN_HEALTH_FACTOR_VALUE,
   Tokens,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
@@ -16,6 +17,7 @@ import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
 import { ModalState } from './ModalState'
+import { ErrorMessage } from './ErrorMessage'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
@@ -62,6 +64,8 @@ export const BorrowModal = ({
   const [approved, setApproved] = useState<boolean>(false)
 
   const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
+  const [futureHealthFactor, setFutureHealthFactor] =
+    useState<number>(undefined)
 
   const tokenContract = reserveData.symbol
     ? Tokens.getTokenContract(signer, reserveData.symbol)
@@ -152,6 +156,7 @@ export const BorrowModal = ({
     submitForm,
     handleBlur,
     setFieldValue,
+    setFieldTouched,
     resetForm,
   } = formik
 
@@ -172,14 +177,29 @@ export const BorrowModal = ({
     isInputDisabled ||
     !!errors.amount ||
     !values.amount ||
-    (shouldApproveContract && !approved)
+    (shouldApproveContract && !approved) ||
+    futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
   const isApproveDisabled = !isSupportedNetwork || loading || approved
 
-  const futureHealthFactor = calculateHealthFactor({
+  useEffect(() => {
+    setFutureHealthFactor(
+      calculateHealthFactor({
+        totalCollateralETH,
+        totalBorrowETH:
+          totalBorrowETH + Number(values.amount) * reserveData.priceInEth,
+      }),
+    )
+  }, [
+    values.amount,
     totalCollateralETH,
-    totalBorrowETH:
-      totalBorrowETH + Number(values.amount) * reserveData.priceInEth,
-  })
+    totalBorrowETH,
+    reserveData.priceInEth,
+  ])
+
+  const setMaxValue = async () => {
+    await setFieldValue('amount', availableToBorrow, true)
+    await setFieldTouched('amount', true, true)
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
@@ -193,7 +213,7 @@ export const BorrowModal = ({
       ) : (
         <>
           <BoxLayout gap={0.25} />
-          <StackLayout gap={5}>
+          <StackLayout gap={3}>
             <StackLayout gap={2}>
               <BoxLayout gap={1.25}>
                 <Text color="oxfordBlue" type="heading 2" as="span">
@@ -204,14 +224,13 @@ export const BorrowModal = ({
                 name="amount"
                 max={reserveData.balance}
                 reserveData={{
-                  balance: availableToBorrow,
                   symbol: reserveData.symbol,
                   icon: reserveData.icon,
                 }}
                 value={values.amount}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                setFieldValue={setFieldValue}
+                setMaxValue={setMaxValue}
                 status={errors.amount && touched.amount ? 'error' : undefined}
                 info={errors.amount && touched.amount && errors.amount}
                 disabled={isInputDisabled}
@@ -221,6 +240,12 @@ export const BorrowModal = ({
                 futureHealthFactor={futureHealthFactor}
                 headers={['healthFactor']}
                 amount={values.amount}
+              />
+              <ErrorMessage
+                message={
+                  futureHealthFactor < MIN_HEALTH_FACTOR_VALUE &&
+                  t('global.errors.healthFactor')
+                }
               />
             </StackLayout>
 

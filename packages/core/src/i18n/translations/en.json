@@ -36,7 +36,8 @@
       "required": "Required",
       "positiveValue": "Must be greater than 0",
       "numbersOnly": "Must be a number",
-      "exceededBalance": "Not enough balance"
+      "exceededBalance": "Not enough balance",
+      "healthFactor": "Health factor cannot be less than 1.01"
     },
     "tooltips": {
       "depositedBalance": "Your total deposited balance denominated in USD",

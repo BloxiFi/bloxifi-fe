@@ -1,9 +1,9 @@
 import { TokenList } from '../contracts'
 
 /**
- * Options that can be used to configure useFormatAPY() hook.
+ * Options that can be used to configure useFormatNumber() hook.
  */
-export interface FormatAPYOptions {
+export interface FormatNumberOptions {
   /**
    * Represents the number value
    * */
@@ -26,20 +26,23 @@ export interface FormatAPYOptions {
    * after-symbol goes after value
    */
   readonly symbolPosition?: 'before' | 'after'
+  /**
+   * Represents the min value to display in UI. E.g. Health factor min value to display is 1.01
+   */
+  minimumDisplayValue?: number
 }
 
 /**
  * Hook that returns a formated string like this `<0.1%`
- *
- * TODO@all rename if we are gonna use it for something else than APY
- * */
-export const useFormatAPY = ({
+ */
+export const useFormatNumber = ({
   value = 0,
   decimals,
   percent,
   symbol = '',
   symbolPosition = 'after',
-}: FormatAPYOptions = {}): string => {
+  minimumDisplayValue,
+}: FormatNumberOptions = {}): string => {
   //TODO This function seems a bit buggy (keep an eye on this one)
   const getVisibleDecimals = () => {
     if (!value) {
@@ -58,7 +61,9 @@ export const useFormatAPY = ({
 
   const visibleDecimals = getVisibleDecimals()
 
-  const minValue = 10 ** -visibleDecimals
+  const minValue = minimumDisplayValue
+    ? minimumDisplayValue
+    : 10 ** -visibleDecimals
   const isSmallerThanMin = value !== 0 && Math.abs(value) < Math.abs(minValue)
   const formattedValue = isSmallerThanMin ? minValue : value
 
