@@ -2,8 +2,10 @@ import {
   ColumnLayout,
   ContentLoader,
   CoverLayout,
+  GridLayout,
   Icon,
   Loader,
+  Page,
   PageLayout,
   StackLayout,
   Text,
@@ -16,6 +18,7 @@ import { DashboardTable } from '@/components/dashboard/table/DashboardTable'
 import { WalletContainer } from '@/containers/WalletContainer'
 import { FormattedNumber } from '@/components/borrow/FormattedNumber'
 import { Web3Container } from '@/containers/Web3Container'
+import { CalculatorApyTable } from '@/components/dashboard/table/CalculatorApyTable'
 
 const DasboardPage = () => {
   const { t } = useTranslation()
@@ -100,6 +103,17 @@ const DasboardPage = () => {
           </ColumnLayout>
         </ColumnLayout>
       </PageLayout.Section>
+
+      <Page.Section>
+        <GridLayout>
+          <GridLayout.Column span={6}>
+            <CalculatorApyTable calctype="Deposit" />
+          </GridLayout.Column>
+          <GridLayout.Column span={6}>
+            <CalculatorApyTable calctype="Borrow" />
+          </GridLayout.Column>
+        </GridLayout>
+      </Page.Section>
 
       <PageLayout.Section>
         <DashboardTable />

@@ -32,7 +32,7 @@ export const RangeInput = forwardRef(
     return (
       <Wrapper>
         {props.title && (
-          <Title color="oxfordBlue" type="body 2">
+          <Title color="oxfordBlue" type="heading 3">
             {props.title}
           </Title>
         )}
@@ -57,6 +57,7 @@ export const RangeInput = forwardRef(
 const Wrapper = styled.div`
   height: ${containerHeight}px;
   width: 100%;
+  margin-top: 1rem;
 
   #bottom-label {
     transform: translate(0, -10px);
@@ -109,4 +110,5 @@ const InnerWrapper = styled.div<{ valuePercent: number }>`
 
 const Title = styled(Text)`
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 `

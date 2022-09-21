@@ -209,7 +209,7 @@ export const DepositModal = ({
           loading={loading}
           error={hasError}
           success={depositCompleted}
-          messages={{ success: t('global.notifications.withdraw_successful') }}
+          messages={{ success: t('global.notifications.deposit_successful') }}
         />
       ) : (
         <>

@@ -15,7 +15,8 @@
       "testnetMode": "Testnet mode"
     },
     "inputs": {
-      "amount": "Amount"
+      "amount": "Amount",
+      "chooseCurrency": "Choose currency"
     },
     "notifications": {
       "transaction_failed": "Transaction failed",
