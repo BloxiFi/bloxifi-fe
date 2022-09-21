@@ -128,7 +128,7 @@ const reducer = (state: State, action: Action<ActionType>) => {
 
 const POOL_INTERVAL = 600000
 // Deposit and Borrow APY calculation
-const calculateAPY = (liquidityRate: number, inPercents = true) => {
+export const calculateAPY = (liquidityRate: number, inPercents = true) => {
   const RAY = 10 ** 27
   const SECONDS_PER_YEAR = 31536000
 

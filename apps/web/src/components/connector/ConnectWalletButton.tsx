@@ -26,7 +26,6 @@ export const ConnectWalletButton = () => {
     state: {
       isConnected,
       currentAccount,
-      error,
       isSupportedNetwork,
       isMetamaskInstalled,
     },
@@ -45,14 +44,6 @@ export const ConnectWalletButton = () => {
     return (
       <Text type="body 1" color="red" semiBold align="center">
         Please install Metamask
-      </Text>
-    )
-  }
-
-  if (error) {
-    return (
-      <Text type="body 1" color="red" semiBold align="center">
-        Connection failed!
       </Text>
     )
   }

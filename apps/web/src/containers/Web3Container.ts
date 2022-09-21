@@ -54,8 +54,6 @@ function useContainer(initialState: Web3ContainerProps) {
   const {
     account,
     active: networkActive,
-    error: networkError,
-    setError: setNetworkError,
     activate: activateNetwork,
     deactivate: deactivateNetwork,
     library,
@@ -64,7 +62,7 @@ function useContainer(initialState: Web3ContainerProps) {
   const [loading, setLoading] = useState(false)
   const isSupportedNetwork = supportedChainIds.includes(chainId)
   const [signer, setSigner] = useState()
-
+  const [networkError, setNetworkError] = useState(undefined)
   const connectWallet: ConnectWalletFunction = useCallback(async () => {
     setLoading(true)
     try {
