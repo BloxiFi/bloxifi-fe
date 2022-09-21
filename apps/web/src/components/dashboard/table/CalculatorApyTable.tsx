@@ -14,7 +14,7 @@ import {
 } from '@bloxifi/ui'
 import { useCalculateAPY } from '@bloxifi/core/src/hooks/useCalculateAPY'
 import { useTranslation } from 'react-i18next'
-import { useFormatAPY } from '@bloxifi/core'
+import { useFormatNumber } from '@bloxifi/core'
 
 interface CalculatorProps {
   /**
@@ -150,13 +150,13 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
               In {duration} {labelPlural} time:
             </Text>
             <Text as="span" color="oxfordBlue" type="heading 2">
-              {useFormatAPY({
+              {useFormatNumber({
                 value: returnAmount,
                 decimals: 5,
                 percent: false,
               })}{' '}
               {assetSelected} (
-              {useFormatAPY({
+              {useFormatNumber({
                 value: returnPercent,
                 decimals: 2,
                 percent: true,
