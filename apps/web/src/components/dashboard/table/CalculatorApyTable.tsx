@@ -25,7 +25,7 @@ interface CalculatorProps {
   readonly calctype?: string
 }
 
-//in the future, rewrite hook and UI to use token address not symbol
+//TODO rewrite hook and UI to use token address not symbol
 //export type tokensList = keyof (typeof TOKENS)
 
 export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
@@ -108,7 +108,7 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
       <BoxLayout gap={2}>
         <StackLayout gap={2}>
           <Text as="span" color="oxfordBlue" type="heading 2">
-            {calctype} APY Calculator
+            {t('dashboard.APYcalculator.title', { type: calctype })}
           </Text>
 
           <ColumnLayout gap={2}>
@@ -191,7 +191,10 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
 
             <StackLayout>
               <Text color="oxfordBlue" type="heading 3">
-                In {duration} {labelPlural} time:
+                {t('dashboard.APYcalculator.duration', {
+                  duration,
+                  labelPlural,
+                })}
               </Text>
               <Text
                 as="span"
