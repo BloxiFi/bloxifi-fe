@@ -64,7 +64,15 @@ export const useFormatNumber = ({
   const minValue = minimumDisplayValue
     ? minimumDisplayValue
     : 10 ** -visibleDecimals
-  const isSmallerThanMin = value !== 0 && Math.abs(value) < Math.abs(minValue)
+
+  const getMinimumDisplayValue = (): boolean => {
+    if (minimumDisplayValue) {
+      return value < minimumDisplayValue
+    }
+    return value !== 0 && Math.abs(value) < Math.abs(minValue)
+  }
+
+  const isSmallerThanMin = getMinimumDisplayValue()
   const formattedValue = isSmallerThanMin ? minValue : value
 
   const getSymbol = () => {
