@@ -75,7 +75,11 @@
     "pageTitle": "Dashboard",
     "totalDeposited": "Total Deposited",
     "totalBorrowed": "Total Borrowed",
-    "notConnectedMessage": "Please, connect your wallet to see your supplies, borrowings, and open positions."
+    "notConnectedMessage": "Please, connect your wallet to see your supplies, borrowings, and open positions.",
+    "APYcalculator": {
+      "title": "{{type}} APY Calculator",
+      "duration": "In {{duration}} {{labelPlural}} time:"
+    }
   },
   "deposit": {
     "pageTitle": "Deposit page",

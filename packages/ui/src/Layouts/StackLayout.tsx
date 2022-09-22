@@ -2,7 +2,7 @@ import React from 'react'
 import { ReactProps } from '@bloxifi/types'
 import styled from 'styled-components'
 
-import { ColumnReverse, Hidden } from '../styles/mixins'
+import { ColumnReverse, Hidden, FullWidth } from '../styles/mixins'
 
 /**
  *
@@ -207,5 +207,8 @@ export const StackLayout = styled(Stack)`
   }};
   ${({ className }) => {
     return ColumnReverse({ className })
+  }};
+  ${({ className }) => {
+    return FullWidth({ className })
   }};
 `

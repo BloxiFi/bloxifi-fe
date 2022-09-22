@@ -494,7 +494,7 @@ exports[`Storyshots Components/Table Empty Data Table 1`] = `
           colSpan={5}
         >
           <p
-            className="sc-fEOsli kVdAuo c-text--body-5"
+            className="sc-fEOsli dDFHem c-text--body-5"
           >
             There is no data loaded.
           </p>

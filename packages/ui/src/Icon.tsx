@@ -6,7 +6,7 @@ const assetsIcons = ['dai', 'usdc', 'weth', 'wbtc', 'ksm', 'mowr']
 /**
  * TODO Refactor color prop and applying color
  */
-const notFilled = ['success', 'error', ...assetsIcons, 'arrow-down', 'settings']
+const notFilled = ['success', 'error', ...assetsIcons, 'settings']
 
 export const IconNames = [
   'close',
