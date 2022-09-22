@@ -76,17 +76,17 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
     </div>
   </header>
   <div
-    className="sc-evZas sc-ivTmOn ldkTlK kPozQz"
+    className="sc-evZas sc-ivTmOn klRKQA kPozQz"
     gap={4}
   >
     <section
       className="c-page-layout__section"
     >
       <div
-        className="sc-evZas fQdIpY"
+        className="sc-evZas jlVWyS"
       >
         <h1
-          className="sc-fEOsli efVgTW c-text--heading-1 c-text--color-white"
+          className="sc-fEOsli icOWJk c-text--heading-1 c-text--color-white"
         >
           Dashboard
         </h1>
@@ -102,18 +102,18 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           className="sc-breuTD eqtFAo"
         >
           <div
-            className="sc-evZas mpzUh"
+            className="sc-evZas fVMnEv"
             gap={0.5}
           >
             <span
-              className="sc-fEOsli chvKnW"
+              className="sc-fEOsli VGkfI"
               color="white"
               type="body 2"
             >
               Total Deposited
             </span>
             <span
-              className="sc-fEOsli ceckQP"
+              className="sc-fEOsli ggcEid"
               color="white"
               type="body 4"
             >
@@ -125,18 +125,18 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           className="sc-breuTD eqtFAo"
         >
           <div
-            className="sc-evZas mpzUh"
+            className="sc-evZas fVMnEv"
             gap={0.5}
           >
             <span
-              className="sc-fEOsli chvKnW"
+              className="sc-fEOsli VGkfI"
               color="white"
               type="body 2"
             >
               Total Borrowed
             </span>
             <span
-              className="sc-fEOsli ceckQP"
+              className="sc-fEOsli ggcEid"
               color="white"
               type="body 4"
             >
