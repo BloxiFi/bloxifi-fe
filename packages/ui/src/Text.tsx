@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
-import { FullWidth, Hidden } from './styles/mixins'
+import { FullWidth, Hidden, WordBreak } from './styles/mixins'
 import { Fonts } from './styles/fonts'
 
 export const TextStyle = [
@@ -15,6 +15,7 @@ export const TextStyle = [
   'body 4',
   'body 5',
   'small-text',
+  'big-text',
 ] as const
 type TextStyle = typeof TextStyle[number]
 
@@ -38,6 +39,7 @@ const defaultHTMLElement = new Map<TextStyle, React.ElementType>([
   ['body 4', 'p'],
   ['body 5', 'p'],
   ['small-text', 'span'],
+  ['big-text', 'p'],
 ])
 
 type TextProps = {
@@ -164,6 +166,12 @@ export const Text = styled(TextComponent)<TextProps>`
         font-weight: normal;
         font-family:${Fonts.Inter};
       `
+      case 'big-text':
+        return `
+        font-size: 2.5rem;
+        font-weight: 400;
+        font-family:${Fonts.Inter};
+      `
     }
   }}
   color: ${({ color, theme }) => {
@@ -185,6 +193,7 @@ export const Text = styled(TextComponent)<TextProps>`
     }
   }};
   ${({ className }) => FullWidth({ className })};
+  ${({ className }) => WordBreak({ className })};
   ${({ className }) => Hidden({ className })};
   ${({ bold, semiBold }) => {
     return `font-weight: ${bold ? 'bold' : semiBold && 600};`
