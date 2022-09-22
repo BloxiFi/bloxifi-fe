@@ -196,21 +196,30 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
                   labelPlural,
                 })}
               </Text>
-              <Text
-                as="span"
-                color="oxfordBlue"
-                type="big-text"
-                bold
-                className="u-text-break-word"
-              >
-                {useFormatNumber({
-                  value: returnAmount,
-                  decimals: 5,
-                  percent: false,
-                })}{' '}
-                {assetSelected}{' '}
+              <ColumnLayout gap={0.5}>
+                <Text
+                  as="span"
+                  color="oxfordBlue"
+                  type="big-text"
+                  bold
+                  className="u-text-break-word"
+                >
+                  {useFormatNumber({
+                    value: returnAmount,
+                    decimals: 5,
+                    percent: false,
+                  })}
+                </Text>
+                <Text
+                  as="span"
+                  color="oxfordBlue"
+                  type="big-text"
+                  bold
+                  className="u-text-break-word"
+                >
+                  {assetSelected}
+                </Text>
                 <Text as="span" color="oxfordBlue" type="big-text">
-                  {' '}
                   (
                   {useFormatNumber({
                     value: returnPercent,
@@ -219,7 +228,7 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
                   })}
                   )
                 </Text>
-              </Text>
+              </ColumnLayout>
             </StackLayout>
           </StackLayout>
         </StackLayout>
