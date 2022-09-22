@@ -15,6 +15,8 @@ import {
 import { useCalculateAPY } from '@bloxifi/core/src/hooks/useCalculateAPY'
 import { useTranslation } from 'react-i18next'
 import { useFormatNumber } from '@bloxifi/core'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 interface CalculatorProps {
   /**
@@ -31,7 +33,6 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
 }: CalculatorProps) => {
   const { t } = useTranslation()
   const [duration, setDuration] = useState<string>('24')
-  const [assetAmount, setAssetAmount] = useState<string>('100')
 
   const [labelPlural, setLabelPlural] = useState<string>('months')
   const [closeMenu, setCloseMenu] = useState(false)
@@ -48,17 +49,49 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
   const [returnAmount, setReturnAmount] = useState(1)
   const [returnPercent, setReturnPercent] = useState(1)
 
+  const assetAmountValidationSchemaa = Yup.object().shape({
+    assetAmount: Yup.number()
+      .typeError(t('global.errors.numbersOnly'))
+      .positive(t('global.errors.positiveValue'))
+      .required(t('global.errors.required')),
+  })
+
+  const formik = useFormik({
+    initialValues: { assetAmount: 100 },
+    validationSchema: assetAmountValidationSchemaa,
+    onSubmit: undefined,
+  })
+
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    setFieldValue,
+    setFieldTouched,
+  } = formik
+
+  const setAssetAmount = async (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement
+    await setFieldValue('assetAmount', target.value, true)
+    await setFieldTouched('assetAmount', true, true)
+  }
+
+  const checkValue = (value: number) => {
+    return value > 0 && value !== null ? value : 0
+  }
+
   const responseAPY = useCalculateAPY({
     tokenSymbol: assetSelected,
-    tokenAmount: Number(assetAmount),
+    tokenAmount: checkValue(values.assetAmount),
     daysAmount: Number(duration) * 30,
     simulationType: calctype,
   })
 
   useEffect(() => {
     if (responseAPY && responseAPY !== null) {
-      setReturnAmount(responseAPY[0])
-      setReturnPercent(responseAPY[1])
+      setReturnAmount(checkValue(responseAPY[0]))
+      setReturnPercent(checkValue(responseAPY[1]))
     }
   }, [responseAPY])
 
@@ -122,11 +155,21 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
                 {t('global.inputs.amount')}
               </Text>
               <BaseInput
+                type="number"
                 name="assetAmount"
-                value={assetAmount}
-                onInput={e => {
-                  setAssetAmount((e.target as HTMLInputElement).value)
-                }}
+                value={values.assetAmount}
+                onInput={setAssetAmount}
+                onBlur={handleBlur}
+                status={
+                  errors.assetAmount && touched.assetAmount
+                    ? 'error'
+                    : undefined
+                }
+                info={
+                  errors.assetAmount &&
+                  touched.assetAmount &&
+                  errors.assetAmount
+                }
               />
             </StackLayout>
           </ColumnLayout>
