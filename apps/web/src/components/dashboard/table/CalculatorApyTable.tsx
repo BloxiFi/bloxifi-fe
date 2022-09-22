@@ -112,8 +112,8 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
           </Text>
 
           <ColumnLayout gap={2}>
-            <StackLayout>
-              <Text as="span" color="oxfordBlue" type="heading 3">
+            <StackLayout gap={0.5}>
+              <Text color="oxfordBlue" type="heading 3">
                 {t('global.inputs.chooseCurrency')}
               </Text>
               <Menu
@@ -150,8 +150,8 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
               />
             </StackLayout>
 
-            <StackLayout className="u-full-width">
-              <Text as="span" color="oxfordBlue" type="heading 3">
+            <StackLayout gap={0.5} className="u-full-width">
+              <Text color="oxfordBlue" type="heading 3">
                 {t('global.inputs.amount')}
               </Text>
               <BaseInput
