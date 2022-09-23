@@ -28,7 +28,7 @@
       "installMetamaskTitle": "Metamask not installed",
       "installMetamaskDescription": "Please install Metamask browser extension",
       "processingTheConnectionTitle": "Already processing the connection",
-      "processingTheConnectionDescription": "Please complete the interrupted wallet connection",
+      "processingTheConnectionDescription": "Finalize connection to {{walletName}} by choosing the wallet you wish to connect and clicking “Connect” within {{walletName}}",
       "connectTheWalletTitle": "Please, connect your wallet",
       "connectTheWalletDescription": "Please, connect your wallet to see your deposits and borrowings",
       "notSupportedNetworkTitle": "Please switch to a correct network",
@@ -69,7 +69,9 @@
   },
   "walletConnection": {
     "notConnectedTitle": "Please, connect your wallet",
-    "wrongNetworkConnection": "Wrong network"
+    "installBrowserExtension": "Please install {{walletName}}",
+    "wrongNetworkConnection": "Wrong network",
+    "connecting": "Connecting"
   },
   "dashboard": {
     "pageTitle": "Dashboard",
