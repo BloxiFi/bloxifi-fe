@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Fonts } from './styles/fonts'
 
 type Status = 'error' | 'success'
+type Height = 'thin' | 'large'
 /**
  * BaseInput props.
  */
@@ -16,6 +17,10 @@ export interface BaseInputProps extends HTMLProps<HTMLInputElement> {
    * Input info that will appear below the input field
    */
   info?: string
+  /**
+   * Input field height
+   */
+  height?: Height
 }
 
 export const BaseInput = forwardRef(
@@ -26,13 +31,14 @@ export const BaseInput = forwardRef(
       disabled = false,
       info = '',
       status,
+      height = 'thin',
       ...props
     }: BaseInputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
       <Wrapper>
-        <InnerWrapper className={className} status={status}>
+        <InnerWrapper className={className} status={status} height={height}>
           <input ref={ref} type={type} {...props} disabled={disabled} />
         </InnerWrapper>
 
@@ -44,10 +50,10 @@ export const BaseInput = forwardRef(
 const Wrapper = styled.span`
   position: relative;
 `
-const InnerWrapper = styled.div<{ status?: Status }>`
+export const InnerWrapper = styled.div<{ status?: Status; height?: Height }>`
   input {
     width: 100%;
-    height: 1.875rem;
+    height: ${({ height }) => (height === 'thin' ? '1.875rem' : '3.125rem')};
     background: ${({ theme }) => theme.inputBackground};
     border: none;
     box-shadow: ${({ theme, status }) =>
