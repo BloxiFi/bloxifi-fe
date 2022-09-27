@@ -33,8 +33,8 @@ export const Overview = args => {
           navigationItems={[
             { to: '/', label: 'Dashboard' },
             { to: '/deposit', label: 'Deposit & Borrow' },
-            { to: '/stake', label: 'Stake' },
             { to: '/moreInformation', label: 'More information' },
+            { to: '/transfer', label: 'Token Transfer' },
           ]}
         >
           <Button variant="medium" appearance="primary-ghost" size="medium">
