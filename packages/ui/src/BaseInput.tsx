@@ -2,6 +2,7 @@ import React, { ForwardedRef, forwardRef, HTMLProps } from 'react'
 import styled from 'styled-components'
 
 import { Fonts } from './styles/fonts'
+import { FullWidth } from './styles/mixins'
 
 type Status = 'error' | 'success'
 type Height = 'thin' | 'large'
@@ -37,7 +38,7 @@ export const BaseInput = forwardRef(
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     return (
-      <Wrapper>
+      <Wrapper className={className}>
         <InnerWrapper className={className} status={status} height={height}>
           <input ref={ref} type={type} {...props} disabled={disabled} />
         </InnerWrapper>
@@ -49,6 +50,7 @@ export const BaseInput = forwardRef(
 )
 const Wrapper = styled.span`
   position: relative;
+  ${({ className }) => FullWidth({ className })};
 `
 export const InnerWrapper = styled.div<{ status?: Status; height?: Height }>`
   input {
