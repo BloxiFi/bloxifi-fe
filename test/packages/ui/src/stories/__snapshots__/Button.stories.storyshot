@@ -195,7 +195,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </h3>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jFDAjs ltXRM u-fit-content-width"
+        className="sc-hKMtZM sc-papXJ jFDAjs fikKSz u-fit-content-width"
         data-element="button"
         size="medium"
         variant="medium"
@@ -204,7 +204,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jFDAjs ltXRM u-fit-content-width"
+        className="sc-hKMtZM sc-papXJ jFDAjs fikKSz u-fit-content-width"
         data-element="button"
         disabled={true}
         size="medium"
@@ -229,7 +229,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </h3>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jFDAjs IZlkj u-fit-content-width"
+        className="sc-hKMtZM sc-papXJ jFDAjs duhSHg u-fit-content-width"
         color="red"
         data-element="button"
         size="medium"
@@ -239,7 +239,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
       </button>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ jFDAjs IZlkj u-fit-content-width"
+        className="sc-hKMtZM sc-papXJ jFDAjs duhSHg u-fit-content-width"
         color="red"
         data-element="button"
         disabled={true}
@@ -623,7 +623,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
       >
         <button
           appearance="text"
-          className="sc-hKMtZM sc-papXJ nskp ltXRM"
+          className="sc-hKMtZM sc-papXJ nskp fikKSz"
           data-element="button"
           icon="settings"
           size="large"
@@ -631,7 +631,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="text"
-          className="sc-hKMtZM sc-papXJ jpeCQH ltXRM"
+          className="sc-hKMtZM sc-papXJ jpeCQH fikKSz"
           data-element="button"
           icon="settings"
           size="medium"
@@ -658,7 +658,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
       >
         <button
           appearance="text"
-          className="sc-hKMtZM sc-papXJ nskp IZlkj"
+          className="sc-hKMtZM sc-papXJ nskp duhSHg"
           color="red"
           data-element="button"
           icon="settings"
@@ -667,7 +667,7 @@ exports[`Storyshots Components/Button Icon 1`] = `
         />
         <button
           appearance="text"
-          className="sc-hKMtZM sc-papXJ jpeCQH IZlkj"
+          className="sc-hKMtZM sc-papXJ jpeCQH duhSHg"
           color="red"
           data-element="button"
           icon="settings"
@@ -915,7 +915,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       </h3>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ grTfbb ltXRM"
+        className="sc-hKMtZM sc-papXJ grTfbb fikKSz"
         data-element="button"
         size="medium"
         variant="medium"
@@ -928,7 +928,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       </button>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ grTfbb ltXRM"
+        className="sc-hKMtZM sc-papXJ grTfbb fikKSz"
         data-element="button"
         disabled={true}
         size="medium"
@@ -957,7 +957,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       </h3>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ grTfbb IZlkj"
+        className="sc-hKMtZM sc-papXJ grTfbb duhSHg"
         color="red"
         data-element="button"
         size="medium"
@@ -971,7 +971,7 @@ exports[`Storyshots Components/Button Text with Icon 1`] = `
       </button>
       <button
         appearance="text"
-        className="sc-hKMtZM sc-papXJ grTfbb IZlkj"
+        className="sc-hKMtZM sc-papXJ grTfbb duhSHg"
         color="red"
         data-element="button"
         disabled={true}

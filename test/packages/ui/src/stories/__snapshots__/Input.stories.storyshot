@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Input Address Input 1`] = `
+<div
+  className="sc-kDDrLX iFyCNQ"
+>
+  <div
+    className="sc-fnykZs fmpsuH"
+  >
+    <section
+      className="sc-hAZoDl kPgGYO"
+      span={6}
+    >
+      <h3
+        className="sc-fEOsli gaBXLN c-text--heading-3"
+      >
+        Empty
+      </h3>
+      <div
+        className="sc-olbas eXFlfA"
+      >
+        <div
+          className="sc-gsnTZi kzqZLP u-full-width"
+          height="large"
+        >
+          <input
+            disabled={true}
+            type="text"
+            value=""
+          />
+          <div
+            className="sc-breuTD gHrPtz sc-hiMGwR gfTank"
+          >
+            <div
+              className="sc-breuTD cxWDJq"
+            >
+              <span
+                className="sc-fEOsli iykYvH"
+                type="body 3"
+              >
+                
+              </span>
+            </div>
+            <span
+              className="sc-fEOsli bzDQbX"
+              type="body 2"
+            >
+              
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      className="sc-hAZoDl kPgGYO"
+      span={6}
+    >
+      <h3
+        className="sc-fEOsli gaBXLN c-text--heading-3"
+      >
+        With value
+      </h3>
+      <div
+        className="sc-olbas eXFlfA"
+      >
+        <div
+          className="sc-gsnTZi kzqZLP"
+          height="large"
+        >
+          <input
+            disabled={true}
+            type="text"
+            value="oxed139...862b"
+          />
+          <div
+            className="sc-breuTD gHrPtz sc-hiMGwR gfTank"
+          >
+            <div
+              className="sc-breuTD cxWDJq"
+            >
+              <span
+                className="sc-fEOsli iykYvH"
+                type="body 3"
+              >
+                Polkadot.js
+              </span>
+            </div>
+            <span
+              className="sc-fEOsli bzDQbX"
+              type="body 2"
+            >
+              oxed139...862b
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      className="sc-hAZoDl kPgGYO"
+      span={6}
+    >
+      <h3
+        className="sc-fEOsli gaBXLN c-text--heading-3"
+      >
+        Error
+      </h3>
+      <div
+        className="sc-olbas eXFlfA"
+      >
+        <div
+          className="sc-gsnTZi jOvPKD u-full-width"
+          height="large"
+        >
+          <input
+            disabled={true}
+            type="text"
+            value=""
+          />
+          <div
+            className="sc-breuTD gHrPtz sc-hiMGwR gfTank"
+          >
+            <span
+              className="sc-fEOsli kEbpsD"
+              color="red"
+              type="body 3"
+            >
+              Connect your wallet
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Input Base Input 1`] = `
+<div
+  className="sc-kDDrLX iFyCNQ"
+>
+  <div
+    className="sc-fnykZs fmpsuH"
+  >
+    <section
+      className="sc-hAZoDl kPgGYO"
+      span={6}
+    >
+      <h3
+        className="sc-fEOsli gaBXLN c-text--heading-3"
+      >
+        Empty
+      </h3>
+      <span
+        className="sc-bczRLJ enkMFE"
+      >
+        <div
+          className="sc-gsnTZi jenDfF"
+          height="thin"
+        >
+          <input
+            disabled={false}
+            type="text"
+          />
+        </div>
+        <span
+          className="sc-dkzDqf eUqaxQ"
+        >
+          
+        </span>
+      </span>
+    </section>
+    <section
+      className="sc-hAZoDl kPgGYO"
+      span={6}
+    >
+      <h3
+        className="sc-fEOsli gaBXLN c-text--heading-3"
+      >
+        Success
+      </h3>
+      <span
+        className="sc-bczRLJ enkMFE"
+      >
+        <div
+          className="sc-gsnTZi cqJeoB"
+          height="thin"
+        >
+          <input
+            disabled={false}
+            type="text"
+            value="Success"
+          />
+        </div>
+        <span
+          className="sc-dkzDqf cMZKHm"
+        >
+          Success
+        </span>
+      </span>
+    </section>
+    <section
+      className="sc-hAZoDl kPgGYO"
+      span={6}
+    >
+      <h3
+        className="sc-fEOsli gaBXLN c-text--heading-3"
+      >
+        Error
+      </h3>
+      <span
+        className="sc-bczRLJ enkMFE"
+      >
+        <div
+          className="sc-gsnTZi hHkMit"
+          height="thin"
+        >
+          <input
+            disabled={false}
+            type="text"
+            value="Error"
+          />
+        </div>
+        <span
+          className="sc-dkzDqf eJGsgX"
+        >
+          Error
+        </span>
+      </span>
+    </section>
+    <section
+      className="sc-hAZoDl kPgGYO"
+      span={6}
+    >
+      <h3
+        className="sc-fEOsli gaBXLN c-text--heading-3"
+      >
+        Disabled
+      </h3>
+      <span
+        className="sc-bczRLJ enkMFE"
+      >
+        <div
+          className="sc-gsnTZi jenDfF"
+          height="thin"
+        >
+          <input
+            disabled={true}
+            type="text"
+            value="Disabled"
+          />
+        </div>
+        <span
+          className="sc-dkzDqf eUqaxQ"
+        >
+          
+        </span>
+      </span>
+    </section>
+  </div>
+</div>
+`;

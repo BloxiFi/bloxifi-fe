@@ -96,10 +96,10 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
       className="c-page-layout__section"
     >
       <div
-        className="sc-breuTD eVnKYD"
+        className="sc-breuTD hWGEOZ"
       >
         <div
-          className="sc-breuTD eqtFAo"
+          className="sc-breuTD djglzS"
         >
           <div
             className="sc-evZas fVMnEv"
@@ -122,7 +122,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           </div>
         </div>
         <div
-          className="sc-breuTD eqtFAo"
+          className="sc-breuTD djglzS"
         >
           <div
             className="sc-evZas fVMnEv"
