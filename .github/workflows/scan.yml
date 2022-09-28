@@ -17,10 +17,9 @@ jobs:
       - name: SuperLint Code Base
         uses: github/super-linter@v4
         env:
-          VALIDATE_ALL_CODEBASE: false
+          # VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE: false
           VALIDATE_YAML: false
           VALIDATE_JSON: false
           VALIDATE_XML: false
