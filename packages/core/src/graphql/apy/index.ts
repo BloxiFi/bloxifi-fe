@@ -8,6 +8,9 @@ export interface ReservesTokenDataQuery {
   liquidityRate: number
   variableBorrowRate: number
   stableBorrowRate: number
+  recentAvgSupplyAPY: number
+  recentAvgStableBorrowAPY: number
+  recentAvgVariableBorrowAPY: number
 }
 
 export interface ReservesTokenGraph {
@@ -33,6 +36,9 @@ export const GET_RESERVE_TOKEN_DATA = gql`
       liquidityRate
       variableBorrowRate
       stableBorrowRate
+      recentAvgSupplyAPY
+      recentAvgStableBorrowAPY
+      recentAvgVariableBorrowAPY
     }
   }
 `
