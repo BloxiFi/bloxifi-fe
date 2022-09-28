@@ -52,7 +52,9 @@ const Wrapper = styled.span`
   position: relative;
   ${({ className }) => FullWidth({ className })};
 `
-export const InnerWrapper = styled.div<{ status?: Status; height?: Height }>`
+export const InnerWrapper = styled.div<
+  Pick<BaseInputProps, 'status' | 'height'>
+>`
   input {
     width: 100%;
     height: ${({ height }) => (height === 'thin' ? '1.875rem' : '3.125rem')};

@@ -77,7 +77,10 @@ export const Overview = args => {
       header: '',
       Cell: ({ data: { icon, name } }: any) => (
         <ColumnLayout gap={1.5}>
-          <Icon size={40} name={icon} /> <Text type="body 2">{name}</Text>
+          <Icon size={40} name={icon} />{' '}
+          <Text as="span" type="body 2">
+            {name}
+          </Text>
         </ColumnLayout>
       ),
       alignText: 'left',
@@ -85,7 +88,7 @@ export const Overview = args => {
     value: {
       header: '',
       Cell: ({ data: { symbol, value } }) => (
-        <Text type="body 2">
+        <Text as="span" type="body 2">
           {value}
           {symbol}
         </Text>
@@ -109,9 +112,9 @@ export const Overview = args => {
             <GridLayout.Column span={6}>
               <CardLayout>
                 <BoxLayout gap={2}>
-                  <StackLayout gap={2}>
+                  <StackLayout gap={1.875}>
                     <ColumnLayout center gap={2} align="space-between">
-                      <StackLayout gap={0.5}>
+                      <StackLayout gap={0.625}>
                         <Text color="oxfordBlue" type="heading 3">
                           Origin chain
                         </Text>
@@ -175,7 +178,7 @@ export const Overview = args => {
                       </StackLayout>
                       <Icon size={40} name="transfer" />
 
-                      <StackLayout gap={0.5}>
+                      <StackLayout gap={0.625}>
                         <Text color="oxfordBlue" type="heading 3">
                           Destination chain
                         </Text>
@@ -238,7 +241,7 @@ export const Overview = args => {
                       </StackLayout>
                     </ColumnLayout>
 
-                    <StackLayout gap={0.5}>
+                    <StackLayout gap={0.625}>
                       <Text color="oxfordBlue" type="heading 3">
                         Origin account
                       </Text>
@@ -250,106 +253,107 @@ export const Overview = args => {
                         icon={undefined}
                       />
                     </StackLayout>
+                    <StackLayout gap={1}>
+                      <StackLayout gap={0.625}>
+                        <Text color="oxfordBlue" type="heading 3">
+                          Destination account
+                        </Text>
+                        <AddressInput
+                          className="u-full-width"
+                          name="destinationChain"
+                          value=""
+                          networkName=""
+                          icon={undefined}
+                        />
+                      </StackLayout>
 
-                    <StackLayout gap={0.5}>
-                      <Text color="oxfordBlue" type="heading 3">
-                        Destination account
-                      </Text>
-                      <AddressInput
-                        className="u-full-width"
-                        name="destinationChain"
-                        value=""
-                        networkName=""
-                        icon={undefined}
-                      />
-                    </StackLayout>
-
-                    <StackLayout gap={3}>
-                      <StackLayout gap={0.5}>
-                        <ColumnLayout align="space-between">
-                          <Text color="oxfordBlue" type="heading 3">
-                            Amount
-                          </Text>
-                          <Text color="oxfordBlue" type="body 1">
-                            0 (in Moonbeam)
-                          </Text>
-                        </ColumnLayout>
-
-                        <ColumnLayout gap={2} align="space-between">
-                          <ColumnLayout className="u-full-width">
-                            <BaseInput
-                              className="u-full-width"
-                              width="100%"
-                              type="number"
-                              name="assetAmount"
-                              value=""
-                              height="large"
-                            />
-                            <Button
-                              appearance="secondary"
-                              variant="large"
-                              size="small"
-                              className="u-fit-content-width"
-                            >
-                              MAX
-                            </Button>
+                      <StackLayout gap={3.315}>
+                        <StackLayout gap={0.5}>
+                          <ColumnLayout align="space-between">
+                            <Text as="span" color="oxfordBlue" type="heading 3">
+                              Amount
+                            </Text>
+                            <Text as="span" color="oxfordBlue" type="body 1">
+                              0 (in Moonbeam)
+                            </Text>
                           </ColumnLayout>
-                          <Menu
-                            left
-                            bottom
-                            positionOffset={{ top: 5, left: 0 }}
-                            forceClose={closeMenu}
-                            onClose={handleClose}
-                            toggler={
+
+                          <ColumnLayout gap={2} align="space-between">
+                            <ColumnLayout className="u-full-width">
+                              <BaseInput
+                                className="u-full-width"
+                                width="100%"
+                                type="number"
+                                name="assetAmount"
+                                value=""
+                                height="large"
+                              />
                               <Button
                                 appearance="secondary"
                                 variant="large"
                                 size="small"
+                                className="u-fit-content-width"
                               >
-                                <>
-                                  <Text as="span" type="body 2">
-                                    {selectedToken}
-                                  </Text>
-                                  <BoxLayout gap={0.75}>
-                                    <Icon
-                                      name="arrow-down"
-                                      color="oxfordBlue"
-                                    />
-                                  </BoxLayout>
-                                </>
+                                MAX
                               </Button>
-                            }
-                            field={
-                              <StackLayout>
-                                {tokens.map(token => (
-                                  <MenuItem
-                                    key={token}
-                                    appearance="text"
-                                    variant="large"
-                                    size="large"
-                                    onClick={() => setSelectedToken(token)}
-                                    className="u-full-width"
-                                  >
-                                    <Text type="body 2">{token}</Text>
-                                  </MenuItem>
-                                ))}
-                              </StackLayout>
-                            }
-                          />
-                        </ColumnLayout>
-                      </StackLayout>
+                            </ColumnLayout>
+                            <Menu
+                              left
+                              bottom
+                              positionOffset={{ top: 5, left: 0 }}
+                              forceClose={closeMenu}
+                              onClose={handleClose}
+                              toggler={
+                                <Button
+                                  appearance="secondary"
+                                  variant="large"
+                                  size="small"
+                                >
+                                  <>
+                                    <Text as="span" type="body 2">
+                                      {selectedToken}
+                                    </Text>
+                                    <BoxLayout gap={0.75}>
+                                      <Icon
+                                        name="arrow-down"
+                                        color="oxfordBlue"
+                                      />
+                                    </BoxLayout>
+                                  </>
+                                </Button>
+                              }
+                              field={
+                                <StackLayout>
+                                  {tokens.map(token => (
+                                    <MenuItem
+                                      key={token}
+                                      appearance="text"
+                                      variant="large"
+                                      size="large"
+                                      onClick={() => setSelectedToken(token)}
+                                      className="u-full-width"
+                                    >
+                                      <Text type="body 2">{token}</Text>
+                                    </MenuItem>
+                                  ))}
+                                </StackLayout>
+                              }
+                            />
+                          </ColumnLayout>
+                        </StackLayout>
 
-                      <Button
-                        className="u-full-width"
-                        appearance="dark"
-                        size="large"
-                        variant="large"
-                      >
-                        Transfer
-                      </Button>
+                        <Button
+                          className="u-full-width"
+                          appearance="dark"
+                          size="large"
+                          variant="large"
+                        >
+                          Transfer
+                        </Button>
+                      </StackLayout>
                     </StackLayout>
                   </StackLayout>
-                  <BoxLayout gap={2} />
+                  <BoxLayout gap={2.315} />
                 </BoxLayout>
               </CardLayout>
             </GridLayout.Column>
@@ -358,11 +362,18 @@ export const Overview = args => {
                 <Table
                   columns={columns}
                   data={data}
-                  titleComponent="Cross chain assets"
+                  titleComponent={
+                    <>
+                      <Text as="span" type="heading 2">
+                        Cross chain assets
+                      </Text>
+                      <BoxLayout gap={1.15} />
+                    </>
+                  }
                   columnSpacing
                   compact
                 />
-                <BoxLayout gap={3} />
+                <BoxLayout gap={3.25} />
               </CardLayout>
             </GridLayout.Column>
           </GridLayout>
