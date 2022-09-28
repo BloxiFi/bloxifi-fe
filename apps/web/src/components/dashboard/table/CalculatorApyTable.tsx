@@ -4,17 +4,19 @@ import {
   Button,
   CardLayout,
   StackLayout,
-  GridLayout,
   Icon,
   Text,
   BaseInput,
   RangeInput,
   Menu,
   MenuItem,
+  ColumnLayout,
 } from '@bloxifi/ui'
 import { useCalculateAPY } from '@bloxifi/core/src/hooks/useCalculateAPY'
 import { useTranslation } from 'react-i18next'
 import { useFormatNumber } from '@bloxifi/core'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 interface CalculatorProps {
   /**
@@ -23,7 +25,7 @@ interface CalculatorProps {
   readonly calctype?: string
 }
 
-//in the future, rewrite hook and UI to use token address not symbol
+//TODO rewrite hook and UI to use token address not symbol
 //export type tokensList = keyof (typeof TOKENS)
 
 export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
@@ -31,7 +33,6 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
 }: CalculatorProps) => {
   const { t } = useTranslation()
   const [duration, setDuration] = useState<string>('24')
-  const [assetAmount, setAssetAmount] = useState<string>('100')
 
   const [labelPlural, setLabelPlural] = useState<string>('months')
   const [closeMenu, setCloseMenu] = useState(false)
@@ -48,17 +49,49 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
   const [returnAmount, setReturnAmount] = useState(1)
   const [returnPercent, setReturnPercent] = useState(1)
 
+  const assetAmountValidationSchemaa = Yup.object().shape({
+    assetAmount: Yup.number()
+      .typeError(t('global.errors.numbersOnly'))
+      .positive(t('global.errors.positiveValue'))
+      .required(t('global.errors.required')),
+  })
+
+  const formik = useFormik({
+    initialValues: { assetAmount: 100 },
+    validationSchema: assetAmountValidationSchemaa,
+    onSubmit: undefined,
+  })
+
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    setFieldValue,
+    setFieldTouched,
+  } = formik
+
+  const setAssetAmount = async (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement
+    await setFieldValue('assetAmount', target.value, true)
+    await setFieldTouched('assetAmount', true, true)
+  }
+
+  const checkValue = (value: number) => {
+    return value > 0 && value !== null ? value : 0
+  }
+
   const responseAPY = useCalculateAPY({
     tokenSymbol: assetSelected,
-    tokenAmount: Number(assetAmount),
+    tokenAmount: checkValue(values.assetAmount),
     daysAmount: Number(duration) * 30,
     simulationType: calctype,
   })
 
   useEffect(() => {
     if (responseAPY && responseAPY !== null) {
-      setReturnAmount(responseAPY[0])
-      setReturnPercent(responseAPY[1])
+      setReturnAmount(checkValue(responseAPY[0]))
+      setReturnPercent(checkValue(responseAPY[1]))
     }
   }, [responseAPY])
 
@@ -73,98 +106,133 @@ export const CalculatorApyTable: FunctionComponent<CalculatorProps> = ({
   return (
     <CardLayout>
       <BoxLayout gap={2}>
-        <StackLayout gap={2.815}>
+        <StackLayout gap={2}>
           <Text as="span" color="oxfordBlue" type="heading 2">
-            {calctype} APY Calculator
+            {t('dashboard.APYcalculator.title', { type: calctype })}
           </Text>
-          <GridLayout>
-            <GridLayout.Column span={3}>
-              <StackLayout>
-                <Text as="span" color="oxfordBlue" type="heading 3">
-                  {t('global.inputs.chooseCurrency')}
+
+          <ColumnLayout gap={2}>
+            <StackLayout gap={0.5}>
+              <Text color="oxfordBlue" type="heading 3">
+                {t('global.inputs.chooseCurrency')}
+              </Text>
+              <Menu
+                left
+                bottom
+                positionOffset={{ top: 5, left: 0 }}
+                forceClose={closeMenu}
+                onClose={handleClose}
+                toggler={
+                  <Button appearance="secondary" variant="thin" size="medium">
+                    <>
+                      {assetSelected}
+                      <BoxLayout gap={0.75}>
+                        <Icon name="arrow-down" color="oxfordBlue" />
+                      </BoxLayout>
+                    </>
+                  </Button>
+                }
+                field={
+                  <StackLayout>
+                    {tokens.map(token => (
+                      <MenuItem
+                        key={token}
+                        appearance="text"
+                        variant="large"
+                        size="large"
+                        onClick={() => chooseAsset({ token })}
+                      >
+                        {token}
+                      </MenuItem>
+                    ))}
+                  </StackLayout>
+                }
+              />
+            </StackLayout>
+
+            <StackLayout gap={0.5} className="u-full-width">
+              <Text color="oxfordBlue" type="heading 3">
+                {t('global.inputs.amount')}
+              </Text>
+              <BaseInput
+                type="number"
+                name="assetAmount"
+                value={values.assetAmount}
+                onInput={setAssetAmount}
+                onBlur={handleBlur}
+                status={
+                  errors.assetAmount && touched.assetAmount
+                    ? 'error'
+                    : undefined
+                }
+                info={
+                  errors.assetAmount &&
+                  touched.assetAmount &&
+                  errors.assetAmount
+                }
+              />
+            </StackLayout>
+          </ColumnLayout>
+
+          <StackLayout gap={1}>
+            <RangeInput
+              name="duration"
+              title={`${calctype} duration`}
+              showlabel
+              step={1}
+              min={1}
+              max={36}
+              type="range"
+              value={duration}
+              onInput={e => {
+                setDuration((e.target as HTMLInputElement).value)
+              }}
+            />
+
+            <StackLayout>
+              <Text color="oxfordBlue" type="heading 3">
+                {t('dashboard.APYcalculator.duration', {
+                  duration,
+                  labelPlural,
+                })}
+              </Text>
+              <ColumnLayout gap={0.5}>
+                <Text
+                  as="span"
+                  color="oxfordBlue"
+                  type="big-text"
+                  bold
+                  className="u-text-break-word"
+                >
+                  {useFormatNumber({
+                    value: returnAmount,
+                    decimals: 5,
+                    percent: false,
+                  })}
                 </Text>
-                <Menu
-                  left
-                  bottom
-                  positionOffset={{ top: 5, left: 0 }}
-                  forceClose={closeMenu}
-                  onClose={handleClose}
-                  toggler={
-                    <Button appearance="secondary" variant="thin" size="medium">
-                      <>
-                        {assetSelected}
-                        <BoxLayout gap={0.75}>
-                          <Icon name="arrow-down" color="white" />
-                        </BoxLayout>
-                      </>
-                    </Button>
-                  }
-                  field={
-                    <StackLayout>
-                      {tokens.map(token => (
-                        <MenuItem
-                          key={token}
-                          appearance="text"
-                          variant="large"
-                          size="large"
-                          onClick={() => chooseAsset({ token })}
-                        >
-                          {token}
-                        </MenuItem>
-                      ))}
-                    </StackLayout>
-                  }
-                />
-              </StackLayout>
-            </GridLayout.Column>
-            <GridLayout.Column span={5}>
-              <StackLayout>
-                <Text as="span" color="oxfordBlue" type="heading 3">
-                  {t('global.inputs.amount')}
+                <Text
+                  as="span"
+                  color="oxfordBlue"
+                  type="big-text"
+                  bold
+                  className="u-text-break-word"
+                >
+                  {assetSelected}
                 </Text>
-                <BaseInput
-                  name="assetAmount"
-                  value={assetAmount}
-                  onInput={e => {
-                    setAssetAmount((e.target as HTMLInputElement).value)
-                  }}
-                />
-              </StackLayout>
-            </GridLayout.Column>
-          </GridLayout>
-          <RangeInput
-            name="duration"
-            title={`${calctype} duration`}
-            showlabel
-            step={1}
-            min={1}
-            max={36}
-            type="range"
-            value={duration}
-            onInput={e => {
-              setDuration((e.target as HTMLInputElement).value)
-            }}
-          />
-          <StackLayout>
-            <Text as="span" color="oxfordBlue" type="heading 3">
-              In {duration} {labelPlural} time:
-            </Text>
-            <Text as="span" color="oxfordBlue" type="heading 2">
-              {useFormatNumber({
-                value: returnAmount,
-                decimals: 5,
-                percent: false,
-              })}{' '}
-              {assetSelected} (
-              {useFormatNumber({
-                value: returnPercent,
-                decimals: 2,
-                percent: true,
-              })}
-              )
-            </Text>
+                <Text as="span" color="oxfordBlue" type="big-text">
+                  (
+                  {useFormatNumber({
+                    value: returnPercent,
+                    decimals: 2,
+                    percent: true,
+                  })}
+                  )
+                </Text>
+              </ColumnLayout>
+            </StackLayout>
           </StackLayout>
         </StackLayout>
+        <BoxLayout gap={1.5} />
       </BoxLayout>
     </CardLayout>
   )

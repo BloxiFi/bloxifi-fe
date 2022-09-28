@@ -11,18 +11,15 @@ export interface RangeInputProps extends HTMLProps<HTMLInputElement> {
    * The bottom label shows min and max values
    */
   showlabel?: boolean
+  /**
+   * Height of the scroll bar wrapper container
+   */
+  containerHeight?: number
 }
-
-//export type RangeInputProps = HTMLProps<HTMLInputElement>
-
-/**
- * Height of the scroll bar wrapper container
- */
-const containerHeight = 30
 
 export const RangeInput = forwardRef(
   (
-    { showlabel, ...props }: RangeInputProps,
+    { showlabel, containerHeight, ...props }: RangeInputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const max = Number(props.max)
@@ -30,7 +27,7 @@ export const RangeInput = forwardRef(
     const percentage = numberToPercentage((Number(props.value) || 0) / max)
 
     return (
-      <Wrapper>
+      <Wrapper containerHeight={containerHeight}>
         {props.title && (
           <Title color="oxfordBlue" type="heading 3">
             {props.title}
@@ -54,10 +51,14 @@ export const RangeInput = forwardRef(
   },
 )
 
-const Wrapper = styled.div`
-  height: ${containerHeight}px;
+const Wrapper = styled.div<{ containerHeight: number }>`
+  height: ${({ containerHeight }) => {
+    if (containerHeight) {
+      return `${containerHeight}px`
+    }
+    return 'auto'
+  }};
   width: 100%;
-  margin-top: 1rem;
 
   #bottom-label {
     transform: translate(0, -10px);
