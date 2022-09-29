@@ -9,7 +9,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
   >
     <button
       appearance="text"
-      className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-gicCDI iJmeLr u-fit-content-width"
+      className="sc-hKMtZM sc-papXJ jKfTjM fikKSz sc-gicCDI iJmeLr u-fit-content-width"
       data-element="button"
       disabled={false}
       icon="close"
@@ -80,13 +80,14 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                     className="sc-gXmSlM dJFjIR"
                   >
                     <div
-                      className="sc-breuTD krXkoK"
+                      className="sc-breuTD jHPOPw"
                     >
                       <span
-                        className="sc-bczRLJ ehiAyy"
+                        className="sc-bczRLJ enkMFE"
                       >
                         <div
-                          className="sc-gsnTZi ZViBu"
+                          className="sc-gsnTZi jenDfF"
+                          height="thin"
                         >
                           <input
                             disabled={false}
@@ -177,7 +178,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                       className="sc-evZas jlVWyS"
                     >
                       <div
-                        className="sc-breuTD zJbNj"
+                        className="sc-breuTD bIKjZh"
                       >
                         <span
                           className="sc-fEOsli dcHyoc"
@@ -235,7 +236,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
   >
     <button
       appearance="text"
-      className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-gicCDI iJmeLr u-fit-content-width"
+      className="sc-hKMtZM sc-papXJ jKfTjM fikKSz sc-gicCDI iJmeLr u-fit-content-width"
       data-element="button"
       disabled={false}
       icon="close"
@@ -306,13 +307,14 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     className="sc-gXmSlM dJFjIR"
                   >
                     <div
-                      className="sc-breuTD krXkoK"
+                      className="sc-breuTD jHPOPw"
                     >
                       <span
-                        className="sc-bczRLJ ehiAyy"
+                        className="sc-bczRLJ enkMFE"
                       >
                         <div
-                          className="sc-gsnTZi ZViBu"
+                          className="sc-gsnTZi jenDfF"
+                          height="thin"
                         >
                           <input
                             disabled={false}
@@ -402,7 +404,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     className="sc-gXmSlM hlwLoW"
                   >
                     <div
-                      className="sc-breuTD zJbNj"
+                      className="sc-breuTD bIKjZh"
                     >
                       <span
                         className="sc-fEOsli dcHyoc"
@@ -435,7 +437,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                       className="sc-evZas jlVWyS"
                     >
                       <div
-                        className="sc-breuTD zJbNj"
+                        className="sc-breuTD bIKjZh"
                       >
                         <span
                           className="sc-fEOsli dcHyoc"
@@ -516,7 +518,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
   >
     <button
       appearance="text"
-      className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-gicCDI iJmeLr u-fit-content-width"
+      className="sc-hKMtZM sc-papXJ jKfTjM fikKSz sc-gicCDI iJmeLr u-fit-content-width"
       data-element="button"
       disabled={false}
       icon="close"
@@ -587,13 +589,14 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     className="sc-gXmSlM dJFjIR"
                   >
                     <div
-                      className="sc-breuTD krXkoK"
+                      className="sc-breuTD jHPOPw"
                     >
                       <span
-                        className="sc-bczRLJ ehiAyy"
+                        className="sc-bczRLJ enkMFE"
                       >
                         <div
-                          className="sc-gsnTZi ZViBu"
+                          className="sc-gsnTZi jenDfF"
+                          height="thin"
                         >
                           <input
                             disabled={false}
@@ -723,7 +726,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                       className="sc-evZas jlVWyS"
                     >
                       <div
-                        className="sc-breuTD zJbNj"
+                        className="sc-breuTD bIKjZh"
                       >
                         <span
                           className="sc-fEOsli dcHyoc"
@@ -781,7 +784,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
   >
     <button
       appearance="text"
-      className="sc-hKMtZM sc-papXJ jKfTjM ltXRM sc-gicCDI iJmeLr u-fit-content-width"
+      className="sc-hKMtZM sc-papXJ jKfTjM fikKSz sc-gicCDI iJmeLr u-fit-content-width"
       data-element="button"
       disabled={false}
       icon="close"
@@ -852,13 +855,14 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                     className="sc-gXmSlM dJFjIR"
                   >
                     <div
-                      className="sc-breuTD krXkoK"
+                      className="sc-breuTD jHPOPw"
                     >
                       <span
-                        className="sc-bczRLJ ehiAyy"
+                        className="sc-bczRLJ enkMFE"
                       >
                         <div
-                          className="sc-gsnTZi ZViBu"
+                          className="sc-gsnTZi jenDfF"
+                          height="thin"
                         >
                           <input
                             disabled={false}
@@ -951,7 +955,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                       className="sc-evZas jlVWyS"
                     >
                       <div
-                        className="sc-breuTD zJbNj"
+                        className="sc-breuTD bIKjZh"
                       >
                         <span
                           className="sc-fEOsli dcHyoc"
@@ -992,7 +996,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                       className="sc-evZas jlVWyS"
                     >
                       <div
-                        className="sc-breuTD zJbNj"
+                        className="sc-breuTD bIKjZh"
                       >
                         <span
                           className="sc-fEOsli dcHyoc"

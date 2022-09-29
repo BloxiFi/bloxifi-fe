@@ -46,7 +46,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                         Your deposit
                       </span>
                       <div
-                        className="sc-breuTD iSAPZE"
+                        className="sc-breuTD cxWDJq"
                       >
                         <span
                           className="sc-fEOsli kDPmAh"
@@ -570,7 +570,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     className="sc-iAvgwm eiTdTz"
                   >
                     <div
-                      className="sc-breuTD eqtFAo c-table__header--progressbar"
+                      className="sc-breuTD djglzS c-table__header--progressbar"
                     >
                       <div
                         className="sc-evZas cuIpxG"
