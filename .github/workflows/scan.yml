@@ -18,7 +18,7 @@ jobs:
         uses: github/super-linter@v4
         env:
           # VALIDATE_ALL_CODEBASE: true
-          DEFAULT_BRANCH: super-lint-gha
+          DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_YAML: false
           VALIDATE_JSON: false
