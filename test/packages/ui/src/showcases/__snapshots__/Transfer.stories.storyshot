@@ -117,7 +117,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                     <h3
                       className="sc-fEOsli cgiuxf c-text--heading-3 c-text--color-oxfordBlue"
                     >
-                      Origin chain
+                      Origin Chain
                     </h3>
                     <span
                       className="sc-bBXxYQ iaAaIr"
@@ -155,7 +155,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                     <h3
                       className="sc-fEOsli cgiuxf c-text--heading-3 c-text--color-oxfordBlue"
                     >
-                      Destination chain
+                      Destination Chain
                     </h3>
                     <span
                       className="sc-bBXxYQ iaAaIr"
@@ -412,7 +412,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       className="sc-fEOsli bobLcg"
                       type="heading 2"
                     >
-                      Cross chain assets
+                      Cross Chain Assets
                     </span>
                     <div
                       className="sc-kDDrLX czwktG"

@@ -116,7 +116,7 @@ export const Overview = args => {
                     <ColumnLayout center gap={2} align="space-between">
                       <StackLayout gap={0.625}>
                         <Text color="oxfordBlue" type="heading 3">
-                          Origin chain
+                          Origin Chain
                         </Text>
                         <Menu
                           left
@@ -180,7 +180,7 @@ export const Overview = args => {
 
                       <StackLayout gap={0.625}>
                         <Text color="oxfordBlue" type="heading 3">
-                          Destination chain
+                          Destination Chain
                         </Text>
                         <Menu
                           left
@@ -365,7 +365,7 @@ export const Overview = args => {
                   titleComponent={
                     <>
                       <Text as="span" type="heading 2">
-                        Cross chain assets
+                        Cross Chain Assets
                       </Text>
                       <BoxLayout gap={1.15} />
                     </>
