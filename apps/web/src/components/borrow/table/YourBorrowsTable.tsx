@@ -33,7 +33,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
   } = WalletContainer.useContainer()
   const userReservesWithDept = userReserves.filter(
-    (reserve: UserReserveData) => reserve.currentTotalDebt !== 0,
+    (reserve: UserReserveData) => Number(reserve.currentTotalDebt) !== 0,
   )
 
   const [modalData, setModalData] = useState<RepayModalData>()
@@ -87,7 +87,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
           variant="thin"
           size="small"
           className="u-full-width"
-          disabled={currentTotalDebt < MIN_VALUE_FOR_TRANSACTION}
+          disabled={Number(currentTotalDebt) < MIN_VALUE_FOR_TRANSACTION}
           onClick={() =>
             openModal({
               currentTotalDebt,

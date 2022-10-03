@@ -167,7 +167,7 @@ export const WithdrawModal = ({
 
   const calculateRemainingSupply = () => {
     const remainingSupply =
-      reserveData.currentATokenBalance - Number(values.amount)
+      Number(reserveData.currentATokenBalance) - Number(values.amount)
     if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }

@@ -137,7 +137,7 @@ export const DepositModal = ({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(reserveData.balance, t('global.errors.exceededBalance'))
+      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
   })
 

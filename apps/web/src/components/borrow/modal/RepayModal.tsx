@@ -3,6 +3,7 @@ import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
   BorrowAndLending,
   calculateHealthFactor,
+  getMaxRepayAmount,
   useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
@@ -86,23 +87,17 @@ export const RepayModal = ({
     }
   }
 
-  //Maximum amount that can be repayed is min value of current token balance or current token borrow debt.
-  const maxRepayAmount =
-    Number(reserveData.balance) < Number(reserveData.currentTotalDebt)
-      ? reserveData.balance
-      : reserveData.currentTotalDebt
+  const maxRepayAmount = getMaxRepayAmount(
+    reserveData.balance,
+    reserveData.currentTotalDebt,
+  )
 
   const repayValidationSchemaa = Yup.object().shape({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(maxRepayAmount, t('global.errors.exceededBalance'))
+      .max(Number(maxRepayAmount), t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
-    /**
-     * TODO need to research more requirements.
-     * - Compare with health factor
-     * - Max amount to withdraw
-     */
   })
 
   const formik = useFormik({
@@ -138,7 +133,8 @@ export const RepayModal = ({
   const isRepayDisabled = isInputDisabled || !!errors.amount || !values.amount
 
   const calculateRemainingDebt = () => {
-    const remainingSupply = reserveData.currentTotalDebt - Number(values.amount)
+    const remainingSupply =
+      Number(reserveData.currentTotalDebt) - Number(values.amount)
     if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }

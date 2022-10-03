@@ -36,7 +36,7 @@ type DefaultReserveData = {
   symbol: TokenList
   icon: string
   decimals: number
-  balance: number
+  balance: string
   supplyAPY: number
   liquidityRate: number
   variableBorrowAPY: number
@@ -46,14 +46,14 @@ type DefaultReserveData = {
   reserveLiquidationThreshold: number
 }
 export type ReservesData = DefaultReserveData & {
-  totalATokenSupply: number
-  totalCurrentVariableDebt: number
+  totalATokenSupply: string
+  totalCurrentVariableDebt: string
 }
 
 export type UserReserveData = DefaultReserveData & {
-  currentATokenBalance: number
+  currentATokenBalance: string
   currentVariableDebt: string
-  currentTotalDebt: number
+  currentTotalDebt: string
   usageAsCollateralEnabledOnUser: boolean
   baseLTVasCollateral: number
 }
@@ -252,8 +252,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-              priceInEth: bigNumberToString(reserve.price.priceInEth),
-              usdPriceEth: bigNumberToString(reserve.price.oracle.usdPriceEth),
+              priceInEth: bigNumberToNumber(reserve.price.priceInEth),
+              usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
               totalATokenSupply: bigNumberToString(reserve.totalATokenSupply),
               totalCurrentVariableDebt: bigNumberToString(
                 reserve.totalCurrentVariableDebt,
@@ -300,8 +300,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       fullName: Assets[symbol].fullName,
       supplyAPY: calculateAPY(liquidityRate),
       variableBorrowAPY: calculateAPY(variableBorrowRate),
-      priceInEth: bigNumberToString(price.priceInEth),
-      usdPriceEth: bigNumberToString(price.oracle.usdPriceEth),
+      priceInEth: bigNumberToNumber(price.priceInEth),
+      usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
       baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
       reserveLiquidationThreshold:
         reserveLiquidationThreshold * Math.pow(10, -4),

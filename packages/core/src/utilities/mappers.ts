@@ -149,9 +149,8 @@ export const getDepositedAssetsUSD = ({
 }: GetDepositAssetUSD): number => {
   if (usageAsCollateralEnabledOnUser) {
     //total deposits of X asset denominated in USD
-    console.log('currentATokenBalance', currentATokenBalance)
     const depositAssetUSD = convertToUSD(
-      currentATokenBalance,
+      Number(currentATokenBalance),
       priceInEth,
       usdPriceEth,
     )
@@ -189,4 +188,20 @@ export const calculateAssetCollateralAfterTx = (
   reserveLiquidationThreshold: number,
 ): number => {
   return Number(amount) * priceInEth * reserveLiquidationThreshold
+}
+
+/**
+ * Maximum amount that can be repayed is min value of the current token balance or current token borrow debt.
+ * @param balance Current token balance
+ * @param currentTotalDebt Current token borrow debt
+ * @returns Maximum amount that can be repayed
+ */
+export const getMaxRepayAmount = (
+  balance: string,
+  currentTotalDebt: string,
+): string => {
+  if (Number(balance) < Number(currentTotalDebt)) {
+    return balance
+  }
+  return currentTotalDebt
 }

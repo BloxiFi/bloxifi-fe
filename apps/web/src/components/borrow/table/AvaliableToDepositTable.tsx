@@ -72,7 +72,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
           appearance="secondary"
           variant="medium"
           size="small"
-          disabled={data.balance < MIN_VALUE_FOR_TRANSACTION}
+          disabled={Number(data.balance) < MIN_VALUE_FOR_TRANSACTION}
           onClick={() => openModal(data)}
         >
           {t('global.buttons.deposit')}
