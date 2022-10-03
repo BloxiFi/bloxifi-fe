@@ -129,7 +129,13 @@ const TransferAsset = () => {
                 }
               />
             </StackLayout>
-            <Icon onClick={handleSwapButtonClick} size={40} name="transfer" />
+            <Button
+              onClick={handleSwapButtonClick}
+              appearance="text"
+              variant="large"
+              size="large"
+              icon="transfer"
+            />
 
             <StackLayout gap={0.625}>
               <Text color="oxfordBlue" type="heading 3">
