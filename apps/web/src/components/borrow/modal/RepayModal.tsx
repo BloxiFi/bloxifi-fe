@@ -66,7 +66,7 @@ export const RepayModal = ({
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
-  const repay = async (amount: number) => {
+  const repay = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.repay(
@@ -87,10 +87,11 @@ export const RepayModal = ({
   }
 
   //Maximum amount that can be repayed is min value of current token balance or current token borrow debt.
-  const maxRepayAmount = Math.min(
-    reserveData.balance,
-    reserveData.currentTotalDebt,
-  )
+  const maxRepayAmount =
+    Number(reserveData.balance) < Number(reserveData.currentTotalDebt)
+      ? reserveData.balance
+      : reserveData.currentTotalDebt
+
   const repayValidationSchemaa = Yup.object().shape({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
@@ -107,7 +108,7 @@ export const RepayModal = ({
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: repayValidationSchemaa,
-    onSubmit: values => repay(Number(values.amount)),
+    onSubmit: values => repay(values.amount),
   })
 
   const {
@@ -151,7 +152,7 @@ export const RepayModal = ({
   const futureHealthFactor = calculateHealthFactor({
     totalCollateralETH,
     totalBorrowETH:
-      totalBorrowETH - Number(values.amount) * reserveData.priceInEth,
+      totalBorrowETH - Number(values.amount) * Number(reserveData.priceInEth),
   })
 
   const setMaxValue = async () => {
