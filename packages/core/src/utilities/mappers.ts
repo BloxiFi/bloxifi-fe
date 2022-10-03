@@ -43,8 +43,12 @@ export function numberToPercentage(value: number): number {
   return Number(Number(percentage.toFixed(2)).toPrecision())
 }
 
+export function bigNumberToString(value: BigNumber): string {
+  return ethers.utils.formatUnits(value)
+}
+
 export function bigNumberToNumber(value: BigNumber): number {
-  return Number(ethers.utils.formatUnits(value))
+  return Number(bigNumberToString(value))
 }
 
 export const sumArrayItems = (array: number[]): number =>
@@ -145,6 +149,7 @@ export const getDepositedAssetsUSD = ({
 }: GetDepositAssetUSD): number => {
   if (usageAsCollateralEnabledOnUser) {
     //total deposits of X asset denominated in USD
+    console.log('currentATokenBalance', currentATokenBalance)
     const depositAssetUSD = convertToUSD(
       currentATokenBalance,
       priceInEth,

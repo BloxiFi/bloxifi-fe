@@ -90,7 +90,7 @@ export const YourDepositsTable: FunctionComponent = () => {
       Cell: ({ data: { currentATokenBalance } }) => (
         <TruncatedText>
           <Text type="body 3" as="span">
-            <FormattedNumber value={currentATokenBalance} />
+            <FormattedNumber value={Number(currentATokenBalance)} />
           </Text>
         </TruncatedText>
       ),

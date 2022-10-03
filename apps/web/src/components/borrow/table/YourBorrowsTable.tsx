@@ -64,7 +64,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
       header: 'Balance',
       Cell: ({ data: { currentTotalDebt } }) => (
         <TruncatedText>
-          <FormattedNumber value={currentTotalDebt} />
+          <FormattedNumber value={Number(currentTotalDebt)} />
         </TruncatedText>
       ),
       alignText: 'left',

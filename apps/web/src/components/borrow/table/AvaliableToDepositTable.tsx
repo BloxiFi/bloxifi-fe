@@ -45,7 +45,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
       Cell: ({ data: { balance } }) => {
         return (
           <TruncatedText>
-            <FormattedNumber value={balance} />
+            <FormattedNumber value={Number(balance)} />
           </TruncatedText>
         )
       },

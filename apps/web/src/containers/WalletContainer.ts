@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import {
   bigNumberToNumber,
+  bigNumberToString,
   BorrowAndLending,
   convertBalancesInUsdArray,
   getDepositedAssetsUSD,
@@ -246,15 +247,15 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
             const balance = await getReserveBalance(reserve.name)
             return {
               ...reserve,
-              balance: bigNumberToNumber(balance),
+              balance: bigNumberToString(balance),
               icon: Assets[reserve.symbol].icon,
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-              priceInEth: bigNumberToNumber(reserve.price.priceInEth),
-              usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
-              totalATokenSupply: bigNumberToNumber(reserve.totalATokenSupply),
-              totalCurrentVariableDebt: bigNumberToNumber(
+              priceInEth: bigNumberToString(reserve.price.priceInEth),
+              usdPriceEth: bigNumberToString(reserve.price.oracle.usdPriceEth),
+              totalATokenSupply: bigNumberToString(reserve.totalATokenSupply),
+              totalCurrentVariableDebt: bigNumberToString(
                 reserve.totalCurrentVariableDebt,
               ),
               reserveLiquidationThreshold:
@@ -292,15 +293,15 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }: UserReserveDataQuery) => ({
       ...rest,
       ...restReserve,
-      currentATokenBalance: bigNumberToNumber(currentATokenBalance),
-      currentTotalDebt: bigNumberToNumber(currentTotalDebt),
+      currentATokenBalance: bigNumberToString(currentATokenBalance),
+      currentTotalDebt: bigNumberToString(currentTotalDebt),
       symbol: symbol,
       icon: Assets[symbol].icon,
       fullName: Assets[symbol].fullName,
       supplyAPY: calculateAPY(liquidityRate),
       variableBorrowAPY: calculateAPY(variableBorrowRate),
-      priceInEth: bigNumberToNumber(price.priceInEth),
-      usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
+      priceInEth: bigNumberToString(price.priceInEth),
+      usdPriceEth: bigNumberToString(price.oracle.usdPriceEth),
       baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
       reserveLiquidationThreshold:
         reserveLiquidationThreshold * Math.pow(10, -4),
