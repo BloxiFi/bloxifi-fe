@@ -5,6 +5,7 @@ import { Web3Container } from '@/containers/Web3Container'
 import { WalletContainer } from '@/containers/WalletContainer'
 import { ConnectionStatus } from '@/components/borrow/ConnectionStatus'
 import { CrossChainAssetTable } from '@/components/transfer/table/CrossChainAssetTable'
+import TransferAsset from '@/components/transfer/TransferAsset'
 
 const TokenTransferPage = () => {
   const {
@@ -29,7 +30,7 @@ const TokenTransferPage = () => {
         <GridLayout>
           <GridLayout.Column span={6}>
             <StackLayout gap={1.5}>
-              <CrossChainAssetTable />
+              <TransferAsset />
             </StackLayout>
           </GridLayout.Column>
           <GridLayout.Column span={6}>
