@@ -8,6 +8,7 @@ import {
 import React, { FunctionComponent, useState } from 'react'
 import {
   convertBalancesInUsdArray,
+  getMaxRepayAmount,
   MIN_VALUE_FOR_TRANSACTION,
   numberToPercentage,
   sumArrayItems,
@@ -81,29 +82,33 @@ export const YourBorrowsTable: FunctionComponent = () => {
       header: '',
       Cell: ({
         data: { currentTotalDebt, symbol, underlyingAsset, icon, priceInEth },
-      }) => (
-        <Button
-          appearance="secondary"
-          variant="thin"
-          size="small"
-          className="u-full-width"
-          disabled={Number(currentTotalDebt) < MIN_VALUE_FOR_TRANSACTION}
-          onClick={() =>
-            openModal({
-              currentTotalDebt,
-              symbol,
-              underlyingAsset,
-              icon,
-              priceInEth,
-              balance: reserves.find(
-                reserve => reserve.underlyingAsset === underlyingAsset,
-              ).balance,
-            })
-          }
-        >
-          Repay
-        </Button>
-      ),
+      }) => {
+        const balance = reserves.find(
+          reserve => reserve.underlyingAsset === underlyingAsset,
+        ).balance
+        const maxRepayAmount = getMaxRepayAmount(balance, currentTotalDebt)
+        return (
+          <Button
+            appearance="secondary"
+            variant="thin"
+            size="small"
+            className="u-full-width"
+            disabled={Number(maxRepayAmount) < MIN_VALUE_FOR_TRANSACTION}
+            onClick={() =>
+              openModal({
+                currentTotalDebt,
+                symbol,
+                underlyingAsset,
+                icon,
+                priceInEth,
+                balance,
+              })
+            }
+          >
+            Repay
+          </Button>
+        )
+      },
       width: 160,
     },
   } as Record<string, ColumnData<UserReserveData>>
