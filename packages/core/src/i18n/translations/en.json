@@ -12,7 +12,8 @@
       "disconnectWallet": "Disconnect wallet",
       "viewOnExplorer": "View on explorer",
       "darkMode": "Dark mode",
-      "testnetMode": "Testnet mode"
+      "testnetMode": "Testnet mode",
+      "transfer": "Transfer"
     },
     "inputs": {
       "amount": "Amount",
@@ -104,6 +105,13 @@
   },
   "staking": {
     "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."
+  },
+  "transfer": {
+    "originChain": "Origin Chain",
+    "destinationChain": "Destination Chain",
+    "originAccount": "Origin account",
+    "destinationAccount": "Destination account",
+    "inNetworkLabel": "in {{network}}"
   },
   "pageNotFound": {
     "title": "404 - Page not found",
