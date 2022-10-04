@@ -306,7 +306,7 @@ module.exports = {
     }
 
     await puppeteer.waitAndClick(addNetworkPageElements.saveButton)
-    await puppeteer.waitAndClick(settingsPageElements.closeButton)
+    // await puppeteer.waitAndClick(settingsPageElements.closeButton)
 
     setNetwork(network)
 

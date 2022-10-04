@@ -16,5 +16,5 @@ export const HomePage = {
   },
   connectWalletFromHeader: () => {
     HomePage.connectWalletHeader_Button().click()
-  }
+  },
 }

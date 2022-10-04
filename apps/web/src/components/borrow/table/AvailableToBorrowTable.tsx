@@ -57,7 +57,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
       ),
       Cell: ({ data: { usdPriceEth, priceInEth, symbol } }) => {
         return (
-          <TruncatedText data-cy={"availableToBorrow " + symbol}>
+          <TruncatedText data-cy={'availableToBorrow ' + symbol}>
             <FormattedNumber
               value={convertUSDToAssetValue(
                 availableToBorrowUSD,
@@ -91,7 +91,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           appearance="secondary"
           variant="medium"
           size="small"
-          data-cy={"borrowBtn " + data.symbol}
+          data-cy={'borrowBtn ' + data.symbol}
           disabled={
             convertUSDToAssetValue(
               availableToBorrowUSD,

@@ -38,10 +38,20 @@ export const DepositTitleBox: FunctionComponent<Props> = ({
             <Tooltip
               element={
                 <ColumnLayout gap={0.5}>
-                  <Text color="oxfordBlue" as="span" type="body 2" data-cy="depositedBalance">
+                  <Text
+                    color="oxfordBlue"
+                    as="span"
+                    type="body 2"
+                    data-cy="depositedBalance"
+                  >
                     Balance
                   </Text>
-                  <Text as="span" color="oxfordBlue" bold data-cy="depositedBalanceUSD">
+                  <Text
+                    as="span"
+                    color="oxfordBlue"
+                    bold
+                    data-cy="depositedBalanceUSD"
+                  >
                     <FormattedNumber
                       value={totalSupplyBalance}
                       symbol="USD"
@@ -58,10 +68,20 @@ export const DepositTitleBox: FunctionComponent<Props> = ({
             <Tooltip
               element={
                 <ColumnLayout gap={0.5}>
-                  <Text color="oxfordBlue" as="span" type="body 2" data-cy="collateralBalance">
+                  <Text
+                    color="oxfordBlue"
+                    as="span"
+                    type="body 2"
+                    data-cy="collateralBalance"
+                  >
                     Collateral
                   </Text>
-                  <Text as="span" color="oxfordBlue" bold data-cy="collateralBalanceUSD">
+                  <Text
+                    as="span"
+                    color="oxfordBlue"
+                    bold
+                    data-cy="collateralBalanceUSD"
+                  >
                     <FormattedNumber
                       value={totalCollateral}
                       symbol="USD"

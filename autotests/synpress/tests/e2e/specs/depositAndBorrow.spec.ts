@@ -1,11 +1,15 @@
 import { HomePage } from '../pages/homePage'
 import { DepositAndBorrowPage } from '../pages/depositAndBorrow'
 
+let isFirstTest = true
 describe('Visibility of Deposit and Borrow Page', () => {
   beforeEach('Visit first subsystem', () => {
     cy.visit('/')
     HomePage.connectWalletFromHeader()
-    cy.acceptMetamaskAccess(false)
+    if (isFirstTest) {
+      cy.acceptMetamaskAccess(false)
+    }
+    isFirstTest = false
     HomePage.goToDepositAndBorrowPage()
   })
   it('Should check Your deposit elements visibility', () => {

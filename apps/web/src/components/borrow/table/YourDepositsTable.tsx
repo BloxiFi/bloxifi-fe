@@ -91,7 +91,7 @@ export const YourDepositsTable: FunctionComponent = () => {
       header: 'Balance',
       Cell: ({ data: { currentATokenBalance, symbol } }) => (
         <TruncatedText>
-          <Text type="body 3" as="span" data-cy={"depositedBalance " + symbol}>
+          <Text type="body 3" as="span" data-cy={'depositedBalance ' + symbol}>
             <FormattedNumber value={currentATokenBalance} />
           </Text>
         </TruncatedText>
@@ -109,7 +109,9 @@ export const YourDepositsTable: FunctionComponent = () => {
 
     collateral: {
       header: 'Collateral',
-      Cell: ({ data: { usageAsCollateralEnabledOnUser, underlyingAsset, symbol } }) => {
+      Cell: ({
+        data: { usageAsCollateralEnabledOnUser, underlyingAsset, symbol },
+      }) => {
         if (selectedCollateralAsset === underlyingAsset) {
           return (
             <CenterLayout>
@@ -120,7 +122,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           return (
             <Toggle
               checked={usageAsCollateralEnabledOnUser}
-              data-cy={"collateralToggle " + symbol}
+              data-cy={'collateralToggle ' + symbol}
               onClick={() =>
                 void toggleCollateral(
                   underlyingAsset,
@@ -143,7 +145,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           appearance="secondary"
           variant="thin"
           size="small"
-          data-cy={"withdrawBtn " + symbol}
+          data-cy={'withdrawBtn ' + symbol}
           className="u-full-width"
           disabled={currentATokenBalance < MIN_VALUE_FOR_TRANSACTION}
           onClick={() =>
