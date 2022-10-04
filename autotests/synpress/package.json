@@ -5,9 +5,14 @@
   "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
   "license": "MIT",
   "scripts": {
-    "test": "CYPRESS_REMOTE_DEBUGGING_PORT=9222 node -r dotenv/config node_modules/.bin/cypress open"
+    "test": "CYPRESS_REMOTE_DEBUGGING_PORT=9222 node -r dotenv/config node_modules/.bin/cypress open",
+    "start": "http-server dist -P http://localhost:3000? -g -s",
+    "test:e2e": "CYPRESS_REMOTE_DEBUGGING_PORT=9222 node -r dotenv/config node_modules/.bin/cypress run",
+    "ci:e2e": "start-server-and-test start http://localhost:3000 test:e2e"
   },
   "devDependencies": {
+    "start-server-and-test": "^1.14.0",
+    "http-server": "^14.1.1",
     "etherscan-api": "^10.2.0",
     "cypress": "^9.7.0",
     "@testing-library/cypress": "^8.0.2",

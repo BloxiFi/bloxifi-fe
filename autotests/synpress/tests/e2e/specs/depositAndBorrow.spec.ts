@@ -5,6 +5,7 @@ describe('Visibility of Deposit and Borrow Page', () => {
   beforeEach('Visit first subsystem', () => {
     cy.visit('/')
     HomePage.connectWalletFromHeader()
+    cy.acceptMetamaskAccess(false)
     HomePage.goToDepositAndBorrowPage()
   })
   it('Should check Your deposit elements visibility', () => {
