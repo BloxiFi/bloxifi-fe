@@ -108,7 +108,7 @@ export const BorrowModal = ({
     }
   }
 
-  const borrow = async (amount: number) => {
+  const borrow = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.borrow(
@@ -145,7 +145,7 @@ export const BorrowModal = ({
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: depositValidationSchemaa,
-    onSubmit: values => borrow(Number(values.amount)),
+    onSubmit: values => borrow(values.amount),
   })
 
   const {

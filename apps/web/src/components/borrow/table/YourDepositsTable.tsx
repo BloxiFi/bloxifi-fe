@@ -41,7 +41,7 @@ export const YourDepositsTable: FunctionComponent = () => {
   const [selectedCollateralAsset, setSelectedCollateralAsset] =
     useState<string>()
   const userReservesWithDept = userReserves.filter(
-    (reserve: UserReserveData) => reserve.currentATokenBalance !== 0,
+    (reserve: UserReserveData) => Number(reserve.currentATokenBalance) !== 0,
   )
   const [modalData, setModalData] = useState<WithdrawModalData>()
 
@@ -90,7 +90,7 @@ export const YourDepositsTable: FunctionComponent = () => {
       Cell: ({ data: { currentATokenBalance } }) => (
         <TruncatedText>
           <Text type="body 3" as="span">
-            <FormattedNumber value={currentATokenBalance} />
+            <FormattedNumber value={Number(currentATokenBalance)} />
           </Text>
         </TruncatedText>
       ),
@@ -150,7 +150,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           variant="thin"
           size="small"
           className="u-full-width"
-          disabled={currentATokenBalance < MIN_VALUE_FOR_TRANSACTION}
+          disabled={Number(currentATokenBalance) < MIN_VALUE_FOR_TRANSACTION}
           onClick={() =>
             openModal({
               balance,

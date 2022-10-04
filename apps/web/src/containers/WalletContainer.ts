@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import {
   bigNumberToNumber,
+  bigNumberToString,
   BorrowAndLending,
   convertBalancesInUsdArray,
   getDepositedAssetsUSD,
@@ -35,7 +36,7 @@ type DefaultReserveData = {
   symbol: TokenList
   icon: string
   decimals: number
-  balance: number
+  balance: string
   supplyAPY: number
   liquidityRate: number
   variableBorrowAPY: number
@@ -45,14 +46,14 @@ type DefaultReserveData = {
   reserveLiquidationThreshold: number
 }
 export type ReservesData = DefaultReserveData & {
-  totalATokenSupply: number
-  totalCurrentVariableDebt: number
+  totalATokenSupply: string
+  totalCurrentVariableDebt: string
 }
 
 export type UserReserveData = DefaultReserveData & {
-  currentATokenBalance: number
+  currentATokenBalance: string
   currentVariableDebt: string
-  currentTotalDebt: number
+  currentTotalDebt: string
   usageAsCollateralEnabledOnUser: boolean
   baseLTVasCollateral: number
 }
@@ -246,15 +247,15 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
             const balance = await getReserveBalance(reserve.name)
             return {
               ...reserve,
-              balance: bigNumberToNumber(balance),
+              balance: bigNumberToString(balance),
               icon: Assets[reserve.symbol].icon,
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
               priceInEth: bigNumberToNumber(reserve.price.priceInEth),
               usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
-              totalATokenSupply: bigNumberToNumber(reserve.totalATokenSupply),
-              totalCurrentVariableDebt: bigNumberToNumber(
+              totalATokenSupply: bigNumberToString(reserve.totalATokenSupply),
+              totalCurrentVariableDebt: bigNumberToString(
                 reserve.totalCurrentVariableDebt,
               ),
               reserveLiquidationThreshold:
@@ -292,8 +293,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }: UserReserveDataQuery) => ({
       ...rest,
       ...restReserve,
-      currentATokenBalance: bigNumberToNumber(currentATokenBalance),
-      currentTotalDebt: bigNumberToNumber(currentTotalDebt),
+      currentATokenBalance: bigNumberToString(currentATokenBalance),
+      currentTotalDebt: bigNumberToString(currentTotalDebt),
       symbol: symbol,
       icon: Assets[symbol].icon,
       fullName: Assets[symbol].fullName,
