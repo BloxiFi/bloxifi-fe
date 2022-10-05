@@ -138,10 +138,19 @@ jobs:
       #
       # Download artifact for e2e testing
       #
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         id: download-artifact
         with:
           name: artifact-fe
+          path: autotests/synpress
+
+      #
+      # Prepare dist folder to be deployed
+      #
+      - name: Move dist folder
+        id: prepare-dist
+        working-directory: ./autotests/synpress
+        run: mv apps/web/ ./
 
       #
       # Generate env from secrets for e2e testing
@@ -165,14 +174,14 @@ jobs:
       #
       - name: E2E test
         id: e2e-tests
-        run: mv ../../apps/web/* ./ && ./node_modules/.bin/cypress install && yarn ci:e2e
+        run: ./node_modules/.bin/cypress install && yarn ci:e2e
         working-directory: ./autotests/synpress
 
       #
       # Upload cypress video to artifact
       #
       - name: Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         id: upload-artifact-cypress
         with:
           name: artifact-fe
