@@ -144,6 +144,13 @@ jobs:
           name: artifact-fe
           path: autotests/synpress
 
+      - name: Display structure of downloaded files 1
+        run: ls -R
+
+      - name: Display structure of downloaded files 2
+        run: ls -R
+        working-directory: ./autotests/synpress
+
       #
       # Prepare dist folder to be deployed
       #
@@ -151,6 +158,10 @@ jobs:
         id: prepare-dist
         working-directory: ./autotests/synpress
         run: mv apps/web/ ./
+
+      - name: Display structure of downloaded files 3
+        run: ls -R
+        working-directory: ./autotests/synpress
 
       #
       # Generate env from secrets for e2e testing
