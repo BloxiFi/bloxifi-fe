@@ -5,13 +5,7 @@
 #
 name: Development
 
-on:
-  push:
-    branches:
-      - develop
-  pull_request:
-    branches:
-      - develop
+on: [push]
 
 jobs:
   build:
@@ -140,14 +134,14 @@ jobs:
       - name: Test
         id: unit-tests
         run: yarn test
-      
+
       #
       # Download artifact for e2e testing
       #
       - uses: actions/download-artifact@v2
         id: download-artifact
         with:
-          name: artifact-fe 
+          name: artifact-fe
 
       #
       # Run e2e tests
