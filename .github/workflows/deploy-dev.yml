@@ -41,6 +41,7 @@ jobs:
             **/.cache
             apps/**/node_modules/
             packages/**/node_modules/
+            autotests/**/node_modules/
             ~/.cache/Cypress
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
@@ -87,6 +88,8 @@ jobs:
   test:
     needs: [build]
     runs-on: ubuntu-latest
+    environment:
+      name: development
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
@@ -110,6 +113,7 @@ jobs:
             **/.cache
             apps/**/node_modules/
             packages/**/node_modules/
+            autotests/**/node_modules/
             ~/.cache/Cypress
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
@@ -136,6 +140,34 @@ jobs:
       - name: Test
         id: unit-tests
         run: yarn test
+      
+      #
+      # Download artifact for e2e testing
+      #
+      - uses: actions/download-artifact@v2
+        id: download-artifact
+        with:
+          name: artifact-fe 
+
+      #
+      # Run e2e tests
+      #
+      - name: E2E test
+        id: e2e-tests
+        run: cp ../../apps/web/* ./ && ./node_modules/.bin/cypress install && yarn ci:e2e
+        working-directory: ./autotests/synpress
+
+      #
+      # Upload cypress video to artifact
+      #
+      - name: Artifacts
+        uses: actions/upload-artifact@v2
+        id: upload-artifact-cypress
+        with:
+          name: artifact-fe
+          path: |
+            frontend/apps/web/cypress/videos
+            frontend/apps/web/cypress/screenshots
 
       #
       # Notify if there is a failure or if this is a pull_request event
