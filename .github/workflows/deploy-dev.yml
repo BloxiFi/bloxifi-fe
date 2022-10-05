@@ -165,7 +165,7 @@ jobs:
       #
       - name: E2E test
         id: e2e-tests
-        run: cp ../../apps/web/* ./ && ./node_modules/.bin/cypress install && yarn ci:e2e
+        run: mv ../../apps/web/* ./ && ./node_modules/.bin/cypress install && yarn ci:e2e
         working-directory: ./autotests/synpress
 
       #
@@ -177,8 +177,8 @@ jobs:
         with:
           name: artifact-fe
           path: |
-            frontend/apps/web/cypress/videos
-            frontend/apps/web/cypress/screenshots
+            autotests/synpress/tests/e2e/videos
+            autotests/synpress/tests/e2e/screenshots
 
       #
       # Notify if there is a failure or if this is a pull_request event
