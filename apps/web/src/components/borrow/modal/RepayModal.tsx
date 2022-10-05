@@ -3,6 +3,7 @@ import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
   BorrowAndLending,
   calculateHealthFactor,
+  getMaxRepayAmount,
   useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
@@ -66,7 +67,7 @@ export const RepayModal = ({
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
-  const repay = async (amount: number) => {
+  const repay = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.repay(
@@ -86,28 +87,23 @@ export const RepayModal = ({
     }
   }
 
-  //Maximum amount that can be repayed is min value of current token balance or current token borrow debt.
-  const maxRepayAmount = Math.min(
+  const maxRepayAmount = getMaxRepayAmount(
     reserveData.balance,
     reserveData.currentTotalDebt,
   )
+
   const repayValidationSchemaa = Yup.object().shape({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(maxRepayAmount, t('global.errors.exceededBalance'))
+      .max(Number(maxRepayAmount), t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
-    /**
-     * TODO need to research more requirements.
-     * - Compare with health factor
-     * - Max amount to withdraw
-     */
   })
 
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: repayValidationSchemaa,
-    onSubmit: values => repay(Number(values.amount)),
+    onSubmit: values => repay(values.amount),
   })
 
   const {
@@ -137,7 +133,8 @@ export const RepayModal = ({
   const isRepayDisabled = isInputDisabled || !!errors.amount || !values.amount
 
   const calculateRemainingDebt = () => {
-    const remainingSupply = reserveData.currentTotalDebt - Number(values.amount)
+    const remainingSupply =
+      Number(reserveData.currentTotalDebt) - Number(values.amount)
     if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }
@@ -151,7 +148,7 @@ export const RepayModal = ({
   const futureHealthFactor = calculateHealthFactor({
     totalCollateralETH,
     totalBorrowETH:
-      totalBorrowETH - Number(values.amount) * reserveData.priceInEth,
+      totalBorrowETH - Number(values.amount) * Number(reserveData.priceInEth),
   })
 
   const setMaxValue = async () => {

@@ -68,6 +68,7 @@ function useContainer(initialState: Web3ContainerProps) {
     try {
       await activateNetwork(new InjectedConnector({}), undefined, true)
       localStorage.setItem('isConnected', 'true')
+      setNetworkError(undefined)
     } catch (error) {
       setNetworkError(error)
     } finally {

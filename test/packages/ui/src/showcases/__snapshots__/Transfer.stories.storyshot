@@ -1,0 +1,611 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Showcases/Transfer Overview 1`] = `
+<div
+  className="sc-bBrHrO cbMfJH"
+>
+  <header
+    className="c-page-layout__header"
+  >
+    <div
+      className="sc-bjUoiL eXGQde"
+    >
+      <div
+        className="sc-idiyUo gFedQu"
+      >
+        <div
+          className="sc-hHLeRK dONXuR"
+        >
+          <a
+            aria-current="page"
+            className="sc-dIouRR gTJMko active"
+            data-cy="Dashboard"
+            href="/"
+            onClick={[Function]}
+          >
+            Dashboard
+          </a>
+          <a
+            className="sc-dIouRR gTJMko"
+            data-cy="Deposit & Borrow"
+            href="/deposit"
+            onClick={[Function]}
+          >
+            Deposit & Borrow
+          </a>
+          <a
+            className="sc-dIouRR gTJMko"
+            data-cy="More information"
+            href="/moreInformation"
+            onClick={[Function]}
+          >
+            More information
+          </a>
+          <a
+            className="sc-dIouRR gTJMko"
+            data-cy="Token Transfer"
+            href="/transfer"
+            onClick={[Function]}
+          >
+            Token Transfer
+          </a>
+        </div>
+        <div
+          className="sc-dmRaPn couMNs"
+        >
+          <button
+            appearance="primary-ghost"
+            className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+            data-element="button"
+            size="medium"
+            variant="medium"
+          >
+            Blox Balance
+          </button>
+          <button
+            appearance="primary-ghost"
+            className="sc-hKMtZM sc-iBkjds jQZGYc izdpQA"
+            data-element="button"
+            icon="metamask"
+            size="medium"
+            variant="medium"
+          />
+          <button
+            appearance="primary-ghost"
+            className="sc-hKMtZM sc-iBkjds jQZGYc izdpQA"
+            data-element="button"
+            icon="polkadot"
+            size="medium"
+            variant="medium"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+  <div
+    className="sc-evZas sc-ivTmOn klRKQA kPozQz"
+    gap={4}
+  >
+    <section
+      className="c-page-layout__section"
+    >
+      <div
+        className="sc-fnykZs fmpsuH"
+      >
+        <section
+          className="sc-hAZoDl kPgGYO"
+          span={6}
+        >
+          <div
+            className="sc-iqcoie iCcwRJ c-card-layout"
+          >
+            <div
+              className="sc-kDDrLX iFyoMD"
+              gap={2}
+            >
+              <div
+                className="sc-evZas knhRGJ"
+                gap={1.875}
+              >
+                <div
+                  className="sc-breuTD hgJqWg"
+                >
+                  <div
+                    className="sc-evZas kiomFT"
+                    gap={0.625}
+                  >
+                    <h3
+                      className="sc-fEOsli cgiuxf c-text--heading-3 c-text--color-oxfordBlue"
+                    >
+                      Origin Chain
+                    </h3>
+                    <span
+                      className="sc-bBXxYQ iaAaIr"
+                      data-element="menuWrapper"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-hKMtZM sc-jSMfEi eRsyu ioWRiD"
+                        data-element="button"
+                        onMouseUp={[Function]}
+                        size="medium"
+                        variant="large"
+                      >
+                        <div
+                          className="sc-kDDrLX fZLLEK"
+                          gap={0.5}
+                        />
+                        <span
+                          className="sc-fEOsli bzDQbX"
+                          type="body 2"
+                        >
+                          Moonriver
+                        </span>
+                        <div
+                          className="sc-kDDrLX ddEmQZ"
+                          gap={0.75}
+                        />
+                      </button>
+                    </span>
+                  </div>
+                  <div
+                    className="sc-evZas kiomFT"
+                    gap={0.625}
+                  >
+                    <h3
+                      className="sc-fEOsli cgiuxf c-text--heading-3 c-text--color-oxfordBlue"
+                    >
+                      Destination Chain
+                    </h3>
+                    <span
+                      className="sc-bBXxYQ iaAaIr"
+                      data-element="menuWrapper"
+                    >
+                      <button
+                        appearance="secondary"
+                        className="sc-hKMtZM sc-jSMfEi eRsyu ioWRiD"
+                        data-element="button"
+                        onMouseUp={[Function]}
+                        size="medium"
+                        variant="large"
+                      >
+                        <div
+                          className="sc-kDDrLX ddEmQZ"
+                          gap={0.75}
+                        />
+                        <span
+                          className="sc-fEOsli bzDQbX"
+                          type="body 2"
+                        >
+                          Karura
+                        </span>
+                        <div
+                          className="sc-kDDrLX ddEmQZ"
+                          gap={0.75}
+                        />
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="sc-evZas kiomFT"
+                  gap={0.625}
+                >
+                  <h3
+                    className="sc-fEOsli cgiuxf c-text--heading-3 c-text--color-oxfordBlue"
+                  >
+                    Origin account
+                  </h3>
+                  <div
+                    className="sc-olbas eXFlfA"
+                  >
+                    <div
+                      className="sc-gsnTZi kzqZLP u-full-width"
+                      height="large"
+                    >
+                      <input
+                        disabled={true}
+                        name="originChain"
+                        type="text"
+                        value=""
+                      />
+                      <div
+                        className="sc-breuTD gHrPtz sc-hiMGwR gfTank"
+                      >
+                        <div
+                          className="sc-breuTD cxWDJq"
+                        >
+                          <span
+                            className="sc-fEOsli iykYvH"
+                            type="body 3"
+                          >
+                            
+                          </span>
+                        </div>
+                        <span
+                          className="sc-fEOsli bzDQbX"
+                          type="body 2"
+                        >
+                          
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="sc-evZas itRWRR"
+                  gap={1}
+                >
+                  <div
+                    className="sc-evZas kiomFT"
+                    gap={0.625}
+                  >
+                    <h3
+                      className="sc-fEOsli cgiuxf c-text--heading-3 c-text--color-oxfordBlue"
+                    >
+                      Destination account
+                    </h3>
+                    <div
+                      className="sc-olbas eXFlfA"
+                    >
+                      <div
+                        className="sc-gsnTZi kzqZLP u-full-width"
+                        height="large"
+                      >
+                        <input
+                          disabled={true}
+                          name="destinationChain"
+                          type="text"
+                          value=""
+                        />
+                        <div
+                          className="sc-breuTD gHrPtz sc-hiMGwR gfTank"
+                        >
+                          <div
+                            className="sc-breuTD cxWDJq"
+                          >
+                            <span
+                              className="sc-fEOsli iykYvH"
+                              type="body 3"
+                            >
+                              
+                            </span>
+                          </div>
+                          <span
+                            className="sc-fEOsli bzDQbX"
+                            type="body 2"
+                          >
+                            
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="sc-evZas cfRyBG"
+                    gap={3.315}
+                  >
+                    <div
+                      className="sc-evZas fVMnEv"
+                      gap={0.5}
+                    >
+                      <div
+                        className="sc-breuTD ecwHVT"
+                      >
+                        <span
+                          className="sc-fEOsli cgiuxf"
+                          color="oxfordBlue"
+                          type="heading 3"
+                        >
+                          Amount
+                        </span>
+                        <span
+                          className="sc-fEOsli dcHyoc"
+                          color="oxfordBlue"
+                          type="body 1"
+                        >
+                          0 (in Moonbeam)
+                        </span>
+                      </div>
+                      <div
+                        className="sc-breuTD eBOjyA"
+                      >
+                        <div
+                          className="sc-breuTD eBbJgW u-full-width"
+                        >
+                          <span
+                            className="sc-bczRLJ hwXlkk u-full-width"
+                          >
+                            <div
+                              className="sc-gsnTZi kzqZLP u-full-width"
+                              height="large"
+                            >
+                              <input
+                                disabled={false}
+                                name="assetAmount"
+                                type="number"
+                                value=""
+                                width="100%"
+                              />
+                            </div>
+                            <span
+                              className="sc-dkzDqf eUqaxQ"
+                            >
+                              
+                            </span>
+                          </span>
+                          <button
+                            appearance="secondary"
+                            className="sc-hKMtZM sc-jSMfEi bhIYCU ioWRiD u-fit-content-width"
+                            data-element="button"
+                            size="small"
+                            variant="large"
+                          >
+                            MAX
+                          </button>
+                        </div>
+                        <span
+                          className="sc-bBXxYQ iaAaIr"
+                          data-element="menuWrapper"
+                        >
+                          <button
+                            appearance="secondary"
+                            className="sc-hKMtZM sc-jSMfEi ceimAv ioWRiD"
+                            data-element="button"
+                            onMouseUp={[Function]}
+                            size="small"
+                            variant="large"
+                          >
+                            <span
+                              className="sc-fEOsli bzDQbX"
+                              type="body 2"
+                            >
+                              MOVR
+                            </span>
+                            <div
+                              className="sc-kDDrLX ddEmQZ"
+                              gap={0.75}
+                            />
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                    <button
+                      appearance="dark"
+                      className="sc-hKMtZM sc-gKXOVf iOviQP llhpmf u-full-width"
+                      data-element="button"
+                      size="large"
+                      variant="large"
+                    >
+                      Transfer
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="sc-kDDrLX dsgkxG"
+                gap={2.315}
+              />
+            </div>
+          </div>
+        </section>
+        <section
+          className="sc-hAZoDl kPgGYO"
+          span={6}
+        >
+          <div
+            className="sc-iqcoie iCcwRJ c-card-layout"
+          >
+            <div
+              className="sc-kLLXSd iKmOmk"
+              data-element="tableWrapper"
+            >
+              <table
+                className="sc-ikZpkk eFtnVx"
+                data-element="table"
+              >
+                <caption>
+                  <div
+                    className="sc-iAvgwm eiTdTz"
+                  >
+                    <span
+                      className="sc-fEOsli bobLcg"
+                      type="heading 2"
+                    >
+                      Cross Chain Assets
+                    </span>
+                    <div
+                      className="sc-kDDrLX czwktG"
+                      gap={1.15}
+                    />
+                  </div>
+                </caption>
+                <thead
+                  className="sc-bZnhIo blrvud"
+                >
+                  <tr>
+                    <td
+                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
+                    >
+                      <div
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                      >
+                        
+                      </div>
+                    </td>
+                    <td
+                      className="sc-gXmSlM sc-cCsOjp hlwLoW hSgQmU"
+                    >
+                      <div
+                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                      >
+                        
+                      </div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-gXmSlM SQWQ"
+                    >
+                      <div
+                        className="sc-breuTD daxUiR"
+                      >
+                         
+                        <span
+                          className="sc-fEOsli bzDQbX"
+                          type="body 2"
+                        >
+                          Moonbeam GLMR
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className="sc-gXmSlM dHQUaX"
+                    >
+                      <span
+                        className="sc-fEOsli bzDQbX"
+                        type="body 2"
+                      >
+                        1000
+                        GLMR
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-gXmSlM SQWQ"
+                    >
+                      <div
+                        className="sc-breuTD daxUiR"
+                      >
+                         
+                        <span
+                          className="sc-fEOsli bzDQbX"
+                          type="body 2"
+                        >
+                          Acala ACA
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className="sc-gXmSlM dHQUaX"
+                    >
+                      <span
+                        className="sc-fEOsli bzDQbX"
+                        type="body 2"
+                      >
+                        0
+                        xcACA
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-gXmSlM SQWQ"
+                    >
+                      <div
+                        className="sc-breuTD daxUiR"
+                      >
+                         
+                        <span
+                          className="sc-fEOsli bzDQbX"
+                          type="body 2"
+                        >
+                          Acala AUSD 
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className="sc-gXmSlM dHQUaX"
+                    >
+                      <span
+                        className="sc-fEOsli bzDQbX"
+                        type="body 2"
+                      >
+                        0
+                        xcaUSD
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-gXmSlM SQWQ"
+                    >
+                      <div
+                        className="sc-breuTD daxUiR"
+                      >
+                         
+                        <span
+                          className="sc-fEOsli bzDQbX"
+                          type="body 2"
+                        >
+                          Parallei PARA 
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className="sc-gXmSlM dHQUaX"
+                    >
+                      <span
+                        className="sc-fEOsli bzDQbX"
+                        type="body 2"
+                      >
+                        0
+                        xcPARA
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    isTitleAString={false}
+                  >
+                    <td
+                      className="sc-gXmSlM SQWQ"
+                    >
+                      <div
+                        className="sc-breuTD daxUiR"
+                      >
+                         
+                        <span
+                          className="sc-fEOsli bzDQbX"
+                          type="body 2"
+                        >
+                          Polkadot DOT 
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className="sc-gXmSlM dHQUaX"
+                    >
+                      <span
+                        className="sc-fEOsli bzDQbX"
+                        type="body 2"
+                      >
+                        0
+                        xcDOT
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div
+              className="sc-kDDrLX cZkMUf"
+              gap={3.25}
+            />
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+</div>
+`;

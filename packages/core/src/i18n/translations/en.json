@@ -12,7 +12,8 @@
       "disconnectWallet": "Disconnect wallet",
       "viewOnExplorer": "View on explorer",
       "darkMode": "Dark mode",
-      "testnetMode": "Testnet mode"
+      "testnetMode": "Testnet mode",
+      "transfer": "Transfer"
     },
     "inputs": {
       "amount": "Amount",
@@ -28,7 +29,7 @@
       "installMetamaskTitle": "Metamask not installed",
       "installMetamaskDescription": "Please install Metamask browser extension",
       "processingTheConnectionTitle": "Already processing the connection",
-      "processingTheConnectionDescription": "Please complete the interrupted wallet connection",
+      "processingTheConnectionDescription": "Finalize connection to {{walletName}} by choosing the wallet you wish to connect and clicking “Connect” within {{walletName}}",
       "connectTheWalletTitle": "Please, connect your wallet",
       "connectTheWalletDescription": "Please, connect your wallet to see your deposits and borrowings",
       "notSupportedNetworkTitle": "Please switch to a correct network",
@@ -69,7 +70,9 @@
   },
   "walletConnection": {
     "notConnectedTitle": "Please, connect your wallet",
-    "wrongNetworkConnection": "Wrong network"
+    "installBrowserExtension": "Please install {{walletName}}",
+    "wrongNetworkConnection": "Wrong network",
+    "connecting": "Connecting"
   },
   "dashboard": {
     "pageTitle": "Dashboard",
@@ -102,6 +105,13 @@
   },
   "staking": {
     "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."
+  },
+  "transfer": {
+    "originChain": "Origin Chain",
+    "destinationChain": "Destination Chain",
+    "originAccount": "Origin account",
+    "destinationAccount": "Destination account",
+    "inNetworkLabel": "in {{network}}"
   },
   "pageNotFound": {
     "title": "404 - Page not found",

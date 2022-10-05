@@ -6,6 +6,7 @@ import { WalletContainer } from '@/containers/WalletContainer'
 import { ConnectionStatus } from '@/components/borrow/ConnectionStatus'
 import { CrossChainAssetTable } from '@/components/transfer/table/CrossChainAssetTable'
 import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
+import TransferAsset from '@/components/transfer/TransferAsset'
 
 const TokenTransferPage = () => {
   const {

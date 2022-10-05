@@ -29,7 +29,9 @@ export const ConnectionStatus: FunctionComponent = () => {
       if (error.code === -32002) {
         setTitle(t('global.notifications.processingTheConnectionTitle'))
         setDescription(
-          t('global.notifications.processingTheConnectionDescription'),
+          t('global.notifications.processingTheConnectionDescription', {
+            walletName: 'Metamask',
+          }),
         )
         setShowConnectButton(false)
       }
@@ -55,24 +57,35 @@ export const ConnectionStatus: FunctionComponent = () => {
     <GridLayout.Column span={12}>
       <CardLayout>
         <BoxLayout gap={8}>
-          <CenterLayout>
-            <Text as="span" color="oxfordBlue" type="heading 2">
-              {title}
-            </Text>
-            <Text color="oxfordBlue" type="body 5">
-              {description}
-            </Text>
-            {showConnectButton && (
-              <Button
-                appearance="primary"
-                size="medium"
-                variant="medium"
-                onClick={connectWallet}
-              >
-                {t('global.buttons.connectWallet')}
-              </Button>
-            )}
-          </CenterLayout>
+          <GridLayout>
+            <GridLayout.Column span={1} />
+            <GridLayout.Column span={10}>
+              <CenterLayout>
+                <Text
+                  align="center"
+                  as="span"
+                  color="oxfordBlue"
+                  type="heading 2"
+                >
+                  {title}
+                </Text>
+                <Text align="center" color="oxfordBlue" type="body 5">
+                  {description}
+                </Text>
+                {showConnectButton && (
+                  <Button
+                    appearance="primary"
+                    size="medium"
+                    variant="medium"
+                    onClick={connectWallet}
+                  >
+                    {t('global.buttons.connectWallet')}
+                  </Button>
+                )}
+              </CenterLayout>
+            </GridLayout.Column>
+            <GridLayout.Column span={1} />
+          </GridLayout>
         </BoxLayout>
       </CardLayout>
     </GridLayout.Column>

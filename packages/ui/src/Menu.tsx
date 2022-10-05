@@ -148,7 +148,7 @@ const Element = styled.div`
   display: none;
   z-index: 2;
   white-space: nowrap;
-  min-width: 260px;
+  min-width: 100%;
 `
 
 export const MenuItem = styled(Button)<{ isLastItem?: boolean }>`

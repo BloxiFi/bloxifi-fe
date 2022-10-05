@@ -76,7 +76,7 @@ export const WithdrawModal = ({
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
-  const withdraw = async (amount: number) => {
+  const withdraw = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.withdraw(
@@ -110,7 +110,7 @@ export const WithdrawModal = ({
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: withdrawValidationSchemaa,
-    onSubmit: values => withdraw(Number(values.amount)),
+    onSubmit: values => withdraw(values.amount),
   })
 
   const {
@@ -167,7 +167,7 @@ export const WithdrawModal = ({
 
   const calculateRemainingSupply = () => {
     const remainingSupply =
-      reserveData.currentATokenBalance - Number(values.amount)
+      Number(reserveData.currentATokenBalance) - Number(values.amount)
     if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }

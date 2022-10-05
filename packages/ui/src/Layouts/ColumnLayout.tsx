@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { ReactProps } from '@bloxifi/types'
 import { useMedia, metrics, Breakpoint } from '@bloxifi/core'
 
+import { FullWidth } from '../styles/mixins'
+
 import { StackLayout, StackLayoutGap } from './StackLayout'
 
 /**
@@ -107,6 +109,7 @@ export const ColumnLayout = React.forwardRef(
 ) => JSX.Element
 
 const Column = styled(defaultElement)<ColumnLayoutProps>`
+  ${({ className }) => FullWidth({ className })};
   display: flex;
   flex-direction: row;
   justify-content: ${props => props.align || 'flex-start'};
