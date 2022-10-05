@@ -181,6 +181,17 @@ export const BorrowModal = ({
     futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
   const isApproveDisabled = !isSupportedNetwork || loading || approved
 
+  //The maximum amount to borrow should go up to the minimum health factor value
+  const amountToReachMinHealthFactor =
+    (totalCollateralETH / (MIN_HEALTH_FACTOR_VALUE + 0.0000001) -
+      totalBorrowETH) /
+    reserveData.priceInEth
+
+  const maxAmountToBorrow = Math.min(
+    amountToReachMinHealthFactor,
+    availableToBorrow,
+  )
+
   useEffect(() => {
     setFutureHealthFactor(
       calculateHealthFactor({
@@ -197,7 +208,7 @@ export const BorrowModal = ({
   ])
 
   const setMaxValue = async () => {
-    await setFieldValue('amount', availableToBorrow, true)
+    await setFieldValue('amount', maxAmountToBorrow, true)
     await setFieldTouched('amount', true, true)
   }
 

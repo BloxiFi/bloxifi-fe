@@ -76,6 +76,16 @@ export const WithdrawModal = ({
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
+  //The maximum amount to withdraw should go up to the minimum health factor value, until it reaches MIN_HEALTH_FACTOR_VALUE
+  const amountToReachMinHealthFactor =
+    (totalCollateralETH -
+      totalBorrowETH * (MIN_HEALTH_FACTOR_VALUE + 0.0000001)) /
+    (reserveData.priceInEth * reserveData.reserveLiquidationThreshold)
+
+  const maxAmountToWithdraw = Math.min(
+    amountToReachMinHealthFactor,
+    Number(reserveData.currentATokenBalance),
+  )
   const withdraw = async (amount: string) => {
     setLoading(true)
     try {
@@ -185,7 +195,7 @@ export const WithdrawModal = ({
     futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
 
   const setMaxValue = async () => {
-    await setFieldValue('amount', reserveData.currentATokenBalance, true)
+    await setFieldValue('amount', maxAmountToWithdraw, true)
     await setFieldTouched('amount', true, true)
   }
   return (
