@@ -3,7 +3,10 @@ import { ColumnData, Table, TruncatedText } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 import { convertToUSD } from '@bloxifi/core'
 
-import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
+import {
+  DashboardReservesData,
+  DashboardContainer,
+} from '@/containers/DashboardContainer'
 import { AssetName } from '@/components/borrow/AssetName'
 import { FormattedNumber } from '@/components/borrow/FormattedNumber'
 
@@ -11,7 +14,7 @@ export const DashboardTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
     state: { reserves, loading },
-  } = WalletContainer.useContainer()
+  } = DashboardContainer.useContainer()
 
   const columns = {
     assets: {
@@ -22,7 +25,7 @@ export const DashboardTable: FunctionComponent = () => {
       alignText: 'left',
     },
     totalValueDeposited: {
-      header: 'Total value deposited',
+      header: t('global.table.totalDeposited'),
       Cell: ({ data: { totalATokenSupply, priceInEth, usdPriceEth } }) => (
         <TruncatedText>
           <FormattedNumber
@@ -33,7 +36,7 @@ export const DashboardTable: FunctionComponent = () => {
       ),
     },
     totalBorrowed: {
-      header: 'Total borrowed',
+      header: t('global.table.totalBorrowed'),
       Cell: ({
         data: { totalCurrentVariableDebt, priceInEth, usdPriceEth },
       }) => (
@@ -50,7 +53,7 @@ export const DashboardTable: FunctionComponent = () => {
       ),
     },
     supplyAPY: {
-      header: 'Deposit APY',
+      header: t('global.table.depositAPY'),
       Cell: ({ data: { supplyAPY } }) => (
         <TruncatedText>
           <FormattedNumber value={supplyAPY} percent />
@@ -58,14 +61,14 @@ export const DashboardTable: FunctionComponent = () => {
       ),
     },
     variableBorrowAPY: {
-      header: 'Borrow APY',
+      header: t('global.table.borrowAPY'),
       Cell: ({ data: { variableBorrowAPY } }) => (
         <TruncatedText>
           <FormattedNumber value={variableBorrowAPY} percent />
         </TruncatedText>
       ),
     },
-  } as Record<string, ColumnData<ReservesData>>
+  } as Record<string, ColumnData<DashboardReservesData>>
 
   return (
     <Table

@@ -26,9 +26,9 @@ export const ConnectWalletButton = () => {
     state: {
       isConnected,
       currentAccount,
-      error,
       isSupportedNetwork,
       isMetamaskInstalled,
+      error,
     },
   } = Web3Container.useContainer()
 
@@ -44,15 +44,17 @@ export const ConnectWalletButton = () => {
   if (!isMetamaskInstalled) {
     return (
       <Text type="body 1" color="red" semiBold align="center">
-        Please install Metamask
+        {t('walletConnection.installBrowserExtension', {
+          walletName: 'Metamask',
+        })}
       </Text>
     )
   }
 
-  if (error) {
+  if (error && error.code === -32002) {
     return (
       <Text type="body 1" color="red" semiBold align="center">
-        Connection failed!
+        {t('walletConnection.connecting')}
       </Text>
     )
   }

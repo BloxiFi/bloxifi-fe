@@ -19,11 +19,7 @@ import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 export const AvaliableToDepositTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: {
-      reserves,
-      userAccountData: { healthFactor },
-      loading,
-    },
+    state: { reserves, loading },
   } = WalletContainer.useContainer()
   const [modalData, setModalData] = useState<ReservesData>()
 
@@ -49,7 +45,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
       Cell: ({ data: { balance, symbol } }) => {
         return (
           <TruncatedText data-cy={'walletBalance ' + symbol}>
-            <FormattedNumber value={balance} />
+            <FormattedNumber value={Number(balance)} />
           </TruncatedText>
         )
       },
@@ -77,7 +73,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
           variant="medium"
           size="small"
           data-cy={'depositBtn ' + data.symbol}
-          disabled={data.balance < MIN_VALUE_FOR_TRANSACTION}
+          disabled={Number(data.balance) < MIN_VALUE_FOR_TRANSACTION}
           onClick={() => openModal(data)}
         >
           {t('global.buttons.deposit')}
@@ -100,7 +96,6 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
         isOpen={!!modalData}
         onClose={closeModal}
         reserveData={modalData}
-        healthFactor={healthFactor}
       />
     </>
   )

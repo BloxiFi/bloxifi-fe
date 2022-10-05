@@ -1,26 +1,24 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
-  BoxLayout,
-  Button,
-  CenterLayout,
-  Icon,
-  Loader,
-  Modal,
-  StackLayout,
-  Text,
-} from '@bloxifi/ui'
-import { BorrowAndLending, Tokens } from '@bloxifi/core'
+  BorrowAndLending,
+  calculateAssetCollateralAfterTx,
+  calculateHealthFactor,
+  Tokens,
+} from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
+import { ModalState } from './ModalState'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { ReservesData } from '@/containers/WalletContainer'
+import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 
 interface Props {
   /**
@@ -35,24 +33,29 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: ReservesData
-  /**
-   * Health factor - the 'health' of the loans within the system
-   */
-  healthFactor?: number
 }
 
 export const DepositModal = ({
   isOpen,
   onClose,
   reserveData = {} as ReservesData,
-  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
+
+  const {
+    state: { userReserves },
+    refetch,
+  } = WalletContainer.useContainer()
+
   const signer = provider.getSigner()
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
 
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
@@ -70,6 +73,11 @@ export const DepositModal = ({
   const isApproveDisabled =
     !isSupportedNetwork || loading || approved || !reserveData.balance
 
+  const isEnabledAsCollateral = userReserves.find(
+    ({ usageAsCollateralEnabledOnUser, symbol }) =>
+      symbol === reserveData.symbol && usageAsCollateralEnabledOnUser,
+  )
+
   const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
     if (tokenContract) {
       try {
@@ -79,7 +87,6 @@ export const DepositModal = ({
           'deposit',
         )
         setShouldApproveContract(approvedTokens.toString() === '0')
-        setHasError(null)
       } catch (error) {
         setHasError(error)
       }
@@ -106,7 +113,7 @@ export const DepositModal = ({
     }
   }
 
-  const deposit = async (amount: number) => {
+  const deposit = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.deposit(
@@ -116,6 +123,8 @@ export const DepositModal = ({
         currentAccount,
       )
       const isDeposited = await response.wait()
+      await waitTransactionConfirmation(isDeposited.transactionHash, refetch)
+
       setDepositCompleted(!!isDeposited)
     } catch (error) {
       setHasError(error)
@@ -128,14 +137,14 @@ export const DepositModal = ({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(reserveData.balance, t('global.errors.exceededBalance'))
+      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
   })
 
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: depositValidationSchemaa,
-    onSubmit: values => deposit(Number(values.amount)),
+    onSubmit: values => deposit(values.amount),
   })
 
   const {
@@ -146,17 +155,20 @@ export const DepositModal = ({
     submitForm,
     handleBlur,
     setFieldValue,
+    setFieldTouched,
     resetForm,
   } = formik
 
   const resetState = useCallback(() => {
     setHasError(undefined)
     resetForm()
+    refetch()
   }, [resetForm])
 
   useEffect(() => {
     resetState()
     setDepositCompleted(false)
+    setShouldApproveContract(false)
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || depositCompleted
@@ -167,87 +179,102 @@ export const DepositModal = ({
     hasError ||
     (shouldApproveContract && !approved)
 
-  return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <BoxLayout gap={0.25} />
-      <StackLayout gap={5}>
-        <StackLayout gap={2}>
-          <BoxLayout gap={1.25}>
-            <Text color="oxfordBlue" type="heading 2" as="span">
-              {t('deposit.depositAsset')}
-            </Text>
-          </BoxLayout>
-          <AmountInput
-            name="amount"
-            max={reserveData.balance}
-            reserveData={{
-              balance: reserveData.balance,
-              symbol: reserveData.symbol,
-              icon: reserveData.icon,
-            }}
-            value={values.amount}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            setFieldValue={setFieldValue}
-            status={errors.amount && touched.amount ? 'error' : undefined}
-            info={errors.amount && touched.amount && errors.amount}
-            disabled={isInputDisabled}
-          />
-          <TransactionOverview
-            healthFactor={healthFactor}
-            supplyAPY={reserveData.supplyAPY}
-            headers={['supplyAPY', 'healthFactor']}
-          />
-        </StackLayout>
+  const getTotalCollateralAfterDeposit = () => {
+    if (isEnabledAsCollateral) {
+      return (
+        totalCollateralETH +
+        calculateAssetCollateralAfterTx(
+          Number(values.amount),
+          reserveData.priceInEth,
+          reserveData.reserveLiquidationThreshold,
+        )
+      )
+    }
+    return totalCollateralETH
+  }
+  const futureHealthFactor = calculateHealthFactor({
+    totalCollateralETH: getTotalCollateralAfterDeposit(),
+    totalBorrowETH,
+  })
 
-        <BoxLayout gap={1.875}>
-          {loading ? (
-            <CenterLayout>
-              <Loader />
-            </CenterLayout>
-          ) : hasError ? (
-            <CenterLayout>
-              <Icon name="error" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.transaction_failed')}
-              </Text>
-            </CenterLayout>
-          ) : depositCompleted ? (
-            <CenterLayout>
-              <Icon name="success" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.deposit_successful')}
-              </Text>
-            </CenterLayout>
-          ) : (
-            <StackLayout gap={1}>
-              {shouldApproveContract && (
+  const setMaxValue = async () => {
+    await setFieldValue('amount', reserveData.balance, true)
+    await setFieldTouched('amount', true, true)
+  }
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
+      {loading || hasError || depositCompleted ? (
+        <ModalState
+          loading={loading}
+          error={hasError}
+          success={depositCompleted}
+          messages={{ success: t('global.notifications.deposit_successful') }}
+        />
+      ) : (
+        <>
+          <BoxLayout gap={0.25} />
+          <StackLayout gap={5}>
+            <StackLayout gap={2}>
+              <BoxLayout gap={1.25}>
+                <Text color="oxfordBlue" type="heading 2" as="span">
+                  {t('deposit.depositAsset')}
+                </Text>
+              </BoxLayout>
+              <AmountInput
+                name="amount"
+                max={reserveData.balance}
+                reserveData={{
+                  symbol: reserveData.symbol,
+                  icon: reserveData.icon,
+                }}
+                value={values.amount}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                setMaxValue={setMaxValue}
+                status={errors.amount && touched.amount ? 'error' : undefined}
+                info={errors.amount && touched.amount && errors.amount}
+                disabled={isInputDisabled}
+              />
+              <TransactionOverview
+                healthFactor={healthFactor}
+                futureHealthFactor={futureHealthFactor}
+                supplyAPY={reserveData.supplyAPY}
+                headers={['supplyAPY', 'healthFactor']}
+                amount={values.amount}
+              />
+            </StackLayout>
+
+            <BoxLayout gap={1.875}>
+              <StackLayout gap={1}>
+                {shouldApproveContract && (
+                  <Button
+                    className="u-full-width"
+                    appearance="dark"
+                    size="large"
+                    variant="large"
+                    disabled={isApproveDisabled}
+                    onClick={approve}
+                  >
+                    {t('global.buttons.approve')}
+                  </Button>
+                )}
                 <Button
                   className="u-full-width"
                   appearance="dark"
                   size="large"
                   variant="large"
-                  disabled={isApproveDisabled}
-                  onClick={approve}
+                  type="submit"
+                  disabled={isDepositDisabled}
+                  onClick={submitForm}
                 >
-                  {t('global.buttons.approve')}
+                  {t('global.buttons.deposit')} {reserveData.symbol}
                 </Button>
-              )}
-              <Button
-                className="u-full-width"
-                appearance="dark"
-                size="large"
-                variant="large"
-                type="submit"
-                disabled={isDepositDisabled}
-                onClick={submitForm}
-              >
-                {t('global.buttons.deposit')} {reserveData.symbol}
-              </Button>
-            </StackLayout>
-          )}
-        </BoxLayout>
-      </StackLayout>
+              </StackLayout>
+            </BoxLayout>
+          </StackLayout>
+        </>
+      )}
     </Modal>
   )
 }

@@ -8,6 +8,7 @@ import { PublicRoute } from './PublicRoute'
 
 import { PageContainer } from '@/containers/PageContainer'
 import routes from '@/routes.json'
+import PageNotFound from '@/pages/404'
 
 export const Router: FC = ({ children }) => {
   const { pageLayout } = PageContainer.useContainer()
@@ -39,7 +40,10 @@ export const Router: FC = ({ children }) => {
             </CoverLayout>
           }
         >
-          <Routes>{routes.map(route => renderRoute(route))}</Routes>
+          <Routes>
+            {routes.map(route => renderRoute(route))}
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
         </Suspense>
       </PageLayout>
     </BrowserRouter>

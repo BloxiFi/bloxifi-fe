@@ -1,6 +1,14 @@
 import { BigNumber, ethers } from 'ethers'
 import { UserReserveData } from '@/containers/WalletContainer'
 
+/**
+ * Wait before executing
+ * @param ms Number of milliseconds to wait before executing
+ * @returns
+ */
+export const delay = (ms: number) =>
+  new Promise(resolve => setTimeout(resolve, ms))
+
 export const filterItems = (items, filter, filterBy) => {
   if (filter.trim().length === 0) {
     return items
@@ -35,8 +43,12 @@ export function numberToPercentage(value: number): number {
   return Number(Number(percentage.toFixed(2)).toPrecision())
 }
 
+export function bigNumberToString(value: BigNumber): string {
+  return ethers.utils.formatUnits(value)
+}
+
 export function bigNumberToNumber(value: BigNumber): number {
-  return Number(ethers.utils.formatUnits(value))
+  return Number(bigNumberToString(value))
 }
 
 export const sumArrayItems = (array: number[]): number =>
@@ -138,11 +150,58 @@ export const getDepositedAssetsUSD = ({
   if (usageAsCollateralEnabledOnUser) {
     //total deposits of X asset denominated in USD
     const depositAssetUSD = convertToUSD(
-      currentATokenBalance,
+      Number(currentATokenBalance),
       priceInEth,
       usdPriceEth,
     )
     return depositAssetUSD * baseLTVasCollateral
   }
   return 0
+}
+
+/**
+ * Calculate health factor
+ * totalCollateralETH is sum of collaterals expressed in ETH
+ * totalDebtETH is sum of borrows expressed in ETH
+ */
+export const calculateHealthFactor = ({
+  totalCollateralETH,
+  totalBorrowETH,
+}: {
+  totalCollateralETH: number
+  totalBorrowETH: number
+}): number => {
+  return totalCollateralETH / totalBorrowETH
+}
+
+/**
+ * Calculate asset collateral value for the potential transaction (In order to calculate future health factor in most cases)
+ * @param amount Desired amount for the transaction. E.g. The amount that user wants to deposit
+ * @param priceInEth Asset price in ETH, e.g. 1KSMmb = priceInEth ETH
+ * @param reserveLiquidationThreshold LiquidationThreshold for the selected asset
+ * LiquidationThreshold - the percentage at which a position is defined as undercollateralised.
+ * For example, a Liquidation threshold of 80% means that if the value rises above 80% of the collateral, the position is undercollateralised and could be liquidated.
+ */
+export const calculateAssetCollateralAfterTx = (
+  amount: string | number,
+  priceInEth: number,
+  reserveLiquidationThreshold: number,
+): number => {
+  return Number(amount) * priceInEth * reserveLiquidationThreshold
+}
+
+/**
+ * Maximum amount that can be repayed is min value of the current token balance or current token borrow debt.
+ * @param balance Current token balance
+ * @param currentTotalDebt Current token borrow debt
+ * @returns Maximum amount that can be repayed
+ */
+export const getMaxRepayAmount = (
+  balance: string,
+  currentTotalDebt: string,
+): string => {
+  if (Number(balance) < Number(currentTotalDebt)) {
+    return balance
+  }
+  return currentTotalDebt
 }

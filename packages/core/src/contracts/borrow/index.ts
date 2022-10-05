@@ -15,6 +15,8 @@ interface FetchUserAccountData {
   totalDebtETH: BigNumber
   availableBorrowsETH: BigNumber
   healthFactor: BigNumber
+  currentLiquidationThreshold: BigNumber
+  totalCollateralETH: BigNumber
 }
 
 export function getLandingPoolContractInfo(

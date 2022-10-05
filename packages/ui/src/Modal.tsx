@@ -23,6 +23,10 @@ export interface ModalProps {
    */
   showCloseButton?: boolean
   /**
+   * Boolean value that defines if close button should be disabled
+   */
+  disableCloseButton?: boolean
+  /**
    * Props that defines children elements
    */
   children?: React.ReactNode
@@ -32,6 +36,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
   isOpen = false,
   onClose,
   showCloseButton = true,
+  disableCloseButton = false,
   ...props
 }) => {
   return isOpen ? (
@@ -45,6 +50,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
             variant="medium"
             className="u-fit-content-width"
             onClick={onClose}
+            disabled={disableCloseButton}
           />
         )}
         <ChildrenWrapper>{props.children}</ChildrenWrapper>

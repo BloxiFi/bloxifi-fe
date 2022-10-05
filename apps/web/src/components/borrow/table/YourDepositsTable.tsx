@@ -30,20 +30,18 @@ import { Web3Container } from '@/containers/Web3Container'
 export const YourDepositsTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: {
-      userReserves,
-      userAccountData: { healthFactor },
-      loading,
-    },
+    state: { userReserves, loading },
+    refetch,
   } = WalletContainer.useContainer()
   const {
     state: { provider },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
   const signer = provider.getSigner()
   const [selectedCollateralAsset, setSelectedCollateralAsset] =
     useState<string>()
   const userReservesWithDept = userReserves.filter(
-    (reserve: UserReserveData) => reserve.currentATokenBalance !== 0,
+    (reserve: UserReserveData) => Number(reserve.currentATokenBalance) !== 0,
   )
   const [modalData, setModalData] = useState<WithdrawModalData>()
 
@@ -70,8 +68,8 @@ export const YourDepositsTable: FunctionComponent = () => {
           underlyingAsset,
           !usageAsCollateralEnabledOnUser,
         )
-      await response.wait()
-      //TODO@refetch data - collateral, health factor
+      const isCompleted = await response.wait()
+      await waitTransactionConfirmation(isCompleted.transactionHash, refetch)
     } catch (error) {
       //TODO@handle error - user cannot click on toggle button if he can't change collateral(if his health factor goes under 1)
     } finally {
@@ -92,7 +90,7 @@ export const YourDepositsTable: FunctionComponent = () => {
       Cell: ({ data: { currentATokenBalance, symbol } }) => (
         <TruncatedText>
           <Text type="body 3" as="span" data-cy={'depositedBalance ' + symbol}>
-            <FormattedNumber value={currentATokenBalance} />
+            <FormattedNumber value={Number(currentATokenBalance)} />
           </Text>
         </TruncatedText>
       ),
@@ -115,7 +113,7 @@ export const YourDepositsTable: FunctionComponent = () => {
         if (selectedCollateralAsset === underlyingAsset) {
           return (
             <CenterLayout>
-              <Loader loaderSize={24} />
+              <Loader loaderSize={24} borderWidth={6} />
             </CenterLayout>
           )
         } else {
@@ -123,7 +121,7 @@ export const YourDepositsTable: FunctionComponent = () => {
             <Toggle
               checked={usageAsCollateralEnabledOnUser}
               data-cy={'collateralToggle ' + symbol}
-              onClick={() =>
+              onChange={() =>
                 void toggleCollateral(
                   underlyingAsset,
                   usageAsCollateralEnabledOnUser,
@@ -139,7 +137,16 @@ export const YourDepositsTable: FunctionComponent = () => {
     action: {
       header: '',
       Cell: ({
-        data: { balance, symbol, underlyingAsset, currentATokenBalance, icon },
+        data: {
+          balance,
+          symbol,
+          underlyingAsset,
+          currentATokenBalance,
+          icon,
+          priceInEth,
+          usageAsCollateralEnabledOnUser,
+          reserveLiquidationThreshold,
+        },
       }) => (
         <Button
           appearance="secondary"
@@ -147,7 +154,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           size="small"
           data-cy={'withdrawBtn ' + symbol}
           className="u-full-width"
-          disabled={currentATokenBalance < MIN_VALUE_FOR_TRANSACTION}
+          disabled={Number(currentATokenBalance) < MIN_VALUE_FOR_TRANSACTION}
           onClick={() =>
             openModal({
               balance,
@@ -155,6 +162,9 @@ export const YourDepositsTable: FunctionComponent = () => {
               underlyingAsset,
               currentATokenBalance,
               icon,
+              priceInEth,
+              usageAsCollateralEnabledOnUser,
+              reserveLiquidationThreshold,
             })
           }
         >
@@ -200,7 +210,6 @@ export const YourDepositsTable: FunctionComponent = () => {
         isOpen={!!modalData}
         onClose={closeModal}
         reserveData={modalData}
-        healthFactor={healthFactor}
       />
     </>
   )

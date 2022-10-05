@@ -1,0 +1,149 @@
+import { useQuery } from '@apollo/client'
+import {
+  bigNumberToNumber,
+  GET_DASHBOARD_RESERVE_DATA,
+  DashboardReservesGraph,
+  TokenList,
+  DashboardReservesDataQuery,
+} from '@bloxifi/core'
+import Assets from '@bloxifi/core/src/utilities/assets.json'
+import { Action } from '@bloxifi/types'
+import {
+  Dispatch,
+  Reducer,
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
+import { createContainer } from 'unstated-next'
+
+import { calculateAPY } from './WalletContainer'
+import { Web3Container } from './Web3Container'
+
+export type DashboardReservesData = {
+  id: string
+  name: TokenList
+  fullName: string
+  symbol: TokenList
+  icon: string
+  decimals: number
+  supplyAPY: number
+  liquidityRate: number
+  variableBorrowAPY: number
+  underlyingAsset: string
+  priceInEth: number
+  usdPriceEth: number
+  totalATokenSupply: number
+  totalCurrentVariableDebt: number
+}
+
+interface State {
+  reserves: DashboardReservesData[]
+  loading: boolean
+  error: Error
+}
+
+interface DashboardContainerState {
+  state: State
+  dispatch: Dispatch<Action<ActionType>>
+}
+
+type ActionType = 'setReserveData'
+
+const defaultState = {
+  reserves: [],
+  loading: false,
+  error: undefined,
+}
+
+const reducer = (state: State, action: Action<ActionType>) => {
+  switch (action.type) {
+    case 'setReserveData': {
+      return {
+        ...state,
+        reserves: action.value,
+      }
+    }
+    default:
+      return defaultState
+  }
+}
+
+const POOL_INTERVAL = 600000
+
+function useDashboard(
+  initialState: State = defaultState,
+): DashboardContainerState {
+  const [state, dispatch] = useReducer<Reducer<State, Action<ActionType>>>(
+    reducer,
+    initialState,
+  )
+
+  const {
+    state: { currentAccount },
+  } = Web3Container.useContainer()
+  const [error, setError] = useState<Error | undefined>()
+  const [loading, setLoading] = useState<boolean>(true)
+
+  const { data } = useQuery<DashboardReservesGraph>(
+    GET_DASHBOARD_RESERVE_DATA,
+    {
+      variables: {
+        user: currentAccount?.toLowerCase(),
+      },
+      fetchPolicy: 'cache-and-network',
+      pollInterval: POOL_INTERVAL,
+    },
+  )
+
+  const setReserveData = useCallback(
+    (reserves: DashboardReservesDataQuery[]) => {
+      try {
+        const reserveData = reserves.map(
+          (reserve: DashboardReservesDataQuery) => {
+            return {
+              ...reserve,
+              icon: Assets[reserve.symbol].icon,
+              fullName: Assets[reserve.symbol].fullName,
+              supplyAPY: calculateAPY(reserve.liquidityRate),
+              variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
+              priceInEth: bigNumberToNumber(reserve.price.priceInEth),
+              usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
+              totalATokenSupply: bigNumberToNumber(reserve.totalATokenSupply),
+              totalCurrentVariableDebt: bigNumberToNumber(
+                reserve.totalCurrentVariableDebt,
+              ),
+            }
+          },
+        )
+
+        dispatch({
+          type: 'setReserveData',
+          value: reserveData,
+        })
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
+    },
+    [],
+  )
+
+  useEffect(() => {
+    if (data) {
+      void setReserveData(data.reserves)
+    }
+  }, [data, setReserveData])
+
+  return {
+    state: { ...state, loading, error },
+    dispatch,
+  }
+}
+
+export const DashboardContainer = createContainer<
+  DashboardContainerState,
+  State
+>(useDashboard)

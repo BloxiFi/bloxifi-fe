@@ -1,29 +1,32 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
-  BoxLayout,
-  Button,
-  CenterLayout,
-  Icon,
-  Loader,
-  Modal,
-  StackLayout,
-  Text,
-} from '@bloxifi/ui'
-import { BorrowAndLending, useFormatAPY } from '@bloxifi/core'
+  BorrowAndLending,
+  calculateHealthFactor,
+  getMaxRepayAmount,
+  useFormatNumber,
+} from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
 import { AmountInput } from './Amountlnput'
+import { ModalState } from './ModalState'
 
 import { Web3Container } from '@/containers/Web3Container'
-import { UserReserveData } from '@/containers/WalletContainer'
+import { UserReserveData, WalletContainer } from '@/containers/WalletContainer'
 
 export type RepayModalData = Pick<
   UserReserveData,
-  'underlyingAsset' | 'currentTotalDebt' | 'symbol' | 'icon' | 'balance'
+  | 'underlyingAsset'
+  | 'currentTotalDebt'
+  | 'symbol'
+  | 'icon'
+  | 'priceInEth'
+  | 'balance'
 >
 interface Props {
   /**
@@ -38,25 +41,24 @@ interface Props {
    * Selected asset reserve data
    */
   reserveData?: RepayModalData
-  /**
-   * Health factor - the 'health' of the loans within the system
-   */
-  healthFactor?: number
 }
 
 export const RepayModal = ({
   isOpen,
   onClose,
   reserveData = {} as UserReserveData,
-  healthFactor,
 }: Props) => {
   const { t } = useTranslation()
 
   const {
     state: { currentAccount, provider, isSupportedNetwork },
+    waitTransactionConfirmation,
   } = Web3Container.useContainer()
+  const { refetch } = WalletContainer.useContainer()
   const signer = provider.getSigner()
-
+  const { healthFactor, totalCollateralETH, totalBorrowETH } = useHealthFactor({
+    currentAccount,
+  })
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -65,7 +67,7 @@ export const RepayModal = ({
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
-  const repay = async (amount: number) => {
+  const repay = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.repay(
@@ -75,8 +77,9 @@ export const RepayModal = ({
         currentAccount,
       )
       const isRepayed = await response.wait()
+      await waitTransactionConfirmation(isRepayed.transactionHash, refetch)
+
       setRepayCompleted(!!isRepayed)
-      resetState()
     } catch (error) {
       setHasError(error)
     } finally {
@@ -84,28 +87,23 @@ export const RepayModal = ({
     }
   }
 
-  //Maximum amount that can be repayed is min value of current token balance or current token borrow debt.
-  const maxRepayAmount = Math.min(
+  const maxRepayAmount = getMaxRepayAmount(
     reserveData.balance,
     reserveData.currentTotalDebt,
   )
+
   const repayValidationSchemaa = Yup.object().shape({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(maxRepayAmount, t('global.errors.exceededBalance'))
+      .max(Number(maxRepayAmount), t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
-    /**
-     * TODO need to research more requirements.
-     * - Compare with health factor
-     * - Max amount to withdraw
-     */
   })
 
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: repayValidationSchemaa,
-    onSubmit: values => repay(Number(values.amount)),
+    onSubmit: values => repay(values.amount),
   })
 
   const {
@@ -116,12 +114,14 @@ export const RepayModal = ({
     submitForm,
     handleBlur,
     setFieldValue,
+    setFieldTouched,
     resetForm,
   } = formik
 
   const resetState = useCallback(() => {
     setHasError(undefined)
     resetForm()
+    refetch()
   }, [resetForm])
 
   useEffect(() => {
@@ -133,83 +133,88 @@ export const RepayModal = ({
   const isRepayDisabled = isInputDisabled || !!errors.amount || !values.amount
 
   const calculateRemainingDebt = () => {
-    const remainingSupply = reserveData.currentTotalDebt - Number(values.amount)
-    if (remainingSupply > 0) {
+    const remainingSupply =
+      Number(reserveData.currentTotalDebt) - Number(values.amount)
+    if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }
     return 0
   }
 
-  return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <BoxLayout gap={0.25} />
-      <StackLayout gap={5}>
-        <StackLayout gap={2}>
-          <BoxLayout gap={1.25}>
-            <Text color="oxfordBlue" type="heading 2" as="span">
-              {t('deposit.repayAsset')}
-            </Text>
-          </BoxLayout>
-          <AmountInput
-            name="amount"
-            max={maxRepayAmount}
-            reserveData={{
-              balance: maxRepayAmount,
-              symbol: reserveData.symbol,
-              icon: reserveData.icon,
-            }}
-            value={values.amount}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            setFieldValue={setFieldValue}
-            status={errors.amount && touched.amount ? 'error' : undefined}
-            info={errors.amount && touched.amount && errors.amount}
-            disabled={isInputDisabled}
-          />
-          <TransactionOverview
-            healthFactor={healthFactor}
-            headers={['remainingDebt', 'healthFactor']}
-            remainingDebt={useFormatAPY({
-              value: calculateRemainingDebt(),
-            })}
-            amount={values.amount}
-            symbol={reserveData.symbol}
-          />
-        </StackLayout>
+  const remainingDebt = useFormatNumber({
+    value: calculateRemainingDebt(),
+  })
 
-        <BoxLayout gap={1.875}>
-          {loading ? (
-            <CenterLayout>
-              <Loader />
-            </CenterLayout>
-          ) : hasError ? (
-            <CenterLayout>
-              <Icon name="error" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.transaction_failed')}
-              </Text>
-            </CenterLayout>
-          ) : repayCompleted ? (
-            <CenterLayout>
-              <Icon name="success" size={75} />
-              <Text type="body 2">
-                {t('global.notifications.repay_successful')}
-              </Text>
-            </CenterLayout>
-          ) : (
-            <Button
-              className="u-full-width"
-              appearance="dark"
-              size="large"
-              variant="large"
-              disabled={isRepayDisabled}
-              onClick={submitForm}
-            >
-              {t('global.buttons.repay')} {reserveData.symbol}
-            </Button>
-          )}
-        </BoxLayout>
-      </StackLayout>
+  const futureHealthFactor = calculateHealthFactor({
+    totalCollateralETH,
+    totalBorrowETH:
+      totalBorrowETH - Number(values.amount) * Number(reserveData.priceInEth),
+  })
+
+  const setMaxValue = async () => {
+    await setFieldValue('amount', maxRepayAmount, true)
+    await setFieldTouched('amount', true, true)
+  }
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} disableCloseButton={loading}>
+      {loading || hasError || repayCompleted ? (
+        <ModalState
+          loading={loading}
+          error={hasError}
+          success={repayCompleted}
+          messages={{ success: t('global.notifications.repay_successful') }}
+        />
+      ) : (
+        <>
+          <BoxLayout gap={0.25} />
+          <StackLayout gap={5}>
+            <StackLayout gap={2}>
+              <BoxLayout gap={1.25}>
+                <Text color="oxfordBlue" type="heading 2" as="span">
+                  {t('deposit.repayAsset')}
+                </Text>
+              </BoxLayout>
+              <AmountInput
+                name="amount"
+                max={maxRepayAmount}
+                reserveData={{
+                  symbol: reserveData.symbol,
+                  icon: reserveData.icon,
+                }}
+                value={values.amount}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                setMaxValue={setMaxValue}
+                status={errors.amount && touched.amount ? 'error' : undefined}
+                info={errors.amount && touched.amount && errors.amount}
+                disabled={isInputDisabled}
+              />
+              <TransactionOverview
+                healthFactor={healthFactor}
+                futureHealthFactor={futureHealthFactor}
+                headers={['remainingDebt', 'healthFactor']}
+                remainingDebt={remainingDebt}
+                amount={values.amount}
+                symbol={reserveData.symbol}
+              />
+            </StackLayout>
+
+            <BoxLayout gap={1.875}>
+              <Button
+                className="u-full-width"
+                appearance="dark"
+                size="large"
+                variant="large"
+                disabled={isRepayDisabled}
+                onClick={submitForm}
+              >
+                {t('global.buttons.repay')} {reserveData.symbol}
+              </Button>
+            </BoxLayout>
+          </StackLayout>
+        </>
+      )}
     </Modal>
   )
 }

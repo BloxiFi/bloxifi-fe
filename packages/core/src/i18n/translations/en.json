@@ -12,29 +12,45 @@
       "disconnectWallet": "Disconnect wallet",
       "viewOnExplorer": "View on explorer",
       "darkMode": "Dark mode",
-      "testnetMode": "Testnet mode"
+      "testnetMode": "Testnet mode",
+      "transfer": "Transfer"
     },
     "inputs": {
-      "amount": "Amount"
+      "amount": "Amount",
+      "chooseCurrency": "Choose currency"
     },
     "notifications": {
       "transaction_failed": "Transaction failed",
+      "success": "Success",
       "deposit_successful": "Deposit successful",
       "borrow_successful": "Borrow successful",
       "withdraw_successful": "Withdraw successful",
-      "repay_successful": "Repay successful"
+      "repay_successful": "Repay successful",
+      "installMetamaskTitle": "Metamask not installed",
+      "installMetamaskDescription": "Please install Metamask browser extension",
+      "processingTheConnectionTitle": "Already processing the connection",
+      "processingTheConnectionDescription": "Finalize connection to {{walletName}} by choosing the wallet you wish to connect and clicking “Connect” within {{walletName}}",
+      "connectTheWalletTitle": "Please, connect your wallet",
+      "connectTheWalletDescription": "Please, connect your wallet to see your deposits and borrowings",
+      "notSupportedNetworkTitle": "Please switch to a correct network",
+      "notSupportedNetworkDescription": "Please switch to a Moonriver network"
     },
     "table": {
       "assets": "Assets",
       "walletBalance": "Wallet balance",
       "apy": "APY",
-      "available": "Available"
+      "available": "Available",
+      "totalDeposited": "Total value deposited",
+      "totalBorrowed": "Total borrowed",
+      "depositAPY": "Deposit APY",
+      "borrowAPY": "Borrow APY"
     },
     "errors": {
       "required": "Required",
       "positiveValue": "Must be greater than 0",
       "numbersOnly": "Must be a number",
-      "exceededBalance": "Not enough balance"
+      "exceededBalance": "Not enough balance",
+      "healthFactor": "Health factor cannot be less than 1.01"
     },
     "tooltips": {
       "depositedBalance": "Your total deposited balance denominated in USD",
@@ -54,18 +70,26 @@
   },
   "walletConnection": {
     "notConnectedTitle": "Please, connect your wallet",
-    "wrongNetworkConnection": "Wrong network"
+    "installBrowserExtension": "Please install {{walletName}}",
+    "wrongNetworkConnection": "Wrong network",
+    "connecting": "Connecting"
   },
   "dashboard": {
     "pageTitle": "Dashboard",
     "totalDeposited": "Total Deposited",
     "totalBorrowed": "Total Borrowed",
-    "notConnectedMessage": "Please, connect your wallet to see your supplies, borrowings, and open positions."
+    "notConnectedMessage": "Please, connect your wallet to see your supplies, borrowings, and open positions.",
+    "APYcalculator": {
+      "title": "{{type}} APY Calculator",
+      "duration": "In {{duration}} {{labelPlural}} time:"
+    }
   },
   "deposit": {
     "pageTitle": "Deposit page",
     "depositEmpty": "Nothing deposited yet",
+    "yourDeposit": "Your deposit",
     "borrowEmpty": "Nothing borrowed yet",
+    "yourBorrow": "Your borrow",
     "assetsToDeposit": "Assets to deposit",
     "assetsToBorrow": "Assets to borrow",
     "depositAsset": "Deposit asset",
@@ -81,5 +105,17 @@
   },
   "staking": {
     "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."
+  },
+  "transfer": {
+    "originChain": "Origin Chain",
+    "destinationChain": "Destination Chain",
+    "originAccount": "Origin account",
+    "destinationAccount": "Destination account",
+    "inNetworkLabel": "in {{network}}"
+  },
+  "pageNotFound": {
+    "title": "404 - Page not found",
+    "description": "The page you were looking for does not exist",
+    "goToDashboardButton": "Go to dashboard"
   }
 }

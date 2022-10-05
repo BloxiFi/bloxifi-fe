@@ -6,7 +6,14 @@ const assetsIcons = ['dai', 'usdc', 'weth', 'wbtc', 'ksm', 'mowr']
 /**
  * TODO Refactor color prop and applying color
  */
-const notFilled = ['success', 'error', ...assetsIcons, 'arrow-down', 'settings']
+const notFilled = [
+  'success',
+  'error',
+  ...assetsIcons,
+  'settings',
+  'transfer',
+  'polkadot',
+]
 
 export const IconNames = [
   'close',
@@ -20,6 +27,7 @@ export const IconNames = [
   'success',
   'error',
   'info',
+  'transfer',
   ...assetsIcons,
 ] as const
 export type IconNamesType = typeof IconNames[number]

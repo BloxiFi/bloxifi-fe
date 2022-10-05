@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Range input Horizontal 1`] = `
+<div
+  className="sc-fnykZs fmpsuH"
+>
+  <section
+    className="sc-hAZoDl dpdcIP"
+    span={12}
+  >
+    <div
+      className="sc-iNWwEs gwyQUX"
+    >
+      <h3
+        className="sc-fEOsli sc-eKszNL cgiuxf iBQEaW c-text--heading-3 c-text--color-oxfordBlue"
+      >
+        Deposit duration
+      </h3>
+      <div
+        className="sc-jfmDQi dPKNRe"
+      >
+        <input
+          max={36}
+          min={1}
+          onInput={[Function]}
+          step={1}
+          title="Deposit duration"
+          type="range"
+          value="24"
+        />
+        <div
+          className="sc-breuTD bypzqd"
+          id="bottom-label"
+        >
+          <p
+            className="sc-fEOsli jBzgKS c-text--body-1 c-text--color-oxfordBlue"
+          >
+            1
+          </p>
+          <p
+            className="sc-fEOsli hWekve c-text--body-1 c-text--color-oxfordBlue"
+          >
+            36
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;
