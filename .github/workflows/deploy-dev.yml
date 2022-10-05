@@ -147,7 +147,7 @@ jobs:
       # Generate env from secrets for e2e testing
       #
       - name: Generate env
-        working-directory: ./apps/web
+        working-directory: ./autotests/synpress
         run: |
           echo "SECRET_WORDS=${{ secrets.SECRET_WORDS }}" > .env
           echo "METAMASK_VERSION=${{ secrets.METAMASK_VERSION }}" >> .env
