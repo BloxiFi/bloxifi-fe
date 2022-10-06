@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  BoxLayout,
   Button,
   ColumnLayout,
   Menu,
@@ -9,8 +8,9 @@ import {
   Icon,
   Text,
   StackLayout,
+  NetworkStatusIlustrator,
 } from '@bloxifi/ui'
-import { sliceMiddleOfString } from '@bloxifi/core'
+import { getNetworkName, sliceMiddleOfString } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 
 import { Web3Container } from '@/containers/Web3Container'
@@ -29,6 +29,7 @@ export const ConnectWalletButton = () => {
       isSupportedNetwork,
       isMetamaskInstalled,
       error,
+      chainId,
     },
   } = Web3Container.useContainer()
 
@@ -78,7 +79,6 @@ export const ConnectWalletButton = () => {
               appearance="primary-ghost"
               variant="medium"
               size="medium"
-              radius="rounded"
             >
               <ColumnLayout gap={0.5}>
                 <Icon name="wallet" color="white" size={20} />
@@ -91,9 +91,30 @@ export const ConnectWalletButton = () => {
           field={
             <StackLayout>
               <MenuItemTitle type="heading 3">
-                {sliceMiddleOfString(currentAccount, 4)}
+                <ColumnLayout gap={0.5} align="space-between">
+                  <Icon name="wallet" size={40} />
+                  <StackLayout>
+                    {sliceMiddleOfString(currentAccount, 4)}
+                  </StackLayout>
+                </ColumnLayout>
               </MenuItemTitle>
 
+              <MenuItemTitle type="body 2">
+                {t('header.network')}
+                <ColumnLayout gap={0.5}>
+                  <NetworkStatusIlustrator status="success" />
+                  <Text type="body 3">{getNetworkName(chainId)}</Text>
+                </ColumnLayout>
+              </MenuItemTitle>
+
+              <MenuItem
+                appearance="text"
+                variant="large"
+                size="large"
+                onClick={() => navigator.clipboard.writeText(currentAccount)}
+              >
+                {t('global.buttons.copyAddress')}
+              </MenuItem>
               <MenuItem
                 appearance="text"
                 variant="large"

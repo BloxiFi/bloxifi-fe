@@ -11,6 +11,7 @@
       "bloxBalance": "Blox Balance",
       "disconnectWallet": "Disconnect wallet",
       "viewOnExplorer": "View on explorer",
+      "copyAddress": "Copy address",
       "darkMode": "Dark mode",
       "testnetMode": "Testnet mode",
       "transfer": "Transfer"
@@ -66,7 +67,8 @@
     }
   },
   "header": {
-    "globalSettings": "Global settings"
+    "globalSettings": "Global settings",
+    "network": "Network"
   },
   "walletConnection": {
     "notConnectedTitle": "Please, connect your wallet",
