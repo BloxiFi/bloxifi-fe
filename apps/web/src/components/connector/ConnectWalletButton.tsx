@@ -33,6 +33,8 @@ export const ConnectWalletButton = () => {
     },
   } = Web3Container.useContainer()
 
+  const isConnectionInterupted = error && error.code === -32002
+
   const handleClose = () => {
     setCloseMenu(false)
   }
@@ -48,7 +50,7 @@ export const ConnectWalletButton = () => {
         walletName: 'Metamask',
       })
     }
-    if (error && error.code === -32002) {
+    if (isConnectionInterupted) {
       return t('walletConnection.connecting')
     }
     return t('global.buttons.connectWallet')
@@ -57,8 +59,16 @@ export const ConnectWalletButton = () => {
   return isConnected ? (
     <ColumnLayout>
       {/**TODO handle BLOX balance button click when we get BLOX token on Moonbeam, wait for BE to generate it */}
-      <Button variant="medium" appearance="primary-ghost" size="medium">
-        {t('global.buttons.bloxBalance')}
+      <Button
+        className="u-fit-content-width"
+        appearance="primary-ghost"
+        variant="medium"
+        size="medium"
+      >
+        <ColumnLayout gap={0.5}>
+          <Icon name="blox-logo" size={20} />
+          <StackLayout>{t('global.buttons.bloxBalance')}</StackLayout>
+        </ColumnLayout>
       </Button>
       {isSupportedNetwork ? (
         <Menu
@@ -157,7 +167,7 @@ export const ConnectWalletButton = () => {
       variant="medium"
       size="medium"
       onClick={connectWallet}
-      disabled={!isMetamaskInstalled || (error && error.code === -32002)}
+      disabled={!isMetamaskInstalled || isConnectionInterupted}
     >
       <ColumnLayout gap={0.5}>
         <Icon name="wallet" color="white" size={20} />

@@ -202,7 +202,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                     Origin account
                   </h3>
                   <div
-                    className="sc-olbas eXFlfA"
+                    className="sc-hiMGwR ctvXAB"
                   >
                     <div
                       className="sc-gsnTZi kzqZLP u-full-width"
@@ -215,7 +215,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                         value=""
                       />
                       <div
-                        className="sc-breuTD gHrPtz sc-hiMGwR gfTank"
+                        className="sc-breuTD gHrPtz sc-ehmTmK jvyGFM"
                       >
                         <div
                           className="sc-breuTD cxWDJq"
@@ -251,7 +251,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       Destination account
                     </h3>
                     <div
-                      className="sc-olbas eXFlfA"
+                      className="sc-hiMGwR ctvXAB"
                     >
                       <div
                         className="sc-gsnTZi kzqZLP u-full-width"
@@ -264,7 +264,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                           value=""
                         />
                         <div
-                          className="sc-breuTD gHrPtz sc-hiMGwR gfTank"
+                          className="sc-breuTD gHrPtz sc-ehmTmK jvyGFM"
                         >
                           <div
                             className="sc-breuTD cxWDJq"

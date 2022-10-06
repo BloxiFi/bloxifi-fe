@@ -72,7 +72,7 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -113,7 +113,7 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -154,7 +154,7 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -195,7 +195,7 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>
@@ -309,7 +309,7 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -350,7 +350,7 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -391,7 +391,7 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -432,7 +432,7 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>
@@ -587,7 +587,7 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -643,7 +643,7 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -699,7 +699,7 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -755,7 +755,7 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>
@@ -886,7 +886,7 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           className="sc-gXmSlM dJFjIR"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -927,7 +927,7 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           className="sc-gXmSlM dJFjIR"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -968,7 +968,7 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           className="sc-gXmSlM dJFjIR"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -1009,7 +1009,7 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           className="sc-gXmSlM dJFjIR"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>
@@ -1120,7 +1120,7 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -1161,7 +1161,7 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -1202,7 +1202,7 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -1243,7 +1243,7 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-lbOyJj doIvxX"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>

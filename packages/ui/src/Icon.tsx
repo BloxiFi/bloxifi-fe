@@ -13,6 +13,7 @@ const notFilled = [
   'settings',
   'transfer',
   'polkadot',
+  'blox-logo',
 ]
 
 export const IconNames = [
@@ -29,6 +30,7 @@ export const IconNames = [
   'info',
   'transfer',
   'wallet',
+  'blox-logo',
   ...assetsIcons,
 ] as const
 export type IconNamesType = typeof IconNames[number]
