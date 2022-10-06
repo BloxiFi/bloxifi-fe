@@ -625,9 +625,10 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ cTLctq jriGrI"
             data-element="button"
             onClick={[Function]}
+            radius="default"
             size="small"
             variant="thin"
           >
@@ -680,9 +681,10 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ cTLctq jriGrI"
             data-element="button"
             onClick={[Function]}
+            radius="default"
             size="small"
             variant="thin"
           >
@@ -735,9 +737,10 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ cTLctq jriGrI"
             data-element="button"
             onClick={[Function]}
+            radius="default"
             size="small"
             variant="thin"
           >
@@ -790,9 +793,10 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ cTLctq jriGrI"
             data-element="button"
             onClick={[Function]}
+            radius="default"
             size="small"
             variant="thin"
           >

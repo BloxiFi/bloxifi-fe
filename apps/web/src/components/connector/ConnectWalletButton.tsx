@@ -73,13 +73,19 @@ export const ConnectWalletButton = () => {
           forceClose={closeMenu}
           onClose={handleClose}
           toggler={
-            <Button appearance="primary-ghost" variant="medium" size="medium">
-              <>
-                {sliceMiddleOfString(currentAccount, 4)}
-                <BoxLayout gap={0.75}>
-                  <Icon name="arrow-down" color="white" />
-                </BoxLayout>
-              </>
+            <Button
+              className="u-fit-content-width"
+              appearance="primary-ghost"
+              variant="medium"
+              size="medium"
+              radius="rounded"
+            >
+              <ColumnLayout gap={0.5}>
+                <Icon name="wallet" color="white" size={20} />
+                <StackLayout>
+                  {sliceMiddleOfString(currentAccount, 4)}
+                </StackLayout>
+              </ColumnLayout>
             </Button>
           }
           field={
@@ -118,12 +124,16 @@ export const ConnectWalletButton = () => {
     </ColumnLayout>
   ) : (
     <Button
-      onClick={connectWallet}
+      radius="rounded"
+      appearance="primary-ghost"
       variant="medium"
-      appearance="primary"
       size="medium"
+      onClick={connectWallet}
     >
-      {t('global.buttons.connectWallet')}
+      <ColumnLayout gap={0.5}>
+        <Icon name="wallet" color="white" size={20} />
+        <StackLayout>{t('global.buttons.connectWallet')}</StackLayout>
+      </ColumnLayout>
     </Button>
   )
 }

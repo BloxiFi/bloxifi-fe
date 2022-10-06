@@ -55,8 +55,9 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
         >
           <button
             appearance="primary-ghost"
-            className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+            className="sc-hKMtZM sc-iBkjds JKzku jwNdkq"
             data-element="button"
+            radius="default"
             size="medium"
             variant="medium"
           >
@@ -64,17 +65,19 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
           </button>
           <button
             appearance="primary-ghost"
-            className="sc-hKMtZM sc-iBkjds jQZGYc izdpQA"
+            className="sc-hKMtZM sc-iBkjds hjkHIi izdpQA"
             data-element="button"
             icon="metamask"
+            radius="default"
             size="medium"
             variant="medium"
           />
           <button
             appearance="primary-ghost"
-            className="sc-hKMtZM sc-iBkjds jQZGYc izdpQA"
+            className="sc-hKMtZM sc-iBkjds hjkHIi izdpQA"
             data-element="button"
             icon="polkadot"
+            radius="default"
             size="medium"
             variant="medium"
           />
@@ -125,9 +128,10 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi eRsyu ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kOWSBI ioWRiD"
                         data-element="button"
                         onMouseUp={[Function]}
+                        radius="default"
                         size="medium"
                         variant="large"
                       >
@@ -163,9 +167,10 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi eRsyu ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kOWSBI ioWRiD"
                         data-element="button"
                         onMouseUp={[Function]}
+                        radius="default"
                         size="medium"
                         variant="large"
                       >
@@ -336,8 +341,9 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                           </span>
                           <button
                             appearance="secondary"
-                            className="sc-hKMtZM sc-jSMfEi bhIYCU ioWRiD u-fit-content-width"
+                            className="sc-hKMtZM sc-jSMfEi oDVYC ioWRiD u-fit-content-width"
                             data-element="button"
+                            radius="default"
                             size="small"
                             variant="large"
                           >
@@ -350,9 +356,10 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                         >
                           <button
                             appearance="secondary"
-                            className="sc-hKMtZM sc-jSMfEi ceimAv ioWRiD"
+                            className="sc-hKMtZM sc-jSMfEi ixPTLd ioWRiD"
                             data-element="button"
                             onMouseUp={[Function]}
+                            radius="default"
                             size="small"
                             variant="large"
                           >
@@ -372,8 +379,9 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                     </div>
                     <button
                       appearance="dark"
-                      className="sc-hKMtZM sc-gKXOVf iOviQP llhpmf u-full-width"
+                      className="sc-hKMtZM sc-gKXOVf pQJvh llhpmf u-full-width"
                       data-element="button"
+                      radius="default"
                       size="large"
                       variant="large"
                     >

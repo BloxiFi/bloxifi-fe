@@ -28,6 +28,7 @@ export const IconNames = [
   'error',
   'info',
   'transfer',
+  'wallet',
   ...assetsIcons,
 ] as const
 export type IconNamesType = typeof IconNames[number]
