@@ -9,6 +9,7 @@ import {
   Text,
   StackLayout,
   NetworkStatusIlustrator,
+  BoxLayout,
 } from '@bloxifi/ui'
 import { getNetworkName, sliceMiddleOfString } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
@@ -65,10 +66,12 @@ export const ConnectWalletButton = () => {
         variant="medium"
         size="medium"
       >
-        <ColumnLayout gap={0.5}>
-          <Icon name="blox-logo" size={20} />
-          <StackLayout>{t('global.buttons.bloxBalance')}</StackLayout>
-        </ColumnLayout>
+        <BoxLayout gap={0.2}>
+          <ColumnLayout gap={0.5}>
+            <Icon name="blox-logo" size={20} />
+            <StackLayout>{t('global.buttons.bloxBalance')}</StackLayout>
+          </ColumnLayout>
+        </BoxLayout>
       </Button>
       {isSupportedNetwork ? (
         <Menu
@@ -83,13 +86,16 @@ export const ConnectWalletButton = () => {
               appearance="primary-ghost"
               variant="medium"
               size="medium"
+              radius="rounded"
             >
-              <ColumnLayout gap={0.5}>
-                <Icon name="wallet" color="white" size={20} />
-                <StackLayout>
-                  {sliceMiddleOfString(currentAccount, 4)}
-                </StackLayout>
-              </ColumnLayout>
+              <BoxLayout gap={0.2}>
+                <ColumnLayout gap={0.5}>
+                  <Icon name="wallet" color="white" size={20} />
+                  <StackLayout>
+                    {sliceMiddleOfString(currentAccount, 4)}
+                  </StackLayout>
+                </ColumnLayout>
+              </BoxLayout>
             </Button>
           }
           field={
@@ -142,26 +148,30 @@ export const ConnectWalletButton = () => {
           }
         />
       ) : (
-        <Button
-          appearance="primary-ghost"
-          variant="medium"
-          size="medium"
-          disabled
-          radius="rounded"
-        >
-          <ColumnLayout gap={0.5}>
-            <Icon name="wallet" color="white" size={20} />
-            <StackLayout>
-              {t('walletConnection.wrongNetworkConnection', {
-                networkName: 'Moonriver',
-              })}
-            </StackLayout>
-          </ColumnLayout>
-        </Button>
+        <BoxLayout gap={0.2}>
+          <Button
+            className="u-fit-content-width"
+            appearance="primary-ghost"
+            variant="medium"
+            size="medium"
+            disabled
+            radius="rounded"
+          >
+            <ColumnLayout gap={0.5}>
+              <Icon name="wallet" color="white" size={20} />
+              <StackLayout>
+                {t('walletConnection.wrongNetworkConnection', {
+                  networkName: 'Moonriver',
+                })}
+              </StackLayout>
+            </ColumnLayout>
+          </Button>
+        </BoxLayout>
       )}
     </ColumnLayout>
   ) : (
     <Button
+      className="u-fit-content-width"
       radius="rounded"
       appearance="primary-ghost"
       variant="medium"
@@ -169,10 +179,12 @@ export const ConnectWalletButton = () => {
       onClick={connectWallet}
       disabled={!isMetamaskInstalled || isConnectionInterupted}
     >
-      <ColumnLayout gap={0.5}>
-        <Icon name="wallet" color="white" size={20} />
-        <StackLayout>{getButtonContent()}</StackLayout>
-      </ColumnLayout>
+      <BoxLayout gap={0.2}>
+        <ColumnLayout gap={0.5}>
+          <Icon name="wallet" color="white" size={20} />
+          <StackLayout>{getButtonContent()}</StackLayout>
+        </ColumnLayout>
+      </BoxLayout>
     </Button>
   )
 }

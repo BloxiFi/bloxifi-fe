@@ -1,5 +1,5 @@
 import { CoverLayout, Loader, PageLayout } from '@bloxifi/ui'
-import React, { FC, lazy, Suspense, useEffect } from 'react'
+import React, { FC, lazy, Suspense, useCallback, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Header } from '../header/Header'
@@ -21,6 +21,11 @@ export const Router: FC = ({ children }) => {
   const polkadotRoutes = ['/transfer/']
   //Routes that require any connection
   const privateRoutes = ['/borrow/', '/staking/', '/transfer/']
+
+  const isPolkadotRoute = useCallback(
+    (path: string) => polkadotRoutes.includes(path),
+    [],
+  )
 
   function renderRoute({ path, filename }) {
     const routeProps = {
@@ -49,11 +54,11 @@ export const Router: FC = ({ children }) => {
     setHeader(
       <Web3Container.Provider>
         <Web3PolkadotContainer.Provider>
-          <Header />
+          <Header isPolkadotRoute={isPolkadotRoute} />
         </Web3PolkadotContainer.Provider>
       </Web3Container.Provider>,
     )
-  }, [setHeader])
+  }, [setHeader, isPolkadotRoute])
 
   return (
     <BrowserRouter>

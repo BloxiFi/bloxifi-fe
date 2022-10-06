@@ -112,7 +112,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
       loadingPolkadot: false,
       chainIdPolkadot: undefined,
       errorPolkadot: undefined,
-      isSupportedNetworkPolkadot: false,
+      isSupportedNetworkPolkadot: true,
       isPolkadotEnabled: isPolkaEnabled,
       signerPolkadot: selectedAccount,
       error: networkError,
