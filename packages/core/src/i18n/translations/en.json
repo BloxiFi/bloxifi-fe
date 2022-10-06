@@ -72,8 +72,8 @@
   },
   "walletConnection": {
     "notConnectedTitle": "Please, connect your wallet",
-    "installBrowserExtension": "Please install {{walletName}}",
-    "wrongNetworkConnection": "Wrong network",
+    "installBrowserExtension": "Install {{walletName}}",
+    "wrongNetworkConnection": "Switch to {{networkName}}",
     "connecting": "Connecting"
   },
   "dashboard": {

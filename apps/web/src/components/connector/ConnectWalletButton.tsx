@@ -42,22 +42,16 @@ export const ConnectWalletButton = () => {
     disconnectWallet()
   }
 
-  if (!isMetamaskInstalled) {
-    return (
-      <Text type="body 1" color="red" semiBold align="center">
-        {t('walletConnection.installBrowserExtension', {
-          walletName: 'Metamask',
-        })}
-      </Text>
-    )
-  }
-
-  if (error && error.code === -32002) {
-    return (
-      <Text type="body 1" color="red" semiBold align="center">
-        {t('walletConnection.connecting')}
-      </Text>
-    )
+  const getButtonContent = () => {
+    if (!isMetamaskInstalled) {
+      return t('walletConnection.installBrowserExtension', {
+        walletName: 'Metamask',
+      })
+    }
+    if (error && error.code === -32002) {
+      return t('walletConnection.connecting')
+    }
+    return t('global.buttons.connectWallet')
   }
 
   return isConnected ? (
@@ -138,8 +132,21 @@ export const ConnectWalletButton = () => {
           }
         />
       ) : (
-        <Button appearance="text" variant="medium" size="medium" color="red">
-          {t('walletConnection.wrongNetworkConnection')}
+        <Button
+          appearance="primary-ghost"
+          variant="medium"
+          size="medium"
+          disabled
+          radius="rounded"
+        >
+          <ColumnLayout gap={0.5}>
+            <Icon name="wallet" color="white" size={20} />
+            <StackLayout>
+              {t('walletConnection.wrongNetworkConnection', {
+                networkName: 'Moonriver',
+              })}
+            </StackLayout>
+          </ColumnLayout>
         </Button>
       )}
     </ColumnLayout>
@@ -150,10 +157,11 @@ export const ConnectWalletButton = () => {
       variant="medium"
       size="medium"
       onClick={connectWallet}
+      disabled={!isMetamaskInstalled || (error && error.code === -32002)}
     >
       <ColumnLayout gap={0.5}>
         <Icon name="wallet" color="white" size={20} />
-        <StackLayout>{t('global.buttons.connectWallet')}</StackLayout>
+        <StackLayout>{getButtonContent()}</StackLayout>
       </ColumnLayout>
     </Button>
   )
