@@ -47,6 +47,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * This represents custom icon/text color related to Text button
    */
   color?: string
+  /**
+   * Represents the button border radius
+   */
+  radius?: 'rounded' | 'default'
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
@@ -55,6 +59,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
   size,
   icon,
   color,
+  radius = 'default',
   ...props
 }) => {
   const ActiveComponent = getActiveComponent(appearance)
@@ -67,6 +72,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
         appearance={appearance}
         icon={icon}
         color={color}
+        radius={radius}
         {...props}
       >
         {icon ? (

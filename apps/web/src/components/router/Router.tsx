@@ -1,14 +1,18 @@
 import { CoverLayout, Loader, PageLayout } from '@bloxifi/ui'
 import React, { FC, lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { isPolkadotRoute, isPrivateRoute } from '@bloxifi/core'
 
 import { Header } from '../header/Header'
 
 import { PublicRoute } from './PublicRoute'
+import { PrivateRoute } from './PrivateRoute'
 
 import { PageContainer } from '@/containers/PageContainer'
 import routes from '@/routes.json'
 import PageNotFound from '@/pages/404'
+import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
+import { Web3Container } from '@/containers/Web3Container'
 
 export const Router: FC = ({ children }) => {
   const { pageLayout } = PageContainer.useContainer()
@@ -19,14 +23,32 @@ export const Router: FC = ({ children }) => {
       key: path,
       component: lazy(() => import(`@/pages/${filename}`)),
     }
-
     return (
-      <Route path={path} key={path} element={<PublicRoute {...routeProps} />} />
+      <Route
+        path={path}
+        key={path}
+        element={
+          isPrivateRoute(path) ? (
+            <PrivateRoute
+              isPolkadotConnRequired={isPolkadotRoute(path)}
+              {...routeProps}
+            />
+          ) : (
+            <PublicRoute {...routeProps} />
+          )
+        }
+      />
     )
   }
 
   useEffect(() => {
-    setHeader(<Header />)
+    setHeader(
+      <Web3Container.Provider>
+        <Web3PolkadotContainer.Provider>
+          <Header />
+        </Web3PolkadotContainer.Provider>
+      </Web3Container.Provider>,
+    )
   }, [setHeader])
 
   return (

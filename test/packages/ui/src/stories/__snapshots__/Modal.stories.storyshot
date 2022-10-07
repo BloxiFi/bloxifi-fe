@@ -9,10 +9,11 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
   >
     <button
       appearance="text"
-      className="sc-hKMtZM sc-papXJ jKfTjM fikKSz sc-gicCDI iJmeLr u-fit-content-width"
+      className="sc-hKMtZM sc-papXJ cCgISq fikKSz sc-gicCDI iJmeLr u-fit-content-width"
       data-element="button"
       disabled={false}
       icon="close"
+      radius="default"
       size="medium"
       variant="medium"
     />
@@ -102,8 +103,9 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                       </span>
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi ivRYUu ioWRiD u-fit-content-width"
+                        className="sc-hKMtZM sc-jSMfEi eEsPbc ioWRiD u-fit-content-width"
                         data-element="button"
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -212,8 +214,9 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
           >
             <button
               appearance="dark"
-              className="sc-hKMtZM sc-gKXOVf iOviQP llhpmf u-full-width"
+              className="sc-hKMtZM sc-gKXOVf pQJvh llhpmf u-full-width"
               data-element="button"
+              radius="default"
               size="large"
               variant="large"
             >
@@ -236,10 +239,11 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
   >
     <button
       appearance="text"
-      className="sc-hKMtZM sc-papXJ jKfTjM fikKSz sc-gicCDI iJmeLr u-fit-content-width"
+      className="sc-hKMtZM sc-papXJ cCgISq fikKSz sc-gicCDI iJmeLr u-fit-content-width"
       data-element="button"
       disabled={false}
       icon="close"
+      radius="default"
       size="medium"
       variant="medium"
     />
@@ -329,8 +333,9 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                       </span>
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi ivRYUu ioWRiD u-fit-content-width"
+                        className="sc-hKMtZM sc-jSMfEi eEsPbc ioWRiD u-fit-content-width"
                         data-element="button"
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -471,8 +476,9 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
           >
             <button
               appearance="dark"
-              className="sc-hKMtZM sc-gKXOVf iOviQP llhpmf u-full-width"
+              className="sc-hKMtZM sc-gKXOVf pQJvh llhpmf u-full-width"
               data-element="button"
+              radius="default"
               size="large"
               variant="large"
             >
@@ -480,9 +486,10 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
             </button>
             <button
               appearance="secondary"
-              className="sc-hKMtZM sc-jSMfEi bEgYQW ioWRiD u-full-width"
+              className="sc-hKMtZM sc-jSMfEi jmCSkk ioWRiD u-full-width"
               data-element="button"
               disabled={true}
+              radius="default"
               size="large"
               variant="large"
             >
@@ -499,9 +506,10 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
 exports[`Storyshots Components/Modal Modal Example 1`] = `
 <button
   appearance="primary"
-  className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+  className="sc-hKMtZM sc-eCYdqJ JKzku jriGrI"
   data-element="button"
   onClick={[Function]}
+  radius="default"
   size="medium"
   variant="medium"
 >
@@ -518,10 +526,11 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
   >
     <button
       appearance="text"
-      className="sc-hKMtZM sc-papXJ jKfTjM fikKSz sc-gicCDI iJmeLr u-fit-content-width"
+      className="sc-hKMtZM sc-papXJ cCgISq fikKSz sc-gicCDI iJmeLr u-fit-content-width"
       data-element="button"
       disabled={false}
       icon="close"
+      radius="default"
       size="medium"
       variant="medium"
     />
@@ -611,8 +620,9 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                       </span>
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi ivRYUu ioWRiD u-fit-content-width"
+                        className="sc-hKMtZM sc-jSMfEi eEsPbc ioWRiD u-fit-content-width"
                         data-element="button"
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -760,8 +770,9 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
           >
             <button
               appearance="dark"
-              className="sc-hKMtZM sc-gKXOVf iOviQP llhpmf u-full-width"
+              className="sc-hKMtZM sc-gKXOVf pQJvh llhpmf u-full-width"
               data-element="button"
+              radius="default"
               size="large"
               variant="large"
             >
@@ -784,10 +795,11 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
   >
     <button
       appearance="text"
-      className="sc-hKMtZM sc-papXJ jKfTjM fikKSz sc-gicCDI iJmeLr u-fit-content-width"
+      className="sc-hKMtZM sc-papXJ cCgISq fikKSz sc-gicCDI iJmeLr u-fit-content-width"
       data-element="button"
       disabled={false}
       icon="close"
+      radius="default"
       size="medium"
       variant="medium"
     />
@@ -877,8 +889,9 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                       </span>
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi ivRYUu ioWRiD u-fit-content-width"
+                        className="sc-hKMtZM sc-jSMfEi eEsPbc ioWRiD u-fit-content-width"
                         data-element="button"
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -1030,8 +1043,9 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
           >
             <button
               appearance="dark"
-              className="sc-hKMtZM sc-gKXOVf iOviQP llhpmf u-full-width"
+              className="sc-hKMtZM sc-gKXOVf pQJvh llhpmf u-full-width"
               data-element="button"
+              radius="default"
               size="large"
               variant="large"
             >
