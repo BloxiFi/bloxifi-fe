@@ -1,6 +1,7 @@
 import { CoverLayout, Loader, PageLayout } from '@bloxifi/ui'
-import React, { FC, lazy, Suspense, useCallback, useEffect } from 'react'
+import React, { FC, lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { isPolkadotRoute, isPrivateRoute } from '@bloxifi/core'
 
 import { Header } from '../header/Header'
 
@@ -17,16 +18,6 @@ export const Router: FC = ({ children }) => {
   const { pageLayout } = PageContainer.useContainer()
   const { setHeader } = pageLayout
 
-  //Routes that require Polkadot connection
-  const polkadotRoutes = ['/transfer/']
-  //Routes that require any connection
-  const privateRoutes = ['/borrow/', '/staking/', '/transfer/']
-
-  const isPolkadotRoute = useCallback(
-    (path: string) => polkadotRoutes.includes(path),
-    [],
-  )
-
   function renderRoute({ path, filename }) {
     const routeProps = {
       key: path,
@@ -37,9 +28,9 @@ export const Router: FC = ({ children }) => {
         path={path}
         key={path}
         element={
-          privateRoutes.includes(path) ? (
+          isPrivateRoute(path) ? (
             <PrivateRoute
-              isPolkadotConnRequired={polkadotRoutes.includes(path)}
+              isPolkadotConnRequired={isPolkadotRoute(path)}
               {...routeProps}
             />
           ) : (
@@ -54,11 +45,11 @@ export const Router: FC = ({ children }) => {
     setHeader(
       <Web3Container.Provider>
         <Web3PolkadotContainer.Provider>
-          <Header isPolkadotRoute={isPolkadotRoute} />
+          <Header />
         </Web3PolkadotContainer.Provider>
       </Web3Container.Provider>,
     )
-  }, [setHeader, isPolkadotRoute])
+  }, [setHeader])
 
   return (
     <BrowserRouter>

@@ -1,11 +1,12 @@
 import { ColumnLayout, PageLayout } from '@bloxifi/ui'
+import { isPolkadotRoute } from '@bloxifi/core'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { ConnectPolkadotButton } from '../connector/ConnectPolkadotButton'
 import { ConnectWalletButton } from '../connector/ConnectWalletButton'
 
-export const Header = ({ isPolkadotRoute }: any) => {
+export const Header = () => {
   const path = useLocation()
   const isCurrentPolkadotRoute = isPolkadotRoute(`${path.pathname}/`)
 
