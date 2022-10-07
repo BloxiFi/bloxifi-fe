@@ -7,9 +7,12 @@ import {
   Icon,
   StackLayout,
   BoxLayout,
+  MenuItem,
+  Text,
 } from '@bloxifi/ui'
 import { sliceMiddleOfString } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
+import { PolkadotAccount } from '@bloxifi/types'
 
 import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
 
@@ -19,11 +22,13 @@ export const ConnectPolkadotButton = () => {
 
   const {
     connectWallet,
+    dispatch,
     state: {
       currentAccountPolkadot,
       isSupportedNetworkPolkadot,
       isPolkadotEnabled,
       errorPolkadot,
+      accounts,
     },
   } = Web3PolkadotContainer.useContainer()
 
@@ -77,6 +82,31 @@ export const ConnectPolkadotButton = () => {
                   </StackLayout>
                 </ColumnLayout>
               </MenuItemTitle>
+              {accounts.map((account: PolkadotAccount) => (
+                <MenuItem
+                  key={account.name}
+                  className="u-full-width"
+                  appearance="text"
+                  variant="large"
+                  size="large"
+                  disabled={account.address === currentAccountPolkadot}
+                  onClick={() =>
+                    dispatch({
+                      type: 'setCurrentAccount',
+                      value: account.address,
+                    })
+                  }
+                >
+                  <StackLayout gap={0.2}>
+                    <Text align="left" type="body 2">
+                      {account.name}
+                    </Text>
+                    <Text align="left" type="body 3">
+                      {sliceMiddleOfString(account.address, 7)}
+                    </Text>
+                  </StackLayout>
+                </MenuItem>
+              ))}
             </StackLayout>
           }
         />

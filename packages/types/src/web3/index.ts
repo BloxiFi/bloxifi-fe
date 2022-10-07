@@ -33,6 +33,11 @@ export type Web3ContainerProps = {
   signer: JsonRpcSigner | undefined
 }
 
+export type PolkadotAccount = {
+  address: string
+  name: string
+}
+
 //PolkaDOT type
 export type Web3PolkadotContainerProps = {
   currentAccountPolkadot: string
@@ -44,4 +49,5 @@ export type Web3PolkadotContainerProps = {
   isSupportedNetworkPolkadot: boolean
   chainIdPolkadot: number
   currentAccountNamePolkadot: string
+  accounts: PolkadotAccount[]
 }

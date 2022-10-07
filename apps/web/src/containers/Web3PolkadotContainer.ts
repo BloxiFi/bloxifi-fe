@@ -5,6 +5,7 @@ import {
   WellKnownChain,
 } from '@polkadot/rpc-provider/substrate-connect'
 import {
+  PolkadotAccount,
   Action,
   CheckForPolkadotFunction,
   ConnectWalletPolkadotFunction,
@@ -12,6 +13,7 @@ import {
 } from '@bloxifi/types'
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { createContainer } from 'unstated-next'
+import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 
 const defaultState: Web3PolkadotContainerProps = {
   currentAccountPolkadot: '',
@@ -23,8 +25,9 @@ const defaultState: Web3PolkadotContainerProps = {
   isPolkadotEnabled: false,
   signerPolkadot: undefined,
   currentAccountNamePolkadot: '',
+  accounts: [],
 }
-type ActionType = 'isPolkadotEnabled'
+type ActionType = 'isPolkadotEnabled' | 'setCurrentAccount'
 
 const reducer = (
   state: Web3PolkadotContainerProps,
@@ -33,6 +36,9 @@ const reducer = (
   switch (action.type) {
     case 'isPolkadotEnabled': {
       return { ...state, isPolkadotEnabled: action.value }
+    }
+    case 'setCurrentAccount': {
+      return { ...state, currentAccountPolkadot: action.value }
     }
     default:
       return defaultState
@@ -49,8 +55,15 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
   //const [signer, setSigner] = useState()
   const [networkError, setNetworkError] = useState(undefined)
   const [isPolkaEnabled, setIsPolkaEnabled] = useState(false)
-  //const [accounts, setAccounts] = useState([])
-  const [selectedAccount, setSelectedAccount] = useState('')
+  const [accounts, setAccounts] = useState([])
+
+  const formatAccounts = (
+    accounts: InjectedAccountWithMeta[],
+  ): PolkadotAccount[] =>
+    accounts.map(account => ({
+      address: account.address,
+      name: account.meta.name,
+    }))
 
   const connectWallet: ConnectWalletPolkadotFunction = useCallback(async () => {
     //setLoading(true)
@@ -82,13 +95,14 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
         //console.log('polka da')
         localStorage.setItem('isConnectedPolkadot', 'true')
         //connectWallet()
-        const accounts = await web3Accounts()
-        //setAccounts(accounts)
-        //accounts.map(account => {
-        //console.log(account.address, account.meta.name)
-        //})
 
-        setSelectedAccount(accounts[0].address)
+        const accounts: InjectedAccountWithMeta[] = await web3Accounts()
+        const formattedAccounts = formatAccounts(accounts)
+        setAccounts(formattedAccounts)
+        dispatch({
+          type: 'setCurrentAccount',
+          value: formattedAccounts[0].address,
+        })
       }
     } catch (error) {
       setNetworkError(error)
@@ -108,15 +122,15 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
   return {
     state: {
       ...state,
-      currentAccountPolkadot: selectedAccount,
       loadingPolkadot: false,
       chainIdPolkadot: undefined,
       errorPolkadot: undefined,
       isSupportedNetworkPolkadot: true,
       isPolkadotEnabled: isPolkaEnabled,
-      signerPolkadot: selectedAccount,
+      signerPolkadot: state.currentAccountPolkadot,
       error: networkError,
       loading: false,
+      accounts,
     },
     dispatch,
     connectWallet,

@@ -156,6 +156,7 @@ export const MenuItem = styled(Button)<{ isLastItem?: boolean }>`
   color: ${({ theme }) => theme.buttonDark};
   justify-content: space-between;
   border-radius: ${({ isLastItem }) => (isLastItem ? '0 0 0.5rem 0.5rem' : 0)};
+  height: auto;
 
   &:hover {
     background: ${({ theme }) => theme.buttonLight};
