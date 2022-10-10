@@ -83,9 +83,10 @@ export const YourBorrowsTable: FunctionComponent = () => {
       Cell: ({
         data: { currentTotalDebt, symbol, underlyingAsset, icon, priceInEth },
       }) => {
-        const balance = reserves.find(
+        const findAsset = reserves.find(
           reserve => reserve.underlyingAsset === underlyingAsset,
-        ).balance
+        )
+        const balance = findAsset?.balance
         const maxRepayAmount = getMaxRepayAmount(balance, currentTotalDebt)
         return (
           <Button
