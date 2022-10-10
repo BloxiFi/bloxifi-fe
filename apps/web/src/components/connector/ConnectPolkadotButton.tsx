@@ -89,6 +89,7 @@ export const ConnectPolkadotButton = () => {
                   appearance="text"
                   variant="large"
                   size="large"
+                  height="auto"
                   disabled={account.address === currentAccountPolkadot}
                   onClick={() =>
                     dispatch({

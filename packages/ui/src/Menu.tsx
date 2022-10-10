@@ -151,12 +151,15 @@ const Element = styled.div`
   min-width: 100%;
 `
 
-export const MenuItem = styled(Button)<{ isLastItem?: boolean }>`
+export const MenuItem = styled(Button)<{
+  isLastItem?: boolean
+  height?: string
+}>`
   padding: 0.75rem 2.185rem;
   color: ${({ theme }) => theme.buttonDark};
   justify-content: space-between;
   border-radius: ${({ isLastItem }) => (isLastItem ? '0 0 0.5rem 0.5rem' : 0)};
-  height: auto;
+  ${({ height }) => height && `height: ${height}`};
 
   &:hover {
     background: ${({ theme }) => theme.buttonLight};
