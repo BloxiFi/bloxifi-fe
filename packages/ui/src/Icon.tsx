@@ -57,7 +57,14 @@ export interface IconProps extends Omit<Props, 'src'> {
 }
 
 export const Icon = styled(
-  ({ name, size = 16, className, ...props }: IconProps): JSX.Element => {
+  ({
+    name,
+    size = 16,
+    className,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    withBorder,
+    ...props
+  }: IconProps): JSX.Element => {
     const icon = require(`./icons/${name}.svg`) as string
     const themeContext = useContext(ThemeContext)
 

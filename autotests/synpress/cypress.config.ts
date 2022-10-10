@@ -19,6 +19,7 @@ export default defineConfig({
   responseTimeout: 60000,
   baseUrl: 'http://localhost:3000',
   chromeWebSecurity: true,
-  taskTimeout: 30000,
+  taskTimeout: 40000,
+  defaultCommandTimeout: 20000,
   retries: { runMode: 0, openMode: 0 },
 })

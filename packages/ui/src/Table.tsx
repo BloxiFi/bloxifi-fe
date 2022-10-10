@@ -271,7 +271,6 @@ export const Table = ({
                 columns={columns}
                 rowIndex={rowIndex}
                 rowData={rowData}
-                isTitleAString={isTitleAString}
                 columnSpacing={columnSpacing}
                 isLoading={isLoading}
               />
