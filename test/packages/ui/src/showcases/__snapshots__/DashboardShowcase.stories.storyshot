@@ -55,8 +55,9 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
         >
           <button
             appearance="primary-ghost"
-            className="sc-hKMtZM sc-iBkjds kiXBJA jwNdkq"
+            className="sc-hKMtZM sc-iBkjds JKzku jwNdkq"
             data-element="button"
+            radius="default"
             size="medium"
             variant="medium"
           >
@@ -64,8 +65,9 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           </button>
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ JKzku jriGrI"
             data-element="button"
+            radius="default"
             size="medium"
             variant="medium"
           >

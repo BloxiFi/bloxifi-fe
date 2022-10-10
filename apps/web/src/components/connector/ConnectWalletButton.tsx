@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  BoxLayout,
   Button,
   ColumnLayout,
   Menu,
@@ -9,8 +8,10 @@ import {
   Icon,
   Text,
   StackLayout,
+  NetworkStatusIlustrator,
+  BoxLayout,
 } from '@bloxifi/ui'
-import { sliceMiddleOfString } from '@bloxifi/core'
+import { getNetworkName, sliceMiddleOfString } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 
 import { Web3Container } from '@/containers/Web3Container'
@@ -29,8 +30,11 @@ export const ConnectWalletButton = () => {
       isSupportedNetwork,
       isMetamaskInstalled,
       error,
+      chainId,
     },
   } = Web3Container.useContainer()
+
+  const isConnectionInterupted = error && error.code === -32002
 
   const handleClose = () => {
     setCloseMenu(false)
@@ -41,29 +45,33 @@ export const ConnectWalletButton = () => {
     disconnectWallet()
   }
 
-  if (!isMetamaskInstalled) {
-    return (
-      <Text type="body 1" color="red" semiBold align="center">
-        {t('walletConnection.installBrowserExtension', {
-          walletName: 'Metamask',
-        })}
-      </Text>
-    )
-  }
-
-  if (error && error.code === -32002) {
-    return (
-      <Text type="body 1" color="red" semiBold align="center">
-        {t('walletConnection.connecting')}
-      </Text>
-    )
+  const getButtonContent = () => {
+    if (!isMetamaskInstalled) {
+      return t('walletConnection.installBrowserExtension', {
+        walletName: 'Metamask',
+      })
+    }
+    if (isConnectionInterupted) {
+      return t('walletConnection.connecting')
+    }
+    return t('global.buttons.connectWallet')
   }
 
   return isConnected ? (
     <ColumnLayout>
       {/**TODO handle BLOX balance button click when we get BLOX token on Moonbeam, wait for BE to generate it */}
-      <Button variant="medium" appearance="primary-ghost" size="medium">
-        {t('global.buttons.bloxBalance')}
+      <Button
+        className="u-fit-content-width"
+        appearance="primary-ghost"
+        variant="medium"
+        size="medium"
+      >
+        <BoxLayout gap={0.2}>
+          <ColumnLayout gap={0.5}>
+            <Icon name="blox-logo" size={20} />
+            <StackLayout>{t('global.buttons.bloxBalance')}</StackLayout>
+          </ColumnLayout>
+        </BoxLayout>
       </Button>
       {isSupportedNetwork ? (
         <Menu
@@ -73,21 +81,50 @@ export const ConnectWalletButton = () => {
           forceClose={closeMenu}
           onClose={handleClose}
           toggler={
-            <Button appearance="primary-ghost" variant="medium" size="medium">
-              <>
-                {sliceMiddleOfString(currentAccount, 4)}
-                <BoxLayout gap={0.75}>
-                  <Icon name="arrow-down" color="white" />
-                </BoxLayout>
-              </>
+            <Button
+              className="u-fit-content-width"
+              appearance="primary-ghost"
+              variant="medium"
+              size="medium"
+              radius="rounded"
+            >
+              <BoxLayout gap={0.2}>
+                <ColumnLayout gap={0.5}>
+                  <Icon name="wallet" color="white" size={20} />
+                  <StackLayout>
+                    {sliceMiddleOfString(currentAccount, 4)}
+                  </StackLayout>
+                </ColumnLayout>
+              </BoxLayout>
             </Button>
           }
           field={
             <StackLayout>
               <MenuItemTitle type="heading 3">
-                {sliceMiddleOfString(currentAccount, 4)}
+                <ColumnLayout gap={0.5} align="space-between">
+                  <Icon name="wallet" size={40} />
+                  <StackLayout>
+                    {sliceMiddleOfString(currentAccount, 4)}
+                  </StackLayout>
+                </ColumnLayout>
               </MenuItemTitle>
 
+              <MenuItemTitle type="body 2">
+                {t('header.network')}
+                <ColumnLayout gap={0.5}>
+                  <NetworkStatusIlustrator status="success" />
+                  <Text type="body 3">{getNetworkName(chainId)}</Text>
+                </ColumnLayout>
+              </MenuItemTitle>
+
+              <MenuItem
+                appearance="text"
+                variant="large"
+                size="large"
+                onClick={() => navigator.clipboard.writeText(currentAccount)}
+              >
+                {t('global.buttons.copyAddress')}
+              </MenuItem>
               <MenuItem
                 appearance="text"
                 variant="large"
@@ -111,19 +148,43 @@ export const ConnectWalletButton = () => {
           }
         />
       ) : (
-        <Button appearance="text" variant="medium" size="medium" color="red">
-          {t('walletConnection.wrongNetworkConnection')}
-        </Button>
+        <BoxLayout gap={0.2}>
+          <Button
+            className="u-fit-content-width"
+            appearance="primary-ghost"
+            variant="medium"
+            size="medium"
+            disabled
+            radius="rounded"
+          >
+            <ColumnLayout gap={0.5}>
+              <Icon name="wallet" color="white" size={20} />
+              <StackLayout>
+                {t('walletConnection.wrongNetworkConnection', {
+                  networkName: 'Moonriver',
+                })}
+              </StackLayout>
+            </ColumnLayout>
+          </Button>
+        </BoxLayout>
       )}
     </ColumnLayout>
   ) : (
     <Button
-      onClick={connectWallet}
+      className="u-fit-content-width"
+      radius="rounded"
+      appearance="primary-ghost"
       variant="medium"
-      appearance="primary"
       size="medium"
+      onClick={connectWallet}
+      disabled={!isMetamaskInstalled || isConnectionInterupted}
     >
-      {t('global.buttons.connectWallet')}
+      <BoxLayout gap={0.2}>
+        <ColumnLayout gap={0.5}>
+          <Icon name="wallet" color="white" size={20} />
+          <StackLayout>{getButtonContent()}</StackLayout>
+        </ColumnLayout>
+      </BoxLayout>
     </Button>
   )
 }
