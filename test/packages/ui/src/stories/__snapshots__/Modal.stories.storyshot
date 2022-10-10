@@ -74,9 +74,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  isTitleAString={false}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -161,9 +159,7 @@ exports[`Storyshots Components/Modal Borrow Modal 1`] = `
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  isTitleAString={true}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -304,9 +300,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  isTitleAString={false}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -391,9 +385,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  isTitleAString={true}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -421,9 +413,7 @@ exports[`Storyshots Components/Modal Deposit Modal 1`] = `
                     </div>
                   </td>
                 </tr>
-                <tr
-                  isTitleAString={true}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -591,9 +581,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  isTitleAString={false}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -678,9 +666,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  isTitleAString={true}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -715,9 +701,7 @@ exports[`Storyshots Components/Modal Repay Modal 1`] = `
                     </div>
                   </td>
                 </tr>
-                <tr
-                  isTitleAString={true}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -860,9 +844,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  isTitleAString={false}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -947,9 +929,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  isTitleAString={true}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >
@@ -988,9 +968,7 @@ exports[`Storyshots Components/Modal Withdraw Modal 1`] = `
                     </div>
                   </td>
                 </tr>
-                <tr
-                  isTitleAString={true}
-                >
+                <tr>
                   <td
                     className="sc-gXmSlM dJFjIR"
                   >

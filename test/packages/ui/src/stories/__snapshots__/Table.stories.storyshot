@@ -65,9 +65,7 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -106,9 +104,7 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -147,9 +143,7 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -188,9 +182,7 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -302,9 +294,7 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -343,9 +333,7 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -384,9 +372,7 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -425,9 +411,7 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -580,9 +564,7 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -636,9 +618,7 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           </button>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -692,9 +672,7 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           </button>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -748,9 +726,7 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           </button>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -879,9 +855,7 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={false}
-      >
+      <tr>
         <td
           className="sc-gXmSlM dJFjIR"
         >
@@ -920,9 +894,7 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={false}
-      >
+      <tr>
         <td
           className="sc-gXmSlM dJFjIR"
         >
@@ -961,9 +933,7 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={false}
-      >
+      <tr>
         <td
           className="sc-gXmSlM dJFjIR"
         >
@@ -1002,9 +972,7 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={false}
-      >
+      <tr>
         <td
           className="sc-gXmSlM dJFjIR"
         >
@@ -1113,9 +1081,7 @@ exports[`Storyshots Components/Table With Footer 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -1154,9 +1120,7 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -1195,9 +1159,7 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
@@ -1236,9 +1198,7 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
