@@ -1,4 +1,15 @@
 //Deposit and Borrow page
+export const modalTypes = ['Repay', 'Withdraw', 'Deposit', 'Borrow'] as const
+type ModalType = typeof modalTypes[number]
+const tokenList = [
+  'KSMmb',
+  'WBTCmb',
+  'WETHmb',
+  'DAImb',
+  'USDCmb',
+  'MOWRmb',
+] as const
+type TokenType = typeof tokenList[number]
 
 export const DepositAndBorrowPage = {
   //Locators
@@ -84,6 +95,19 @@ export const DepositAndBorrowPage = {
     cy.get('[data-cy="availableToBorrow USDCmb"] span'),
   MOWRmbAvailableToBorrow_Value: () =>
     cy.get('[data-cy="availableToBorrow MOWRmb"] span'),
+  //Modals
+  maxAmount_Button: () => cy.contains('button[data-element="button"]', 'MAX'),
+  tokenNameOnModal_Text: () => cy.get('[data-cy="token name"]'),
+  closeModal_Button: () => cy.get('button[icon="close"] svg'),
+
+  //Modal title
+  modalTitle_Text: (type: ModalType) =>
+    cy.get(`[data-cy="${type.toLowerCase()} modal title"]`),
+  // modal token action (depends on type)
+  modalButtonTokenAction: (type: ModalType, token: TokenType) =>
+    cy.get(`[data-cy="${type.toLowerCase()}Btn ${token}"]`),
+  modalConfirmAction: (type: ModalType, token: TokenType) =>
+    cy.get(`[data-cy="${type.toLowerCase()}ButtonOnModal ${token}"]`),
 
   //Actions
   visibilityOfYourDepositElements: () => {
@@ -151,5 +175,47 @@ export const DepositAndBorrowPage = {
     DepositAndBorrowPage.WETHmbAvailableToBorrow_Value().should('be.visible')
     DepositAndBorrowPage.USDCmbAvailableToBorrow_Value().should('be.visible')
     DepositAndBorrowPage.MOWRmbAvailableToBorrow_Value().should('be.visible')
+  },
+  visibilityOfModalElements: (type: ModalType) => {
+    tokenList.map(token => {
+      // checking if the app has some fetching data still in progress (since cy.wait('@graph') was not enough)
+      cy.get(`[data-cy="${type}Table"]`).within(() => {
+        cy.contains('Loading...').should('not.exist')
+      })
+
+      // this is as well the last thing that need to be ready before opening the modal. (checking if the progress-bar is visible)
+      cy.get('.recharts-rectangle').each(element => {
+        cy.wrap(element).should('be.visible')
+      })
+
+      // This action was the most flaky because it was detached from the DOM a lot, so previous 5 checks are to ensure that this will not be detached
+      DepositAndBorrowPage.modalButtonTokenAction(type, token).click()
+
+      // There is a fetching for data from the graph after the modal is opened (to ensure that the user will have the latest data)
+      cy.wait('@graph').its('response.statusCode').should('eq', 200)
+
+      // Probably unecessary check especially because it's checking for had-coded value (if we change language, this will fail)
+      DepositAndBorrowPage.modalTitle_Text(type).should(
+        'have.text',
+        `${type} asset`,
+      )
+
+      // Initially modal button should be disabled because there is no data filled
+      DepositAndBorrowPage.modalConfirmAction(type, token).should('be.disabled')
+
+      // Populate input with max amount
+      DepositAndBorrowPage.maxAmount_Button().click()
+
+      // Probably not needed as well
+      DepositAndBorrowPage.tokenNameOnModal_Text().should('have.text', token)
+
+      // When input is populated Confirm button should not be disabled
+      DepositAndBorrowPage.modalConfirmAction(type, token).should(
+        'not.be.disabled',
+      )
+
+      //Closing the modal
+      DepositAndBorrowPage.closeModal_Button().click()
+    })
   },
 }
