@@ -86,6 +86,7 @@ export const AvaliableToDepositTable: FunctionComponent = () => {
   return (
     <>
       <Table
+        data-cy="DepositTable"
         columns={columns}
         data={reserves}
         titleComponent={t('deposit.assetsToDeposit')}

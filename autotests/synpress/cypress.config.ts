@@ -16,10 +16,13 @@ export default defineConfig({
   supportFile: 'tests/e2e/support/index.js',
   viewportWidth: 1280,
   viewportHeight: 720,
+  experimentalFetchPolyfill: true,
   responseTimeout: 60000,
+  requestTimeout: 10000,
+  watchForFileChanges: false, //disabled since metamask login will not work properly with this
   baseUrl: 'http://localhost:3000',
   chromeWebSecurity: true,
-  taskTimeout: 40000,
-  defaultCommandTimeout: 20000,
-  retries: { runMode: 0, openMode: 0 },
+  taskTimeout: 60000,
+  defaultCommandTimeout: 10000,
+  retries: { runMode: 1, openMode: 0 },
 })

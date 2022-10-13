@@ -123,6 +123,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
   return (
     <>
       <Table
+        data-cy="RepayTable"
         columns={columns}
         data={userReservesWithDept}
         noDataMessage={t('deposit.borrowEmpty')}

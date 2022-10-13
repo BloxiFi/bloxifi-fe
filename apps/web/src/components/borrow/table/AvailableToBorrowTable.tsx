@@ -106,6 +106,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
   return (
     <>
       <Table
+        data-cy="BorrowTable"
         columns={columns}
         data={reserves}
         titleComponent={t('deposit.assetsToBorrow')}

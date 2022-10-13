@@ -192,6 +192,7 @@ export const YourDepositsTable: FunctionComponent = () => {
   return (
     <>
       <Table
+        data-cy="WithdrawTable"
         columns={columns}
         data={userReservesWithDept}
         noDataMessage={t('deposit.depositEmpty')}
