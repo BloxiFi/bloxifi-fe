@@ -38,11 +38,19 @@ export const AssetName: FunctionComponent<Props> = ({
     <Icon name={icon} size={iconSize} />
     <StackLayout as={TruncatedText}>
       {fullName && (
-        <Text type="heading 3" as={TruncatedText}>
+        <Text
+          data-cy={`assetFullName-${symbol}`}
+          type="heading 3"
+          as={TruncatedText}
+        >
           {fullName}
         </Text>
       )}
-      <Text type={fullName ? 'body 1' : 'heading 3'} as={TruncatedText}>
+      <Text
+        data-cy={`assetName-${symbol}`}
+        type={fullName ? 'body 1' : 'heading 3'}
+        as={TruncatedText}
+      >
         {symbol}
       </Text>
     </StackLayout>

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "strict": true,
     "baseUrl": "../../node_modules",
     "target": "es5",
