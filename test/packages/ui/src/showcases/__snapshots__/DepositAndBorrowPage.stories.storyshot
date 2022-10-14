@@ -131,9 +131,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -192,9 +190,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -253,9 +249,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -391,9 +385,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -431,9 +423,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -471,9 +461,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -511,9 +499,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -672,9 +658,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -712,9 +696,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -752,9 +734,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -869,9 +849,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -909,9 +887,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -949,9 +925,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -989,9 +963,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >

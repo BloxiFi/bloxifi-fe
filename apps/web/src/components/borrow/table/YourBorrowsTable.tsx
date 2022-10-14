@@ -63,8 +63,8 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
     balance: {
       header: 'Balance',
-      Cell: ({ data: { currentTotalDebt } }) => (
-        <TruncatedText>
+      Cell: ({ data: { currentTotalDebt, symbol } }) => (
+        <TruncatedText data-cy={'borrowBalance ' + symbol}>
           <FormattedNumber value={Number(currentTotalDebt)} />
         </TruncatedText>
       ),
@@ -83,9 +83,10 @@ export const YourBorrowsTable: FunctionComponent = () => {
       Cell: ({
         data: { currentTotalDebt, symbol, underlyingAsset, icon, priceInEth },
       }) => {
-        const balance = reserves.find(
+        const findAsset = reserves.find(
           reserve => reserve.underlyingAsset === underlyingAsset,
-        ).balance
+        )
+        const balance = findAsset?.balance
         const maxRepayAmount = getMaxRepayAmount(balance, currentTotalDebt)
         return (
           <Button
@@ -93,6 +94,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
             variant="thin"
             size="small"
             className="u-full-width"
+            data-cy={'repayBtn ' + symbol}
             disabled={Number(maxRepayAmount) < MIN_VALUE_FOR_TRANSACTION}
             onClick={() =>
               openModal({
@@ -121,6 +123,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
   return (
     <>
       <Table
+        data-cy="RepayTable"
         columns={columns}
         data={userReservesWithDept}
         noDataMessage={t('deposit.borrowEmpty')}

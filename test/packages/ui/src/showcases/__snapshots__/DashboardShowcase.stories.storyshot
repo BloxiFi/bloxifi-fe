@@ -215,9 +215,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             </tr>
           </thead>
           <tbody>
-            <tr
-              isTitleAString={true}
-            >
+            <tr>
               <td
                 className="sc-gXmSlM SQWQ"
               >
@@ -254,9 +252,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </span>
               </td>
             </tr>
-            <tr
-              isTitleAString={true}
-            >
+            <tr>
               <td
                 className="sc-gXmSlM SQWQ"
               >
@@ -293,9 +289,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </span>
               </td>
             </tr>
-            <tr
-              isTitleAString={true}
-            >
+            <tr>
               <td
                 className="sc-gXmSlM SQWQ"
               >
@@ -332,9 +326,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
                 </span>
               </td>
             </tr>
-            <tr
-              isTitleAString={true}
-            >
+            <tr>
               <td
                 className="sc-gXmSlM SQWQ"
               >

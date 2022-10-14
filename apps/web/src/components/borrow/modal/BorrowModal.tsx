@@ -164,12 +164,14 @@ export const BorrowModal = ({
     setHasError(undefined)
     resetForm()
     refetch()
-  }, [resetForm])
+  }, [refetch, resetForm])
 
   useEffect(() => {
-    resetState()
-    setBorrowCompleted(false)
-    setShouldApproveContract(false)
+    if (isOpen) {
+      resetState()
+      setBorrowCompleted(false)
+      setShouldApproveContract(false)
+    }
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted
@@ -227,7 +229,12 @@ export const BorrowModal = ({
           <StackLayout gap={3}>
             <StackLayout gap={2}>
               <BoxLayout gap={1.25}>
-                <Text color="oxfordBlue" type="heading 2" as="span">
+                <Text
+                  color="oxfordBlue"
+                  type="heading 2"
+                  as="span"
+                  data-cy="borrow modal title"
+                >
                   {t('deposit.borrowAsset')}
                 </Text>
               </BoxLayout>
@@ -281,6 +288,7 @@ export const BorrowModal = ({
                   variant="large"
                   disabled={isBorrowDisabled}
                   onClick={submitForm}
+                  data-cy={'borrowButtonOnModal ' + reserveData.symbol}
                 >
                   {t('global.buttons.borrow')} {reserveData.symbol}
                 </Button>

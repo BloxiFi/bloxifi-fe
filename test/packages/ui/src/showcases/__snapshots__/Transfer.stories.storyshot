@@ -453,9 +453,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -483,9 +481,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </span>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -513,9 +509,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </span>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -543,9 +537,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </span>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -573,9 +565,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </span>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >

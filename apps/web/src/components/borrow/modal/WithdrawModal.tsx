@@ -87,6 +87,7 @@ export const WithdrawModal = ({
     Number(reserveData.currentATokenBalance),
   )
   const withdraw = async (amount: string) => {
+    console.log('kadad')
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.withdraw(
@@ -168,11 +169,14 @@ export const WithdrawModal = ({
     setHasError(undefined)
     resetForm()
     refetch()
-  }, [resetForm])
+    console.log('kmeeee')
+  }, [refetch, resetForm])
 
   useEffect(() => {
-    resetState()
-    setWithdrawCompleted(false)
+    if (isOpen) {
+      resetState()
+      setWithdrawCompleted(false)
+    }
   }, [isOpen, resetState])
 
   const calculateRemainingSupply = () => {
@@ -213,7 +217,12 @@ export const WithdrawModal = ({
           <StackLayout gap={3}>
             <StackLayout gap={2}>
               <BoxLayout gap={1.25}>
-                <Text color="oxfordBlue" type="heading 2" as="span">
+                <Text
+                  color="oxfordBlue"
+                  type="heading 2"
+                  as="span"
+                  data-cy="withdraw modal title"
+                >
                   {t('deposit.withdrawAsset')}
                 </Text>
               </BoxLayout>
@@ -257,6 +266,7 @@ export const WithdrawModal = ({
                 variant="large"
                 disabled={isWithdrawDisabled}
                 onClick={submitForm}
+                data-cy={'withdrawButtonOnModal ' + reserveData.symbol}
               >
                 {t('global.buttons.withdraw')} {reserveData.symbol}
               </Button>
