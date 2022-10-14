@@ -54,7 +54,7 @@ jobs:
         run: |
           echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" > .env
           echo "MOONBASE_EXPLORER=${{ secrets.MOONBASE_EXPLORER }}" >> .env
-          echo "SUBSTRATE_EXPLORER"=${{ secrets.SUBSTRATE_EXPLORER }}" >> .env
+          echo "SUBSTRATE_EXPLORER=${{ secrets.SUBSTRATE_EXPLORER }}" >> .env
 
       #
       # Install dependencies and build the app
