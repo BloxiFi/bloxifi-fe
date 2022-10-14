@@ -10,6 +10,7 @@ export default defineConfig({
   },
   fixturesFolder: 'tests/e2e/fixtures',
   integrationFolder: 'tests/e2e/specs',
+  testFiles: ['depositAndBorrow.spec.ts', '!(depositAndBorrow).spec.ts'],
   screenshotsFolder: 'tests/e2e/screenshots',
   videosFolder: 'tests/e2e/videos',
   pluginsFile: 'tests/e2e/plugins/index.js',

@@ -1,7 +1,7 @@
 //Deposit and Borrow page
 export const modalTypes = ['Repay', 'Withdraw', 'Deposit', 'Borrow'] as const
-type ModalType = typeof modalTypes[number]
-const tokenList = [
+export type ModalType = typeof modalTypes[number]
+export const tokenList = [
   'KSMmb',
   'WBTCmb',
   'WETHmb',
@@ -9,7 +9,7 @@ const tokenList = [
   'USDCmb',
   'MOWRmb',
 ] as const
-type TokenType = typeof tokenList[number]
+export type TokenType = typeof tokenList[number]
 
 export const DepositAndBorrowPage = {
   //Locators
