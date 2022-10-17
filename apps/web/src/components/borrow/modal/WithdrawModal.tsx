@@ -87,7 +87,6 @@ export const WithdrawModal = ({
     Number(reserveData.currentATokenBalance),
   )
   const withdraw = async (amount: string) => {
-    console.log('kadad')
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.withdraw(
@@ -169,7 +168,6 @@ export const WithdrawModal = ({
     setHasError(undefined)
     resetForm()
     refetch()
-    console.log('kmeeee')
   }, [refetch, resetForm])
 
   useEffect(() => {

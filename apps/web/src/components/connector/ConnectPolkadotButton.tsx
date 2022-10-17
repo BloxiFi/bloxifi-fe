@@ -19,6 +19,7 @@ import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
 export const ConnectPolkadotButton = () => {
   const { t } = useTranslation()
   const [closeMenu, setCloseMenu] = useState(false)
+  const SUBSTRATE_EXPLORER = process.env.SUBSTRATE_EXPLORER
 
   const {
     connectWallet,
@@ -108,6 +109,14 @@ export const ConnectPolkadotButton = () => {
                   </StackLayout>
                 </MenuItem>
               ))}
+              <MenuItem
+                appearance="text"
+                variant="large"
+                size="large"
+                onClick={() => window.open(`${SUBSTRATE_EXPLORER}`, '_blank')}
+              >
+                {t('global.buttons.viewOnExplorer')}
+              </MenuItem>
             </StackLayout>
           }
         />
