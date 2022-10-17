@@ -10,5 +10,3 @@ describe('Visibility of Dashboard Page', () => {
     DashboardPage.visibilityOfPageElements()
   })
 })
-
-
