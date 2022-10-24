@@ -14,7 +14,7 @@
     "start-server-and-test": "^1.14.0",
     "http-server": "^14.1.1",
     "etherscan-api": "^10.2.0",
-    "cypress": "^9.7.0",
+    "cypress": "^10.10.0",
     "@testing-library/cypress": "^8.0.2",
     "bytes32": "^0.0.3",
     "cross-zip": "^4.0.0",
