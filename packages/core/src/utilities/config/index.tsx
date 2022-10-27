@@ -2,7 +2,7 @@ export const ChainIds = {
   moonbaseAlpha: 1287,
 } as const
 
-type ChainIdsNumber = typeof ChainIds[keyof typeof ChainIds]
+export type ChainIdsNumber = typeof ChainIds[keyof typeof ChainIds]
 
 export type NetworkConfigType = {
   [x in ChainIdsNumber]: { name: string; isTestnet: boolean }

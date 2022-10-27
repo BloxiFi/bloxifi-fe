@@ -3,6 +3,7 @@ import { init, toDecimal, AssetBalanceInfo } from '@moonbeam-network/xcm-sdk'
 import { useCallback, useEffect, useState } from 'react'
 
 import {
+  ChainIdsNumber,
   getNetworkByChain,
   networkConfig,
   NetworkConfigType,
@@ -20,7 +21,7 @@ export interface Props {
   /**
    * Connected network ID
    */
-  readonly currentChainId?: SupportedNetwork['prefix']
+  readonly currentChainId?: SupportedNetwork['prefix'] | ChainIdsNumber
 }
 
 /**
@@ -104,8 +105,8 @@ export const useWalletBalance = ({
 
   useEffect(() => {
     const network =
-      getNetworkByChain(currentChainId)?.network ||
-      networkConfig[currentChainId]?.name
+      getNetworkByChain(currentChainId as SupportedNetwork['prefix'])
+        ?.network || networkConfig[currentChainId]?.name
 
     if (network) {
       void fetchBalances(network)
