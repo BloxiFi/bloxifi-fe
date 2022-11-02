@@ -1,6 +1,6 @@
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config'
-import { init, toDecimal, AssetBalanceInfo } from '@moonbeam-network/xcm-sdk'
-import { useCallback, useEffect, useState } from 'react'
+import { AssetBalanceInfo, init, toDecimal } from '@moonbeam-network/xcm-sdk'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import {
   ChainIdsNumber,
@@ -75,7 +75,7 @@ export const useWalletBalance = ({
   currentAccount,
   currentChainId,
 }: Props = {}): UseWalletBallanceState => {
-  const xcmSdk = init()
+  const xcmSdk = useMemo(() => init(), [])
   const [balances, setBalances] = useState<TokenBalanceData[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
