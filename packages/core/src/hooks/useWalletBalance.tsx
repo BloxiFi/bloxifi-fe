@@ -3,7 +3,6 @@ import { AssetBalanceInfo, init, toDecimal } from '@moonbeam-network/xcm-sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import {
-  ChainIdsNumber,
   getNetworkByChain,
   networkConfig,
   NetworkConfigType,
@@ -21,13 +20,13 @@ export interface Props {
   /**
    * Connected network ID
    */
-  readonly currentChainId?: SupportedNetwork['prefix'] | ChainIdsNumber
+  readonly currentChainId?: number
 }
 
 /**
  * Return type of useWalletBalance hook
  */
-export interface TokenBalanceData {
+export type TokenBalanceData = {
   /**
    * Token Symbol
    */
@@ -84,6 +83,7 @@ export const useWalletBalance = ({
       network:
         | SupportedNetwork['network']
         | NetworkConfigType[keyof NetworkConfigType]['name'],
+      supportedSymbols: any, //TODO Remove any type
     ) => {
       try {
         setIsLoading(true)
@@ -91,7 +91,11 @@ export const useWalletBalance = ({
         await xcmSdk[network.toLowerCase()].subscribeToAssetsBalanceInfo(
           currentAccount,
           (balances: AssetBalanceInfo<AssetSymbol, ChainKey>[]) => {
-            setBalances(mapBalances(balances))
+            setBalances(
+              mapBalances(balances).filter(({ tokenSymbol }) =>
+                supportedSymbols.includes(tokenSymbol),
+              ),
+            )
           },
         )
       } catch (error) {
@@ -104,12 +108,14 @@ export const useWalletBalance = ({
   )
 
   useEffect(() => {
-    const network =
-      getNetworkByChain(currentChainId as SupportedNetwork['prefix'])
-        ?.network || networkConfig[currentChainId]?.name
+    const networkConfigData = getNetworkByChain(
+      currentChainId as SupportedNetwork['prefix'],
+    )
 
-    if (network) {
-      void fetchBalances(network)
+    const network =
+      networkConfigData?.network || networkConfig[currentChainId]?.name
+    if (network && balances.length === 0) {
+      void fetchBalances(network, networkConfigData?.supportedSymbols)
     }
   }, [currentChainId, fetchBalances])
 
