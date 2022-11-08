@@ -63,6 +63,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
     accounts.map(account => ({
       address: account.address,
       name: account.meta.name,
+      source: account.meta.source,
     }))
 
   const connectWallet: ConnectWalletPolkadotFunction = useCallback(async () => {
@@ -101,7 +102,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
         setAccounts(formattedAccounts)
         dispatch({
           type: 'setCurrentAccount',
-          value: formattedAccounts[0].address,
+          value: formattedAccounts[0],
         })
       }
     } catch (error) {
