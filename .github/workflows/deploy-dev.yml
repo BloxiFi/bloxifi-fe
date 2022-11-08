@@ -28,6 +28,13 @@ jobs:
         id: checkout
 
       #
+      # Set node 14
+      #
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      #
       # Cache files in ./frontend
       #
       - name: Cache
