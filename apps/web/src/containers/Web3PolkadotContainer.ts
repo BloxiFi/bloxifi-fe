@@ -16,7 +16,7 @@ import { createContainer } from 'unstated-next'
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 
 const defaultState: Web3PolkadotContainerProps = {
-  currentAccountPolkadot: '',
+  currentAccountPolkadot: undefined,
   isConnectedPolkadot: false,
   loadingPolkadot: false,
   chainIdPolkadot: undefined,
