@@ -24,7 +24,7 @@ export const CrossChainAssetTable: FunctionComponent<Props> = ({
       header: '',
       Cell: ({ data: { tokenOrigin, tokenOriginSymbol } }) => (
         <ColumnLayout gap={1.5}>
-          <Icon size={40} name={'dai'} />
+          <Icon size={40} name="dai" />
           <Text as="span" type="body 2">
             {tokenOrigin} {tokenOriginSymbol}
           </Text>

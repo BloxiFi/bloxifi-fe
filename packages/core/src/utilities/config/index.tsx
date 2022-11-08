@@ -1,45 +1,11 @@
-export const ChainIds = {
-  moonbaseAlpha: 1287,
-} as const
-
-export type ChainIdsNumber = typeof ChainIds[keyof typeof ChainIds]
-
-export type NetworkConfigType = {
-  [x in ChainIdsNumber]: { name: string; isTestnet: boolean }
-}
-
-export const supportedChainIds: number[] = Object.values(ChainIds).map(value =>
-  Number(value),
-)
-
-export const isSupportedNetwork = (chainId: number): boolean =>
-  supportedChainIds.includes(chainId)
-
-export const networkConfig: NetworkConfigType = {
-  [ChainIds.moonbaseAlpha]: {
-    name: 'Moonbase',
-    isTestnet: true,
-  },
-}
-
-export const getNetworkName = (chainId: number): string => {
-  if (networkConfig[chainId]) {
-    return networkConfig[chainId].name
-  }
-  return 'Unknown'
-}
-
 export const MIN_VALUE_FOR_TRANSACTION = 0.0000001
 export const MIN_HEALTH_FACTOR_VALUE = 1.01
 
-/**
- * Polkadot network check
- */
-type NetworkConfigPolkadotType = {
+type NetworkConfigType = {
   [x: number]: { name: string; isTestnet: boolean; releyChain: string }
 }
-
-const PolkadotNetworkRegistry = [
+//@TODO UPLOAD & UPDATE ICONS
+const NetworkRegistry = [
   {
     prefix: 0,
     network: 'polkadot',
@@ -51,6 +17,8 @@ const PolkadotNetworkRegistry = [
     website: 'https://polkadot.network',
     relayChain: 'polkadot',
     paraId: 0,
+    icon: 'polkadot',
+    isTestnet: false,
   },
   {
     prefix: 2,
@@ -63,6 +31,8 @@ const PolkadotNetworkRegistry = [
     website: 'https://kusama.network',
     relayChain: 'kusama',
     paraId: 0,
+    icon: 'dai',
+    isTestnet: true,
   },
   {
     prefix: 10,
@@ -75,6 +45,8 @@ const PolkadotNetworkRegistry = [
     website: 'https://acala.network/',
     relayChain: 'polkadot',
     paraId: 2000,
+    icon: 'acala',
+    isTestnet: false,
   },
   {
     prefix: 8,
@@ -87,6 +59,8 @@ const PolkadotNetworkRegistry = [
     website: 'https://karura.network/',
     relayChain: 'kusama',
     paraId: 2000,
+    icon: 'dai',
+    isTestnet: true,
   },
   {
     prefix: 1284,
@@ -95,41 +69,54 @@ const PolkadotNetworkRegistry = [
     symbols: ['GLMR'],
     supportedSymbols: [],
     decimals: [18],
-    standardAccount: 'secp256k1',
-    website: 'https://moonbeam.network',
-    relayChain: 'polkadot',
-    paraId: 2004,
+    icon: 'dai',
+    isTestnet: false,
   },
   {
     prefix: 1285,
     network: 'moonriver',
     displayName: 'Moonriver',
     symbols: ['MOVR'],
-    supportedSymbols: ['MOVR', 'xcKAR', 'xcKSM', 'xcAUSD'],
+    supportedSymbols: ['MOVR', 'xcKAR', 'xcKSM', 'xcAUSD'], //symbol, decimals, contract address & icon
     decimals: [18],
-    standardAccount: 'secp256k1',
-    website: 'https://moonbeam.network',
-    relayChain: 'kusama',
-    paraId: 2023,
+    icon: 'dai',
+    isTestnet: true,
+  },
+  {
+    prefix: 1287,
+    network: 'moonbaseAlpha',
+    displayName: 'Moonbase Alpha',
+    symbols: ['DEV'],
+    supportedSymbols: [
+      'KSMmb',
+      'WBTCmb',
+      'WETHmb',
+      'DAImb',
+      'USDCmb',
+      'MOWRmb',
+    ], //symbol, decimals, contract address & icon
+    decimals: [18],
+    icon: 'dai',
+    isTestnet: true,
   },
 ] as const
 
-export type SupportedNetwork = typeof PolkadotNetworkRegistry[number]
+export type SupportedNetwork = typeof NetworkRegistry[number]
 
-export const supportedChainIdsPolkadot: number[] = Object.values(
-  PolkadotNetworkRegistry,
-).map(value => Number(value))
+export const supportedChainIds: number[] = Object.values(NetworkRegistry).map(
+  value => Number(value),
+)
 
-export const isSupportedNetworkPolkadot = (paraId: number): boolean =>
-  supportedChainIdsPolkadot.includes(paraId)
+export const isSupportedNetwork = (paraId: number): boolean =>
+  supportedChainIds.includes(paraId)
 
 export const getNetworkByChain = (
   chainId: SupportedNetwork['prefix'],
 ): SupportedNetwork | undefined => {
-  return PolkadotNetworkRegistry.find(network => network.prefix === chainId)
+  return NetworkRegistry.find(network => network.prefix === chainId)
 }
 
-export const networkConfigPolkadot: NetworkConfigPolkadotType = {
+export const networkConfig: NetworkConfigType = {
   [2004]: {
     name: 'moonbase',
     isTestnet: false,
@@ -137,9 +124,9 @@ export const networkConfigPolkadot: NetworkConfigPolkadotType = {
   },
 }
 
-export const getPolkadotNetworkName = (paraId: number): string => {
-  if (networkConfigPolkadot[paraId]) {
-    return networkConfigPolkadot[paraId].name
+export const getNetworkName = (chainId: number): string => {
+  if (networkConfig[chainId]) {
+    return networkConfig[chainId].name
   }
   return 'Unknown'
 }

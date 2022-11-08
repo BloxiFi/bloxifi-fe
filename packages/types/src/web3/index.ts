@@ -1,4 +1,5 @@
 import { JsonRpcProvider, JsonRpcSigner } from '@ethersproject/providers'
+import { SupportedNetwork } from 'packages/core/src'
 
 /**
  * Async function that will autologin the user if the user was previously connected (localStorage)
@@ -29,6 +30,7 @@ export type Web3ContainerProps = {
   chainId: number
   error: Error | undefined
   isSupportedNetwork: boolean
+  network: SupportedNetwork
   isMetamaskInstalled: boolean
   signer: JsonRpcSigner | undefined
 }
