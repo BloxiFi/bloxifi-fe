@@ -46,7 +46,7 @@ export const ConnectPolkadotButton = () => {
     return t('global.buttons.connectWallet')
   }
 
-  return isPolkadotEnabled ? (
+  return isPolkadotEnabled && currentAccountPolkadot ? (
     <ColumnLayout>
       {isSupportedNetworkPolkadot ? (
         <Menu
@@ -67,7 +67,7 @@ export const ConnectPolkadotButton = () => {
                 <ColumnLayout gap={0.5}>
                   <Icon name="polkadot" size={20} />
                   <StackLayout>
-                    {sliceMiddleOfString(currentAccountPolkadot, 4)}
+                    {sliceMiddleOfString(currentAccountPolkadot.address, 4)}
                   </StackLayout>
                 </ColumnLayout>
               </BoxLayout>
@@ -79,7 +79,7 @@ export const ConnectPolkadotButton = () => {
                 <ColumnLayout gap={0.5} align="space-between">
                   <Icon name="polkadot" size={40} />
                   <StackLayout>
-                    {sliceMiddleOfString(currentAccountPolkadot, 4)}
+                    {sliceMiddleOfString(currentAccountPolkadot.address, 4)}
                   </StackLayout>
                 </ColumnLayout>
               </MenuItemTitle>
@@ -91,11 +91,11 @@ export const ConnectPolkadotButton = () => {
                   variant="large"
                   size="large"
                   height="auto"
-                  disabled={account.address === currentAccountPolkadot}
+                  disabled={account.address === currentAccountPolkadot.address}
                   onClick={() =>
                     dispatch({
                       type: 'setCurrentAccount',
-                      value: account.address,
+                      value: account,
                     })
                   }
                 >
