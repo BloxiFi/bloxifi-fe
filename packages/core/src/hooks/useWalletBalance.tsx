@@ -1,4 +1,14 @@
-import { init, toDecimal } from '@moonbeam-network/xcm-sdk'
+import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config'
+import { AssetBalanceInfo, init, toDecimal } from '@moonbeam-network/xcm-sdk'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+
+import {
+  ChainIdsNumber,
+  getNetworkByChain,
+  networkConfig,
+  NetworkConfigType,
+  SupportedNetwork,
+} from '../utilities'
 
 /**
  * Options that can be used to configure useWalletBalance() hook.
@@ -11,7 +21,7 @@ export interface Props {
   /**
    * Connected network ID
    */
-  readonly currentChainId?: number
+  readonly currentChainId?: SupportedNetwork['prefix'] | ChainIdsNumber
 }
 
 /**
@@ -36,38 +46,26 @@ export interface TokenBalanceData {
   tokenOriginSymbol: string
 }
 
-const getMoonriverBalances = async (account: string) => {
-  const { moonriver } = init()
-  const tokenBalances: TokenBalanceData[] = []
-  await moonriver.subscribeToAssetsBalanceInfo(account, balances => {
-    balances.forEach(({ asset, balance, origin }) => {
-      const singleToken: TokenBalanceData = {
-        tokenSymbol: balance.symbol,
-        tokenBalance: toDecimal(balance.balance, balance.decimals),
-        tokenOrigin: origin.name,
-        tokenOriginSymbol: asset.originSymbol,
-      }
-      tokenBalances.push(singleToken)
-    })
-  })
-  return tokenBalances
+function mapBalances<Asset extends AssetSymbol>(
+  balances: AssetBalanceInfo<Asset>[],
+): TokenBalanceData[] {
+  return balances.map(({ asset, balance, origin }) => ({
+    tokenSymbol: balance.symbol,
+    tokenBalance: toDecimal(balance.balance, balance.decimals),
+    tokenOrigin: origin.name,
+    tokenOriginSymbol: asset.originSymbol,
+  }))
 }
 
-const getMoonbaseBalances = async (account: string) => {
-  const { moonbase } = init()
-  const tokenBalances: TokenBalanceData[] = []
-  await moonbase.subscribeToAssetsBalanceInfo(account, balances => {
-    balances.forEach(({ asset, balance, origin }) => {
-      const singleToken: TokenBalanceData = {
-        tokenSymbol: balance.symbol,
-        tokenBalance: toDecimal(balance.balance, balance.decimals),
-        tokenOrigin: origin.name,
-        tokenOriginSymbol: asset.originSymbol,
-      }
-      tokenBalances.push(singleToken)
-    })
-  })
-  return tokenBalances
+interface UseWalletBallanceState {
+  /**
+   * Whether the hook is fetching data.
+   */
+  isLoading: boolean
+  /**
+   * Balance of xc Tokens
+   */
+  balances: TokenBalanceData[]
 }
 
 /**
@@ -76,15 +74,44 @@ const getMoonbaseBalances = async (account: string) => {
 export const useWalletBalance = ({
   currentAccount,
   currentChainId,
-}: Props = {}): TokenBalanceData[] => {
-  const balanceReturned: TokenBalanceData[] = []
+}: Props = {}): UseWalletBallanceState => {
+  const xcmSdk = useMemo(() => init(), [])
+  const [balances, setBalances] = useState<TokenBalanceData[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
-  if (currentChainId == 1287) {
-    const tb = async () => await getMoonbaseBalances(currentAccount)
-    const balanceReturned = tb()
-  } else if (currentChainId == 1285) {
-    const tb = async () => await getMoonriverBalances(currentAccount)
-    const balanceReturned = tb()
-  }
-  return balanceReturned
+  const fetchBalances = useCallback(
+    async (
+      network:
+        | SupportedNetwork['network']
+        | NetworkConfigType[keyof NetworkConfigType]['name'],
+    ) => {
+      try {
+        setIsLoading(true)
+
+        await xcmSdk[network.toLowerCase()].subscribeToAssetsBalanceInfo(
+          currentAccount,
+          (balances: AssetBalanceInfo<AssetSymbol, ChainKey>[]) => {
+            setBalances(mapBalances(balances))
+          },
+        )
+      } catch (error) {
+        throw new Error(error)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [currentAccount, xcmSdk],
+  )
+
+  useEffect(() => {
+    const network =
+      getNetworkByChain(currentChainId as SupportedNetwork['prefix'])
+        ?.network || networkConfig[currentChainId]?.name
+
+    if (network) {
+      void fetchBalances(network)
+    }
+  }, [currentChainId, fetchBalances])
+
+  return { balances, isLoading }
 }
