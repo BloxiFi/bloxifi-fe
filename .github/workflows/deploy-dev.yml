@@ -28,11 +28,11 @@ jobs:
         id: checkout
 
       #
-      # Set node 14
+      # Set node 16
       #
       - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
 
       #
       # Cache files in ./frontend
@@ -107,12 +107,7 @@ jobs:
       - uses: actions/checkout@v3
         id: checkout
         
-      #
-      # Set node 14
-      #
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
+
 
       #
       # Cache files
@@ -181,6 +176,13 @@ jobs:
           echo "SYMBOL=${{ secrets.SYMBOL }}" >> .env
           echo "WALLET_PASSWORD=${{ secrets.WALLET_PASSWORD }}" >> .env
           echo "ETHERSCAN_KEY=${{ secrets.ETHERSCAN_KEY }}" >> .env
+
+      #
+      # Set node 16
+      #
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       #
       # Run e2e tests
