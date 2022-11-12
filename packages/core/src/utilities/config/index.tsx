@@ -1,7 +1,11 @@
-type NetworkConfigType = { [x: number]: { name: string; isTestnet: boolean } }
-
-const ChainIds = {
+export const ChainIds = {
   moonbaseAlpha: 1287,
+} as const
+
+export type ChainIdsNumber = typeof ChainIds[keyof typeof ChainIds]
+
+export type NetworkConfigType = {
+  [x in ChainIdsNumber]: { name: string; isTestnet: boolean }
 }
 
 export const supportedChainIds: number[] = Object.values(ChainIds).map(value =>
@@ -102,7 +106,9 @@ const PolkadotNetworkRegistry = [
     relayChain: 'kusama',
     paraId: 2023,
   },
-]
+] as const
+
+export type SupportedNetwork = typeof PolkadotNetworkRegistry[number]
 
 export const supportedChainIdsPolkadot: number[] = Object.values(
   PolkadotNetworkRegistry,
@@ -110,6 +116,12 @@ export const supportedChainIdsPolkadot: number[] = Object.values(
 
 export const isSupportedNetworkPolkadot = (paraId: number): boolean =>
   supportedChainIdsPolkadot.includes(paraId)
+
+export const getNetworkByChain = (
+  chainId: SupportedNetwork['prefix'],
+): SupportedNetwork | undefined => {
+  return PolkadotNetworkRegistry.find(network => network.prefix === chainId)
+}
 
 export const networkConfigPolkadot: NetworkConfigPolkadotType = {
   [2004]: {
