@@ -148,14 +148,18 @@ const Element = styled.div`
   display: none;
   z-index: 2;
   white-space: nowrap;
-  min-width: 260px;
+  min-width: 100%;
 `
 
-export const MenuItem = styled(Button)<{ isLastItem?: boolean }>`
+export const MenuItem = styled(Button)<{
+  isLastItem?: boolean
+  height?: string
+}>`
   padding: 0.75rem 2.185rem;
   color: ${({ theme }) => theme.buttonDark};
   justify-content: space-between;
   border-radius: ${({ isLastItem }) => (isLastItem ? '0 0 0.5rem 0.5rem' : 0)};
+  ${({ height }) => height && `height: ${height}`};
 
   &:hover {
     background: ${({ theme }) => theme.buttonLight};
@@ -164,8 +168,17 @@ export const MenuItem = styled(Button)<{ isLastItem?: boolean }>`
 `
 
 export const MenuItemTitle = styled(Text)`
-  padding: 0.75rem 2.185rem;
+  padding: 1.25rem 1.875rem;
   margin: 0;
   border-bottom: 1px solid ${({ theme }) => theme.buttonLight};
   color: ${({ theme }) => theme.buttonGradient1};
+`
+
+export const NetworkStatusIlustrator = styled.span<{
+  status: 'success' | 'error'
+}>`
+  width: 1rem;
+  height: 1rem;
+  background: ${({ status, theme }) => theme[status]};
+  border-radius: 50%;
 `

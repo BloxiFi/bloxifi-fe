@@ -6,7 +6,16 @@ const assetsIcons = ['dai', 'usdc', 'weth', 'wbtc', 'ksm', 'mowr']
 /**
  * TODO Refactor color prop and applying color
  */
-const notFilled = ['success', 'error', ...assetsIcons, 'settings']
+const notFilled = [
+  'success',
+  'error',
+  ...assetsIcons,
+  'settings',
+  'transfer',
+  'polkadot',
+  'blox-logo',
+  'polkadot',
+]
 
 export const IconNames = [
   'close',
@@ -20,6 +29,10 @@ export const IconNames = [
   'success',
   'error',
   'info',
+  'transfer',
+  'wallet',
+  'blox-logo',
+  'polkadot',
   ...assetsIcons,
 ] as const
 export type IconNamesType = typeof IconNames[number]
@@ -44,7 +57,14 @@ export interface IconProps extends Omit<Props, 'src'> {
 }
 
 export const Icon = styled(
-  ({ name, size = 16, className, ...props }: IconProps): JSX.Element => {
+  ({
+    name,
+    size = 16,
+    className,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    withBorder,
+    ...props
+  }: IconProps): JSX.Element => {
     const icon = require(`./icons/${name}.svg`) as string
     const themeContext = useContext(ThemeContext)
 

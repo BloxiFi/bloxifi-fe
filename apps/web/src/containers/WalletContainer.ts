@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client'
 import {
   bigNumberToNumber,
+  bigNumberToString,
   BorrowAndLending,
   convertBalancesInUsdArray,
-  getDepositedAssetsUSD,
   GET_RESERVE_DATA,
+  getDepositedAssetsUSD,
   ReservesDataQuery,
   ReservesGraph,
   sumArrayItems,
@@ -35,7 +36,7 @@ type DefaultReserveData = {
   symbol: TokenList
   icon: string
   decimals: number
-  balance: number
+  balance: string
   supplyAPY: number
   liquidityRate: number
   variableBorrowAPY: number
@@ -45,14 +46,14 @@ type DefaultReserveData = {
   reserveLiquidationThreshold: number
 }
 export type ReservesData = DefaultReserveData & {
-  totalATokenSupply: number
-  totalCurrentVariableDebt: number
+  totalATokenSupply: string
+  totalCurrentVariableDebt: string
 }
 
 export type UserReserveData = DefaultReserveData & {
-  currentATokenBalance: number
+  currentATokenBalance: string
   currentVariableDebt: string
-  currentTotalDebt: number
+  currentTotalDebt: string
   usageAsCollateralEnabledOnUser: boolean
   baseLTVasCollateral: number
 }
@@ -150,16 +151,17 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
 
-  const { data, refetch } = useQuery<ReservesGraph, UserReserveVariables>(
-    GET_RESERVE_DATA,
-    {
-      variables: {
-        user: currentAccount?.toLowerCase(),
-      },
-      fetchPolicy: 'cache-and-network',
-      pollInterval: POOL_INTERVAL,
+  const {
+    data,
+    refetch,
+    loading: isQueryLoading,
+  } = useQuery<ReservesGraph, UserReserveVariables>(GET_RESERVE_DATA, {
+    variables: {
+      user: currentAccount?.toLowerCase(),
     },
-  )
+    fetchPolicy: 'cache-and-network',
+    pollInterval: POOL_INTERVAL,
+  })
 
   const calculateAvailableBorrowsUSD = userReserves => {
     //total user deposit amount denominated in USD
@@ -186,9 +188,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       convertBalancesInUsdArray(userReserves, 'currentTotalDebt'),
     )
     const totalDepositAssetUSD = sumArrayItems(depositAssetsUSD)
-    const availableToBorrowUSD = totalDepositAssetUSD - totalBorrowUSD
-
-    return availableToBorrowUSD
+    return totalDepositAssetUSD - totalBorrowUSD
   }
 
   const getUserAccountData = useCallback(async () => {
@@ -246,15 +246,15 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
             const balance = await getReserveBalance(reserve.name)
             return {
               ...reserve,
-              balance: bigNumberToNumber(balance),
+              balance: bigNumberToString(balance),
               icon: Assets[reserve.symbol].icon,
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
               priceInEth: bigNumberToNumber(reserve.price.priceInEth),
               usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
-              totalATokenSupply: bigNumberToNumber(reserve.totalATokenSupply),
-              totalCurrentVariableDebt: bigNumberToNumber(
+              totalATokenSupply: bigNumberToString(reserve.totalATokenSupply),
+              totalCurrentVariableDebt: bigNumberToString(
                 reserve.totalCurrentVariableDebt,
               ),
               reserveLiquidationThreshold:
@@ -268,8 +268,6 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         })
       } catch (error) {
         setError(error)
-      } finally {
-        setLoading(false)
       }
     },
     [getReserveBalance],
@@ -292,8 +290,8 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }: UserReserveDataQuery) => ({
       ...rest,
       ...restReserve,
-      currentATokenBalance: bigNumberToNumber(currentATokenBalance),
-      currentTotalDebt: bigNumberToNumber(currentTotalDebt),
+      currentATokenBalance: bigNumberToString(currentATokenBalance),
+      currentTotalDebt: bigNumberToString(currentTotalDebt),
       symbol: symbol,
       icon: Assets[symbol].icon,
       fullName: Assets[symbol].fullName,
@@ -308,40 +306,56 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     [],
   )
 
-  const setQueryData = data => {
-    void getUserAccountData()
-    void setReserveData(data.reserves)
-    const userReserveData = data.userReserves.map(mapUserReserveData)
-    if (userReserveData) {
-      const availableToBorrowUSD = calculateAvailableBorrowsUSD(userReserveData)
-      dispatch({
-        type: 'setAvailableToBorrow',
-        value: availableToBorrowUSD > 0 ? availableToBorrowUSD : 0,
-      })
-    }
+  const setQueryData = useCallback(
+    async data => {
+      setLoading(true)
+      try {
+        await getUserAccountData()
+        await setReserveData(data.reserves)
+        const userReserveData = data.userReserves.map(mapUserReserveData)
+        if (userReserveData) {
+          const availableToBorrowUSD =
+            calculateAvailableBorrowsUSD(userReserveData)
+          dispatch({
+            type: 'setAvailableToBorrow',
+            value: availableToBorrowUSD > 0 ? availableToBorrowUSD : 0,
+          })
+        }
 
-    dispatch({
-      type: 'setUserReservesData',
-      value: userReserveData,
-    })
-  }
+        dispatch({
+          type: 'setUserReservesData',
+          value: userReserveData,
+        })
+        setLoading(false)
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
+    },
+    [getUserAccountData, mapUserReserveData, setReserveData],
+  )
 
   useEffect(() => {
     if (data) {
-      setQueryData(data)
+      void setQueryData(data)
     }
-  }, [data, setReserveData, mapUserReserveData])
+  }, [data, setReserveData, mapUserReserveData, setQueryData])
 
-  const refetchData = async () => {
+  const refetchData = useCallback(async () => {
+    setLoading(true)
     try {
       const res = await refetch()
-      setQueryData(res.data)
+      await setQueryData(res.data)
     } catch (error) {
       setError(error)
+    } finally {
+      setLoading(false)
     }
-  }
+  }, [refetch, setQueryData])
+
   return {
-    state: { ...state, error, loading },
+    state: { ...state, error, loading: loading || isQueryLoading },
     dispatch,
     refetch: refetchData,
   }

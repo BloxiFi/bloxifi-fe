@@ -41,7 +41,7 @@ export const YourDepositsTable: FunctionComponent = () => {
   const [selectedCollateralAsset, setSelectedCollateralAsset] =
     useState<string>()
   const userReservesWithDept = userReserves.filter(
-    (reserve: UserReserveData) => reserve.currentATokenBalance !== 0,
+    (reserve: UserReserveData) => Number(reserve.currentATokenBalance) !== 0,
   )
   const [modalData, setModalData] = useState<WithdrawModalData>()
 
@@ -87,10 +87,10 @@ export const YourDepositsTable: FunctionComponent = () => {
     },
     balance: {
       header: 'Balance',
-      Cell: ({ data: { currentATokenBalance } }) => (
+      Cell: ({ data: { currentATokenBalance, symbol } }) => (
         <TruncatedText>
-          <Text type="body 3" as="span">
-            <FormattedNumber value={currentATokenBalance} />
+          <Text type="body 3" as="span" data-cy={'depositedBalance ' + symbol}>
+            <FormattedNumber value={Number(currentATokenBalance)} />
           </Text>
         </TruncatedText>
       ),
@@ -107,7 +107,9 @@ export const YourDepositsTable: FunctionComponent = () => {
 
     collateral: {
       header: 'Collateral',
-      Cell: ({ data: { usageAsCollateralEnabledOnUser, underlyingAsset } }) => {
+      Cell: ({
+        data: { usageAsCollateralEnabledOnUser, underlyingAsset, symbol },
+      }) => {
         if (selectedCollateralAsset === underlyingAsset) {
           return (
             <CenterLayout>
@@ -118,6 +120,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           return (
             <Toggle
               checked={usageAsCollateralEnabledOnUser}
+              data-cy={'collateralToggle ' + symbol}
               onChange={() =>
                 void toggleCollateral(
                   underlyingAsset,
@@ -149,8 +152,9 @@ export const YourDepositsTable: FunctionComponent = () => {
           appearance="secondary"
           variant="thin"
           size="small"
+          data-cy={'withdrawBtn ' + symbol}
           className="u-full-width"
-          disabled={currentATokenBalance < MIN_VALUE_FOR_TRANSACTION}
+          disabled={Number(currentATokenBalance) < MIN_VALUE_FOR_TRANSACTION}
           onClick={() =>
             openModal({
               balance,
@@ -188,6 +192,7 @@ export const YourDepositsTable: FunctionComponent = () => {
   return (
     <>
       <Table
+        data-cy="WithdrawTable"
         columns={columns}
         data={userReservesWithDept}
         noDataMessage={t('deposit.depositEmpty')}

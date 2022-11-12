@@ -65,14 +65,12 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -106,14 +104,12 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -147,14 +143,12 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -188,14 +182,12 @@ exports[`Storyshots Components/Table Basic Table 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>
@@ -302,14 +294,12 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -343,14 +333,12 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -384,14 +372,12 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -425,14 +411,12 @@ exports[`Storyshots Components/Table Bigger Spacings 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>
@@ -580,14 +564,12 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -625,9 +607,10 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ cTLctq jriGrI"
             data-element="button"
             onClick={[Function]}
+            radius="default"
             size="small"
             variant="thin"
           >
@@ -635,14 +618,12 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           </button>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -680,9 +661,10 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ cTLctq jriGrI"
             data-element="button"
             onClick={[Function]}
+            radius="default"
             size="small"
             variant="thin"
           >
@@ -690,14 +672,12 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           </button>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -735,9 +715,10 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ cTLctq jriGrI"
             data-element="button"
             onClick={[Function]}
+            radius="default"
             size="small"
             variant="thin"
           >
@@ -745,14 +726,12 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
           </button>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>
@@ -790,9 +769,10 @@ exports[`Storyshots Components/Table Expandable table 1`] = `
         >
           <button
             appearance="primary"
-            className="sc-hKMtZM sc-eCYdqJ glcfhk jriGrI"
+            className="sc-hKMtZM sc-eCYdqJ cTLctq jriGrI"
             data-element="button"
             onClick={[Function]}
+            radius="default"
             size="small"
             variant="thin"
           >
@@ -875,14 +855,12 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={false}
-      >
+      <tr>
         <td
           className="sc-gXmSlM dJFjIR"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -916,14 +894,12 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={false}
-      >
+      <tr>
         <td
           className="sc-gXmSlM dJFjIR"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -957,14 +933,12 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={false}
-      >
+      <tr>
         <td
           className="sc-gXmSlM dJFjIR"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -998,14 +972,12 @@ exports[`Storyshots Components/Table Small Spacing 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={false}
-      >
+      <tr>
         <td
           className="sc-gXmSlM dJFjIR"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>
@@ -1109,14 +1081,12 @@ exports[`Storyshots Components/Table With Footer 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             ETH
           </div>
@@ -1150,14 +1120,12 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             DAI
           </div>
@@ -1191,14 +1159,12 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             POLKA
           </div>
@@ -1232,14 +1198,12 @@ exports[`Storyshots Components/Table With Footer 1`] = `
           </span>
         </td>
       </tr>
-      <tr
-        isTitleAString={true}
-      >
+      <tr>
         <td
           className="sc-gXmSlM SQWQ"
         >
           <div
-            className="sc-hiMGwR bzuyNp"
+            className="sc-gFGZVQ UwycM"
           >
             BTC
           </div>

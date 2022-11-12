@@ -7,17 +7,13 @@ import {
   ReserveTokenVariables,
 } from '@bloxifi/core'
 
-const RAY = 10 ** 27
-const SECONDS_PER_YEAR = 31536000
 const calculateApyReturn = (
   _rate: number,
   _tokenAmount: number,
   _daysAmount: number,
 ): number => {
-  const APR = _rate / RAY
-  const APY = Math.pow(1 + APR / SECONDS_PER_YEAR, SECONDS_PER_YEAR) - 1
   const monthsAmount = _daysAmount / 30
-  const returnAPY = (APY / 12) * monthsAmount
+  const returnAPY = (_rate / 12) * monthsAmount
   const returnValue = _tokenAmount * (1 + returnAPY)
   return returnValue
 }
@@ -79,9 +75,9 @@ export const useCalculateAPY = ({
         if (data) {
           let sendRate = 0
           if (simulationType == 'Deposit') {
-            sendRate = data.reserves[0]['liquidityRate']
+            sendRate = data.reserves[0]['recentAvgSupplyAPY']
           } else if (simulationType == 'Borrow') {
-            sendRate = data.reserves[0]['stableBorrowRate']
+            sendRate = data.reserves[0]['recentAvgStableBorrowAPY']
           }
           const calculateReturn = calculateApyReturn(
             sendRate,

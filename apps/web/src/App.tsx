@@ -6,9 +6,6 @@ import { Web3ReactProvider } from '@web3-react/core'
 import { providers } from 'ethers'
 import { ExternalProvider } from '@ethersproject/providers'
 
-import { Web3Container } from './containers/Web3Container'
-import { WalletContainer } from './containers/WalletContainer'
-
 import { PageContainer } from '@/containers/PageContainer'
 import { StyleContainer } from '@/containers/StyleContainer'
 import { LocaleContainer } from '@/containers/LocaleContainer'
@@ -35,17 +32,13 @@ export const App = () => {
       <AppWrapper>
         <GlobalStyle {...style.state} />
         <Web3ReactProvider getLibrary={getWeb3Library}>
-          <Web3Container.Provider>
-            <ApolloProvider client={client}>
-              <WalletContainer.Provider>
-                <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
-                  <LocaleContainer.Provider>
-                    <Router />
-                  </LocaleContainer.Provider>
-                </PageContainer.Provider>
-              </WalletContainer.Provider>
-            </ApolloProvider>
-          </Web3Container.Provider>
+          <ApolloProvider client={client}>
+            <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
+              <LocaleContainer.Provider>
+                <Router />
+              </LocaleContainer.Provider>
+            </PageContainer.Provider>
+          </ApolloProvider>
         </Web3ReactProvider>
       </AppWrapper>
     </ThemeProvider>

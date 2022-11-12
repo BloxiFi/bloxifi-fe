@@ -5,7 +5,7 @@ exports[`Storyshots Components/Icon All icons 1`] = `
   className="sc-kDDrLX iFyCNQ"
 >
   <div
-    className="sc-breuTD eqtFAo"
+    className="sc-breuTD djglzS"
   >
     <div
       center={true}
@@ -213,6 +213,82 @@ exports[`Storyshots Components/Icon All icons 1`] = `
           x={0}
         >
           info
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-evZas jVZDdu"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          transfer
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-evZas jVZDdu"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          wallet
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-evZas jVZDdu"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          blox-logo
+        </tspan>
+      </text>
+    </div>
+    <div
+      center={true}
+      className="sc-evZas jVZDdu"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          polkadot
         </tspan>
       </text>
     </div>

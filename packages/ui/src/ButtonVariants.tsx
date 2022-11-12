@@ -98,7 +98,12 @@ export const ButtonBase = styled(ButtonComponent)`
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: 0.315rem;
+  border-radius: ${({ radius }) => {
+    if (radius === 'rounded') {
+      return '0.625'
+    }
+    return '0.315'
+  }}rem;
   font-weight: 600;
   cursor: pointer;
   line-height: 1.5rem;
@@ -175,7 +180,6 @@ const ButtonGradient = styled(ButtonBase)`
 const ButtonText = styled(ButtonBase)`
   background-color: transparent;
   color: ${({ color }) => color && color};
-  height: auto;
 
   &:hover {
     opacity: 0.7;

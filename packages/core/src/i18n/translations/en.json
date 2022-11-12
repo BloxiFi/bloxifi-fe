@@ -11,8 +11,10 @@
       "bloxBalance": "Blox Balance",
       "disconnectWallet": "Disconnect wallet",
       "viewOnExplorer": "View on explorer",
+      "copyAddress": "Copy address",
       "darkMode": "Dark mode",
-      "testnetMode": "Testnet mode"
+      "testnetMode": "Testnet mode",
+      "transfer": "Transfer"
     },
     "inputs": {
       "amount": "Amount",
@@ -65,12 +67,13 @@
     }
   },
   "header": {
-    "globalSettings": "Global settings"
+    "globalSettings": "Global settings",
+    "network": "Network"
   },
   "walletConnection": {
     "notConnectedTitle": "Please, connect your wallet",
-    "installBrowserExtension": "Please install {{walletName}}",
-    "wrongNetworkConnection": "Wrong network",
+    "installBrowserExtension": "Install {{walletName}}",
+    "wrongNetworkConnection": "Switch to {{networkName}}",
     "connecting": "Connecting"
   },
   "dashboard": {
@@ -104,6 +107,13 @@
   },
   "staking": {
     "notConnectedMessage": "We couldn’t detect a wallet. Connect a wallet to stake."
+  },
+  "transfer": {
+    "originChain": "Origin Chain",
+    "destinationChain": "Destination Chain",
+    "originAccount": "Origin account",
+    "destinationAccount": "Destination account",
+    "inNetworkLabel": "in {{network}}"
   },
   "pageNotFound": {
     "title": "404 - Page not found",

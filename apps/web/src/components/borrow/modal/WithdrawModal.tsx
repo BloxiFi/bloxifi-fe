@@ -76,7 +76,17 @@ export const WithdrawModal = ({
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
-  const withdraw = async (amount: number) => {
+  //The maximum amount to withdraw should go up to the minimum health factor value, until it reaches MIN_HEALTH_FACTOR_VALUE
+  const amountToReachMinHealthFactor =
+    (totalCollateralETH -
+      totalBorrowETH * (MIN_HEALTH_FACTOR_VALUE + 0.0000001)) /
+    (reserveData.priceInEth * reserveData.reserveLiquidationThreshold)
+
+  const maxAmountToWithdraw = Math.min(
+    amountToReachMinHealthFactor,
+    Number(reserveData.currentATokenBalance),
+  )
+  const withdraw = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.withdraw(
@@ -110,7 +120,7 @@ export const WithdrawModal = ({
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: withdrawValidationSchemaa,
-    onSubmit: values => withdraw(Number(values.amount)),
+    onSubmit: values => withdraw(values.amount),
   })
 
   const {
@@ -158,16 +168,18 @@ export const WithdrawModal = ({
     setHasError(undefined)
     resetForm()
     refetch()
-  }, [resetForm])
+  }, [refetch, resetForm])
 
   useEffect(() => {
-    resetState()
-    setWithdrawCompleted(false)
+    if (isOpen) {
+      resetState()
+      setWithdrawCompleted(false)
+    }
   }, [isOpen, resetState])
 
   const calculateRemainingSupply = () => {
     const remainingSupply =
-      reserveData.currentATokenBalance - Number(values.amount)
+      Number(reserveData.currentATokenBalance) - Number(values.amount)
     if (remainingSupply > 0 && Number(values.amount) > 0) {
       return remainingSupply
     }
@@ -185,7 +197,7 @@ export const WithdrawModal = ({
     futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
 
   const setMaxValue = async () => {
-    await setFieldValue('amount', reserveData.currentATokenBalance, true)
+    await setFieldValue('amount', maxAmountToWithdraw, true)
     await setFieldTouched('amount', true, true)
   }
   return (
@@ -203,7 +215,12 @@ export const WithdrawModal = ({
           <StackLayout gap={3}>
             <StackLayout gap={2}>
               <BoxLayout gap={1.25}>
-                <Text color="oxfordBlue" type="heading 2" as="span">
+                <Text
+                  color="oxfordBlue"
+                  type="heading 2"
+                  as="span"
+                  data-cy="withdraw modal title"
+                >
                   {t('deposit.withdrawAsset')}
                 </Text>
               </BoxLayout>
@@ -247,6 +264,7 @@ export const WithdrawModal = ({
                 variant="large"
                 disabled={isWithdrawDisabled}
                 onClick={submitForm}
+                data-cy={'withdrawButtonOnModal ' + reserveData.symbol}
               >
                 {t('global.buttons.withdraw')} {reserveData.symbol}
               </Button>

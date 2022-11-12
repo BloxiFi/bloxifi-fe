@@ -46,7 +46,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                         Your deposit
                       </span>
                       <div
-                        className="sc-breuTD iSAPZE"
+                        className="sc-breuTD cxWDJq"
                       >
                         <span
                           className="sc-fEOsli kDPmAh"
@@ -131,9 +131,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -181,9 +179,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi gCTReh ioWRiD u-full-width"
+                        className="sc-hKMtZM sc-jSMfEi fkbceD ioWRiD u-full-width"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -191,9 +190,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -241,9 +238,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi gCTReh ioWRiD u-full-width"
+                        className="sc-hKMtZM sc-jSMfEi fkbceD ioWRiD u-full-width"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -251,9 +249,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -301,9 +297,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi gCTReh ioWRiD u-full-width"
+                        className="sc-hKMtZM sc-jSMfEi fkbceD ioWRiD u-full-width"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -388,9 +385,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -417,9 +412,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi bkptKM ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kFPrwK ioWRiD"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="medium"
                       >
@@ -427,9 +423,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -456,9 +450,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi bkptKM ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kFPrwK ioWRiD"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="medium"
                       >
@@ -466,9 +461,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -495,9 +488,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi bkptKM ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kFPrwK ioWRiD"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="medium"
                       >
@@ -505,9 +499,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -534,9 +526,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi bkptKM ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kFPrwK ioWRiD"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="medium"
                       >
@@ -570,7 +563,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     className="sc-iAvgwm eiTdTz"
                   >
                     <div
-                      className="sc-breuTD eqtFAo c-table__header--progressbar"
+                      className="sc-breuTD djglzS c-table__header--progressbar"
                     >
                       <div
                         className="sc-evZas cuIpxG"
@@ -665,9 +658,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -694,9 +685,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi gCTReh ioWRiD u-full-width"
+                        className="sc-hKMtZM sc-jSMfEi fkbceD ioWRiD u-full-width"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -704,9 +696,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -733,9 +723,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi gCTReh ioWRiD u-full-width"
+                        className="sc-hKMtZM sc-jSMfEi fkbceD ioWRiD u-full-width"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -743,9 +734,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={false}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM dJFjIR"
                     >
@@ -772,9 +761,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi gCTReh ioWRiD u-full-width"
+                        className="sc-hKMtZM sc-jSMfEi fkbceD ioWRiD u-full-width"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="thin"
                       >
@@ -859,9 +849,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -888,9 +876,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi bkptKM ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kFPrwK ioWRiD"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="medium"
                       >
@@ -898,9 +887,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -927,9 +914,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi bkptKM ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kFPrwK ioWRiD"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="medium"
                       >
@@ -937,9 +925,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -966,9 +952,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi bkptKM ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kFPrwK ioWRiD"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="medium"
                       >
@@ -976,9 +963,7 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                       </button>
                     </td>
                   </tr>
-                  <tr
-                    isTitleAString={true}
-                  >
+                  <tr>
                     <td
                       className="sc-gXmSlM SQWQ"
                     >
@@ -1005,9 +990,10 @@ exports[`Storyshots Showcases/Deposit and Borrow Connected 1`] = `
                     >
                       <button
                         appearance="secondary"
-                        className="sc-hKMtZM sc-jSMfEi bkptKM ioWRiD"
+                        className="sc-hKMtZM sc-jSMfEi kFPrwK ioWRiD"
                         data-element="button"
                         onClick={[Function]}
+                        radius="default"
                         size="small"
                         variant="medium"
                       >
@@ -1134,8 +1120,9 @@ exports[`Storyshots Showcases/Deposit and Borrow Not Connected 1`] = `
                   </p>
                   <button
                     appearance="primary"
-                    className="sc-hKMtZM sc-eCYdqJ kiXBJA jriGrI"
+                    className="sc-hKMtZM sc-eCYdqJ JKzku jriGrI"
                     data-element="button"
+                    radius="default"
                     size="medium"
                     variant="medium"
                   >

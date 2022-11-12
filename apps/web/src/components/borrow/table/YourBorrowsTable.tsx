@@ -8,6 +8,7 @@ import {
 import React, { FunctionComponent, useState } from 'react'
 import {
   convertBalancesInUsdArray,
+  getMaxRepayAmount,
   MIN_VALUE_FOR_TRANSACTION,
   numberToPercentage,
   sumArrayItems,
@@ -33,7 +34,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
   } = WalletContainer.useContainer()
   const userReservesWithDept = userReserves.filter(
-    (reserve: UserReserveData) => reserve.currentTotalDebt !== 0,
+    (reserve: UserReserveData) => Number(reserve.currentTotalDebt) !== 0,
   )
 
   const [modalData, setModalData] = useState<RepayModalData>()
@@ -62,9 +63,9 @@ export const YourBorrowsTable: FunctionComponent = () => {
     },
     balance: {
       header: 'Balance',
-      Cell: ({ data: { currentTotalDebt } }) => (
-        <TruncatedText>
-          <FormattedNumber value={currentTotalDebt} />
+      Cell: ({ data: { currentTotalDebt, symbol } }) => (
+        <TruncatedText data-cy={'borrowBalance ' + symbol}>
+          <FormattedNumber value={Number(currentTotalDebt)} />
         </TruncatedText>
       ),
       alignText: 'left',
@@ -81,29 +82,35 @@ export const YourBorrowsTable: FunctionComponent = () => {
       header: '',
       Cell: ({
         data: { currentTotalDebt, symbol, underlyingAsset, icon, priceInEth },
-      }) => (
-        <Button
-          appearance="secondary"
-          variant="thin"
-          size="small"
-          className="u-full-width"
-          disabled={currentTotalDebt < MIN_VALUE_FOR_TRANSACTION}
-          onClick={() =>
-            openModal({
-              currentTotalDebt,
-              symbol,
-              underlyingAsset,
-              icon,
-              priceInEth,
-              balance: reserves.find(
-                reserve => reserve.underlyingAsset === underlyingAsset,
-              ).balance,
-            })
-          }
-        >
-          Repay
-        </Button>
-      ),
+      }) => {
+        const findAsset = reserves.find(
+          reserve => reserve.underlyingAsset === underlyingAsset,
+        )
+        const balance = findAsset?.balance
+        const maxRepayAmount = getMaxRepayAmount(balance, currentTotalDebt)
+        return (
+          <Button
+            appearance="secondary"
+            variant="thin"
+            size="small"
+            className="u-full-width"
+            data-cy={'repayBtn ' + symbol}
+            disabled={Number(maxRepayAmount) < MIN_VALUE_FOR_TRANSACTION}
+            onClick={() =>
+              openModal({
+                currentTotalDebt,
+                symbol,
+                underlyingAsset,
+                icon,
+                priceInEth,
+                balance,
+              })
+            }
+          >
+            Repay
+          </Button>
+        )
+      },
       width: 160,
     },
   } as Record<string, ColumnData<UserReserveData>>
@@ -116,6 +123,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
   return (
     <>
       <Table
+        data-cy="RepayTable"
         columns={columns}
         data={userReservesWithDept}
         noDataMessage={t('deposit.borrowEmpty')}

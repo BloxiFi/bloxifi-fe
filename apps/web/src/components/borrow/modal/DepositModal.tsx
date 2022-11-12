@@ -113,7 +113,7 @@ export const DepositModal = ({
     }
   }
 
-  const deposit = async (amount: number) => {
+  const deposit = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.deposit(
@@ -137,14 +137,14 @@ export const DepositModal = ({
     amount: Yup.number()
       .typeError(t('global.errors.numbersOnly'))
       .positive(t('global.errors.positiveValue'))
-      .max(reserveData.balance, t('global.errors.exceededBalance'))
+      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
       .required(t('global.errors.required')),
   })
 
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: depositValidationSchemaa,
-    onSubmit: values => deposit(Number(values.amount)),
+    onSubmit: values => deposit(values.amount),
   })
 
   const {
@@ -163,12 +163,14 @@ export const DepositModal = ({
     setHasError(undefined)
     resetForm()
     refetch()
-  }, [resetForm])
+  }, [refetch, resetForm])
 
   useEffect(() => {
-    resetState()
-    setDepositCompleted(false)
-    setShouldApproveContract(false)
+    if (isOpen) {
+      resetState()
+      setDepositCompleted(false)
+      setShouldApproveContract(false)
+    }
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || depositCompleted
@@ -217,7 +219,12 @@ export const DepositModal = ({
           <StackLayout gap={5}>
             <StackLayout gap={2}>
               <BoxLayout gap={1.25}>
-                <Text color="oxfordBlue" type="heading 2" as="span">
+                <Text
+                  color="oxfordBlue"
+                  type="heading 2"
+                  as="span"
+                  data-cy="deposit modal title"
+                >
                   {t('deposit.depositAsset')}
                 </Text>
               </BoxLayout>
@@ -267,6 +274,7 @@ export const DepositModal = ({
                   type="submit"
                   disabled={isDepositDisabled}
                   onClick={submitForm}
+                  data-cy={'depositButtonOnModal ' + reserveData.symbol}
                 >
                   {t('global.buttons.deposit')} {reserveData.symbol}
                 </Button>

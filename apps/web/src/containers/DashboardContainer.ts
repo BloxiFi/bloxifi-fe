@@ -19,7 +19,6 @@ import {
 import { createContainer } from 'unstated-next'
 
 import { calculateAPY } from './WalletContainer'
-import { Web3Container } from './Web3Container'
 
 export type DashboardReservesData = {
   id: string
@@ -80,18 +79,12 @@ function useDashboard(
     initialState,
   )
 
-  const {
-    state: { currentAccount },
-  } = Web3Container.useContainer()
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
 
   const { data } = useQuery<DashboardReservesGraph>(
     GET_DASHBOARD_RESERVE_DATA,
     {
-      variables: {
-        user: currentAccount?.toLowerCase(),
-      },
       fetchPolicy: 'cache-and-network',
       pollInterval: POOL_INTERVAL,
     },

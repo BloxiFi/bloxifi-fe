@@ -108,7 +108,7 @@ export const BorrowModal = ({
     }
   }
 
-  const borrow = async (amount: number) => {
+  const borrow = async (amount: string) => {
     setLoading(true)
     try {
       const response = await BorrowAndLending.lendingPool.borrow(
@@ -145,7 +145,7 @@ export const BorrowModal = ({
   const formik = useFormik({
     initialValues: { amount: '' },
     validationSchema: depositValidationSchemaa,
-    onSubmit: values => borrow(Number(values.amount)),
+    onSubmit: values => borrow(values.amount),
   })
 
   const {
@@ -164,12 +164,14 @@ export const BorrowModal = ({
     setHasError(undefined)
     resetForm()
     refetch()
-  }, [resetForm])
+  }, [refetch, resetForm])
 
   useEffect(() => {
-    resetState()
-    setBorrowCompleted(false)
-    setShouldApproveContract(false)
+    if (isOpen) {
+      resetState()
+      setBorrowCompleted(false)
+      setShouldApproveContract(false)
+    }
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted
@@ -180,6 +182,17 @@ export const BorrowModal = ({
     (shouldApproveContract && !approved) ||
     futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
   const isApproveDisabled = !isSupportedNetwork || loading || approved
+
+  //The maximum amount to borrow should go up to the minimum health factor value
+  const amountToReachMinHealthFactor =
+    (totalCollateralETH / (MIN_HEALTH_FACTOR_VALUE + 0.0000001) -
+      totalBorrowETH) /
+    reserveData.priceInEth
+
+  const maxAmountToBorrow = Math.min(
+    amountToReachMinHealthFactor,
+    availableToBorrow,
+  )
 
   useEffect(() => {
     setFutureHealthFactor(
@@ -197,7 +210,7 @@ export const BorrowModal = ({
   ])
 
   const setMaxValue = async () => {
-    await setFieldValue('amount', availableToBorrow, true)
+    await setFieldValue('amount', maxAmountToBorrow, true)
     await setFieldTouched('amount', true, true)
   }
 
@@ -216,7 +229,12 @@ export const BorrowModal = ({
           <StackLayout gap={3}>
             <StackLayout gap={2}>
               <BoxLayout gap={1.25}>
-                <Text color="oxfordBlue" type="heading 2" as="span">
+                <Text
+                  color="oxfordBlue"
+                  type="heading 2"
+                  as="span"
+                  data-cy="borrow modal title"
+                >
                   {t('deposit.borrowAsset')}
                 </Text>
               </BoxLayout>
@@ -270,6 +288,7 @@ export const BorrowModal = ({
                   variant="large"
                   disabled={isBorrowDisabled}
                   onClick={submitForm}
+                  data-cy={'borrowButtonOnModal ' + reserveData.symbol}
                 >
                   {t('global.buttons.borrow')} {reserveData.symbol}
                 </Button>
