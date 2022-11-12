@@ -16,7 +16,7 @@ import { createContainer } from 'unstated-next'
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 
 const defaultState: Web3PolkadotContainerProps = {
-  currentAccountPolkadot: '',
+  currentAccountPolkadot: undefined,
   isConnectedPolkadot: false,
   loadingPolkadot: false,
   chainIdPolkadot: undefined,
@@ -63,6 +63,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
     accounts.map(account => ({
       address: account.address,
       name: account.meta.name,
+      source: account.meta.source,
     }))
 
   const connectWallet: ConnectWalletPolkadotFunction = useCallback(async () => {
@@ -101,7 +102,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
         setAccounts(formattedAccounts)
         dispatch({
           type: 'setCurrentAccount',
-          value: formattedAccounts[0].address,
+          value: formattedAccounts[0],
         })
       }
     } catch (error) {

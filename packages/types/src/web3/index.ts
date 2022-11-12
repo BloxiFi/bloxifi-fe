@@ -38,11 +38,12 @@ export type Web3ContainerProps = {
 export type PolkadotAccount = {
   address: string
   name: string
+  source: string
 }
 
 //PolkaDOT type
 export type Web3PolkadotContainerProps = {
-  currentAccountPolkadot: string
+  currentAccountPolkadot: PolkadotAccount
   isConnectedPolkadot: boolean
   loadingPolkadot: boolean
   errorPolkadot: Error | undefined
