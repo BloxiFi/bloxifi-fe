@@ -68,7 +68,9 @@ const withdrawToken = async (
   const { to } = moonriver.withdraw(token)
   const { send } = await to(chain).get(_polkaAcc)
 
-  await send(_amount, (event) => {return(event)})
+  await send(_amount, event => {
+    return event
+  })
 }
 
 const depositToken = async (
@@ -91,7 +93,9 @@ const depositToken = async (
 
   const { from } = moonriver.deposit(token)
   const { send } = await from(chain).get(_metamaskAcc, _polkaAcc)
-  await send(_amount, (event) => {return(event)})
+  await send(_amount, event => {
+    return event
+  })
 }
 
 /**
@@ -106,17 +110,19 @@ export const useTokenTeleport = ({
   metamaskAccount,
   tokenSymbol,
 }: Props = {}): string => {
-    //const [retLog, setRetLog] = useState<ExtrinsicEvent['txHash']>()
-    const [retLog, setRetLog] = useState('')
+  //const [retLog, setRetLog] = useState<ExtrinsicEvent['txHash']>()
+  const [retLog, setRetLog] = useState('')
   if (originChain === 'Moonriver') {
     const trans = async () =>
-    await withdrawToken(
-      BigInt(tokenAmount),
-      polkaAccount.address,
-      metamaskSigner,
-      tokenSymbol,
-      destinationChain,
-    ).then(()=>{setRetLog(trans.toString())})
+      await withdrawToken(
+        BigInt(tokenAmount),
+        polkaAccount.address,
+        metamaskSigner,
+        tokenSymbol,
+        destinationChain,
+      ).then(() => {
+        setRetLog(trans.toString())
+      })
   } else if (destinationChain === 'Moonriver') {
     const trans = async () =>
       await depositToken(
@@ -126,7 +132,9 @@ export const useTokenTeleport = ({
         metamaskAccount,
         tokenSymbol,
         originChain,
-      ).then(()=>{setRetLog(trans.toString())})
+      ).then(() => {
+        setRetLog(trans.toString())
+      })
   }
   return retLog
 }
