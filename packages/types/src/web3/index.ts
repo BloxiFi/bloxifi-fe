@@ -1,5 +1,5 @@
+import { SupportedNetwork } from '@bloxifi/core'
 import { JsonRpcProvider, JsonRpcSigner } from '@ethersproject/providers'
-import { SupportedNetwork } from 'packages/core/src'
 
 /**
  * Async function that will autologin the user if the user was previously connected (localStorage)
