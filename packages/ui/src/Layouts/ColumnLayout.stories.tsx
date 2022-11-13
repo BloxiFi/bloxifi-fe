@@ -66,14 +66,10 @@ function Placeholder({ color }: { color: string }) {
   )
 }
 
-export const overview = args => (
+export const Overview = args => (
   <ColumnLayout style={{ minHeight: 400 }} {...args}>
     <Placeholder color="#e8505b" />
     <Placeholder color="#00FF00" />
     <Placeholder color="#FF00FF" />
   </ColumnLayout>
 )
-
-overview.story = {
-  name: 'Overview',
-}

@@ -407,6 +407,3 @@ Connected.args = {
   depositRows: 3,
   borrowRows: 3,
 }
-
-NotConnected.storyName = 'Not Connected'
-Connected.storyName = 'Connected'
