@@ -1,9 +1,9 @@
-import { web3Accounts, web3Enable } from '@polkadot/extension-dapp'
-//import { ApiPromise } from '@polkadot/api'
 import {
-  ScProvider,
-  WellKnownChain,
-} from '@polkadot/rpc-provider/substrate-connect'
+  //web3Accounts,
+  web3Enable,
+  //web3FromSource,
+} from '@polkadot/extension-dapp'
+//import { ApiPromise } from '@polkadot/api'
 import {
   PolkadotAccount,
   Action,
@@ -14,6 +14,10 @@ import {
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { createContainer } from 'unstated-next'
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
+import {
+  ScProvider,
+  WellKnownChain,
+} from '@polkadot/rpc-provider/substrate-connect'
 
 const defaultState: Web3PolkadotContainerProps = {
   currentAccountPolkadot: undefined,
@@ -52,7 +56,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
   })
   //const [loading, setLoading] = useState(false)
   //const isSupportedNetwork
-  //const [signer, setSigner] = useState()
+  ///const [signer, setSigner] = useState()
   const [networkError, setNetworkError] = useState(undefined)
   const [isPolkaEnabled, setIsPolkaEnabled] = useState(false)
   const [accounts, setAccounts] = useState([])
@@ -97,7 +101,6 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
         localStorage.setItem('isConnectedPolkadot', 'true')
         //connectWallet()
 
-        const accounts: InjectedAccountWithMeta[] = await web3Accounts()
         const formattedAccounts = formatAccounts(accounts)
         setAccounts(formattedAccounts)
         dispatch({
@@ -108,7 +111,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
     } catch (error) {
       setNetworkError(error)
     }
-  }, [])
+  }, [accounts])
 
   useEffect(() => {
     void checkForPolkadot()
