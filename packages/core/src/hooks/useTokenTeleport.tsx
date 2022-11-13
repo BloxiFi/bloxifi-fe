@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config'
-import { ExtrinsicEvent, init } from '@moonbeam-network/xcm-sdk'
+import { init } from '@moonbeam-network/xcm-sdk'
 import { web3FromAddress } from '@polkadot/extension-dapp'
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { JsonRpcSigner } from '@ethersproject/providers'
@@ -68,7 +68,7 @@ const withdrawToken = async (
   const { to } = moonriver.withdraw(token)
   const { send } = await to(chain).get(_polkaAcc)
 
-  await send(_amount, event => {
+  return await send(_amount, event => {
     return event
   })
 }
@@ -93,7 +93,7 @@ const depositToken = async (
 
   const { from } = moonriver.deposit(token)
   const { send } = await from(chain).get(_metamaskAcc, _polkaAcc)
-  await send(_amount, event => {
+  return await send(_amount, event => {
     return event
   })
 }
@@ -109,32 +109,55 @@ export const useTokenTeleport = ({
   metamaskSigner,
   metamaskAccount,
   tokenSymbol,
-}: Props = {}): string => {
+}: Props = {}) => {
   //const [retLog, setRetLog] = useState<ExtrinsicEvent['txHash']>()
-  const [retLog, setRetLog] = useState('')
-  if (originChain === 'Moonriver') {
-    const trans = async () =>
-      await withdrawToken(
-        BigInt(tokenAmount),
-        polkaAccount.address,
-        metamaskSigner,
-        tokenSymbol,
-        destinationChain,
-      ).then(() => {
-        setRetLog(trans.toString())
-      })
-  } else if (destinationChain === 'Moonriver') {
-    const trans = async () =>
-      await depositToken(
-        BigInt(tokenAmount),
-        polkaAccount.address,
-        metamaskSigner,
-        metamaskAccount,
-        tokenSymbol,
-        originChain,
-      ).then(() => {
-        setRetLog(trans.toString())
-      })
-  }
-  return retLog
+  const [isLoading, setIsLoading] = useState(false)
+  const [transaction, setTransaction] = useState('')
+
+  const handleTransfer = useCallback(async () => {
+    try {
+      setIsLoading(true)
+
+      if (originChain === 'Moonriver') {
+        const transaction = await withdrawToken(
+          BigInt(tokenAmount),
+          polkaAccount.address,
+          metamaskSigner,
+          tokenSymbol,
+          destinationChain,
+        )
+
+        setTransaction(transaction.toString())
+      } else if (destinationChain === 'Moonriver') {
+        const transaction = await depositToken(
+          BigInt(tokenAmount),
+          polkaAccount.address,
+          metamaskSigner,
+          metamaskAccount,
+          tokenSymbol,
+          originChain,
+        )
+
+        setTransaction(transaction.toString())
+      }
+    } catch (e) {
+      throw new Error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [
+    destinationChain,
+    metamaskAccount,
+    metamaskSigner,
+    originChain,
+    polkaAccount.address,
+    tokenAmount,
+    tokenSymbol,
+  ])
+
+  useEffect(() => {
+    void handleTransfer()
+  }, [handleTransfer])
+
+  return { isLoading, transaction }
 }
