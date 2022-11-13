@@ -2,13 +2,7 @@ import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config'
 import { AssetBalanceInfo, init, toDecimal } from '@moonbeam-network/xcm-sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import {
-  ChainIdsNumber,
-  getNetworkByChain,
-  networkConfig,
-  NetworkConfigType,
-  SupportedNetwork,
-} from '../utilities'
+import { SupportedNetwork } from '../utilities'
 
 /**
  * Options that can be used to configure useWalletBalance() hook.
@@ -21,13 +15,17 @@ export interface Props {
   /**
    * Connected network ID
    */
-  readonly currentChainId?: SupportedNetwork['prefix'] | ChainIdsNumber
+  readonly currentChainId?: number
+  /**
+   * Current network config data
+   */
+  readonly currentNetwork?: SupportedNetwork
 }
 
 /**
  * Return type of useWalletBalance hook
  */
-export interface TokenBalanceData {
+export type TokenBalanceData = {
   /**
    * Token Symbol
    */
@@ -74,6 +72,7 @@ interface UseWalletBallanceState {
 export const useWalletBalance = ({
   currentAccount,
   currentChainId,
+  currentNetwork,
 }: Props = {}): UseWalletBallanceState => {
   const xcmSdk = useMemo(() => init(), [])
   const [balances, setBalances] = useState<TokenBalanceData[]>([])
@@ -81,9 +80,8 @@ export const useWalletBalance = ({
 
   const fetchBalances = useCallback(
     async (
-      network:
-        | SupportedNetwork['network']
-        | NetworkConfigType[keyof NetworkConfigType]['name'],
+      network: SupportedNetwork['network'],
+      supportedSymbols: any, //TODO Remove any type
     ) => {
       try {
         setIsLoading(true)
@@ -91,7 +89,11 @@ export const useWalletBalance = ({
         await xcmSdk[network.toLowerCase()].subscribeToAssetsBalanceInfo(
           currentAccount,
           (balances: AssetBalanceInfo<AssetSymbol, ChainKey>[]) => {
-            setBalances(mapBalances(balances))
+            setBalances(
+              mapBalances(balances).filter(({ tokenSymbol }) =>
+                supportedSymbols.includes(tokenSymbol),
+              ),
+            )
           },
         )
       } catch (error) {
@@ -104,14 +106,13 @@ export const useWalletBalance = ({
   )
 
   useEffect(() => {
-    const network =
-      getNetworkByChain(currentChainId as SupportedNetwork['prefix'])
-        ?.network || networkConfig[currentChainId]?.name
-
-    if (network) {
-      void fetchBalances(network)
+    if (currentNetwork && balances.length === 0) {
+      void fetchBalances(
+        currentNetwork.network,
+        currentNetwork?.supportedSymbols,
+      )
     }
-  }, [currentChainId, fetchBalances])
+  }, [currentChainId, fetchBalances, currentNetwork, balances.length])
 
   return { balances, isLoading }
 }

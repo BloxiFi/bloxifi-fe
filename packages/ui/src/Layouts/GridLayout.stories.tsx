@@ -19,7 +19,7 @@ function Placeholder({ color }: { color: string }) {
   )
 }
 
-export const details = () => (
+export const Details = () => (
   <GridLayout>
     <Placeholder color="#199fd5" />
     <Placeholder color="#199fd5" />
@@ -83,7 +83,3 @@ export const details = () => (
     </GridLayout.Column>
   </GridLayout>
 )
-
-details.story = {
-  name: 'Details',
-}

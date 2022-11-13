@@ -1,3 +1,4 @@
+import { SupportedNetwork } from '@bloxifi/core'
 import { JsonRpcProvider, JsonRpcSigner } from '@ethersproject/providers'
 
 /**
@@ -29,6 +30,7 @@ export type Web3ContainerProps = {
   chainId: number
   error: Error | undefined
   isSupportedNetwork: boolean
+  network: SupportedNetwork
   isMetamaskInstalled: boolean
   signer: JsonRpcSigner | undefined
 }

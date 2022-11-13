@@ -35,7 +35,6 @@ export const Details: Story<IconProps> = args => {
   )
 }
 
-Details.storyName = 'Details'
 Details.args = { color: 'gray' }
 
 AllIcons.storyName = 'All icons'

@@ -29,12 +29,8 @@ function Placeholder({ color }: { color: string }) {
   )
 }
 
-export const overview = args => (
+export const Overview = args => (
   <BoxLayout {...args} style={{ background: '#f9d56e' }}>
     <Placeholder color="#e8505b" />
   </BoxLayout>
 )
-
-overview.story = {
-  name: 'Overview',
-}

@@ -113,7 +113,8 @@
     "destinationChain": "Destination Chain",
     "originAccount": "Origin account",
     "destinationAccount": "Destination account",
-    "inNetworkLabel": "in {{network}}"
+    "inNetworkLabel": "in {{network}}",
+    "crossChainAssets": "Cross Chain Assets"
   },
   "pageNotFound": {
     "title": "404 - Page not found",

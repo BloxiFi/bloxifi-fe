@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react'
 import React from 'react'
 
-import { GridLayout } from '../Layouts/GridLayout'
+import { GridLayout } from '../Layouts'
 import { ProgressBar } from '../ProgressBar'
 
 export default {
@@ -9,7 +9,7 @@ export default {
   component: ProgressBar,
 } as Meta
 
-export const progressBar = args => (
+export const ProgressBarStory = args => (
   <GridLayout>
     <GridLayout.Column span={4}>
       <ProgressBar title="Borrowed" value={56} showBottomLabel {...args} />
@@ -17,6 +17,6 @@ export const progressBar = args => (
   </GridLayout>
 )
 
-progressBar.story = {
+ProgressBarStory.story = {
   name: 'Overview',
 }

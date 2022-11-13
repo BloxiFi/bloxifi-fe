@@ -44,7 +44,7 @@ function Placeholder({ color }: { color: string }) {
   )
 }
 
-export const overview = args => (
+export const Overview = args => (
   <StackLayout {...args}>
     <Placeholder color="#e8505b" />
     <Placeholder color="#f2aaaa" />
@@ -53,7 +53,7 @@ export const overview = args => (
   </StackLayout>
 )
 
-export const details = args => (
+export const Details = args => (
   <StackLayout {...args}>
     <Placeholder color="#e8505b" />
     <Placeholder color="#f2aaaa" />
@@ -64,7 +64,3 @@ export const details = args => (
     <Placeholder color="#14b1ab" />
   </StackLayout>
 )
-
-details.story = {
-  name: 'Details',
-}

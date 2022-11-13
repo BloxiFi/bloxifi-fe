@@ -568,10 +568,6 @@ export const IconTextButton: ComponentStory<typeof Button> = () => (
   </GridLayout>
 )
 
-Details.storyName = 'Details'
-Appearance.storyName = 'Appearance'
-Variants.storyName = 'Variants'
-CustomSizes.storyName = 'CustomSizes'
 IconButton.storyName = 'Icon'
 IconTextButton.storyName = 'Text with Icon'
 

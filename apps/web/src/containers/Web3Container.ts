@@ -1,4 +1,4 @@
-import { delay, supportedChainIds } from '@bloxifi/core'
+import { delay, getNetworkByChain, SupportedNetwork } from '@bloxifi/core'
 import {
   Action,
   CheckForMetamaskFunction,
@@ -21,6 +21,7 @@ const TRANSACTION_REFETCH_INTERVAL = 3000
  * Reperesents the min number of TX confirmations that ensures that values are updated on blockchain
  */
 const TRANSACTION_MIN_CONFIRMATION = 2
+const IS_TESTNET = process.env.IS_TESTNET
 
 const defaultState: Web3ContainerProps = {
   currentAccount: '',
@@ -29,6 +30,7 @@ const defaultState: Web3ContainerProps = {
   provider: undefined,
   chainId: undefined,
   error: undefined,
+  network: undefined,
   isSupportedNetwork: false,
   isMetamaskInstalled: false,
   signer: undefined,
@@ -60,9 +62,15 @@ function useContainer(initialState: Web3ContainerProps) {
     chainId,
   } = useWeb3React()
   const [loading, setLoading] = useState(false)
-  const isSupportedNetwork = supportedChainIds.includes(chainId)
   const [signer, setSigner] = useState()
   const [networkError, setNetworkError] = useState(undefined)
+
+  const networkConfigData = getNetworkByChain(
+    chainId as SupportedNetwork['prefix'],
+  )
+  const isSupportedNetwork =
+    networkConfigData?.network && networkConfigData?.isTestnet === !!IS_TESTNET
+
   const connectWallet: ConnectWalletFunction = useCallback(async () => {
     setLoading(true)
     try {
@@ -150,6 +158,7 @@ function useContainer(initialState: Web3ContainerProps) {
       provider: library,
       loading,
       signer,
+      network: networkConfigData,
     },
     dispatch,
     connectWallet,

@@ -1,75 +1,65 @@
-import { BoxLayout, ColumnData, Table, TruncatedText } from '@bloxifi/ui'
+import {
+  BoxLayout,
+  CardLayout,
+  ColumnData,
+  ColumnLayout,
+  Icon,
+  Table,
+  Text,
+} from '@bloxifi/ui'
+import { TokenBalanceData } from '@bloxifi/core'
 import React, { FunctionComponent } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import { AssetName } from '../../borrow/AssetName'
+type Props = {
+  balances: TokenBalanceData[]
+}
+export const CrossChainAssetTable: FunctionComponent<Props> = ({
+  balances,
+}: Props) => {
+  const { t } = useTranslation()
 
-export const CrossChainAssetTable: FunctionComponent = () => {
-  const assetsList = [
-    {
-      icon: 'metamask',
-      name: 'Moonbeam GLMR',
-      symbol: 'GLMR',
-      currentAssets: 1000,
-    },
-    {
-      icon: 'polkadot',
-      name: 'Acala ACA',
-      symbol: 'aACA',
-      currentAssets: 10,
-    },
-    {
-      icon: 'metamask',
-      name: 'Acala AUSD',
-      symbol: 'aUSD',
-      currentAssets: 0,
-    },
-    {
-      icon: 'polkadot',
-      name: 'Parallel PARA',
-      symbol: 'cPARA',
-      currentAssets: 0,
-    },
-    {
-      icon: 'polkadot',
-      name: 'Polkadot DOT',
-      symbol: 'cDOT',
-      currentAssets: 0,
-    },
-  ]
   const columns = {
-    assets: {
-      header: 'Assets',
-      Cell: ({ data: { icon, fullName, symbol } }: any) => (
-        <AssetName
-          fullName={fullName}
-          icon={icon}
-          symbol={symbol}
-          iconSize={25}
-        />
+    asset: {
+      header: '',
+      Cell: ({ data: { tokenOrigin, tokenOriginSymbol } }) => (
+        <ColumnLayout gap={1.5}>
+          <Icon size={40} name="dai" />
+          <Text as="span" type="body 2">
+            {tokenOrigin} {tokenOriginSymbol}
+          </Text>
+        </ColumnLayout>
       ),
       alignText: 'left',
     },
-    balance: {
-      header: 'Balance',
-      Cell: ({ data: { currentAssets, symbol } }) => (
-        <TruncatedText>
-          {currentAssets}x{symbol}
-        </TruncatedText>
+    value: {
+      header: '',
+      Cell: ({ data: { tokenSymbol, tokenBalance } }) => (
+        <Text as="span" type="body 2">
+          {tokenBalance} {tokenSymbol}
+        </Text>
       ),
       alignText: 'right',
     },
-  } as Record<string, ColumnData>
+  } as Record<string, ColumnData<TokenBalanceData>>
 
   return (
-    <>
+    <CardLayout>
       <Table
         columns={columns}
-        data={assetsList}
-        noDataMessage="No data to show"
-        titleComponent="Cross Chain Assets"
-        footer={<BoxLayout gap={1} />}
-        isLoading={false}
+        data={balances}
+        titleComponent={
+          <>
+            <Text as="span" type="heading 2">
+              {t('transfer.crossChainAssets')}
+            </Text>
+            <BoxLayout gap={1.15} />
+          </>
+        }
+        columnSpacing
+        compact
       />
-    </>
+      <BoxLayout gap={3.25} />
+    </CardLayout>
   )
 }
