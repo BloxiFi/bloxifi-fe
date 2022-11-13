@@ -28,11 +28,11 @@ jobs:
         id: checkout
 
       #
-      # Set node 16
+      # Set node 14
       #
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 14
 
       #
       # Cache files in ./frontend
@@ -178,11 +178,11 @@ jobs:
           echo "ETHERSCAN_KEY=${{ secrets.ETHERSCAN_KEY }}" >> .env
 
       #
-      # Set node 16
+      # Set node 14
       #
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 14
 
       #
       # Run e2e tests
