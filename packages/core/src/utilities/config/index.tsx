@@ -31,7 +31,7 @@ const NetworkRegistry = [
     website: 'https://kusama.network',
     relayChain: 'kusama',
     paraId: 0,
-    icon: 'dai',
+    icon: 'ksm',
     isTestnet: true,
   },
   {
@@ -59,7 +59,7 @@ const NetworkRegistry = [
     website: 'https://karura.network/',
     relayChain: 'kusama',
     paraId: 2000,
-    icon: 'dai',
+    icon: 'karura',
     isTestnet: true,
   },
   {
@@ -69,7 +69,7 @@ const NetworkRegistry = [
     symbols: ['GLMR'],
     supportedSymbols: [],
     decimals: [18],
-    icon: 'dai',
+    icon: 'mowr',
     isTestnet: false,
   },
   {
@@ -79,7 +79,7 @@ const NetworkRegistry = [
     symbols: ['MOVR'],
     supportedSymbols: ['MOVR', 'xcKAR', 'xcKSM', 'xcAUSD'], //symbol, decimals, contract address & icon
     decimals: [18],
-    icon: 'dai',
+    icon: 'mowr',
     isTestnet: true,
   },
   {
@@ -96,7 +96,7 @@ const NetworkRegistry = [
       'MOWRmb',
     ], //symbol, decimals, contract address & icon
     decimals: [18],
-    icon: 'dai',
+    icon: 'mowr',
     isTestnet: true,
   },
 ] as const
@@ -114,6 +114,14 @@ export const getNetworkByChain = (
   chainId: SupportedNetwork['prefix'],
 ): SupportedNetwork | undefined => {
   return NetworkRegistry.find(network => network.prefix === chainId)
+}
+
+export const getNetworkByName = (
+  name: SupportedNetwork['network'],
+): SupportedNetwork | undefined => {
+  return NetworkRegistry.find(
+    network => network.network.toLocaleLowerCase() === name.toLocaleLowerCase(),
+  )
 }
 
 export const networkConfig: NetworkConfigType = {

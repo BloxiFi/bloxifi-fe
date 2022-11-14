@@ -273,3 +273,7 @@ export const hasClass = (element, className) => {
     }
   }
 }
+
+export const toCapitalize = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
