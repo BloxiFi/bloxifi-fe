@@ -13,46 +13,57 @@ import {
   Text,
 } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
+import { getNetworkByName, SupportedNetwork, toCapitalize } from '@bloxifi/core'
 
 const TransferAsset = () => {
   const { t } = useTranslation()
 
   const tokens = ['MOVR', 'KAR', 'aUSD', 'KSM']
-  const chains = ['Moonriver', 'Karura', 'Kusama']
-  const DEFAULT_ORIGIN_CHAIN = 'Moonriver'
-  const DEFAULT_DESTINATION_CHAIN = 'Karura'
+  const allowedChains = ['moonriver', 'karura', 'kusama']
+  const chains = allowedChains.map((chain: SupportedNetwork['network']) =>
+    getNetworkByName(chain),
+  )
+
+  /**
+   * DEFAULT_ORIGIN_CHAIN represents default selected origin chain
+   * One of the origin and destination chains must be DEFAULT_ORIGIN_CHAIN
+   */
+  const DEFAULT_ORIGIN_CHAIN = 'moonriver'
+  const DEFAULT_DESTINATION_CHAIN = 'karura'
   const DEFAULT_TOKEN = 'MOVR'
 
-  type SelectedChain = 'Moonriver' | 'Karura' | 'Kusama'
+  const DEFAULT_ORIGIN = getNetworkByName(DEFAULT_ORIGIN_CHAIN)
+  const DEFAULT_DESTINATION = getNetworkByName(DEFAULT_DESTINATION_CHAIN)
+
   type SelectedToken = 'MOVR' | 'KAR' | 'aUSD' | 'KSM'
 
   const [closeMenu, setCloseMenu] = useState(false)
   const [selectedToken, setSelectedToken] = useState(DEFAULT_TOKEN)
-  const [selectedOrigin, setSelectedOrigin] = useState(DEFAULT_ORIGIN_CHAIN)
-  const [selectedDestination, setSelectedDestination] = useState(
-    DEFAULT_DESTINATION_CHAIN,
-  )
+  const [selectedOrigin, setSelectedOrigin] =
+    useState<SupportedNetwork>(DEFAULT_ORIGIN)
+  const [selectedDestination, setSelectedDestination] =
+    useState<SupportedNetwork>(DEFAULT_DESTINATION)
   const [allowedTokens, setAllowedTokens] = useState([])
 
   const handleClose = () => {
     setCloseMenu(false)
   }
 
-  const handleOriginChange = (originChain: SelectedChain) => {
+  const handleOriginChange = (originChain: SupportedNetwork) => {
     setSelectedOrigin(originChain)
-    if (originChain === 'Moonriver') {
-      setSelectedDestination(DEFAULT_DESTINATION_CHAIN)
+    if (originChain.network === DEFAULT_ORIGIN_CHAIN) {
+      setSelectedDestination(DEFAULT_DESTINATION)
     } else {
-      setSelectedDestination('Moonriver')
+      setSelectedDestination(DEFAULT_ORIGIN)
     }
   }
 
-  const handleDestinationChange = (destinationChain: SelectedChain) => {
+  const handleDestinationChange = (destinationChain: SupportedNetwork) => {
     setSelectedDestination(destinationChain)
-    if (destinationChain === 'Moonriver') {
-      setSelectedOrigin(DEFAULT_DESTINATION_CHAIN)
+    if (destinationChain.network === DEFAULT_ORIGIN_CHAIN) {
+      setSelectedOrigin(DEFAULT_DESTINATION)
     } else {
-      setSelectedOrigin('Moonriver')
+      setSelectedOrigin(DEFAULT_ORIGIN)
     }
   }
 
@@ -63,7 +74,10 @@ const TransferAsset = () => {
 
   useEffect(() => {
     /**  Allowed tokens for Moonriver<>Kusama => KSM */
-    if (selectedDestination === 'Kusama' || selectedOrigin === 'Kusama') {
+    if (
+      selectedDestination.network === 'kusama' ||
+      selectedOrigin.network === 'kusama'
+    ) {
       setAllowedTokens(['KSM'])
       setSelectedToken('KSM')
     } else {
@@ -92,10 +106,14 @@ const TransferAsset = () => {
                   <Button appearance="secondary" variant="large" size="medium">
                     <>
                       <BoxLayout gap={0.5}>
-                        <Icon name="dai" color="oxfordBlue" size={40} />
+                        <Icon
+                          name={selectedOrigin.icon}
+                          color="oxfordBlue"
+                          size={40}
+                        />
                       </BoxLayout>
                       <Text as="span" type="body 2">
-                        {selectedOrigin}
+                        {toCapitalize(selectedOrigin.network)}
                       </Text>
 
                       <BoxLayout gap={0.75}>
@@ -106,22 +124,28 @@ const TransferAsset = () => {
                 }
                 field={
                   <StackLayout>
-                    {chains.map((chain: SelectedChain) => (
+                    {chains.map(chain => (
                       <MenuItem
-                        key={chain}
+                        key={chain.prefix}
                         appearance="text"
                         variant="medium"
                         size="large"
                         onClick={() => handleOriginChange(chain)}
                         className="u-full-width"
-                        disabled={chain === selectedOrigin}
+                        disabled={chain.network === selectedOrigin.network}
                       >
                         <ColumnLayout
                           className="u-full-width"
                           align="space-between"
                         >
-                          <Icon name="dai" color="oxfordBlue" size={20} />
-                          <Text type="body 2">{chain}</Text>
+                          <Icon
+                            name={chain.icon}
+                            color="oxfordBlue"
+                            size={20}
+                          />
+                          <Text type="body 2">
+                            {toCapitalize(chain.network)}
+                          </Text>
                         </ColumnLayout>
                       </MenuItem>
                     ))}
@@ -151,10 +175,14 @@ const TransferAsset = () => {
                   <Button appearance="secondary" variant="large" size="medium">
                     <>
                       <BoxLayout gap={0.75}>
-                        <Icon name="dai" color="oxfordBlue" size={40} />
+                        <Icon
+                          name={selectedDestination.icon}
+                          color="oxfordBlue"
+                          size={40}
+                        />
                       </BoxLayout>
                       <Text as="span" type="body 2">
-                        {selectedDestination}
+                        {toCapitalize(selectedDestination.network)}
                       </Text>
                       <BoxLayout gap={0.75}>
                         <Icon name="arrow-down" color="oxfordBlue" />
@@ -164,22 +192,28 @@ const TransferAsset = () => {
                 }
                 field={
                   <StackLayout>
-                    {chains.map((chain: SelectedChain) => (
+                    {chains.map(chain => (
                       <MenuItem
-                        key={chain}
+                        key={chain.prefix}
                         appearance="text"
                         variant="large"
                         size="large"
                         onClick={() => handleDestinationChange(chain)}
                         className="u-full-width"
-                        disabled={chain === selectedDestination}
+                        disabled={chain.network === selectedDestination.network}
                       >
                         <ColumnLayout
                           className="u-full-width"
                           align="space-between"
                         >
-                          <Icon name="dai" color="oxfordBlue" size={20} />
-                          <Text type="body 2">{chain}</Text>
+                          <Icon
+                            name={chain.icon}
+                            color="oxfordBlue"
+                            size={20}
+                          />
+                          <Text type="body 2">
+                            {toCapitalize(chain.network)}
+                          </Text>
                         </ColumnLayout>
                       </MenuItem>
                     ))}
