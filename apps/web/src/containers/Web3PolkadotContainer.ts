@@ -1,4 +1,5 @@
 import {
+  web3Accounts,
   //web3Accounts,
   web3Enable,
   //web3FromSource,
@@ -101,6 +102,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
         localStorage.setItem('isConnectedPolkadot', 'true')
         //connectWallet()
 
+        const accounts: InjectedAccountWithMeta[] = await web3Accounts()
         const formattedAccounts = formatAccounts(accounts)
         setAccounts(formattedAccounts)
         dispatch({
@@ -111,7 +113,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
     } catch (error) {
       setNetworkError(error)
     }
-  }, [accounts])
+  }, [])
 
   useEffect(() => {
     void checkForPolkadot()
