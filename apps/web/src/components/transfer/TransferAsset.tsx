@@ -13,10 +13,24 @@ import {
   Text,
 } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
-import { getNetworkByName, SupportedNetwork, toCapitalize } from '@bloxifi/core'
+import {
+  getNetworkByName,
+  sliceMiddleOfString,
+  SupportedNetwork,
+  toCapitalize,
+} from '@bloxifi/core'
+
+import { Web3Container } from '@/containers/Web3Container'
+import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
 
 const TransferAsset = () => {
   const { t } = useTranslation()
+  const {
+    state: { currentAccount, isSupportedNetwork: isSupportedNetworkEVM },
+  } = Web3Container.useContainer()
+  const {
+    state: { currentAccountPolkadot, isPolkadotEnabled },
+  } = Web3PolkadotContainer.useContainer()
 
   const tokens = ['MOVR', 'KAR', 'aUSD', 'KSM']
   const allowedChains = ['moonriver', 'karura', 'kusama']
@@ -86,6 +100,46 @@ const TransferAsset = () => {
       setSelectedToken(DEFAULT_TOKEN)
     }
   }, [selectedDestination, selectedOrigin])
+
+  const isSupportedNetwork = (network: SupportedNetwork['network']) => {
+    if (network === DEFAULT_ORIGIN_CHAIN) {
+      return isSupportedNetworkEVM
+    }
+    return isPolkadotEnabled && currentAccountPolkadot
+  }
+
+  const getAddressInput = (selectedChain: SupportedNetwork) => {
+    if (isSupportedNetwork(selectedChain.network)) {
+      return (
+        <AddressInput
+          className="u-full-width"
+          name={selectedChain.network}
+          value={sliceMiddleOfString(
+            selectedChain.network === DEFAULT_ORIGIN_CHAIN
+              ? currentAccount
+              : currentAccountPolkadot.address,
+            4,
+          )}
+          networkName={toCapitalize(selectedChain.network)}
+          icon={{ name: selectedChain.icon, size: 30 }}
+        />
+      )
+    } else {
+      return (
+        <AddressInput
+          className="u-full-width"
+          name={selectedChain.network}
+          value=""
+          networkName=""
+          icon={undefined}
+          status="error"
+          error={t('global.errors.wrongNetwork', {
+            network: toCapitalize(selectedChain.network),
+          })}
+        />
+      )
+    }
+  }
 
   return (
     <CardLayout>
@@ -227,26 +281,14 @@ const TransferAsset = () => {
             <Text color="oxfordBlue" type="heading 3">
               {t('transfer.originAccount')}
             </Text>
-            <AddressInput
-              className="u-full-width"
-              name="originChain"
-              value=""
-              networkName=""
-              icon={undefined}
-            />
+            {getAddressInput(selectedOrigin)}
           </StackLayout>
           <StackLayout gap={1}>
             <StackLayout gap={0.625}>
               <Text color="oxfordBlue" type="heading 3">
                 {t('transfer.destinationAccount')}
               </Text>
-              <AddressInput
-                className="u-full-width"
-                name="destinationChain"
-                value=""
-                networkName=""
-                icon={undefined}
-              />
+              {getAddressInput(selectedDestination)}
             </StackLayout>
 
             <StackLayout gap={3.315}>

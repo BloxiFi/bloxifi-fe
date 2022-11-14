@@ -27,7 +27,7 @@ const TokenTransfer = () => {
     currentChainId: chainId,
     currentNetwork: network,
   })
-  if (isLoading) {
+  if (isLoading || connectionLoading) {
     return (
       <CoverLayout>
         <Loader />
@@ -35,10 +35,7 @@ const TokenTransfer = () => {
     )
   }
 
-  return isMetamaskInstalled &&
-    isSupportedNetwork &&
-    !connectionLoading &&
-    isConnected ? (
+  return isMetamaskInstalled && isSupportedNetwork && isConnected ? (
     <GridLayout>
       <GridLayout.Column span={6}>
         <StackLayout gap={1.5}>
