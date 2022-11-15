@@ -70,15 +70,15 @@ export const usePolkadotWalletBalance = ({
 
       // how to fetch specific asset on specific parachain (supported kusama and karura)
       const assetConfig =
-        networks[network].assets.find(asset => asset.name === currentSymbol) ??
-        undefined
+        networks[network].assets.find(asset => asset.name === currentSymbol)
+          .config ?? undefined
 
       // initialized by Usage documentation in @polkadot/api/promise/Api.d.ts
       const provider = new WsProvider(networks[network]?.provider)
       const api = await new ApiPromise({ provider }).isReady
 
       if (assetConfig) {
-        const codec = await api.query.system.account(
+        const codec = await api.query.tokens.accounts(
           currentAccount,
           assetConfig,
         )
