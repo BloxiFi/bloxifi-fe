@@ -1,5 +1,4 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'
-import '@polkadot/api-augment'
 import { useCallback, useEffect, useState } from 'react'
 
 /**
