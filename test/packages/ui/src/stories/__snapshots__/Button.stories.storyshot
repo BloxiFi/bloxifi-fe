@@ -267,7 +267,7 @@ exports[`Storyshots Components/Button Appearance 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components/Button CustomSizes 1`] = `
+exports[`Storyshots Components/Button Custom Sizes 1`] = `
 <div
   className="sc-kDDrLX iFyCNQ"
 >

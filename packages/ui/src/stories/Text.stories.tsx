@@ -9,7 +9,7 @@ export default {
   component: Text,
 } as Meta
 
-export const headings = args => (
+export const Headings = args => (
   <StackLayout gap={2}>
     <Text type="heading 1" {...args}>
       Heading 1
@@ -23,7 +23,7 @@ export const headings = args => (
   </StackLayout>
 )
 
-export const paragraphs = args => (
+export const Paragraphs = args => (
   <StackLayout gap={2}>
     <Text type="body 1" {...args}>
       Body 1
@@ -45,11 +45,3 @@ export const paragraphs = args => (
     </Text>
   </StackLayout>
 )
-
-headings.story = {
-  name: 'Headings',
-}
-
-paragraphs.story = {
-  name: 'Paragraphs',
-}

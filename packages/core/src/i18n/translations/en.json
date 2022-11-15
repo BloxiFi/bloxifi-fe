@@ -51,7 +51,8 @@
       "positiveValue": "Must be greater than 0",
       "numbersOnly": "Must be a number",
       "exceededBalance": "Not enough balance",
-      "healthFactor": "Health factor cannot be less than 1.01"
+      "healthFactor": "Health factor cannot be less than 1.01",
+      "wrongNetwork": "Failed to connect {{network}} network"
     },
     "tooltips": {
       "depositedBalance": "Your total deposited balance denominated in USD",
@@ -113,7 +114,8 @@
     "destinationChain": "Destination Chain",
     "originAccount": "Origin account",
     "destinationAccount": "Destination account",
-    "inNetworkLabel": "in {{network}}"
+    "inNetworkLabel": "in {{network}}",
+    "crossChainAssets": "Cross Chain Assets"
   },
   "pageNotFound": {
     "title": "404 - Page not found",

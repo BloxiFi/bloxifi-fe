@@ -1,5 +1,6 @@
 import React from 'react'
-import { GridLayout, StackLayout } from '@bloxifi/ui'
+import { CoverLayout, GridLayout, Loader, StackLayout } from '@bloxifi/ui'
+import { useWalletBalance } from '@bloxifi/core'
 
 import { ConnectionStatus } from '../borrow/ConnectionStatus'
 
@@ -11,17 +12,30 @@ import { Web3Container } from '@/containers/Web3Container'
 const TokenTransfer = () => {
   const {
     state: {
+      currentAccount,
       isConnected,
       loading: connectionLoading,
-      isSupportedNetwork,
       isMetamaskInstalled,
+      isSupportedNetwork,
+      chainId,
+      network,
     },
   } = Web3Container.useContainer()
 
-  return isMetamaskInstalled &&
-    isSupportedNetwork &&
-    !connectionLoading &&
-    isConnected ? (
+  const { balances, isLoading } = useWalletBalance({
+    currentAccount,
+    currentChainId: chainId,
+    currentNetwork: network,
+  })
+  if (isLoading || connectionLoading) {
+    return (
+      <CoverLayout>
+        <Loader />
+      </CoverLayout>
+    )
+  }
+
+  return isMetamaskInstalled && isSupportedNetwork && isConnected ? (
     <GridLayout>
       <GridLayout.Column span={6}>
         <StackLayout gap={1.5}>
@@ -30,7 +44,7 @@ const TokenTransfer = () => {
       </GridLayout.Column>
       <GridLayout.Column span={6}>
         <StackLayout gap={1.5}>
-          <CrossChainAssetTable />
+          <CrossChainAssetTable balances={balances} />
         </StackLayout>
       </GridLayout.Column>
     </GridLayout>

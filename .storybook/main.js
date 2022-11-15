@@ -17,19 +17,30 @@ module.exports = {
     '@storybook/addon-measure',
     '@storybook/addon-viewport',
   ],
-
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.less$/,
       use: [
-        { loader: 'style-loader' },
-        { loader: 'css-loader', options: { modules: false } },
-        { loader: 'less-loader', options: { javascriptEnabled: true } },
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            modules: false,
+          },
+        },
+        {
+          loader: 'less-loader',
+          options: {
+            javascriptEnabled: true,
+          },
+        },
       ],
     })
     config.module.rules.push({
       test: /\.scss$/,
-      loaders: [
+      use: [
         'style-loader',
         'css-loader',
         {
@@ -42,5 +53,11 @@ module.exports = {
     })
     config.resolve.extensions.push('.ts', '.tsx')
     return config
+  },
+  core: {
+    builder: 'webpack5',
+  },
+  docsPage: {
+    docs: 'automatic',
   },
 }

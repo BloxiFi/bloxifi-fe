@@ -1,3 +1,4 @@
+import { SupportedNetwork } from '@bloxifi/core'
 import { JsonRpcProvider, JsonRpcSigner } from '@ethersproject/providers'
 
 /**
@@ -29,6 +30,7 @@ export type Web3ContainerProps = {
   chainId: number
   error: Error | undefined
   isSupportedNetwork: boolean
+  network: SupportedNetwork
   isMetamaskInstalled: boolean
   signer: JsonRpcSigner | undefined
 }
@@ -36,11 +38,12 @@ export type Web3ContainerProps = {
 export type PolkadotAccount = {
   address: string
   name: string
+  source: string
 }
 
 //PolkaDOT type
 export type Web3PolkadotContainerProps = {
-  currentAccountPolkadot: string
+  currentAccountPolkadot: PolkadotAccount
   isConnectedPolkadot: boolean
   loadingPolkadot: boolean
   errorPolkadot: Error | undefined

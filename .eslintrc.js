@@ -1,5 +1,4 @@
 const IS_PROD = process.env.NODE_ENV === 'production'
-
 module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
@@ -11,6 +10,7 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:react-hooks/recommended',
+    'plugin:storybook/recommended',
   ],
   env: {
     es6: true,
@@ -20,18 +20,43 @@ module.exports = {
   rules: {
     'react/jsx-curly-brace-presence': [
       1,
-      { props: 'never', children: 'never' },
+      {
+        props: 'never',
+        children: 'never',
+      },
     ],
     'import/no-named-as-default-member': 0,
-    'import/no-unresolved': [1, { commonjs: true, amd: true }],
+    'import/no-unresolved': [
+      1,
+      {
+        commonjs: true,
+        amd: true,
+      },
+    ],
     'import/first': 2,
     'import/newline-after-import': 1,
-    'import/order': [1, { 'newlines-between': 'always' }],
+    'import/order': [
+      1,
+      {
+        'newlines-between': 'always',
+      },
+    ],
     'import/no-duplicates': 2,
-    'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
+    'import/no-useless-path-segments': [
+      'error',
+      {
+        noUselessIndex: true,
+      },
+    ],
     'import/extensions': 0,
     semi: ['warn', 'never'],
-    quotes: [1, 'single', { allowTemplateLiterals: true }],
+    quotes: [
+      1,
+      'single',
+      {
+        allowTemplateLiterals: true,
+      },
+    ],
     strict: [2, 'never'],
     curly: [2, 'all'],
     'no-console': 1,
@@ -45,7 +70,6 @@ module.exports = {
     'arrow-parens': [1, 'as-needed'],
     'jsx-a11y/heading-has-content': 0,
     'prettier/prettier': 1,
-
     // TODO: turn on later
     'react/prop-types': 'off',
   },
@@ -58,7 +82,8 @@ module.exports = {
     },
     'import/resolver': {
       typescript: {
-        alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+        alwaysTryTypes: true,
+        // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
         project: ['packages/*/tsconfig.json', 'apps/*/tsconfig.json'],
       },
     },
@@ -69,7 +94,8 @@ module.exports = {
       extends: 'plugin:mdx/recommended',
     },
     {
-      files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+      files: ['*.ts', '*.tsx'],
+      // Your TypeScript files extension
 
       // As mentioned in the comments, you should extend TypeScript plugins here,
       // instead of extending them outside the `overrides`.
@@ -78,17 +104,20 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
-
       rules: {
         '@typescript-eslint/camelcase': 0,
         '@typescript-eslint/unbound-method': 0,
         '@typescript-eslint/no-misused-promises': [
           'error',
-          { checksVoidReturn: false },
+          {
+            checksVoidReturn: false,
+          },
         ],
         '@typescript-eslint/no-floating-promises': [
           'error',
-          { ignoreVoid: true },
+          {
+            ignoreVoid: true,
+          },
         ],
         '@typescript-eslint/no-unused-vars': 1,
         '@typescript-eslint/no-explicit-any': 0,
@@ -115,7 +144,6 @@ module.exports = {
           },
         ],
       },
-
       parserOptions: {
         project: ['./tsconfig.json'], // Specify it only for TypeScript files
       },

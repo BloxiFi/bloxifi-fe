@@ -47,20 +47,16 @@ function Placeholder({ color }: { color: string }) {
   )
 }
 
-export const overview = () => (
+export const Overview = () => (
   <CenterLayout centerText style={{ background: '#f9d56e' }}>
     <Placeholder color="#e8505b" />
   </CenterLayout>
 )
 
-export const details = args => (
+export const Details = args => (
   <CenterLayout {...args} style={{ background: '#f9d56e' }}>
     <Placeholder color="#e8505b" />
     <Placeholder color="#e8505b" />
     <Placeholder color="#e8505b" />
   </CenterLayout>
 )
-
-details.story = {
-  name: 'Details',
-}
