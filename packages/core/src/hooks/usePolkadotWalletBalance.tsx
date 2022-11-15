@@ -7,6 +7,10 @@ import { useCallback, useEffect, useState } from 'react'
  */
 export interface PolkadotWalletBalanceProps {
   /**
+   * Supported networks
+   */
+  readonly network?: 'kusama' | 'karura'
+  /**
    * User Polkadot wallet account
    */
   readonly currentAccount?: string
@@ -34,39 +38,18 @@ export interface PolkadotWalletBalance {
   error?: Error
 }
 
-const tokenConfig = {
-  KSM: {
-    getPolkadotBalance: async (acc: string) => {
-      const wsProvider = new WsProvider('wss://kusama-rpc.polkadot.io')
-      const api = await ApiPromise.create({ provider: wsProvider })
-      const { data: balance } = await api.query.system.account(acc)
-      return balance.free.toHuman()
-    },
+const networks = {
+  kusama: {
+    provider: 'wss://kusama-rpc.polkadot.io',
+    assets: [{ name: 'KSM', config: undefined }],
   },
-  KAR: {
-    getPolkadotBalance: async (acc: string) => {
-      const wsProvider = new WsProvider('wss://karura-rpc.dwellir.com')
-      const api = await ApiPromise.create({ provider: wsProvider })
-      const { data: balance } = await api.query.system.account(acc)
-      return balance.free.toHuman()
-    },
-  },
-
-  MOVR: {
-    getPolkadotBalance: async (acc: string) => {
-      const wsProvider = new WsProvider('wss://karura-rpc.dwellir.com')
-      const api = await ApiPromise.create({ provider: wsProvider })
-      const MOVR = await api.query.tokens.accounts(acc, { ForeignAsset: 3 })
-      return MOVR['free'].toHuman()
-    },
-  },
-  AUSD: {
-    getPolkadotBalance: async (acc: string) => {
-      const wsProvider = new WsProvider('wss://karura-rpc.dwellir.com')
-      const api = await ApiPromise.create({ provider: wsProvider })
-      const AUSD = await api.query.tokens.accounts(acc, { Token: 'AUSD' })
-      return AUSD['free'].toHuman()
-    },
+  karura: {
+    provider: 'wss://karura-rpc.dwellir.com',
+    assets: [
+      { name: 'KAR', config: undefined },
+      { name: 'MOVR', config: { ForeignAsset: 3 } },
+      { name: 'AUSD', config: { Token: 'AUSD' } },
+    ],
   },
 }
 
@@ -74,6 +57,7 @@ const tokenConfig = {
  * Hook that returns Balance of xc Tokens from Polkadot/Kusama
  */
 export const usePolkadotWalletBalance = ({
+  network,
   currentAccount,
   currentSymbol,
 }: PolkadotWalletBalanceProps = {}): PolkadotWalletBalance => {
@@ -81,22 +65,40 @@ export const usePolkadotWalletBalance = ({
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(undefined)
 
-  const fetchBalances = useCallback(async (currentAccount, currentSymbol) => {
+  const fetchBalances = useCallback(async () => {
     try {
       setIsLoading(true)
-      setTokenFreeBalance(
-        await tokenConfig[currentSymbol].getPolkadotBalance(currentAccount),
-      )
+
+      // how to fetch specific asset on specific parachain (supported kusama and karura)
+      const assetConfig =
+        networks[network].assets.find(asset => asset.name === currentSymbol) ??
+        undefined
+
+      // initialized by Usage documentation in @polkadot/api/promise/Api.d.ts
+      const provider = new WsProvider(networks[network]?.provider)
+      const api = await new ApiPromise({ provider }).isReady
+
+      if (assetConfig) {
+        const codec = await api.query.system.account(
+          currentAccount,
+          assetConfig,
+        )
+        setTokenFreeBalance(codec['free'].toHuman()) // NOTE: in typescript there is no 'free' in Codec, we should be able just to use only `codec.toHuman()`
+      } else {
+        const codec = await api.query.system.account(currentAccount)
+        setTokenFreeBalance(codec.data.free.toHuman())
+      }
     } catch (error) {
       setError(error)
+      throw new Error(error)
     } finally {
       setIsLoading(false)
     }
-  }, [])
+  }, [currentAccount, currentSymbol, network])
 
   useEffect(() => {
-    void fetchBalances(currentAccount, currentSymbol)
-  }, [currentAccount, currentSymbol, fetchBalances])
+    void fetchBalances()
+  }, [fetchBalances])
 
   return { isLoading, tokenFreeBalance, error }
 }
