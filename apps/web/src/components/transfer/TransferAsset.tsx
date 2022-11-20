@@ -19,6 +19,9 @@ import {
   SupportedNetwork,
   toCapitalize,
 } from '@bloxifi/core'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { TokenTransfer } from '@bloxifi/core/src/hooks/tokenTransfer'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
@@ -26,7 +29,11 @@ import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
 const TransferAsset = () => {
   const { t } = useTranslation()
   const {
-    state: { currentAccount, isSupportedNetwork: isSupportedNetworkEVM },
+    state: {
+      currentAccount,
+      isSupportedNetwork: isSupportedNetworkEVM,
+      signer,
+    },
   } = Web3Container.useContainer()
   const {
     state: { currentAccountPolkadot, isPolkadotEnabled },
@@ -85,6 +92,33 @@ const TransferAsset = () => {
     setSelectedOrigin(selectedDestination)
     setSelectedDestination(selectedOrigin)
   }
+
+  const handleTransferClick = async (amountToSend: string) => {
+    const transaction = await TokenTransfer(
+      toCapitalize(selectedOrigin.network),
+      toCapitalize(selectedDestination.network),
+      amountToSend.toString(),
+      currentAccountPolkadot,
+      signer,
+      currentAccount,
+      selectedToken,
+    )
+  }
+
+  const transferTokenValidationSchemaa = Yup.object().shape({
+    assetAmount: Yup.number()
+      .typeError(t('global.errors.numbersOnly'))
+      .positive(t('global.errors.positiveValue'))
+      .required(t('global.errors.required')),
+  })
+
+  const formik = useFormik({
+    initialValues: { assetAmount: '10' },
+    validationSchema: transferTokenValidationSchemaa,
+    onSubmit: values => handleTransferClick(values.assetAmount.toString()),
+  })
+
+  const { values, handleChange, submitForm, handleBlur } = formik
 
   useEffect(() => {
     /**  Allowed tokens for Moonriver<>Kusama => KSM */
@@ -297,9 +331,9 @@ const TransferAsset = () => {
                   <Text as="span" color="oxfordBlue" type="heading 3">
                     {t('global.inputs.amount')}
                   </Text>
-                  <Text as="span" color="oxfordBlue" type="body 1">
+                  {/* <Text as="span" color="oxfordBlue" type="body 1">
                     0 ( {t('transfer.inNetworkLabel', { network: 'Moonbeam' })})
-                  </Text>
+                  </Text> */}
                 </ColumnLayout>
 
                 <ColumnLayout gap={2} align="space-between">
@@ -309,7 +343,9 @@ const TransferAsset = () => {
                       width="100%"
                       type="number"
                       name="assetAmount"
-                      value=""
+                      value={values.assetAmount}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                       height="large"
                     />
                     <Button
@@ -369,6 +405,8 @@ const TransferAsset = () => {
                 appearance="dark"
                 size="large"
                 variant="large"
+                type="submit"
+                onClick={submitForm}
               >
                 {t('global.buttons.transfer')}
               </Button>
