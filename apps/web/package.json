@@ -1,6 +1,6 @@
 {
   "name": "@bloxifi/web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "BloxiFI web application",
   "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
@@ -28,12 +28,12 @@
     "@bloxifi/build": "^1.0.0",
     "@bloxifi/core": "^1.0.0",
     "@bloxifi/ui": "^1.0.0",
-    "react-router-dom": "^6.3.0",
-    "unstated-next": "^1.1.0",
-    "normalize.css": "^8.0.1",
     "@metamask/detect-provider": "^1.2.0",
     "@web3-react/injected-connector": "^6.0.7",
     "formik": "^2.2.9",
+    "normalize.css": "^8.0.1",
+    "react-router-dom": "^6.3.0",
+    "unstated-next": "^1.1.0",
     "yup": "^0.32.11"
   }
 }
