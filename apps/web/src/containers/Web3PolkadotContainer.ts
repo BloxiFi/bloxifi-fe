@@ -50,6 +50,8 @@ const reducer = (
   }
 }
 
+const isTestNet = process.env.IS_TESTNET
+
 function useContainer(initialState: Web3PolkadotContainerProps) {
   const [state, dispatch] = useReducer(reducer, {
     ...defaultState,
@@ -89,6 +91,9 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
   }, [setNetworkError])
 
   const checkForPolkadot: CheckForPolkadotFunction = useCallback(async () => {
+    if (!isTestNet) {
+      return
+    }
     try {
       const extensions = await web3Enable('bloxifi')
       if (extensions.length === 0) {
