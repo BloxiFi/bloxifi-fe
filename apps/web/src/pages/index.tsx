@@ -5,6 +5,7 @@ import { DashboardTable } from '@/components/dashboard/table/DashboardTable'
 import DashboardInfo from '@/components/dashboard/DasboardInfo'
 import { DashboardContainer } from '@/containers/DashboardContainer'
 import { CalculatorApyTable } from '@/components/dashboard/table/CalculatorApyTable'
+import packageJson from '@/../package.json'
 
 const DasboardPage = () => {
   return (
@@ -25,6 +26,7 @@ const DasboardPage = () => {
       <PageLayout.Section>
         <DashboardTable />
       </PageLayout.Section>
+      <input type="hidden" id="savval_version" value={packageJson.version} />
     </DashboardContainer.Provider>
   )
 }
