@@ -19,7 +19,7 @@ interface PageContainerState {
 }
 
 const defaultState: State = {
-  title: 'BloxiFi',
+  title: 'Savval',
 }
 
 const reducer = (state: State, action: Action<ActionType>): State => {
@@ -44,7 +44,7 @@ function usePage(initialState: State = defaultState): PageContainerState {
 
   const pageLayout = usePageLayout()
 
-  function setTitle(title = 'BloxiFi') {
+  function setTitle(title = 'Savval') {
     dispatch({ type: 'setTitle', value: title })
   }
 
