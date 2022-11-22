@@ -3,7 +3,6 @@ import {
   bigNumberToNumber,
   GET_DASHBOARD_RESERVE_DATA,
   DashboardReservesGraph,
-  TokenList,
   DashboardReservesDataQuery,
 } from '@bloxifi/core'
 import Assets from '@bloxifi/core/src/utilities/assets.json'
@@ -22,9 +21,9 @@ import { calculateAPY } from './WalletContainer'
 
 export type DashboardReservesData = {
   id: string
-  name: TokenList
+  name: string
   fullName: string
-  symbol: TokenList
+  symbol: string
   icon: string
   decimals: number
   supplyAPY: number

@@ -25,7 +25,7 @@ export const StakeModalContent = () => {
   const mintTokenValue = '5'
   const stakeTokenValue = '1'
   const stakeContract = Staking.stakedAave.getStakeContract(signer)
-  const mockTokenContract = Tokens.getTokenContract(signer, 'mockToken')
+  const mockTokenContract = Tokens.getMockTokenContract(signer)
 
   const isApproveDisabled = !isSupportedNetwork || loading || approved
   const isStakeDisabled =

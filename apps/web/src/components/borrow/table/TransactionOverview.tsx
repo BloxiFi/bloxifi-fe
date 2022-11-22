@@ -9,7 +9,6 @@ import {
   Tooltip,
 } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
-import { TokenList } from '@bloxifi/core'
 
 import { FormattedNumber } from '../FormattedNumber'
 
@@ -42,7 +41,7 @@ interface Props {
   /**
    * Symbol of selected asset
    */
-  symbol?: TokenList
+  symbol?: string
   /**
    * List of table headers
    */

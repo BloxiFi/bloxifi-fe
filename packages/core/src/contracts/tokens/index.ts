@@ -5,34 +5,9 @@ import { BigNumber, ethers } from 'ethers'
 import { getLandingPoolContractInfo } from '../borrow'
 import { getStakedContractInfo } from '../staking'
 
-import TOKENS from './tokens.json'
 import ABI from './abi.json'
 
-type StakingTokens = { mockToken: string }
-export type TokenList = keyof (typeof TOKENS & StakingTokens)
-
-type AbiType = 'address' | 'abi'
 type AllowanceType = 'deposit' | 'staking'
-
-const getTokenContractInfo = (token: TokenList, type: AbiType) => {
-  switch (token) {
-    case 'mockToken':
-      return getStakedContractInfo(token, type)
-    default:
-      return type === 'abi' ? ABI : TOKENS[token]
-  }
-}
-
-export const getContractAddress = (
-  contractName: Exclude<TokenList, keyof StakingTokens>,
-) => TOKENS[contractName]
-
-export function getAllAssets() {
-  return Object.entries(TOKENS) as [
-    Exclude<TokenList, keyof StakingTokens>,
-    string,
-  ][]
-}
 
 export const APPROVED_TOKEN =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935' as const
@@ -73,13 +48,27 @@ export interface TokenContract extends ethers.Contract {
 }
 
 export const Tokens = {
-  //COMMENT
-  getTokenContract(signer: JsonRpcSigner, token: TokenList): TokenContract {
+  /**
+   * Function to instantiate ERC20 token contract
+   * @returns {@link TokenContract}
+   **/
+  getERC20TokenContract(signer: JsonRpcSigner, address: string): TokenContract {
     return new ethers.Contract(
-      getTokenContractInfo(token, 'address'),
-      getTokenContractInfo(token, 'abi'),
+      address,
+      ABI,
       signer,
       //N.B had to assert here because Contract is too generic and we want to add types from our contracts
+    ) as TokenContract
+  },
+  /**
+   * Function to instantiate mock token contract
+   * @returns {@link TokenContract}
+   **/
+  getMockTokenContract(signer: JsonRpcSigner): TokenContract {
+    return new ethers.Contract(
+      getStakedContractInfo('mockToken', 'address'),
+      getStakedContractInfo('mockToken', 'abi'),
+      signer,
     ) as TokenContract
   },
   /**

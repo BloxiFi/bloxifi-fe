@@ -1,5 +1,3 @@
-import { TokenList } from '../contracts'
-
 /**
  * Options that can be used to configure useFormatNumber() hook.
  */
@@ -19,7 +17,7 @@ export interface FormatNumberOptions {
   /**
    * Represents currency symbol
    */
-  readonly symbol?: TokenList | 'USD' | ''
+  readonly symbol?: string
   /**
    * Represents the position of the currency symbol related to the value
    * before-symbol goes in front of the value

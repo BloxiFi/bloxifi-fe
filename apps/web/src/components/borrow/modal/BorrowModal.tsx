@@ -68,7 +68,7 @@ export const BorrowModal = ({
     useState<number>(undefined)
 
   const tokenContract = reserveData.symbol
-    ? Tokens.getTokenContract(signer, reserveData.symbol)
+    ? Tokens.getERC20TokenContract(signer, reserveData.underlyingAsset)
     : null
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)

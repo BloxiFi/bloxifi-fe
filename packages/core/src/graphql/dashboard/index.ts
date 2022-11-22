@@ -1,15 +1,13 @@
 import { gql } from '@apollo/client'
 import { BigNumber } from 'ethers'
 
-import { TokenList } from '../../contracts'
-
 /**
  * Dashboard Reserves Data - Data related to all existing assets
  */
 export interface DashboardReservesDataQuery {
   id: string
-  name: TokenList
-  symbol: TokenList
+  name: string
+  symbol: string
   decimals: number
   totalATokenSupply: BigNumber
   totalCurrentVariableDebt: BigNumber
