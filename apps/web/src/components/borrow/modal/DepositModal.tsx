@@ -65,7 +65,7 @@ export const DepositModal = ({
 
   const [depositCompleted, setDepositCompleted] = useState<boolean>(false)
   const tokenContract = reserveData.symbol
-    ? Tokens.getTokenContract(signer, reserveData.symbol)
+    ? Tokens.getERC20TokenContract(signer, reserveData.underlyingAsset)
     : null
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)

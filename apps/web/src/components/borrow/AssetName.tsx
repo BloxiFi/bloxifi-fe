@@ -6,7 +6,6 @@ import {
   IconNamesType,
   TruncatedText,
 } from '@bloxifi/ui'
-import { TokenList } from 'packages/core/src'
 import React, { FunctionComponent } from 'react'
 
 interface Props {
@@ -17,7 +16,7 @@ interface Props {
   /**
    * Represents the asset symbol
    * */
-  readonly symbol: TokenList
+  readonly symbol: string
   /**
    * Represents the asset full name
    * */

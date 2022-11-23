@@ -10,7 +10,6 @@ import {
   ReservesGraph,
   sumArrayItems,
   TokenContract,
-  TokenList,
   Tokens,
   UserReserveDataQuery,
   UserReserveVariables,
@@ -31,9 +30,9 @@ import { Web3Container } from './Web3Container'
 
 type DefaultReserveData = {
   id: string
-  name: TokenList
+  name: string
   fullName: string
-  symbol: TokenList
+  symbol: string
   icon: string
   decimals: number
   balance: string
@@ -218,11 +217,11 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   }, [currentAccount, signer])
 
   const getReserveBalance = useCallback(
-    async (name: TokenList) => {
+    async (address: string) => {
       try {
-        const tokenContract: TokenContract = Tokens.getTokenContract(
+        const tokenContract: TokenContract = Tokens.getERC20TokenContract(
           signer,
-          name,
+          address,
         )
 
         const balance = await Tokens.getTokenBalance(
@@ -243,7 +242,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       try {
         const reserveData = await Promise.all(
           reserves.map(async (reserve: ReservesDataQuery) => {
-            const balance = await getReserveBalance(reserve.name)
+            const balance = await getReserveBalance(reserve.underlyingAsset)
             return {
               ...reserve,
               balance: bigNumberToString(balance),

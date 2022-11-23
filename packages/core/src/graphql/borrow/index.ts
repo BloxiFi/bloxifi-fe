@@ -1,8 +1,6 @@
 import { gql } from '@apollo/client'
 import { BigNumber } from 'ethers'
 
-import { TokenList } from '../../contracts'
-
 /**
  * User Reserve Data - Data related to assets deposited by current user
  */
@@ -15,7 +13,7 @@ export interface UserReserveDataQuery {
   usageAsCollateralEnabledOnUser: boolean
   reserve: {
     symbol: string
-    name: TokenList
+    name: string
     decimals: string
     liquidityRate: number
     variableBorrowRate: number
@@ -37,8 +35,8 @@ export interface UserReserveDataQuery {
  */
 export interface ReservesDataQuery {
   id: string
-  name: TokenList
-  symbol: TokenList
+  name: string
+  symbol: string
   decimals: number
   totalATokenSupply: BigNumber
   totalCurrentVariableDebt: BigNumber
