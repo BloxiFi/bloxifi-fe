@@ -59,7 +59,7 @@ export const ConnectWalletButton = () => {
 
   return isConnected ? (
     <ColumnLayout>
-      {/**TODO handle BLOX balance button click when we get BLOX token on Moonbeam, wait for BE to generate it */}
+      {/**TODO handle BLOX balance button click when we get BLOX token on Moonbeam, wait for BE to generate it 
       <Button
         className="u-fit-content-width"
         appearance="primary-ghost"
@@ -73,6 +73,7 @@ export const ConnectWalletButton = () => {
           </ColumnLayout>
         </BoxLayout>
       </Button>
+      */}
       {isSupportedNetwork ? (
         <Menu
           right
