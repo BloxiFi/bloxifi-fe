@@ -33,7 +33,7 @@ export const App = () => {
         <GlobalStyle {...style.state} />
         <Web3ReactProvider getLibrary={getWeb3Library}>
           <ApolloProvider client={client}>
-            <PageContainer.Provider initialState={{ title: 'BloxiFi' }}>
+            <PageContainer.Provider initialState={{ title: 'Savval' }}>
               <LocaleContainer.Provider>
                 <Router />
               </LocaleContainer.Provider>
