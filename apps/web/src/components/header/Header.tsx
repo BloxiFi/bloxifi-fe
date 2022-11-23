@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { ConnectPolkadotButton } from '../connector/ConnectPolkadotButton'
 import { ConnectWalletButton } from '../connector/ConnectWalletButton'
 
-const isTestNet = process.env.IS_TESTNET
+const hasTokenTransfer = process.env.FEATURE_TOKEN_TRANSFER
 
 export const Header = () => {
   const path = useLocation()
@@ -16,7 +16,7 @@ export const Header = () => {
     { to: '/borrow', label: 'Deposit & Borrow' },
     { to: '/information', label: 'More information' },
   ]
-  const tokenTransfer = isTestNet
+  const tokenTransfer = hasTokenTransfer
     ? [{ to: '/transfer', label: 'Token Transfer' }]
     : []
 

@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom'
 
 import TokenTransfer from '@/components/transfer'
 
-const isTestNet = process.env.IS_TESTNET
+const hasTokenTransfer = process.env.FEATURE_TOKEN_TRANSFER
 
 const TokenTransferPage = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!isTestNet) {
+    if (!hasTokenTransfer) {
       navigate('/')
     }
   }, [navigate])

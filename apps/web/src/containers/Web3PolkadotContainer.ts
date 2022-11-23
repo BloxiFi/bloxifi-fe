@@ -50,7 +50,7 @@ const reducer = (
   }
 }
 
-const isTestNet = process.env.IS_TESTNET
+const hasTokenTransfer = process.env.FEATURE_TOKEN_TRANSFER
 
 function useContainer(initialState: Web3PolkadotContainerProps) {
   const [state, dispatch] = useReducer(reducer, {
@@ -91,7 +91,7 @@ function useContainer(initialState: Web3PolkadotContainerProps) {
   }, [setNetworkError])
 
   const checkForPolkadot: CheckForPolkadotFunction = useCallback(async () => {
-    if (!isTestNet) {
+    if (!hasTokenTransfer) {
       return
     }
     try {
