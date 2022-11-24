@@ -18,6 +18,8 @@ import {
   sliceMiddleOfString,
   SupportedNetwork,
   toCapitalize,
+  useWalletBalance,
+  //TokenBalanceData,
 } from '@bloxifi/core'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -25,6 +27,10 @@ import { TokenTransfer } from '@bloxifi/core/src/hooks/tokenTransfer'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
+
+//type Props = {
+//  balances: TokenBalanceData[]
+//}
 
 const TransferAsset = () => {
   const { t } = useTranslation()
@@ -66,8 +72,39 @@ const TransferAsset = () => {
     useState<SupportedNetwork>(DEFAULT_DESTINATION)
   const [allowedTokens, setAllowedTokens] = useState([])
 
+  const [maxAmount, setMaxAmount] = useState(0)
+  const { balances } = useWalletBalance({
+    //, isLoading, fetchBalances
+    currentAccount,
+    currentChainId: selectedOrigin.prefix,
+    currentNetwork: selectedOrigin,
+  })
+
   const handleClose = () => {
     setCloseMenu(false)
+  }
+
+  const calculateMaxAmountEVM = async () => {
+    //console.log('metamask balance ', selectedToken)
+    //console.log(balances, typeof(balances))
+    const am = balances
+      .filter(tok => tok.tokenOriginSymbol == selectedToken.toUpperCase())
+      .map(filteredToken => filteredToken.tokenBalance)
+    setMaxAmount(am[0])
+    await setFieldValue('assetAmount', am[0], true)
+    await setFieldTouched('assetAmount', true, true)
+  }
+
+  const calculateMaxAmountPolkadot = () => {
+    //console.log('polkadot balance', selectedToken)
+  }
+
+  const handleMaxClick = async () => {
+    if (selectedOrigin.network === DEFAULT_ORIGIN_CHAIN) {
+      await calculateMaxAmountEVM()
+    } else {
+      calculateMaxAmountPolkadot()
+    }
   }
 
   const handleOriginChange = (originChain: SupportedNetwork) => {
@@ -113,12 +150,19 @@ const TransferAsset = () => {
   })
 
   const formik = useFormik({
-    initialValues: { assetAmount: '10' },
+    initialValues: { assetAmount: '' },
     validationSchema: transferTokenValidationSchemaa,
     onSubmit: values => handleTransferClick(values.assetAmount.toString()),
   })
 
-  const { values, handleChange, submitForm, handleBlur } = formik
+  const {
+    values,
+    handleChange,
+    submitForm,
+    handleBlur,
+    setFieldValue,
+    setFieldTouched,
+  } = formik
 
   useEffect(() => {
     /**  Allowed tokens for Moonriver<>Kusama => KSM */
@@ -334,6 +378,9 @@ const TransferAsset = () => {
                   {/* <Text as="span" color="oxfordBlue" type="body 1">
                     0 ( {t('transfer.inNetworkLabel', { network: 'Moonbeam' })})
                   </Text> */}
+                  <Text as="span" color="oxfordBlue" type="body 1">
+                    {maxAmount}
+                  </Text>
                 </ColumnLayout>
 
                 <ColumnLayout gap={2} align="space-between">
@@ -353,6 +400,7 @@ const TransferAsset = () => {
                       variant="large"
                       size="small"
                       className="u-fit-content-width"
+                      onClick={handleMaxClick}
                     >
                       MAX
                     </Button>
