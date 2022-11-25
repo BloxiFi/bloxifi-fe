@@ -22,7 +22,7 @@ const TokenTransfer = () => {
     },
   } = Web3Container.useContainer()
 
-  const { balances, isLoading } = useWalletBalance({
+  const { balances, isLoading, fetchBalances } = useWalletBalance({
     currentAccount,
     currentChainId: chainId,
     currentNetwork: network,

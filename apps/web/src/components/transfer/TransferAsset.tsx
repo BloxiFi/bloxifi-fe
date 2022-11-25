@@ -24,6 +24,7 @@ import {
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { TokenTransfer } from '@bloxifi/core/src/hooks/tokenTransfer'
+import { DotWalletBalance } from '@bloxifi/core/src/hooks/dotWalletBalance'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
@@ -95,15 +96,25 @@ const TransferAsset = () => {
     await setFieldTouched('assetAmount', true, true)
   }
 
-  const calculateMaxAmountPolkadot = () => {
-    //console.log('polkadot balance', selectedToken)
+  const calculateMaxAmountPolkadot = async () => {
+    const am = await DotWalletBalance(
+      toCapitalize(selectedOrigin.network),
+      currentAccountPolkadot,
+      signer,
+      currentAccount,
+      selectedToken,
+    )
+    //console.log(am)
+    setMaxAmount(am)
+    await setFieldValue('assetAmount', am, true)
+    await setFieldTouched('assetAmount', true, true)
   }
 
   const handleMaxClick = async () => {
     if (selectedOrigin.network === DEFAULT_ORIGIN_CHAIN) {
       await calculateMaxAmountEVM()
     } else {
-      calculateMaxAmountPolkadot()
+      await calculateMaxAmountPolkadot()
     }
   }
 
