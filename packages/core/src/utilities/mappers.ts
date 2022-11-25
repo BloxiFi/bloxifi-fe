@@ -1,6 +1,8 @@
 import { BigNumber, ethers } from 'ethers'
 import { UserReserveData } from '@/containers/WalletContainer'
 
+import { SCALING_FACTOR } from './config'
+
 /**
  * Wait before executing
  * @param ms Number of milliseconds to wait before executing
@@ -49,6 +51,14 @@ export function bigNumberToString(value: BigNumber): string {
 
 export function bigNumberToNumber(value: BigNumber): number {
   return Number(bigNumberToString(value))
+}
+
+export function stringToBigNumber(value: string): BigNumber {
+  return ethers.utils.parseUnits(value)
+}
+
+export function numberToBigNumber(value: number): BigNumber {
+  return stringToBigNumber(value.toString())
 }
 
 export const sumArrayItems = (array: number[]): number =>
@@ -168,10 +178,14 @@ export const calculateHealthFactor = ({
   totalCollateralETH,
   totalBorrowETH,
 }: {
-  totalCollateralETH: number
-  totalBorrowETH: number
+  totalCollateralETH: string
+  totalBorrowETH: string
 }): number => {
-  return totalCollateralETH / totalBorrowETH
+  return bigNumberToNumber(
+    BigNumber.from(totalCollateralETH)
+      .mul(SCALING_FACTOR)
+      .div(BigNumber.from(totalBorrowETH)),
+  )
 }
 
 /**
@@ -183,11 +197,16 @@ export const calculateHealthFactor = ({
  * For example, a Liquidation threshold of 80% means that if the value rises above 80% of the collateral, the position is undercollateralised and could be liquidated.
  */
 export const calculateAssetCollateralAfterTx = (
-  amount: string | number,
+  amount: string,
   priceInEth: number,
   reserveLiquidationThreshold: number,
-): number => {
-  return Number(amount) * priceInEth * reserveLiquidationThreshold
+): string => {
+  return stringToBigNumber(amount)
+    .mul(numberToBigNumber(priceInEth))
+    .div(SCALING_FACTOR)
+    .mul(numberToBigNumber(reserveLiquidationThreshold))
+    .div(SCALING_FACTOR)
+    .toString()
 }
 
 /**

@@ -51,6 +51,7 @@
       "positiveValue": "Must be greater than 0",
       "numbersOnly": "Must be a number",
       "exceededBalance": "Not enough balance",
+      "exceededDecimals": "Exceeded decimals",
       "healthFactor": "Health factor cannot be less than 1.01",
       "wrongNetwork": "Failed to connect {{network}} network"
     },

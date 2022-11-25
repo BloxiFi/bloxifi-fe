@@ -4,6 +4,9 @@ import {
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
   calculateHealthFactor,
+  PATTERN_MAX_DIGITS_AFTER_COMMA,
+  PATTERN_NUMBERS_ONLY,
+  stringToBigNumber,
   Tokens,
 } from '@bloxifi/core'
 import { CheckAllowanceFunction } from '@bloxifi/types'
@@ -11,6 +14,7 @@ import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
+import { BigNumber } from 'ethers'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -134,10 +138,21 @@ export const DepositModal = ({
   }
 
   const depositValidationSchemaa = Yup.object().shape({
-    amount: Yup.number()
-      .typeError(t('global.errors.numbersOnly'))
-      .positive(t('global.errors.positiveValue'))
-      .max(Number(reserveData.balance), t('global.errors.exceededBalance'))
+    amount: Yup.string()
+      .matches(PATTERN_NUMBERS_ONLY, t('global.errors.numbersOnly'))
+      .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
+        stringToBigNumber(val).lte(stringToBigNumber(reserveData.balance)),
+      )
+      .test(
+        'is-decimal',
+        t('global.errors.exceededDecimals'),
+        (val: string) => {
+          if (val) {
+            return PATTERN_MAX_DIGITS_AFTER_COMMA.test(val)
+          }
+          return true
+        },
+      )
       .required(t('global.errors.required')),
   })
 
@@ -183,21 +198,23 @@ export const DepositModal = ({
 
   const getTotalCollateralAfterDeposit = () => {
     if (isEnabledAsCollateral) {
-      return (
-        totalCollateralETH +
-        calculateAssetCollateralAfterTx(
-          Number(values.amount),
-          reserveData.priceInEth,
-          reserveData.reserveLiquidationThreshold,
-        )
+      const assetCollateralAfterTX = calculateAssetCollateralAfterTx(
+        values.amount,
+        reserveData.priceInEth,
+        reserveData.reserveLiquidationThreshold,
       )
+      return BigNumber.from(totalCollateralETH)
+        .add(BigNumber.from(assetCollateralAfterTX))
+        .toString()
     }
     return totalCollateralETH
   }
-  const futureHealthFactor = calculateHealthFactor({
-    totalCollateralETH: getTotalCollateralAfterDeposit(),
-    totalBorrowETH,
-  })
+  const futureHealthFactor =
+    values.amount &&
+    calculateHealthFactor({
+      totalCollateralETH: getTotalCollateralAfterDeposit(),
+      totalBorrowETH,
+    })
 
   const setMaxValue = async () => {
     await setFieldValue('amount', reserveData.balance, true)

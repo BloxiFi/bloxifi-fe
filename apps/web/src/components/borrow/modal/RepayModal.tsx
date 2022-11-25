@@ -4,12 +4,18 @@ import {
   BorrowAndLending,
   calculateHealthFactor,
   getMaxRepayAmount,
+  numberToBigNumber,
+  PATTERN_MAX_DIGITS_AFTER_COMMA,
+  PATTERN_NUMBERS_ONLY,
+  SCALING_FACTOR,
+  stringToBigNumber,
   useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
+import { BigNumber } from 'ethers'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -93,10 +99,21 @@ export const RepayModal = ({
   )
 
   const repayValidationSchemaa = Yup.object().shape({
-    amount: Yup.number()
-      .typeError(t('global.errors.numbersOnly'))
-      .positive(t('global.errors.positiveValue'))
-      .max(Number(maxRepayAmount), t('global.errors.exceededBalance'))
+    amount: Yup.string()
+      .matches(PATTERN_NUMBERS_ONLY, t('global.errors.numbersOnly'))
+      .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
+        stringToBigNumber(val).lte(stringToBigNumber(maxRepayAmount)),
+      )
+      .test(
+        'is-decimal',
+        t('global.errors.exceededDecimals'),
+        (val: string) => {
+          if (val) {
+            return PATTERN_MAX_DIGITS_AFTER_COMMA.test(val)
+          }
+          return true
+        },
+      )
       .required(t('global.errors.required')),
   })
 
@@ -147,11 +164,19 @@ export const RepayModal = ({
     value: calculateRemainingDebt(),
   })
 
-  const futureHealthFactor = calculateHealthFactor({
-    totalCollateralETH,
-    totalBorrowETH:
-      totalBorrowETH - Number(values.amount) * Number(reserveData.priceInEth),
-  })
+  const futureHealthFactor =
+    values.amount &&
+    isOpen &&
+    calculateHealthFactor({
+      totalCollateralETH,
+      totalBorrowETH: BigNumber.from(totalBorrowETH)
+        .sub(
+          stringToBigNumber(values.amount)
+            .mul(numberToBigNumber(reserveData.priceInEth))
+            .div(SCALING_FACTOR),
+        )
+        .toString(),
+    })
 
   const setMaxValue = async () => {
     await setFieldValue('amount', maxRepayAmount, true)

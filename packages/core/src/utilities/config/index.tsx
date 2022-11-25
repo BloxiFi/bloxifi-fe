@@ -1,5 +1,23 @@
+import { ethers } from 'ethers'
+
 export const MIN_VALUE_FOR_TRANSACTION = 0.0000001
 export const MIN_HEALTH_FACTOR_VALUE = 1.01
+
+//Ether decimals (i.e. 1 ether represents 10^18 wei)
+export const ETHER_DECIMALS = 18
+//Liquidation Threshold decimals
+export const LT_DECIMALS = 4
+
+//Ether scaling factor
+export const SCALING_FACTOR = ethers.utils.parseUnits('1', ETHER_DECIMALS)
+//Liquidation Threshold scaling factor
+export const SCALING_FACTOR_LT = ethers.utils.parseUnits('1', LT_DECIMALS)
+
+//Regex Patterns
+//Max 19 digits after comma
+export const PATTERN_MAX_DIGITS_AFTER_COMMA = /^\d+(\.\d{0,19})?$/
+//Allows only numbers
+export const PATTERN_NUMBERS_ONLY = /^(0|[1-9]\d*)(\.\d+)?$/
 
 type NetworkConfigType = {
   [x: number]: { name: string; isTestnet: boolean; releyChain: string }
