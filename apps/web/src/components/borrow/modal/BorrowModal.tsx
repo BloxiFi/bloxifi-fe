@@ -191,7 +191,7 @@ export const BorrowModal = ({
   const isApproveDisabled = !isSupportedNetwork || loading || approved
 
   //The maximum amount to borrow should go up to the minimum health factor value
-  const calculateAmoutThatReachHFLimit = () => {
+  const calculateAmoutThatReachHFLimit = useCallback(() => {
     const price = numberToBigNumber(reserveData.priceInEth)
     const totalCollateralBig = BigNumber.from(totalCollateralETH)
     const totalBorrowBig = BigNumber.from(totalBorrowETH)
@@ -207,7 +207,7 @@ export const BorrowModal = ({
       .sub(totalBorrowBig)
       .mul(SCALING_FACTOR)
       .div(price)
-  }
+  }, [reserveData.priceInEth, totalCollateralETH, totalBorrowETH])
 
   useEffect(() => {
     if (isOpen) {
@@ -237,6 +237,7 @@ export const BorrowModal = ({
       }
     }
   }, [
+    isOpen,
     values.amount,
     totalCollateralETH,
     totalBorrowETH,

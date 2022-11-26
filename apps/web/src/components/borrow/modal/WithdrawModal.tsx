@@ -84,7 +84,7 @@ export const WithdrawModal = ({
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
   //The maximum amount to withdraw should go up to the minimum health factor value, until it reaches MIN_HEALTH_FACTOR_VALUE
-  const calculateAmoutThatReachHFLimit = () => {
+  const calculateAmoutThatReachHFLimit = useCallback(() => {
     const price = numberToBigNumber(reserveData.priceInEth)
     const ltv = numberToBigNumber(reserveData.reserveLiquidationThreshold)
     const totalCollateralBig = BigNumber.from(totalCollateralETH)
@@ -104,7 +104,12 @@ export const WithdrawModal = ({
       )
       .mul(SCALING_FACTOR)
       .div(price.mul(ltv).div(SCALING_FACTOR))
-  }
+  }, [
+    reserveData.priceInEth,
+    reserveData.reserveLiquidationThreshold,
+    totalBorrowETH,
+    totalCollateralETH,
+  ])
 
   useEffect(() => {
     if (isOpen) {
