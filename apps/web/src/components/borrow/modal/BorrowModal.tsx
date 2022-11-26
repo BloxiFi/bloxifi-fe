@@ -178,6 +178,7 @@ export const BorrowModal = ({
       resetState()
       setBorrowCompleted(false)
       setShouldApproveContract(false)
+      setFutureHealthFactor(undefined)
     }
   }, [isOpen, resetState])
 

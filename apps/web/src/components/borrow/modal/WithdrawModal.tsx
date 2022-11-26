@@ -212,6 +212,7 @@ export const WithdrawModal = ({
     if (isOpen) {
       resetState()
       setWithdrawCompleted(false)
+      setFutureHealthFactor(undefined)
     }
   }, [isOpen, resetState])
 
