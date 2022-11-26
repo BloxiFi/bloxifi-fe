@@ -10,7 +10,7 @@ import {
 import React, { ForwardedRef, forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { PATTERN_NUMBERS_ONLY } from '@bloxifi/core'
+import { isAllowedNumberOfDecimals, PATTERN_NUMBERS_ONLY } from '@bloxifi/core'
 
 import { AssetName } from '../AssetName'
 
@@ -27,23 +27,41 @@ interface Props extends BaseInputProps {
    * Selected asset data - Balance and symbol
    */
   reserveData: TableInputData
+  /**
+   * This should be set to false if validation is not needed. Default is true
+   */
+  shouldValidate?: boolean
 }
 
 export const AmountInput = forwardRef(
   (
-    { reserveData, setMaxValue, disabled, onChange, ...inputProps }: Props,
+    {
+      reserveData,
+      setMaxValue,
+      disabled,
+      onChange,
+      shouldValidate = true,
+      ...inputProps
+    }: Props,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const { t } = useTranslation()
-
-    //Prevent user to insert invalid characters
-    const blockInvalidChar = (event: React.KeyboardEvent<HTMLInputElement>) =>
-      ['e', 'E', '+', '-'].includes(event.key) && event.preventDefault()
-    const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    /**
+     * Validation includes: Prevent user to insert invalid characters & Limit number of decimals
+     */
+    const validate = (e: React.FormEvent<HTMLInputElement>) => {
       const target = e.target as HTMLInputElement
-      const isValid = PATTERN_NUMBERS_ONLY.test(target.value)
-      isValid || !target.value ? onChange(e) : e.preventDefault()
+      const value = target.value
+      if (!value) {
+        return onChange(e)
+      }
+      const isValid =
+        value !== '.' &&
+        PATTERN_NUMBERS_ONLY.test(value) &&
+        isAllowedNumberOfDecimals(value)
+      return isValid ? onChange(e) : e.preventDefault()
     }
+
     return (
       <StackLayout>
         <BoxLayout gap={1.25}>
@@ -55,9 +73,8 @@ export const AmountInput = forwardRef(
           <BoxLayout>
             <ColumnLayout>
               <BaseInput
-                onKeyDown={blockInvalidChar}
                 disabled={disabled}
-                onChange={handleChange}
+                onChange={shouldValidate ? validate : onChange}
                 {...inputProps}
                 ref={ref}
               />

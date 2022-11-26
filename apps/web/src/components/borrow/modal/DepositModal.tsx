@@ -4,8 +4,6 @@ import {
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
   calculateHealthFactor,
-  PATTERN_MAX_DIGITS_AFTER_COMMA,
-  PATTERN_NUMBERS_ONLY,
   stringToBigNumber,
   Tokens,
 } from '@bloxifi/core'
@@ -139,19 +137,8 @@ export const DepositModal = ({
 
   const depositValidationSchemaa = Yup.object().shape({
     amount: Yup.string()
-      .matches(PATTERN_NUMBERS_ONLY, t('global.errors.numbersOnly'))
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
         stringToBigNumber(val).lte(stringToBigNumber(reserveData.balance)),
-      )
-      .test(
-        'is-decimal',
-        t('global.errors.exceededDecimals'),
-        (val: string) => {
-          if (val) {
-            return PATTERN_MAX_DIGITS_AFTER_COMMA.test(val)
-          }
-          return true
-        },
       )
       .required(t('global.errors.required')),
   })

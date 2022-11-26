@@ -8,8 +8,6 @@ import {
   MIN_HEALTH_FACTOR_VALUE,
   MIN_VALUE_FOR_TRANSACTION,
   numberToBigNumber,
-  PATTERN_MAX_DIGITS_AFTER_COMMA,
-  PATTERN_NUMBERS_ONLY,
   SCALING_FACTOR,
   stringToBigNumber,
   useFormatNumber,
@@ -144,19 +142,8 @@ export const WithdrawModal = ({
 
   const withdrawValidationSchemaa = Yup.object().shape({
     amount: Yup.string()
-      .matches(PATTERN_NUMBERS_ONLY, t('global.errors.numbersOnly'))
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
         stringToBigNumber(val).lte(stringToBigNumber(maxAmountToWithdraw)),
-      )
-      .test(
-        'is-decimal',
-        t('global.errors.exceededDecimals'),
-        (val: string) => {
-          if (val) {
-            return PATTERN_MAX_DIGITS_AFTER_COMMA.test(val)
-          }
-          return true
-        },
       )
       .required(t('global.errors.required')),
   })
