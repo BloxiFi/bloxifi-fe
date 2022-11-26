@@ -17,7 +17,7 @@ export const SCALING_FACTOR_LT = ethers.utils.parseUnits('1', LT_DECIMALS)
 //Max 19 digits after comma
 export const PATTERN_MAX_DIGITS_AFTER_COMMA = /^\d+(\.\d{0,19})?$/
 //Allows only numbers
-export const PATTERN_NUMBERS_ONLY = /^(0|[1-9]\d*)(\.\d+)?$/
+export const PATTERN_NUMBERS_ONLY = /^[0-9]*\.?[0-9]*$/
 
 type NetworkConfigType = {
   [x: number]: { name: string; isTestnet: boolean; releyChain: string }
