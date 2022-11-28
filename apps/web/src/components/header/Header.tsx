@@ -7,6 +7,7 @@ import { ConnectPolkadotButton } from '../connector/ConnectPolkadotButton'
 import { ConnectWalletButton } from '../connector/ConnectWalletButton'
 
 const hasTokenTransfer = process.env.FEATURE_TOKEN_TRANSFER
+const GITBOOK_URL = process.env.GITBOOK_URL
 
 export const Header = () => {
   const path = useLocation()
