@@ -5,7 +5,12 @@ import { Colors } from '../styles/colors'
 
 import { Card, CardLayout } from './CardLayout'
 import { CenterLayout } from './CenterLayout'
-import { PageLayout, usePageLayout } from './PageLayout'
+import {
+  HeaderExternalLink,
+  HeaderLink,
+  PageLayout,
+  usePageLayout,
+} from './PageLayout'
 
 export default {
   title: 'Layout/CardLayout',
@@ -30,12 +35,29 @@ export const Overview = args => {
   const nav = usePageLayout()
 
   useEffect(() => {
+    const GITBOOK_URL = process.env.GITBOOK_URL
     if (args.header) {
       nav.setHeader(
         <PageLayout.Header
           navigationItems={[
-            { to: '/', label: 'Home' },
-            { to: '/contact', label: 'Contact' },
+            <HeaderLink data-cy="Dashboard" key="/" to="/">
+              Dashboard
+            </HeaderLink>,
+            <HeaderLink
+              data-cy="Deposit &amp; Borrow"
+              key="/borrow"
+              to="/borrow"
+            >
+              Deposit &amp; Borrow
+            </HeaderLink>,
+            <HeaderExternalLink
+              data-cy="More information"
+              key="/information"
+              href={GITBOOK_URL}
+              target="_blank"
+            >
+              More information
+            </HeaderExternalLink>,
           ]}
         >
           <Button variant="medium" appearance="primary" size="medium">

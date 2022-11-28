@@ -2,7 +2,7 @@
 
 exports[`Storyshots Showcases/Dashboard Overview 1`] = `
 <div
-  className="sc-bBrHrO cbMfJH"
+  className="sc-fLlhyt YhHCP"
 >
   <header
     className="c-page-layout__header"
@@ -14,11 +14,11 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
         className="sc-idiyUo gFedQu"
       >
         <div
-          className="sc-hHLeRK dONXuR"
+          className="sc-dIouRR ggKksK"
         >
           <a
             aria-current="page"
-            className="sc-dIouRR gTJMko active"
+            className="sc-cxabCf ihxEfx active"
             data-cy="Dashboard"
             href="/"
             onClick={[Function]}
@@ -26,32 +26,23 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             Dashboard
           </a>
           <a
-            className="sc-dIouRR gTJMko"
+            className="sc-cxabCf ihxEfx"
             data-cy="Deposit & Borrow"
-            href="/deposit"
+            href="/borrow"
             onClick={[Function]}
           >
             Deposit & Borrow
           </a>
           <a
-            className="sc-dIouRR gTJMko"
-            data-cy="Stake"
-            href="/stake"
-            onClick={[Function]}
-          >
-            Stake
-          </a>
-          <a
-            className="sc-dIouRR gTJMko"
+            className="sc-ivTmOn dvPmvD"
             data-cy="More information"
-            href="/moreInformation"
-            onClick={[Function]}
+            target="_blank"
           >
             More information
           </a>
         </div>
         <div
-          className="sc-dmRaPn couMNs"
+          className="sc-hHLeRK dothNU"
         >
           <button
             appearance="primary-ghost"
@@ -78,7 +69,7 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
     </div>
   </header>
   <div
-    className="sc-evZas sc-ivTmOn klRKQA kPozQz"
+    className="sc-evZas sc-bBrHrO klRKQA fxLELT"
     gap={4}
   >
     <section
@@ -152,11 +143,11 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
       className="c-page-layout__section"
     >
       <div
-        className="sc-kLLXSd dUkFhP"
+        className="sc-ikZpkk eJTHLv"
         data-element="tableWrapper"
       >
         <table
-          className="sc-ikZpkk eFtnVx"
+          className="sc-jIZahH faPsPV"
           data-element="table"
         >
           <caption>
@@ -164,50 +155,50 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             
           </caption>
           <thead
-            className="sc-bZnhIo blrvud"
+            className="sc-iTONeN bLJTuS"
           >
             <tr>
               <td
-                className="sc-gXmSlM sc-cCsOjp dJFjIR gNHjqF"
+                className="sc-cCsOjp sc-ciZhAO kbJusD khSOJd"
               >
                 <div
-                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                  className="sc-himrzO sc-gXmSlM ikUWxf joWRCg"
                 >
                   Assets
                 </div>
               </td>
               <td
-                className="sc-gXmSlM sc-cCsOjp ksYnaJ gNHjqF"
+                className="sc-cCsOjp sc-ciZhAO dLbbcD khSOJd"
               >
                 <div
-                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                  className="sc-himrzO sc-gXmSlM ikUWxf joWRCg"
                 >
                   Total value deposited
                 </div>
               </td>
               <td
-                className="sc-gXmSlM sc-cCsOjp ksYnaJ gNHjqF"
+                className="sc-cCsOjp sc-ciZhAO dLbbcD khSOJd"
               >
                 <div
-                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                  className="sc-himrzO sc-gXmSlM ikUWxf joWRCg"
                 >
                   Total borrowed
                 </div>
               </td>
               <td
-                className="sc-gXmSlM sc-cCsOjp ksYnaJ gNHjqF"
+                className="sc-cCsOjp sc-ciZhAO dLbbcD khSOJd"
               >
                 <div
-                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                  className="sc-himrzO sc-gXmSlM ikUWxf joWRCg"
                 >
                   Deposit APY
                 </div>
               </td>
               <td
-                className="sc-gXmSlM sc-cCsOjp ksYnaJ gNHjqF"
+                className="sc-cCsOjp sc-ciZhAO dLbbcD khSOJd"
               >
                 <div
-                  className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                  className="sc-himrzO sc-gXmSlM ikUWxf joWRCg"
                 >
                   Borrow APY
                 </div>
@@ -217,35 +208,35 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
           <tbody>
             <tr>
               <td
-                className="sc-gXmSlM SQWQ"
+                className="sc-cCsOjp dAoAAe"
               >
                 <div>
                   ETH
                 </div>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   7.5%
@@ -254,35 +245,35 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             </tr>
             <tr>
               <td
-                className="sc-gXmSlM SQWQ"
+                className="sc-cCsOjp dAoAAe"
               >
                 <div>
                   DAI
                 </div>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   7.5%
@@ -291,35 +282,35 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             </tr>
             <tr>
               <td
-                className="sc-gXmSlM SQWQ"
+                className="sc-cCsOjp dAoAAe"
               >
                 <div>
                   POLKA
                 </div>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   7.5%
@@ -328,35 +319,35 @@ exports[`Storyshots Showcases/Dashboard Overview 1`] = `
             </tr>
             <tr>
               <td
-                className="sc-gXmSlM SQWQ"
+                className="sc-cCsOjp dAoAAe"
               >
                 <div>
                   BTC
                 </div>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   1.250.000$
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   3.5%
                 </span>
               </td>
               <td
-                className="sc-gXmSlM bdTOUc"
+                className="sc-cCsOjp LkLuC"
               >
                 <span>
                   7.5%

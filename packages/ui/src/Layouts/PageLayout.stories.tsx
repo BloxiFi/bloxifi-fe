@@ -3,7 +3,13 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { Button } from '../Button'
 
-import { PageLayout, Page, usePageLayout } from './PageLayout'
+import {
+  PageLayout,
+  Page,
+  usePageLayout,
+  HeaderLink,
+  HeaderExternalLink,
+} from './PageLayout'
 import { StackLayout } from './StackLayout'
 
 export default {
@@ -23,11 +29,28 @@ export const Overview = args => {
 
   useEffect(() => {
     if (args.header) {
+      const GITBOOK_URL = process.env.GITBOOK_URL
       setHeader(
         <PageLayout.Header
           navigationItems={[
-            { to: '/', label: 'Home' },
-            { to: '/contact', label: 'Contact' },
+            <HeaderLink data-cy="Dashboard" key="/" to="/">
+              Dashboard
+            </HeaderLink>,
+            <HeaderLink
+              data-cy="Deposit &amp; Borrow"
+              key="/borrow"
+              to="/borrow"
+            >
+              Deposit &amp; Borrow
+            </HeaderLink>,
+            <HeaderExternalLink
+              data-cy="More information"
+              key="/information"
+              href={GITBOOK_URL}
+              target="_blank"
+            >
+              More information
+            </HeaderExternalLink>,
           ]}
         >
           <Button variant="medium" appearance="primary" size="medium">

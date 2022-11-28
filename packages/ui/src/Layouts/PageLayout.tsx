@@ -1,6 +1,7 @@
 import { ReactProps, RefForwardingComponent } from '@bloxifi/types'
 import React, { useCallback, useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 import { CONTENT_MAX_WIDTH, zIndex } from '../styles/constants'
 
@@ -241,4 +242,27 @@ const PageContent = styled(StackLayout)`
       min-height: calc(100vh - 4rem);
     }
   }
+`
+const HeaderLinkStyle = css`
+  margin-right: 32px;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid transparent;
+
+  &.active {
+    border-bottom: 2px solid;
+    border-image-source: ${({ theme }) =>
+      `linear-gradient(270deg, ${theme.activeHeaderItemBorderColorStart} 0%, ${theme.activeHeaderItemBorderColorEnd} 100%)`};
+    border-image-slice: 1;
+  }
+`
+export const HeaderExternalLink = styled.a`
+  ${HeaderLinkStyle}
+`
+export const HeaderLink = styled(NavLink)`
+  ${HeaderLinkStyle}
 `

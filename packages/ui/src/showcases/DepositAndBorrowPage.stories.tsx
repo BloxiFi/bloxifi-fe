@@ -11,6 +11,8 @@ import {
   CardLayout,
   BoxLayout,
   ColumnLayout,
+  HeaderLink,
+  HeaderExternalLink,
 } from '../Layouts'
 import { GridLayout } from '../Layouts/GridLayout'
 import { ProgressBar } from '../ProgressBar'
@@ -28,14 +30,25 @@ import {
 export default {
   title: 'Showcases/Deposit and Borrow',
 } as Meta
+const GITBOOK_URL = process.env.GITBOOK_URL
 
 const getHeader = (isConnected = true) => (
   <PageLayout.Header
     navigationItems={[
-      { to: '/', label: 'Dashboard' },
-      { to: '/', label: 'Deposit&Borrow' },
-      { to: '/', label: 'Stake' },
-      { to: '/', label: 'More Information' },
+      <HeaderLink data-cy="Dashboard" key="/" to="/">
+        Dashboard
+      </HeaderLink>,
+      <HeaderLink data-cy="Deposit &amp; Borrow" key="/borrow" to="/borrow">
+        Deposit &amp; Borrow
+      </HeaderLink>,
+      <HeaderExternalLink
+        data-cy="More information"
+        key="/information"
+        href={GITBOOK_URL}
+        target="_blank"
+      >
+        More information
+      </HeaderExternalLink>,
     ]}
   >
     <Button variant="medium" appearance="primary-ghost" size="medium">
