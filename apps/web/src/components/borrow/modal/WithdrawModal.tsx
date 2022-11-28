@@ -1,16 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
+  bigNumberToString,
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
   calculateHealthFactor,
   MIN_HEALTH_FACTOR_VALUE,
+  MIN_VALUE_FOR_TRANSACTION,
+  numberToBigNumber,
+  SCALING_FACTOR,
+  stringToBigNumber,
   useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
+import { BigNumber } from 'ethers'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -72,20 +78,53 @@ export const WithdrawModal = ({
   const [withdrawCompleted, setWithdrawCompleted] = useState<boolean>(false)
   const [futureHealthFactor, setFutureHealthFactor] =
     useState<number>(undefined)
+  const [maxAmountToWithdraw, setMaxAmountToWithdraw] = useState('')
 
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
   //The maximum amount to withdraw should go up to the minimum health factor value, until it reaches MIN_HEALTH_FACTOR_VALUE
-  const amountToReachMinHealthFactor =
-    (totalCollateralETH -
-      totalBorrowETH * (MIN_HEALTH_FACTOR_VALUE + 0.0000001)) /
-    (reserveData.priceInEth * reserveData.reserveLiquidationThreshold)
+  const calculateAmoutThatReachHFLimit = useCallback(() => {
+    const price = numberToBigNumber(reserveData.priceInEth)
+    const ltv = numberToBigNumber(reserveData.reserveLiquidationThreshold)
+    const totalCollateralBig = BigNumber.from(totalCollateralETH)
+    const totalBorrowBig = BigNumber.from(totalBorrowETH)
+    /**
+     * (totalCollateralETH - totalBorrowETH * MIN_HEALTH_FACTOR_VALUE) / priceInEth * reserveLiquidationThreshold
+     */
+    return totalCollateralBig
+      .sub(
+        totalBorrowBig
+          .mul(
+            numberToBigNumber(
+              MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION,
+            ),
+          )
+          .div(SCALING_FACTOR),
+      )
+      .mul(SCALING_FACTOR)
+      .div(price.mul(ltv).div(SCALING_FACTOR))
+  }, [
+    reserveData.priceInEth,
+    reserveData.reserveLiquidationThreshold,
+    totalBorrowETH,
+    totalCollateralETH,
+  ])
 
-  const maxAmountToWithdraw = Math.min(
-    amountToReachMinHealthFactor,
-    Number(reserveData.currentATokenBalance),
-  )
+  useEffect(() => {
+    if (isOpen) {
+      const amountToReachHFLimit = calculateAmoutThatReachHFLimit()
+
+      const maxWithdraw = stringToBigNumber(
+        reserveData.currentATokenBalance,
+      ).lt(amountToReachHFLimit)
+        ? reserveData.currentATokenBalance
+        : bigNumberToString(amountToReachHFLimit)
+
+      setMaxAmountToWithdraw(maxWithdraw)
+    }
+  }, [isOpen, calculateAmoutThatReachHFLimit, reserveData.currentATokenBalance])
+
   const withdraw = async (amount: string) => {
     setLoading(true)
     try {
@@ -107,12 +146,9 @@ export const WithdrawModal = ({
   }
 
   const withdrawValidationSchemaa = Yup.object().shape({
-    amount: Yup.number()
-      .typeError(t('global.errors.numbersOnly'))
-      .positive(t('global.errors.positiveValue'))
-      .max(
-        Number(reserveData.currentATokenBalance),
-        t('global.errors.exceededBalance'),
+    amount: Yup.string()
+      .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
+        stringToBigNumber(val).lte(stringToBigNumber(maxAmountToWithdraw)),
       )
       .required(t('global.errors.required')),
   })
@@ -137,14 +173,15 @@ export const WithdrawModal = ({
 
   const getTotalCollateralAfterWithdraw = useCallback(() => {
     if (reserveData.usageAsCollateralEnabledOnUser) {
-      return (
-        totalCollateralETH -
-        calculateAssetCollateralAfterTx(
-          Number(values.amount),
-          reserveData.priceInEth,
-          reserveData.reserveLiquidationThreshold,
-        )
+      const assetCollateralAfterTX = calculateAssetCollateralAfterTx(
+        values.amount,
+        reserveData.priceInEth,
+        reserveData.reserveLiquidationThreshold,
       )
+
+      return BigNumber.from(totalCollateralETH)
+        .sub(BigNumber.from(assetCollateralAfterTX))
+        .toString()
     }
     return totalCollateralETH
   }, [
@@ -156,12 +193,13 @@ export const WithdrawModal = ({
   ])
 
   useEffect(() => {
-    setFutureHealthFactor(
-      calculateHealthFactor({
-        totalCollateralETH: getTotalCollateralAfterWithdraw(),
-        totalBorrowETH,
-      }),
-    )
+    values.amount &&
+      setFutureHealthFactor(
+        calculateHealthFactor({
+          totalCollateralETH: getTotalCollateralAfterWithdraw(),
+          totalBorrowETH,
+        }),
+      )
   }, [values.amount, totalBorrowETH, getTotalCollateralAfterWithdraw])
 
   const resetState = useCallback(() => {
@@ -174,6 +212,7 @@ export const WithdrawModal = ({
     if (isOpen) {
       resetState()
       setWithdrawCompleted(false)
+      setFutureHealthFactor(undefined)
     }
   }, [isOpen, resetState])
 
