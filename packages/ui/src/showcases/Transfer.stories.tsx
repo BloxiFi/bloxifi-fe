@@ -10,6 +10,8 @@ import {
   CardLayout,
   ColumnLayout,
   GridLayout,
+  HeaderExternalLink,
+  HeaderLink,
   PageLayout,
   StackLayout,
   usePageLayout,
@@ -27,14 +29,29 @@ export const Overview = args => {
   const { setHeader } = nav
 
   useEffect(() => {
+    const GITBOOK_URL = process.env.GITBOOK_URL
     if (args.header) {
       setHeader(
         <PageLayout.Header
           navigationItems={[
-            { to: '/', label: 'Dashboard' },
-            { to: '/deposit', label: 'Deposit & Borrow' },
-            { to: '/moreInformation', label: 'More information' },
-            { to: '/transfer', label: 'Token Transfer' },
+            <HeaderLink data-cy="Dashboard" key="/" to="/">
+              Dashboard
+            </HeaderLink>,
+            <HeaderLink
+              data-cy="Deposit &amp; Borrow"
+              key="/borrow"
+              to="/borrow"
+            >
+              Deposit &amp; Borrow
+            </HeaderLink>,
+            <HeaderExternalLink
+              data-cy="More information"
+              key="/information"
+              href={GITBOOK_URL}
+              target="_blank"
+            >
+              More information
+            </HeaderExternalLink>,
           ]}
         >
           <Button variant="medium" appearance="primary-ghost" size="medium">

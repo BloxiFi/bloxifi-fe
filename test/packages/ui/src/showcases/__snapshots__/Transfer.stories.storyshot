@@ -2,7 +2,7 @@
 
 exports[`Storyshots Showcases/Transfer Overview 1`] = `
 <div
-  className="sc-bBrHrO cbMfJH"
+  className="sc-fLlhyt YhHCP"
 >
   <header
     className="c-page-layout__header"
@@ -14,11 +14,11 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
         className="sc-idiyUo gFedQu"
       >
         <div
-          className="sc-hHLeRK dONXuR"
+          className="sc-dIouRR ggKksK"
         >
           <a
             aria-current="page"
-            className="sc-dIouRR gTJMko active"
+            className="sc-cxabCf ihxEfx active"
             data-cy="Dashboard"
             href="/"
             onClick={[Function]}
@@ -26,32 +26,23 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
             Dashboard
           </a>
           <a
-            className="sc-dIouRR gTJMko"
+            className="sc-cxabCf ihxEfx"
             data-cy="Deposit & Borrow"
-            href="/deposit"
+            href="/borrow"
             onClick={[Function]}
           >
             Deposit & Borrow
           </a>
           <a
-            className="sc-dIouRR gTJMko"
+            className="sc-ivTmOn dvPmvD"
             data-cy="More information"
-            href="/moreInformation"
-            onClick={[Function]}
+            target="_blank"
           >
             More information
           </a>
-          <a
-            className="sc-dIouRR gTJMko"
-            data-cy="Token Transfer"
-            href="/transfer"
-            onClick={[Function]}
-          >
-            Token Transfer
-          </a>
         </div>
         <div
-          className="sc-dmRaPn couMNs"
+          className="sc-hHLeRK dothNU"
         >
           <button
             appearance="primary-ghost"
@@ -86,7 +77,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
     </div>
   </header>
   <div
-    className="sc-evZas sc-ivTmOn klRKQA kPozQz"
+    className="sc-evZas sc-bBrHrO klRKQA fxLELT"
     gap={4}
   >
     <section
@@ -123,7 +114,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       Origin Chain
                     </h3>
                     <span
-                      className="sc-bBXxYQ iaAaIr"
+                      className="sc-cOFTSb hxfyJI"
                       data-element="menuWrapper"
                     >
                       <button
@@ -162,7 +153,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       Destination Chain
                     </h3>
                     <span
-                      className="sc-bBXxYQ iaAaIr"
+                      className="sc-cOFTSb hxfyJI"
                       data-element="menuWrapper"
                     >
                       <button
@@ -202,7 +193,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                     Origin account
                   </h3>
                   <div
-                    className="sc-hiMGwR ctvXAB"
+                    className="sc-ehmTmK nerEh"
                   >
                     <div
                       className="sc-gsnTZi kzqZLP u-full-width"
@@ -215,7 +206,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                         value=""
                       />
                       <div
-                        className="sc-breuTD gHrPtz sc-ehmTmK jvyGFM"
+                        className="sc-breuTD gHrPtz sc-lbOyJj fCpmYq"
                       >
                         <div
                           className="sc-breuTD cxWDJq"
@@ -251,7 +242,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       Destination account
                     </h3>
                     <div
-                      className="sc-hiMGwR ctvXAB"
+                      className="sc-ehmTmK nerEh"
                     >
                       <div
                         className="sc-gsnTZi kzqZLP u-full-width"
@@ -264,7 +255,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                           value=""
                         />
                         <div
-                          className="sc-breuTD gHrPtz sc-ehmTmK jvyGFM"
+                          className="sc-breuTD gHrPtz sc-lbOyJj fCpmYq"
                         >
                           <div
                             className="sc-breuTD cxWDJq"
@@ -351,7 +342,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                           </button>
                         </div>
                         <span
-                          className="sc-bBXxYQ iaAaIr"
+                          className="sc-cOFTSb hxfyJI"
                           data-element="menuWrapper"
                         >
                           <button
@@ -405,16 +396,16 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
             className="sc-iqcoie iCcwRJ c-card-layout"
           >
             <div
-              className="sc-kLLXSd iKmOmk"
+              className="sc-ikZpkk iUGKBA"
               data-element="tableWrapper"
             >
               <table
-                className="sc-ikZpkk eFtnVx"
+                className="sc-jIZahH faPsPV"
                 data-element="table"
               >
                 <caption>
                   <div
-                    className="sc-iAvgwm eiTdTz"
+                    className="sc-efBctP jCzSpC"
                   >
                     <span
                       className="sc-fEOsli bobLcg"
@@ -429,23 +420,23 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                   </div>
                 </caption>
                 <thead
-                  className="sc-bZnhIo blrvud"
+                  className="sc-iTONeN bLJTuS"
                 >
                   <tr>
                     <td
-                      className="sc-gXmSlM sc-cCsOjp dJFjIR hSgQmU"
+                      className="sc-cCsOjp sc-ciZhAO kbJusD czcZGE"
                     >
                       <div
-                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                        className="sc-himrzO sc-gXmSlM ikUWxf joWRCg"
                       >
                         
                       </div>
                     </td>
                     <td
-                      className="sc-gXmSlM sc-cCsOjp hlwLoW hSgQmU"
+                      className="sc-cCsOjp sc-ciZhAO hMiRBs czcZGE"
                     >
                       <div
-                        className="sc-jIZahH sc-himrzO kDlMBg gQKlXj"
+                        className="sc-himrzO sc-gXmSlM ikUWxf joWRCg"
                       >
                         
                       </div>
@@ -455,7 +446,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                 <tbody>
                   <tr>
                     <td
-                      className="sc-gXmSlM SQWQ"
+                      className="sc-cCsOjp dAoAAe"
                     >
                       <div
                         className="sc-breuTD daxUiR"
@@ -470,7 +461,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </div>
                     </td>
                     <td
-                      className="sc-gXmSlM dHQUaX"
+                      className="sc-cCsOjp hPqCTt"
                     >
                       <span
                         className="sc-fEOsli bzDQbX"
@@ -483,7 +474,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                   </tr>
                   <tr>
                     <td
-                      className="sc-gXmSlM SQWQ"
+                      className="sc-cCsOjp dAoAAe"
                     >
                       <div
                         className="sc-breuTD daxUiR"
@@ -498,7 +489,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </div>
                     </td>
                     <td
-                      className="sc-gXmSlM dHQUaX"
+                      className="sc-cCsOjp hPqCTt"
                     >
                       <span
                         className="sc-fEOsli bzDQbX"
@@ -511,7 +502,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                   </tr>
                   <tr>
                     <td
-                      className="sc-gXmSlM SQWQ"
+                      className="sc-cCsOjp dAoAAe"
                     >
                       <div
                         className="sc-breuTD daxUiR"
@@ -526,7 +517,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </div>
                     </td>
                     <td
-                      className="sc-gXmSlM dHQUaX"
+                      className="sc-cCsOjp hPqCTt"
                     >
                       <span
                         className="sc-fEOsli bzDQbX"
@@ -539,7 +530,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                   </tr>
                   <tr>
                     <td
-                      className="sc-gXmSlM SQWQ"
+                      className="sc-cCsOjp dAoAAe"
                     >
                       <div
                         className="sc-breuTD daxUiR"
@@ -554,7 +545,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </div>
                     </td>
                     <td
-                      className="sc-gXmSlM dHQUaX"
+                      className="sc-cCsOjp hPqCTt"
                     >
                       <span
                         className="sc-fEOsli bzDQbX"
@@ -567,7 +558,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                   </tr>
                   <tr>
                     <td
-                      className="sc-gXmSlM SQWQ"
+                      className="sc-cCsOjp dAoAAe"
                     >
                       <div
                         className="sc-breuTD daxUiR"
@@ -582,7 +573,7 @@ exports[`Storyshots Showcases/Transfer Overview 1`] = `
                       </div>
                     </td>
                     <td
-                      className="sc-gXmSlM dHQUaX"
+                      className="sc-cCsOjp hPqCTt"
                     >
                       <span
                         className="sc-fEOsli bzDQbX"

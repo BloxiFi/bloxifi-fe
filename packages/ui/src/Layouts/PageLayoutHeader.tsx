@@ -2,17 +2,10 @@
 import { ReactProps } from '@bloxifi/types'
 import classNames from 'classnames'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { CONTENT_MAX_WIDTH } from '../styles/constants'
 import { Fonts } from '../styles/fonts'
-
-interface NavigationItem {
-  to: string
-  label: string
-  onClick?: () => void
-}
 
 export interface HeaderProps {
   /**
@@ -26,7 +19,7 @@ export interface HeaderProps {
   /**
    * Links provided for navigation
    */
-  navigationItems: NavigationItem[]
+  navigationItems: JSX.Element[]
 }
 
 const defaultElement = 'header'
@@ -50,13 +43,7 @@ export const PageLayoutHeader = React.forwardRef(
       <Component ref={ref} {...props} className={className}>
         <HeaderBorder>
           <HeaderWrapper>
-            <HeaderLinksWrapper>
-              {navigationItems.map(({ to, label, onClick }) => (
-                <HeaderLink data-cy={label} key={to} to={to} onClick={onClick}>
-                  {label}
-                </HeaderLink>
-              ))}
-            </HeaderLinksWrapper>
+            <HeaderLinksWrapper>{navigationItems}</HeaderLinksWrapper>
             <HeaderButtonsWrapper>{children}</HeaderButtonsWrapper>
           </HeaderWrapper>
         </HeaderBorder>
@@ -83,24 +70,6 @@ const HeaderWrapper = styled.div`
   margin-right: auto;
   font-family: ${Fonts.ClashDisplay};
   border-bottom: 1px solid ${({ theme }) => theme.headerWrapperBorderColor};
-`
-//TODO@all add animation when border appears
-const HeaderLink = styled(NavLink)`
-  margin-right: 32px;
-  text-decoration: none;
-  color: white;
-  display: flex;
-  height: 64px;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 2px solid transparent;
-
-  &.active {
-    border-bottom: 2px solid;
-    border-image-source: ${({ theme }) =>
-      `linear-gradient(270deg, ${theme.activeHeaderItemBorderColorStart} 0%, ${theme.activeHeaderItemBorderColorEnd} 100%)`};
-    border-image-slice: 1;
-  }
 `
 
 const HeaderLinksWrapper = styled.div`
