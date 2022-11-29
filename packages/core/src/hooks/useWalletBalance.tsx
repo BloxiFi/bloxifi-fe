@@ -106,7 +106,12 @@ export const useWalletBalance = ({
       } finally {
         setIsLoading(false)
       }
-    }, [currentAccount, xcmSdk])
+    }, [
+    currentAccount,
+    xcmSdk,
+    currentNetwork.network,
+    currentNetwork.supportedSymbols,
+  ])
 
   useEffect(() => {
     if (currentNetwork && balances.length === 0) {

@@ -85,34 +85,33 @@ const TransferAsset = () => {
     setCloseMenu(false)
   }
 
-  const calculateMaxAmountEVM = async () => {
+  const calculateMaxAmountEVM = () => {
     //console.log('metamask balance ', selectedToken)
     //console.log(balances, typeof(balances))
-    const am = balances
+    const calculatedMaxAmount = balances
       .filter(tok => tok.tokenOriginSymbol == selectedToken.toUpperCase())
       .map(filteredToken => filteredToken.tokenBalance)
-    setMaxAmount(am[0])
-    await setFieldValue('assetAmount', am[0], true)
-    await setFieldTouched('assetAmount', true, true)
+    setMaxAmount(calculatedMaxAmount[0])
+    void setFieldValue('assetAmount', calculatedMaxAmount[0], true)
+    void setFieldTouched('assetAmount', true, true)
   }
 
   const calculateMaxAmountPolkadot = async () => {
-    const am = await DotWalletBalance(
+    const calculatedMaxAmount = await DotWalletBalance(
       toCapitalize(selectedOrigin.network),
       currentAccountPolkadot,
       signer,
       currentAccount,
       selectedToken,
     )
-    //console.log(am)
-    setMaxAmount(am)
-    await setFieldValue('assetAmount', am, true)
+    setMaxAmount(calculatedMaxAmount)
+    await setFieldValue('assetAmount', calculatedMaxAmount, true)
     await setFieldTouched('assetAmount', true, true)
   }
 
   const handleMaxClick = async () => {
     if (selectedOrigin.network === DEFAULT_ORIGIN_CHAIN) {
-      await calculateMaxAmountEVM()
+      calculateMaxAmountEVM()
     } else {
       await calculateMaxAmountPolkadot()
     }
