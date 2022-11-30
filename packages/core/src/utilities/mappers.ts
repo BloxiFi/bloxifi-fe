@@ -181,11 +181,12 @@ export const calculateHealthFactor = ({
   totalCollateralETH: string
   totalBorrowETH: string
 }): number => {
-  return bigNumberToNumber(
-    BigNumber.from(totalCollateralETH)
-      .mul(SCALING_FACTOR)
-      .div(BigNumber.from(totalBorrowETH)),
-  )
+  const totalBorrow = BigNumber.from(totalBorrowETH)
+  return totalBorrow.gt(0)
+    ? bigNumberToNumber(
+        BigNumber.from(totalCollateralETH).mul(SCALING_FACTOR).div(totalBorrow),
+      )
+    : 0
 }
 
 /**
