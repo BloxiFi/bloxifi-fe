@@ -1,6 +1,6 @@
 {
   "name": "@bloxifi/web",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "private": false,
   "description": "BloxiFI web application",
   "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
