@@ -79,7 +79,7 @@ export const WithdrawModal = ({
   const [futureHealthFactor, setFutureHealthFactor] =
     useState<number>(undefined)
   const [maxAmountToWithdraw, setMaxAmountToWithdraw] = useState('')
-
+  const isCollateralEnabled = reserveData.usageAsCollateralEnabledOnUser
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
 
@@ -113,17 +113,25 @@ export const WithdrawModal = ({
 
   useEffect(() => {
     if (isOpen) {
-      const amountToReachHFLimit = calculateAmoutThatReachHFLimit()
-
-      const maxWithdraw = stringToBigNumber(
-        reserveData.currentATokenBalance,
-      ).lt(amountToReachHFLimit)
-        ? reserveData.currentATokenBalance
-        : bigNumberToString(amountToReachHFLimit)
-
+      let maxWithdraw = reserveData.currentATokenBalance
+      if (isCollateralEnabled) {
+        const amountToReachHFLimit = calculateAmoutThatReachHFLimit()
+        if (
+          stringToBigNumber(reserveData.currentATokenBalance).gt(
+            amountToReachHFLimit,
+          )
+        ) {
+          maxWithdraw = bigNumberToString(amountToReachHFLimit)
+        }
+      }
       setMaxAmountToWithdraw(maxWithdraw)
     }
-  }, [isOpen, calculateAmoutThatReachHFLimit, reserveData.currentATokenBalance])
+  }, [
+    isOpen,
+    calculateAmoutThatReachHFLimit,
+    reserveData.currentATokenBalance,
+    isCollateralEnabled,
+  ])
 
   const withdraw = async (amount: string) => {
     setLoading(true)
@@ -228,12 +236,14 @@ export const WithdrawModal = ({
   const remainingSupply = useFormatNumber({
     value: calculateRemainingSupply(),
   })
+  const isHealthFactorReached =
+    isCollateralEnabled && futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
   const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted
   const isWithdrawDisabled =
     isInputDisabled ||
     !!errors.amount ||
     !values.amount ||
-    futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
+    isHealthFactorReached
 
   const setMaxValue = async () => {
     await setFieldValue('amount', maxAmountToWithdraw, true)
@@ -289,6 +299,7 @@ export const WithdrawModal = ({
 
               <ErrorMessage
                 message={
+                  isHealthFactorReached &&
                   futureHealthFactor < MIN_HEALTH_FACTOR_VALUE &&
                   t('global.errors.healthFactor')
                 }
