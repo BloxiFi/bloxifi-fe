@@ -5,6 +5,7 @@ import {
   BorrowAndLending,
   calculateHealthFactor,
   convertUSDToAssetValue,
+  isHealthFactorInfinity,
   MIN_HEALTH_FACTOR_VALUE,
   MIN_VALUE_FOR_TRANSACTION,
   numberToBigNumber,
@@ -182,13 +183,17 @@ export const BorrowModal = ({
     }
   }, [isOpen, resetState])
 
+  const isHealthFactorReached =
+    !isHealthFactorInfinity(futureHealthFactor) &&
+    values.amount &&
+    futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
   const isInputDisabled = !isSupportedNetwork || loading || borrowCompleted
   const isBorrowDisabled =
     isInputDisabled ||
     !!errors.amount ||
     !values.amount ||
     (shouldApproveContract && !approved) ||
-    futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
+    isHealthFactorReached
   const isApproveDisabled = !isSupportedNetwork || loading || approved
 
   //The maximum amount to borrow should go up to the minimum health factor value
@@ -299,8 +304,7 @@ export const BorrowModal = ({
               />
               <ErrorMessage
                 message={
-                  futureHealthFactor < MIN_HEALTH_FACTOR_VALUE &&
-                  t('global.errors.healthFactor')
+                  isHealthFactorReached && t('global.errors.healthFactor')
                 }
               />
             </StackLayout>

@@ -238,6 +238,7 @@ export const WithdrawModal = ({
     value: calculateRemainingSupply(),
   })
   const isHealthFactorReached =
+    values.amount &&
     isCollateralEnabled &&
     !isHealthFactorInfinity(futureHealthFactor) &&
     futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
