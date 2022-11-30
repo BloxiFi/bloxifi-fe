@@ -17,7 +17,7 @@ exports[`Storyshots Components/Input Address Input 1`] = `
         Empty
       </h3>
       <div
-        className="sc-hiMGwR ctvXAB"
+        className="sc-ehmTmK nerEh"
       >
         <div
           className="sc-gsnTZi kzqZLP u-full-width"
@@ -29,7 +29,7 @@ exports[`Storyshots Components/Input Address Input 1`] = `
             value=""
           />
           <div
-            className="sc-breuTD gHrPtz sc-ehmTmK jvyGFM"
+            className="sc-breuTD gHrPtz sc-lbOyJj fCpmYq"
           >
             <div
               className="sc-breuTD cxWDJq"
@@ -61,7 +61,7 @@ exports[`Storyshots Components/Input Address Input 1`] = `
         With value
       </h3>
       <div
-        className="sc-hiMGwR ctvXAB"
+        className="sc-ehmTmK nerEh"
       >
         <div
           className="sc-gsnTZi kzqZLP"
@@ -73,7 +73,7 @@ exports[`Storyshots Components/Input Address Input 1`] = `
             value="oxed139...862b"
           />
           <div
-            className="sc-breuTD gHrPtz sc-ehmTmK jvyGFM"
+            className="sc-breuTD gHrPtz sc-lbOyJj fCpmYq"
           >
             <div
               className="sc-breuTD cxWDJq"
@@ -105,7 +105,7 @@ exports[`Storyshots Components/Input Address Input 1`] = `
         Error
       </h3>
       <div
-        className="sc-hiMGwR ctvXAB"
+        className="sc-ehmTmK nerEh"
       >
         <div
           className="sc-gsnTZi jOvPKD u-full-width"
@@ -117,7 +117,7 @@ exports[`Storyshots Components/Input Address Input 1`] = `
             value=""
           />
           <div
-            className="sc-breuTD gHrPtz sc-ehmTmK jvyGFM"
+            className="sc-breuTD gHrPtz sc-lbOyJj fCpmYq"
           >
             <span
               className="sc-fEOsli kEbpsD"

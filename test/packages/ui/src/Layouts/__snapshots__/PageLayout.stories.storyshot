@@ -2,10 +2,10 @@
 
 exports[`Storyshots Layout/PageLayout Overview 1`] = `
 <div
-  className="sc-bBrHrO cbMfJH"
+  className="sc-fLlhyt YhHCP"
 >
   <div
-    className="sc-evZas sc-ivTmOn klRKQA kPozQz"
+    className="sc-evZas sc-bBrHrO klRKQA fxLELT"
     gap={4}
   >
     <section

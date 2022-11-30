@@ -1,10 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { BoxLayout, Button, Modal, StackLayout, Text } from '@bloxifi/ui'
 import {
+  bigNumberToString,
   BorrowAndLending,
   calculateHealthFactor,
   convertUSDToAssetValue,
   MIN_HEALTH_FACTOR_VALUE,
+  MIN_VALUE_FOR_TRANSACTION,
+  numberToBigNumber,
+  SCALING_FACTOR,
+  stringToBigNumber,
   Tokens,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
@@ -12,6 +17,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
+import { BigNumber } from 'ethers'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -66,6 +72,7 @@ export const BorrowModal = ({
   const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
   const [futureHealthFactor, setFutureHealthFactor] =
     useState<number>(undefined)
+  const [maxAmountToBorrow, setMaxAmountToBorrow] = useState('')
 
   const tokenContract = reserveData.symbol
     ? Tokens.getERC20TokenContract(signer, reserveData.underlyingAsset)
@@ -135,10 +142,10 @@ export const BorrowModal = ({
   )
 
   const depositValidationSchemaa = Yup.object().shape({
-    amount: Yup.number()
-      .typeError(t('global.errors.numbersOnly'))
-      .positive(t('global.errors.positiveValue'))
-      .max(Number(availableToBorrow), t('global.errors.exceededBalance'))
+    amount: Yup.string()
+      .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
+        stringToBigNumber(val).lte(stringToBigNumber(maxAmountToBorrow)),
+      )
       .required(t('global.errors.required')),
   })
 
@@ -171,6 +178,7 @@ export const BorrowModal = ({
       resetState()
       setBorrowCompleted(false)
       setShouldApproveContract(false)
+      setFutureHealthFactor(undefined)
     }
   }, [isOpen, resetState])
 
@@ -184,29 +192,59 @@ export const BorrowModal = ({
   const isApproveDisabled = !isSupportedNetwork || loading || approved
 
   //The maximum amount to borrow should go up to the minimum health factor value
-  const amountToReachMinHealthFactor =
-    (totalCollateralETH / (MIN_HEALTH_FACTOR_VALUE + 0.0000001) -
-      totalBorrowETH) /
-    reserveData.priceInEth
+  const calculateAmoutThatReachHFLimit = useCallback(() => {
+    const price = numberToBigNumber(reserveData.priceInEth)
+    const totalCollateralBig = BigNumber.from(totalCollateralETH)
+    const totalBorrowBig = BigNumber.from(totalBorrowETH)
 
-  const maxAmountToBorrow = Math.min(
-    amountToReachMinHealthFactor,
-    availableToBorrow,
-  )
+    /**
+     * Formula: (totalCollateralETH / (MIN_HEALTH_FACTOR_VALUE - totalBorrowETH) / priceInEth
+     */
+    return totalCollateralBig
+      .mul(SCALING_FACTOR)
+      .div(
+        numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION),
+      )
+      .sub(totalBorrowBig)
+      .mul(SCALING_FACTOR)
+      .div(price)
+  }, [reserveData.priceInEth, totalCollateralETH, totalBorrowETH])
 
   useEffect(() => {
-    setFutureHealthFactor(
-      calculateHealthFactor({
-        totalCollateralETH,
-        totalBorrowETH:
-          totalBorrowETH + Number(values.amount) * reserveData.priceInEth,
-      }),
-    )
+    if (isOpen) {
+      //Calculate max amount to borrow
+      const amountToReachHFLimit = calculateAmoutThatReachHFLimit()
+      const maxBorrow = numberToBigNumber(availableToBorrow).lt(
+        amountToReachHFLimit,
+      )
+        ? availableToBorrow.toString()
+        : bigNumberToString(amountToReachHFLimit)
+      setMaxAmountToBorrow(maxBorrow)
+
+      //Calculate future HF
+      if (values.amount) {
+        setFutureHealthFactor(
+          calculateHealthFactor({
+            totalCollateralETH,
+            totalBorrowETH: BigNumber.from(totalBorrowETH)
+              .add(
+                stringToBigNumber(values.amount)
+                  .mul(numberToBigNumber(reserveData.priceInEth))
+                  .div(SCALING_FACTOR),
+              )
+              .toString(),
+          }),
+        )
+      }
+    }
   }, [
+    isOpen,
     values.amount,
     totalCollateralETH,
     totalBorrowETH,
     reserveData.priceInEth,
+    availableToBorrow,
+    calculateAmoutThatReachHFLimit,
   ])
 
   const setMaxValue = async () => {
