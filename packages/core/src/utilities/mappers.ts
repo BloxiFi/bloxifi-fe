@@ -170,6 +170,14 @@ export const getDepositedAssetsUSD = ({
 }
 
 /**
+ * Check if health factor has infinity value
+ * @param healthFactor
+ * @returns
+ */
+export const isHealthFactorInfinity = (healthFactor: number): boolean =>
+  healthFactor === 0
+
+/**
  * Calculate health factor
  * totalCollateralETH is sum of collaterals expressed in ETH
  * totalDebtETH is sum of borrows expressed in ETH
@@ -182,11 +190,11 @@ export const calculateHealthFactor = ({
   totalBorrowETH: string
 }): number => {
   const totalBorrow = BigNumber.from(totalBorrowETH)
-  return totalBorrow.gt(0)
-    ? bigNumberToNumber(
+  return totalBorrow.isZero()
+    ? 0
+    : bigNumberToNumber(
         BigNumber.from(totalCollateralETH).mul(SCALING_FACTOR).div(totalBorrow),
       )
-    : 0
 }
 
 /**

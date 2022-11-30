@@ -5,6 +5,7 @@ import {
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
   calculateHealthFactor,
+  isHealthFactorInfinity,
   MIN_HEALTH_FACTOR_VALUE,
   MIN_VALUE_FOR_TRANSACTION,
   numberToBigNumber,
@@ -237,7 +238,9 @@ export const WithdrawModal = ({
     value: calculateRemainingSupply(),
   })
   const isHealthFactorReached =
-    isCollateralEnabled && futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
+    isCollateralEnabled &&
+    !isHealthFactorInfinity(futureHealthFactor) &&
+    futureHealthFactor < MIN_HEALTH_FACTOR_VALUE
   const isInputDisabled = !isSupportedNetwork || loading || withdrawCompleted
   const isWithdrawDisabled =
     isInputDisabled ||
@@ -299,9 +302,7 @@ export const WithdrawModal = ({
 
               <ErrorMessage
                 message={
-                  isHealthFactorReached &&
-                  futureHealthFactor < MIN_HEALTH_FACTOR_VALUE &&
-                  t('global.errors.healthFactor')
+                  isHealthFactorReached && t('global.errors.healthFactor')
                 }
               />
             </StackLayout>
