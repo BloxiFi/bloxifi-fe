@@ -64,6 +64,10 @@ interface UseWalletBallanceState {
    * Balance of xc Tokens
    */
   balances: TokenBalanceData[]
+  /**
+   * Function for refetch balances
+   */
+  fetchBalances: () => void
 }
 
 /**
@@ -78,11 +82,12 @@ export const useWalletBalance = ({
   const [balances, setBalances] = useState<TokenBalanceData[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const fetchBalances = useCallback(
-    async (
-      network: SupportedNetwork['network'],
-      supportedSymbols: any, //TODO Remove any type
-    ) => {
+  const fetchBalances = useCallback(async () =>
+    //network: SupportedNetwork['network'],
+    //supportedSymbols: any, //TODO Remove any type
+    {
+      const network = currentNetwork.network
+      const supportedSymbols: any = currentNetwork.supportedSymbols
       try {
         setIsLoading(true)
 
@@ -101,18 +106,20 @@ export const useWalletBalance = ({
       } finally {
         setIsLoading(false)
       }
-    },
-    [currentAccount, xcmSdk],
-  )
+    }, [
+    currentAccount,
+    xcmSdk,
+    currentNetwork.network,
+    currentNetwork.supportedSymbols,
+  ])
 
   useEffect(() => {
     if (currentNetwork && balances.length === 0) {
-      void fetchBalances(
-        currentNetwork.network,
-        currentNetwork?.supportedSymbols,
-      )
+      void fetchBalances()
+      //currentNetwork.network,
+      //currentNetwork?.supportedSymbols,
     }
   }, [currentChainId, fetchBalances, currentNetwork, balances.length])
 
-  return { balances, isLoading }
+  return { balances, isLoading, fetchBalances }
 }
