@@ -227,8 +227,8 @@ jobs:
         with:
           name: artifact-fe
           path: |
-            autotests/synpress/tests/e2e/videos
-            autotests/synpress/tests/e2e/screenshots
+            autotests/synpress/tests/e2e/videos/
+            autotests/synpress/tests/e2e/screenshots/
 
       #
       # Notify if there is a failure or if this is a pull_request event
