@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, TextColors } from '@bloxifi/ui'
-import { MIN_HEALTH_FACTOR_VALUE } from '@bloxifi/core'
+import { Icon, Text, TextColors } from '@bloxifi/ui'
+import { isHealthFactorInfinity, MIN_HEALTH_FACTOR_VALUE } from '@bloxifi/core'
 
 import { FormattedNumber } from '../FormattedNumber'
 
@@ -19,16 +19,17 @@ export const HealthFactorNumber = ({ value }: Props) => {
     healthFactorColor = 'red'
   }
 
-  /** When we returns infinity
-   * <Icon name="union" size={16} color="oxfordBlue" />
-   **/
   return (
     <Text as="span" type="body 1" color={healthFactorColor}>
-      <FormattedNumber
-        decimals={2}
-        value={value}
-        minimumDisplayValue={MIN_HEALTH_FACTOR_VALUE}
-      />
+      {isHealthFactorInfinity(value) ? (
+        <Icon name="union" size={16} color="green" />
+      ) : (
+        <FormattedNumber
+          decimals={2}
+          value={value}
+          minimumDisplayValue={MIN_HEALTH_FACTOR_VALUE}
+        />
+      )}
     </Text>
   )
 }

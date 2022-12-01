@@ -78,6 +78,8 @@ export const Icon = styled(
           return themeContext.textColorDark
         case 'oxfordBlue':
           return themeContext.buttonDark
+        case 'green':
+          return themeContext.success
         default:
           return themeContext.textColorDark
       }

@@ -9,6 +9,7 @@ import {
   Tooltip,
 } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
+import { isHealthFactorInfinity } from '@bloxifi/core'
 
 import { FormattedNumber } from '../FormattedNumber'
 
@@ -86,7 +87,8 @@ export const TransactionOverview = ({
           <StackLayout>
             <ColumnLayout align="flex-end" center>
               <HealthFactorNumber value={healthFactor} />
-              {shouldDisplayFutureHF && (
+              {(shouldDisplayFutureHF ||
+                isHealthFactorInfinity(futureHealthFactor)) && (
                 <>
                   <Icon name="arrow-right" size={15} color="oxfordBlue" />
                   <HealthFactorNumber value={futureHealthFactor} />
