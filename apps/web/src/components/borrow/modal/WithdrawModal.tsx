@@ -88,14 +88,12 @@ export const WithdrawModal = ({
   const calculateAmoutThatReachHFLimit = useCallback(() => {
     const price = numberToBigNumber(reserveData.priceInEth)
     const ltv = numberToBigNumber(reserveData.reserveLiquidationThreshold)
-    const totalCollateralBig = BigNumber.from(totalCollateralETH)
-    const totalBorrowBig = BigNumber.from(totalBorrowETH)
     /**
      * (totalCollateralETH - totalBorrowETH * MIN_HEALTH_FACTOR_VALUE) / priceInEth * reserveLiquidationThreshold
      */
-    return totalCollateralBig
+    return totalCollateralETH
       .sub(
-        totalBorrowBig
+        totalBorrowETH
           .mul(
             numberToBigNumber(
               MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION,
@@ -188,9 +186,7 @@ export const WithdrawModal = ({
         reserveData.reserveLiquidationThreshold,
       )
 
-      return BigNumber.from(totalCollateralETH)
-        .sub(BigNumber.from(assetCollateralAfterTX))
-        .toString()
+      return totalCollateralETH.sub(BigNumber.from(assetCollateralAfterTX))
     }
     return totalCollateralETH
   }, [

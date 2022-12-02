@@ -7,10 +7,12 @@ import {
 } from '@bloxifi/ui'
 import React, { FunctionComponent, useState } from 'react'
 import {
+  bigNumberToNumber,
   convertBalancesInUsdArray,
   getMaxRepayAmount,
   MIN_VALUE_FOR_TRANSACTION,
   numberToPercentage,
+  SCALING_FACTOR,
   sumArrayItems,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
@@ -49,9 +51,16 @@ export const YourBorrowsTable: FunctionComponent = () => {
   }
 
   //Calculate total borrowed balance compared to total available borrow for the current user (in percentage)
-  const currentBorrowedValue = numberToPercentage(
-    totalDebtETH / (totalDebtETH + availableBorrowsETH),
-  )
+  const currentBorrowedValue =
+    totalDebtETH &&
+    availableBorrowsETH &&
+    numberToPercentage(
+      bigNumberToNumber(
+        totalDebtETH
+          .mul(SCALING_FACTOR)
+          .div(totalDebtETH.add(availableBorrowsETH)),
+      ),
+    )
 
   const columns = {
     assets: {
@@ -130,7 +139,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
         titleComponent={
           <BorrowTitleBox
             isEmpty={userReservesWithDept.length === 0}
-            currentBorrowedValue={Number(currentBorrowedValue.toFixed(2))}
+            currentBorrowedValue={Number(currentBorrowedValue?.toFixed(2))}
             totalBorrowBalance={totalBorrowBalance}
             isLoading={loading}
           />

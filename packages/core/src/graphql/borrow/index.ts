@@ -21,6 +21,9 @@ export interface UserReserveDataQuery {
     underlyingAsset: string
     baseLTVasCollateral: number
     reserveLiquidationThreshold: number
+    aToken: {
+      id: string
+    }
     price: {
       priceInEth: BigNumber
       oracle: {
@@ -45,6 +48,9 @@ export interface ReservesDataQuery {
   stableBorrowRate: number
   underlyingAsset: string
   reserveLiquidationThreshold: number
+  aToken: {
+    id: string
+  }
   price: {
     priceInEth: BigNumber
     oracle: {
@@ -82,6 +88,9 @@ export const GET_RESERVE_DATA = gql`
       stableBorrowRate
       underlyingAsset
       reserveLiquidationThreshold
+      aToken {
+        id
+      }
       price {
         priceInEth
         oracle {
@@ -105,6 +114,9 @@ export const GET_RESERVE_DATA = gql`
         underlyingAsset
         baseLTVasCollateral
         reserveLiquidationThreshold
+        aToken {
+          id
+        }
         price {
           priceInEth
           oracle {

@@ -190,9 +190,7 @@ export const DepositModal = ({
         reserveData.priceInEth,
         reserveData.reserveLiquidationThreshold,
       )
-      return BigNumber.from(totalCollateralETH)
-        .add(BigNumber.from(assetCollateralAfterTX))
-        .toString()
+      return totalCollateralETH.add(BigNumber.from(assetCollateralAfterTX))
     }
     return totalCollateralETH
   }

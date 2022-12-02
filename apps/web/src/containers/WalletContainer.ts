@@ -16,6 +16,7 @@ import {
 } from '@bloxifi/core'
 import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
+import { BigNumber } from 'ethers'
 import {
   Dispatch,
   Reducer,
@@ -36,6 +37,7 @@ type DefaultReserveData = {
   icon: string
   decimals: number
   balance: string
+  aTokenBalance: BigNumber
   supplyAPY: number
   liquidityRate: number
   variableBorrowAPY: number
@@ -58,11 +60,11 @@ export type UserReserveData = DefaultReserveData & {
 }
 
 export type UserAccountData = {
-  totalDebtETH: number
-  availableBorrowsETH: number
+  totalDebtETH: BigNumber
+  availableBorrowsETH: BigNumber
   healthFactor: number
   liquidationThreshold: number
-  totalCollateralETH: number
+  totalCollateralETH: BigNumber
 }
 
 interface State {
@@ -203,12 +205,12 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         type: 'setUserAccountData',
         value: {
           healthFactor: bigNumberToNumber(response.healthFactor),
-          availableBorrowsETH: bigNumberToNumber(response.availableBorrowsETH),
-          totalDebtETH: bigNumberToNumber(response.totalDebtETH),
+          availableBorrowsETH: response.availableBorrowsETH,
+          totalDebtETH: response.totalDebtETH,
           liquidationThreshold:
             Number(response.currentLiquidationThreshold.toString()) *
             Math.pow(10, -4),
-          totalCollateralETH: bigNumberToNumber(response.totalCollateralETH),
+          totalCollateralETH: response.totalCollateralETH,
         },
       })
     } catch (error) {
@@ -217,7 +219,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   }, [currentAccount, signer])
 
   const getReserveBalance = useCallback(
-    async (address: string) => {
+    async (address: string, aTokenAddress: string) => {
       try {
         const tokenContract: TokenContract = Tokens.getERC20TokenContract(
           signer,
@@ -228,8 +230,12 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
           tokenContract,
           currentAccount,
         )
+        const aTokenBalance = await Tokens.getTokenBalance(
+          tokenContract,
+          aTokenAddress,
+        )
         setError(undefined)
-        return balance
+        return { balance, aTokenBalance }
       } catch (error) {
         setError(error)
       }
@@ -242,10 +248,14 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       try {
         const reserveData = await Promise.all(
           reserves.map(async (reserve: ReservesDataQuery) => {
-            const balance = await getReserveBalance(reserve.underlyingAsset)
+            const { balance, aTokenBalance } = await getReserveBalance(
+              reserve.underlyingAsset,
+              reserve.aToken.id,
+            )
             return {
               ...reserve,
               balance: bigNumberToString(balance),
+              aTokenBalance,
               icon: Assets[reserve.symbol].icon,
               fullName: Assets[reserve.symbol].fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
