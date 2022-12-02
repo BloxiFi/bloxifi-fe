@@ -141,7 +141,7 @@ export const RepayModal = ({
   const calculateRemainingDebt = () => {
     const remainingSupply =
       Number(reserveData.currentTotalDebt) - Number(values.amount)
-    if (remainingSupply > 0 && Number(values.amount) > 0) {
+    if (remainingSupply > 0) {
       return remainingSupply
     }
     return 0
