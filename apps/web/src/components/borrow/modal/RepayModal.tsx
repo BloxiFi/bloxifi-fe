@@ -101,6 +101,11 @@ export const RepayModal = ({
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
         stringToBigNumber(val).lte(stringToBigNumber(maxRepayAmount)),
       )
+      .test(
+        'is-zero',
+        t('global.errors.positiveValue'),
+        (val: string) => !stringToBigNumber(val).isZero(),
+      )
       .required(t('global.errors.required')),
   })
 

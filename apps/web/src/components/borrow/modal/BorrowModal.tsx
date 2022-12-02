@@ -147,6 +147,11 @@ export const BorrowModal = ({
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
         stringToBigNumber(val).lte(stringToBigNumber(maxAmountToBorrow)),
       )
+      .test(
+        'is-zero',
+        t('global.errors.positiveValue'),
+        (val: string) => !stringToBigNumber(val).isZero(),
+      )
       .required(t('global.errors.required')),
   })
 
