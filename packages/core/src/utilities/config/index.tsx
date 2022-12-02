@@ -129,7 +129,7 @@ export const isSupportedNetwork = (paraId: number): boolean =>
   supportedChainIds.includes(paraId)
 
 export const getNetworkByChain = (
-  chainId: SupportedNetwork['prefix'],
+  chainId: number,
 ): SupportedNetwork | undefined => {
   return NetworkRegistry.find(network => network.prefix === chainId)
 }
@@ -142,17 +142,10 @@ export const getNetworkByName = (
   )
 }
 
-export const networkConfig: NetworkConfigType = {
-  [2004]: {
-    name: 'moonbase',
-    isTestnet: false,
-    releyChain: 'polkadot',
-  },
-}
-
 export const getNetworkName = (chainId: number): string => {
-  if (networkConfig[chainId]) {
-    return networkConfig[chainId].name
+  const network = getNetworkByChain(chainId)
+  if (network) {
+    return network.displayName
   }
   return 'Unknown'
 }
