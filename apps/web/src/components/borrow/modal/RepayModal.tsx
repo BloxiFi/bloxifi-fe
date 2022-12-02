@@ -101,6 +101,11 @@ export const RepayModal = ({
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
         stringToBigNumber(val).lte(stringToBigNumber(maxRepayAmount)),
       )
+      .test(
+        'is-zero',
+        t('global.errors.positiveValue'),
+        (val: string) => !stringToBigNumber(val).isZero(),
+      )
       .required(t('global.errors.required')),
   })
 
@@ -141,7 +146,7 @@ export const RepayModal = ({
   const calculateRemainingDebt = () => {
     const remainingSupply =
       Number(reserveData.currentTotalDebt) - Number(values.amount)
-    if (remainingSupply > 0 && Number(values.amount) > 0) {
+    if (remainingSupply > 0) {
       return remainingSupply
     }
     return 0

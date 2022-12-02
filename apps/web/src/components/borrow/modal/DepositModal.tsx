@@ -140,6 +140,11 @@ export const DepositModal = ({
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
         stringToBigNumber(val).lte(stringToBigNumber(reserveData.balance)),
       )
+      .test(
+        'is-zero',
+        t('global.errors.positiveValue'),
+        (val: string) => !stringToBigNumber(val).isZero(),
+      )
       .required(t('global.errors.required')),
   })
 

@@ -159,6 +159,11 @@ export const WithdrawModal = ({
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
         stringToBigNumber(val).lte(stringToBigNumber(maxAmountToWithdraw)),
       )
+      .test(
+        'is-zero',
+        t('global.errors.positiveValue'),
+        (val: string) => !stringToBigNumber(val).isZero(),
+      )
       .required(t('global.errors.required')),
   })
 
@@ -228,7 +233,7 @@ export const WithdrawModal = ({
   const calculateRemainingSupply = () => {
     const remainingSupply =
       Number(reserveData.currentATokenBalance) - Number(values.amount)
-    if (remainingSupply > 0 && Number(values.amount) > 0) {
+    if (remainingSupply > 0) {
       return remainingSupply
     }
     return 0
