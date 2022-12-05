@@ -3,6 +3,7 @@ import {
   PageLayout,
   HeaderLink,
   HeaderExternalLink,
+  Button,
 } from '@bloxifi/ui'
 import { isPolkadotRoute } from '@bloxifi/core'
 import React from 'react'
@@ -46,6 +47,16 @@ export const Header = () => {
       navigationItems={[...initialNavigation, ...tokenTransfer]}
     >
       <ColumnLayout>
+        <Button
+          appearance="text"
+          className="u-fit-content-width"
+          variant="large"
+          size="large"
+          disabled
+          color="red"
+        >
+          Beta Version
+        </Button>
         <ConnectWalletButton />
         {isCurrentPolkadotRoute && <ConnectPolkadotButton />}
       </ColumnLayout>
