@@ -47,12 +47,12 @@ export const YourBorrowsTable: FunctionComponent = () => {
 
   const closeModal = () => {
     setModalData(undefined)
-    //TODO update balance
   }
 
   //Calculate total borrowed balance compared to total available borrow for the current user (in percentage)
   const currentBorrowedValue =
     totalDebtETH &&
+    !totalDebtETH.isZero() &&
     availableBorrowsETH &&
     numberToPercentage(
       bigNumberToNumber(

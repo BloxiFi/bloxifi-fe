@@ -45,6 +45,15 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     setModalData(undefined)
     //TODO update balance
   }
+
+  const isBorrowDisabled = (priceInEth: number): boolean =>
+    bigNumberToNumber(
+      convertETHToAssetValue(
+        availableBorrowsETH,
+        numberToBigNumber(priceInEth),
+      ),
+    ) < MIN_VALUE_FOR_TRANSACTION
+
   const columns = {
     assets: {
       header: t('global.table.assets'),
@@ -101,14 +110,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           variant="medium"
           size="small"
           data-cy={'borrowBtn ' + data.symbol}
-          disabled={
-            bigNumberToNumber(
-              convertETHToAssetValue(
-                availableBorrowsETH,
-                numberToBigNumber(data.priceInEth),
-              ),
-            ) < MIN_VALUE_FOR_TRANSACTION
-          }
+          disabled={isBorrowDisabled(data.priceInEth)}
           onClick={() => openModal(data)}
         >
           {t('global.buttons.borrow')}
