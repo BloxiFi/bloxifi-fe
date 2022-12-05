@@ -2,6 +2,7 @@ import { BigNumber, ethers } from 'ethers'
 import { UserReserveData } from '@/containers/WalletContainer'
 
 import {
+  AVAILABLE_BORROW_DEVIATION,
   MIN_HEALTH_FACTOR_VALUE,
   MIN_VALUE_FOR_TRANSACTION,
   SCALING_FACTOR,
@@ -277,7 +278,7 @@ export const getMaxBorrowAmount = ({
   totalCollateralETH: BigNumber
   totalDebtETH: BigNumber
 }) => {
-  const availableAssetToBorrow = convertETHToAssetValue(
+  let availableAssetToBorrow = convertETHToAssetValue(
     availableBorrowsETH,
     numberToBigNumber(priceInEth),
   )
@@ -288,6 +289,12 @@ export const getMaxBorrowAmount = ({
     .mul(SCALING_FACTOR)
     .div(numberToBigNumber(priceInEth))
 
+  //Decrease available asset to borrow by scaling constant
+  availableAssetToBorrow = availableAssetToBorrow.sub(
+    availableAssetToBorrow
+      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION))
+      .div(SCALING_FACTOR),
+  )
   return getMinimumValue(
     availableAssetToBorrow,
     amountToReachHFLimit,
