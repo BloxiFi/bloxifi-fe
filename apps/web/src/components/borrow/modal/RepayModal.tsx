@@ -13,7 +13,6 @@ import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
-import { BigNumber } from 'ethers'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -161,13 +160,11 @@ export const RepayModal = ({
     isOpen &&
     calculateHealthFactor({
       totalCollateralETH,
-      totalBorrowETH: BigNumber.from(totalBorrowETH)
-        .sub(
-          stringToBigNumber(values.amount)
-            .mul(numberToBigNumber(reserveData.priceInEth))
-            .div(SCALING_FACTOR),
-        )
-        .toString(),
+      totalBorrowETH: totalBorrowETH.sub(
+        stringToBigNumber(values.amount)
+          .mul(numberToBigNumber(reserveData.priceInEth))
+          .div(SCALING_FACTOR),
+      ),
     })
 
   const setMaxValue = async () => {

@@ -4,10 +4,9 @@ import {
   bigNumberToString,
   BorrowAndLending,
   calculateHealthFactor,
-  convertUSDToAssetValue,
+  getMaxBorrowAmount,
   isHealthFactorInfinity,
   MIN_HEALTH_FACTOR_VALUE,
-  MIN_VALUE_FOR_TRANSACTION,
   numberToBigNumber,
   SCALING_FACTOR,
   stringToBigNumber,
@@ -18,7 +17,6 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
-import { BigNumber } from 'ethers'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -56,7 +54,9 @@ export const BorrowModal = ({
     waitTransactionConfirmation,
   } = Web3Container.useContainer()
   const {
-    state: { availableToBorrowUSD },
+    state: {
+      userAccountData: { availableBorrowsETH, totalDebtETH },
+    },
     refetch,
   } = WalletContainer.useContainer()
 
@@ -136,12 +136,6 @@ export const BorrowModal = ({
     }
   }
 
-  const availableToBorrow = convertUSDToAssetValue(
-    availableToBorrowUSD,
-    reserveData.priceInEth,
-    reserveData.usdPriceEth,
-  )
-
   const depositValidationSchemaa = Yup.object().shape({
     amount: Yup.string()
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
@@ -201,48 +195,30 @@ export const BorrowModal = ({
     isHealthFactorReached
   const isApproveDisabled = !isSupportedNetwork || loading || approved
 
-  //The maximum amount to borrow should go up to the minimum health factor value
-  const calculateAmoutThatReachHFLimit = useCallback(() => {
-    const price = numberToBigNumber(reserveData.priceInEth)
-    const totalCollateralBig = BigNumber.from(totalCollateralETH)
-    const totalBorrowBig = BigNumber.from(totalBorrowETH)
-
-    /**
-     * Formula: (totalCollateralETH / (MIN_HEALTH_FACTOR_VALUE - totalBorrowETH) / priceInEth
-     */
-    return totalCollateralBig
-      .mul(SCALING_FACTOR)
-      .div(
-        numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION),
-      )
-      .sub(totalBorrowBig)
-      .mul(SCALING_FACTOR)
-      .div(price)
-  }, [reserveData.priceInEth, totalCollateralETH, totalBorrowETH])
-
   useEffect(() => {
     if (isOpen) {
-      //Calculate max amount to borrow
-      const amountToReachHFLimit = calculateAmoutThatReachHFLimit()
-      const maxBorrow = numberToBigNumber(availableToBorrow).lt(
-        amountToReachHFLimit,
+      setMaxAmountToBorrow(
+        bigNumberToString(
+          getMaxBorrowAmount({
+            aTokenBalance: reserveData.aTokenBalance,
+            availableBorrowsETH,
+            priceInEth: reserveData.priceInEth,
+            totalCollateralETH,
+            totalDebtETH,
+          }),
+        ),
       )
-        ? availableToBorrow.toString()
-        : bigNumberToString(amountToReachHFLimit)
-      setMaxAmountToBorrow(maxBorrow)
 
       //Calculate future HF
       if (values.amount) {
         setFutureHealthFactor(
           calculateHealthFactor({
             totalCollateralETH,
-            totalBorrowETH: BigNumber.from(totalBorrowETH)
-              .add(
-                stringToBigNumber(values.amount)
-                  .mul(numberToBigNumber(reserveData.priceInEth))
-                  .div(SCALING_FACTOR),
-              )
-              .toString(),
+            totalBorrowETH: totalBorrowETH.add(
+              stringToBigNumber(values.amount)
+                .mul(numberToBigNumber(reserveData.priceInEth))
+                .div(SCALING_FACTOR),
+            ),
           }),
         )
       }
@@ -253,8 +229,9 @@ export const BorrowModal = ({
     totalCollateralETH,
     totalBorrowETH,
     reserveData.priceInEth,
-    availableToBorrow,
-    calculateAmoutThatReachHFLimit,
+    availableBorrowsETH,
+    reserveData.aTokenBalance,
+    totalDebtETH,
   ])
 
   const setMaxValue = async () => {

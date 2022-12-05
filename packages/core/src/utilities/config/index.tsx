@@ -14,6 +14,8 @@ export const MAX_AMOUNT_DECIMALS = 18
 export const SCALING_FACTOR = ethers.utils.parseUnits('1', ETHER_DECIMALS)
 //Liquidation Threshold scaling factor
 export const SCALING_FACTOR_LT = ethers.utils.parseUnits('1', LT_DECIMALS)
+//Scale max available to borrow amount for AVAILABLE_BORROW_SCALING_AMOUNT (percentage)
+export const AVAILABLE_BORROW_DEVIATION = '0.01'
 
 //Regex Patterns
 //Allow positive fractional number, included zero.(e.g. 0, 1, 0.0, 0.1, 1.0, 99999.000001, 5.10 )

@@ -1,7 +1,12 @@
 import { BigNumber, ethers } from 'ethers'
 import { UserReserveData } from '@/containers/WalletContainer'
 
-import { SCALING_FACTOR } from './config'
+import {
+  AVAILABLE_BORROW_DEVIATION,
+  MIN_HEALTH_FACTOR_VALUE,
+  MIN_VALUE_FOR_TRANSACTION,
+  SCALING_FACTOR,
+} from './config'
 
 /**
  * Wait before executing
@@ -64,6 +69,9 @@ export function numberToBigNumber(value: number): BigNumber {
 export const sumArrayItems = (array: number[]): number =>
   array.reduce((partialSum, a) => partialSum + a, 0)
 
+export const getMinimumValue = (...args: BigNumber[]) => {
+  return args.reduce((m, e) => (e.lt(m) ? e : m))
+}
 /**
  * convertToUSD function converts asset value to USD
  * @param balance Asset balance
@@ -94,6 +102,18 @@ export const convertUSDToAssetValue = (
   usdPriceEth: number,
 ) => {
   return value / (priceInEth * usdPriceEth)
+}
+/**
+ * Function that converts ETH value to any asset value
+ * @param value The asset amount that should be converted
+ * @param priceInEth The asset price in ETH
+ * @returns
+ */
+export const convertETHToAssetValue = (
+  value: BigNumber,
+  priceInEth: BigNumber,
+) => {
+  return value && priceInEth && value.mul(SCALING_FACTOR).div(priceInEth)
 }
 
 type BalanceField =
@@ -186,15 +206,13 @@ export const calculateHealthFactor = ({
   totalCollateralETH,
   totalBorrowETH,
 }: {
-  totalCollateralETH: string
-  totalBorrowETH: string
+  totalCollateralETH: BigNumber
+  totalBorrowETH: BigNumber
 }): number => {
   const totalBorrow = BigNumber.from(totalBorrowETH)
   return totalBorrow.isZero()
     ? 0
-    : bigNumberToNumber(
-        BigNumber.from(totalCollateralETH).mul(SCALING_FACTOR).div(totalBorrow),
-      )
+    : bigNumberToNumber(totalCollateralETH.mul(SCALING_FACTOR).div(totalBorrow))
 }
 
 /**
@@ -232,4 +250,54 @@ export const getMaxRepayAmount = (
     return balance
   }
   return currentTotalDebt
+}
+
+/**
+ * Function that calculates the maximum amount that user can borrow
+ * The maximum amount to borrow should be the minimum of the following params:
+ * * -total aToken balance that exist in the pool
+ * * -amount that reached minimum future health factor (HF should be min 1.01) or
+ * * -available amount to borrow based on his collaterals and borrows
+ * @param aTokenBalance The total aToken balance that exist in the pool
+ * @param availableBorrowsETH Total available amount to borrow in ETH based on user collaterals and borrows
+ * @param priceInEth Asset price in ETH
+ * @param totalCollateralETH Total user collaterals in ETH
+ * @param totalDebtETH Total user borrows in ETH
+ * @returns Max amount that user is able to borrow
+ */
+export const getMaxBorrowAmount = ({
+  aTokenBalance,
+  availableBorrowsETH,
+  priceInEth,
+  totalCollateralETH,
+  totalDebtETH,
+}: {
+  aTokenBalance: BigNumber
+  availableBorrowsETH: BigNumber
+  priceInEth: number
+  totalCollateralETH: BigNumber
+  totalDebtETH: BigNumber
+}) => {
+  let availableAssetToBorrow = convertETHToAssetValue(
+    availableBorrowsETH,
+    numberToBigNumber(priceInEth),
+  )
+  const amountToReachHFLimit = totalCollateralETH
+    .mul(SCALING_FACTOR)
+    .div(numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION))
+    .sub(totalDebtETH)
+    .mul(SCALING_FACTOR)
+    .div(numberToBigNumber(priceInEth))
+
+  //Decrease available asset to borrow by scaling constant
+  availableAssetToBorrow = availableAssetToBorrow.sub(
+    availableAssetToBorrow
+      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION))
+      .div(SCALING_FACTOR),
+  )
+  return getMinimumValue(
+    availableAssetToBorrow,
+    amountToReachHFLimit,
+    aTokenBalance,
+  )
 }

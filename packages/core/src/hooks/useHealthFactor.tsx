@@ -18,7 +18,7 @@ import {
 /**
  * Calculate total borrows for current user
  */
-const calculateTotalBorrow = (array: HealthFactorQuery[]): string => {
+const calculateTotalBorrow = (array: HealthFactorQuery[]): BigNumber => {
   let totalBorrow = BigNumber.from(0)
   for (const item of array) {
     const currentTotalDebt = BigNumber.from(item.currentTotalDebt)
@@ -27,14 +27,16 @@ const calculateTotalBorrow = (array: HealthFactorQuery[]): string => {
       currentTotalDebt.mul(priceInEth).div(SCALING_FACTOR),
     )
   }
-  return totalBorrow.toString()
+  return totalBorrow
 }
 
 /**
  * Calculate total deposited balance for collaterals with asset liquidation threshold
  * ∑Collateral in ETH × LiquidationThreshold
  */
-const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): any => {
+const calculateTotalCollateralWithLT = (
+  array: HealthFactorQuery[],
+): BigNumber => {
   let totalCollateral = BigNumber.from(0)
 
   for (const item of array) {
@@ -49,12 +51,11 @@ const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): any => {
           .mul(priceInEth)
           .div(SCALING_FACTOR)
           .mul(reserveLiquidationThreshold)
-          .div(SCALING_FACTOR_LT)
-          .toString(),
+          .div(SCALING_FACTOR_LT),
       )
     }
   }
-  return totalCollateral.toString()
+  return totalCollateral
 }
 
 /**
@@ -78,11 +79,11 @@ export interface HealthFactorData {
   /**
    * Sum of total collateral in ETH calculated with asset liquidation threshold
    */
-  totalCollateralETH: string
+  totalCollateralETH: BigNumber
   /**
    * Sum of total borrows for current user
    */
-  totalBorrowETH: string
+  totalBorrowETH: BigNumber
 }
 
 /**
