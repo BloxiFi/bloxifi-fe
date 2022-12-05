@@ -139,7 +139,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
         titleComponent={
           <BorrowTitleBox
             isEmpty={userReservesWithDept.length === 0}
-            currentBorrowedValue={Number(currentBorrowedValue?.toFixed(2))}
+            currentBorrowedValue={currentBorrowedValue}
             totalBorrowBalance={totalBorrowBalance}
             isLoading={loading}
           />
