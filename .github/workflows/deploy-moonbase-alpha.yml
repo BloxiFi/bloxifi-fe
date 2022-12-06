@@ -174,8 +174,10 @@ jobs:
       #   run: aws s3 sync ./apps/web/dist/ s3://${{ secrets.BUCKET_NAME }} --cache-control "max-age=120000" --delete
       - name: test policy
         run: |
-          echo random > index.html
-          aws s3 sync index.html s3://${{ secrets.BUCKET_NAME }}/--cache-control "max-age=120000" --delete
+          mkdir -p build/
+          echo random > build/index.html
+          echo random > build/index111.html
+          aws s3 sync ./build/ s3://${{ secrets.BUCKET_NAME }}/ --cache-control "max-age=120000" --delete
       # Notify the status of deploy on slack
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
