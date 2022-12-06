@@ -1,26 +1,38 @@
 {
-  "KSMmb": {
+  "ksm": {
     "fullName": "Kusama",
     "icon": "ksm"
   },
-  "WBTCmb": {
+  "wbtc": {
     "fullName": "Wrapped Bitcoin",
     "icon": "wbtc"
   },
-  "WETHmb": {
+  "weth": {
     "fullName": "Wrapped Ethereum",
     "icon": "weth"
   },
-  "DAImb": {
+  "dai": {
     "fullName": "DAI",
     "icon": "dai"
   },
-  "USDCmb": {
+  "usdc": {
     "fullName": "USD Coin",
     "icon": "usdc"
   },
-  "MOWRmb": {
+  "mowr": {
     "fullName": "Moonriver",
     "icon": "mowr"
+  },
+  "movr": {
+    "fullName": "Moonriver",
+    "icon": "mowr"
+  },
+  "frax": {
+    "fullName": "Frax",
+    "icon": "ksm"
+  },
+  "unknown": {
+    "fullName": "",
+    "icon": "coin_placeholder"
   }
 }

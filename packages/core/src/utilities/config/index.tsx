@@ -1,5 +1,7 @@
 import { ethers } from 'ethers'
 
+import Assets from '../assets.json'
+
 export const MIN_VALUE_FOR_TRANSACTION = 0.0000001
 export const MIN_HEALTH_FACTOR_VALUE = 1.01
 
@@ -21,8 +23,9 @@ export const AVAILABLE_BORROW_DEVIATION = '0.01'
 //Allow positive fractional number, included zero.(e.g. 0, 1, 0.0, 0.1, 1.0, 99999.000001, 5.10 )
 export const PATTERN_NUMBERS_ONLY = /^[0-9]*\.?[0-9]*$/
 
-type NetworkConfigType = {
-  [x: number]: { name: string; isTestnet: boolean; releyChain: string }
+type AssedDetail = {
+  fullName: string
+  icon: string
 }
 //@TODO UPLOAD & UPDATE ICONS
 const NetworkRegistry = [
@@ -150,4 +153,15 @@ export const getNetworkName = (chainId: number): string => {
     return network.displayName
   }
   return 'Unknown'
+}
+
+export const getAssetDetails = (symbol: string): AssedDetail => {
+  const asset = Object.keys(Assets).find(value =>
+    symbol.toLowerCase().includes(value),
+  )
+  if (asset) {
+    return Assets[asset]
+  } else {
+    return Assets['unknown']
+  }
 }

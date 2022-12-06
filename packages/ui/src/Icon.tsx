@@ -15,6 +15,7 @@ const notFilled = [
   'polkadot',
   'blox-logo',
   'polkadot',
+  'coin_placeholder',
 ]
 
 export const IconNames = [

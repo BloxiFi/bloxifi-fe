@@ -4,8 +4,8 @@ import {
   GET_DASHBOARD_RESERVE_DATA,
   DashboardReservesGraph,
   DashboardReservesDataQuery,
+  getAssetDetails,
 } from '@bloxifi/core'
-import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
 import {
   Dispatch,
@@ -94,10 +94,11 @@ function useDashboard(
       try {
         const reserveData = reserves.map(
           (reserve: DashboardReservesDataQuery) => {
+            const assetDetails = getAssetDetails(reserve.symbol)
             return {
               ...reserve,
-              icon: Assets[reserve.symbol].icon,
-              fullName: Assets[reserve.symbol].fullName,
+              icon: assetDetails.icon,
+              fullName: assetDetails.fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
               priceInEth: bigNumberToNumber(reserve.price.priceInEth),

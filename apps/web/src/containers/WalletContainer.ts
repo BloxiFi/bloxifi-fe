@@ -13,8 +13,8 @@ import {
   Tokens,
   UserReserveDataQuery,
   UserReserveVariables,
+  getAssetDetails,
 } from '@bloxifi/core'
-import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
 import { BigNumber } from 'ethers'
 import {
@@ -252,12 +252,13 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
               reserve.underlyingAsset,
               reserve.aToken.id,
             )
+            const assetDetails = getAssetDetails(reserve.symbol)
             return {
               ...reserve,
               balance: bigNumberToString(balance),
               aTokenBalance,
-              icon: Assets[reserve.symbol].icon,
-              fullName: Assets[reserve.symbol].fullName,
+              icon: assetDetails.icon,
+              fullName: assetDetails.fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
               priceInEth: bigNumberToNumber(reserve.price.priceInEth),
@@ -296,22 +297,25 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       currentATokenBalance,
       currentTotalDebt,
       ...rest
-    }: UserReserveDataQuery) => ({
-      ...rest,
-      ...restReserve,
-      currentATokenBalance: bigNumberToString(currentATokenBalance),
-      currentTotalDebt: bigNumberToString(currentTotalDebt),
-      symbol: symbol,
-      icon: Assets[symbol].icon,
-      fullName: Assets[symbol].fullName,
-      supplyAPY: calculateAPY(liquidityRate),
-      variableBorrowAPY: calculateAPY(variableBorrowRate),
-      priceInEth: bigNumberToNumber(price.priceInEth),
-      usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
-      baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
-      reserveLiquidationThreshold:
-        reserveLiquidationThreshold * Math.pow(10, -4),
-    }),
+    }: UserReserveDataQuery) => {
+      const assetDetails = getAssetDetails(symbol)
+      return {
+        ...rest,
+        ...restReserve,
+        currentATokenBalance: bigNumberToString(currentATokenBalance),
+        currentTotalDebt: bigNumberToString(currentTotalDebt),
+        symbol: symbol,
+        icon: assetDetails.icon,
+        fullName: assetDetails.fullName,
+        supplyAPY: calculateAPY(liquidityRate),
+        variableBorrowAPY: calculateAPY(variableBorrowRate),
+        priceInEth: bigNumberToNumber(price.priceInEth),
+        usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
+        baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
+        reserveLiquidationThreshold:
+          reserveLiquidationThreshold * Math.pow(10, -4),
+      }
+    },
     [],
   )
 
