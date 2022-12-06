@@ -41,6 +41,8 @@ jobs:
           echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" > .env
           echo "MOONBASE_EXPLORER=${{ secrets.MOONBASE_EXPLORER }}" >> .env
           echo "SUBSTRATE_EXPLORER=${{ secrets.SUBSTRATE_EXPLORER }}" >> .env
+          echo "IS_TESTNET=${{ secrets.IS_TESTNET }}" >> .env
+          echo "GITBOOK_URL=${{ secrets.GITBOOK_URL }}" >> .env
       # Install dependencies and build the app
       - name: Build React App
         id: build-project
