@@ -62,91 +62,92 @@ jobs:
           channel: ${{ secrets.SLACK_CHANNEL }}
         if: failure()
 
-  test:
-    needs: [build]
-    runs-on: ubuntu-latest
-    environment:
-      name: moonbase-alpha-development
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-    steps:
-      - uses: actions/checkout@v3
-        id: checkout
-      # Cache files
-      - name: Cache
-        uses: actions/cache@v3
-        id: cache
-        with:
-          path: |
-            node_modules/
-            .eslintcache
-            .stylelintcache
-            **/.cache
-            apps/**/node_modules/
-            packages/**/node_modules/
-            autotests/**/node_modules/
-            ~/.cache/Cypress
-          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            develop-fe-
-      # Run generate scripts
-      - name: Generate routes and behaviors
-        id: generate-data
-        run: yarn prebuild
-        working-directory: ./apps/web
-      # Run lint
-      - name: Lint
-        id: lint
-        run: NODE=production yarn lint:ci
-      # Run tests
-      - name: Test
-        id: unit-tests
-        run: yarn test
-      # Download artifact for e2e testing
-      - uses: actions/download-artifact@v3
-        id: download-artifact
-        with:
-          name: artifact-fe
-          path: autotests/synpress
-      # Generate env from secrets for e2e testing
-      - name: Generate env
-        working-directory: ./autotests/synpress
-        run: |
-          echo "SECRET_WORDS=${{ secrets.SECRET_WORDS }}" > .env
-          echo "METAMASK_VERSION=${{ secrets.METAMASK_VERSION }}" >> .env
-          echo "NETWORK_NAME=${{ secrets.NETWORK_NAME }}" >> .env
-          echo "RPC_URL=${{ secrets.RPC_URL }}" >> .env
-          echo "CHAIN_ID=${{ secrets.CHAIN_ID }}" >> .env
-          echo "BLOCK_EXPLORER=${{ secrets.BLOCK_EXPLORER }}" >> .env
-          echo "IS_TESTNET=${{ secrets.IS_TESTNET }}" >> .env
-          echo "SYMBOL=${{ secrets.SYMBOL }}" >> .env
-          echo "WALLET_PASSWORD=${{ secrets.WALLET_PASSWORD }}" >> .env
-          echo "ETHERSCAN_KEY=${{ secrets.ETHERSCAN_KEY }}" >> .env
-      # Run e2e tests
-      - name: E2E test
-        id: e2e-tests
-        run: ./node_modules/.bin/cypress install && yarn ci:e2e
-        working-directory: ./autotests/synpress
-      # Upload cypress video to artifact
-      - name: Artifacts
-        uses: actions/upload-artifact@v3
-        id: upload-artifact-cypress
-        with:
-          name: artifact-fe
-          path: |
-            autotests/synpress/tests/e2e/videos
-            autotests/synpress/tests/e2e/screenshots
-      # Notify if there is a failure or if this is a pull_request event
-      - uses: act10ns/slack@v1
-        with:
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
-          channel: ${{ secrets.SLACK_CHANNEL }}
-        if: ${{ github.event_name == 'pull_request' || failure() }}
+  # test:
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: moonbase-alpha-development
+  #   env:
+  #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       id: checkout
+  #     # Cache files
+  #     - name: Cache
+  #       uses: actions/cache@v3
+  #       id: cache
+  #       with:
+  #         path: |
+  #           node_modules/
+  #           .eslintcache
+  #           .stylelintcache
+  #           **/.cache
+  #           apps/**/node_modules/
+  #           packages/**/node_modules/
+  #           autotests/**/node_modules/
+  #           ~/.cache/Cypress
+  #         key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           develop-fe-
+  #     # Run generate scripts
+  #     - name: Generate routes and behaviors
+  #       id: generate-data
+  #       run: yarn prebuild
+  #       working-directory: ./apps/web
+  #     # Run lint
+  #     - name: Lint
+  #       id: lint
+  #       run: NODE=production yarn lint:ci
+  #     # Run tests
+  #     - name: Test
+  #       id: unit-tests
+  #       run: yarn test
+  #     # Download artifact for e2e testing
+  #     - uses: actions/download-artifact@v3
+  #       id: download-artifact
+  #       with:
+  #         name: artifact-fe
+  #         path: autotests/synpress
+  #     # Generate env from secrets for e2e testing
+  #     - name: Generate env
+  #       working-directory: ./autotests/synpress
+  #       run: |
+  #         echo "SECRET_WORDS=${{ secrets.SECRET_WORDS }}" > .env
+  #         echo "METAMASK_VERSION=${{ secrets.METAMASK_VERSION }}" >> .env
+  #         echo "NETWORK_NAME=${{ secrets.NETWORK_NAME }}" >> .env
+  #         echo "RPC_URL=${{ secrets.RPC_URL }}" >> .env
+  #         echo "CHAIN_ID=${{ secrets.CHAIN_ID }}" >> .env
+  #         echo "BLOCK_EXPLORER=${{ secrets.BLOCK_EXPLORER }}" >> .env
+  #         echo "IS_TESTNET=${{ secrets.IS_TESTNET }}" >> .env
+  #         echo "SYMBOL=${{ secrets.SYMBOL }}" >> .env
+  #         echo "WALLET_PASSWORD=${{ secrets.WALLET_PASSWORD }}" >> .env
+  #         echo "ETHERSCAN_KEY=${{ secrets.ETHERSCAN_KEY }}" >> .env
+  #     # Run e2e tests
+  #     - name: E2E test
+  #       id: e2e-tests
+  #       run: ./node_modules/.bin/cypress install && yarn ci:e2e
+  #       working-directory: ./autotests/synpress
+  #     # Upload cypress video to artifact
+  #     - name: Artifacts
+  #       uses: actions/upload-artifact@v3
+  #       id: upload-artifact-cypress
+  #       with:
+  #         name: artifact-fe
+  #         path: |
+  #           autotests/synpress/tests/e2e/videos
+  #           autotests/synpress/tests/e2e/screenshots
+  #     # Notify if there is a failure or if this is a pull_request event
+  #     - uses: act10ns/slack@v1
+  #       with:
+  #         status: ${{ job.status }}
+  #         steps: ${{ toJson(steps) }}
+  #         channel: ${{ secrets.SLACK_CHANNEL }}
+  #       if: ${{ github.event_name == 'pull_request' || failure() }}
 
   deploy:
     # if: ${{ github.event_name != 'pull_request' }}
-    needs: [build, test]
+    # needs: [build, test]
+    needs: [build]
     runs-on: ubuntu-latest
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
