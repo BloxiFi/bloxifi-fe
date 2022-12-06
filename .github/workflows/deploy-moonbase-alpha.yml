@@ -175,7 +175,7 @@ jobs:
       - name: test policy
         run: |
           echo random > index.html
-          aws s3 cp index.html s3://{{ secrets.BUCKET_NAME }}
+          aws s3 cp index.html s3://{{ secrets.BUCKET_NAME }}/index.html
          # aws s3 sync index.html s3://{{secrets.BUCKET_NAME}}/ --cache-control "max-age=120000" --delete
       # Notify the status of deploy on slack
       - name: Invalidate CloudFront
