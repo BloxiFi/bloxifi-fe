@@ -425,6 +425,25 @@ exports[`Storyshots Components/Icon All icons 1`] = `
         </tspan>
       </text>
     </div>
+    <div
+      center={true}
+      className="sc-evZas jVZDdu"
+    >
+      <text
+        className="recharts-text"
+        textAnchor="start"
+        type="body 1"
+        x={0}
+        y={0}
+      >
+        <tspan
+          dy="0em"
+          x={0}
+        >
+          frax
+        </tspan>
+      </text>
+    </div>
   </div>
 </div>
 `;

@@ -2,7 +2,16 @@ import React, { useContext } from 'react'
 import InlineSVG, { Props } from 'react-inlinesvg'
 import styled, { ThemeContext } from 'styled-components'
 
-const assetsIcons = ['dai', 'usdc', 'weth', 'wbtc', 'ksm', 'mowr', 'karura']
+const assetsIcons = [
+  'dai',
+  'usdc',
+  'weth',
+  'wbtc',
+  'ksm',
+  'mowr',
+  'karura',
+  'frax',
+]
 /**
  * TODO Refactor color prop and applying color
  */
