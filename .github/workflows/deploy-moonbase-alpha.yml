@@ -8,53 +8,53 @@ on:
       - develop
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: moonbase-alpha-development
-  #   env:
-  #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       id: checkout
-  #     # Cache files in ./frontend
-  #     - name: Cache
-  #       uses: actions/cache@v3
-  #       id: use-cache
-  #       with:
-  #         path: |
-  #           node_modules/
-  #           .eslintcache
-  #           .stylelintcache
-  #           **/.cache
-  #           apps/**/node_modules/
-  #           packages/**/node_modules/
-  #           autotests/**/node_modules/
-  #           ~/.cache/Cypress
-  #         key: develop-fe-${{ hashFiles('**/yarn.lock') }}
-  #         restore-keys: |
-  #           develop-fe-
-  #     # Generate env from secrets
-  #     - name: Generate env
-  #       working-directory: ./apps/web
-  #       run: |
-  #         echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" > .env
-  #         echo "MOONBASE_EXPLORER=${{ secrets.MOONBASE_EXPLORER }}" >> .env
-  #         echo "SUBSTRATE_EXPLORER=${{ secrets.SUBSTRATE_EXPLORER }}" >> .env
-  #     # Install dependencies and build the app
-  #     - name: Build React App
-  #       id: build-project
-  #       run: yarn install --frozen-lockfile && yarn bootstrap && yarn build
-  #     # Upload the build as artifact
-  #     - name: Artifacts
-  #       id: upload-artifact-build
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: artifact-fe
-  #         path: |
-  #           apps/web/dist/
-  #           packages/**/dist/
-  #     # Notify on slack if there is a failure
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: moonbase-alpha-development
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      - uses: actions/checkout@v3
+        id: checkout
+      # Cache files in ./frontend
+      - name: Cache
+        uses: actions/cache@v3
+        id: use-cache
+        with:
+          path: |
+            node_modules/
+            .eslintcache
+            .stylelintcache
+            **/.cache
+            apps/**/node_modules/
+            packages/**/node_modules/
+            autotests/**/node_modules/
+            ~/.cache/Cypress
+          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            develop-fe-
+      # Generate env from secrets
+      - name: Generate env
+        working-directory: ./apps/web
+        run: |
+          echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" > .env
+          echo "MOONBASE_EXPLORER=${{ secrets.MOONBASE_EXPLORER }}" >> .env
+          echo "SUBSTRATE_EXPLORER=${{ secrets.SUBSTRATE_EXPLORER }}" >> .env
+      # Install dependencies and build the app
+      - name: Build React App
+        id: build-project
+        run: yarn install --frozen-lockfile && yarn bootstrap && yarn build
+      # Upload the build as artifact
+      - name: Artifacts
+        id: upload-artifact-build
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-fe
+          path: |
+            apps/web/dist/
+            packages/**/dist/
+      # Notify on slack if there is a failure
   #     - uses: act10ns/slack@v1
   #       with:
   #         status: ${{ job.status }}
@@ -147,7 +147,7 @@ jobs:
   deploy:
     # if: ${{ github.event_name != 'pull_request' }}
     # needs: [build, test]
-    # needs: [build]
+    needs: [build]
     runs-on: ubuntu-latest
     # env:
     #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -165,26 +165,20 @@ jobs:
           aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
           role-duration-seconds: 1200 
       # Download the artifact
-      # - uses: actions/download-artifact@v3
-      #   with:
-      #     name: artifact-fe
-      # # Upload the app on S3 bucket
-      # - name: Deploy app build to S3 bucket
-      #   id: deploy
-      #   run: aws s3 sync ./apps/web/dist/ s3://${{ secrets.BUCKET_NAME }} --cache-control "max-age=120000" --delete
-      - name: test policy
-        run: |
-          mkdir -p build/
-          echo random > build/index.html
-          echo random > build/index111.html
-          aws s3 sync ./build/ s3://${{ secrets.BUCKET_NAME }}/ --cache-control "max-age=120000" --delete
-      # Notify the status of deploy on slack
+      - uses: actions/download-artifact@v3
+        with:
+          name: artifact-fe
+      # Upload the app on S3 bucket
+      - name: Deploy app build to S3 bucket
+        id: deploy
+        run: aws s3 sync ./apps/web/dist/ s3://${{ secrets.BUCKET_NAME }} --cache-control "max-age=120000" --delete
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
           DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
-          PATHS: "/index.html"     
-      # - uses: act10ns/slack@v1
+          PATHS: "/index.html"
+      # - name: Notify the status of deploy on slack
+      #   uses: act10ns/slack@v1
       #   with:
       #     status: ${{ job.status }}
       #     steps: ${{ toJson(steps) }}
