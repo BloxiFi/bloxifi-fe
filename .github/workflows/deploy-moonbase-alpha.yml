@@ -8,59 +8,59 @@ on:
       - develop
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    environment:
-      name: moonbase-alpha-development
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-    steps:
-      - uses: actions/checkout@v3
-        id: checkout
-      # Cache files in ./frontend
-      - name: Cache
-        uses: actions/cache@v3
-        id: use-cache
-        with:
-          path: |
-            node_modules/
-            .eslintcache
-            .stylelintcache
-            **/.cache
-            apps/**/node_modules/
-            packages/**/node_modules/
-            autotests/**/node_modules/
-            ~/.cache/Cypress
-          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            develop-fe-
-      # Generate env from secrets
-      - name: Generate env
-        working-directory: ./apps/web
-        run: |
-          echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" > .env
-          echo "MOONBASE_EXPLORER=${{ secrets.MOONBASE_EXPLORER }}" >> .env
-          echo "SUBSTRATE_EXPLORER=${{ secrets.SUBSTRATE_EXPLORER }}" >> .env
-      # Install dependencies and build the app
-      - name: Build React App
-        id: build-project
-        run: yarn install --frozen-lockfile && yarn bootstrap && yarn build
-      # Upload the build as artifact
-      - name: Artifacts
-        id: upload-artifact-build
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact-fe
-          path: |
-            apps/web/dist/
-            packages/**/dist/
-      # Notify on slack if there is a failure
-      - uses: act10ns/slack@v1
-        with:
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
-          channel: ${{ secrets.SLACK_CHANNEL }}
-        if: failure()
+  # build:
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: moonbase-alpha-development
+  #   env:
+  #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       id: checkout
+  #     # Cache files in ./frontend
+  #     - name: Cache
+  #       uses: actions/cache@v3
+  #       id: use-cache
+  #       with:
+  #         path: |
+  #           node_modules/
+  #           .eslintcache
+  #           .stylelintcache
+  #           **/.cache
+  #           apps/**/node_modules/
+  #           packages/**/node_modules/
+  #           autotests/**/node_modules/
+  #           ~/.cache/Cypress
+  #         key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           develop-fe-
+  #     # Generate env from secrets
+  #     - name: Generate env
+  #       working-directory: ./apps/web
+  #       run: |
+  #         echo "GRAPHQL_URL=${{ secrets.GRAPHQL_URL }}" > .env
+  #         echo "MOONBASE_EXPLORER=${{ secrets.MOONBASE_EXPLORER }}" >> .env
+  #         echo "SUBSTRATE_EXPLORER=${{ secrets.SUBSTRATE_EXPLORER }}" >> .env
+  #     # Install dependencies and build the app
+  #     - name: Build React App
+  #       id: build-project
+  #       run: yarn install --frozen-lockfile && yarn bootstrap && yarn build
+  #     # Upload the build as artifact
+  #     - name: Artifacts
+  #       id: upload-artifact-build
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: artifact-fe
+  #         path: |
+  #           apps/web/dist/
+  #           packages/**/dist/
+  #     # Notify on slack if there is a failure
+  #     - uses: act10ns/slack@v1
+  #       with:
+  #         status: ${{ job.status }}
+  #         steps: ${{ toJson(steps) }}
+  #         channel: ${{ secrets.SLACK_CHANNEL }}
+  #       if: failure()
 
   # test:
   #   needs: [build]
@@ -147,7 +147,7 @@ jobs:
   deploy:
     # if: ${{ github.event_name != 'pull_request' }}
     # needs: [build, test]
-    needs: [build]
+    # needs: [build]
     runs-on: ubuntu-latest
     # env:
     #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
