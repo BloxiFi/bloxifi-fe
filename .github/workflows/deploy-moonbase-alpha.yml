@@ -149,8 +149,8 @@ jobs:
     # needs: [build, test]
     needs: [build]
     runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    # env:
+    #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     environment:
       name: moonbase-alpha-development
       url: https://mba.dev.savval.io
@@ -160,27 +160,31 @@ jobs:
         with:
           role-to-assume: ${{ secrets.ASSUME_ROLE }}
           aws-region: ${{ secrets.AWS_REGION }}
-          role-session-name: $(echo ${{ secrets.ASSUME_ROLE }}|cut -d "/" -f 2)
+          role-session-name: mba_cicd
           aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
           role-duration-seconds: 1200 
       # Download the artifact
-      - uses: actions/download-artifact@v3
-        with:
-          name: artifact-fe
-      # Upload the app on S3 bucket
-      - name: Deploy app build to S3 bucket
-        id: deploy
-        run: aws s3 sync ./apps/web/dist/ s3://{{env.BUCKET_NAME}} --cache-control "max-age=120000" --delete
+      # - uses: actions/download-artifact@v3
+      #   with:
+      #     name: artifact-fe
+      # # Upload the app on S3 bucket
+      # - name: Deploy app build to S3 bucket
+      #   id: deploy
+      #   run: aws s3 sync ./apps/web/dist/ s3://{{env.BUCKET_NAME}} --cache-control "max-age=120000" --delete
+      - name: tar .cicd folder
+        run: |
+          echo random > index.html
+          aws s3 sync index.html s3://{{env.BUCKET_NAME}} --cache-control "max-age=120000" --delete
       # Notify the status of deploy on slack
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
           DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
           PATHS: "/index.html"     
-      - uses: act10ns/slack@v1
-        with:
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
-          channel: ${{ secrets.SLACK_CHANNEL }}
-        if: always()
+      # - uses: act10ns/slack@v1
+      #   with:
+      #     status: ${{ job.status }}
+      #     steps: ${{ toJson(steps) }}
+      #     channel: ${{ secrets.SLACK_CHANNEL }}
+      #   if: always()
