@@ -145,14 +145,14 @@ jobs:
         if: ${{ github.event_name == 'pull_request' || failure() }}
 
   deploy:
-    if: ${{ github.event_name != 'pull_request' }}
+    # if: ${{ github.event_name != 'pull_request' }}
     needs: [build, test]
     runs-on: ubuntu-latest
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     environment:
       name: moonbase-alpha-development
-      url: ${{ secrets.DOMAIN_URL }}
+      url: https://mba.dev.savval.io
     steps:
       - name: Assume Role
         uses: aws-actions/configure-aws-credentials@v1
