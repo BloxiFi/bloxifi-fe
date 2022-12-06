@@ -57,12 +57,12 @@ jobs:
             apps/web/dist/
             packages/**/dist/
       # Notify on slack if there is a failure
-  #     - uses: act10ns/slack@v1
-  #       with:
-  #         status: ${{ job.status }}
-  #         steps: ${{ toJson(steps) }}
-  #         channel: ${{ secrets.SLACK_CHANNEL }}
-  #       if: failure()
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: failure()
 
   # test:
   #   needs: [build]
@@ -151,8 +151,8 @@ jobs:
     # needs: [build, test]
     needs: [build]
     runs-on: ubuntu-latest
-    # env:
-    #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     environment:
       name: moonbase-alpha-development
       url: https://mba.dev.savval.io
@@ -179,10 +179,10 @@ jobs:
         env:
           DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
           PATHS: "/index.html"
-      # - name: Notify the status of deploy on slack
-      #   uses: act10ns/slack@v1
-      #   with:
-      #     status: ${{ job.status }}
-      #     steps: ${{ toJson(steps) }}
-      #     channel: ${{ secrets.SLACK_CHANNEL }}
-      #   if: always()
+      - name: Notify the status of deploy on slack
+        uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: always()
