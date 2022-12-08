@@ -52,7 +52,7 @@ jobs:
       - name: Build React App
         id: build-project
         run: |
-         aws secretsmanager get-secret-value --secret-id ${ secret.MBA_BUCKET} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > apps/web/.env
+         aws secretsmanager get-secret-value --secret-id ${{ secrets.MBA_BUCKET }} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > apps/web/.env
          yarn install --frozen-lockfile && yarn bootstrap && yarn build
          ls apps/web/
          rm apps/web/.env
