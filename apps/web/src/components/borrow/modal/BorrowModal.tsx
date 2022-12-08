@@ -10,12 +10,10 @@ import {
   numberToBigNumber,
   SCALING_FACTOR,
   stringToBigNumber,
-  Tokens,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
 
 import { TransactionOverview } from '../table/TransactionOverview'
@@ -67,54 +65,13 @@ export const BorrowModal = ({
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
-  const [shouldApproveContract, setShouldApproveContract] = useState(false)
-  const [approved, setApproved] = useState<boolean>(false)
-
   const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
   const [futureHealthFactor, setFutureHealthFactor] =
     useState<number>(undefined)
   const [maxAmountToBorrow, setMaxAmountToBorrow] = useState('')
 
-  const tokenContract = reserveData.symbol
-    ? Tokens.getERC20TokenContract(signer, reserveData.underlyingAsset)
-    : null
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
-
-  const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
-    if (tokenContract) {
-      try {
-        const approvedTokens = await Tokens.getAllowance(
-          tokenContract,
-          currentAccount,
-          'deposit',
-        )
-        setShouldApproveContract(approvedTokens.toString() === '0')
-      } catch (error) {
-        setHasError(error)
-      }
-    }
-  }, [currentAccount, tokenContract])
-
-  useEffect(() => {
-    if (isSupportedNetwork) {
-      void checkAllowance()
-    }
-  }, [checkAllowance, isSupportedNetwork])
-
-  const approve = async () => {
-    setLoading(true)
-    try {
-      const response = await Tokens.approveToken(tokenContract, 'deposit')
-      const isApproved = await response.wait()
-
-      setApproved(!!isApproved)
-    } catch (error) {
-      setHasError(error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const borrow = async (amount: string) => {
     setLoading(true)
@@ -177,7 +134,6 @@ export const BorrowModal = ({
     if (isOpen) {
       resetState()
       setBorrowCompleted(false)
-      setShouldApproveContract(false)
       setFutureHealthFactor(undefined)
     }
   }, [isOpen, resetState])
@@ -191,9 +147,7 @@ export const BorrowModal = ({
     isInputDisabled ||
     !!errors.amount ||
     !values.amount ||
-    (shouldApproveContract && !approved) ||
     isHealthFactorReached
-  const isApproveDisabled = !isSupportedNetwork || loading || approved
 
   useEffect(() => {
     if (isOpen) {
@@ -292,31 +246,17 @@ export const BorrowModal = ({
             </StackLayout>
 
             <BoxLayout gap={1.875}>
-              <StackLayout gap={1}>
-                {shouldApproveContract && (
-                  <Button
-                    className="u-full-width"
-                    appearance="dark"
-                    size="large"
-                    variant="large"
-                    disabled={isApproveDisabled}
-                    onClick={approve}
-                  >
-                    {t('global.buttons.approve')}
-                  </Button>
-                )}
-                <Button
-                  className="u-full-width"
-                  appearance="dark"
-                  size="large"
-                  variant="large"
-                  disabled={isBorrowDisabled}
-                  onClick={submitForm}
-                  data-cy={'borrowButtonOnModal ' + reserveData.symbol}
-                >
-                  {t('global.buttons.borrow')} {reserveData.symbol}
-                </Button>
-              </StackLayout>
+              <Button
+                className="u-full-width"
+                appearance="dark"
+                size="large"
+                variant="large"
+                disabled={isBorrowDisabled}
+                onClick={submitForm}
+                data-cy={'borrowButtonOnModal ' + reserveData.symbol}
+              >
+                {t('global.buttons.borrow')} {reserveData.symbol}
+              </Button>
             </BoxLayout>
           </StackLayout>
         </>
