@@ -67,8 +67,6 @@ jobs:
           channel: ${{ secrets.SLACK_CHANNEL }}
         if: failure()
   deploy:
-    # if: ${{ github.event_name != 'pull_request' }}
-    # needs: [build, test]
     needs: [build]
     runs-on: ubuntu-latest
     env:
@@ -93,6 +91,7 @@ jobs:
           upload_path=$(echo ${{ secrets.STG_MR_BUCKET }} |sed s%-%\/%)
           aws s3 cp ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-build.tar.gz $(pwd)/artifact.tar.gz
           tar xvf artifact.tar.gz
+          rm artifact.tar.gz
       # Upload the app on S3 bucket
       - name: Deploy app build to S3 bucket
         id: deploy
