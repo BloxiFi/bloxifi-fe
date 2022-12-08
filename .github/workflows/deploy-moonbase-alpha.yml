@@ -112,13 +112,12 @@ jobs:
           upload_path=$(echo ${{ secrets.MBA_BUCKET }} |sed s%-%\/%)
           aws s3 cp ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-test.tar.gz $(pwd)/artifact.tar.gz
           pwd && ls -lha
-          tar xvf artifact.tar.gz && cd dist
+          tar xvf artifact.tar.gz
           pwd && ls -lha
       # Upload the app on S3 bucket
       - name: Deploy app build to S3 bucket
         id: deploy
-        run: pwd && ls -lha
-        # run: aws s3 sync . s3://${{ secrets.MBA_BUCKET }} --cache-control "max-age=120000" --delete
+        run: aws s3 sync . s3://${{ secrets.MBA_BUCKET }} --cache-control "max-age=120000" --delete
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
