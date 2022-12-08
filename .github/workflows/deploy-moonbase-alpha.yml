@@ -54,20 +54,25 @@ jobs:
         run: |
          aws secretsmanager get-secret-value --secret-id ${{ secrets.MBA_BUCKET }} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > apps/web/.env
          yarn install --frozen-lockfile && yarn bootstrap && yarn build
-         ls apps/web/
+         pwd && ls -lha apps/web/ 
+         echo TEST1
          rm apps/web/.env
-         cd apps/web/ && tar cvzf ${GITHUB_SHA}-test.tar.gz * && ls && mv ${GITHUB_SHA}-test.tar.gz ../../ && ls  && cd ../../ && ls
+         cd apps/web/dist && tar cvzf ${GITHUB_SHA}-test.tar.gz *
+         echo TEST2
+         mv ${GITHUB_SHA}-test.tar.gz ../../../
+         pwd && ls -lha
+         cd ../../../
+         echo TEST3
+         pwd && ls -lha
          upload_path=$(echo ${{ secrets.MBA_BUCKET }} |sed s%-%\/%)
          aws s3 cp ${GITHUB_SHA}-test.tar.gz ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-test.tar.gz
       # Upload the build as artifact
-      # - name: Artifacts
-      #   id: upload-artifact-build
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: artifact-fe
-      #     path: |
-      #       apps/web/dist/
-      #       packages/**/dist/
+      - name: Artifacts upload
+        id: upload-artifact
+        run: |
+          echo TEST4
+          pwd && ls -lha
+          aws s3 cp ${GITHUB_SHA}-test.tar.gz ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/test123123123123.tar.gz
       ## Notify on slack if there is a failure
       # - uses: act10ns/slack@v1
       #   with:
