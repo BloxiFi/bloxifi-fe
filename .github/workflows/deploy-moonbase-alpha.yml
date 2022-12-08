@@ -2,7 +2,7 @@ name: moonbase-alpha
 on:
   push:
     branches:
-      - cicd_dev
+      - develop
   pull_request:
     branches:
       - develop

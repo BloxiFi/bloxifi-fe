@@ -1,11 +1,11 @@
-name: staging-moonriver
+name: moonriver-staging
 on:
   push:
     branches:
-      - cicd_dev
+      - moonriver-staging
   pull_request:
     branches:
-      - develop
+      - moonriver-staging
 
 jobs:
   build:

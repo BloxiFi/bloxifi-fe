@@ -2,10 +2,7 @@ name: moonriver
 on:
   push:
     branches:
-      - cicd_dev
-  pull_request:
-    branches:
-      - develop
+      - moonriver-master
 
 jobs:
   build:
