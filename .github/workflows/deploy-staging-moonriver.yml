@@ -75,7 +75,7 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     environment:
       name: staging-moonriver
-      url: https://${{ secrets.STG_MR_URL }}
+      url: https://mriver.staging.savval.io
     steps:
       - name: Assume Role
         uses: aws-actions/configure-aws-credentials@v1

@@ -75,7 +75,7 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     environment:
       name: moonriver
-      url: https://${{ secrets.PROD_MR_URL }}
+      url: https://savval.io
     steps:
       - name: Assume Role
         uses: aws-actions/configure-aws-credentials@v1

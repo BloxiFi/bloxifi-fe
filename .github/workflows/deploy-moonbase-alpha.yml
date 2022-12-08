@@ -75,7 +75,7 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     environment:
       name: moonbase-alpha-development
-      url: https://${{ secrets.MBA_URL }}
+      url: https://mba.dev.savval.io
     steps:
       - name: Assume Role
         uses: aws-actions/configure-aws-credentials@v1
