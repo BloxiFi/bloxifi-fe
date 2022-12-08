@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment:
-      name: staging-moonriver
+      name: moonriver-staging
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
@@ -72,7 +72,7 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     environment:
-      name: staging-moonriver
+      name: moonriver-staging
       url: https://mriver.staging.savval.io
     steps:
       - name: Assume Role
