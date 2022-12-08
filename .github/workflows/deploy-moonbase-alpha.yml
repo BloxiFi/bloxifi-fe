@@ -24,25 +24,25 @@ jobs:
           aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
           role-duration-seconds: 1200     
-      # - uses: actions/checkout@v3
-      #   id: checkout
-      # # Cache files in ./frontend
-      # - name: Cache
-      #   uses: actions/cache@v3
-      #   id: use-cache
-      #   with:
-      #     path: |
-      #       node_modules/
-      #       .eslintcache
-      #       .stylelintcache
-      #       **/.cache
-      #       apps/**/node_modules/
-      #       packages/**/node_modules/
-      #       autotests/**/node_modules/
-      #       ~/.cache/Cypress
-      #     key: develop-fe-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       develop-fe-
+      - uses: actions/checkout@v3
+        id: checkout
+      # Cache files in ./frontend
+      - name: Cache
+        uses: actions/cache@v3
+        id: use-cache
+        with:
+          path: |
+            node_modules/
+            .eslintcache
+            .stylelintcache
+            **/.cache
+            apps/**/node_modules/
+            packages/**/node_modules/
+            autotests/**/node_modules/
+            ~/.cache/Cypress
+          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            develop-fe-
       # Generate env from secrets
       # - name: Generate env
       #   working-directory: ./apps/web
@@ -52,30 +52,18 @@ jobs:
       - name: Build React App
         id: build-project
         run: |
-         mkdir -p apps/web/dist
          aws secretsmanager get-secret-value --secret-id ${{ secrets.MBA_BUCKET }} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > apps/web/.env
          yarn install --frozen-lockfile && yarn bootstrap && yarn build
-         touch apps/web/dist/{file1,file2,file3}.html
-         pwd && ls -lha apps/web/ 
-         echo TEST1
          rm apps/web/.env
          cd apps/web/dist && tar cvzf ${GITHUB_SHA}-test.tar.gz *
-         echo TEST2
          mv ${GITHUB_SHA}-test.tar.gz ../../../
-         pwd && ls -lha
          cd ../../../
-         echo TEST3
-         pwd && ls -lha
-         upload_path=$(echo ${{ secrets.MBA_BUCKET }} |sed s%-%\/%)
-         aws s3 cp ${GITHUB_SHA}-test.tar.gz ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-test.tar.gz
       # Upload the build as artifact
       - name: Artifacts upload
         id: upload-artifact
         run: |
-          echo TEST4
-          pwd && ls -lha
           upload_path=$(echo ${{ secrets.MBA_BUCKET }} |sed s%-%\/%)
-          aws s3 cp ${GITHUB_SHA}-test.tar.gz ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/test123123123123.tar.gz
+          aws s3 cp ${GITHUB_SHA}-test.tar.gz ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-test.tar.gz
       ## Notify on slack if there is a failure
       # - uses: act10ns/slack@v1
       #   with:
@@ -107,13 +95,9 @@ jobs:
       - name: Artifacts upload
         id: upload-artifact
         run: |
-          echo TEST4
-          pwd && ls -lha
           upload_path=$(echo ${{ secrets.MBA_BUCKET }} |sed s%-%\/%)
           aws s3 cp ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-test.tar.gz $(pwd)/artifact.tar.gz
-          pwd && ls -lha
           tar xvf artifact.tar.gz
-          pwd && ls -lha
       # Upload the app on S3 bucket
       - name: Deploy app build to S3 bucket
         id: deploy
