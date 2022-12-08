@@ -71,7 +71,8 @@ export const TransactionOverview = ({
   const transactionData: TransactionData[] = headers.map(name => ({ name }))
   const shouldDisplayFutureHF =
     amount && healthFactor !== futureHealthFactor && Number(amount) > 0
-
+  const shouldDisplayInfinityFutureHF =
+    amount && isHealthFactorInfinity(futureHealthFactor)
   const getColumnValue = (name: TableHeader) => {
     switch (name) {
       case 'supplyAPY':
@@ -87,8 +88,7 @@ export const TransactionOverview = ({
           <StackLayout>
             <ColumnLayout align="flex-end" center>
               <HealthFactorNumber value={healthFactor} />
-              {(shouldDisplayFutureHF ||
-                isHealthFactorInfinity(futureHealthFactor)) && (
+              {(shouldDisplayFutureHF || shouldDisplayInfinityFutureHF) && (
                 <>
                   <Icon name="arrow-right" size={15} color="oxfordBlue" />
                   <HealthFactorNumber value={futureHealthFactor} />
