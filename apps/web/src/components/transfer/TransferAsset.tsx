@@ -141,7 +141,8 @@ const TransferAsset = () => {
   }
 
   const handleTransferClick = async (amountToSend: string) => {
-    const transaction = await TokenTransfer(
+    //const transaction =
+    await TokenTransfer(
       toCapitalize(selectedOrigin.network),
       toCapitalize(selectedDestination.network),
       amountToSend.toString(),

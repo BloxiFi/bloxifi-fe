@@ -1,9 +1,10 @@
 import { AssetSymbol, ChainKey } from '@moonbeam-network/xcm-config'
-import { init } from '@moonbeam-network/xcm-sdk'
+import { init } from '@moonbeam-network/xcm-sdk' //ExtrinsicEvent
 import { web3FromAddress } from '@polkadot/extension-dapp'
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { JsonRpcSigner } from '@ethersproject/providers'
 import { parseUnits } from 'ethers/lib/utils'
+//import { useState } from 'react'
 
 //deposit -> from Polka to Moonriver
 //withdraw -> from Moonriver to Polkadot
@@ -15,21 +16,26 @@ const withdrawToken = async (
   _tokenSymbol: string,
   _chain: string,
 ) => {
+  //: Promise<string>
   const polkaInjector = await web3FromAddress(_polkaAcc)
   const polkaSigner = polkaInjector.signer
   const { moonriver } = init({
     ethersSigner: _metamaskSigner,
     polkadotSigner: polkaSigner,
   })
-
   const token = AssetSymbol[_tokenSymbol.toUpperCase()]
   const chain = ChainKey[_chain]
   const { to } = moonriver.withdraw(token)
   const respcall = await to(chain).get(_polkaAcc)
   const amount = parseUnits(_amount, respcall.asset.decimals)
-  return await respcall.send(amount.toBigInt(), event => {
-    return event
+  const transaction = await respcall.send(amount.toBigInt(), event => {
+    //console.log(event)
+    //console.log('ev: ', event.status, typeof event.status)
+    //setReturnLog(event)
+    //return event.status
+    //return event
   })
+  return transaction
 }
 
 const depositToken = async (
@@ -51,10 +57,13 @@ const depositToken = async (
   const chain = ChainKey[_chain]
   const { from } = moonriver.deposit(token)
   const respcall = await from(chain).get(_metamaskAcc, _polkaAcc)
+  //console.log(respcall, _amount)
   const amount = parseUnits(_amount, respcall.asset.decimals)
-  return await respcall.send(amount.toBigInt(), event => {
-    return event
-  })
+  //console.log(amount)
+  //return await respcall.send(amount.toBigInt(), (event) => {
+  //  console.log(event)
+  //  return event
+  //})
 }
 
 /**
@@ -69,6 +78,7 @@ export const TokenTransfer = async (
   metamaskAccount: string,
   tokenSymbol: string,
 ) => {
+  //const [returnLog, setReturnLog] = useState<ExtrinsicEvent>()
   const transaction = ''
   try {
     if (originChain === 'Moonriver') {
@@ -79,6 +89,7 @@ export const TokenTransfer = async (
         tokenSymbol,
         destinationChain,
       )
+      return transaction
     } else if (destinationChain === 'Moonriver') {
       const transaction = await depositToken(
         tokenAmount,
@@ -88,9 +99,11 @@ export const TokenTransfer = async (
         tokenSymbol,
         originChain,
       )
+      return transaction
     }
   } catch (e) {
     throw new Error(e)
   }
+  //console.log('transaction: ', transaction)
   return transaction
 }
