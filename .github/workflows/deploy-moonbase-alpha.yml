@@ -43,11 +43,6 @@ jobs:
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             develop-fe-
-      # Generate env from secrets
-      # - name: Generate env
-      #   working-directory: ./apps/web
-      #   run: |
-      #     aws secretsmanager get-secret-value --secret-id ${ secret.MBA_BUCKET} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > .env
       # Install dependencies and build the app
       - name: Build React App
         id: build-project
@@ -55,32 +50,32 @@ jobs:
          aws secretsmanager get-secret-value --secret-id ${{ secrets.MBA_BUCKET }} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > apps/web/.env
          yarn install --frozen-lockfile && yarn bootstrap && yarn build
          rm apps/web/.env
-         cd apps/web/dist && tar cvzf ${GITHUB_SHA}-test.tar.gz *
-         mv ${GITHUB_SHA}-test.tar.gz ../../../
+         cd apps/web/dist && tar cvzf ${GITHUB_SHA}-build.tar.gz *
+         mv ${GITHUB_SHA}-build.tar.gz ../../../
          cd ../../../
       # Upload the build as artifact
       - name: Artifacts upload
         id: upload-artifact
         run: |
           upload_path=$(echo ${{ secrets.MBA_BUCKET }} |sed s%-%\/%)
-          aws s3 cp ${GITHUB_SHA}-test.tar.gz ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-test.tar.gz
+          aws s3 cp ${GITHUB_SHA}-build.tar.gz ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-build.tar.gz
       ## Notify on slack if there is a failure
-      # - uses: act10ns/slack@v1
-      #   with:
-      #     status: ${{ job.status }}
-      #     steps: ${{ toJson(steps) }}
-      #     channel: ${{ secrets.SLACK_CHANNEL }}
-      #   if: failure()
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: failure()
   deploy:
     # if: ${{ github.event_name != 'pull_request' }}
     # needs: [build, test]
     needs: [build]
     runs-on: ubuntu-latest
-    # env:
-    #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-    # environment:
-    #   name: moonbase-alpha-development
-    #   url: https://mba.dev.savval.io
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    environment:
+      name: moonbase-alpha-development
+      url: https://${{ secrets.MBA_URL }}
     steps:
       - name: Assume Role
         uses: aws-actions/configure-aws-credentials@v1
@@ -96,7 +91,7 @@ jobs:
         id: upload-artifact
         run: |
           upload_path=$(echo ${{ secrets.MBA_BUCKET }} |sed s%-%\/%)
-          aws s3 cp ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-test.tar.gz $(pwd)/artifact.tar.gz
+          aws s3 cp ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-build.tar.gz $(pwd)/artifact.tar.gz
           tar xvf artifact.tar.gz
       # Upload the app on S3 bucket
       - name: Deploy app build to S3 bucket
@@ -107,10 +102,10 @@ jobs:
         env:
           DISTRIBUTION: ${{ secrets.MBA_DISTRIBUTION_ID }}
           PATHS: "/index.html"
-  #     - name: Notify the status of deploy on slack
-  #       uses: act10ns/slack@v1
-  #       with:
-  #         status: ${{ job.status }}
-  #         steps: ${{ toJson(steps) }}
-  #         channel: ${{ secrets.SLACK_CHANNEL }}
-  #       if: always()
+      - name: Notify the status of deploy on slack
+        uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: always()
