@@ -7,12 +7,14 @@ import {
   numberToBigNumber,
   SCALING_FACTOR,
   stringToBigNumber,
+  Tokens,
   useFormatNumber,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
+import { CheckAllowanceFunction } from 'packages/types/src'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -65,10 +67,51 @@ export const RepayModal = ({
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
+  const [shouldApproveContract, setShouldApproveContract] = useState(false)
+  const [approved, setApproved] = useState<boolean>(false)
+
   const [repayCompleted, setRepayCompleted] = useState<boolean>(false)
 
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
+  const tokenContract = reserveData.symbol
+    ? Tokens.getERC20TokenContract(signer, reserveData.underlyingAsset)
+    : null
+
+  const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
+    if (tokenContract) {
+      try {
+        const approvedTokens = await Tokens.getAllowance(
+          tokenContract,
+          currentAccount,
+          'deposit',
+        )
+        setShouldApproveContract(approvedTokens.toString() === '0')
+      } catch (error) {
+        setHasError(error)
+      }
+    }
+  }, [currentAccount, tokenContract])
+
+  useEffect(() => {
+    if (isSupportedNetwork) {
+      void checkAllowance()
+    }
+  }, [checkAllowance, isSupportedNetwork])
+
+  const approve = async () => {
+    setLoading(true)
+    try {
+      const response = await Tokens.approveToken(tokenContract, 'deposit')
+      const isApproved = await response.wait()
+
+      setApproved(!!isApproved)
+    } catch (error) {
+      setHasError(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const repay = async (amount: string) => {
     setLoading(true)
@@ -136,11 +179,18 @@ export const RepayModal = ({
     if (isOpen) {
       resetState()
       setRepayCompleted(false)
+      setShouldApproveContract(false)
+      setApproved(false)
     }
   }, [isOpen, resetState])
 
   const isInputDisabled = !isSupportedNetwork || loading || repayCompleted
-  const isRepayDisabled = isInputDisabled || !!errors.amount || !values.amount
+  const isRepayDisabled =
+    isInputDisabled ||
+    !!errors.amount ||
+    !values.amount ||
+    (shouldApproveContract && !approved)
+  const isApproveDisabled = !isSupportedNetwork || loading || approved
 
   const calculateRemainingDebt = () => {
     const remainingSupply =
@@ -222,17 +272,31 @@ export const RepayModal = ({
             </StackLayout>
 
             <BoxLayout gap={1.875}>
-              <Button
-                className="u-full-width"
-                appearance="dark"
-                size="large"
-                variant="large"
-                disabled={isRepayDisabled}
-                onClick={submitForm}
-                data-cy={'repayButtonOnModal ' + reserveData.symbol}
-              >
-                {t('global.buttons.repay')} {reserveData.symbol}
-              </Button>
+              <StackLayout gap={1}>
+                {shouldApproveContract && (
+                  <Button
+                    className="u-full-width"
+                    appearance="dark"
+                    size="large"
+                    variant="large"
+                    disabled={isApproveDisabled}
+                    onClick={approve}
+                  >
+                    {t('global.buttons.approve')}
+                  </Button>
+                )}
+                <Button
+                  className="u-full-width"
+                  appearance="dark"
+                  size="large"
+                  variant="large"
+                  disabled={isRepayDisabled}
+                  onClick={submitForm}
+                  data-cy={'repayButtonOnModal ' + reserveData.symbol}
+                >
+                  {t('global.buttons.repay')} {reserveData.symbol}
+                </Button>
+              </StackLayout>
             </BoxLayout>
           </StackLayout>
         </>

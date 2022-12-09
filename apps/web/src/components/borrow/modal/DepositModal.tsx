@@ -177,6 +177,7 @@ export const DepositModal = ({
       resetState()
       setDepositCompleted(false)
       setShouldApproveContract(false)
+      setApproved(false)
     }
   }, [isOpen, resetState])
 
