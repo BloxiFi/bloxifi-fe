@@ -70,7 +70,8 @@
   },
   "header": {
     "globalSettings": "Global settings",
-    "network": "Network"
+    "network": "Network",
+    "walletAddressCopyTitle": "Wallet Address copied."
   },
   "walletConnection": {
     "notConnectedTitle": "Please, connect your wallet",

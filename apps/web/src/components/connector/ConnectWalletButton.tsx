@@ -14,12 +14,15 @@ import {
 import { getNetworkName, sliceMiddleOfString } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 
+import { CopyAddressModal } from '../header/CopyAddressModal'
+
 import { Web3Container } from '@/containers/Web3Container'
 
 export const ConnectWalletButton = () => {
   const { t } = useTranslation()
   const MOONBASE_EXPLORER = process.env.MOONBASE_EXPLORER
   const [closeMenu, setCloseMenu] = useState(false)
+  const [copyAddressModal, setCopyAddressModal] = useState<boolean>(false)
 
   const {
     connectWallet,
@@ -55,6 +58,15 @@ export const ConnectWalletButton = () => {
       return t('walletConnection.connecting')
     }
     return t('global.buttons.connectWallet')
+  }
+
+  const closeModal = () => {
+    setCopyAddressModal(false)
+  }
+
+  const copyAddress = async () => {
+    await navigator.clipboard.writeText(currentAccount)
+    setCopyAddressModal(true)
   }
 
   return isConnected ? (
@@ -122,10 +134,14 @@ export const ConnectWalletButton = () => {
                 appearance="text"
                 variant="large"
                 size="large"
-                onClick={() => navigator.clipboard.writeText(currentAccount)}
+                onClick={copyAddress}
               >
                 {t('global.buttons.copyAddress')}
               </MenuItem>
+              <CopyAddressModal
+                isOpen={copyAddressModal}
+                onClose={closeModal}
+              />
               <MenuItem
                 appearance="text"
                 variant="large"
