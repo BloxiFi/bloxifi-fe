@@ -269,6 +269,47 @@ export const getMaxRepayAmount = (
 }
 
 /**
+ * Function that calculates the maximum amount that user can borrow based on his total collaterals and borrows
+ * @param availableBorrowsETH Total available amount to borrow in ETH based on user collaterals and borrows
+ * @param priceInEth Asset price in ETH
+ * @returns
+ */
+export const calculateAvailableAssetToBorrow = (
+  availableBorrowsETH: BigNumber,
+  priceInEth: number,
+) => {
+  let availableAssetToBorrow = convertETHToAssetValue(
+    availableBorrowsETH,
+    numberToBigNumber(priceInEth),
+  )
+  //Decrease available asset to borrow by scaling constant
+  return (availableAssetToBorrow = availableAssetToBorrow.sub(
+    availableAssetToBorrow
+      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION))
+      .div(SCALING_FACTOR),
+  ))
+}
+
+/**
+ * Function that calculates the maximum amount that user can borrow up to future health factor limit (HF should be min MIN_HEALTH_FACTOR_VALUE)
+ * @param totalCollateralETH user collaterals in ETH
+ * @param totalDebtETH Total user borrows in ETH
+ * @param priceInEth Asset price in ETH
+ * @returns
+ */
+export const calcBorrowAmountToReachHFLimit = (
+  totalCollateralETH: BigNumber,
+  totalDebtETH: BigNumber,
+  priceInEth: number,
+) =>
+  totalCollateralETH
+    .mul(SCALING_FACTOR)
+    .div(numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION))
+    .sub(totalDebtETH)
+    .mul(SCALING_FACTOR)
+    .div(numberToBigNumber(priceInEth))
+
+/**
  * Function that calculates the maximum amount that user can borrow
  * The maximum amount to borrow should be the minimum of the following params:
  * * -total aToken balance that exist in the pool
@@ -294,23 +335,16 @@ export const getMaxBorrowAmount = ({
   totalCollateralETH: BigNumber
   totalDebtETH: BigNumber
 }) => {
-  let availableAssetToBorrow = convertETHToAssetValue(
+  const availableAssetToBorrow = calculateAvailableAssetToBorrow(
     availableBorrowsETH,
-    numberToBigNumber(priceInEth),
+    priceInEth,
   )
-  const amountToReachHFLimit = totalCollateralETH
-    .mul(SCALING_FACTOR)
-    .div(numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION))
-    .sub(totalDebtETH)
-    .mul(SCALING_FACTOR)
-    .div(numberToBigNumber(priceInEth))
+  const amountToReachHFLimit = calcBorrowAmountToReachHFLimit(
+    totalCollateralETH,
+    totalDebtETH,
+    priceInEth,
+  )
 
-  //Decrease available asset to borrow by scaling constant
-  availableAssetToBorrow = availableAssetToBorrow.sub(
-    availableAssetToBorrow
-      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION))
-      .div(SCALING_FACTOR),
-  )
   return getMinimumValue(
     availableAssetToBorrow,
     amountToReachHFLimit,
