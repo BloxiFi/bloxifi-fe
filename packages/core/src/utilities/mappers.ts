@@ -27,6 +27,19 @@ export const filterItems = (items, filter, filterBy) => {
 }
 
 /**
+ * Function that calculates number of decimals in a number or a string
+ * @param amount Number or string representation of a number
+ * @returns
+ */
+export const decimalCount = (amount: number | string) => {
+  const numStr = String(amount)
+  if (numStr.includes('.')) {
+    return numStr.split('.')[1].length
+  }
+  return 0
+}
+
+/**
  * sliceMiddleOfString
  * @param string String that needs to be sliced
  * @param n Number of first and last characters to display
