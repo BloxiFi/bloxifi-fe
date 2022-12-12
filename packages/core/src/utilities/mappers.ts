@@ -63,20 +63,23 @@ export function numberToPercentage(value: number): number {
   return Number(Number(percentage.toFixed(2)).toPrecision())
 }
 
-export function bigNumberToString(value: BigNumber): string {
-  return ethers.utils.formatUnits(value)
+export function bigNumberToString(value: BigNumber, decimals = 18): string {
+  return ethers.utils.formatUnits(value, decimals)
 }
 
-export function bigNumberToNumber(value: BigNumber): number {
-  return Number(bigNumberToString(value))
+export function bigNumberToNumber(value: BigNumber, decimals = 18): number {
+  return Number(bigNumberToString(value, decimals))
 }
 
-export function stringToBigNumber(value: string): BigNumber {
-  return ethers.utils.parseUnits(value)
+export function stringToBigNumber(value: string, decimals = 18): BigNumber {
+  if (decimalCount(value) <= decimals) {
+    return ethers.utils.parseUnits(value, decimals)
+  }
+  return BigNumber.from(Math.floor(Number(value) * 10 ** decimals))
 }
 
-export function numberToBigNumber(value: number): BigNumber {
-  return stringToBigNumber(value.toString())
+export function numberToBigNumber(value: number, decimals = 18): BigNumber {
+  return stringToBigNumber(value.toString(), decimals)
 }
 
 export const sumArrayItems = (array: number[]): number =>
