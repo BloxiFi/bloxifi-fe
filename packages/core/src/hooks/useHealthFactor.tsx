@@ -109,7 +109,7 @@ export const useHealthFactor = ({
         },
       }
     },
-    [],
+    [configAssets],
   )
 
   const { data } = useQuery<HealthFactorGraph, UserReserveVariables>(
