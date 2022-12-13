@@ -19,6 +19,7 @@ import {
   ScProvider,
   WellKnownChain,
 } from '@polkadot/rpc-provider/substrate-connect'
+import { hasTokenTransfer } from '@bloxifi/core'
 
 const defaultState: Web3PolkadotContainerProps = {
   currentAccountPolkadot: undefined,
@@ -49,8 +50,6 @@ const reducer = (
       return defaultState
   }
 }
-
-const hasTokenTransfer = process.env.FEATURE_TOKEN_TRANSFER
 
 function useContainer(initialState: Web3PolkadotContainerProps) {
   const [state, dispatch] = useReducer(reducer, {

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { PageLayout } from '@bloxifi/ui'
 import { useNavigate } from 'react-router-dom'
+import { hasTokenTransfer } from '@bloxifi/core'
 
 import TokenTransfer from '@/components/transfer'
-
-const hasTokenTransfer = process.env.FEATURE_TOKEN_TRANSFER
 
 const TokenTransferPage = () => {
   const navigate = useNavigate()
