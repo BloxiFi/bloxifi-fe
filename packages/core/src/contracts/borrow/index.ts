@@ -116,13 +116,13 @@ export const BorrowAndLending = {
     async deposit(
       depositContract: LendingPoolContract,
       tokenAddress: string,
-      amountToDeposit: number | string,
+      amountToDeposit: BigNumber,
       currentAccount: Web3ReactContextInterface['account'],
       referralCode = 0,
     ): Promise<ethers.ContractTransaction> {
       return await depositContract.deposit(
         tokenAddress,
-        ethers.utils.parseEther(String(amountToDeposit)),
+        amountToDeposit,
         currentAccount,
         referralCode,
       )
@@ -130,14 +130,14 @@ export const BorrowAndLending = {
     async borrow(
       lendingPoolContract: LendingPoolContract,
       tokenAddress: string,
-      amountToDeposit: number | string,
+      amountToBorrow: BigNumber,
       account: Web3ReactContextInterface['account'],
       referralCode = 0,
       interestRateMode: RateMode = 2,
     ): Promise<ethers.ContractTransaction> {
       return await lendingPoolContract.borrow(
         tokenAddress,
-        ethers.utils.parseEther(String(amountToDeposit)),
+        amountToBorrow,
         interestRateMode,
         referralCode,
         account,
@@ -146,25 +146,25 @@ export const BorrowAndLending = {
     async withdraw(
       lendingPoolContract: LendingPoolContract,
       tokenAddress: string,
-      amountToDeposit: number | string,
+      amountToWithdraw: BigNumber,
       account: Web3ReactContextInterface['account'],
     ): Promise<ethers.ContractTransaction> {
       return await lendingPoolContract.withdraw(
         tokenAddress,
-        ethers.utils.parseEther(String(amountToDeposit)),
+        amountToWithdraw,
         account,
       )
     },
     async repay(
       lendingPoolContract: LendingPoolContract,
       tokenAddress: string,
-      amountToRepay: number | string,
+      amountToRepay: BigNumber,
       account: Web3ReactContextInterface['account'],
       rateMode: RateMode = 2,
     ): Promise<ethers.ContractTransaction> {
       return await lendingPoolContract.repay(
         tokenAddress,
-        ethers.utils.parseEther(String(amountToRepay)),
+        amountToRepay,
         rateMode,
         account,
       )

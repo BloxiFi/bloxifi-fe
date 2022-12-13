@@ -121,7 +121,7 @@ export const RepayModal = ({
       const response = await BorrowAndLending.lendingPool.repay(
         lendingPoolContract,
         reserveData.underlyingAsset,
-        amount,
+        stringToBigNumber(amount, reserveData.decimals),
         currentAccount,
       )
       const isRepayed = await response.wait()

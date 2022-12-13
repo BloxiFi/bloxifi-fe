@@ -121,7 +121,7 @@ export const DepositModal = ({
       const response = await BorrowAndLending.lendingPool.deposit(
         lendingPoolContract,
         reserveData.underlyingAsset,
-        amount,
+        stringToBigNumber(amount, reserveData.decimals),
         currentAccount,
       )
       const isDeposited = await response.wait()

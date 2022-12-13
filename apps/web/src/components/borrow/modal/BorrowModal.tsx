@@ -80,7 +80,7 @@ export const BorrowModal = ({
       const response = await BorrowAndLending.lendingPool.borrow(
         lendingPoolContract,
         reserveData.underlyingAsset,
-        amount,
+        stringToBigNumber(amount, reserveData.decimals),
         currentAccount,
       )
       const isBorrowed = await response.wait()

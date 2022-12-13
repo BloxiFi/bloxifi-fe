@@ -149,7 +149,7 @@ export const WithdrawModal = ({
       const response = await BorrowAndLending.lendingPool.withdraw(
         lendingPoolContract,
         reserveData.underlyingAsset,
-        amount,
+        stringToBigNumber(amount, reserveData.decimals),
         currentAccount,
       )
       const isCompleted = await response.wait()
