@@ -27,6 +27,19 @@ export const filterItems = (items, filter, filterBy) => {
 }
 
 /**
+ * Function that calculates number of decimals in a number or a string
+ * @param amount Number or string representation of a number
+ * @returns
+ */
+export const decimalCount = (amount: number | string) => {
+  const numStr = String(amount)
+  if (numStr.includes('.')) {
+    return numStr.split('.')[1].length
+  }
+  return 0
+}
+
+/**
  * sliceMiddleOfString
  * @param string String that needs to be sliced
  * @param n Number of first and last characters to display
@@ -50,20 +63,23 @@ export function numberToPercentage(value: number): number {
   return Number(Number(percentage.toFixed(2)).toPrecision())
 }
 
-export function bigNumberToString(value: BigNumber): string {
-  return ethers.utils.formatUnits(value)
+export function bigNumberToString(value: BigNumber, decimals = 18): string {
+  return ethers.utils.formatUnits(value, decimals)
 }
 
-export function bigNumberToNumber(value: BigNumber): number {
-  return Number(bigNumberToString(value))
+export function bigNumberToNumber(value: BigNumber, decimals = 18): number {
+  return Number(bigNumberToString(value, decimals))
 }
 
-export function stringToBigNumber(value: string): BigNumber {
-  return ethers.utils.parseUnits(value)
+export function stringToBigNumber(value: string, decimals = 18): BigNumber {
+  if (decimalCount(value) <= decimals) {
+    return ethers.utils.parseUnits(value, decimals)
+  }
+  return BigNumber.from(Math.floor(Number(value) * 10 ** decimals))
 }
 
-export function numberToBigNumber(value: number): BigNumber {
-  return stringToBigNumber(value.toString())
+export function numberToBigNumber(value: number, decimals = 18): BigNumber {
+  return stringToBigNumber(value.toString(), decimals)
 }
 
 export const sumArrayItems = (array: number[]): number =>
@@ -253,6 +269,47 @@ export const getMaxRepayAmount = (
 }
 
 /**
+ * Function that calculates the maximum amount that user can borrow based on his total collaterals and borrows
+ * @param availableBorrowsETH Total available amount to borrow in ETH based on user collaterals and borrows
+ * @param priceInEth Asset price in ETH
+ * @returns
+ */
+export const calculateAvailableAssetToBorrow = (
+  availableBorrowsETH: BigNumber,
+  priceInEth: number,
+) => {
+  let availableAssetToBorrow = convertETHToAssetValue(
+    availableBorrowsETH,
+    numberToBigNumber(priceInEth),
+  )
+  //Decrease available asset to borrow by scaling constant
+  return (availableAssetToBorrow = availableAssetToBorrow.sub(
+    availableAssetToBorrow
+      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION))
+      .div(SCALING_FACTOR),
+  ))
+}
+
+/**
+ * Function that calculates the maximum amount that user can borrow up to future health factor limit (HF should be min MIN_HEALTH_FACTOR_VALUE)
+ * @param totalCollateralETH user collaterals in ETH
+ * @param totalDebtETH Total user borrows in ETH
+ * @param priceInEth Asset price in ETH
+ * @returns
+ */
+export const calcBorrowAmountToReachHFLimit = (
+  totalCollateralETH: BigNumber,
+  totalDebtETH: BigNumber,
+  priceInEth: number,
+) =>
+  totalCollateralETH
+    .mul(SCALING_FACTOR)
+    .div(numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION))
+    .sub(totalDebtETH)
+    .mul(SCALING_FACTOR)
+    .div(numberToBigNumber(priceInEth))
+
+/**
  * Function that calculates the maximum amount that user can borrow
  * The maximum amount to borrow should be the minimum of the following params:
  * * -total aToken balance that exist in the pool
@@ -278,23 +335,16 @@ export const getMaxBorrowAmount = ({
   totalCollateralETH: BigNumber
   totalDebtETH: BigNumber
 }) => {
-  let availableAssetToBorrow = convertETHToAssetValue(
+  const availableAssetToBorrow = calculateAvailableAssetToBorrow(
     availableBorrowsETH,
-    numberToBigNumber(priceInEth),
+    priceInEth,
   )
-  const amountToReachHFLimit = totalCollateralETH
-    .mul(SCALING_FACTOR)
-    .div(numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION))
-    .sub(totalDebtETH)
-    .mul(SCALING_FACTOR)
-    .div(numberToBigNumber(priceInEth))
+  const amountToReachHFLimit = calcBorrowAmountToReachHFLimit(
+    totalCollateralETH,
+    totalDebtETH,
+    priceInEth,
+  )
 
-  //Decrease available asset to borrow by scaling constant
-  availableAssetToBorrow = availableAssetToBorrow.sub(
-    availableAssetToBorrow
-      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION))
-      .div(SCALING_FACTOR),
-  )
   return getMinimumValue(
     availableAssetToBorrow,
     amountToReachHFLimit,
