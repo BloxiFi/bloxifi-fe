@@ -1,4 +1,5 @@
 import { BigNumber } from 'ethers'
+import { ETHER_DECIMALS } from '../../config'
 import {
   calculateHealthFactor,
   calculateAssetCollateralAfterTx,
@@ -19,6 +20,8 @@ import {
  * getMaxBorrowAmount
  */
 
+let coinDecimals = 18
+
 describe('Calculate health factor', () => {
   it('calculateHealthFactor - whole numbers', () => {
     const totalCollateralETH = '5'
@@ -26,8 +29,11 @@ describe('Calculate health factor', () => {
     const expected = totalCollateralETH / totalBorrowETH
     expect(
       calculateHealthFactor({
-        totalCollateralETH: stringToBigNumber(totalCollateralETH),
-        totalBorrowETH: stringToBigNumber(totalBorrowETH),
+        totalCollateralETH: stringToBigNumber(
+          totalCollateralETH,
+          ETHER_DECIMALS,
+        ),
+        totalBorrowETH: stringToBigNumber(totalBorrowETH, ETHER_DECIMALS),
       }),
     ).toEqual(expected)
   })
@@ -38,8 +44,11 @@ describe('Calculate health factor', () => {
     const expected = totalCollateralETH / totalBorrowETH
     expect(
       calculateHealthFactor({
-        totalCollateralETH: stringToBigNumber(totalCollateralETH),
-        totalBorrowETH: stringToBigNumber(totalBorrowETH),
+        totalCollateralETH: stringToBigNumber(
+          totalCollateralETH,
+          ETHER_DECIMALS,
+        ),
+        totalBorrowETH: stringToBigNumber(totalBorrowETH, ETHER_DECIMALS),
       }),
     ).toEqual(expected)
   })
@@ -50,8 +59,11 @@ describe('Calculate health factor', () => {
     const expected = totalCollateralETH / totalBorrowETH
     expect(
       calculateHealthFactor({
-        totalCollateralETH: stringToBigNumber(totalCollateralETH),
-        totalBorrowETH: stringToBigNumber(totalBorrowETH),
+        totalCollateralETH: stringToBigNumber(
+          totalCollateralETH,
+          ETHER_DECIMALS,
+        ),
+        totalBorrowETH: stringToBigNumber(totalBorrowETH, ETHER_DECIMALS),
       }),
     ).toEqual(expected)
   })
@@ -62,8 +74,11 @@ describe('Calculate health factor', () => {
     const expected = 0
     expect(
       calculateHealthFactor({
-        totalCollateralETH: stringToBigNumber(totalCollateralETH),
-        totalBorrowETH: stringToBigNumber(totalBorrowETH),
+        totalCollateralETH: stringToBigNumber(
+          totalCollateralETH,
+          ETHER_DECIMALS,
+        ),
+        totalBorrowETH: stringToBigNumber(totalBorrowETH, ETHER_DECIMALS),
       }),
     ).toEqual(expected)
   })
@@ -74,8 +89,11 @@ describe('Calculate health factor', () => {
     const expected = 0
     expect(
       calculateHealthFactor({
-        totalCollateralETH: stringToBigNumber(totalCollateralETH),
-        totalBorrowETH: stringToBigNumber(totalBorrowETH),
+        totalCollateralETH: stringToBigNumber(
+          totalCollateralETH,
+          ETHER_DECIMALS,
+        ),
+        totalBorrowETH: stringToBigNumber(totalBorrowETH, ETHER_DECIMALS),
       }),
     ).toEqual(expected)
   })
@@ -88,11 +106,12 @@ describe('Calculate asset collateral after transaction', () => {
     const reserveLiquidationThreshold = 0.8
     const expected = numberToBigNumber(
       amount * priceInEth * reserveLiquidationThreshold,
-      18,
+      coinDecimals,
     )
     expect(
       calculateAssetCollateralAfterTx(
         amount,
+        coinDecimals,
         priceInEth,
         reserveLiquidationThreshold,
       ),
@@ -104,13 +123,15 @@ describe('Calculate asset collateral after transaction', () => {
     const priceInEth = 5.123456
     const reserveLiquidationThreshold = 0.8
     const expected = '5060203415800147763' // amount * 10 ** 18
+
     expect(
       calculateAssetCollateralAfterTx(
         amount,
+        coinDecimals,
         priceInEth,
         reserveLiquidationThreshold,
       ),
-    ).toEqual(expected)
+    ).toEqual(expected.toString())
   })
 
   it('calculateAssetCollateralAfterTx - big numbers', () => {
@@ -121,6 +142,7 @@ describe('Calculate asset collateral after transaction', () => {
     expect(
       calculateAssetCollateralAfterTx(
         amount,
+        coinDecimals,
         priceInEth,
         reserveLiquidationThreshold,
       ),
@@ -146,29 +168,9 @@ describe('Get max repay amount', () => {
   })
 })
 
-describe('Get max borrow amount', () => {
-  it('getMaxBorrowAmount - big numbers', () => {
-    const aTokenBalance = stringToBigNumber('100000')
-    const availableBorrowsETH = stringToBigNumber('1000')
-    const priceInEth = 1.12345
-    const totalCollateralETH = stringToBigNumber('200')
-    const totalDebtETH = stringToBigNumber('10')
-
-    expect(
-      getMaxBorrowAmount({
-        aTokenBalance,
-        availableBorrowsETH,
-        priceInEth,
-        totalCollateralETH,
-        totalDebtETH,
-      }),
-    ).toEqual(BigNumber.from('167359279339782787701'))
-  })
-})
-
 describe('Calculate available assets to borrow - based on collateral and total borrow', () => {
   it('calculateAvailableAssetToBorrow ', () => {
-    const availableBorrowsETH = stringToBigNumber('1000')
+    const availableBorrowsETH = stringToBigNumber('1000', ETHER_DECIMALS)
     const priceInEth = 1.12345
 
     expect(
@@ -179,8 +181,8 @@ describe('Calculate available assets to borrow - based on collateral and total b
 
 describe('Calculate Borrow amount to reach min HF limit', () => {
   it('calcBorrowAmountToReachHFLimit ', () => {
-    const totalCollateralETH = stringToBigNumber('200')
-    const totalDebtETH = stringToBigNumber('10')
+    const totalCollateralETH = stringToBigNumber('200', ETHER_DECIMALS)
+    const totalDebtETH = stringToBigNumber('10', ETHER_DECIMALS)
     const priceInEth = 1.12345
 
     expect(
@@ -194,12 +196,14 @@ describe('Calculate Borrow amount to reach min HF limit', () => {
 })
 
 describe('Get max borrow amount', () => {
+  coinDecimals = 18
+  //Note: if modifying coin decimals, the expacted value should be calculated again
   it('getMaxBorrowAmount ', () => {
-    const aTokenBalance = stringToBigNumber('100000')
-    const availableBorrowsETH = stringToBigNumber('1000')
+    const aTokenBalance = stringToBigNumber('100000', coinDecimals)
+    const availableBorrowsETH = stringToBigNumber('1000', ETHER_DECIMALS)
     const priceInEth = 1.12345
-    const totalCollateralETH = stringToBigNumber('200')
-    const totalDebtETH = stringToBigNumber('10')
+    const totalCollateralETH = stringToBigNumber('200', ETHER_DECIMALS)
+    const totalDebtETH = stringToBigNumber('10', ETHER_DECIMALS)
 
     expect(
       getMaxBorrowAmount({

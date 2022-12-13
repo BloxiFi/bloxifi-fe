@@ -4,8 +4,10 @@ import {
   GET_DASHBOARD_RESERVE_DATA,
   DashboardReservesGraph,
   DashboardReservesDataQuery,
+  ETHER_DECIMALS,
+  USD_DECIMALS,
+  getNetworkByChain,
 } from '@bloxifi/core'
-import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
 import {
   Dispatch,
@@ -81,6 +83,9 @@ function useDashboard(
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
 
+  const CHAIN_ID = Number(process.env.CHAIN_ID) || 1287
+  const configAssets = getNetworkByChain(CHAIN_ID).configAssets
+
   const { data } = useQuery<DashboardReservesGraph>(
     GET_DASHBOARD_RESERVE_DATA,
     {
@@ -94,17 +99,31 @@ function useDashboard(
       try {
         const reserveData = reserves.map(
           (reserve: DashboardReservesDataQuery) => {
+            const staticData = configAssets[reserve.symbol]
+
             return {
               ...reserve,
-              icon: Assets[reserve.symbol].icon,
-              fullName: Assets[reserve.symbol].fullName,
+              decimals: staticData.decimals,
+              icon: staticData.icon,
+              fullName: staticData.fullName,
+              underlyingAsset: staticData.underlyingAsset,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-              priceInEth: bigNumberToNumber(reserve.price.priceInEth),
-              usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
-              totalATokenSupply: bigNumberToNumber(reserve.totalATokenSupply),
+              priceInEth: bigNumberToNumber(
+                reserve.price.priceInEth,
+                ETHER_DECIMALS,
+              ),
+              usdPriceEth: bigNumberToNumber(
+                reserve.price.oracle.usdPriceEth,
+                USD_DECIMALS,
+              ),
+              totalATokenSupply: bigNumberToNumber(
+                reserve.totalATokenSupply,
+                staticData.decimals, //TODO check decimals
+              ),
               totalCurrentVariableDebt: bigNumberToNumber(
                 reserve.totalCurrentVariableDebt,
+                staticData.decimals, //TODO check decimals
               ),
             }
           },
@@ -120,7 +139,7 @@ function useDashboard(
         setLoading(false)
       }
     },
-    [],
+    [configAssets],
   )
 
   useEffect(() => {

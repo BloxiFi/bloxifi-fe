@@ -138,12 +138,14 @@ export const DepositModal = ({
   const depositValidationSchemaa = Yup.object().shape({
     amount: Yup.string()
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
-        stringToBigNumber(val).lte(stringToBigNumber(reserveData.balance)),
+        stringToBigNumber(val, reserveData.decimals).lte(
+          stringToBigNumber(reserveData.balance, reserveData.decimals),
+        ),
       )
       .test(
         'is-zero',
         t('global.errors.positiveValue'),
-        (val: string) => !stringToBigNumber(val).isZero(),
+        (val: string) => !stringToBigNumber(val, reserveData.decimals).isZero(),
       )
       .required(t('global.errors.required')),
   })
@@ -193,6 +195,7 @@ export const DepositModal = ({
     if (isEnabledAsCollateral) {
       const assetCollateralAfterTX = calculateAssetCollateralAfterTx(
         values.amount,
+        reserveData.decimals,
         reserveData.priceInEth,
         reserveData.reserveLiquidationThreshold,
       )

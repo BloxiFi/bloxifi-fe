@@ -35,13 +35,11 @@ export const GET_DASHBOARD_RESERVE_DATA = gql`
       id
       name
       symbol
-      decimals
       totalATokenSupply
       totalCurrentVariableDebt
       liquidityRate
       variableBorrowRate
       stableBorrowRate
-      underlyingAsset
       price {
         priceInEth
         oracle {

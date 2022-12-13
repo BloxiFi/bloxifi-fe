@@ -146,6 +146,7 @@ export const YourDepositsTable: FunctionComponent = () => {
           priceInEth,
           usageAsCollateralEnabledOnUser,
           reserveLiquidationThreshold,
+          decimals,
         },
       }) => (
         <Button
@@ -165,6 +166,7 @@ export const YourDepositsTable: FunctionComponent = () => {
               priceInEth,
               usageAsCollateralEnabledOnUser,
               reserveLiquidationThreshold,
+              decimals,
             })
           }
         >

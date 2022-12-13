@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import {
   bigNumberToNumber,
-  bigNumberToString,
   BorrowAndLending,
   convertBalancesInUsdArray,
   GET_RESERVE_DATA,
@@ -13,8 +12,12 @@ import {
   Tokens,
   UserReserveDataQuery,
   UserReserveVariables,
+  bigNumberToString,
+  ETHER_DECIMALS,
+  USD_DECIMALS,
+  LT_DECIMALS,
+  getNetworkByChain,
 } from '@bloxifi/core'
-import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
 import { BigNumber } from 'ethers'
 import {
@@ -152,6 +155,9 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
 
+  const CHAIN_ID = Number(process.env.CHAIN_ID) || 1287
+  const configAssets = getNetworkByChain(CHAIN_ID).configAssets
+
   const {
     data,
     refetch,
@@ -204,17 +210,21 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       dispatch({
         type: 'setUserAccountData',
         value: {
-          healthFactor: bigNumberToNumber(response.healthFactor),
+          healthFactor: bigNumberToNumber(
+            response.healthFactor,
+            ETHER_DECIMALS,
+          ),
           availableBorrowsETH: response.availableBorrowsETH,
           totalDebtETH: response.totalDebtETH,
           liquidationThreshold:
             Number(response.currentLiquidationThreshold.toString()) *
-            Math.pow(10, -4),
+            Math.pow(10, -LT_DECIMALS),
           totalCollateralETH: response.totalCollateralETH,
         },
       })
     } catch (error) {
       setError(error)
+      throw Error(error)
     }
   }, [currentAccount, signer])
 
@@ -238,6 +248,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         return { balance, aTokenBalance }
       } catch (error) {
         setError(error)
+        throw Error(error)
       }
     },
     [currentAccount, signer],
@@ -248,26 +259,40 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       try {
         const reserveData = await Promise.all(
           reserves.map(async (reserve: ReservesDataQuery) => {
+            const staticData = configAssets[reserve.symbol]
             const { balance, aTokenBalance } = await getReserveBalance(
-              reserve.underlyingAsset,
-              reserve.aToken.id,
+              staticData.underlyingAsset,
+              staticData.aToken.id,
             )
             return {
               ...reserve,
-              balance: bigNumberToString(balance),
+              decimals: staticData.decimals,
+              underlyingAsset: staticData.underlyingAsset,
+              balance: bigNumberToString(balance, staticData.decimals),
               aTokenBalance,
-              icon: Assets[reserve.symbol].icon,
-              fullName: Assets[reserve.symbol].fullName,
+              icon: staticData.icon,
+              fullName: staticData.fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-              priceInEth: bigNumberToNumber(reserve.price.priceInEth),
-              usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
-              totalATokenSupply: bigNumberToString(reserve.totalATokenSupply),
+              priceInEth: bigNumberToNumber(
+                reserve.price.priceInEth,
+                ETHER_DECIMALS,
+              ),
+              usdPriceEth: bigNumberToNumber(
+                reserve.price.oracle.usdPriceEth,
+                USD_DECIMALS,
+              ),
+              totalATokenSupply: bigNumberToString(
+                reserve.totalATokenSupply,
+                staticData.decimals, //TODO check decimals
+              ),
               totalCurrentVariableDebt: bigNumberToString(
                 reserve.totalCurrentVariableDebt,
+                staticData.decimals, //TODO check decimals
               ),
               reserveLiquidationThreshold:
-                reserve.reserveLiquidationThreshold * Math.pow(10, -4),
+                reserve.reserveLiquidationThreshold *
+                Math.pow(10, -LT_DECIMALS),
             }
           }),
         )
@@ -277,9 +302,10 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         })
       } catch (error) {
         setError(error)
+        throw Error(error)
       }
     },
-    [getReserveBalance],
+    [getReserveBalance, configAssets],
   )
 
   const mapUserReserveData = useCallback(
@@ -299,20 +325,28 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }: UserReserveDataQuery) => ({
       ...rest,
       ...restReserve,
-      currentATokenBalance: bigNumberToString(currentATokenBalance),
-      currentTotalDebt: bigNumberToString(currentTotalDebt),
+      underlyingAsset: configAssets[symbol].underlyingAsset,
+      decimals: configAssets[symbol].decimals,
+      currentATokenBalance: bigNumberToString(
+        currentATokenBalance,
+        configAssets[symbol].decimals, //TODO check decimals
+      ),
+      currentTotalDebt: bigNumberToString(
+        currentTotalDebt,
+        configAssets[symbol].decimals,
+      ), //TODO check decimals
       symbol: symbol,
-      icon: Assets[symbol].icon,
-      fullName: Assets[symbol].fullName,
+      icon: configAssets[symbol].icon,
+      fullName: configAssets[symbol].fullName,
       supplyAPY: calculateAPY(liquidityRate),
       variableBorrowAPY: calculateAPY(variableBorrowRate),
-      priceInEth: bigNumberToNumber(price.priceInEth),
-      usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
-      baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
+      priceInEth: bigNumberToNumber(price.priceInEth, ETHER_DECIMALS),
+      usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth, USD_DECIMALS),
+      baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -LT_DECIMALS),
       reserveLiquidationThreshold:
-        reserveLiquidationThreshold * Math.pow(10, -4),
+        reserveLiquidationThreshold * Math.pow(10, -LT_DECIMALS),
     }),
-    [],
+    [configAssets],
   )
 
   const setQueryData = useCallback(
@@ -338,6 +372,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         setLoading(false)
       } catch (error) {
         setError(error)
+        throw Error(error)
       } finally {
         setLoading(false)
       }
@@ -358,6 +393,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       await setQueryData(res.data)
     } catch (error) {
       setError(error)
+      throw Error(error)
     } finally {
       setLoading(false)
     }

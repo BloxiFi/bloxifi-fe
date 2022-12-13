@@ -12,6 +12,9 @@ import {
  * getMinimumValue,
  * decimalCount,
  */
+
+const decimals = 18
+
 describe('Number to percentage', () => {
   it('numberToPercentage - whole number', () => {
     const value = 1
@@ -41,8 +44,10 @@ describe('Get minimum value', () => {
     const list = ['1', '2', '3', '4']
     const expectedResult = '1'
 
-    const input = list.map(num => stringToBigNumber(num))
-    expect(getMinimumValue(...input)).toEqual(stringToBigNumber(expectedResult))
+    const input = list.map(num => stringToBigNumber(num, decimals))
+    expect(getMinimumValue(...input)).toEqual(
+      stringToBigNumber(expectedResult, decimals),
+    )
   })
 
   it('Get minimum value - big numbers', () => {
@@ -53,8 +58,10 @@ describe('Get minimum value', () => {
     ]
     const expectedResult = '123456789123456789.0000000000001'
 
-    const input = list.map(num => stringToBigNumber(num))
-    expect(getMinimumValue(...input)).toEqual(stringToBigNumber(expectedResult))
+    const input = list.map(num => stringToBigNumber(num, decimals))
+    expect(getMinimumValue(...input)).toEqual(
+      stringToBigNumber(expectedResult, decimals),
+    )
   })
 
   it('Get minimum value - decimal numbers', () => {
@@ -66,8 +73,10 @@ describe('Get minimum value', () => {
     ]
     const expectedResult = '0.00000000001'
 
-    const input = list.map(num => stringToBigNumber(num))
-    expect(getMinimumValue(...input)).toEqual(stringToBigNumber(expectedResult))
+    const input = list.map(num => stringToBigNumber(num, decimals))
+    expect(getMinimumValue(...input)).toEqual(
+      stringToBigNumber(expectedResult, decimals),
+    )
   })
 })
 

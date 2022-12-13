@@ -116,4 +116,7 @@ export const Tokens = {
   ): Promise<ethers.ContractTransaction> {
     return await tokenContract.mint(ethers.utils.parseUnits(String(amount), 18))
   },
+  async decimals(tokenContract: TokenContract): Promise<BigNumber> {
+    return await tokenContract.decimals()
+  },
 }

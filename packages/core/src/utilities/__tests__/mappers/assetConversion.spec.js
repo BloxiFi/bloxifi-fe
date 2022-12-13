@@ -1,4 +1,5 @@
 import { ethers } from 'ethers'
+import { ETHER_DECIMALS } from '../../config'
 import {
   convertBalancesInUsdArray,
   convertETHToAssetValue,
@@ -83,7 +84,7 @@ describe('Convert ETH to asset value', () => {
     expect(
       convertETHToAssetValue(
         stringToBigNumber(value, coinDecimals),
-        stringToBigNumber(priceInEth),
+        stringToBigNumber(priceInEth, ETHER_DECIMALS),
       ),
     ).toEqual(stringToBigNumber('10', coinDecimals))
   })
@@ -94,7 +95,7 @@ describe('Convert ETH to asset value', () => {
     expect(
       convertETHToAssetValue(
         stringToBigNumber(value, coinDecimals),
-        stringToBigNumber(priceInEth),
+        stringToBigNumber(priceInEth, ETHER_DECIMALS),
       ),
     ).toEqual(stringToBigNumber('61.5', coinDecimals))
   })
@@ -106,7 +107,7 @@ describe('Convert ETH to asset value', () => {
     expect(
       convertETHToAssetValue(
         stringToBigNumber(value, coinDecimals),
-        stringToBigNumber(priceInEth),
+        stringToBigNumber(priceInEth, ETHER_DECIMALS),
       ),
     ).toEqual(stringToBigNumber('0', coinDecimals))
   })

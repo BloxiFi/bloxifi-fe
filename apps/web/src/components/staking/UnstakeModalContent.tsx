@@ -28,7 +28,8 @@ export const UnstakeModalContent = () => {
   const getStakedBalance: FetchStakedBalance = useCallback(async () => {
     try {
       const balanceEth = await stakeContract.balanceOf(currentAccount)
-      setStakedBalance(bigNumberToNumber(balanceEth))
+      //TODO check decimals
+      setStakedBalance(bigNumberToNumber(balanceEth, 18))
     } catch (error) {
       setHasError(error)
     }

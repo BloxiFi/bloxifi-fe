@@ -80,17 +80,12 @@ export const GET_RESERVE_DATA = gql`
       id
       name
       symbol
-      decimals
       totalATokenSupply
       totalCurrentVariableDebt
       liquidityRate
       variableBorrowRate
       stableBorrowRate
-      underlyingAsset
       reserveLiquidationThreshold
-      aToken {
-        id
-      }
       price {
         priceInEth
         oracle {
@@ -107,16 +102,12 @@ export const GET_RESERVE_DATA = gql`
       reserve {
         symbol
         name
-        decimals
         liquidityRate
         variableBorrowRate
         stableBorrowRate
-        underlyingAsset
         baseLTVasCollateral
         reserveLiquidationThreshold
-        aToken {
-          id
-        }
+
         price {
           priceInEth
           oracle {
@@ -131,8 +122,11 @@ export interface HealthFactorQuery {
   currentATokenBalance: BigNumber
   currentTotalDebt: BigNumber
   usageAsCollateralEnabledOnUser: boolean
+
   reserve: {
+    decimals: number
     underlyingAsset: string
+    symbol: string
     reserveLiquidationThreshold: number
     price: {
       priceInEth: BigNumber
@@ -154,7 +148,7 @@ export const GET_HEALTH_FACTOR_DATA = gql`
       currentTotalDebt
       usageAsCollateralEnabledOnUser
       reserve {
-        underlyingAsset
+        symbol
         reserveLiquidationThreshold
         price {
           priceInEth

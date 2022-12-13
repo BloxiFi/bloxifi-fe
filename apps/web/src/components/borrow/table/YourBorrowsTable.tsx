@@ -9,6 +9,7 @@ import React, { FunctionComponent, useState } from 'react'
 import {
   bigNumberToNumber,
   convertBalancesInUsdArray,
+  ETHER_DECIMALS,
   getMaxRepayAmount,
   MIN_VALUE_FOR_TRANSACTION,
   numberToPercentage,
@@ -59,6 +60,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
         totalDebtETH
           .mul(SCALING_FACTOR)
           .div(totalDebtETH.add(availableBorrowsETH)),
+        ETHER_DECIMALS,
       ),
     )
 
@@ -90,7 +92,14 @@ export const YourBorrowsTable: FunctionComponent = () => {
     action: {
       header: '',
       Cell: ({
-        data: { currentTotalDebt, symbol, underlyingAsset, icon, priceInEth },
+        data: {
+          currentTotalDebt,
+          symbol,
+          underlyingAsset,
+          icon,
+          priceInEth,
+          decimals,
+        },
       }) => {
         const findAsset = reserves.find(
           reserve => reserve.underlyingAsset === underlyingAsset,
@@ -113,6 +122,7 @@ export const YourBorrowsTable: FunctionComponent = () => {
                 icon,
                 priceInEth,
                 balance,
+                decimals,
               })
             }
           >
