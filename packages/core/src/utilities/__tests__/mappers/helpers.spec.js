@@ -72,9 +72,15 @@ describe('Get minimum value', () => {
 })
 
 describe('Count decimals', () => {
-  it('Count decimals - whole number', () => {
+  it('Count decimals - whole number - zero decimal places', () => {
     const value = 1
     const expectedResult = 0
+    expect(decimalCount(value)).toEqual(expectedResult)
+  })
+
+  it('Count decimals - whole number - one decimal place', () => {
+    const value = 10.1
+    const expectedResult = 1
     expect(decimalCount(value)).toEqual(expectedResult)
   })
 
@@ -84,9 +90,15 @@ describe('Count decimals', () => {
     expect(decimalCount(value)).toEqual(expectedResult)
   })
 
-  it('Count decimals - whole number as string', () => {
+  it('Count decimals - whole number as string - zero decimal places', () => {
     const value = '1'
     const expectedResult = 0
+    expect(decimalCount(value)).toEqual(expectedResult)
+  })
+
+  it('Count decimals - whole number as string - one decimal places', () => {
+    const value = '10.1'
+    const expectedResult = 1
     expect(decimalCount(value)).toEqual(expectedResult)
   })
 
