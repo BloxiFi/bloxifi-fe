@@ -1,13 +1,12 @@
 import { ethers } from 'ethers'
-import { configAssets, moonbaseAlphaConfigAssets } from './configAssets'
+
+import { moonbaseAlphaConfigAssets } from './configAssets'
 
 export const MIN_VALUE_FOR_TRANSACTION = 0.0000001
 export const MIN_HEALTH_FACTOR_VALUE = 1.01
 
 //Ether decimals (i.e. 1 ether represents 10^18 wei)
 export const ETHER_DECIMALS = 18
-//USD decimals
-export const USD_DECIMALS = 18
 //Liquidation Threshold decimals
 export const LT_DECIMALS = 4
 //Max number of decimals in a fractional number
@@ -40,6 +39,7 @@ export const NetworkRegistry = [
     icon: 'polkadot',
     isTestnet: false,
     configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 2,
@@ -55,6 +55,7 @@ export const NetworkRegistry = [
     icon: 'ksm',
     isTestnet: true,
     configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 10,
@@ -70,6 +71,7 @@ export const NetworkRegistry = [
     icon: 'acala',
     isTestnet: false,
     configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 8,
@@ -85,6 +87,7 @@ export const NetworkRegistry = [
     icon: 'karura',
     isTestnet: true,
     configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 1284,
@@ -96,6 +99,7 @@ export const NetworkRegistry = [
     icon: 'mowr',
     isTestnet: false,
     configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 1285,
@@ -107,6 +111,7 @@ export const NetworkRegistry = [
     icon: 'mowr',
     isTestnet: true,
     configAssets: {},
+    usdDecimals: 8,
   },
   {
     prefix: 1287,
@@ -125,6 +130,7 @@ export const NetworkRegistry = [
     icon: 'mowr',
     isTestnet: true,
     configAssets: moonbaseAlphaConfigAssets,
+    usdDecimals: 18,
   },
 ] as const
 

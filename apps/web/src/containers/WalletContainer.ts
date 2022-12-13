@@ -14,7 +14,6 @@ import {
   UserReserveVariables,
   bigNumberToString,
   ETHER_DECIMALS,
-  USD_DECIMALS,
   LT_DECIMALS,
   getNetworkByChain,
 } from '@bloxifi/core'
@@ -156,7 +155,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   const [loading, setLoading] = useState<boolean>(true)
 
   const CHAIN_ID = Number(process.env.CHAIN_ID) || 1287
-  const configAssets = getNetworkByChain(CHAIN_ID).configAssets
+  const networkConfig = getNetworkByChain(CHAIN_ID)
 
   const {
     data,
@@ -259,7 +258,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       try {
         const reserveData = await Promise.all(
           reserves.map(async (reserve: ReservesDataQuery) => {
-            const staticData = configAssets[reserve.symbol]
+            const staticData = networkConfig.configAssets[reserve.symbol]
             const { balance, aTokenBalance } = await getReserveBalance(
               staticData.underlyingAsset,
               staticData.aToken.id,
@@ -280,7 +279,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
               ),
               usdPriceEth: bigNumberToNumber(
                 reserve.price.oracle.usdPriceEth,
-                USD_DECIMALS,
+                networkConfig.usdDecimals,
               ),
               totalATokenSupply: bigNumberToString(
                 reserve.totalATokenSupply,
@@ -305,7 +304,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         throw Error(error)
       }
     },
-    [getReserveBalance, configAssets],
+    [getReserveBalance, networkConfig.configAssets, networkConfig.usdDecimals],
   )
 
   const mapUserReserveData = useCallback(
@@ -325,28 +324,31 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }: UserReserveDataQuery) => ({
       ...rest,
       ...restReserve,
-      underlyingAsset: configAssets[symbol].underlyingAsset,
-      decimals: configAssets[symbol].decimals,
+      underlyingAsset: networkConfig.configAssets[symbol].underlyingAsset,
+      decimals: networkConfig.configAssets[symbol].decimals,
       currentATokenBalance: bigNumberToString(
         currentATokenBalance,
-        configAssets[symbol].decimals, //TODO check decimals
+        networkConfig.configAssets[symbol].decimals, //TODO check decimals
       ),
       currentTotalDebt: bigNumberToString(
         currentTotalDebt,
-        configAssets[symbol].decimals,
+        networkConfig.configAssets[symbol].decimals,
       ), //TODO check decimals
       symbol: symbol,
-      icon: configAssets[symbol].icon,
-      fullName: configAssets[symbol].fullName,
+      icon: networkConfig.configAssets[symbol].icon,
+      fullName: networkConfig.configAssets[symbol].fullName,
       supplyAPY: calculateAPY(liquidityRate),
       variableBorrowAPY: calculateAPY(variableBorrowRate),
       priceInEth: bigNumberToNumber(price.priceInEth, ETHER_DECIMALS),
-      usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth, USD_DECIMALS),
+      usdPriceEth: bigNumberToNumber(
+        price.oracle.usdPriceEth,
+        networkConfig.usdDecimals,
+      ),
       baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -LT_DECIMALS),
       reserveLiquidationThreshold:
         reserveLiquidationThreshold * Math.pow(10, -LT_DECIMALS),
     }),
-    [configAssets],
+    [networkConfig.configAssets, networkConfig.usdDecimals],
   )
 
   const setQueryData = useCallback(

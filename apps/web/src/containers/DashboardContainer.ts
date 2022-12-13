@@ -5,7 +5,6 @@ import {
   DashboardReservesGraph,
   DashboardReservesDataQuery,
   ETHER_DECIMALS,
-  USD_DECIMALS,
   getNetworkByChain,
 } from '@bloxifi/core'
 import { Action } from '@bloxifi/types'
@@ -84,7 +83,7 @@ function useDashboard(
   const [loading, setLoading] = useState<boolean>(true)
 
   const CHAIN_ID = Number(process.env.CHAIN_ID) || 1287
-  const configAssets = getNetworkByChain(CHAIN_ID).configAssets
+  const networkConfig = getNetworkByChain(CHAIN_ID)
 
   const { data } = useQuery<DashboardReservesGraph>(
     GET_DASHBOARD_RESERVE_DATA,
@@ -99,7 +98,7 @@ function useDashboard(
       try {
         const reserveData = reserves.map(
           (reserve: DashboardReservesDataQuery) => {
-            const staticData = configAssets[reserve.symbol]
+            const staticData = networkConfig.configAssets[reserve.symbol]
 
             return {
               ...reserve,
@@ -115,7 +114,7 @@ function useDashboard(
               ),
               usdPriceEth: bigNumberToNumber(
                 reserve.price.oracle.usdPriceEth,
-                USD_DECIMALS,
+                networkConfig.usdDecimals,
               ),
               totalATokenSupply: bigNumberToNumber(
                 reserve.totalATokenSupply,
@@ -139,7 +138,7 @@ function useDashboard(
         setLoading(false)
       }
     },
-    [configAssets],
+    [networkConfig.configAssets, networkConfig.usdDecimals],
   )
 
   useEffect(() => {
