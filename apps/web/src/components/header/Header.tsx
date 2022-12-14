@@ -5,14 +5,13 @@ import {
   HeaderExternalLink,
   Button,
 } from '@bloxifi/ui'
-import { isPolkadotRoute } from '@bloxifi/core'
+import { hasTokenTransfer, isPolkadotRoute } from '@bloxifi/core'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { ConnectPolkadotButton } from '../connector/ConnectPolkadotButton'
 import { ConnectWalletButton } from '../connector/ConnectWalletButton'
 
-const hasTokenTransfer = process.env.FEATURE_TOKEN_TRANSFER
 const GITBOOK_URL = process.env.GITBOOK_URL
 
 export const Header = () => {

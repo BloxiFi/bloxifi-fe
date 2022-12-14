@@ -23,6 +23,11 @@ export const AVAILABLE_BORROW_DEVIATION = '0.01'
 //Allow positive fractional number, included zero.(e.g. 0, 1, 0.0, 0.1, 1.0, 99999.000001, 5.10 )
 export const PATTERN_NUMBERS_ONLY = /^[0-9]*\.?[0-9]*$/
 
+//Display or hide Token transfer feature
+export const hasTokenTransfer = JSON.parse(
+  process.env.FEATURE_TOKEN_TRANSFER || 'false',
+)
+
 //@TODO UPLOAD & UPDATE ICONS
 export const NetworkRegistry = [
   {
