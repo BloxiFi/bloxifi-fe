@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import {
   bigNumberToNumber,
   convertETHToAssetValue,
+  ETHER_DECIMALS,
   getMaxBorrowAmount,
   MIN_VALUE_FOR_TRANSACTION,
   numberToBigNumber,
@@ -46,12 +47,13 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     //TODO update balance
   }
 
-  const isBorrowDisabled = (priceInEth: number): boolean =>
+  const isBorrowDisabled = (priceInEth: number, decimals: number): boolean =>
     bigNumberToNumber(
       convertETHToAssetValue(
         availableBorrowsETH,
-        numberToBigNumber(priceInEth),
+        numberToBigNumber(priceInEth, ETHER_DECIMALS),
       ),
+      decimals,
     ) < MIN_VALUE_FOR_TRANSACTION
 
   const columns = {
@@ -70,7 +72,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           </Text>
         </Tooltip>
       ),
-      Cell: ({ data: { priceInEth, symbol, aTokenBalance } }) => {
+      Cell: ({ data: { priceInEth, symbol, aTokenBalance, decimals } }) => {
         const maxBorrow = bigNumberToNumber(
           getMaxBorrowAmount({
             aTokenBalance,
@@ -79,6 +81,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
             totalCollateralETH,
             totalDebtETH,
           }),
+          decimals,
         )
         return (
           <TruncatedText data-cy={'availableToBorrow ' + symbol}>
@@ -110,7 +113,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           variant="medium"
           size="small"
           data-cy={'borrowBtn ' + data.symbol}
-          disabled={isBorrowDisabled(data.priceInEth)}
+          disabled={isBorrowDisabled(data.priceInEth, data.decimals)}
           onClick={() => openModal(data)}
         >
           {t('global.buttons.borrow')}

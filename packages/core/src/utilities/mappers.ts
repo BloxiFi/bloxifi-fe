@@ -3,6 +3,7 @@ import { UserReserveData } from '@/containers/WalletContainer'
 
 import {
   AVAILABLE_BORROW_DEVIATION,
+  ETHER_DECIMALS,
   MIN_HEALTH_FACTOR_VALUE,
   MIN_VALUE_FOR_TRANSACTION,
   SCALING_FACTOR,
@@ -63,22 +64,22 @@ export function numberToPercentage(value: number): number {
   return Number(Number(percentage.toFixed(2)).toPrecision())
 }
 
-export function bigNumberToString(value: BigNumber, decimals = 18): string {
+export function bigNumberToString(value: BigNumber, decimals: number): string {
   return ethers.utils.formatUnits(value, decimals)
 }
 
-export function bigNumberToNumber(value: BigNumber, decimals = 18): number {
+export function bigNumberToNumber(value: BigNumber, decimals: number): number {
   return Number(bigNumberToString(value, decimals))
 }
 
-export function stringToBigNumber(value: string, decimals = 18): BigNumber {
+export function stringToBigNumber(value: string, decimals: number): BigNumber {
   if (decimalCount(value) <= decimals) {
     return ethers.utils.parseUnits(value, decimals)
   }
   return BigNumber.from(Math.floor(Number(value) * 10 ** decimals))
 }
 
-export function numberToBigNumber(value: number, decimals = 18): BigNumber {
+export function numberToBigNumber(value: number, decimals: number): BigNumber {
   return stringToBigNumber(value.toString(), decimals)
 }
 
@@ -228,12 +229,16 @@ export const calculateHealthFactor = ({
   const totalBorrow = BigNumber.from(totalBorrowETH)
   return totalBorrow.isZero()
     ? 0
-    : bigNumberToNumber(totalCollateralETH.mul(SCALING_FACTOR).div(totalBorrow))
+    : bigNumberToNumber(
+        totalCollateralETH.mul(SCALING_FACTOR).div(totalBorrow),
+        ETHER_DECIMALS,
+      )
 }
 
 /**
- * Calculate asset collateral value for the potential transaction (In order to calculate future health factor in most cases)
+ * Calculate asset collateral value in ETH for the potential transaction (In order to calculate future health factor in most cases)
  * @param amount Desired amount for the transaction. E.g. The amount that user wants to deposit
+ * @param decimals Asset decimals
  * @param priceInEth Asset price in ETH, e.g. 1KSMmb = priceInEth ETH
  * @param reserveLiquidationThreshold LiquidationThreshold for the selected asset
  * LiquidationThreshold - the percentage at which a position is defined as undercollateralised.
@@ -241,13 +246,14 @@ export const calculateHealthFactor = ({
  */
 export const calculateAssetCollateralAfterTx = (
   amount: string,
+  decimals: number,
   priceInEth: number,
   reserveLiquidationThreshold: number,
 ): string => {
-  return stringToBigNumber(amount)
-    .mul(numberToBigNumber(priceInEth))
+  return stringToBigNumber(amount, decimals)
+    .mul(numberToBigNumber(priceInEth, ETHER_DECIMALS))
     .div(SCALING_FACTOR)
-    .mul(numberToBigNumber(reserveLiquidationThreshold))
+    .mul(numberToBigNumber(reserveLiquidationThreshold, ETHER_DECIMALS))
     .div(SCALING_FACTOR)
     .toString()
 }
@@ -280,12 +286,12 @@ export const calculateAvailableAssetToBorrow = (
 ) => {
   let availableAssetToBorrow = convertETHToAssetValue(
     availableBorrowsETH,
-    numberToBigNumber(priceInEth),
+    numberToBigNumber(priceInEth, ETHER_DECIMALS),
   )
   //Decrease available asset to borrow by scaling constant
   return (availableAssetToBorrow = availableAssetToBorrow.sub(
     availableAssetToBorrow
-      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION))
+      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION, ETHER_DECIMALS))
       .div(SCALING_FACTOR),
   ))
 }
@@ -304,10 +310,15 @@ export const calcBorrowAmountToReachHFLimit = (
 ) =>
   totalCollateralETH
     .mul(SCALING_FACTOR)
-    .div(numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION))
+    .div(
+      numberToBigNumber(
+        MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION,
+        ETHER_DECIMALS,
+      ),
+    )
     .sub(totalDebtETH)
     .mul(SCALING_FACTOR)
-    .div(numberToBigNumber(priceInEth))
+    .div(numberToBigNumber(priceInEth, ETHER_DECIMALS))
 
 /**
  * Function that calculates the maximum amount that user can borrow

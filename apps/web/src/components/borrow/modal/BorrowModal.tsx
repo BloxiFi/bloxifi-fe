@@ -4,6 +4,7 @@ import {
   bigNumberToString,
   BorrowAndLending,
   calculateHealthFactor,
+  ETHER_DECIMALS,
   getMaxBorrowAmount,
   isHealthFactorInfinity,
   MIN_HEALTH_FACTOR_VALUE,
@@ -79,7 +80,7 @@ export const BorrowModal = ({
       const response = await BorrowAndLending.lendingPool.borrow(
         lendingPoolContract,
         reserveData.underlyingAsset,
-        amount,
+        stringToBigNumber(amount, reserveData.decimals),
         currentAccount,
       )
       const isBorrowed = await response.wait()
@@ -96,12 +97,14 @@ export const BorrowModal = ({
   const depositValidationSchemaa = Yup.object().shape({
     amount: Yup.string()
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
-        stringToBigNumber(val).lte(stringToBigNumber(maxAmountToBorrow)),
+        stringToBigNumber(val, reserveData.decimals).lte(
+          stringToBigNumber(maxAmountToBorrow, reserveData.decimals),
+        ),
       )
       .test(
         'is-zero',
         t('global.errors.positiveValue'),
-        (val: string) => !stringToBigNumber(val).isZero(),
+        (val: string) => !stringToBigNumber(val, reserveData.decimals).isZero(),
       )
       .required(t('global.errors.required')),
   })
@@ -160,6 +163,7 @@ export const BorrowModal = ({
             totalCollateralETH,
             totalDebtETH,
           }),
+          reserveData.decimals,
         ),
       )
 
@@ -169,8 +173,8 @@ export const BorrowModal = ({
           calculateHealthFactor({
             totalCollateralETH,
             totalBorrowETH: totalBorrowETH.add(
-              stringToBigNumber(values.amount)
-                .mul(numberToBigNumber(reserveData.priceInEth))
+              stringToBigNumber(values.amount, reserveData.decimals)
+                .mul(numberToBigNumber(reserveData.priceInEth, ETHER_DECIMALS))
                 .div(SCALING_FACTOR),
             ),
           }),
@@ -186,6 +190,7 @@ export const BorrowModal = ({
     availableBorrowsETH,
     reserveData.aTokenBalance,
     totalDebtETH,
+    reserveData.decimals,
   ])
 
   const setMaxValue = async () => {

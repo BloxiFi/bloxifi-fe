@@ -1,5 +1,7 @@
 import { ethers } from 'ethers'
 
+import { moonbaseAlphaConfigAssets } from './configAssets'
+
 export const MIN_VALUE_FOR_TRANSACTION = 0.0000001
 export const MIN_HEALTH_FACTOR_VALUE = 1.01
 
@@ -25,11 +27,9 @@ export const PATTERN_NUMBERS_ONLY = /^[0-9]*\.?[0-9]*$/
 export const hasTokenTransfer = JSON.parse(
   process.env.FEATURE_TOKEN_TRANSFER || 'false',
 )
-type NetworkConfigType = {
-  [x: number]: { name: string; isTestnet: boolean; releyChain: string }
-}
+
 //@TODO UPLOAD & UPDATE ICONS
-const NetworkRegistry = [
+export const NetworkRegistry = [
   {
     prefix: 0,
     network: 'polkadot',
@@ -43,6 +43,8 @@ const NetworkRegistry = [
     paraId: 0,
     icon: 'polkadot',
     isTestnet: false,
+    configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 2,
@@ -57,6 +59,8 @@ const NetworkRegistry = [
     paraId: 0,
     icon: 'ksm',
     isTestnet: true,
+    configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 10,
@@ -71,6 +75,8 @@ const NetworkRegistry = [
     paraId: 2000,
     icon: 'acala',
     isTestnet: false,
+    configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 8,
@@ -85,6 +91,8 @@ const NetworkRegistry = [
     paraId: 2000,
     icon: 'karura',
     isTestnet: true,
+    configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 1284,
@@ -95,6 +103,8 @@ const NetworkRegistry = [
     decimals: [18],
     icon: 'mowr',
     isTestnet: false,
+    configAssets: {},
+    usdDecimals: 8, //TODO check value
   },
   {
     prefix: 1285,
@@ -105,6 +115,8 @@ const NetworkRegistry = [
     decimals: [18],
     icon: 'mowr',
     isTestnet: true,
+    configAssets: {},
+    usdDecimals: 8,
   },
   {
     prefix: 1287,
@@ -122,6 +134,8 @@ const NetworkRegistry = [
     decimals: [18],
     icon: 'mowr',
     isTestnet: true,
+    configAssets: moonbaseAlphaConfigAssets,
+    usdDecimals: 18,
   },
 ] as const
 
@@ -154,4 +168,12 @@ export const getNetworkName = (chainId: number): string => {
     return network.displayName
   }
   return 'Unknown'
+}
+
+export const getNetworkConfigAssets = (chainId: number): any => {
+  const network: SupportedNetwork = getNetworkByChain(chainId)
+  if (network) {
+    return network.configAssets
+  }
+  return {}
 }

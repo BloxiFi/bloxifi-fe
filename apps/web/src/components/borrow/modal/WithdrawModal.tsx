@@ -5,6 +5,7 @@ import {
   BorrowAndLending,
   calculateAssetCollateralAfterTx,
   calculateHealthFactor,
+  ETHER_DECIMALS,
   isHealthFactorInfinity,
   MIN_HEALTH_FACTOR_VALUE,
   MIN_VALUE_FOR_TRANSACTION,
@@ -38,6 +39,7 @@ export type WithdrawModalData = Pick<
   | 'priceInEth'
   | 'usageAsCollateralEnabledOnUser'
   | 'reserveLiquidationThreshold'
+  | 'decimals'
 >
 
 interface Props {
@@ -86,8 +88,11 @@ export const WithdrawModal = ({
 
   //The maximum amount to withdraw should go up to the minimum health factor value, until it reaches MIN_HEALTH_FACTOR_VALUE
   const calculateAmoutThatReachHFLimit = useCallback(() => {
-    const price = numberToBigNumber(reserveData.priceInEth)
-    const ltv = numberToBigNumber(reserveData.reserveLiquidationThreshold)
+    const price = numberToBigNumber(reserveData.priceInEth, ETHER_DECIMALS)
+    const ltv = numberToBigNumber(
+      reserveData.reserveLiquidationThreshold,
+      ETHER_DECIMALS,
+    )
     /**
      * (totalCollateralETH - totalBorrowETH * MIN_HEALTH_FACTOR_VALUE) / priceInEth * reserveLiquidationThreshold
      */
@@ -97,6 +102,7 @@ export const WithdrawModal = ({
           .mul(
             numberToBigNumber(
               MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION,
+              ETHER_DECIMALS,
             ),
           )
           .div(SCALING_FACTOR),
@@ -116,11 +122,15 @@ export const WithdrawModal = ({
       if (isCollateralEnabled) {
         const amountToReachHFLimit = calculateAmoutThatReachHFLimit()
         if (
-          stringToBigNumber(reserveData.currentATokenBalance).gt(
-            amountToReachHFLimit,
-          )
+          stringToBigNumber(
+            reserveData.currentATokenBalance,
+            reserveData.decimals,
+          ).gt(amountToReachHFLimit)
         ) {
-          maxWithdraw = bigNumberToString(amountToReachHFLimit)
+          maxWithdraw = bigNumberToString(
+            amountToReachHFLimit,
+            reserveData.decimals,
+          )
         }
       }
       setMaxAmountToWithdraw(maxWithdraw)
@@ -130,6 +140,7 @@ export const WithdrawModal = ({
     calculateAmoutThatReachHFLimit,
     reserveData.currentATokenBalance,
     isCollateralEnabled,
+    reserveData.decimals,
   ])
 
   const withdraw = async (amount: string) => {
@@ -138,7 +149,7 @@ export const WithdrawModal = ({
       const response = await BorrowAndLending.lendingPool.withdraw(
         lendingPoolContract,
         reserveData.underlyingAsset,
-        amount,
+        stringToBigNumber(amount, reserveData.decimals),
         currentAccount,
       )
       const isCompleted = await response.wait()
@@ -155,12 +166,14 @@ export const WithdrawModal = ({
   const withdrawValidationSchemaa = Yup.object().shape({
     amount: Yup.string()
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
-        stringToBigNumber(val).lte(stringToBigNumber(maxAmountToWithdraw)),
+        stringToBigNumber(val, reserveData.decimals).lte(
+          stringToBigNumber(maxAmountToWithdraw, reserveData.decimals),
+        ),
       )
       .test(
         'is-zero',
         t('global.errors.positiveValue'),
-        (val: string) => !stringToBigNumber(val).isZero(),
+        (val: string) => !stringToBigNumber(val, reserveData.decimals).isZero(),
       )
       .required(t('global.errors.required')),
   })
@@ -187,6 +200,7 @@ export const WithdrawModal = ({
     if (reserveData.usageAsCollateralEnabledOnUser) {
       const assetCollateralAfterTX = calculateAssetCollateralAfterTx(
         values.amount,
+        reserveData.decimals,
         reserveData.priceInEth,
         reserveData.reserveLiquidationThreshold,
       )
@@ -200,6 +214,7 @@ export const WithdrawModal = ({
     reserveData.priceInEth,
     reserveData.reserveLiquidationThreshold,
     reserveData.usageAsCollateralEnabledOnUser,
+    reserveData.decimals,
   ])
 
   useEffect(() => {
