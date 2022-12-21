@@ -81,7 +81,6 @@ export const useWalletBalance = ({
   const xcmSdk = useMemo(() => init(), [])
   const [balances, setBalances] = useState<TokenBalanceData[]>([])
   const [isLoading, setIsLoading] = useState(false)
-
   const fetchBalances = useCallback(async () =>
     //network: SupportedNetwork['network'],
     //supportedSymbols: any, //TODO Remove any type
@@ -108,9 +107,9 @@ export const useWalletBalance = ({
       }
     }, [
     currentAccount,
+    currentNetwork?.network,
+    currentNetwork?.supportedSymbols,
     xcmSdk,
-    currentNetwork.network,
-    currentNetwork.supportedSymbols,
   ])
 
   useEffect(() => {
