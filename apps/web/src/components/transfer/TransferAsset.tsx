@@ -23,15 +23,33 @@ import {
 } from '@bloxifi/core'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { TokenTransfer } from '@bloxifi/core/src/hooks/tokenTransfer'
+import {
+  DEFAULT_ORIGIN_CHAIN,
+  SuportedTransferTokens,
+  SupportedTransferChains,
+  useTokenTransfer,
+} from '@bloxifi/core/src/hooks/useTokenTransfer'
 import { DotWalletBalance } from '@bloxifi/core/src/hooks/dotWalletBalance'
 
 import { Web3Container } from '@/containers/Web3Container'
 import { Web3PolkadotContainer } from '@/containers/Web3PolkadotContainer'
 
-//type Props = {
-//  balances: TokenBalanceData[]
-//}
+const tokens: SuportedTransferTokens[] = ['MOVR', 'KAR', 'aUSD', 'KSM']
+const allowedChains: SupportedTransferChains[] = [
+  'moonriver',
+  'karura',
+  'kusama',
+]
+
+/**
+ * DEFAULT_ORIGIN_CHAIN represents default selected origin chain
+ * One of the origin and destination chains must be DEFAULT_ORIGIN_CHAIN
+ *
+ * TODO this can be more dinamic, like having this in .env perhaps, and then if in env is some `currentNetwork` fetch a config that will have all these default values
+ */
+
+const DEFAULT_DESTINATION_CHAIN = 'karura'
+const DEFAULT_TOKEN = 'MOVR'
 
 const TransferAsset = () => {
   const { t } = useTranslation()
@@ -46,33 +64,29 @@ const TransferAsset = () => {
     state: { currentAccountPolkadot, isPolkadotEnabled },
   } = Web3PolkadotContainer.useContainer()
 
-  const tokens = ['MOVR', 'KAR', 'aUSD', 'KSM']
-  const allowedChains = ['moonriver', 'karura', 'kusama']
   const chains = allowedChains.map((chain: SupportedNetwork['network']) =>
     getNetworkByName(chain),
   )
 
-  /**
-   * DEFAULT_ORIGIN_CHAIN represents default selected origin chain
-   * One of the origin and destination chains must be DEFAULT_ORIGIN_CHAIN
-   */
-  const DEFAULT_ORIGIN_CHAIN = 'moonriver'
-  const DEFAULT_DESTINATION_CHAIN = 'karura'
-  const DEFAULT_TOKEN = 'MOVR'
-
   const DEFAULT_ORIGIN = getNetworkByName(DEFAULT_ORIGIN_CHAIN)
   const DEFAULT_DESTINATION = getNetworkByName(DEFAULT_DESTINATION_CHAIN)
 
-  type SelectedToken = 'MOVR' | 'KAR' | 'aUSD' | 'KSM'
-
   const [closeMenu, setCloseMenu] = useState(false)
-  const [selectedToken, setSelectedToken] = useState(DEFAULT_TOKEN)
+  const [selectedToken, setSelectedToken] =
+    useState<SuportedTransferTokens>(DEFAULT_TOKEN)
   const [selectedOrigin, setSelectedOrigin] =
     useState<SupportedNetwork>(DEFAULT_ORIGIN)
   const [selectedDestination, setSelectedDestination] =
     useState<SupportedNetwork>(DEFAULT_DESTINATION)
   const [allowedTokens, setAllowedTokens] = useState([])
 
+  const { isLoading, transferToken } = useTokenTransfer({
+    metamaskSigner: signer,
+    metamaskAccount: currentAccount,
+    polkadotAccount: currentAccountPolkadot?.address,
+    transferOrigin: selectedOrigin.network,
+    transferDestination: selectedDestination.network,
+  })
   const [maxAmount, setMaxAmount] = useState(0)
   const { balances } = useWalletBalance({
     //, isLoading, fetchBalances
@@ -140,16 +154,11 @@ const TransferAsset = () => {
     setSelectedDestination(selectedOrigin)
   }
 
-  const handleTransferClick = async (amountToSend: string) => {
-    const transaction = await TokenTransfer(
-      toCapitalize(selectedOrigin.network),
-      toCapitalize(selectedDestination.network),
-      amountToSend.toString(),
-      currentAccountPolkadot,
-      signer,
-      currentAccount,
-      selectedToken,
-    )
+  const handleTransferClick = (amountToSend: string) => {
+    void transferToken({
+      tokenAmount: amountToSend.toString(),
+      tokenSymbol: selectedToken,
+    })
   }
 
   const transferTokenValidationSchemaa = Yup.object().shape({
@@ -439,7 +448,7 @@ const TransferAsset = () => {
                     }
                     field={
                       <StackLayout>
-                        {tokens.map((token: SelectedToken) => (
+                        {tokens.map((token: SuportedTransferTokens) => (
                           <MenuItem
                             key={token}
                             appearance="text"
@@ -463,6 +472,7 @@ const TransferAsset = () => {
                 appearance="dark"
                 size="large"
                 variant="large"
+                disabled={isLoading}
                 type="submit"
                 onClick={submitForm}
               >

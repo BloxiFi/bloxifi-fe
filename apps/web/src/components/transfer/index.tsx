@@ -22,11 +22,12 @@ const TokenTransfer = () => {
     },
   } = Web3Container.useContainer()
 
-  const { balances, isLoading, fetchBalances } = useWalletBalance({
+  const { balances, isLoading } = useWalletBalance({
     currentAccount,
     currentChainId: chainId,
     currentNetwork: network,
   })
+
   if (isLoading || connectionLoading) {
     return (
       <CoverLayout>

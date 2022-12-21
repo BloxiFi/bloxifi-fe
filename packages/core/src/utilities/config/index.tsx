@@ -120,7 +120,7 @@ export const NetworkRegistry = [
   },
   {
     prefix: 1287,
-    network: 'moonbaseAlpha',
+    network: 'moonbaseAlpha', // TODO should be `moonbase` as per `XcmSdkByChain`
     displayName: 'Moonbase Alpha',
     symbols: ['DEV'],
     supportedSymbols: [
