@@ -21,7 +21,7 @@ const TRANSACTION_REFETCH_INTERVAL = 3000
  * Reperesents the min number of TX confirmations that ensures that values are updated on blockchain
  */
 const TRANSACTION_MIN_CONFIRMATION = 2
-const IS_TESTNET = process.env.IS_TESTNET
+const IS_TESTNET = JSON.parse(process.env.IS_TESTNET || 'true')
 
 const defaultState: Web3ContainerProps = {
   currentAccount: '',

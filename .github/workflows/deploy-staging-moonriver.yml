@@ -1,0 +1,110 @@
+name: moonriver-staging
+on:
+  push:
+    branches:
+      - moonriver-staging
+  pull_request:
+    branches:
+      - moonriver-staging
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: moonriver-staging
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      - name: Assume Role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.STG_MR_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-session-name: mba_cicd
+          aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
+          role-duration-seconds: 1200     
+      - uses: actions/checkout@v3
+        id: checkout
+      # Cache files in ./frontend
+      - name: Cache
+        uses: actions/cache@v3
+        id: use-cache
+        with:
+          path: |
+            node_modules/
+            .eslintcache
+            .stylelintcache
+            **/.cache
+            apps/**/node_modules/
+            packages/**/node_modules/
+            autotests/**/node_modules/
+            ~/.cache/Cypress
+          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            develop-fe-
+      # Install dependencies and build the app
+      - name: Build React App
+        id: build-project
+        run: |
+         aws secretsmanager get-secret-value --secret-id ${{ secrets.STG_MR_BUCKET }} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > apps/web/.env
+         yarn install --frozen-lockfile && yarn bootstrap && yarn build
+         rm apps/web/.env
+         cd apps/web/dist && tar cvzf ${GITHUB_SHA}-build.tar.gz *
+         mv ${GITHUB_SHA}-build.tar.gz ../../../
+         cd ../../../
+      # Upload the build as artifact
+      - name: Artifacts upload
+        id: upload-artifact
+        run: |
+          upload_path=$(echo ${{ secrets.STG_MR_BUCKET }} |sed s%-%\/%)
+          aws s3 cp ${GITHUB_SHA}-build.tar.gz ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-build.tar.gz
+      ## Notify on slack if there is a failure
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: failure()
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    environment:
+      name: moonriver-staging
+      url: https://mriver.staging.savval.io
+    steps:
+      - name: Assume Role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.STG_MR_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-session-name: mba_cicd
+          aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
+          role-duration-seconds: 1200 
+      # Download the artifact
+      - name: Artifacts upload
+        id: upload-artifact
+        run: |
+          upload_path=$(echo ${{ secrets.STG_MR_BUCKET }} |sed s%-%\/%)
+          aws s3 cp ${{ secrets.ARTIFACT_STORAGE }}/$upload_path/${GITHUB_SHA}-build.tar.gz $(pwd)/artifact.tar.gz
+          tar xvf artifact.tar.gz
+          rm artifact.tar.gz
+      # Upload the app on S3 bucket
+      - name: Deploy app build to S3 bucket
+        id: deploy
+        run: aws s3 sync . s3://${{ secrets.STG_MR_BUCKET }} --cache-control "max-age=120000" --delete
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.STG_MR_DISTRIBUTION_ID }}
+          PATHS: "/index.html"
+      - name: Notify the status of deploy on slack
+        uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: always()

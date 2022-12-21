@@ -37,7 +37,8 @@ export const StakeModalContent = () => {
         mockTokenContract,
         currentAccount,
       )
-      setBalance(bigNumberToNumber(balanceEth))
+      //TODO check decimals
+      setBalance(bigNumberToNumber(balanceEth, 18))
       //probably should setHasError(undefined)
     } catch (error) {
       setHasError(error)

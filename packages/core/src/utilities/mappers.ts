@@ -1,7 +1,13 @@
 import { BigNumber, ethers } from 'ethers'
 import { UserReserveData } from '@/containers/WalletContainer'
 
-import { SCALING_FACTOR } from './config'
+import {
+  AVAILABLE_BORROW_DEVIATION,
+  ETHER_DECIMALS,
+  MIN_HEALTH_FACTOR_VALUE,
+  MIN_VALUE_FOR_TRANSACTION,
+  SCALING_FACTOR,
+} from './config'
 
 /**
  * Wait before executing
@@ -19,6 +25,19 @@ export const filterItems = (items, filter, filterBy) => {
     filterItem =>
       filterItem[filterBy].toLowerCase().search(filter.toLowerCase()) !== -1,
   )
+}
+
+/**
+ * Function that calculates number of decimals in a number or a string
+ * @param amount Number or string representation of a number
+ * @returns
+ */
+export const decimalCount = (amount: number | string) => {
+  const numStr = String(amount)
+  if (numStr.includes('.')) {
+    return numStr.split('.')[1].length
+  }
+  return 0
 }
 
 /**
@@ -45,25 +64,31 @@ export function numberToPercentage(value: number): number {
   return Number(Number(percentage.toFixed(2)).toPrecision())
 }
 
-export function bigNumberToString(value: BigNumber): string {
-  return ethers.utils.formatUnits(value)
+export function bigNumberToString(value: BigNumber, decimals: number): string {
+  return ethers.utils.formatUnits(value, decimals)
 }
 
-export function bigNumberToNumber(value: BigNumber): number {
-  return Number(bigNumberToString(value))
+export function bigNumberToNumber(value: BigNumber, decimals: number): number {
+  return Number(bigNumberToString(value, decimals))
 }
 
-export function stringToBigNumber(value: string): BigNumber {
-  return ethers.utils.parseUnits(value)
+export function stringToBigNumber(value: string, decimals: number): BigNumber {
+  if (decimalCount(value) <= decimals) {
+    return ethers.utils.parseUnits(value, decimals)
+  }
+  return BigNumber.from(Math.floor(Number(value) * 10 ** decimals))
 }
 
-export function numberToBigNumber(value: number): BigNumber {
-  return stringToBigNumber(value.toString())
+export function numberToBigNumber(value: number, decimals: number): BigNumber {
+  return stringToBigNumber(value.toString(), decimals)
 }
 
 export const sumArrayItems = (array: number[]): number =>
   array.reduce((partialSum, a) => partialSum + a, 0)
 
+export const getMinimumValue = (...args: BigNumber[]) => {
+  return args.reduce((m, e) => (e.lt(m) ? e : m))
+}
 /**
  * convertToUSD function converts asset value to USD
  * @param balance Asset balance
@@ -94,6 +119,18 @@ export const convertUSDToAssetValue = (
   usdPriceEth: number,
 ) => {
   return value / (priceInEth * usdPriceEth)
+}
+/**
+ * Function that converts ETH value to any asset value
+ * @param value The asset amount that should be converted
+ * @param priceInEth The asset price in ETH
+ * @returns
+ */
+export const convertETHToAssetValue = (
+  value: BigNumber,
+  priceInEth: BigNumber,
+) => {
+  return value && priceInEth && value.mul(SCALING_FACTOR).div(priceInEth)
 }
 
 type BalanceField =
@@ -186,20 +223,22 @@ export const calculateHealthFactor = ({
   totalCollateralETH,
   totalBorrowETH,
 }: {
-  totalCollateralETH: string
-  totalBorrowETH: string
+  totalCollateralETH: BigNumber
+  totalBorrowETH: BigNumber
 }): number => {
   const totalBorrow = BigNumber.from(totalBorrowETH)
   return totalBorrow.isZero()
     ? 0
     : bigNumberToNumber(
-        BigNumber.from(totalCollateralETH).mul(SCALING_FACTOR).div(totalBorrow),
+        totalCollateralETH.mul(SCALING_FACTOR).div(totalBorrow),
+        ETHER_DECIMALS,
       )
 }
 
 /**
- * Calculate asset collateral value for the potential transaction (In order to calculate future health factor in most cases)
+ * Calculate asset collateral value in ETH for the potential transaction (In order to calculate future health factor in most cases)
  * @param amount Desired amount for the transaction. E.g. The amount that user wants to deposit
+ * @param decimals Asset decimals
  * @param priceInEth Asset price in ETH, e.g. 1KSMmb = priceInEth ETH
  * @param reserveLiquidationThreshold LiquidationThreshold for the selected asset
  * LiquidationThreshold - the percentage at which a position is defined as undercollateralised.
@@ -207,13 +246,14 @@ export const calculateHealthFactor = ({
  */
 export const calculateAssetCollateralAfterTx = (
   amount: string,
+  decimals: number,
   priceInEth: number,
   reserveLiquidationThreshold: number,
 ): string => {
-  return stringToBigNumber(amount)
-    .mul(numberToBigNumber(priceInEth))
+  return stringToBigNumber(amount, decimals)
+    .mul(numberToBigNumber(priceInEth, ETHER_DECIMALS))
     .div(SCALING_FACTOR)
-    .mul(numberToBigNumber(reserveLiquidationThreshold))
+    .mul(numberToBigNumber(reserveLiquidationThreshold, ETHER_DECIMALS))
     .div(SCALING_FACTOR)
     .toString()
 }
@@ -232,4 +272,93 @@ export const getMaxRepayAmount = (
     return balance
   }
   return currentTotalDebt
+}
+
+/**
+ * Function that calculates the maximum amount that user can borrow based on his total collaterals and borrows
+ * @param availableBorrowsETH Total available amount to borrow in ETH based on user collaterals and borrows
+ * @param priceInEth Asset price in ETH
+ * @returns
+ */
+export const calculateAvailableAssetToBorrow = (
+  availableBorrowsETH: BigNumber,
+  priceInEth: number,
+) => {
+  let availableAssetToBorrow = convertETHToAssetValue(
+    availableBorrowsETH,
+    numberToBigNumber(priceInEth, ETHER_DECIMALS),
+  )
+  //Decrease available asset to borrow by scaling constant
+  return (availableAssetToBorrow = availableAssetToBorrow.sub(
+    availableAssetToBorrow
+      .mul(stringToBigNumber(AVAILABLE_BORROW_DEVIATION, ETHER_DECIMALS))
+      .div(SCALING_FACTOR),
+  ))
+}
+
+/**
+ * Function that calculates the maximum amount that user can borrow up to future health factor limit (HF should be min MIN_HEALTH_FACTOR_VALUE)
+ * @param totalCollateralETH user collaterals in ETH
+ * @param totalDebtETH Total user borrows in ETH
+ * @param priceInEth Asset price in ETH
+ * @returns
+ */
+export const calcBorrowAmountToReachHFLimit = (
+  totalCollateralETH: BigNumber,
+  totalDebtETH: BigNumber,
+  priceInEth: number,
+) =>
+  totalCollateralETH
+    .mul(SCALING_FACTOR)
+    .div(
+      numberToBigNumber(
+        MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION,
+        ETHER_DECIMALS,
+      ),
+    )
+    .sub(totalDebtETH)
+    .mul(SCALING_FACTOR)
+    .div(numberToBigNumber(priceInEth, ETHER_DECIMALS))
+
+/**
+ * Function that calculates the maximum amount that user can borrow
+ * The maximum amount to borrow should be the minimum of the following params:
+ * * -total aToken balance that exist in the pool
+ * * -amount that reached minimum future health factor (HF should be min 1.01) or
+ * * -available amount to borrow based on his collaterals and borrows
+ * @param aTokenBalance The total aToken balance that exist in the pool
+ * @param availableBorrowsETH Total available amount to borrow in ETH based on user collaterals and borrows
+ * @param priceInEth Asset price in ETH
+ * @param totalCollateralETH Total user collaterals in ETH
+ * @param totalDebtETH Total user borrows in ETH
+ * @returns Max amount that user is able to borrow
+ */
+export const getMaxBorrowAmount = ({
+  aTokenBalance,
+  availableBorrowsETH,
+  priceInEth,
+  totalCollateralETH,
+  totalDebtETH,
+}: {
+  aTokenBalance: BigNumber
+  availableBorrowsETH: BigNumber
+  priceInEth: number
+  totalCollateralETH: BigNumber
+  totalDebtETH: BigNumber
+}) => {
+  const availableAssetToBorrow = calculateAvailableAssetToBorrow(
+    availableBorrowsETH,
+    priceInEth,
+  )
+  const amountToReachHFLimit = calcBorrowAmountToReachHFLimit(
+    totalCollateralETH,
+    totalDebtETH,
+    priceInEth,
+  )
+
+  return getMinimumValue(
+    availableAssetToBorrow,
+    amountToReachHFLimit,
+    aTokenBalance,
+  )
 }

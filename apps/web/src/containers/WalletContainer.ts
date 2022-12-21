@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import {
   bigNumberToNumber,
-  bigNumberToString,
   BorrowAndLending,
   convertBalancesInUsdArray,
   GET_RESERVE_DATA,
@@ -13,9 +12,13 @@ import {
   Tokens,
   UserReserveDataQuery,
   UserReserveVariables,
+  bigNumberToString,
+  ETHER_DECIMALS,
+  LT_DECIMALS,
+  getNetworkByChain,
 } from '@bloxifi/core'
-import Assets from '@bloxifi/core/src/utilities/assets.json'
 import { Action } from '@bloxifi/types'
+import { BigNumber } from 'ethers'
 import {
   Dispatch,
   Reducer,
@@ -36,6 +39,7 @@ type DefaultReserveData = {
   icon: string
   decimals: number
   balance: string
+  aTokenBalance: BigNumber
   supplyAPY: number
   liquidityRate: number
   variableBorrowAPY: number
@@ -58,11 +62,11 @@ export type UserReserveData = DefaultReserveData & {
 }
 
 export type UserAccountData = {
-  totalDebtETH: number
-  availableBorrowsETH: number
+  totalDebtETH: BigNumber
+  availableBorrowsETH: BigNumber
   healthFactor: number
   liquidationThreshold: number
-  totalCollateralETH: number
+  totalCollateralETH: BigNumber
 }
 
 interface State {
@@ -150,6 +154,9 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
   const [error, setError] = useState<Error | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
 
+  const CHAIN_ID = Number(process.env.CHAIN_ID) || 1287
+  const networkConfig = getNetworkByChain(CHAIN_ID)
+
   const {
     data,
     refetch,
@@ -202,22 +209,26 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       dispatch({
         type: 'setUserAccountData',
         value: {
-          healthFactor: bigNumberToNumber(response.healthFactor),
-          availableBorrowsETH: bigNumberToNumber(response.availableBorrowsETH),
-          totalDebtETH: bigNumberToNumber(response.totalDebtETH),
+          healthFactor: bigNumberToNumber(
+            response.healthFactor,
+            ETHER_DECIMALS,
+          ),
+          availableBorrowsETH: response.availableBorrowsETH,
+          totalDebtETH: response.totalDebtETH,
           liquidationThreshold:
             Number(response.currentLiquidationThreshold.toString()) *
-            Math.pow(10, -4),
-          totalCollateralETH: bigNumberToNumber(response.totalCollateralETH),
+            Math.pow(10, -LT_DECIMALS),
+          totalCollateralETH: response.totalCollateralETH,
         },
       })
     } catch (error) {
       setError(error)
+      throw Error(error)
     }
   }, [currentAccount, signer])
 
   const getReserveBalance = useCallback(
-    async (address: string) => {
+    async (address: string, aTokenAddress: string) => {
       try {
         const tokenContract: TokenContract = Tokens.getERC20TokenContract(
           signer,
@@ -228,10 +239,15 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
           tokenContract,
           currentAccount,
         )
+        const aTokenBalance = await Tokens.getTokenBalance(
+          tokenContract,
+          aTokenAddress,
+        )
         setError(undefined)
-        return balance
+        return { balance, aTokenBalance }
       } catch (error) {
         setError(error)
+        throw Error(error)
       }
     },
     [currentAccount, signer],
@@ -242,22 +258,40 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       try {
         const reserveData = await Promise.all(
           reserves.map(async (reserve: ReservesDataQuery) => {
-            const balance = await getReserveBalance(reserve.underlyingAsset)
+            const staticData = networkConfig.configAssets[reserve.symbol]
+            const { balance, aTokenBalance } = await getReserveBalance(
+              staticData.underlyingAsset,
+              staticData.aToken.id,
+            )
             return {
               ...reserve,
-              balance: bigNumberToString(balance),
-              icon: Assets[reserve.symbol].icon,
-              fullName: Assets[reserve.symbol].fullName,
+              decimals: staticData.decimals,
+              underlyingAsset: staticData.underlyingAsset,
+              balance: bigNumberToString(balance, staticData.decimals),
+              aTokenBalance,
+              icon: staticData.icon,
+              fullName: staticData.fullName,
               supplyAPY: calculateAPY(reserve.liquidityRate),
               variableBorrowAPY: calculateAPY(reserve.variableBorrowRate),
-              priceInEth: bigNumberToNumber(reserve.price.priceInEth),
-              usdPriceEth: bigNumberToNumber(reserve.price.oracle.usdPriceEth),
-              totalATokenSupply: bigNumberToString(reserve.totalATokenSupply),
+              priceInEth: bigNumberToNumber(
+                reserve.price.priceInEth,
+                ETHER_DECIMALS,
+              ),
+              usdPriceEth: bigNumberToNumber(
+                reserve.price.oracle.usdPriceEth,
+                networkConfig.usdDecimals,
+              ),
+              totalATokenSupply: bigNumberToString(
+                reserve.totalATokenSupply,
+                staticData.decimals, //TODO check decimals
+              ),
               totalCurrentVariableDebt: bigNumberToString(
                 reserve.totalCurrentVariableDebt,
+                staticData.decimals, //TODO check decimals
               ),
               reserveLiquidationThreshold:
-                reserve.reserveLiquidationThreshold * Math.pow(10, -4),
+                reserve.reserveLiquidationThreshold *
+                Math.pow(10, -LT_DECIMALS),
             }
           }),
         )
@@ -267,9 +301,10 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         })
       } catch (error) {
         setError(error)
+        throw Error(error)
       }
     },
-    [getReserveBalance],
+    [getReserveBalance, networkConfig.configAssets, networkConfig.usdDecimals],
   )
 
   const mapUserReserveData = useCallback(
@@ -289,20 +324,31 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
     }: UserReserveDataQuery) => ({
       ...rest,
       ...restReserve,
-      currentATokenBalance: bigNumberToString(currentATokenBalance),
-      currentTotalDebt: bigNumberToString(currentTotalDebt),
+      underlyingAsset: networkConfig.configAssets[symbol].underlyingAsset,
+      decimals: networkConfig.configAssets[symbol].decimals,
+      currentATokenBalance: bigNumberToString(
+        currentATokenBalance,
+        networkConfig.configAssets[symbol].decimals, //TODO check decimals
+      ),
+      currentTotalDebt: bigNumberToString(
+        currentTotalDebt,
+        networkConfig.configAssets[symbol].decimals,
+      ), //TODO check decimals
       symbol: symbol,
-      icon: Assets[symbol].icon,
-      fullName: Assets[symbol].fullName,
+      icon: networkConfig.configAssets[symbol].icon,
+      fullName: networkConfig.configAssets[symbol].fullName,
       supplyAPY: calculateAPY(liquidityRate),
       variableBorrowAPY: calculateAPY(variableBorrowRate),
-      priceInEth: bigNumberToNumber(price.priceInEth),
-      usdPriceEth: bigNumberToNumber(price.oracle.usdPriceEth),
-      baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -4),
+      priceInEth: bigNumberToNumber(price.priceInEth, ETHER_DECIMALS),
+      usdPriceEth: bigNumberToNumber(
+        price.oracle.usdPriceEth,
+        networkConfig.usdDecimals,
+      ),
+      baseLTVasCollateral: baseLTVasCollateral * Math.pow(10, -LT_DECIMALS),
       reserveLiquidationThreshold:
-        reserveLiquidationThreshold * Math.pow(10, -4),
+        reserveLiquidationThreshold * Math.pow(10, -LT_DECIMALS),
     }),
-    [],
+    [networkConfig.configAssets, networkConfig.usdDecimals],
   )
 
   const setQueryData = useCallback(
@@ -328,6 +374,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
         setLoading(false)
       } catch (error) {
         setError(error)
+        throw Error(error)
       } finally {
         setLoading(false)
       }
@@ -348,6 +395,7 @@ function useWallet(initialState: State = defaultState): DepositContainerState {
       await setQueryData(res.data)
     } catch (error) {
       setError(error)
+      throw Error(error)
     } finally {
       setLoading(false)
     }

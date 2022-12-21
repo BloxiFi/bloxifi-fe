@@ -27,7 +27,8 @@ export const ClaimRewards = () => {
       const balanceEth = await stakeContract.getTotalRewardsBalance(
         currentAccount,
       )
-      setTokenRewards(bigNumberToNumber(balanceEth))
+      //TODO check decimals
+      setTokenRewards(bigNumberToNumber(balanceEth, 18))
       setHasError(null)
     } catch (error) {
       setHasError(error)

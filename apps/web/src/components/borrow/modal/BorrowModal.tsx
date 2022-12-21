@@ -4,21 +4,18 @@ import {
   bigNumberToString,
   BorrowAndLending,
   calculateHealthFactor,
-  convertUSDToAssetValue,
+  ETHER_DECIMALS,
+  getMaxBorrowAmount,
   isHealthFactorInfinity,
   MIN_HEALTH_FACTOR_VALUE,
-  MIN_VALUE_FOR_TRANSACTION,
   numberToBigNumber,
   SCALING_FACTOR,
   stringToBigNumber,
-  Tokens,
 } from '@bloxifi/core'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { CheckAllowanceFunction } from '@bloxifi/types'
 import { useHealthFactor } from '@bloxifi/core/src/hooks/useHealthFactor'
-import { BigNumber } from 'ethers'
 
 import { TransactionOverview } from '../table/TransactionOverview'
 
@@ -56,7 +53,9 @@ export const BorrowModal = ({
     waitTransactionConfirmation,
   } = Web3Container.useContainer()
   const {
-    state: { availableToBorrowUSD },
+    state: {
+      userAccountData: { availableBorrowsETH, totalDebtETH },
+    },
     refetch,
   } = WalletContainer.useContainer()
 
@@ -67,54 +66,13 @@ export const BorrowModal = ({
   const [hasError, setHasError] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
-  const [shouldApproveContract, setShouldApproveContract] = useState(false)
-  const [approved, setApproved] = useState<boolean>(false)
-
   const [borrowCompleted, setBorrowCompleted] = useState<boolean>(false)
   const [futureHealthFactor, setFutureHealthFactor] =
     useState<number>(undefined)
   const [maxAmountToBorrow, setMaxAmountToBorrow] = useState('')
 
-  const tokenContract = reserveData.symbol
-    ? Tokens.getERC20TokenContract(signer, reserveData.underlyingAsset)
-    : null
   const lendingPoolContract =
     BorrowAndLending.lendingPool.getLendingPoolContract(signer)
-
-  const checkAllowance: CheckAllowanceFunction = useCallback(async () => {
-    if (tokenContract) {
-      try {
-        const approvedTokens = await Tokens.getAllowance(
-          tokenContract,
-          currentAccount,
-          'deposit',
-        )
-        setShouldApproveContract(approvedTokens.toString() === '0')
-      } catch (error) {
-        setHasError(error)
-      }
-    }
-  }, [currentAccount, tokenContract])
-
-  useEffect(() => {
-    if (isSupportedNetwork) {
-      void checkAllowance()
-    }
-  }, [checkAllowance, isSupportedNetwork])
-
-  const approve = async () => {
-    setLoading(true)
-    try {
-      const response = await Tokens.approveToken(tokenContract, 'deposit')
-      const isApproved = await response.wait()
-
-      setApproved(!!isApproved)
-    } catch (error) {
-      setHasError(error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const borrow = async (amount: string) => {
     setLoading(true)
@@ -122,7 +80,7 @@ export const BorrowModal = ({
       const response = await BorrowAndLending.lendingPool.borrow(
         lendingPoolContract,
         reserveData.underlyingAsset,
-        amount,
+        stringToBigNumber(amount, reserveData.decimals),
         currentAccount,
       )
       const isBorrowed = await response.wait()
@@ -136,21 +94,17 @@ export const BorrowModal = ({
     }
   }
 
-  const availableToBorrow = convertUSDToAssetValue(
-    availableToBorrowUSD,
-    reserveData.priceInEth,
-    reserveData.usdPriceEth,
-  )
-
   const depositValidationSchemaa = Yup.object().shape({
     amount: Yup.string()
       .test('is-exceeded', t('global.errors.exceededBalance'), (val: string) =>
-        stringToBigNumber(val).lte(stringToBigNumber(maxAmountToBorrow)),
+        stringToBigNumber(val, reserveData.decimals).lte(
+          stringToBigNumber(maxAmountToBorrow, reserveData.decimals),
+        ),
       )
       .test(
         'is-zero',
         t('global.errors.positiveValue'),
-        (val: string) => !stringToBigNumber(val).isZero(),
+        (val: string) => !stringToBigNumber(val, reserveData.decimals).isZero(),
       )
       .required(t('global.errors.required')),
   })
@@ -183,7 +137,6 @@ export const BorrowModal = ({
     if (isOpen) {
       resetState()
       setBorrowCompleted(false)
-      setShouldApproveContract(false)
       setFutureHealthFactor(undefined)
     }
   }, [isOpen, resetState])
@@ -197,52 +150,33 @@ export const BorrowModal = ({
     isInputDisabled ||
     !!errors.amount ||
     !values.amount ||
-    (shouldApproveContract && !approved) ||
     isHealthFactorReached
-  const isApproveDisabled = !isSupportedNetwork || loading || approved
-
-  //The maximum amount to borrow should go up to the minimum health factor value
-  const calculateAmoutThatReachHFLimit = useCallback(() => {
-    const price = numberToBigNumber(reserveData.priceInEth)
-    const totalCollateralBig = BigNumber.from(totalCollateralETH)
-    const totalBorrowBig = BigNumber.from(totalBorrowETH)
-
-    /**
-     * Formula: (totalCollateralETH / (MIN_HEALTH_FACTOR_VALUE - totalBorrowETH) / priceInEth
-     */
-    return totalCollateralBig
-      .mul(SCALING_FACTOR)
-      .div(
-        numberToBigNumber(MIN_HEALTH_FACTOR_VALUE + MIN_VALUE_FOR_TRANSACTION),
-      )
-      .sub(totalBorrowBig)
-      .mul(SCALING_FACTOR)
-      .div(price)
-  }, [reserveData.priceInEth, totalCollateralETH, totalBorrowETH])
 
   useEffect(() => {
     if (isOpen) {
-      //Calculate max amount to borrow
-      const amountToReachHFLimit = calculateAmoutThatReachHFLimit()
-      const maxBorrow = numberToBigNumber(availableToBorrow).lt(
-        amountToReachHFLimit,
+      setMaxAmountToBorrow(
+        bigNumberToString(
+          getMaxBorrowAmount({
+            aTokenBalance: reserveData.aTokenBalance,
+            availableBorrowsETH,
+            priceInEth: reserveData.priceInEth,
+            totalCollateralETH,
+            totalDebtETH,
+          }),
+          reserveData.decimals,
+        ),
       )
-        ? availableToBorrow.toString()
-        : bigNumberToString(amountToReachHFLimit)
-      setMaxAmountToBorrow(maxBorrow)
 
       //Calculate future HF
       if (values.amount) {
         setFutureHealthFactor(
           calculateHealthFactor({
             totalCollateralETH,
-            totalBorrowETH: BigNumber.from(totalBorrowETH)
-              .add(
-                stringToBigNumber(values.amount)
-                  .mul(numberToBigNumber(reserveData.priceInEth))
-                  .div(SCALING_FACTOR),
-              )
-              .toString(),
+            totalBorrowETH: totalBorrowETH.add(
+              stringToBigNumber(values.amount, reserveData.decimals)
+                .mul(numberToBigNumber(reserveData.priceInEth, ETHER_DECIMALS))
+                .div(SCALING_FACTOR),
+            ),
           }),
         )
       }
@@ -253,8 +187,10 @@ export const BorrowModal = ({
     totalCollateralETH,
     totalBorrowETH,
     reserveData.priceInEth,
-    availableToBorrow,
-    calculateAmoutThatReachHFLimit,
+    availableBorrowsETH,
+    reserveData.aTokenBalance,
+    totalDebtETH,
+    reserveData.decimals,
   ])
 
   const setMaxValue = async () => {
@@ -315,31 +251,17 @@ export const BorrowModal = ({
             </StackLayout>
 
             <BoxLayout gap={1.875}>
-              <StackLayout gap={1}>
-                {shouldApproveContract && (
-                  <Button
-                    className="u-full-width"
-                    appearance="dark"
-                    size="large"
-                    variant="large"
-                    disabled={isApproveDisabled}
-                    onClick={approve}
-                  >
-                    {t('global.buttons.approve')}
-                  </Button>
-                )}
-                <Button
-                  className="u-full-width"
-                  appearance="dark"
-                  size="large"
-                  variant="large"
-                  disabled={isBorrowDisabled}
-                  onClick={submitForm}
-                  data-cy={'borrowButtonOnModal ' + reserveData.symbol}
-                >
-                  {t('global.buttons.borrow')} {reserveData.symbol}
-                </Button>
-              </StackLayout>
+              <Button
+                className="u-full-width"
+                appearance="dark"
+                size="large"
+                variant="large"
+                disabled={isBorrowDisabled}
+                onClick={submitForm}
+                data-cy={'borrowButtonOnModal ' + reserveData.symbol}
+              >
+                {t('global.buttons.borrow')} {reserveData.symbol}
+              </Button>
             </BoxLayout>
           </StackLayout>
         </>

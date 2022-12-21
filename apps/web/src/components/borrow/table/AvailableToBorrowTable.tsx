@@ -9,8 +9,12 @@ import {
 } from '@bloxifi/ui'
 import { useTranslation } from 'react-i18next'
 import {
-  convertUSDToAssetValue,
+  bigNumberToNumber,
+  convertETHToAssetValue,
+  ETHER_DECIMALS,
+  getMaxBorrowAmount,
   MIN_VALUE_FOR_TRANSACTION,
+  numberToBigNumber,
 } from '@bloxifi/core'
 
 import { AssetName } from '../AssetName'
@@ -22,7 +26,15 @@ import { ReservesData, WalletContainer } from '@/containers/WalletContainer'
 export const AvailableToBorrowTable: FunctionComponent = () => {
   const { t } = useTranslation()
   const {
-    state: { availableToBorrowUSD, reserves, loading },
+    state: {
+      reserves,
+      loading,
+      userAccountData: {
+        availableBorrowsETH,
+        totalCollateralETH,
+        totalDebtETH,
+      },
+    },
   } = WalletContainer.useContainer()
   const [modalData, setModalData] = useState<ReservesData>()
 
@@ -34,6 +46,16 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
     setModalData(undefined)
     //TODO update balance
   }
+
+  const isBorrowDisabled = (priceInEth: number, decimals: number): boolean =>
+    bigNumberToNumber(
+      convertETHToAssetValue(
+        availableBorrowsETH,
+        numberToBigNumber(priceInEth, ETHER_DECIMALS),
+      ),
+      decimals,
+    ) < MIN_VALUE_FOR_TRANSACTION
+
   const columns = {
     assets: {
       header: t('global.table.assets'),
@@ -50,16 +72,20 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           </Text>
         </Tooltip>
       ),
-      Cell: ({ data: { usdPriceEth, priceInEth, symbol } }) => {
+      Cell: ({ data: { priceInEth, symbol, aTokenBalance, decimals } }) => {
+        const maxBorrow = bigNumberToNumber(
+          getMaxBorrowAmount({
+            aTokenBalance,
+            availableBorrowsETH,
+            priceInEth,
+            totalCollateralETH,
+            totalDebtETH,
+          }),
+          decimals,
+        )
         return (
           <TruncatedText data-cy={'availableToBorrow ' + symbol}>
-            <FormattedNumber
-              value={convertUSDToAssetValue(
-                availableToBorrowUSD,
-                priceInEth,
-                usdPriceEth,
-              )}
-            />
+            <FormattedNumber value={maxBorrow} />
           </TruncatedText>
         )
       },
@@ -87,13 +113,7 @@ export const AvailableToBorrowTable: FunctionComponent = () => {
           variant="medium"
           size="small"
           data-cy={'borrowBtn ' + data.symbol}
-          disabled={
-            convertUSDToAssetValue(
-              availableToBorrowUSD,
-              data.priceInEth,
-              data.usdPriceEth,
-            ) < MIN_VALUE_FOR_TRANSACTION
-          }
+          disabled={isBorrowDisabled(data.priceInEth, data.decimals)}
           onClick={() => openModal(data)}
         >
           {t('global.buttons.borrow')}

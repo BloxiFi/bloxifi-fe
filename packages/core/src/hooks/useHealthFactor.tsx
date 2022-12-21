@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { BigNumber } from 'ethers'
 
 import {
   calculateHealthFactor,
+  getNetworkByChain,
   SCALING_FACTOR,
   SCALING_FACTOR_LT,
 } from '../utilities'
@@ -18,23 +19,25 @@ import {
 /**
  * Calculate total borrows for current user
  */
-const calculateTotalBorrow = (array: HealthFactorQuery[]): string => {
+const calculateTotalBorrow = (array: HealthFactorQuery[]): BigNumber => {
   let totalBorrow = BigNumber.from(0)
   for (const item of array) {
-    const currentTotalDebt = BigNumber.from(item.currentTotalDebt)
+    const currentTotalDebt = BigNumber.from(item.currentTotalDebt) //TODO  check decimals
     const priceInEth = BigNumber.from(item.reserve.price.priceInEth)
     totalBorrow = totalBorrow.add(
       currentTotalDebt.mul(priceInEth).div(SCALING_FACTOR),
     )
   }
-  return totalBorrow.toString()
+  return totalBorrow
 }
 
 /**
  * Calculate total deposited balance for collaterals with asset liquidation threshold
  * ∑Collateral in ETH × LiquidationThreshold
  */
-const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): any => {
+const calculateTotalCollateralWithLT = (
+  array: HealthFactorQuery[],
+): BigNumber => {
   let totalCollateral = BigNumber.from(0)
 
   for (const item of array) {
@@ -49,12 +52,11 @@ const calculateTotalCollateralWithLT = (array: HealthFactorQuery[]): any => {
           .mul(priceInEth)
           .div(SCALING_FACTOR)
           .mul(reserveLiquidationThreshold)
-          .div(SCALING_FACTOR_LT)
-          .toString(),
+          .div(SCALING_FACTOR_LT),
       )
     }
   }
-  return totalCollateral.toString()
+  return totalCollateral
 }
 
 /**
@@ -78,11 +80,11 @@ export interface HealthFactorData {
   /**
    * Sum of total collateral in ETH calculated with asset liquidation threshold
    */
-  totalCollateralETH: string
+  totalCollateralETH: BigNumber
   /**
    * Sum of total borrows for current user
    */
-  totalBorrowETH: string
+  totalBorrowETH: BigNumber
 }
 
 /**
@@ -92,6 +94,23 @@ export const useHealthFactor = ({
   currentAccount,
 }: Props = {}): HealthFactorData => {
   const [value, setValue] = useState({} as HealthFactorData)
+  const CHAIN_ID = Number(process.env.CHAIN_ID) || 1287
+  const configAssets = getNetworkByChain(CHAIN_ID).configAssets
+
+  const mapUserReserveData = useCallback(
+    ({ reserve: { symbol, ...restReserve }, ...rest }): HealthFactorQuery => {
+      return {
+        ...rest,
+        reserve: {
+          ...restReserve,
+          symbol,
+          decimals: configAssets[symbol].decimals,
+          underlyingAsset: configAssets[symbol].underlyingAsset,
+        },
+      }
+    },
+    [configAssets],
+  )
 
   const { data } = useQuery<HealthFactorGraph, UserReserveVariables>(
     GET_HEALTH_FACTOR_DATA,
@@ -101,10 +120,9 @@ export const useHealthFactor = ({
       },
       fetchPolicy: 'cache-and-network',
       onCompleted: () => {
-        const totalBorrowETH = calculateTotalBorrow(data.userReserves)
-        const totalCollateralETH = calculateTotalCollateralWithLT(
-          data.userReserves,
-        )
+        const userReserves = data.userReserves.map(mapUserReserveData)
+        const totalBorrowETH = calculateTotalBorrow(userReserves)
+        const totalCollateralETH = calculateTotalCollateralWithLT(userReserves)
         setValue({
           healthFactor: calculateHealthFactor({
             totalCollateralETH,
