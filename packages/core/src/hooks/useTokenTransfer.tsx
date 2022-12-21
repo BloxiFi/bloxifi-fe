@@ -104,13 +104,17 @@ export const useTokenTransfer = ({
         const polkaInjector = await web3FromAddress(polkadotAccount)
         const polkaSigner = polkaInjector.signer
 
+        // is Withdrawl if transferOrigin is one of moonBeamNetworks
         const isWithdrawl = moonBeamNetworks.includes(
           transferOrigin as keyof XcmSdkByChain,
         )
+
+        // is isDeposit if transferDestination is one of moonBeamNetworks
         const isDeposit = moonBeamNetworks.includes(
           transferDestination as keyof XcmSdkByChain,
         )
 
+        // should return the chain where to do the transfer, used only to confirm if the destination chain is supoorted via `ChainKey`
         const transferChain = isWithdrawl
           ? transferDestination
           : isDeposit
@@ -122,6 +126,7 @@ export const useTokenTransfer = ({
           polkadotSigner: polkaSigner,
         })
 
+        // pick the sdkChain we want to use (should be one of the three moonbaseNetworks). Defaults to moonriver
         const sdkChain = isWithdrawl
           ? transferOrigin
           : isDeposit
@@ -134,13 +139,21 @@ export const useTokenTransfer = ({
         const token = AssetSymbol[tokenSymbol.toUpperCase()]
         const chain = ChainKey[toCapitalize(transferChain)]
 
+        // return error if tokenSymbol is not one of the supported ones in `AssetSymbol`
+        if (!token) {
+          throw new Error('Token is not supported')
+        }
+
+        // return error if transferChain is not one of the supported ones in `ChainKey`
         if (!chain) {
           throw new Error('Destination Chain not supported')
         }
 
         if (isWithdrawl) {
+          //returns the sdkWithdrawTo (synchronous action)
           const withdrawlTo = currentSDK.withdraw(token).to(chain)
 
+          // prepare the withrdawTransferData (async function)
           const withdrawTransferData: WithdrawTransferData =
             await withdrawlTo.get(polkadotAccount)
 
@@ -149,12 +162,15 @@ export const useTokenTransfer = ({
             withdrawTransferData.asset.decimals,
           )
 
+          //execute the transfer and report via `setEvent`
           await withdrawTransferData.send(amount.toBigInt(), event => {
             setEvent(event)
           })
         } else if (isDeposit) {
+          //returns the sdkDepositFrom (synchronous action)
           const depositFrom = currentSDK.deposit(token).from(chain)
 
+          // prepare the depositTransferData (async function)
           const depositTransferData: DepositTransferData =
             await depositFrom.get(metamaskAccount, polkadotAccount)
 
@@ -162,6 +178,7 @@ export const useTokenTransfer = ({
             tokenAmount,
             depositTransferData.asset.decimals,
           )
+          //execute the transfer and report via `setEvent`
 
           await depositTransferData.send(amount.toBigInt(), event => {
             setEvent(event)
