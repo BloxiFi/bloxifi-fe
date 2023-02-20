@@ -111,7 +111,7 @@
     "graphql": "^16.5.0",
     "husky": "^8.0.1",
     "jest": "^28.1.2",
-    "jest-environment-jsdom": "28.1.2",
+    "jest-environment-jsdom": "29.4.3",
     "jest-fetch-mock": "^3.0.3",
     "jest-styled-components": "^7.0.8",
     "jsdom": "^20.0.0",
