@@ -15,6 +15,14 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
+      # - name: Add .nvm to PATH
+      #   run: echo 'export PATH="$HOME/.nvm:$PATH"' >> $HOME/.bashrc
+      # - name: Source .bashrc
+      #   run: source $HOME/.bashrc
+      # - name: nvm
+      #   run: nvm --help
+      # - name: nvm
+      #   run: cat ~/.bashrc
       - name: Assume Role
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -26,6 +34,9 @@ jobs:
           role-duration-seconds: 1200     
       - uses: actions/checkout@v3
         id: checkout
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16        
       # Cache files in ./frontend
       - name: Cache
         uses: actions/cache@v3
@@ -43,11 +54,13 @@ jobs:
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             develop-fe-
+
       # Install dependencies and build the app
       - name: Build React App
         id: build-project
         run: |
          aws secretsmanager get-secret-value --secret-id ${{ secrets.MBA_BUCKET }} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > apps/web/.env
+
          yarn install --frozen-lockfile && yarn bootstrap && yarn build
          rm apps/web/.env
          cd apps/web/dist && tar cvzf ${GITHUB_SHA}-build.tar.gz *
