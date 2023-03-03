@@ -49,10 +49,10 @@ jobs:
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
       - name: Install Node.js
         run: nvm install 16
-
+      - name: source bashrc
+        run: source ~/.bashrc
       # Install dependencies and build the app
       - name: Build React App
         id: build-project
