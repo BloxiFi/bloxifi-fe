@@ -43,16 +43,11 @@ jobs:
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             develop-fe-
-      - name: Install nvm
-        run: |
-          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-      - name: Install Node.js
-        run: nvm install 16
-      - name: source bashrc
-        run: source ~/.bashrc
+      - name: Add .nvm to PATH
+        run: echo 'export PATH="$HOME/.nvm:$PATH"' >> $HOME/.bashrc
+      - name: Source .bashrc
+        run: source $HOME/.bashrc
+
       # Install dependencies and build the app
       - name: Build React App
         id: build-project
