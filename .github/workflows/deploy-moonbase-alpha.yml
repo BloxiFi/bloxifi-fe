@@ -15,6 +15,10 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
+      - name: Add .nvm to PATH
+        run: echo 'export PATH="$HOME/.nvm:$PATH"' >> $HOME/.bashrc
+      - name: Source .bashrc
+        run: source $HOME/.bashrc
       - name: Assume Role
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -43,10 +47,6 @@ jobs:
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             develop-fe-
-      - name: Add .nvm to PATH
-        run: echo 'export PATH="$HOME/.nvm:$PATH"' >> $HOME/.bashrc
-      - name: Source .bashrc
-        run: source $HOME/.bashrc
 
       # Install dependencies and build the app
       - name: Build React App
