@@ -48,6 +48,7 @@ jobs:
         id: build-project
         run: |
          aws secretsmanager get-secret-value --secret-id ${{ secrets.MBA_BUCKET }} --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > apps/web/.env
+         nvm use 16
          yarn install --frozen-lockfile && yarn bootstrap && yarn build
          rm apps/web/.env
          cd apps/web/dist && tar cvzf ${GITHUB_SHA}-build.tar.gz *
