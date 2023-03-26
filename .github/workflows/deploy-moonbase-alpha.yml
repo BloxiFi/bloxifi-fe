@@ -15,15 +15,25 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
-      - name: Assume Role
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Login to AWS with OIDC
+        uses: aws-actions/aws-oidc-login@v1
         with:
-          role-to-assume: ${{ secrets.MBA_ROLE }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-session-name: mba_cicd
-          aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
-          role-duration-seconds: 1200     
+          aws-region: us-west-2 # Replace with your desired AWS region
+          role-arn: ${{ MBA_ROLE_ARN }} # Replace with the ARN of the IAM role you want to assume
+          role-session-name: GitHubActions
+          oidc-provider: https://token.actions.githubusercontent.com
+          oidc-audience: sts.amazonaws.com
+          oidc-subject: repo:${{ github.repository }}:${{ github.run_id }}
+          role-duration-seconds: 1200 
+      # - name: Assume Role
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     role-to-assume: ${{ secrets.MBA_ROLE }}
+      #     aws-region: ${{ secrets.AWS_REGION }}
+      #     role-session-name: mba_cicd
+      #     aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
+      #     role-duration-seconds: 1200     
       - uses: actions/checkout@v3
         id: checkout
       - uses: actions/setup-node@v3
