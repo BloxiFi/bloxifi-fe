@@ -2,7 +2,7 @@ name: moonbase-alpha
 on:
   push:
     branches:
-      - develop
+      - oidc_test
   pull_request:
     branches:
       - develop
@@ -15,14 +15,6 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
-      # - name: Add .nvm to PATH
-      #   run: echo 'export PATH="$HOME/.nvm:$PATH"' >> $HOME/.bashrc
-      # - name: Source .bashrc
-      #   run: source $HOME/.bashrc
-      # - name: nvm
-      #   run: nvm --help
-      # - name: nvm
-      #   run: cat ~/.bashrc
       - name: Assume Role
         uses: aws-actions/configure-aws-credentials@v1
         with:
