@@ -15,16 +15,11 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
-      - name: Login to AWS with OIDC
-        # uses: aws-actions/aws-oidc-login@v1
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-region: ${{ secrets.AWS_REGION }} 
-          role-arn: ${{ secrets.MBA_ROLE_ARN }}
-          role-session-name: GitHubActions
-          oidc-provider: https://token.actions.githubusercontent.com
-          oidc-audience: sts.amazonaws.com
-          oidc-subject: repo:${{ github.repository }}:${{ github.run_id }}
+          role-to-assume: ${{ secrets.MBA_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
           role-duration-seconds: 1200 
       # - name: Assume Role
       #   uses: aws-actions/configure-aws-credentials@v1
