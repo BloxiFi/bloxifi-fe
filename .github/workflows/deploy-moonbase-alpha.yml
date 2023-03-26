@@ -18,8 +18,8 @@ jobs:
       - name: Login to AWS with OIDC
         uses: aws-actions/aws-oidc-login@v1
         with:
-          aws-region: us-west-2 # Replace with your desired AWS region
-          role-arn: ${{ MBA_ROLE_ARN }} # Replace with the ARN of the IAM role you want to assume
+          aws-region: ${{ secrets.AWS_REGION }} 
+          role-arn: ${{ secrets.MBA_ROLE_ARN }}
           role-session-name: GitHubActions
           oidc-provider: https://token.actions.githubusercontent.com
           oidc-audience: sts.amazonaws.com
