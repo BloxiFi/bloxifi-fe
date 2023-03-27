@@ -90,15 +90,15 @@ jobs:
       name: moonbase-alpha-development
       url: https://mba.dev.savval.io
     steps:
-      - name: Assume Role
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.MBA_ROLE }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-session-name: mba_cicd
-          aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
-          role-duration-seconds: 1200 
+      # - name: Assume Role
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     role-to-assume: ${{ secrets.MBA_ROLE }}
+      #     aws-region: ${{ secrets.AWS_REGION }}
+      #     role-session-name: mba_cicd
+      #     aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
+      #     role-duration-seconds: 1200 
       # Download the artifact
       - name: Artifacts upload
         id: upload-artifact
