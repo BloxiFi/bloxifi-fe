@@ -24,7 +24,7 @@ jobs:
           role-to-assume: ${{ secrets.MBA_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
           role-duration-seconds: 1200 
-          role-session-name: cicd
+          role-session-name: ci-cd
       # - name: Assume Role
       #   uses: aws-actions/configure-aws-credentials@v1
       #   with:
