@@ -2,7 +2,7 @@ name: moonbase-alpha
 on:
   push:
     branches:
-      - oidc_test
+      - develop
   pull_request:
     branches:
       - develop
@@ -24,16 +24,7 @@ jobs:
           role-to-assume: ${{ secrets.MBA_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
           role-duration-seconds: 1200 
-          role-session-name: ci-cd
-      # - name: Assume Role
-      #   uses: aws-actions/configure-aws-credentials@v1
-      #   with:
-      #     role-to-assume: ${{ secrets.MBA_ROLE }}
-      #     aws-region: ${{ secrets.AWS_REGION }}
-      #     role-session-name: mba_cicd
-      #     aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.CICD_ACCESS_KEY }}
-      #     role-duration-seconds: 1200     
+          role-session-name: cicd
       - uses: actions/checkout@v3
         id: checkout
       - uses: actions/setup-node@v3
