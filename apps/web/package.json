@@ -34,6 +34,6 @@
     "normalize.css": "^8.0.1",
     "react-router-dom": "^6.3.0",
     "unstated-next": "^1.1.0",
-    "yup": "^0.32.11"
+    "yup": "^1.7.1"
   }
 }
