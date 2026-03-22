@@ -98,3 +98,18 @@ type ReactAttributes<T> = T extends HTMLAnchorElement
 export type ElementProps<T extends ElementRef> = T extends HTMLElementType
   ? ReactAttributes<HTMLElementTypeMap[T]>
   : ReactAttributes<T>
+
+/**
+ * Transitive mutability ("deeply" strips the readonly qualifier).
+ *
+ * Inverse of Immutable<T>. Use with caution.
+ */
+export type Mutable<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends readonly (infer X)[]
+  ? Mutable<X>[]
+  : T extends Date | RegExp
+  ? T
+  : T extends object
+  ? { -readonly [P in keyof T]: Mutable<T[P]> }
+  : T
