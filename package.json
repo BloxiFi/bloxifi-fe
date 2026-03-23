@@ -122,7 +122,7 @@
     "postcss": "^8.4.14",
     "postcss-loader": "^7.0.0",
     "preact": "^10.10.0",
-    "prettier": "^2.7.1",
+    "prettier": "^3.8.1",
     "ramda": "^0.28.0",
     "react-dom": "^17.0.2",
     "react-is": "^18.2.0",
