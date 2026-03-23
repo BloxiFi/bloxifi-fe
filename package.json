@@ -36,7 +36,7 @@
     "@web3-react/core": "^6.1.9",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
-    "ethers": "^5.7.2",
+    "ethers": "^6.16.0",
     "moment": "^2.29.4",
     "react": "^17.0.2",
     "styled-components": "^5.3.5"
