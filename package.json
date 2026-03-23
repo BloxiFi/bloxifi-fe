@@ -83,7 +83,7 @@
     "@types/jest": "^28.1.4",
     "@types/lodash": "^4.14.182",
     "@types/mdx": "^2.0.2",
-    "@types/node": "^18.0.3",
+    "@types/node": "^25.5.0",
     "@types/ramda": "^0.28.15",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
