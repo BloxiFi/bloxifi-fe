@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "i18next": "^21.8.14",
+    "i18next": "^26.0.3",
     "i18next-browser-languagedetector": "^6.1.4",
     "react-i18next": "^11.18.1"
   }
