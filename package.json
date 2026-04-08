@@ -34,7 +34,7 @@
     "@polkadot/extension-dapp": "^0.44.6",
     "@polkadot/rpc-provider": "^9.7.1",
     "@web3-react/core": "^6.1.9",
-    "axios": "^0.27.2",
+    "axios": "^1.13.5",
     "dotenv": "^16.0.1",
     "ethers": "^5.7.2",
     "moment": "^2.29.4",
